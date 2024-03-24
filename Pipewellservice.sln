@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1738
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pipewellservice", "Pipewellservice\Pipewellservice.csproj", "{DDE5924B-F2CC-4DDE-843A-44E21D4893F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipewellserviceModels", "PipewellserviceModels\PipewellserviceModels.csproj", "{BF6824ED-72E3-42D1-8E0E-0B4A996FE4CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipewellserviceJson", "PipewellserviceJson\PipewellserviceJson.csproj", "{9E28D415-C765-4B53-85E2-CF8614E0816C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipewellserviceDB", "PipewellserviceDB\PipewellserviceDB.csproj", "{C0FF549B-AE99-4EC2-8415-AD00BB3B7AF1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDE5924B-F2CC-4DDE-843A-44E21D4893F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDE5924B-F2CC-4DDE-843A-44E21D4893F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDE5924B-F2CC-4DDE-843A-44E21D4893F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDE5924B-F2CC-4DDE-843A-44E21D4893F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF6824ED-72E3-42D1-8E0E-0B4A996FE4CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF6824ED-72E3-42D1-8E0E-0B4A996FE4CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF6824ED-72E3-42D1-8E0E-0B4A996FE4CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF6824ED-72E3-42D1-8E0E-0B4A996FE4CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E28D415-C765-4B53-85E2-CF8614E0816C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E28D415-C765-4B53-85E2-CF8614E0816C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E28D415-C765-4B53-85E2-CF8614E0816C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E28D415-C765-4B53-85E2-CF8614E0816C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0FF549B-AE99-4EC2-8415-AD00BB3B7AF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0FF549B-AE99-4EC2-8415-AD00BB3B7AF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0FF549B-AE99-4EC2-8415-AD00BB3B7AF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0FF549B-AE99-4EC2-8415-AD00BB3B7AF1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16E0BECD-4A05-4526-96FD-6B170FB93554}
+	EndGlobalSection
+EndGlobal

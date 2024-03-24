@@ -1,0 +1,253 @@
+﻿<h2>Employee Information</h2>
+<div class="border p-2">
+    <nav hidden>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link" id="nav-detail-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Add/Edit View Detail</button>
+            <button class="nav-link active" id="nav-list-tab" data-bs-toggle="tab" data-bs-target="#nav-list" type="button" role="tab" aria-controls="nav-list" aria-selected="false">View Detail</button>
+            <!--<button class="nav-link" id="nav-data-tab" data-bs-toggle="tab" data-bs-target="#nav-data" type="button" role="tab" aria-controls="nav-data" aria-selected="false">Employee Data</button>
+
+            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Asset</button>
+            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Family Information</button>
+            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">ID</button>
+            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Family ID's</button>
+            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Employee Contracts</button>-->
+
+        </div>
+    </nav>
+    <div id="dvEmployeeList">
+        <div class="my-2 p-2">
+            <div class="border p-4 w-75 m-auto">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-2 col-sm-12">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="floatingInput" placeholder="Emp #">
+                                    <label for="floatingInput">Emp #:</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="floatingInput" placeholder="Iqma #">
+                                    <label for="floatingInput">Iqma #:</label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-2 col-sm-12">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="floatingInput" placeholder="Name">
+                                    <label for="floatingInput">Name:</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="floatingInput" placeholder="الاسم">
+                                    <label for="floatingInput">الاسم:</label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3 col-sm-12 text-left">
+                                <div class="row mb-2">
+
+                                    <div class="col-7">Show only iqama info</div>
+                                    <div class="col">
+                                        <label class="switch"><input type="checkbox" checked="checked"><div class="slider round"></div></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+
+                                    <div class="col-7">Show only job Employees</div>
+                                    <div class="col">
+                                        <label class="switch"><input type="checkbox" checked="checked"><div class="slider round"></div></label>
+                                    </div>
+                                </div>
+
+
+                                <button type="button" class="btn btn-danger wrn-btn">Search</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <table class="table table-sm table-striped table-hover-warning table-bordered">
+            <thead class="table-primary">
+                <tr>
+                    <th>Emp #</th>
+                    <th>Emp Name</th>
+                    <th>Iqama</th>
+                    <th>Name/Arabic</th>
+                    <th>Nationality</th>
+                    <th>Phone Number</th>
+                    <th>DOB</th>
+                    <th>Age</th>
+                    <th>Company</th>
+                    <th>Division</th>
+                    <th>Position</th>
+                    <th>Supervisor</th>
+
+                    <th class="iqmadata"> Expiry Date</th>
+                    <th class="iqmadata"> Passport Number</th>
+
+                    <th class="employeedata">Vacation After</th>
+                    <th class="employeedata">Next Vacation</th>
+                    <th>Status</th>
+                    <th>Hiring Date</th>
+                    <th>Job Left Date</th>
+                    <th class="employeedata">Sow in Attrndence</th>
+                    <th class="employeedata">Is Deduct Salary</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tblEmployeeList"></tbody>
+
+        </table><div id="dvEmployeePaging"></div>
+    </div>
+    <div id="dvEditEmplyee" class="d-none">
+        <form id="frmEmployeeData">
+            <div class="row container-fluid">
+
+                <div class="col-lg-5 col-md-12">
+                    <div class="row form">
+                        <div class="col-4"><label>Emp.NO.</label></div>
+                        <div class="col-3"><input type="text" class="form-control form-control-sm" id="txtEmployeeID" data-id="ID" readonly value="0" /></div>
+                        <div class="col-1"><label>ID#</label></div>
+                        <div class="col-4"><input type="text" class="form-control form-control-sm" id="txtEmployeeSponorID" readonly /></div>
+
+
+                        <div class="col-4"><label>Name</label></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeName" data-id="Name" data-required="true" required data-msg="Please enter name" /></div>
+                        <div class="col-4"><label>الاسم</label></div>
+                        <div class="col-8"><input type="text" lang="ar" dir="rtl" class="form-control form-control-sm" id="txtEmployeeArabicName" name="ArabicName" data-id="ArabicName" data-required="true" required data-msg="Please enter name in arabic" /></div>
+                        <div class="col-4"><label>Nationality</label></div>
+                        <div class="col-8">
+                            <input type="text" class="form-control form-control-sm" list="ddEmployeeNationality" id="txtEmployeeNationality" data-id="Nationality" required data-msg="Please enter nationality" />
+                            <datalist id="ddEmployeeNationality"></datalist>
+
+                        </div>
+                        <div class="col-4 col-md-4"><label>Gender</label></div>
+                        <div class="col-8 col-md-3"><select class="form-select form-select-sm" id="ddEmployeeGender" data-id="Gender" required data-msg="Please select gender"><option value="1">Male</option><option value="2">Female</option></select></div>
+
+                        <div class="col-4 col-md-2"><label>Birth Date:</label></div>
+                        <div class="col-8 col-md-3"><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeDateOfBirth" data-id="DataOfBirth" data-type="date" required data-msg="Please enter date of birth" /></div>
+
+                        <div class="col-4 col-md-4"><label>Martial Status</label></div>
+                        <div class="col-8 col-md-2"><select class="form-select form-select-sm" id="ddEmployeeMartialStatus" data-id="MartialStatus" required data-msg="Please select martial status"><option value=""></option><option value="1">Married</option><option value="2"> Single</option><option value="3">Divorced</option><option value="4">Widowed</option></select></div>
+                        <div class="col-4 col-md-4"><label>Annual ticket eligibility</label></div>
+                        <div class="col-8 col-md-2"><select class="form-select form-select-sm" id="ddEmployeeAnnualTicket" data-id="AnnualTicket"><option value="1">Yes</option><option value="0">No</option></select></div>
+
+
+                        <div class="col-4"><label>Religion</label></div>
+                        <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeeReligion" data-id="Religion" required data-msg="Please select religion"><option value="1">Muslim</option><option value="2">Non-Muslim</option></select></div>
+
+
+                        <div class="col-4"><label>Phone Number</label></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeePhoneNumber" data-id="PhoneNumber" /></div>
+                        <div class="col-4"><label>Home Country Phone #</label></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeHomeCountryPhoneNumber" data-id="HomePhoneNumber" /></div>
+                        <div class="col-4"><label>Addresss</label></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeAddress" data-id="Address" /></div>
+
+                        <div class="col-4"><label>Location</label></div>
+                        <div class="col-8">
+                            <select class="form-select form-select-sm" id="txtEmployeeLocation" data-id="Location" required data-min="0" data-msg="Please select location"><option value="Dammam">Dammam</option><option value="Jubail">Jubail</option><option value=""></option></select>
+                        </div>
+
+                        <div class="col-4"><label>Division</label></div>
+                        <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeeDivision" data-id="DivisionID" required data-msg="Please select division"></select></div>
+                        <div class="col-4"><label>Position</label></div>
+                        <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeePosition" data-id="PositionID" required data-msg="Please select position"></select></div>
+                        <div class="col-4"><label>Grade</label></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeGrade" data-id="Grade" /></div>
+
+                        <div class="col-4"><label>Report To</label></div>
+                        <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeeSupervisor" data-id="SupervisorID"></select></div>
+
+
+                        <div class="col-4"><label>Status</label></div>
+                        <div class="col-8"><select class="form-select form-select-sm" id="txtEmployeeStatus" data-id="JobStatus"><option value="1">On the Job</option><option value="2">Left the Job</option><option value="0"> </option></select></div>
+
+                        <div class="col-4"><label>Email</label></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeAddress" data-id="EmailAddress" required data-msg="Please enter email address" /></div>
+
+                        <div class="col-4"><label>Remarks</label></div>
+                        <div class="col-8"><textarea cols="5" rows="4" class="form-control form-control-sm" id="txtEmployeeRemark" data-id="Remarks"></textarea></div>
+                    </div>
+
+                </div>
+                <div class="col-lg-5 col-md-12">
+
+                    <div class="row form">
+
+
+                        <div class="col-4"><label>GOSI #.</label></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeGOSI" data-id="GOSI" /></div>
+                        <div class="col-4"><label>Social Insurance #</label></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeSocialInsuranceNo" data-id="SocialInsuranceNo" /></div>
+                        <div class="col-4"><label>Medical Insurance Class</label></div>
+                        <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeeInsuranceClass" data-id="SocialInsuranceClass" required data-msg="Please select insurance class"><option value="1">A</option><option value="2">B</option><option value="3">C</option><option value="4">D</option><option value=""></option></select></div>
+                        <div class="col-4"><label>Labour Code#</label></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeLabourCode" data-id="LabourCode" /></div>
+                        <div class="col-4"><label>CR Number</label></div>
+                        <div class="col-8"><select type="text" class="form-select form-select-sm" id="ddEmployeeSponsor" data-id="SponsorID" required data-msg="Please select sponsor"></select></div>
+
+
+                        <div class="col-4"><label>Source Of Hiring</label></div>
+                        <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeeHiringSource" data-id="HiringSource" required data-msg="Please select hiring source"><option value="1">Direct</option><option value="2">InDirect</option><option value="3">Agency</option><option value=""></option></select></div>
+
+                        <div class="col-4"><label>Type of Contract</label></div>
+                        <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeeContractType" data-id="ContractType" required data-msg="Please select contract type"><option value="1">Family</option><option value="2">Single</option><option value="0"></option></select></div>
+
+                        <div class="col-4"><label>Number of dependents</label></div>
+                        <div class="col-8"><input type="number" class="form-control form-control-sm" id="ddEmployeeNoOfDependent" data-id="NoOfDependent" min="0" max="20" /></div>
+                        <div class="col-4"><label>Hiring Cost</label></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeHiringCost" data-id="HiringCost" /></div>
+                        <div class="col-4"><label>Hire Date:</label></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeHiringDate" data-id="HiringDate" data-type="date" required data-msg="Please enter hiring date" /></div>
+
+
+
+
+                        <div class="col-4"><label>Last Joining Date</label></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeLastJoiningDate" data-id="LastJoinDate" data-type="date" /></div>
+                        <div class="col-4"><label>Vacation Rotation</label></div>
+                        <div class="col-8"><input type="number" class="form-control form-control-sm" id="txtEmployeeVacationRotation" data-id="VacationRotation" /></div>
+
+
+                        <div class="col-4"><label>Last Vacation Date</label></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeLastVacation" data-id="LastVacation" data-type="date" /></div>
+                        <div class="col-4"><label>Next Vacation Date</label></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeNextVacation" data-id="NextVacation" data-type="date" /></div>
+
+                        <div class="col-4"><label>Working Hour</label></div>
+                        <div class="col-8"><select type="text" class="form-select form-select-sm" id="ddEmployeeWorkInOutTime" data-id="JobTimingID"></select></div>
+                        <div class="col-12">
+                            deduct salary(late came/early out)
+                            <label class="switch"><input type="checkbox" checked="checked" id="chkEmployeeDeductSalary" data-id="DeductSalary"><div class="slider round"></div></label>
+
+                        </div>
+                        <div class="col text-center">
+                            <button class="btn btn-primary btn-lg" onclick="UpdateEmployee()" type="button">Save</button>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-2 d-none d-md-block">
+
+                    <img src="https://specials-images.forbesimg.com/dam/imageserve/930116744/960x0.jpg?fit=scale" class="img-thumbnail" />
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+
+
+</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/pagination")
+    @Scripts.Render("~/lib/hr/employee")
+    @Styles.Render("~/bundles/paginationcss")
+}

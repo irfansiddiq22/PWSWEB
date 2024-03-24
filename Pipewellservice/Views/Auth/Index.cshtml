@@ -1,0 +1,61 @@
+﻿@{ 
+    Layout=null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pipe & Well Service Login</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row no-gutter">
+            <!-- The image half -->
+            <div class="col-md-6 d-none d-md-flex login-bg-image"></div>
+
+
+            <!-- The content half -->
+            <div class="col-md-5 bg-light column-gap-md-1">
+                <div class="login_form_wrapper m-auto">
+                    <div class="login_wrapper">
+
+                        <div class="formsix-pos">
+                            <div class="form-group i-email">
+                                <input type="email" class="form-control form-control-sm" required="" id="email2" placeholder="Email Address *">
+                            </div>
+                        </div>
+                        <div class="formsix-e">
+                            <div class="form-group i-password">
+                                <input type="password" class="form-control  form-control-sm" required="" id="password2" placeholder="Password *">
+                            </div>
+                        </div>
+                        <div class="login_remember_box">
+                            <label class="control control--checkbox">
+                                Remember me
+                                <input type="checkbox">
+                                <span class="control__indicator"></span>
+                            </label>
+                            <a href="#" class="forget_password">
+                                Forgot Password
+                            </a>
+                        </div>
+                        <div class="login_btn_wrapper">
+                            <a href="#" class="btn btn-primary login_btn"> Login </a>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End -->
+
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+</body>
+</html>

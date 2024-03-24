@@ -1,0 +1,80 @@
+﻿<h2>Employee ID</h2>
+
+<div class="border p-2">
+    <div class="row">
+        <div class="col-5">
+            <form id="frmIDFile">
+                <div class="mb-3 row">
+                    <label for="ddIDFileEmployeeCode" class="col-sm-2 col-form-label">Code </label>
+                    <div class="col">
+                        <select class="js-example-basic-single js-states form-control" id="ddIDFileEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="txtIDFileDescription" class="col-sm-2 col-form-label">Description </label>
+                    <div class="col">
+                        <input type="text" maxlength="50" class="form-control form-control-sm" list="datalist" id="txtIDFileDescription" name="IDFileDescription" />
+                        <datalist id="datalist">
+                            <select id="datalistOptions"  class="form-select"></select>
+                        </datalist>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="txtIDFileNumber" class="col-sm-2 col-form-label">ID number </label>
+                    <div class="col">
+                        <input type="text" class="form-control form-control-sm" id="txtIDFileNumber" name="IDFileNumber" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="txtIDFileIssueDate" class="col-sm-2 col-form-label">Issue Date</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control form-control-sm datepicker" id="txtIDFileIssueDate" name="IDFileIssueDate">
+                    </div>
+                    <label for="txtIDFileExpiryDate" class="col-sm-2 col-form-label">Expiry Date</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control form-control-sm datepicker" id="txtIDFileExpiryDate" name="IDFileExpiryDate">
+
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="txtIDFileRemarks" class="col-sm-2 col-form-label">Remarks</label>
+                    <div class="col-12">
+                        <textarea class="form-control form-control-sm" rows="5" cols="5" id="txtIDFileRemarks"></textarea>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="custom-file-upload btn btn-primary">
+                        <input type="file" id="txtIDFile" />
+                        <i class="fa fa-cloud-upload"></i> Upload ID File
+                    </label>
+                    <button class="btn btn-primary ms-5" type="submit" onclick="SaveIDFile()">Save</button>
+                    <button class="btn btn-danger" type="reset">Clear</button>
+
+
+                </div>
+
+            </form>
+        </div>
+        <div class="col border-start">
+            <table class="table table-sm table-striped table-hover-warning table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Description</th>
+                        <th>Number</th>
+                        <th>Issue Date</th>
+                        <th>Expiry Date</th>
+                        <th>Remarks</th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tblEmployeeIDList"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/lib/hr/employeeid")
+}

@@ -1,0 +1,118 @@
+﻿<h2>Employee Family</h2>
+
+<div class="border p-2">
+    <div class="w-75 m-auto p-3 border round" ><form id="frmEmployeeFamily">
+    <div class="mb-3 row">
+        <label for="ddEmployeeFamilyCode" class="col-sm-2 col-form-label">Code </label>
+        <div class="col">
+            <select class="js-example-basic-single js-states form-control" id="ddEmployeeFamilyCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="txtFamilyName" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-4">
+            <input type="text" maxlength="50" class="form-control form-control-sm" id="txtFamilyName" required data-msg="Please enter name" name="FamilyName" />
+        </div>
+        <label for="txtFamilyDateOfBirth" class="col-sm-2 col-form-label">Date of Birth</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control form-control-sm datepicker" id="txtFamilyDateOfBirth" name="FamilyDateOfBirth" required data-msg="Please enter date of birth.">
+        </div>
+    </div>
+
+
+    <div class="mb-3 row">
+        <label for="txtFamilyRelationship" class="col-sm-2 col-form-label">Relation</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control form-control-sm" id="txtFamilyRelationship" name="FamilyRelationship" list="datalist" required data-msg="Please enter relationship.">
+            <datalist id="datalist">
+                <select id="datalistOptions" class="form-select"></select>
+            </datalist>
+        </div>
+        <label for="txtpassportnumber" class="col-sm-2 col-form-label">Passport Number</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control form-control-sm" id="txtFamilyPassportNumber" name="FamilyPassportNumber" required data-msg="Please enter passport number.">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="txtFamilyIqamaNumber" class="col-sm-2 col-form-label">Iqama Number</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control form-control-sm" id="txtFamilyIqamaNumber" name="FamilyIqamaNumber" required data-msg="Please enter iqama number.">
+        </div>
+
+        <label for="txtIssueDate" class="col-sm-2 col-form-label">Issue Date</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control form-control-sm datepicker" id="txtFamilyPassportIssueDate" name="FamilyPassportIssueDate" required data-msg="please enter passport issue date.">
+        </div>
+
+    </div>
+
+    <div class="mb-3 row">
+        <label for="txtFamilyLocalPhoneNumber" class="col-sm-2 col-form-label">Saudia Phone Number</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control form-control-sm" id="txtFamilyLocalPhoneNumber" required data-msg="please enter saudia phone number.">
+        </div>
+        <label for="txtFamilyPassportExpiryDate" class="col-sm-2 col-form-label">Expiry Date</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control form-control-sm datepicker" id="txtFamilyPassportExpiryDate" name="FamilyPassportExpiryDate" required data-msg="please enter passport expiry date.">
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+
+        <label for="txtFamilyHomePhoneNumber" class="col-sm-2 col-form-label">Home Country Phone Number</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control form-control-sm" id="txtFamilyHomePhoneNumber" required data-msg="please enter home country phone number.">
+        </div>
+    </div>
+
+    <div class="mb-3">
+
+        <label class="custom-file-upload btn btn-primary">
+            <input type="file" id="txtFamilyPassport" />
+            <i class="fa fa-cloud-upload"></i> Upload Passport File
+        </label>
+        <button class="btn btn-primary ms-5" type="button" onclick="return SaveFamily()">Save</button>
+        <button class="btn btn-danger" type="reset">Clear</button>
+
+
+    </div>
+</form></div>
+    
+    <div class="my-2"></div>
+    <table class="table table-sm table-striped table-hover-warning table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>DOB</th>
+                <th>Relation</th>
+                <th>Passport number</th>
+                <th>Iqama number</th>
+                <th>Passport Issue Date</th>
+                <th>Passport Exp Date</th>
+                <th>Phone Home number</th>
+                <th>Phone Saudia number</th>
+                <th></th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody id="tblEmployeeFamily"></tbody>
+    </table>
+    <div class="row">
+        <div class="col">
+
+        </div>
+        <div class="col border-start">
+
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    @Scripts.Render("~/lib/hr/employeefamily")
+    
+}

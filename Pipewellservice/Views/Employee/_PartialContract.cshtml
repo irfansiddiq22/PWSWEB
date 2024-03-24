@@ -1,0 +1,43 @@
+﻿<h2>Employee Contract</h2>
+
+<div class="border m-auto">
+    <div class="my-2 p-2">
+        <div class="border p-4 w-50 m-auto">
+            <table class="table">
+                <tr>
+                    <td>Code:</td>
+                    <td width="60%"><select class="js-example-basic-single js-states form-control" id="ddContractEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select></td>
+                    <td>
+                        <label class="custom-file-upload  btn btn-primary">
+                            <input type="file" id="txtContractImage" />
+                            <i class="fa fa-cloud-upload"></i> Upload Contract File
+                        </label>
+                    </td>
+
+                </tr>
+
+
+            </table>
+        </div>
+
+    </div>
+
+    <table class="table table-sm table-striped table-hover-warning table-bordered">
+        <thead class="table-primary">
+            <tr>
+                <th>Employee ID</th>
+                <th>Employee Name</th>
+
+                <th>Name/Arabic</th>
+                <th>Contract Date</th>
+                <th>Nationality</th>
+                <th>Download Contract</th>
+
+            </tr>
+        </thead>
+        <tbody id="tblEmployeeContracts"></tbody>
+    </table>
+</div>
+@section Scripts{
+    @Scripts.Render("~/lib/hr/contract")
+}

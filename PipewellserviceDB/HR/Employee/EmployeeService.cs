@@ -1,0 +1,528 @@
+﻿using PipewellserviceModels.Common;
+using PipewellserviceModels.HR.Employee;
+using SQLHelper;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PipewellserviceDB.HR.Employee
+{
+    public class EmployeeService : DataServices
+    {
+
+        public async Task<DataTable> CodeName()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "Proc_EmployeeCodeName", CommandType.StoredProcedure);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<DataTable> FamilyCodeName()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "Proc_EmployeeFamilyCodeName", CommandType.StoredProcedure);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+
+        ////////----------------------------------------------------------------------
+
+        public async Task<DataTable> CertificateList(int EmployeeID)
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeCertificateList", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID });
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<DataTable> UpdateCertificate(EmployeeCertificate certificate)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[10];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = certificate.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@Name", Value = certificate.Name };
+                collSP[2] = new SqlParameter { ParameterName = "@EmployeeID", Value = certificate.EmployeeID };
+                collSP[3] = new SqlParameter { ParameterName = "@IssueDate", Value = certificate.IssueDate };
+                collSP[4] = new SqlParameter { ParameterName = "@ExpiryDate", Value = certificate.ExpiryDate };
+                collSP[5] = new SqlParameter { ParameterName = "@Remarks", Value = certificate.Remarks };
+                collSP[6] = new SqlParameter { ParameterName = "@OnShore", Value = certificate.OnShore };
+                collSP[7] = new SqlParameter { ParameterName = "@FileName", Value = certificate.FileName };
+                collSP[8] = new SqlParameter { ParameterName = "@FileID", Value = certificate.FileID };
+                collSP[9] = new SqlParameter { ParameterName = "@RecordUpdatedBy", Value = certificate.RecordUpdatedBy };
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateEmployeeCertificate", CommandType.StoredProcedure, collSP);
+                return await CertificateList(certificate.EmployeeID);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<bool> RemoveCertificate(DeleteDTO delete)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = delete.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@Name", Value = delete.Name };
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcDeleteEmployeeCertificate", CommandType.StoredProcedure, collSP);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
+        ///////////////////-------------------------------------------------
+        ///
+
+        public async Task<DataTable> AssetList(int EmployeeID)
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeAssetList", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID });
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<DataTable> UpdateAsset(EmployeeAsset asset)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[8];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = asset.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@Name", Value = asset.Name };
+                collSP[2] = new SqlParameter { ParameterName = "@EmployeeID", Value = asset.EmployeeID };
+                collSP[3] = new SqlParameter { ParameterName = "@IssueDate", Value = asset.IssueDate };
+                collSP[4] = new SqlParameter { ParameterName = "@Remarks", Value = asset.Remarks };
+                collSP[5] = new SqlParameter { ParameterName = "@FileName", Value = asset.FileName };
+                collSP[6] = new SqlParameter { ParameterName = "@FileID", Value = asset.FileID };
+                collSP[7] = new SqlParameter { ParameterName = "@RecordUpdatedBy", Value = asset.RecordUpdatedBy };
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateEmployeeAsset", CommandType.StoredProcedure, collSP);
+                return await AssetList(asset.EmployeeID);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<bool> RemoveAsset(DeleteDTO delete)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = delete.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@Name", Value = delete.Name };
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcDeleteEmployeeAsset", CommandType.StoredProcedure, collSP);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+        public async Task<DataTable> ContractList()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeContractList", CommandType.StoredProcedure);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<DataTable> UpdateContract(EmployeeContract contract)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[4];
+                collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = contract.EmployeeID };
+                collSP[1] = new SqlParameter { ParameterName = "@FileName", Value = contract.FileName };
+                collSP[2] = new SqlParameter { ParameterName = "@FileID", Value = contract.FileID };
+                collSP[3] = new SqlParameter { ParameterName = "@RecordUpdatedBy", Value = contract.RecordUpdatedBy };
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateEmployeeContract", CommandType.StoredProcedure, collSP);
+                return await ContractList();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        public async Task<DataTable> EmployeeIDTypeList()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeIDTypeList", CommandType.StoredProcedure);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+
+        public async Task<DataTable> EmployeeIDFileList(int EmployeeID)
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeIDList", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID });
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<DataTable> UpdateEmployeeIDFile(EmployeeIDFile file)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[10];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = file.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = file.EmployeeID };
+                collSP[2] = new SqlParameter { ParameterName = "@Description", Value = file.Description };
+                collSP[3] = new SqlParameter { ParameterName = "@IDNumber", Value = file.IDNumber };
+                collSP[4] = new SqlParameter { ParameterName = "@IssueDate", Value = file.IssueDate };
+                collSP[5] = new SqlParameter { ParameterName = "@ExpiryDate", Value = file.ExpiryDate };
+                collSP[6] = new SqlParameter { ParameterName = "@Remarks", Value = file.Remarks };
+                collSP[7] = new SqlParameter { ParameterName = "@FileName", Value = file.FileName };
+                collSP[8] = new SqlParameter { ParameterName = "@FileID", Value = file.FileID };
+                collSP[9] = new SqlParameter { ParameterName = "@RecordUpdatedBy", Value = file.RecordUpdatedBy };
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateEmployeeID", CommandType.StoredProcedure, collSP);
+                return await EmployeeIDFileList(file.EmployeeID);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<bool> RemoveEmployeeIDFile(DeleteDTO delete)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = delete.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@Name", Value = delete.Name };
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcDeleteEmployeeID", CommandType.StoredProcedure, collSP);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
+        ///////////////////-------------------------------------------------
+        public async Task<DataTable> EmployeeFamilyIDFileList(int EmployeeID)
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeFamilyIDList", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID });
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<DataTable> UpdateEmployeeFamilyIDFile(EmployeeFamilyIDFile file)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[12];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = file.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = file.EmployeeID };
+                collSP[2] = new SqlParameter { ParameterName = "@Relation", Value = file.Relation };
+                collSP[3] = new SqlParameter { ParameterName = "@Description", Value = file.Description };
+                collSP[4] = new SqlParameter { ParameterName = "@IDNumber", Value = file.IDNumber };
+                collSP[5] = new SqlParameter { ParameterName = "@IssueDate", Value = file.IssueDate };
+                collSP[6] = new SqlParameter { ParameterName = "@ExpiryDate", Value = file.ExpiryDate };
+                collSP[7] = new SqlParameter { ParameterName = "@Remarks", Value = file.Remarks };
+                collSP[8] = new SqlParameter { ParameterName = "@FileName", Value = file.FileName };
+                collSP[9] = new SqlParameter { ParameterName = "@FileID", Value = file.FileID };
+                collSP[10] = new SqlParameter { ParameterName = "@RecordUpdatedBy", Value = file.RecordUpdatedBy };
+                collSP[11] = new SqlParameter { ParameterName = "@Name", Value = file.Name };
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateEmployeeFamilyID", CommandType.StoredProcedure, collSP);
+                return await EmployeeFamilyIDFileList(file.EmployeeID);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<bool> RemoveEmployeeFamilyIDFile(DeleteDTO delete)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = delete.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@Name", Value = delete.Name };
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcDeleteEmployeeFamilyID", CommandType.StoredProcedure, collSP);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
+        ///////////////////-------------------------------------------------
+
+        public async Task<DataTable> EmployeeRelationList()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeFamilyRelationList", CommandType.StoredProcedure);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public async Task<DataTable> EmployeeFamilyList(int EmployeeID)
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeFamilyList", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID });
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<DataTable> UpdateEmployeeFamily(EmployeeFamily family)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[14];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = family.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = family.EmployeeID };
+                collSP[2] = new SqlParameter { ParameterName = "@Name", Value = family.Name };
+                collSP[3] = new SqlParameter { ParameterName = "@Relation", Value = family.Relation };
+                collSP[4] = new SqlParameter { ParameterName = "@DateOfBirth", Value = family.DateOfBirth };
+                collSP[5] = new SqlParameter { ParameterName = "@PassportNumber", Value = family.PassportNumber };
+                collSP[6] = new SqlParameter { ParameterName = "@PassportIssueDate", Value = family.PassportIssueDate };
+                collSP[7] = new SqlParameter { ParameterName = "@PassportExpiryDate", Value = family.PassportExpiryDate };
+                collSP[8] = new SqlParameter { ParameterName = "@IqamaNumber", Value = family.IqamaNumber };
+                collSP[9] = new SqlParameter { ParameterName = "@LocalPhoneNumber", Value = family.LocalPhoneNumber };
+                collSP[10] = new SqlParameter { ParameterName = "@HomePhoneNumber", Value = family.HomePhoneNumber };
+                collSP[11] = new SqlParameter { ParameterName = "@FileID", Value = family.FileID };
+                collSP[12] = new SqlParameter { ParameterName = "@FileName", Value = family.FileName };
+                collSP[13] = new SqlParameter { ParameterName = "@RecordUpdatedBy", Value = family.RecordUpdatedBy };
+
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateEmployeeFamily", CommandType.StoredProcedure, collSP);
+                return await EmployeeFamilyList(family.EmployeeID);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<bool> RemoveEmployeeFamily(DeleteDTO delete)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = delete.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@Name", Value = delete.Name };
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcDeleteEmployeeFamilyMember", CommandType.StoredProcedure, collSP);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
+        ///////////////////-------------------------------------------------
+
+
+        public async Task<DataTable> EmployeeList()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeList", CommandType.StoredProcedure);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<DataTable> EmployeeDetail(int EmployeeID)
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeDetail", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID });
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+
+        public async Task<EmployeeDataSql> EmployeeDataList()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeDataList", CommandType.StoredProcedure);
+                EmployeeDataSql model = new EmployeeDataSql();
+                model.Department.Load(result);
+                model.Position.Load(result);
+                //   model.Supervisior.Load(result);
+                model.Sponsor.Load(result);
+                model.WorkTime.Load(result);
+                return model;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<ResultDTO> UpdateEmployee(EmployeeData employee)
+        {
+
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[38];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = employee.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@Name", Value = employee.Name };
+                collSP[2] = new SqlParameter { ParameterName = "@ArabicName", Value = employee.ArabicName };
+                collSP[3] = new SqlParameter { ParameterName = "@SupervisorID", Value = employee.SupervisorID };
+                collSP[4] = new SqlParameter { ParameterName = "@EmailAddress", Value = employee.EmailAddress };
+                collSP[5] = new SqlParameter { ParameterName = "@Nationality", Value = employee.Nationality };
+                collSP[6] = new SqlParameter { ParameterName = "@PositionID", Value = employee.PositionID };
+                collSP[7] = new SqlParameter { ParameterName = "@DivisionID", Value = employee.DivisionID };
+                collSP[8] = new SqlParameter { ParameterName = "@Religion", Value = employee.Religion };
+                collSP[9] = new SqlParameter { ParameterName = "@Gender", Value = employee.Gender };
+
+                collSP[10] = new SqlParameter { ParameterName = "@MartialStatus", Value = employee.MartialStatus };
+                collSP[11] = new SqlParameter { ParameterName = "@PhoneNumber", Value = employee.PhoneNumber };
+                collSP[12] = new SqlParameter { ParameterName = "@HomePhoneNumber", Value = employee.HomePhoneNumber };
+                collSP[13] = new SqlParameter { ParameterName = "@Address", Value = employee.Address };
+                collSP[14] = new SqlParameter { ParameterName = "@Location", Value = employee.Location };
+                collSP[15] = new SqlParameter { ParameterName = "@Grade", Value = employee.Grade };
+                collSP[16] = new SqlParameter { ParameterName = "@JobStatus", Value = employee.JobStatus };
+                collSP[17] = new SqlParameter { ParameterName = "@Remarks", Value = employee.Remarks };
+                collSP[18] = new SqlParameter { ParameterName = "@GOSI", Value = employee.GOSI };
+                collSP[19] = new SqlParameter { ParameterName = "@SocialInsuranceNo", Value = employee.SocialInsuranceNo };
+                collSP[20] = new SqlParameter { ParameterName = "@LabourCode", Value = employee.LabourCode };
+                collSP[21] = new SqlParameter { ParameterName = "@SponsorID", Value = employee.SponsorID };
+                collSP[22] = new SqlParameter { ParameterName = "@HiringSource", Value = employee.HiringSource };
+                collSP[23] = new SqlParameter { ParameterName = "@HiringCost", Value = employee.HiringCost };
+                collSP[24] = new SqlParameter { ParameterName = "@HiringDate", Value = employee.HiringDate };
+                collSP[25] = new SqlParameter { ParameterName = "@LastJoinDate", Value = employee.LastJoinDate };
+                collSP[26] = new SqlParameter { ParameterName = "@VacationRotation", Value = employee.VacationRotation };
+                collSP[27] = new SqlParameter { ParameterName = "@NextVacation", Value = employee.NextVacation };
+                collSP[28] = new SqlParameter { ParameterName = "@DataOfBirth", Value = employee.DataOfBirth };
+                collSP[29] = new SqlParameter { ParameterName = "@JobTimingID", Value = employee.JobTimingID };
+                collSP[30] = new SqlParameter { ParameterName = "@DeductSalary", Value = employee.DeductSalary };
+                collSP[31] = new SqlParameter { ParameterName = "@FileName", Value = employee.FileName };
+                collSP[32] = new SqlParameter { ParameterName = "@FileID", Value = employee.FileID };
+                collSP[33] = new SqlParameter { ParameterName = "@RecordUpdatedBy", Value = employee.RecordUpdatedBy };
+
+                collSP[34] = new SqlParameter { ParameterName = "@SocialInsuranceClass", Value = employee.SocialInsuranceClass };
+                collSP[35] = new SqlParameter { ParameterName = "@ContractType", Value = employee.ContractType };
+                collSP[36] = new SqlParameter { ParameterName = "@NoOfDependent", Value = employee.NoOfDependent };
+                collSP[37] = new SqlParameter { ParameterName = "@AnnualTicket", Value = employee.AnnualTicket };
+
+                await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateEmployee", CommandType.StoredProcedure, collSP);
+                return new ResultDTO() { Status = true, Message = "Record Added" };
+            }
+            catch (Exception e)
+            {
+                return new ResultDTO() { Status = false, Message = e.Message };
+            }
+
+        }
+    }
+}
