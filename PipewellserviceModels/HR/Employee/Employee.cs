@@ -13,6 +13,7 @@ namespace PipewellserviceModels.HR.Employee
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public string New { get; set; }
     }
     public class EmployeeListView : EmployeeData
     {
