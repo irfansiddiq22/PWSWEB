@@ -31,7 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSDataSqlCommand">
+    <Reference Include="CSDataSqlCommand, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>I:\V2\V2APi\Services\bin\Debug\CSDataSqlCommand.exe</HintPath>
     </Reference>
     <Reference Include="System" />

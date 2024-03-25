@@ -78,10 +78,10 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link  dropdown-toggle" href="#" id="navbarSettings" role="button" data-bs-toggle="dropdown" aria-expanded="false">Settings</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarSettings">
-                            <li><a class="dropdown-item" href="#">Divisions</a></li>
-                            <li><a class="dropdown-item" href="#">Positions</a></li>
-                            <li><a class="dropdown-item" href="#">Companies</a></li>
-                            <li><a class="dropdown-item" href="#">Users</a></li>
+                            <li><a class="dropdown-item" href="/setting/index">Divisions</a></li>
+                            <li><a class="dropdown-item" href="/setting/index">Positions</a></li>
+                            <li><a class="dropdown-item" href="/setting/index">Companies</a></li>
+                            <li><a class="dropdown-item" href="/setting/index">Users</a></li>
                         </ul>
                     </li>
 
@@ -104,6 +104,9 @@
     </div>
 
     <div id="spinner"></div>
+    <script type="text/javascript">
+        var User = { Name: 'demo', ID: 0 };
+    </script>
     @Styles.Render("~/bundles/sweetalertcss")
 
     @Scripts.Render("~/bundles/jquery")
@@ -113,9 +116,9 @@
     @Scripts.Render("~/bundles/sweetalert")
     @Scripts.Render("~/common")
     @Scripts.Render("~/lib/sidemenu")
-    <script type="text/javascript">
-        var User = { Name: 'demo', ID: 0 };
-    </script>
+    @Scripts.Render("~/bundles/datatable")
+    @Scripts.Render("~/bundles/datatablecss")
+
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
         $(function () {

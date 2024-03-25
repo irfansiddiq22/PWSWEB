@@ -14,13 +14,15 @@ function _Int() {
     HideSpinner();
     BindUsers();
 }
-function InitilzeCertificate() {
+function InitializeCertificate() {
     Certificate.ID = 0;
     Certificate.Name = "";
     Certificate.IssueDate = "";
     Certificate.ExpiryDate = "";
     Certificate.Remarks = "";
     Certificate.FileName = "";
+    
+    ResetChangeLog(PAGES.Certificate);
 }
 function ToggleOffShore(sender) {
     if ($(sender).prop("checked"))
@@ -53,7 +55,7 @@ function BindUsers() {
 function FillCertificates(EmployeeID) {
     $("#tblCertificateList").empty();
     Certificate.EmployeeID = EmployeeID;
-    InitilzeCertificate();
+    InitializeCertificate();
 
     Post("/EmployeeAPI/CertificateList", { EmployeeID: EmployeeID }).done(function (Response) {
         CertificateList = Response;
@@ -100,6 +102,37 @@ function SaveCertificate() {
 
         },
         submitHandler: function (form) {
+            
+
+            var fileData = new FormData();
+            var fileUpload = $('#txtCertificateImage').get(0);
+            var files = fileUpload.files;
+            if (files.length > 0)
+                fileData.append(files[0].name, files[0]);
+
+
+            if (Certificate.ID == 0) {
+                DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: "", New: valOf("txtCertificateName") } });
+            } else {
+                if ($.trim(Certificate.Name) != $.trim(valOf("txtCertificateName"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: Certificate.Name, New: valOf("txtCertificateName") } });
+                }
+                if (moment(Certificate.IssueDate).format("MM/DD/YYYY") != $.trim(valOf("txtCertificateIssueDate"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "IssueDate", Data: { OLD: moment(Certificate.IssueDate).format("MM/DD/YYYY"), New: valOf("txtCertificateIssueDate") } });
+                }
+                if (moment(Certificate.ExpiryDate).format("MM/DD/YYYY") != $.trim(valOf("txtCertificateExpiryDate"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "ExpiryDate", Data: { OLD: moment(Certificate.ExpiryDate).format("MM/DD/YYYY"), New: valOf("txtCertificateExpiryDate") } });
+                }
+                if ($.trim(Certificate.OnShore) != $.trim(GetChecked("chkCertificateOnshore"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "OnShore", Data: { OLD: Certificate.OnShore, New: GetChecked("chkCertificateOnshore") } });
+                }
+                if (files.length > 0) {
+                    DataChangeLog.DataUpdated.push({ Field: "FileName", Data: { OLD: Certificate.FileName, New: files[0].name } });
+                }
+            }
+
+
+
 
             Certificate.Name = valOf("txtCertificateName");
             Certificate.IssueDate = valOf("txtCertificateIssueDate");
@@ -109,12 +142,6 @@ function SaveCertificate() {
                 Certificate.OnShore = null;
             else
                 Certificate.OnShore = GetChecked("chkCertificateOnshore")
-
-            var fileData = new FormData();
-            var fileUpload = $('#txtCertificateImage').get(0);
-            var files = fileUpload.files;
-            if (files.length>0)
-                fileData.append(files[0].name, files[0]);
             
             fileData.append('RecordUpdatedBy', User.Name);
             fileData.append('Name', Certificate.Name);
@@ -126,7 +153,7 @@ function SaveCertificate() {
             fileData.append('FileID', Certificate.FileID);
             fileData.append('FileName', Certificate.FileName);
             fileData.append('ID', Certificate.ID);
-            
+
             ShowSpinner();
             $.ajax({
                 url: '/EmployeeAPI/UpdateCertificate',
@@ -136,13 +163,16 @@ function SaveCertificate() {
                 data: fileData,
                 success: function (result) {
                     HideSpinner();
-                    if (Certificate.ID==0)
+                    if (Certificate.ID == 0)
                         swal({ text: "New employee certificate record added.", icon: "success" });
                     else
                         swal({ text: "Employee certificate record updated.", icon: "success" });
+                    
+                    SaveLog(result);
+
                     FillCertificates(Certificate.EmployeeID)
                     document.getElementById("frmCertificate").reset();
-                    InitilzeCertificate();
+                    InitializeCertificate();
                     SetvalOf("ddCertificateEmployeeCode", Certificate.EmployeeID);
 
                 }, error: function (errormessage) {

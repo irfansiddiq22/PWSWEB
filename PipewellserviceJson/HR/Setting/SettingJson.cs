@@ -1,4 +1,5 @@
 ﻿using PipewellserviceDB.HR.Setting;
+using PipewellserviceModels.Common;
 using PipewellserviceModels.HR.Settings;
 using PipewellserviceModels.User;
 using System;
@@ -21,9 +22,9 @@ namespace PipewellserviceJson.HR.Setting
         {
             return await JsonHelper.Convert<List<Division>, DataTable>(await service.UpdateDivision(division));
         }
-        public async Task<bool> RemoveDivision(int ID)
+        public async Task<bool> RemoveDivision(DeleteDTO dto)
         {
-            return await  service.RemoveDivision(ID);
+            return await  service.RemoveDivision(dto);
         }
 
 
@@ -36,9 +37,9 @@ namespace PipewellserviceJson.HR.Setting
         {
             return await JsonHelper.Convert<List<Position>, DataTable>(await service.UpdatePosition(position));
         }
-        public async Task<bool> RemovePosition(int ID)
+        public async Task<bool> RemovePosition(DeleteDTO data)
         {
-            return await service.RemovePosition(ID);
+            return await service.RemovePosition(data);
         }
 
 
@@ -50,9 +51,9 @@ namespace PipewellserviceJson.HR.Setting
         {
             return await JsonHelper.Convert<List<Department>, DataTable>(await service.UpdateDepartment(department));
         }
-        public async Task<bool> RemoveDepartment(int ID)
+        public async Task<bool> RemoveDepartment(DeleteDTO data)
         {
-            return await service.RemoveDepartment(ID);
+            return await service.RemoveDepartment(data);
         }
 
 

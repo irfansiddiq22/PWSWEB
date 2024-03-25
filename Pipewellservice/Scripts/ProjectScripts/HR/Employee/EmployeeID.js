@@ -1,5 +1,6 @@
 ﻿var IDFile = {
     ID: 0,
+    Name: '',
     EmployeeID: 0,
     Description: '',
     Number:'',
@@ -16,14 +17,17 @@ function _Int() {
     FillIDTypeList("datalistOptions")
     BindUsers();
 }
-function InitilzeIDFile() {
+function InitializeIDFile() {
     IDFile.ID = 0;
+    
     IDFile.Description = "";
     IDFile.Number = "";
     IDFile.IssueDate = "";
     IDFile.ExpiryDate = "";
     IDFile.Remarks = "";
     IDFile.FileName = "";
+    ResetChangeLog(PAGES.EmployeeID)
+    
 }
 
 function BindUsers() {
@@ -51,7 +55,7 @@ function BindUsers() {
 function FillIDFiles(EmployeeID) {
     $("#tblEmployeeIDList").empty();
     IDFile.EmployeeID = EmployeeID;
-    InitilzeIDFile();
+    InitializeIDFile();
 
     Post("/EmployeeAPI/EmployeeIDFileList", { EmployeeID: EmployeeID }).done(function (Response) {
         FillIDListTable(Response)
@@ -64,7 +68,6 @@ function FillIDListTable(Response) {
         var tr = $('<tr>');
         var Link = $('<a>').attr("href", "javascript:void(0)").attr("onclick", "DownloadIDFile('" + c.EmployeeID + "','" + c.FileName + "','" + c.FileID + "')").text(c.FileName);
         tr.append($('<td>').append(c.FileName == "null" || c.FileName=="" ?"":$(Link)))
-
         tr.append($('<td>').text(c.Description))
         tr.append($('<td>').text(c.IDNumber))
         tr.append($('<td>').text(moment(c.IssueDate).format("MM/DD/YYYY")))
@@ -86,6 +89,7 @@ function DownloadIDFile(EmployeeID, FileName, FileID) {
 }
 function EditIDFile(index) {
     IDFile = IDFileList[index];
+    
     SetvalOf("txtIDFileDescription", IDFile.Description);
     SetvalOf("txtIDFileNumber", IDFile.IDNumber);
 
@@ -114,19 +118,47 @@ function SaveIDFile() {
 
         },
         submitHandler: function (form) {
+            var fileData = new FormData();
+            var fileUpload = $('#txtIDFile').get(0);
+            var files = fileUpload.files;
+            if (files.length > 0)
+                fileData.append(files[0].name, files[0]);
 
+
+
+            if (IDFile.ID == 0) {
+                DataChangeLog.DataUpdated.push({ Field: "Description", Data: { OLD: "", New: valOf("txtIDFileDescription") } });
+            } else {
+                
+                if ($.trim(IDFile.Description) != $.trim(valOf("txtIDFileDescription"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "Description", Data: { OLD: IDFile.Description, New: valOf("txtIDFileDescription") } });
+                }
+                if ($.trim(IDFile.IDNumber) != $.trim(valOf("txtIDFileNumber"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "ID", Data: { OLD: IDFile.IDNumber, New: valOf("txtIDFileNumber") } });
+                }
+                if (moment(IDFile.IssueDate).format("MM/DD/YYYY") != $.trim(valOf("txtIDFileIssueDate"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "IssueDate", Data: { OLD: moment(IDFile.IssueDate).format("MM/DD/YYYY"), New: valOf("txtIDFileIssueDate") } });
+                }
+                if (moment(IDFile.ExpiryDate).format("MM/DD/YYYY") != $.trim(valOf("txtIDFileExpiryDate"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "ExpiryDate", Data: { OLD: moment(IDFile.ExpiryDate).format("MM/DD/YYYY"), New: valOf("txtIDFileExpiryDate") } });
+                }
+
+                if ($.trim(IDFile.Remarks) != $.trim(valOf("txtIDFileRemarks"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "Remarks", Data: { OLD: IDFile.Remarks, New: valOf("txtIDFileRemarks") } });
+                }
+
+                if (files.length > 0) {
+                    DataChangeLog.DataUpdated.push({ Field: "FileName", Data: { OLD: IDFile.FileName, New: files[0].name } });
+                }
+
+            }
+            
             IDFile.Description = valOf("txtIDFileDescription");
             IDFile.IDNumber = valOf("txtIDFileNumber");
-
             IDFile.IssueDate = valOf("txtIDFileIssueDate");
             IDFile.ExpiryDate = valOf("txtIDFileExpiryDate");
             IDFile.Remarks = valOf("txtIDFileRemarks");
             
-            var fileData = new FormData();
-            var fileUpload = $('#txtIDFile').get(0);
-            var files = fileUpload.files;
-            if (files.length>0)
-                fileData.append(files[0].name, files[0]);
             
             fileData.append('RecordUpdatedBy', User.Name);
             fileData.append('Description', IDFile.Description);
@@ -147,16 +179,18 @@ function SaveIDFile() {
                 contentType: false,
                 processData: false,
                 data: fileData,
-                success: function (Response) {
+                success: function (result) {
                     HideSpinner();
                     if (IDFile.ID==0)
                         swal({ text: "New employee id record added.", icon: "success" });
                     else
                         swal({ text: "Employee id record updated.", icon: "success" });
 
-                    FillIDListTable(Response)
+                    SaveLog(result);
+
+                    FillIDFiles(IDFile.EmployeeID)
                     document.getElementById("frmIDFile").reset();
-                    InitilzeIDFile();
+                    InitializeIDFile();
                     FillIDTypeList("datalistOptions")
                     SetvalOf("ddIDFileEmployeeCode", IDFile.EmployeeID);
 
@@ -168,15 +202,6 @@ function SaveIDFile() {
                         swal({ text: "Failed to update id record.", icon: "error" });
                 }
             });
-            //Post("/", { certificate: Certificate }).done(function (Response) {
-            //    swal({ text: "New employee certificate record added.", icon: "success" });
-            //    Clear("txtUserName")
-            //    Clear("txtUserPassword")
-
-            //    FillUserList(Response);
-            //}).fail(function () {
-            //    swal({ text: "Failed to create new certificate record.", icon: "error" });
-            //});
             return false;
         }
 

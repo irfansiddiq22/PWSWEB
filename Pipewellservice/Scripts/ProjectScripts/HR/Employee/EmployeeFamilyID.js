@@ -5,7 +5,7 @@
     Relation: '',
     Description: '',
     Number: '',
-    
+
     IssueDate: '',
     ExpiryDate: '',
     Remarks: '',
@@ -19,13 +19,13 @@ function _Int() {
     BindUsers();
 }
 function InitilzeIDFile() {
+    ResetChangeLog(PAGES.FamilyID)
     IDFile.ID = 0;
 
     IDFile.Relation = "";
     IDFile.Description = "";
     IDFile.Number = "";
     IDFile.Name = "";
-    
     IDFile.IssueDate = "";
     IDFile.ExpiryDate = "";
     IDFile.Remarks = "";
@@ -70,7 +70,7 @@ function FillIDListTable(Response) {
     $.each(Response, function (i, c) {
         var tr = $('<tr>');
         var Link = $('<a>').attr("href", "javascript:void(0)").attr("onclick", "DownloadIDFile('" + c.EmployeeID + "','" + c.FileName + "','" + c.FileID + "')").text(c.FileName);
-        tr.append($('<td>').append(c.FileName == "null" || c.FileName == "" ? "":$(Link)))
+        tr.append($('<td>').append(c.FileName == "null" || c.FileName == "" ? "" : $(Link)))
         tr.append($('<td>').text(c.Relation))
         tr.append($('<td>').text(c.Description))
         tr.append($('<td>').text(c.IDNumber))
@@ -100,9 +100,9 @@ function EditIDFile(index) {
     SetvalOf("txtIDFileDateOfBirth", (moment(IDFile.DateOfBirth).format("MM/DD/YYYY")));
 
     SetvalOf("txtIDFileIssueDate", (moment(IDFile.IssueDate).format("MM/DD/YYYY")));
-    SetvalOf("txtIDFileExpiryDate", moment(IDFile.ExpiryDate).format("MM/DD/YYYY") );
+    SetvalOf("txtIDFileExpiryDate", moment(IDFile.ExpiryDate).format("MM/DD/YYYY"));
     SetvalOf("txtIDFileRemarks", IDFile.Remarks);
-    
+
 }
 function SaveIDFile() {
     $("#frmIDFile").validate({
@@ -110,58 +110,94 @@ function SaveIDFile() {
 
         rules: {
             EmployeeCode: "required",
-            IDFileRelation:"required",
+            IDFileRelation: "required",
             IDFileDescription: "required",
             IDFileNumber: "required",
             IDFileIssueDate: "required",
             IDFileExpiryDate: "required",
             IDFileName: "required"
-            
+
         },
         messages: {
             EmployeeCode: "Please select employee",
             IDFileRelation: "Please enter ID file relationship with employee",
             IDFileDescription: "Please enter ID file description",
-            IDFileNumber:"Please enter ID number",
+            IDFileNumber: "Please enter ID number",
             IDFileIssueDate: "Please enter ID file issue date",
             IDFileExpiryDate: "Please enter ID file expiry date",
             IDFileName: "Please enter name"
-           
+
 
         },
         submitHandler: function (form) {
-            IDFile.Name = valOf("txtIDFileName");
 
-            IDFile.Description = valOf("txtIDFileDescription");
-            IDFile.IDNumber = valOf("txtIDFileNumber");
-            IDFile.Relation = valOf("txtIDFileRelation");
-            
-            IDFile.IssueDate = valOf("txtIDFileIssueDate");
-            IDFile.ExpiryDate = valOf("txtIDFileExpiryDate");
-            IDFile.Remarks = valOf("txtIDFileRemarks");
-            
+
             var fileData = new FormData();
             var fileUpload = $('#txtIDFile').get(0);
             var files = fileUpload.files;
-            if (files.length>0)
+            if (files.length > 0)
                 fileData.append(files[0].name, files[0]);
-            
+
+            if (IDFile.ID == 0) {
+                DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: "", New: valOf("txtIDFileName") } });
+            } else {
+
+                if ($.trim(IDFile.Name) != $.trim(valOf("txtIDFileName"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: IDFile.Name, New: valOf("txtIDFileName") } });
+                }
+                if ($.trim(IDFile.Description) != $.trim(valOf("txtIDFileDescription"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "Description", Data: { OLD: IDFile.Description, New: valOf("txtIDFileDescription") } });
+                }
+                if ($.trim(IDFile.IDNumber) != $.trim(valOf("txtIDFileNumber"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "ID", Data: { OLD: IDFile.IDNumber, New: valOf("txtIDFileNumber") } });
+                }
+                if ($.trim(IDFile.Relation) != $.trim(valOf("txtIDFileRelation"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "Relation", Data: { OLD: IDFile.Relation, New: valOf("txtIDFileRelation") } });
+                }
+                if (moment(IDFile.IssueDate).format("MM/DD/YYYY") != $.trim(valOf("txtIDFileIssueDate"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "IssueDate", Data: { OLD: moment(IDFile.IssueDate).format("MM/DD/YYYY"), New: valOf("txtIDFileIssueDate") } });
+                }
+                if (moment(IDFile.ExpiryDate).format("MM/DD/YYYY") != $.trim(valOf("txtIDFileExpiryDate"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "ExpiryDate", Data: { OLD: moment(IDFile.ExpiryDate).format("MM/DD/YYYY"), New: valOf("txtIDFileExpiryDate") } });
+                }
+
+                if ($.trim(IDFile.Remarks) != $.trim(valOf("txtIDFileRemarks"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "Remarks", Data: { OLD: IDFile.Remarks, New: valOf("txtIDFileRemarks") } });
+                }
+
+                if (files.length > 0) {
+                    DataChangeLog.DataUpdated.push({ Field: "FileName", Data: { OLD: IDFile.FileName, New: files[0].name } });
+                }
+
+            }
+
+
+            IDFile.Name = valOf("txtIDFileName");
+            IDFile.Description = valOf("txtIDFileDescription");
+            IDFile.IDNumber = valOf("txtIDFileNumber");
+            IDFile.Relation = valOf("txtIDFileRelation");
+
+            IDFile.IssueDate = valOf("txtIDFileIssueDate");
+            IDFile.ExpiryDate = valOf("txtIDFileExpiryDate");
+            IDFile.Remarks = valOf("txtIDFileRemarks");
+
+
             fileData.append('RecordUpdatedBy', User.Name);
             fileData.append('Name', IDFile.Name);
             fileData.append('Relation', IDFile.Relation);
 
             fileData.append('Description', IDFile.Description);
             fileData.append('IDNumber', IDFile.IDNumber);
-            
+
             fileData.append('IssueDate', IDFile.IssueDate);
             fileData.append('ExpiryDate', IDFile.ExpiryDate);
             fileData.append('Remarks', IDFile.Remarks);
-            
+
             fileData.append('EmployeeID', IDFile.EmployeeID);
             fileData.append('FileID', IDFile.FileID);
             fileData.append('FileName', IDFile.FileName);
             fileData.append('ID', IDFile.ID);
-            
+
             ShowSpinner();
             $.ajax({
                 url: '/EmployeeAPI/UpdateEmployeeFamilyIDFile',
@@ -171,12 +207,13 @@ function SaveIDFile() {
                 data: fileData,
                 success: function (Response) {
                     HideSpinner();
-                    if (IDFile.ID==0)
+                    if (IDFile.ID == 0)
                         swal({ text: "New employee family id record added.", icon: "success" });
                     else
                         swal({ text: "Employee family id record updated.", icon: "success" });
+                    SaveLog(Response);
 
-                    FillIDListTable(Response)
+                    FillIDFiles(IDFile.EmployeeID)
                     document.getElementById("frmIDFile").reset();
                     InitilzeIDFile();
                     FillIDTypeList("datalistOptions")
@@ -204,4 +241,3 @@ function SaveIDFile() {
 
     });
 }
- 

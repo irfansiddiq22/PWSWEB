@@ -27,13 +27,19 @@ namespace PipewellserviceJson.HR.Employee
             return result;
         }
         ////////..................
+
+        public async Task<bool> SaveLog(DataChangeLog log)
+        {
+            return await service.SaveLog(log);
+        }
+
         public async Task<List<EmployeeCertificate>> CertificateList(int EmployeeID)
         {
             return await JsonHelper.Convert<List<EmployeeCertificate>, DataTable>(await service.CertificateList(EmployeeID));
         }
-        public async Task<List<EmployeeCertificate>> UpdateCertificate(EmployeeCertificate certificate)
+        public async Task<int> UpdateCertificate(EmployeeCertificate certificate)
         {
-            return await JsonHelper.Convert<List<EmployeeCertificate>, DataTable>(await service.UpdateCertificate(certificate));
+            return await service.UpdateCertificate(certificate);
         }
         public async Task<bool> RemoveCertificate(DeleteDTO delete)
         {
@@ -44,9 +50,9 @@ namespace PipewellserviceJson.HR.Employee
         {
             return await JsonHelper.Convert<List<EmployeeAsset>, DataTable>(await service.AssetList(EmployeeID));
         }
-        public async Task<List<EmployeeAsset>> UpdateAsset(EmployeeAsset asset)
+        public async Task<int> UpdateAsset(EmployeeAsset asset)
         {
-            return await JsonHelper.Convert<List<EmployeeAsset>, DataTable>(await service.UpdateAsset(asset));
+            return await service.UpdateAsset(asset);
         }
         public async Task<bool> RemoveAsset(DeleteDTO delete)
         {
@@ -75,9 +81,9 @@ namespace PipewellserviceJson.HR.Employee
         {
             return await JsonHelper.Convert<List<EmployeeIDFile>, DataTable>(await service.EmployeeIDFileList(EmployeeID));
         }
-        public async Task<List<EmployeeIDFile>> UpdateEmployeeIDFile(EmployeeIDFile file)
+        public async Task<int> UpdateEmployeeIDFile(EmployeeIDFile file)
         {
-            return await JsonHelper.Convert<List<EmployeeIDFile>, DataTable>(await service.UpdateEmployeeIDFile(file));
+            return await service.UpdateEmployeeIDFile(file);
         }
         public async Task<bool> RemoveEmployeeIDFile(DeleteDTO delete)
         {
@@ -89,9 +95,9 @@ namespace PipewellserviceJson.HR.Employee
         {
             return await JsonHelper.Convert<List<EmployeeFamilyIDFile>, DataTable>(await service.EmployeeFamilyIDFileList(EmployeeID));
         }
-        public async Task<List<EmployeeFamilyIDFile>> UpdateEmployeeFamilyIDFile(EmployeeFamilyIDFile file)
+        public async Task<int> UpdateEmployeeFamilyIDFile(EmployeeFamilyIDFile file)
         {
-            return await JsonHelper.Convert<List<EmployeeFamilyIDFile>, DataTable>(await service.UpdateEmployeeFamilyIDFile(file));
+            return  await service.UpdateEmployeeFamilyIDFile(file);
         }
         public async Task<bool> RemoveEmployeeFamilyIDFile(DeleteDTO delete)
         {
@@ -108,9 +114,9 @@ namespace PipewellserviceJson.HR.Employee
         {
             return await JsonHelper.Convert<List<EmployeeFamily>, DataTable>(await service.EmployeeFamilyList(EmployeeID));
         }
-        public async Task<List<EmployeeFamily>> UpdateEmployeeFamily(EmployeeFamily family)
+        public async Task<int> UpdateEmployeeFamily(EmployeeFamily family)
         {
-            return await JsonHelper.Convert<List<EmployeeFamily>, DataTable>(await service.UpdateEmployeeFamily(family));
+            return await service.UpdateEmployeeFamily(family);
         }
         public async Task<bool> RemoveEmployeeFamily(DeleteDTO delete)
         {

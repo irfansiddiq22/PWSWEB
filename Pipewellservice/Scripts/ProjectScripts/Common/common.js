@@ -1,4 +1,30 @@
-﻿$.validator.setDefaults({
+﻿var PAGES = {
+    Division: 1,
+    Position: 2,
+    Department: 3,
+    Certificate: 4,
+    Asset: 5,
+    EmployeeID: 6,
+    Family: 7,
+    FamilyID: 8,
+    Contract:9
+}
+var DataChangeLog = {
+    Form: 0,
+    UserName: User.Name,
+    RecordID: 0,
+    DataUpdated: []
+}
+function ResetChangeLog(Form) {
+    DataChangeLog = {
+        Form: Form,
+        UserName: User.Name,
+        RecordID: 0,
+        DataUpdated: []
+    }
+}
+
+$.validator.setDefaults({
     highlight: function (element) {
         if ($(element).closest('.form-group').length) 
             $(element).closest('.form-group').addClass('has-error');
@@ -95,6 +121,11 @@ function FillRelationList(List) {
 
     });
 }
+function SaveLog(ID) {
+    DataChangeLog.RecordID=ID
+    Post("/EmployeeAPI/SaveLog", { Log: DataChangeLog }).done(function (Response) { });
+}
+
 function FillList(List, Data, Text, Value,Default) {
     $("#" + List).empty();
     if (Default != "#") {
@@ -126,4 +157,33 @@ function FormatPhone(value) {
     }
     return value;
     return value.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+}
+
+
+function SwalConfirm(Message, CallBack) {
+    swal({
+        html: true,
+        title: Message,
+        text: "",
+        icon: "warning",
+        buttons: {
+            catch: {
+                text: "Confirm",
+                value: "Confirm"
+            },
+            cancel: "Cancel"
+        },
+        dangerMode: false,
+    })
+        .then((value) => {
+            switch (value) {
+                case "Cancel":
+                    break;
+                case "Confirm":
+                    CallBack();
+                    break;
+            }
+
+        });
+
 }

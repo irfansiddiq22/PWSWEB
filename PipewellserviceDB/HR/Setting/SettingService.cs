@@ -8,6 +8,7 @@ using SQLHelper;
 using PipewellserviceModels.HR.Settings;
 using System.Data.SqlClient;
 using PipewellserviceModels.User;
+using PipewellserviceModels.Common;
 
 namespace PipewellserviceDB.HR.Setting
 {
@@ -34,6 +35,7 @@ namespace PipewellserviceDB.HR.Setting
         {
             try
             {
+                await this.LogUpdate(division.log);
                 SqlParameter[] collSP = new SqlParameter[2];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = division.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@Name", Value = division.Name };
@@ -46,11 +48,15 @@ namespace PipewellserviceDB.HR.Setting
             }
 
         }
-        public async Task<bool> RemoveDivision(int ID)
+        public async Task<bool> RemoveDivision(DeleteDTO dto)
         {
             try
             {
-                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcDeleteDivision", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = dto.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@UserName", Value = dto.Name };
+
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcDeleteDivision", CommandType.StoredProcedure, collSP);
                 return true;
             }
             catch (Exception e)
@@ -82,6 +88,7 @@ namespace PipewellserviceDB.HR.Setting
         {
             try
             {
+                await this.LogUpdate(position.log);
                 SqlParameter[] collSP = new SqlParameter[2];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = position.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@Name", Value = position.Name };
@@ -94,11 +101,15 @@ namespace PipewellserviceDB.HR.Setting
             }
 
         }
-        public async Task<bool> RemovePosition(int ID)
+        public async Task<bool> RemovePosition(DeleteDTO dto)
         {
             try
             {
-                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcDeletePosition", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = dto.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@UserName", Value = dto.Name };
+
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcDeletePosition", CommandType.StoredProcedure, collSP);
                 return true;
             }
             catch (Exception e)
@@ -130,6 +141,7 @@ namespace PipewellserviceDB.HR.Setting
         {
             try
             {
+                await this.LogUpdate(department.log);
                 SqlParameter[] collSP = new SqlParameter[2];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = department.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@Name", Value = department.Name };
@@ -142,11 +154,15 @@ namespace PipewellserviceDB.HR.Setting
             }
 
         }
-        public async Task<bool> RemoveDepartment(int ID)
+        public async Task<bool> RemoveDepartment(DeleteDTO data)
         {
             try
             {
-                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcDeleteDepartment", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = data.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@UserName", Value = data.Name };
+
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcDeleteDepartment", CommandType.StoredProcedure, collSP);
                 return true;
             }
             catch (Exception e)

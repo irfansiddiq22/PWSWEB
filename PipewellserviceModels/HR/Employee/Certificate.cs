@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PipewellserviceModels.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace PipewellserviceModels.HR.Employee
 {
+    
     public class EmployeeCertificate
     {
         public int ID { get; set; }
@@ -23,6 +25,7 @@ namespace PipewellserviceModels.HR.Employee
         public string RecordAddedBy { get; set; }
         public DateTime RecordDateUpdated { get; set; }
         public string RecordUpdatedBy { get; set; }
+        
 
     }
 }

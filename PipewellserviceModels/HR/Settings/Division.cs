@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PipewellserviceModels.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,24 +11,29 @@ namespace PipewellserviceModels.HR.Settings
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public DataChangeLog log { get; set; }
     }
     public class Position
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public DataChangeLog log { get; set; }
     }
     public class Department
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public DataChangeLog log { get; set; }
     }
     public class SponsorCompany
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public DataChangeLog log { get; set; }
     }
     public class WorkInOutTime
     {
+        public DataChangeLog log { get; set; }
         public int ID { get; set; }
         public int StartHour { get; set; }
         public int StartMin { get; set; }

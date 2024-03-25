@@ -58,6 +58,7 @@ function UploadContract() {
     else {
         return false;
     }
+
     fileData.append('RecordUpdatedBy', User.Name);
     fileData.append('EmployeeID', valOf("ddContractEmployeeCode"));
     ShowSpinner();

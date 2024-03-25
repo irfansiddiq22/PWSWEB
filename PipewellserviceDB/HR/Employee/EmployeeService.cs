@@ -46,7 +46,9 @@ namespace PipewellserviceDB.HR.Employee
             }
 
         }
-
+        public async Task<bool> SaveLog(DataChangeLog log) {
+          return  await this.LogUpdate(log);
+        }
         ////////----------------------------------------------------------------------
 
         public async Task<DataTable> CertificateList(int EmployeeID)
@@ -65,10 +67,11 @@ namespace PipewellserviceDB.HR.Employee
             }
 
         }
-        public async Task<DataTable> UpdateCertificate(EmployeeCertificate certificate)
+        public async Task<int> UpdateCertificate(EmployeeCertificate certificate)
         {
             try
             {
+
                 SqlParameter[] collSP = new SqlParameter[10];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = certificate.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@Name", Value = certificate.Name };
@@ -80,12 +83,12 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[7] = new SqlParameter { ParameterName = "@FileName", Value = certificate.FileName };
                 collSP[8] = new SqlParameter { ParameterName = "@FileID", Value = certificate.FileID };
                 collSP[9] = new SqlParameter { ParameterName = "@RecordUpdatedBy", Value = certificate.RecordUpdatedBy };
-                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateEmployeeCertificate", CommandType.StoredProcedure, collSP);
-                return await CertificateList(certificate.EmployeeID);
+                var result =  SqlHelper.ExecuteScalar (this.ConnectionString, "ProcUpdateEmployeeCertificate", CommandType.StoredProcedure, collSP);
+                return Convert.ToInt32(result);
             }
             catch (Exception e)
             {
-                return null;
+                return 0;
             }
 
         }
@@ -124,7 +127,7 @@ namespace PipewellserviceDB.HR.Employee
             }
 
         }
-        public async Task<DataTable> UpdateAsset(EmployeeAsset asset)
+        public async Task<int> UpdateAsset(EmployeeAsset asset)
         {
             try
             {
@@ -137,12 +140,12 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[5] = new SqlParameter { ParameterName = "@FileName", Value = asset.FileName };
                 collSP[6] = new SqlParameter { ParameterName = "@FileID", Value = asset.FileID };
                 collSP[7] = new SqlParameter { ParameterName = "@RecordUpdatedBy", Value = asset.RecordUpdatedBy };
-                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateEmployeeAsset", CommandType.StoredProcedure, collSP);
-                return await AssetList(asset.EmployeeID);
+                var result =  SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeAsset", CommandType.StoredProcedure, collSP);
+                return Convert.ToInt32(result);
             }
             catch (Exception e)
             {
-                return null;
+                return 0;
             }
 
         }
@@ -189,7 +192,7 @@ namespace PipewellserviceDB.HR.Employee
                 SqlParameter[] collSP = new SqlParameter[4];
                 collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = contract.EmployeeID };
                 collSP[1] = new SqlParameter { ParameterName = "@FileName", Value = contract.FileName };
-                collSP[2] = new SqlParameter { ParameterName = "@FileID", Value = contract.FileID };
+                collSP[2] = new SqlParameter { ParameterName = "@FileID", Value = $"{contract.EmployeeID}{contract.FileID}" };
                 collSP[3] = new SqlParameter { ParameterName = "@RecordUpdatedBy", Value = contract.RecordUpdatedBy };
                 var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateEmployeeContract", CommandType.StoredProcedure, collSP);
                 return await ContractList();
@@ -236,7 +239,7 @@ namespace PipewellserviceDB.HR.Employee
             }
 
         }
-        public async Task<DataTable> UpdateEmployeeIDFile(EmployeeIDFile file)
+        public async Task<int> UpdateEmployeeIDFile(EmployeeIDFile file)
         {
             try
             {
@@ -251,12 +254,12 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[7] = new SqlParameter { ParameterName = "@FileName", Value = file.FileName };
                 collSP[8] = new SqlParameter { ParameterName = "@FileID", Value = file.FileID };
                 collSP[9] = new SqlParameter { ParameterName = "@RecordUpdatedBy", Value = file.RecordUpdatedBy };
-                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateEmployeeID", CommandType.StoredProcedure, collSP);
-                return await EmployeeIDFileList(file.EmployeeID);
+                var result =  SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeID", CommandType.StoredProcedure, collSP);
+                return Convert.ToInt32(result);
             }
             catch (Exception e)
             {
-                return null;
+                return 0;
             }
 
         }
@@ -293,7 +296,7 @@ namespace PipewellserviceDB.HR.Employee
             }
 
         }
-        public async Task<DataTable> UpdateEmployeeFamilyIDFile(EmployeeFamilyIDFile file)
+        public async Task<int> UpdateEmployeeFamilyIDFile(EmployeeFamilyIDFile file)
         {
             try
             {
@@ -310,12 +313,12 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[9] = new SqlParameter { ParameterName = "@FileID", Value = file.FileID };
                 collSP[10] = new SqlParameter { ParameterName = "@RecordUpdatedBy", Value = file.RecordUpdatedBy };
                 collSP[11] = new SqlParameter { ParameterName = "@Name", Value = file.Name };
-                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateEmployeeFamilyID", CommandType.StoredProcedure, collSP);
-                return await EmployeeFamilyIDFileList(file.EmployeeID);
+                var result =  SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeFamilyID", CommandType.StoredProcedure, collSP);
+                return Convert.ToInt32(result);
             }
             catch (Exception e)
             {
-                return null;
+                return 0;
             }
 
         }
@@ -368,7 +371,7 @@ namespace PipewellserviceDB.HR.Employee
             }
 
         }
-        public async Task<DataTable> UpdateEmployeeFamily(EmployeeFamily family)
+        public async Task<int> UpdateEmployeeFamily(EmployeeFamily family)
         {
             try
             {
@@ -388,12 +391,12 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[12] = new SqlParameter { ParameterName = "@FileName", Value = family.FileName };
                 collSP[13] = new SqlParameter { ParameterName = "@RecordUpdatedBy", Value = family.RecordUpdatedBy };
 
-                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateEmployeeFamily", CommandType.StoredProcedure, collSP);
-                return await EmployeeFamilyList(family.EmployeeID);
+                var result =  SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeFamily", CommandType.StoredProcedure, collSP);
+                return Convert.ToInt32(result);
             }
             catch (Exception e)
             {
-                return null;
+                return 0;
             }
 
         }

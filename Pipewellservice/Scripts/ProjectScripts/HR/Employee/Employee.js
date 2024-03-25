@@ -176,6 +176,7 @@ function FillEmployeeTable() {
 
                 $("#tblEmployeeList").append(tr);//'<a class="fc-event fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-future fc-event-upcoming p-1" style="color:#FFF!important;" data-id=\'' + e.PostIDEnc + '\'>' + e.title + ' ' + new moment(e.start).format("MM/DD/YY") + '</a>')
             })
+
         }
     })
 }

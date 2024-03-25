@@ -1,4 +1,5 @@
 ﻿using PipewellserviceJson.HR.Setting;
+using PipewellserviceModels.Common;
 using PipewellserviceModels.HR.Settings;
 using PipewellserviceModels.User;
 using System;
@@ -30,11 +31,11 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        public async Task<JsonResult> RemoveDivision(int ID)
+        public async Task<JsonResult> RemoveDivision(DeleteDTO data)
         {
             return new JsonResult
             {
-                Data = await json.RemoveDivision(ID),
+                Data = await json.RemoveDivision(data),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -57,11 +58,11 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        public async Task<JsonResult> RemovePosition(int ID)
+        public async Task<JsonResult> RemovePosition(DeleteDTO data)
         {
             return new JsonResult
             {
-                Data = await json.RemovePosition(ID),
+                Data = await json.RemovePosition(data),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -83,11 +84,11 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        public async Task<JsonResult> RemoveDepartment(int ID)
+        public async Task<JsonResult> RemoveDepartment(DeleteDTO data)
         {
             return new JsonResult
             {
-                Data = await json.RemoveDepartment(ID),
+                Data = await json.RemoveDepartment(data),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -115,7 +116,7 @@ namespace Pipewellservice.Areas.API.Controllers
         {
             return new JsonResult
             {
-                Data = await json.RemoveDepartment(ID),
+                Data = await json.RemoveUser(ID),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }

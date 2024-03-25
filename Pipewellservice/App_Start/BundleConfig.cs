@@ -47,6 +47,7 @@ namespace Pipewellservice
                       "~/Scripts/libraries/sweetalert/sweet-alert.css"));
 
             bundles.Add(new Bundle("~/bundles/datatable").Include(
+                "~/Scripts/datatable.js",
                       "~/Scripts/dataTables.bootstrap5.js"));
             bundles.Add(new StyleBundle("~/bundles/datatablecss").Include(
                       "~/Scripts/libraries/sweetalert/dataTables.bootstrap5.min.css"));

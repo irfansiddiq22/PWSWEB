@@ -19,7 +19,7 @@ function _Int() {
     BindUsers();
 }
 function InitilzeFamily() {
-
+    ResetChangeLog(PAGES.Family)
     Family.Name = '';
     Family.Relation = ''
     Family.DateOfBirth = ''
@@ -126,6 +126,49 @@ function EditFamilyMember(index) {
 function SaveFamily() {
     if ($("#frmEmployeeFamily").valid()) {
 
+        var fileData = new FormData();
+        var fileUpload = $('#txtFamilyPassport').get(0);
+        var files = fileUpload.files;
+        if (files.length > 0)
+            fileData.append(files[0].name, files[0]);
+
+        if (Family.ID == 0) {
+            DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: "", New: valOf("txtFamilyName") } });
+        } else {
+            if ($.trim(Family.Name) != $.trim(valOf("txtFamilyName"))) 
+                DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: Family.Name, New: valOf("txtFamilyName") } });
+
+            if (moment(Family.DateOfBirth).format("MM/DD/YYYY") != $.trim(valOf("txtFamilyDateOfBirth")))
+                DataChangeLog.DataUpdated.push({ Field: "DateOfBirth", Data: { OLD: moment(Family.DateOfBirth).format("MM/DD/YYYY"), New: valOf("txtFamilyDateOfBirth") } });
+            if ($.trim(Family.Relation) != $.trim(valOf("txtFamilyRelationship")))
+                DataChangeLog.DataUpdated.push({ Field: "Relation", Data: { OLD: Family.Relation, New: valOf("txtFamilyRelationship") } });
+
+            
+            if ($.trim(Family.PassportNumber) != $.trim(valOf("txtFamilyPassportNumber")))
+                DataChangeLog.DataUpdated.push({ Field: "PassportNumber", Data: { OLD: Family.PassportNumber, New: valOf("txtFamilyPassportNumber") } });
+
+            if (moment(Family.PassportIssueDate).format("MM/DD/YYYY") != $.trim(valOf("txtFamilyPassportIssueDate")))
+                DataChangeLog.DataUpdated.push({ Field: "PassportIssueDate", Data: { OLD: moment(Family.PassportIssueDate).format("MM/DD/YYYY"), New: valOf("txtFamilyPassportIssueDate") } });
+
+            if (moment(Family.PassportExpiryDate).format("MM/DD/YYYY") != $.trim(valOf("txtFamilyPassportExpiryDate")))
+                DataChangeLog.DataUpdated.push({ Field: "PassportExpiryDate", Data: { OLD: moment(Family.PassportExpiryDate).format("MM/DD/YYYY"), New: valOf("txtFamilyPassportExpiryDate") } });
+
+            if ($.trim(Family.IqamaNumber) != $.trim(valOf("txtFamilyIqamaNumber")))
+                DataChangeLog.DataUpdated.push({ Field: "IqamaNumber", Data: { OLD: Family.IqamaNumber, New: valOf("txtFamilyIqamaNumber") } });
+
+            if ($.trim(Family.LocalPhoneNumber) != $.trim(valOf("txtFamilyLocalPhoneNumber")))
+                DataChangeLog.DataUpdated.push({ Field: "LocalPhoneNumber", Data: { OLD: Family.LocalPhoneNumber, New: valOf("txtFamilyLocalPhoneNumber") } });
+
+            if ($.trim(Family.HomePhoneNumber) != $.trim(valOf("txtFamilyHomePhoneNumber")))
+                DataChangeLog.DataUpdated.push({ Field: "HomePhoneNumber", Data: { OLD: Family.HomePhoneNumber, New: valOf("txtFamilyHomePhoneNumber") } });
+
+            if (files.length > 0) 
+                DataChangeLog.DataUpdated.push({ Field: "FileName", Data: { OLD: Family.FileName, New: files[0].name } });
+            
+
+        }
+
+
         Family.Name = valOf("txtFamilyName");
         Family.DateOfBirth = valOf("txtFamilyDateOfBirth");
         Family.Relation = valOf("txtFamilyRelationship");
@@ -136,12 +179,7 @@ function SaveFamily() {
         Family.LocalPhoneNumber = valOf("txtFamilyLocalPhoneNumber");
         Family.HomePhoneNumber = valOf("txtFamilyHomePhoneNumber");
 
-        var fileData = new FormData();
-        var fileUpload = $('#txtFamilyPassport').get(0);
-        var files = fileUpload.files;
-        if (files.length > 0)
-            fileData.append(files[0].name, files[0]);
-
+        
         fileData.append('RecordUpdatedBy', User.Name);
         fileData.append('Name', Family.Name);
         fileData.append('DateOfBirth', Family.DateOfBirth);
@@ -170,7 +208,10 @@ function SaveFamily() {
                 else
                     swal({ text: "Employee family record updated.", icon: "success" });
 
-                FillEmployeeFamilyTable(Response)
+                SaveLog(Response);
+
+                FillEmployeeFamily(Family.EmployeeID);
+
                 document.getElementById("frmEmployeeFamily").reset();
                 InitilzeFamily();
                 FillRelationList("datalistOptions")

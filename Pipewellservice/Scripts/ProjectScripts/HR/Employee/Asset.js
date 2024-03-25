@@ -19,6 +19,8 @@ function InitilzeAsset() {
     Asset.IssueDate = "";
     Asset.Remarks = "";
     Asset.FileName = "";
+    ResetChangeLog(PAGES.Asset)
+    
 }
 
 function BindUsers() {
@@ -48,7 +50,7 @@ function FillAssets(EmployeeID) {
 
     Post("/EmployeeAPI/AssetList", { EmployeeID: EmployeeID }).done(function (Response) {
         AssetList = Response;
-        console.log(Response)
+        
         $.each(Response, function (i, c) {
             var tr = $('<tr>');
             tr.append($('<td>').text((i + 1)))
@@ -70,7 +72,6 @@ function EditAsset(index) {
     Asset = AssetList[index];
     SetvalOf("txtAssetName", Asset.Name);
     SetvalOf("txtAssetIssueDate", (moment(Asset.IssueDate).format("MM/DD/YYYY")));
-    
     SetvalOf("txtAssetRemarks", Asset.Remarks);
     
     
@@ -92,16 +93,40 @@ function SaveAsset() {
         },
         submitHandler: function (form) {
 
-            Asset.Name = valOf("txtAssetName");
-            Asset.IssueDate = valOf("txtAssetIssueDate");
-            
-            Asset.Remarks = valOf("txtAssetRemarks");
-            
             var fileData = new FormData();
             var fileUpload = $('#txtAssetImage').get(0);
+
             var files = fileUpload.files;
-            if (files.length>0)
+            if (files.length > 0)
                 fileData.append(files[0].name, files[0]);
+
+
+
+            if (Asset.ID == 0) {
+                DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: "", New: valOf("txtAssetName") } });
+            } else {
+                if ($.trim(Asset.Name) != $.trim(valOf("txtAssetName"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: Asset.Name, New: valOf("txtAssetName") } });
+                }
+                if (moment(Asset.IssueDate).format("MM/DD/YYYY") != $.trim(valOf("txtAssetIssueDate"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "IssueDate", Data: { OLD: moment(Asset.IssueDate).format("MM/DD/YYYY"), New: valOf("txtAssetIssueDate") } });
+                }
+                
+                if ($.trim(Asset.Remarks) != $.trim(valOf("txtAssetRemarks"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: Asset.Remarks, New: valOf("txtAssetRemarks") } });
+                }
+
+                if (files.length > 0) {
+                    DataChangeLog.DataUpdated.push({ Field: "FileName", Data: { OLD: Asset.FileName, New: files[0].name } });
+                }
+
+            }
+
+            Asset.Name = valOf("txtAssetName");
+            Asset.IssueDate = valOf("txtAssetIssueDate");
+            Asset.Remarks = valOf("txtAssetRemarks");
+            
+            
             
             fileData.append('RecordUpdatedBy', User.Name);
             fileData.append('Name', Asset.Name);
@@ -127,7 +152,10 @@ function SaveAsset() {
                         swal({ text: "New employee Asset record added.", icon: "success" });
                     else
                         swal({ text: "Employee Asset record updated.", icon: "success" });
+
                     
+                    SaveLog(result);
+
                     FillAssets(Asset.EmployeeID)
                     document.getElementById("frmAsset").reset();
                     InitilzeAsset();
