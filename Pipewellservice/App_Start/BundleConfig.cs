@@ -19,10 +19,12 @@ namespace Pipewellservice
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
             bundles.Add(new ScriptBundle("~/common").Include(
-                        "~/Scripts/ProjectScripts/Common/common.js",
-                        "~/Scripts/moment.min.js",
-                        "~/Scripts/select2.min.js",
-                        "~/Scripts/bootstrap-datepicker.min.js")
+                            "~/Scripts/moment.min.js",
+                            "~/Scripts/select2.min.js",
+                            "~/Scripts/bootstrap-datepicker.min.js",
+                            "~/Scripts/libraries/daterangepicker/daterangepicker.js",
+                            "~/Scripts/ProjectScripts/Common/common.js"
+                            )
                         );
 
 
@@ -39,7 +41,8 @@ namespace Pipewellservice
                       "~/Content/css/select2.min.css",
                       "~/Content/bootstrap-datepicker3.css",
                       "~/Content/font-awesome.min.css",
-                      "~/Content/libraries/slidemenu/bootsidemenu.css"));
+                      "~/Content/libraries/slidemenu/bootsidemenu.css",
+                      "~/Scripts/libraries/daterangepicker/daterangepicker.css"));
 
             bundles.Add(new Bundle("~/bundles/sweetalert").Include(
                       "~/Scripts/libraries/sweetalert/sweetalert.min.js"));
@@ -77,9 +80,11 @@ namespace Pipewellservice
             bundles.Add(new Bundle("~/lib/hr/employeefamily").Include(
                                   "~/Scripts/ProjectScripts/HR/Employee/EmployeeFamily.js"));
 
-            
+
             bundles.Add(new Bundle("~/lib/hr/employee").Include(
                                   "~/Scripts/ProjectScripts/HR/Employee/Employee.js"));
+            bundles.Add(new Bundle("~/lib/hr/employeewarning").Include(
+                                  "~/Scripts/ProjectScripts/HR/Employee/EmployeeWarning.js"));
         }
     }
 }

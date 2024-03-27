@@ -7,7 +7,9 @@
     EmployeeID: 6,
     Family: 7,
     FamilyID: 8,
-    Contract:9
+    Contract: 9,
+    EmployeeDetail: 10,
+    EmployeeWarning:10,
 }
 var DataChangeLog = {
     Form: 0,
@@ -67,6 +69,9 @@ function Post(Url, Input) {
 }
 function valOf(input) {
     return $("#" + input).val();
+}
+function textOf(input) {
+    return $("#" + input +" option:selected").text();
 }
 function SetvalOf(input,val) {
     return $("#" + input).val(val);
@@ -187,3 +192,39 @@ function SwalConfirm(Message, CallBack) {
         });
 
 }
+
+$('.daterangepicker').daterangepicker({
+    startDate: moment().startOf('year'),
+    endDate: moment().endOf('week'),
+    ranges: {
+        'Current Month': [moment().startOf('month'), moment().endOf('month')],
+        'Current Week': [moment().startOf('week'), moment().endOf('week')],
+        'Today': [moment(), moment()],
+        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+        'This Year': [moment().startOf('year'), moment().endOf('year')],
+        'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')],
+        'All Time': [moment().subtract(20, 'year').startOf('year'), moment().endOf('year')]
+    }
+},
+    function (start, end, label) {
+        
+
+        var Range = 1;
+        if (label == "Current Month")
+            Range = 1;
+        else if (label == "Current Week")
+            Range = 2;
+        else if (label == "Today")
+            Range = 3;
+        else if (label == "Last Month")
+            Range = 4;
+        else if (label == "This Year")
+            Range = 5;
+        else if (label == "Last Year")
+            Range = 6;
+        else if (label == "All Time")
+            Range = 7;
+        else if (label == "Custom Range")
+            Range = 8;
+    });
+

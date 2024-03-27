@@ -38,5 +38,9 @@ namespace Pipewellservice.Controllers
         {
             return View("_PartialContract");
         }
+        public ActionResult Warning()
+        {
+            return View("_PartialEmployeeWarning");
+        }
     }
 }

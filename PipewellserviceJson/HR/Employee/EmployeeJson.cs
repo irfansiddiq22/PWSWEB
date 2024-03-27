@@ -72,8 +72,8 @@ namespace PipewellserviceJson.HR.Employee
 
         ////////..................
 
-        
-            public async Task<List<EmployeeIDFileType>> EmployeeIDTypeList()
+
+        public async Task<List<EmployeeIDFileType>> EmployeeIDTypeList()
         {
             return await JsonHelper.Convert<List<EmployeeIDFileType>, DataTable>(await service.EmployeeIDTypeList());
         }
@@ -97,7 +97,7 @@ namespace PipewellserviceJson.HR.Employee
         }
         public async Task<int> UpdateEmployeeFamilyIDFile(EmployeeFamilyIDFile file)
         {
-            return  await service.UpdateEmployeeFamilyIDFile(file);
+            return await service.UpdateEmployeeFamilyIDFile(file);
         }
         public async Task<bool> RemoveEmployeeFamilyIDFile(DeleteDTO delete)
         {
@@ -122,12 +122,16 @@ namespace PipewellserviceJson.HR.Employee
         {
             return await service.RemoveEmployeeFamily(delete);
         }
-            ///.........................
+        ///.........................
         public async Task<List<EmployeeListView>> EmployeeList()
         {
             return await JsonHelper.Convert<List<EmployeeListView>, DataTable>(await service.EmployeeList());
         }
 
+        public async Task<List<EmployeeReferenceData>> EmployeeData(int EmployeeID)
+        {
+            return await JsonHelper.Convert<List<EmployeeReferenceData>, DataTable>(await service.EmployeeDetail(EmployeeID));
+        }
         public async Task<List<EmployeeData>> EmployeeDetail(int EmployeeID)
         {
             return await JsonHelper.Convert<List<EmployeeData>, DataTable>(await service.EmployeeDetail(EmployeeID));
@@ -137,7 +141,8 @@ namespace PipewellserviceJson.HR.Employee
         {
             EmployeeDataSql result = await service.EmployeeDataList();
             EmployeeListData model = new EmployeeListData();
-            model.departments =await JsonHelper.Convert<List<Department>, DataTable>(result.Department);
+            model.departments = await JsonHelper.Convert<List<Department>, DataTable>(result.Department);
+            model.divisions = await JsonHelper.Convert<List<Division>, DataTable>(result.Division);
             model.positions = await JsonHelper.Convert<List<Position>, DataTable>(result.Position);
             //model.supervisior = await JsonHelper.Convert<List<EmployeeIDView>, DataTable>(result.Supervisior);
             model.sponsors = await JsonHelper.Convert<List<SponsorCompany>, DataTable>(result.Sponsor);
@@ -148,5 +153,24 @@ namespace PipewellserviceJson.HR.Employee
         {
             return await service.UpdateEmployee(employee);
         }
+        //////////...............................
+
+        public async Task<List<EmployeeWarning>> EmployeeWarningList(EmployeeWarningDTO dTO)
+        {
+            return await JsonHelper.Convert<List<EmployeeWarning>, DataTable>(await service.EmployeeWarningList(dTO));
+        }
+        public async Task<int> UpdateEmployeeWarning(EmployeeWarning dTO)
+        {
+            return  await service.UpdateEmployeeWarning(dTO);
+        }
+        public async Task<List<EmployeeIDView>> WarningSupervisors()
+        {
+            return await JsonHelper.Convert<List<EmployeeIDView>, DataTable>(await service.WarningSupervisors());
+        }
+
+        ////////////////////
+
+
+
     }
 }

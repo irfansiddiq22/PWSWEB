@@ -1,5 +1,5 @@
 ﻿var EmployeeList = [];
-
+var Employee = {}
 function _Int() {
     HideSpinner();
     BindUsers();
@@ -27,7 +27,7 @@ function _Int() {
             required: true,
             messages: {
                 required: $(this).attr("msg")
-                
+
             }
 
         });
@@ -54,7 +54,7 @@ function _Int() {
 
             });
         }
-       
+
 
     });
 }
@@ -98,6 +98,7 @@ function FillEmployee() {
 
 
     $("#tblEmployeeList").empty();
+    Employee = {};
     Post("/EmployeeAPI/EmployeeList", {}).done(function (Response) {
         EmployeeList = Response;
 
@@ -182,14 +183,16 @@ function FillEmployeeTable() {
 }
 
 function EditEmployee(ID) {
-    var employee;
+
     Post("/EmployeeAPI/EmployeeDetail", { EmployeeID: ID }).done(function (Response) {
-        employee = Response[0];
+        Employee = Response[0];
+        ResetChangeLog(PAGES.EmployeeDetail);
+
         $.each($("input[data-id],select[data-id]"), function (i, c) {
             if ($(this).attr("data-type") == "date")
-                $(this).val(employee[$(this).attr("data-id")] == null ? "" : moment(employee[$(this).attr("data-id")]).format("MM/DD/YYYY"));
+                $(this).val(Employee[$(this).attr("data-id")] == null ? "" : moment(Employee[$(this).attr("data-id")]).format("MM/DD/YYYY"));
             else
-                $(this).val(employee[$(this).attr("data-id")]);
+                $(this).val(Employee[$(this).attr("data-id")]);
         })
         $("#ddEmployeeHiringSource").trigger("change")
         $("#ddEmployeeNationality").trigger("change")
@@ -202,14 +205,36 @@ function EditEmployee(ID) {
 
 function UpdateEmployee() {
     if ($("#frmEmployeeData").valid()) {
-        var employee = {};
+
+        var employeeToUpdate = {};
         $.each($("input[data-id],select[data-id]"), function (i, c) {
-            employee[$(this).attr("data-id")] = $(this).val();
+            employeeToUpdate[$(this).attr("data-id")] = $(this).val();
         })
-        Post("/EmployeeAPI/UpdateEmployee", { Employee: employee }).done(function (Response) {
+
+        $.each($("input[data-id]"), function (i, c) {
+            if ($(this).attr("data-type") == "date") {
+                Employee[$(this).attr("data-id")] = moment(Employee[$(this).attr("data-id")]).format("MM/DD/YYYY");
+                if (Employee[$(this).attr("data-id")] == "Invalid date")
+                    Employee[$(this).attr("data-id")] = '';
+            }
+            if (employeeToUpdate[$(this).attr("data-id")] != Employee[$(this).attr("data-id")].toString()) {
+                DataChangeLog.DataUpdated.push({ Field: $(this).attr("data-id"), Data: { OLD: Employee[$(this).attr("data-id")], New: employeeToUpdate[$(this).attr("data-id")] } });
+            }
+        });
+
+        $.each($("select[data-id]"), function (i, c) {
+            
+            if ($(this).val() != Employee[$(this).attr("data-id")].toString()) {
+                DataChangeLog.DataUpdated.push({ Field: $(this).attr("data-id"), Data: { OLD:$(this).find("option[value="+ Employee[$(this).attr("data-id")] +"]").text(), New: $(this).find("option:selected").text()  } });
+            }
+        });
+
+        Post("/EmployeeAPI/UpdateEmployee", { Employee: employeeToUpdate }).done(function (Response) {
             if (Response.Status) {
                 swal({ text: "Employee record updated.", icon: "success" });
+                SaveLog(Employee.ID)
                 FillEmployee();
+                
                 document.getElementById("frmEmployeeData").reset();
 
 
@@ -217,7 +242,7 @@ function UpdateEmployee() {
                 swal({ text: "Employee record failed to update.", icon: "error" });
             }
         });
-        
+
         return false;
     }
 }

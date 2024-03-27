@@ -54,6 +54,21 @@ namespace PipewellserviceModels.Common
         Family = 1,
         Single = 2
     }
+    public enum WarningTypes
+    {
+        FirstWarning=1,
+        SecondWarning=2,
+        ThirdWarning=3
+    }
+    public enum WarningApprovalType {
+        NotApproved=0,
+        Approved=1,
+        Rejected=2,
+        None=3
+
+
+
+    }
     public enum Pages
     {
         Divisions = 1,
@@ -64,7 +79,9 @@ namespace PipewellserviceModels.Common
         EmployeeID = 6,
         Family = 7,
         FamilyID = 8,
-        Contract=9
+        Contract=9,
+        EmployeeDetail=10,
+        EmployeeWarning=11,
     }
 
     public enum DirectoryNames
@@ -75,5 +92,6 @@ namespace PipewellserviceModels.Common
         EmployeeFamilyIDs,
         EmployeeFamily,
         EmployeeContract,
+        EmployeeWarnings,
     }
 }

@@ -11,7 +11,7 @@ namespace PipewellserviceJson
     {
         public static async Task<T> Convert<T, Y>(Y input)
         {
-            return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(input));
+            return  JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(input));
         }
         //public async Task<T> Convert<T, Y>(Y input)
         //{

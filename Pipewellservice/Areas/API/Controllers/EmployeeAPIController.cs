@@ -357,6 +357,14 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        public async Task<JsonResult> EmployeeData(int EmployeeID)
+        {
+            return new JsonResult
+            {
+                Data = await json.EmployeeData(EmployeeID),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
         public async Task<JsonResult> EmployeeDataList()
         {
             return new JsonResult
@@ -374,6 +382,55 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
-    }
+        ////////////////////////////////////////////////////
 
+        public async Task<JsonResult> EmployeeWarningList(EmployeeWarningDTO dTO)
+        {
+            return new JsonResult
+            {
+                Data = await json.EmployeeWarningList(dTO),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public async Task<JsonResult> UpdateEmployeeWarning(EmployeeWarning warning)
+        {
+
+            if (Request.Files.Count > 0)
+            {
+                HttpPostedFileBase file = Request.Files[0];
+                warning.FileName = warning.FileName;
+                warning.FileID = Path.GetExtension(warning.FileName);
+                if (warning.ID > 0)
+                    warning.FileID = $"{warning.ID}{warning.FileID}";
+
+            }
+            int ID = await json.UpdateEmployeeWarning(warning);
+
+            if (Request.Files.Count > 0)
+            {
+                HttpPostedFileBase file = Request.Files[0];
+                await FileHelper.SaveFile(Request.Files[0], ID, DirectoryNames.EmployeeWarnings);
+            }
+
+            return new JsonResult
+            {
+                Data = ID,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+
+
+        }
+
+
+        //////////////////////////////////////////////////////////
+
+        public async Task<JsonResult> WarningSupervisors()
+        {
+            return new JsonResult
+            {
+                Data = await json.WarningSupervisors(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+    }
 }

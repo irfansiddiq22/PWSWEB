@@ -9,7 +9,14 @@ using System.Threading.Tasks;
 
 namespace PipewellserviceModels.HR.Employee
 {
-    public class EmployeeIDView
+    public class EmployeeReferenceData
+    {
+        public int SupervisorID { get; set; }
+
+        public int? PositionID { get; set; }
+        public int? DivisionID { get; set; }
+    }
+        public class EmployeeIDView
     {
         public int ID { get; set; }
         public string Name { get; set; }
@@ -24,19 +31,17 @@ namespace PipewellserviceModels.HR.Employee
         public string Passport { get; set; }
         public DateTime? ExpiryDate { get; set; }
     }
-    public class EmployeeData
+    public class EmployeeData: EmployeeReferenceData
     {
         public int ID { get; set; }
-        public int SupervisorID { get; set; }
+        
         public string Name { get; set; }
         public string ArabicName { get; set; }
 
         public string LabourCode { get; set; }
         public string EmailAddress { get; set; }
         public string Nationality { get; set; }
-
-        public int? PositionID { get; set; }
-        public int? DivisionID { get; set; }
+        
 
         public Religion? Religion { get; set; }
         public Gender? Gender { get; set; }
@@ -92,6 +97,7 @@ namespace PipewellserviceModels.HR.Employee
     public class EmployeeDataSql
     {
         public DataTable Department { get; set; }
+        public DataTable Division { get; set; }
         public DataTable Position { get; set; }
         public DataTable Supervisior { get; set; }
         public DataTable Sponsor { get; set; }
@@ -99,6 +105,7 @@ namespace PipewellserviceModels.HR.Employee
         public EmployeeDataSql()
         {
             Department = new DataTable();
+            Division = new DataTable();
             Position = new DataTable();
             Supervisior = new DataTable();
             Sponsor = new DataTable();
@@ -108,6 +115,7 @@ namespace PipewellserviceModels.HR.Employee
     public class EmployeeListData
     {
         public List<Department> departments { get; set; }
+        public List<Division> divisions { get; set; }
         public List<Position> positions { get; set; }
         public List<EmployeeIDView> supervisior { get; set; }
         public List<SponsorCompany> sponsors { get; set; }

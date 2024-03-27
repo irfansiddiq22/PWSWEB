@@ -435,6 +435,7 @@ namespace PipewellserviceDB.HR.Employee
             }
 
         }
+
         public async Task<DataTable> EmployeeDetail(int EmployeeID)
         {
             try
@@ -459,6 +460,7 @@ namespace PipewellserviceDB.HR.Employee
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeDataList", CommandType.StoredProcedure);
                 EmployeeDataSql model = new EmployeeDataSql();
                 model.Department.Load(result);
+                model.Division.Load(result);
                 model.Position.Load(result);
                 //   model.Supervisior.Load(result);
                 model.Sponsor.Load(result);
@@ -527,5 +529,88 @@ namespace PipewellserviceDB.HR.Employee
             }
 
         }
+
+        ///////////////////-------------------------------------------------
+
+
+        public async Task<DataTable> EmployeeWarningList(EmployeeWarningDTO dTO)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[3];
+                collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = dTO.EmployeeID };
+                collSP[1] = new SqlParameter { ParameterName = "@StartDate", Value = dTO.StartDate };
+                collSP[2] = new SqlParameter { ParameterName = "@EndDate", Value = dTO.EndDate };
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeWarningList", CommandType.StoredProcedure, collSP);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<int> UpdateEmployeeWarning(EmployeeWarning dTO)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[22];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = dTO.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = dTO.EmployeeID };
+                collSP[2] = new SqlParameter { ParameterName = "@WarningDate", Value = dTO.WarningDate };
+                collSP[3] = new SqlParameter { ParameterName = "@WarningType", Value = dTO.WarningType };
+
+                collSP[4] = new SqlParameter { ParameterName = "@Written", Value = dTO.Written };
+                collSP[5] = new SqlParameter { ParameterName = "@Tardiness", Value = dTO.Tardiness };
+                collSP[6] = new SqlParameter { ParameterName = "@Absenteeism", Value = dTO.Absenteeism };
+                collSP[7] = new SqlParameter { ParameterName = "@Violation", Value = dTO.Violation };
+                collSP[8] = new SqlParameter { ParameterName = "@Substandard", Value = dTO.Substandard };
+                collSP[9] = new SqlParameter { ParameterName = "@Policies", Value = dTO.Policies };
+                collSP[10] = new SqlParameter { ParameterName = "@Rudeness", Value = dTO.Rudeness };
+                collSP[11] = new SqlParameter { ParameterName = "@Other", Value = dTO.Other };
+                collSP[12] = new SqlParameter { ParameterName = "@OtherDetail", Value = dTO.OtherDetail };
+                collSP[13] = new SqlParameter { ParameterName = "@Infraction", Value = dTO.Infraction };
+                collSP[14] = new SqlParameter { ParameterName = "@Improvement", Value = dTO.Improvement };
+                collSP[15] = new SqlParameter { ParameterName = "@Consequences", Value = dTO.Consequences };
+
+                collSP[16] = new SqlParameter { ParameterName = "@ApprovedBy1", Value = dTO.ApprovedBy1 };
+                collSP[17] = new SqlParameter { ParameterName = "@ApprovedBy2", Value = dTO.ApprovedBy2 };
+                collSP[18] = new SqlParameter { ParameterName = "@ApprovedBy3", Value = dTO.ApprovedBy3 };
+
+                collSP[19] = new SqlParameter { ParameterName = "@FileName", Value = dTO.FileName };
+                collSP[20] = new SqlParameter { ParameterName = "@FileID", Value = dTO.FileID };
+                collSP[21] = new SqlParameter { ParameterName = "@PreparedBy", Value = dTO.RecordAddedBy };
+
+                var result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeWarning", CommandType.StoredProcedure, collSP);
+                return Convert.ToInt32(result);
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+
+        }
+
+        public async Task<DataTable> WarningSupervisors()
+        {
+            try
+            {
+                
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeWarningSupervisors", CommandType.StoredProcedure);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        
     }
 }
