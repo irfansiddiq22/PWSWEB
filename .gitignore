@@ -261,3 +261,5 @@ __pycache__/
 *.pyc
 /Pipewellservice/Resources
 web.config
+*.zip
+*.config
