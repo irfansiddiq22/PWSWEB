@@ -3,8 +3,8 @@
 body {
     /*padding-top: 50px;*/
     padding-bottom: 20px;
-    /*  font-family: "Dosis", sans-serif !important;*/
-    --bs-nav-tabs-link-active-bg: var(--bs-blue) !important;
+    font-family: 'Source Sans Pro', sans-serif !important
+    
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -227,7 +227,7 @@ p {
 }
 
 .table-sm {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .switch {
@@ -456,3 +456,29 @@ input:checked + .slider:before {
     .tt-suggestion p {
         margin: 0;
     }
+.blue {
+    background-color: #0055e6 !important;
+    padding: 5px 0px 5px 15px;
+    color: #fff;
+    
+}
+thead.blue tr>th{
+    padding:8px;
+    border:0;
+}
+.table-sm tr>td{padding:8px!important;}
+fieldset, legend {
+    all: revert;
+}
+fieldset {
+    border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+    padding-top: 5px;
+    padding-right: 12px;
+    padding-bottom: 10px;
+    padding-left: 12px;
+}
+
+legend {
+    float: none;
+    width: inherit;
+}

@@ -54,6 +54,8 @@
     <Compile Include="HR\Employee\Asset.cs" />
     <Compile Include="HR\Employee\Certificate.cs" />
     <Compile Include="HR\Employee\Employee.cs" />
+    <Compile Include="HR\Employee\EmployeeApproval.cs" />
+    <Compile Include="HR\Employee\EmployeeClearance.cs" />
     <Compile Include="HR\Employee\EmployeeFamily.cs" />
     <Compile Include="HR\Employee\EmployeeFamilyID.cs" />
     <Compile Include="HR\Employee\EmployeeID.cs" />

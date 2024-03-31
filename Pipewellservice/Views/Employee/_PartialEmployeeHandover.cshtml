@@ -1,0 +1,134 @@
+﻿<div class="blue">
+    <h5>Employee Iqama/Passport Handover</h5>
+</div>
+
+
+<div class="border p-2">
+    <div id="dvClearanceList">
+        <div class="p-3 border my-2">
+            <div class="row">
+
+                <div class="form-group col-md-3 row">
+                    <label class="col-md-2 col-form-label p-0"> Employee:</label>
+                    <div class="col">
+                        <select class="js-example-basic-single js-states form-control" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <button class="btn btn-sm btn-primary" onclick="NewClearance()">Add Clearance </button>
+                </div>
+            </div>
+        </div>
+        <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+            <thead class="blue">
+                <tr>
+                    <th>ID</th>
+                    <th>EmployeeID</th>
+
+                    <th>Contact</th>
+                    <th>HandOver</th>
+                    <th>Last Working Date</th>
+                    <th>Clearance Date</th>
+                    <th>Prepared By</th>
+                    <th>Employee Name</th>
+                    <th>Department Name</th>
+                    <th>Position</th>
+                    <th>Nationality</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tblEmployeeClearanceList"></tbody>
+        </table>
+    </div>
+    <div id="dvEditClearance">
+        <form id="frmClearance">
+            <div class="border">
+                <div class="blue p-1"><h6>Employee Iqama/Passport Handover</h6></div>
+                <div class="p-4">
+                    <div class="row">
+                        <!-- Row 1: Date -->
+                        <div class="col-md-12 mb-3">
+                            <label for="date">Date:</label>
+                            <input type="date" class="form-control" id="date" name="date">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Row 2: Employee -->
+                        <div class="col-md-6 mb-3">
+                            <label for="employeeFrom">Employee (From):</label>
+                            <select class="form-select" id="employeeFrom" name="employeeFrom">
+                                <!-- Options for employee selection -->
+                                <option value="employee1">Employee 1</option>
+                                <option value="employee2">Employee 2</option>
+                                <option value="employee3">Employee 3</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                        </div>
+                        <!-- Handover From Employee -->
+                        <div class="col-md-6 mb-3">
+                            <label for="handoverFrom">Handover from Employee:</label>
+                            <select class="form-select" id="handoverFrom" name="handoverFrom">
+                                <!-- Options for handover from employee selection -->
+                                <option value="handoverEmployee1">Handover Employee 1</option>
+                                <option value="handoverEmployee2">Handover Employee 2</option>
+                                <option value="handoverEmployee3">Handover Employee 3</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Handover To Employee -->
+                        <div class="col-md-6 mb-3">
+                            <label for="handoverTo">Handover to Employee:</label>
+                            <select class="form-select" id="handoverTo" name="handoverTo">
+                                <!-- Options for handover to employee selection -->
+                                <option value="handoverToEmployee1">Handover To Employee 1</option>
+                                <option value="handoverToEmployee2">Handover To Employee 2</option>
+                                <option value="handoverToEmployee3">Handover To Employee 3</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                        </div>
+                        <!-- Radio Buttons for Iqama and Passport -->
+                        <div class="col-md-6 mb-3">
+                            <label>Document Type:</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="documentType" id="iqamaRadio" value="iqama">
+                                <label class="form-check-label" for="iqamaRadio">Iqama</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="documentType" id="passportRadio" value="passport">
+                                <label class="form-check-label" for="passportRadio">Passport</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Row 4: Remarks -->
+                        <div class="col-md-12 mb-3">
+                            <label for="remarks">Remarks:</label>
+                            <textarea class="form-control" id="remarks" name="remarks" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="my-3">
+
+                        <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeClearance()">Save</button>
+                        <button class="btn btn-danger" type="reset" onclick="CancelNewClearance()">Clear</button>
+
+
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/lib/hr/employeeclearance")
+}

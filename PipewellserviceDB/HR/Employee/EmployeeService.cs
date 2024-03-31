@@ -593,6 +593,75 @@ namespace PipewellserviceDB.HR.Employee
             }
 
         }
+        ///////////////////-------------------------------------------------
+
+
+        public async Task<EmployeeClearanceDB> EmployeeClearanceList(int EmployeeID)
+        {
+            try
+            {
+                
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeClearanceList", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID });
+                EmployeeClearanceDB model = new EmployeeClearanceDB();
+                model.Clearance.Load(result);
+                model.Approvals.Load(result);
+                model.Assets.Load(result);
+                result.Close();
+                return model;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<int> UpdateEmployeeClearance(EmployeeClearance dTO)
+        {
+            try
+            {
+                StringBuilder Assets = new StringBuilder();
+                StringBuilder Approvals = new StringBuilder();
+                Assets.AppendLine("<NewDataSet>");
+                if(dTO.Assets!=null && dTO.Assets.Count > 0)
+                {
+                    foreach (ClearanceAsset a in dTO.Assets)
+                    {
+                        Assets.AppendLine($"<Table1><AssetID>{a.AssetID}</AssetID></Table1>");
+                    }
+                }
+                Assets.AppendLine("</NewDataSet>");
+
+                Approvals.AppendLine("<NewDataSet>");
+                if (dTO.Approvals != null && dTO.Approvals.Count > 0)
+                {
+                    foreach (EmployeeApproval a in dTO.Approvals)
+                    {
+                        Approvals.AppendLine($"<Table1><ApprovedBy>{a.ApprovalBy}</ApprovedBy></Table1>");
+                    }
+                }
+                Approvals.AppendLine("</NewDataSet>");
+
+                SqlParameter[] collSP = new SqlParameter[9];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = dTO.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = dTO.EmployeeID };
+                collSP[2] = new SqlParameter { ParameterName = "@ClearanceDate", Value = dTO.ClearanceDate };
+                collSP[3] = new SqlParameter { ParameterName = "@ContactNumber", Value = dTO.ContactNumber };
+
+                collSP[4] = new SqlParameter { ParameterName = "@Handover", Value = dTO.Handover };
+                collSP[5] = new SqlParameter { ParameterName = "@LastWorkingDate", Value = dTO.LastWorkingDate };
+                collSP[6] = new SqlParameter { ParameterName = "@Preparedby", Value = dTO.Preparedby };
+                collSP[7] = new SqlParameter { ParameterName = "@Assets", Value = Assets .ToString()};
+                collSP[8] = new SqlParameter { ParameterName = "@Approvals", Value = Approvals.ToString() };
+
+                var result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeClearance", CommandType.StoredProcedure, collSP);
+                return Convert.ToInt32(result);
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+
+        }
 
         public async Task<DataTable> WarningSupervisors()
         {

@@ -94,6 +94,14 @@ namespace Pipewellservice.Areas.API.Controllers
         }
 
 
+        public async Task<JsonResult> NationalityList()
+        {
+            return new JsonResult
+            {
+                Data = await json.NationalityList(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
         ////////////////////////
 
         public async Task<JsonResult> UserList()

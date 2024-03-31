@@ -171,6 +171,22 @@ namespace PipewellserviceDB.HR.Setting
             }
 
         }
+        public async Task<DataTable> NationalityList()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcNationalityList", CommandType.StoredProcedure);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
 
 
 

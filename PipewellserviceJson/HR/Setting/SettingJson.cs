@@ -56,6 +56,13 @@ namespace PipewellserviceJson.HR.Setting
             return await service.RemoveDepartment(data);
         }
 
+        public async Task<List<Nationality>> NationalityList()
+        {
+            return await JsonHelper.Convert<List<Nationality>, DataTable>(await service.NationalityList());
+        }
+
+        
+
 
         public async Task<List<User>> UserList()
         {

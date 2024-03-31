@@ -1,0 +1,149 @@
+﻿<div class="blue">
+    <h5>Employee Clearance</h5>
+</div>
+<div class="border p-2">
+    <div id="dvClearanceList">
+        <div class="p-3 border my-2">
+            <div class="row">
+
+                <div class="form-group col-md-3 row">
+                    <label class="col-md-2 col-form-label p-0"> Employee:</label>
+                    <div class="col">
+                        <select class="js-example-basic-single js-states form-control" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <button class="btn btn-sm btn-primary" onclick="NewClearance()">Add Clearance </button>
+                </div>
+            </div>
+        </div>
+        <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+            <thead class="blue">
+                <tr>
+                    <th>ID</th>
+                    <th>EmployeeID</th>
+
+                    <th>Contact</th>
+                    <th>HandOver</th>
+                    <th>Last Working Date</th>
+                    <th>Clearance Date</th>
+                    <th>Prepared By</th>
+                    <th>Employee Name</th>
+                    <th>Department Name</th>
+                    <th>Position</th>
+                    <th>Nationality</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tblEmployeeClearanceList"></tbody>
+        </table>
+    </div>
+    <div id="dvEditClearance">
+        <form id="frmClearance">
+            <div class="border">
+                <div class="blue p-1"><h6>Employee Clearnce</h6></div>
+                <div class="p-4">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-md-auto col-12">
+                            <label class="col-form-label">Employee Name:</label>
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <select class="form-select-sm form-select w-100" id="ddEmployeeName" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                        </div>
+
+                        <div class="col-md-auto col-12">Division</div>
+                        <div class="col-md-2 col-12"> <select class="form-select form-select-sm" disabled id="ddEmployeeDivision" name="ddEmployeeDivision"></select></div>
+                        <div class="col-md-auto col-12">Position</div>
+                        <div class="col-md-2 col-12"> <select class="form-select form-select-sm" disabled id="ddEmployeePosition" name="ddEmployeePosition"></select></div>
+                        <div class="col-md-auto col-12">Nationlity</div>
+                        <div class="col-md-2 col-12"> <select class="form-select form-select-sm" disabled id="ddEmployeeNationality" name="ddEmployeeNationality"></select></div>
+                    </div>
+
+                    <div class="border mt-2">
+                        <div class="bg-secondary-subtle p-2"><h5>Clearance Detail</h5></div>
+                        <div class="ps-3 my-2">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-md-auto col-12">Date:</div>
+                                <div class="col-md-1 col-12"><input type="text" class="form-control form-control-sm datepicker" id="txtClearanceDate" name="ClearanceDate" required data-msg="Enter date" /></div>
+
+                                <div class="col-md-auto col-12">Contact</div>
+                                <div class="col-md-2 col-12"> <input type="text" class="form-control form-control-sm" id="txtClearanceContact" name="ClearanceContact" required data-msg="Enter contact" /></div>
+                                <div class="col-md-auto col-12">Handover</div>
+                                <div class="col-md-2 col-12"> <input type="text" class="form-control form-control-sm" id="txtClearancehandover" name="ClearanceHandOver" required data-msg="Enter handover" /></div>
+                                <div class="col-md-auto col-12">Last Working Date:</div>
+                                <div class="col-md-1 col-12"><input type="text" class="form-control form-control-sm datepicker" id="txtClearanceLastWorkingDate" name="ClearanceLastWorkingDate" required data-msg="Enter last working date" /></div>
+                                <div class="col-md-auto col-12">Prepared by:</div>
+                                <div class="col-md-2 col-12"><input type="text" class="form-control form-control-sm" id="txtPreparedBy" readonly name="PreparedBy" /></div>
+
+
+                                <div class="col-md-6 col-12">
+                                    <div class="row">
+                                        <div class="col-md-2 col-12">Approval From:</div>
+                                        <div class="col-md-10 col-12"><select class="js-example-basic-single supervisor form-select" id="ddSupervisorApproval1" name="ddSupervisorApproval1" data-placeholder="Type to search" data-allow-clear="true"></select></div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-2 col-12">Approval From:</div>
+                                        <div class="col-md-10 col-12"><select class="js-example-basic-single supervisor form-select" id="ddSupervisorApproval2" name="ddSupervisorApproval2" data-placeholder="Type to search" data-allow-clear="true"></select></div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-2 col-12">Approval From:</div>
+                                        <div class="col-md-10 col-12"><select class="js-example-basic-single supervisor form-select" id="ddSupervisorApproval3" name="ddSupervisorApproval3" data-placeholder="Type to search" data-allow-clear="true"></select></div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-2 col-12">Approval From:</div>
+                                        <div class="col-md-10 col-12"><select class="js-example-basic-single supervisor form-select" id="ddSupervisorApproval4" name="ddSupervisorApproval4" data-placeholder="Type to search" data-allow-clear="true"></select></div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="row">
+                                        <div class="col-md-2 col-12">Approval From:</div>
+                                        <div class="col-md-10 col-12"><select class="js-example-basic-single supervisor form-select" id="ddSupervisorApproval5" name="ddSupervisorApproval5" data-placeholder="Type to search" data-allow-clear="true"></select></div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-2 col-12">Approval From:</div>
+                                        <div class="col-md-10 col-12"><select class="js-example-basic-single supervisor form-select" id="ddSupervisorApproval6" name="ddSupervisorApproval6" data-placeholder="Type to search" data-allow-clear="true"></select></div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-2 col-12">Approval From:</div>
+                                        <div class="col-md-10 col-12"><select class="js-example-basic-single supervisor form-select" id="ddSupervisorApproval7" name="ddSupervisorApproval7" data-placeholder="Type to search" data-allow-clear="true"></select></div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-2 col-12">Approval From:</div>
+                                        <div class="col-md-10 col-12"><select class="js-example-basic-single supervisor form-select" id="ddSupervisorApproval8" name="ddSupervisorApproval8" data-placeholder="Type to search" data-allow-clear="true"></select></div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border mt-2">
+                        <div class="bg-secondary-subtle p-2"><h5>Assets</h5></div>
+                        <div class="ps-3 my-2">
+                            <table class="table table-sm table-bordered table-striped">
+                                <tbody id="tblClearanceAssets"></tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="my-3">
+
+                        <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeClearance()">Save</button>
+                        <button class="btn btn-danger" type="reset" onclick="CancelNewClearance()">Clear</button>
+
+
+                    </div>
+                </div>
+
+
+
+
+                
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/lib/hr/employeeclearance")
+}

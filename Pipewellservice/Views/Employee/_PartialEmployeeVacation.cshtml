@@ -1,0 +1,321 @@
+﻿<div class="blue">
+    <h5>Employee Vacation</h5>
+</div>
+
+
+<div class="border p-2">
+    <div id="dvClearanceList">
+        <div class="p-3 border my-2">
+            <div class="row">
+
+                <div class="form-group col-md-3 row">
+                    <label class="col-md-2 col-form-label p-0"> Employee:</label>
+                    <div class="col">
+                        <select class="js-states form-control" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <button class="btn btn-sm btn-primary" onclick="NewClearance()">Add Clearance </button>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+                <thead class="blue">
+                    <tr>
+                        <th>ID</th>
+                        <th>EmployeeID</th>
+
+                        <th>Contact</th>
+                        <th>HandOver</th>
+                        <th>Last Working Date</th>
+                        <th>Clearance Date</th>
+                        <th>Prepared By</th>
+                        <th>Employee Name</th>
+                        <th>Department Name</th>
+                        <th>Position</th>
+                        <th>Nationality</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tblEmployeeClearanceList"></tbody>
+            </table>
+        </div>
+    </div>
+    <div id="dvEditClearance">
+        <form id="frmClearance">
+            <div class="border">
+                <div class="blue p-1"><h>Employee Vacation</h></div>
+                <div class="p-4">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-md-auto col-12">
+                            <label class="col-form-label">Employee Name:</label>
+                        </div>
+                        <div class="col-md-3 col-12">
+                            <select class="form-select-sm form-select w-100" id="ddEmployeeName" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                        </div>
+                        <div class="col-md-auto col-12">Division</div>
+                        <div class="col-md-2 col-12"> <select class="form-select form-select-sm" disabled id="ddEmployeeDivision" name="ddEmployeeDivision"></select></div>
+                        <div class="col-md-auto col-12">Position</div>
+                        <div class="col-md-2 col-12"> <select class="form-select form-select-sm" disabled id="ddEmployeePosition" name="ddEmployeePosition"></select></div>
+                        <div class="col-md-auto col-12">Nationlity</div>
+                        <div class="col-md-2 col-12"> <select class="form-select form-select-sm" disabled id="ddEmployeeNationality" name="ddEmployeeNationality"></select></div>
+                        <div class="col-12"></div>
+                        <div class="col-md-auto col-12">Date</div>
+                        <div class="col-md-2 col-12"><input type="text" class="form-control form-control-sm datepicker" id="txtClearanceDate" name="ClearanceDate" required data-msg="Enter date" /></div>
+                        <div class="col-md-auto col-12">Prepared By</div>
+                        <div class="col-md-2 col-12"><input type="text" class="form-control form-control-sm datepicker" id="txtClearanceDate" name="ClearanceDate" required data-msg="Enter date" /></div>
+                    </div>
+
+                    <div class="border mt-2">
+                        <div class="bg-secondary-subtle p-2"><h5>Vacation Detail</h5></div>
+                        <div class="ps-3 my-2">
+                            <div class="row">
+                                <div class="col-md-3 col-12">
+                                    <div class="form-group">
+                                        <label for="withPay">With Pay:</label>
+                                        <input type="text" class="form-control form-control-sm" id="withPay" name="withPay" required data-msg="Enter date">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="withoutPay">With Out Pay:</label>
+                                        <input type="text" class="form-control form-control-sm" id="withoutPay" name="withoutPay" required data-msg="Enter date">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="reason">Reason:</label>
+                                        <textarea class="form-control form-control-sm" id="reason" name="reason"></textarea>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4 col-md-6">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="emergency" name="emergency">
+                                                <label class="form-check-label" for="emergency">Emergencey ?</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 col-md-6">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="vacationDue" name="vacationDue">
+                                                <label class="form-check-label" for="vacationDue">Vacation Due</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 col-md-6">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="travelOrder" name="travelOrder">
+                                                <label class="form-check-label" for="travelOrder">Travel Order</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4 col-md-6">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="ticket" name="ticket">
+                                                <label class="form-check-label" for="ticket">Ticket</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 col-md-6">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="iqamaRenewal" name="iqamaRenewal">
+                                                <label class="form-check-label" for="iqamaRenewal">Iqama renewal</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 col-md-6">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="entryExitVisa" name="entryExitVisa">
+                                                <label class="form-check-label" for="entryExitVisa">Entry Exit Visa</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="remarks">Remarks:</label>
+                                            <textarea class="form-control form-control-sm" id="remarks" name="remarks" required data-msg="Enter date"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5 col-12">
+                                    <div class="form-group">
+                                        <label for="txtApproved">Approved:</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtApproved" name="approved" required data-msg="Enter date">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtDestination">Destination:</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtDestination" name="destination" required data-msg="Enter date">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtIqama">Iqama:</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtIqama" name="iqama" required data-msg="Enter date">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtDepartDate">Depart Date:</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtDepartDate" name="departDate" required data-msg="Enter date">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtReturnDate">Return Date:</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtReturnDate" name="returnDate" required data-msg="Enter date">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtLastJoinDate">Last Join Date:</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtLastJoinDate" name="lastJoinDate" required data-msg="Enter date">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtLeaveSchedule">Leave Schedule:</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtLeaveSchedule" name="leaveSchedule" required data-msg="Enter date">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtDues">Dues:</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtDues" name="dues" required data-msg="Enter date">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtExitEntryDuration">Exit/Entry Duration:</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtExitEntryDuration" name="exitEntryDuration" required data-msg="Enter date">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="txtMonthsEarly">Months Early:</label>
+                                                <input type="text" class="form-control form-control-sm" id="txtMonthsEarly" name="monthsEarly" required data-msg="Enter date">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="border mt-2">
+                                        <div class="bg-secondary-subtle"><h5>Assets</h5></div>
+                                        <div class="ps-3 my-2">
+                                            <table class="table table-sm table-bordered table-striped">
+                                                <tbody id="tblClearanceAssets"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="border mt-2">
+                                        <div class="bg-secondary-subtle"><h5>Clearance Detail</h5></div>
+                                        <div class="p-2 row">
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="txtContact">Contact:</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtContact" name="contact" required data-msg="Enter date">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="txtHandover">Handover:</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtHandover" name="handover" required data-msg="Enter date">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="txtLastWorkingDate">Last Working Date:</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtLastWorkingDate" name="lastWorkingDate" required data-msg="Enter date">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="txtFindDepartDate">Find Depart Date:</label>
+                                                    <input type="text" class="form-control form-control-sm" id="txtFindDepartDate" name="findDepartDate" required data-msg="Enter date">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-12">
+                                    <div class="form-group">
+                                        <label for="ddApproval1">Approval From:</label>
+                                        <select class="supervisor form-select" id="ddApproval1" name="ddApproval1" data-placeholder="Type to search" data-allow-clear="true"></select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="ddApproval2">Approval From:</label>
+                                        <select class="supervisor form-select" id="ddApproval2" name="ddApproval2" data-placeholder="Type to search" data-allow-clear="true"></select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="ddApproval3">Approval From:</label>
+                                        <select class="supervisor form-select" id="ddApproval3" name="ddApproval3" data-placeholder="Type to search" data-allow-clear="true"></select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="ddApproval4">Approval From:</label>
+                                        <select class="supervisor form-select" id="ddApproval4" name="ddApproval4" data-placeholder="Type to search" data-allow-clear="true"></select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="ddApproval5">Approval From:</label>
+                                        <select class="supervisor form-select" id="ddApproval5" name="ddApproval5" data-placeholder="Type to search" data-allow-clear="true"></select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="ddApproval6">Approval From:</label>
+                                        <select class="supervisor form-select" id="ddApproval6" name="ddApproval6" data-placeholder="Type to search" data-allow-clear="true"></select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="ddApproval7">Approval From:</label>
+                                        <select class="supervisor form-select" id="ddApproval7" name="ddApproval7" data-placeholder="Type to search" data-allow-clear="true"></select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="ddApproval8">Approval From:</label>
+                                        <select class="supervisor form-select" id="ddApproval8" name="ddApproval8" data-placeholder="Type to search" data-allow-clear="true"></select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="ddApproval9">Approval From:</label>
+                                        <select class="supervisor form-select" id="ddApproval9" name="ddApproval9" data-placeholder="Type to search" data-allow-clear="true"></select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="ddApproval10">Approval From:</label>
+                                        <select class="supervisor form-select" id="ddApproval10" name="ddApproval10" data-placeholder="Type to search" data-allow-clear="true"></select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="ddApproval11">Approval From:</label>
+                                        <select class="supervisor form-select" id="ddApproval11" name="ddApproval11" data-placeholder="Type to search" data-allow-clear="true"></select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="my-3">
+
+                        <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeClearance()">Save</button>
+                        <button class="btn btn-danger" type="reset" onclick="CancelNewClearance()">Clear</button>
+
+
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/lib/hr/employeeclearance")
+}

@@ -1,0 +1,161 @@
+﻿<div class="blue">
+    <h5>Employee Travel</h5>
+</div>
+
+
+<div class="border p-2">
+    <div id="dvClearanceList">
+        <div class="p-3 border my-2">
+            <div class="row">
+
+                <div class="form-group col-md-3 row">
+                    <label class="col-md-2 col-form-label p-0"> Employee:</label>
+                    <div class="col">
+                        <select class="js-example-basic-single js-states form-control" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <button class="btn btn-sm btn-primary" onclick="NewClearance()">Add Clearance </button>
+                </div>
+            </div>
+        </div>
+        <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+            <thead class="blue">
+                <tr>
+                    <th>ID</th>
+                    <th>EmployeeID</th>
+
+                    <th>Contact</th>
+                    <th>HandOver</th>
+                    <th>Last Working Date</th>
+                    <th>Clearance Date</th>
+                    <th>Prepared By</th>
+                    <th>Employee Name</th>
+                    <th>Department Name</th>
+                    <th>Position</th>
+                    <th>Nationality</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tblEmployeeClearanceList"></tbody>
+        </table>
+    </div>
+    <div id="dvEditClearance">
+        <form id="frmClearance">
+            <div class="border">
+                <div class="blue p-1 "><h4>Employee Travel</h4></div>
+                <div class="p-4">
+
+                    
+                        <div class="row">
+                            <!-- Row 1 -->
+                            <div class="col-md-3">
+                                <!-- Employee Name Dropdown -->
+                                <div class="form-group">
+                                    <label for="employeeName">Employee Name:</label>
+                                    <select class="form-control" id="employeeName" name="employeeName">
+                                        <!-- Add options for employee names here -->
+                                        <option value="employee1">Employee 1</option>
+                                        <option value="employee2">Employee 2</option>
+                                        <option value="employee3">Employee 3</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <!-- From Date -->
+                                <div class="form-group">
+                                    <label for="fromDate">From Date:</label>
+                                    <input type="text" class="form-control" id="fromDate" name="fromDate">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <!-- To Date -->
+                                <div class="form-group">
+                                    <label for="toDate">To Date:</label>
+                                    <input type="text" class="form-control" id="toDate" name="toDate">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <!-- Preparation Date -->
+                                <div class="form-group">
+                                    <label for="preparationDate">Preparation Date:</label>
+                                    <input type="text" class="form-control" id="preparationDate" name="preparationDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- Row 2 -->
+                            <div class="col-md-6">
+                                <!-- Column 1: Approvals Dropdown -->
+                                <div class="form-group">
+                                    <label for="approval1">Approval 1:</label>
+                                    <select class="form-control" id="approval1" name="approval1">
+                                        <!-- Add options for approval from dropdown list -->
+                                        <option value="approve1">Approve 1</option>
+                                        <option value="approve2">Approve 2</option>
+                                        <option value="approve3">Approve 3</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="approval2">Approval 2:</label>
+                                    <select class="form-control" id="approval2" name="approval2">
+                                        <!-- Add options for approval from dropdown list -->
+                                        <option value="approve1">Approve 1</option>
+                                        <option value="approve2">Approve 2</option>
+                                        <option value="approve3">Approve 3</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="approval3">Approval 3:</label>
+                                    <select class="form-control" id="approval3" name="approval3">
+                                        <!-- Add options for approval from dropdown list -->
+                                        <option value="approve1">Approve 1</option>
+                                        <option value="approve2">Approve 2</option>
+                                        <option value="approve3">Approve 3</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="approval4">Approval 4:</label>
+                                    <select class="form-control" id="approval4" name="approval4">
+                                        <!-- Add options for approval from dropdown list -->
+                                        <option value="approve1">Approve 1</option>
+                                        <option value="approve2">Approve 2</option>
+                                        <option value="approve3">Approve 3</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Column 2: Remarks -->
+                                <div class="form-group">
+                                    <label for="remarks">Remarks:</label>
+                                    <textarea class="form-control" id="remarks" name="remarks" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    <div class="my-3">
+
+                        <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeClearance()">Save</button>
+                        <button class="btn btn-danger" type="reset" onclick="CancelNewClearance()">Clear</button>
+
+
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/lib/hr/employeeclearance")
+}

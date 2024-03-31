@@ -9,7 +9,9 @@
     FamilyID: 8,
     Contract: 9,
     EmployeeDetail: 10,
-    EmployeeWarning:10,
+    EmployeeWarning: 11,
+    EmployeeClearance: 12,
+    EmployeeVacation:13
 }
 var DataChangeLog = {
     Form: 0,

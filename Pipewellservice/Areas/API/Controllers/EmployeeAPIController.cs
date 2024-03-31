@@ -421,6 +421,33 @@ namespace Pipewellservice.Areas.API.Controllers
 
         }
 
+        
+        ////////////////////////////////////////////////////
+
+        public async Task<JsonResult> EmployeeClearanceList(int EmployeeID)
+        {
+            return new JsonResult
+            {
+                Data = await json.EmployeeClearanceList(EmployeeID),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public async Task<JsonResult> UpdateEmployeeClearance(EmployeeClearance clearance)
+        {
+            
+            int ID = await json.UpdateEmployeeClearance(clearance);
+
+            
+
+            return new JsonResult
+            {
+                Data = ID,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+
+
+        }
+
 
         //////////////////////////////////////////////////////////
 

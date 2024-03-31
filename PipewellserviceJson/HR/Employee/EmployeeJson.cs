@@ -163,6 +163,21 @@ namespace PipewellserviceJson.HR.Employee
         {
             return  await service.UpdateEmployeeWarning(dTO);
         }
+        public async Task<EmployeeClearanceListView> EmployeeClearanceList(int EmployeeID)
+        {
+            var db= await service.EmployeeClearanceList(EmployeeID);
+            EmployeeClearanceListView model = new EmployeeClearanceListView();
+            model.Clearance = await JsonHelper.Convert<List<EmployeeClearance>, DataTable>(db.Clearance);
+            model.Assets = await JsonHelper.Convert<List<ClearanceAsset>, DataTable>(db.Assets );
+            model.Approvals= await JsonHelper.Convert<List<EmployeeApproval>, DataTable>(db.Approvals);
+            return model;
+        }
+        public async Task<int> UpdateEmployeeClearance(EmployeeClearance dTO)
+        {
+            return await service.UpdateEmployeeClearance(dTO);
+        }
+
+        
         public async Task<List<EmployeeIDView>> WarningSupervisors()
         {
             return await JsonHelper.Convert<List<EmployeeIDView>, DataTable>(await service.WarningSupervisors());

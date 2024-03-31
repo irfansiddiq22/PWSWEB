@@ -12,7 +12,7 @@ namespace PipewellserviceModels.HR.Employee
     public class EmployeeReferenceData
     {
         public int SupervisorID { get; set; }
-
+        public int? NationalityID { get; set; }
         public int? PositionID { get; set; }
         public int? DivisionID { get; set; }
     }

@@ -321,8 +321,17 @@ function SaveEmployeeWarning() {
 }
 
 function NewWarning() {
+    CancelNewWarning();
     $("#dvEditWarning").show();
     $("#dvWarningList").hide();
+
+}
+
+
+function CancelNewWarning() {
+    $("#dvEditWarning").hide();
+    $("#dvWarningList").show();
+
     document.getElementById("frmWarning").reset();
     Warning = { ID: 0 };
     SetvalOf("ddEmployeeName", 0).trigger("change")
@@ -333,13 +342,6 @@ function NewWarning() {
     SetvalOf("ddWarningApproval1", 0).trigger("change")
     SetvalOf("ddWarningApproval2", 0).trigger("change")
     SetvalOf("ddWarningApproval3", 0).trigger("change")
-
-}
-
-
-function CancelNewWarning() {
-    $("#dvEditWarning").hide();
-    $("#dvWarningList").show();
 }
 
 

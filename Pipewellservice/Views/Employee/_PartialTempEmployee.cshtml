@@ -1,0 +1,133 @@
+﻿<div class="blue">
+    <h5>Temporary Employee</h5>
+</div>
+
+
+<div class="border p-2">
+    <div id="dvClearanceList">
+        <div class="p-3 border my-2">
+            <div class="row">
+
+                <div class="form-group col-md-3 row">
+                    <label class="col-md-2 col-form-label p-0"> Employee:</label>
+                    <div class="col">
+                        <select class="js-example-basic-single js-states form-control" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <button class="btn btn-sm btn-primary" onclick="NewClearance()">Add Clearance </button>
+                </div>
+            </div>
+        </div>
+        <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+            <thead class="blue">
+                <tr>
+                    <th>ID</th>
+                    <th>EmployeeID</th>
+
+                    <th>Contact</th>
+                    <th>HandOver</th>
+                    <th>Last Working Date</th>
+                    <th>Clearance Date</th>
+                    <th>Prepared By</th>
+                    <th>Employee Name</th>
+                    <th>Department Name</th>
+                    <th>Position</th>
+                    <th>Nationality</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tblEmployeeClearanceList"></tbody>
+        </table>
+    </div>
+    <div id="dvEditClearance">
+        <form id="frmClearance">
+            <div class="border">
+                <div class="blue p-1"><h6>Temporary Employee</h6></div>
+                <div class="p-4">
+                    <div class="row">
+                        <!-- Row 1 -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="sponsorCompany">Sponsor/Company:</label>
+                                <input type="text" class="form-control" id="sponsorCompany" name="sponsorCompany">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="employeeName">Employee Name:</label>
+                                <input type="text" class="form-control" id="employeeName" name="employeeName">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="contractStartDate">Contract Start Date:</label>
+                                <input type="date" class="form-control" id="contractStartDate" name="contractStartDate">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Row 2 -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="iqamaNumber">Iqama #:</label>
+                                <input type="text" class="form-control" id="iqamaNumber" name="iqamaNumber">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="iqamaExpiryDate">Iqama Expiry Date:</label>
+                                <input type="date" class="form-control" id="iqamaExpiryDate" name="iqamaExpiryDate">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="iqamaFile">Upload Iqama:</label>
+                                <input type="file" class="form-control-file" id="iqamaFile" name="iqamaFile">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Row 3 -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="passportNumber">Passport #:</label>
+                                <input type="text" class="form-control" id="passportNumber" name="passportNumber">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="passportExpiryDate">Passport Expiry Date:</label>
+                                <input type="date" class="form-control" id="passportExpiryDate" name="passportExpiryDate">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="passportFile">Upload Passport:</label>
+                                <input type="file" class="form-control-file" id="passportFile" name="passportFile">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="my-3">
+
+                        <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeClearance()">Save</button>
+                        <button class="btn btn-danger" type="reset" onclick="CancelNewClearance()">Clear</button>
+
+
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/lib/hr/employeeclearance")
+}

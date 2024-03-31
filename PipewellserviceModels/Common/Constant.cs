@@ -82,6 +82,8 @@ namespace PipewellserviceModels.Common
         Contract=9,
         EmployeeDetail=10,
         EmployeeWarning=11,
+        EmployeeClearance = 12,
+        EmployeeVacation = 13,
     }
 
     public enum DirectoryNames
@@ -93,5 +95,10 @@ namespace PipewellserviceModels.Common
         EmployeeFamily,
         EmployeeContract,
         EmployeeWarnings,
+    }
+    public enum ApprovalTypes
+    {
+        Clearance=1,
+        Warning=2
     }
 }

@@ -1,0 +1,100 @@
+﻿<div class="blue">
+    <h5>Company Visitors</h5>
+</div>
+
+<div class="border p-2">
+    <div id="dvClearanceList">
+        <div class="p-3 border my-2">
+            <div class="row">
+
+                <div class="form-group col-md-3 row">
+                    <label class="col-md-2 col-form-label p-0"> Employee:</label>
+                    <div class="col">
+                        <select class="js-example-basic-single js-states form-control" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <button class="btn btn-sm btn-primary" onclick="NewClearance()">Add </button>
+                </div>
+            </div>
+        </div>
+        <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+            <thead class="blue">
+                <tr>
+                    <th>ID</th>
+                    <th>EmployeeID</th>
+
+                    <th>Contact</th>
+                    <th>HandOver</th>
+                    <th>Last Working Date</th>
+                    <th>Clearance Date</th>
+                    <th>Prepared By</th>
+                    <th>Employee Name</th>
+                    <th>Department Name</th>
+                    <th>Position</th>
+                    <th>Nationality</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tblEmployeeClearanceList"></tbody>
+        </table>
+    </div>
+    <div id="dvEditClearance">
+        <form id="frmClearance">
+            <div class="border">
+                <div class="blue p-1"><h6>Company visitor</h6></div>
+                
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="visaNumber">Visa Number:</label>
+                                <input type="text" class="form-control" id="visaNumber" name="visaNumber">
+                            </div>
+                            <div class="form-group">
+                                <label for="passportNumber">Passport Number:</label>
+                                <input type="text" class="form-control" id="passportNumber" name="passportNumber">
+                            </div>
+                            <div class="form-group">
+                                <label for="homePhone">Home Country Phone #:</label>
+                                <input type="text" class="form-control" id="homePhone" name="homePhone">
+                            </div>
+                            <div class="form-group">
+                                <label for="stayPhone">Stay Country Phone #:</label>
+                                <input type="text" class="form-control" id="stayPhone" name="stayPhone">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="date">Date:</label>
+                                <input type="text" class="form-control" id="date" name="date">
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of Birth:</label>
+                                <input type="text" class="form-control" id="dob" name="dob">
+                            </div>
+                            <div class="form-group">
+                                <label for="arrivalDate">Arrival Date:</label>
+                                <input type="text" class="form-control" id="arrivalDate" name="arrivalDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="departureDate">Departure Date:</label>
+                                <input type="text" class="form-control" id="departureDate" name="departureDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="visaExpiry">Visa Expiry Date:</label>
+                                <input type="text" class="form-control" id="visaExpiry" name="visaExpiry">
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    
+}

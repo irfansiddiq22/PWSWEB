@@ -42,5 +42,66 @@ namespace Pipewellservice.Controllers
         {
             return View("_PartialEmployeeWarning");
         }
+        public ActionResult Clearance()
+        {
+            return View("_PartialEmployeeClearance");
+        }
+        public ActionResult Vacation()
+        {
+            return View("_PartialEmployeeVacation");
+        }
+        public ActionResult Joining()
+        {
+            return View("_PartialEmployeeJoining");
+        }
+        public ActionResult Visitor()
+        {
+            return View("_PartialCompanyVistor");
+        }
+
+        public ActionResult Travel()
+        {
+            return View("_PartialEmployeeTravel");
+        }
+        public ActionResult CompanyTravel()
+        {
+            return View("_PartialCompanyTravel");
+        }
+        public ActionResult TravelRequest()
+        {
+            return View("_PartialEmployeeTravelRequest");
+        }
+        public ActionResult LeaveRequest()
+        {
+            return View("_PartialEmployeeLeaveRequet");
+        }
+        public ActionResult Inquiry()
+        {
+            return View("_PartialEmployeeInquiry");
+        }
+        public ActionResult Passport()
+        {
+            return View("_PartialEmployeePassport");
+        }
+        public ActionResult TempEmployee()
+        {
+            return View("_PartialTempEmployee");
+        }
+        public ActionResult ShortLeave()
+        {
+            return View("_PartialEmployeeShortLeave");
+        }
+        public ActionResult FormHandover()
+        {
+            return View("_PartialEmployeeHandover");
+        }
+
+        public ActionResult Evaluation()
+        {
+            return View("_PartialEmployeeEvaluation");
+        }
+
+
+
     }
 }

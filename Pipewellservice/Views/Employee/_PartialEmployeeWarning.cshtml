@@ -1,220 +1,221 @@
-﻿<h2>Employee Warning Notice</h2>
+﻿<div class="blue">
+    <h5>Employee Warning Notice</h5>
+    </div>
+    <div class="border p-2">
+        <div id="dvWarningList">
+            <div class="p-3 border my-2">
+                <div class="row">
 
-<div class="border p-2">
-    <div id="dvWarningList">
-        <div class="p-3 border my-2">
-            <div class="row">
-
-                <div class="form-group col-sm-3 row">
-                    <label class="col-sm-2 col-form-label p-0"> Employee:</label>
-                    <div class="col">
-                        <select class="js-example-basic-single js-states form-control" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                    <div class="form-group col-md-3 row">
+                        <label class="col-md-2 col-form-label p-0"> Employee:</label>
+                        <div class="col">
+                            <select class="js-example-basic-single js-states form-control" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group col-sm-4 row">
-                    <label class="col-sm-2 col-form-label p-0"> Date Range:</label>
-                    <div class="col position-relative">
-                        <input type="text" name="ddlWarningDataRange" id="ddlWarningDataRange" class="form-control form-control-sm daterangepicker" autocomplete="off">
+                    <div class="form-group col-md-4 row">
+                        <label class="col-md-2 col-form-label p-0"> Date Range:</label>
+                        <div class="col position-relative">
+                            <input type="text" name="ddlWarningDataRange" id="ddlWarningDataRange" class="form-control form-control-sm daterangepicker" autocomplete="off">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group col-sm-2">
-                    <button class="btn btn-sm btn-primary" onclick="BindWarnings()">Search </button>
+                    <div class="form-group col-md-2">
+                        <button class="btn btn-sm btn-primary" onclick="BindWarnings()">Search </button>
 
-                    <button class="btn btn-sm btn-primary" onclick="NewWarning()">Add Warning </button>
+                        <button class="btn btn-sm btn-primary" onclick="NewWarning()">Add Warning </button>
+                    </div>
                 </div>
             </div>
+            <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+                <thead class="blue">
+                    <tr>
+                        <th>ID</th>
+                        <th>EmployeeID</th>
+
+                        <th>Warning Date</th>
+                        <th>Warning Type</th>
+                        <th>Written Warning</th>
+
+                        <th>Other Description</th>
+                        <th>Infraction</th>
+                        <th>Improvement</th>
+                        <th>Consequences</th>
+                        <th>Approval 1</th>
+                        <th>Approval 2</th>
+                        <th>Approval 3</th>
+                        <th>Prepared By </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tblWarningList"></tbody>
+            </table>
         </div>
-        <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>EmployeeID</th>
+        <div id="dvEditWarning">
+            <form id="frmWarning">
+                <div class="border">
+                    <div class="blue p-2"><h6>Employee Warning</h6></div>
+                    <div class="p-4">
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <div class="row">
+                                    <div class="col-md-2 col-12">Employee Name:</div>
+                                    <div class="col-md-6 col-12"><select class="js-example-basic-single js-states form-select" id="ddEmployeeName" name="ddEmployeeName" data-placeholder="Type to search" data-allow-clear="true"></select></div>
+                                    <div class="col-md-1 col-12">Date:</div>
+                                    <div class="col-md-3 col-12"><input type="text" class="form-control form-control-sm datepicker" id="txtWarningDate" name="WarningDate" /></div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-1 col-12">Division</div>
+                                    <div class="col-md-5 col-12"> <select class="form-select form-select-sm" disabled id="ddEmployeeDivision" name="ddEmployeeDivision"></select></div>
+                                    <div class="col-md-1 col-12">Position</div>
+                                    <div class="col-md-5 col-12"> <select class="form-select form-select-sm" disabled id="ddEmployeePosition" name="ddEmployeePosition"></select></div>
+                                </div>
 
-                    <th>Warning Date</th>
-                    <th>Warning Type</th>
-                    <th>Written Warning</th>
-
-                    <th>Other Description</th>
-                    <th>Infraction</th>
-                    <th>Improvement</th>
-                    <th>Consequences</th>
-                    <th>Approval 1</th>
-                    <th>Approval 2</th>
-                    <th>Approval 3</th>
-                    <th>Prepared By </th>
-
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody id="tblWarningList"></tbody>
-        </table>
-    </div>
-    <div id="dvEditWarning">
-        <form id="frmWarning">
-            <div class="border">
-                <div class="bg-primary p-2 text-white"><h3>Employee Warning</h3></div>
-                <div class="p-4">
-                    <div class="row">
-                        <div class="col-md-6 col-12">
-                            <div class="row">
-                                <div class="col-sm-2 col-12">Employee Name:</div>
-                                <div class="col-sm-6 col-12"><select class="js-example-basic-single js-states form-select" id="ddEmployeeName" name="ddEmployeeName" data-placeholder="Type to search" data-allow-clear="true"></select></div>
-                                <div class="col-sm-1 col-12">Date:</div>
-                                <div class="col-sm-3 col-12"><input type="text" class="form-control form-control-sm datepicker" id="txtWarningDate" name="WarningDate" /></div>
                             </div>
-                            <div class="row mt-2">
-                                <div class="col-sm-1 col-12">Division</div>
-                                <div class="col-sm-5 col-12"> <select class="form-select form-select-sm" disabled id="ddEmployeeDivision" name="ddEmployeeDivision"></select></div>
-                                <div class="col-sm-1 col-12">Position</div>
-                                <div class="col-sm-5 col-12"> <select class="form-select form-select-sm" disabled id="ddEmployeePosition" name="ddEmployeePosition"></select></div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6 col-12">
-                            <div class="row">
-                                <div class="col-sm-2 col-12">Approval From:</div>
-                                <div class="col-sm-10 col-12"><select class="js-example-basic-single js-states form-select" id="ddWarningApproval1" name="ddWarningApproval1" data-placeholder="Type to search" data-allow-clear="true"></select></div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-sm-2 col-12">Approval From:</div>
-                                <div class="col-sm-10 col-12"><select class="js-example-basic-single js-states form-select" id="ddWarningApproval2" name="ddWarningApproval2" data-placeholder="Type to search" data-allow-clear="true"></select></div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-sm-2 col-12">Approval From:</div>
-                                <div class="col-sm-10 col-12"><select class="js-example-basic-single js-states form-select" id="ddWarningApproval3" name="ddWarningApproval3" data-placeholder="Type to search" data-allow-clear="true"></select></div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-12">
-                            <div class="border mt-2">
-                                <div class="bg-secondary-subtle p-2"><h5>Type of warning</h5></div>
-                                <div class="row p-4">
-                                    <div class="col-md-6 col-12">
-                                        <table class="w-100">
-                                            <tr>
-                                                <td>First Warning</td>
-                                                <td><label class="switch"><input type="radio" id="rdWarningType1" name="WarningType" checked="checked"><div class="slider round"></div></label></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Second Warning</td>
-                                                <td><label class="switch"><input type="radio" id="rdWarningType2" name="WarningType"><div class="slider round"></div></label></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Third Warning</td>
-                                                <td><label class="switch"><input type="radio" id="rdWarningType3" name="WarningType"><div class="slider round"></div></label></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <table class="w-100">
-                                            <tr>
-                                                <td width="75%">Written</td>
-                                                <td><label class="switch "><input type="radio" id="rdWarningWritten" name="WarningWritten" checked="checked"><div class="slider round"></div></label></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Verbal</td>
-                                                <td><label class="switch "><input type="radio" id="rdWarningVerbal" name="WarningWritten"><div class="slider round"></div></label></td>
-                                            </tr>
-
-                                        </table>
-                                    </div>
+                            <div class="col-md-6 col-12">
+                                <div class="row">
+                                    <div class="col-md-2 col-12">Approval From:</div>
+                                    <div class="col-md-10 col-12"><select class="js-example-basic-single js-states form-select" id="ddWarningApproval1" name="ddWarningApproval1" data-placeholder="Type to search" data-allow-clear="true"></select></div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-2 col-12">Approval From:</div>
+                                    <div class="col-md-10 col-12"><select class="js-example-basic-single js-states form-select" id="ddWarningApproval2" name="ddWarningApproval2" data-placeholder="Type to search" data-allow-clear="true"></select></div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-2 col-12">Approval From:</div>
+                                    <div class="col-md-10 col-12"><select class="js-example-basic-single js-states form-select" id="ddWarningApproval3" name="ddWarningApproval3" data-placeholder="Type to search" data-allow-clear="true"></select></div>
                                 </div>
 
                             </div>
                         </div>
-                        <div class="col-md-6 col-12">
-                            <div class="border mt-2">
-                                <div class="bg-secondary-subtle p-2"><h5>Type of offense</h5></div>
-                                <div class="row p-4">
-                                    <div class="col-md-6 col-12">
-                                        <table class="w-100">
-                                            <tr>
-                                                <td> Tardiness/Leaving Early</td>
-                                                <td><label class="switch"><input type="checkbox" id="ChkWarningTardiness"><div class="slider round"></div></label></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Absenteeism </td>
-                                                <td><label class="switch"><input type="checkbox" id="ChkWarningAbsenteeism"><div class="slider round"></div></label></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Violation of Safety Rules</td>
-                                                <td><label class="switch"><input type="checkbox" id="ChkWarningViolation"><div class="slider round"></div></label></td>
-                                            </tr>
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <div class="border mt-2">
+                                    <div class="bg-secondary-subtle p-2"><h5>Type of warning</h5></div>
+                                    <div class="row p-4">
+                                        <div class="col-md-6 col-12">
+                                            <table class="w-100">
+                                                <tr>
+                                                    <td>First Warning</td>
+                                                    <td><label class="switch"><input type="radio" id="rdWarningType1" name="WarningType" checked="checked"><div class="slider round"></div></label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Second Warning</td>
+                                                    <td><label class="switch"><input type="radio" id="rdWarningType2" name="WarningType"><div class="slider round"></div></label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Third Warning</td>
+                                                    <td><label class="switch"><input type="radio" id="rdWarningType3" name="WarningType"><div class="slider round"></div></label></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <table class="w-100">
+                                                <tr>
+                                                    <td width="75%">Written</td>
+                                                    <td><label class="switch "><input type="radio" id="rdWarningWritten" name="WarningWritten" checked="checked"><div class="slider round"></div></label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Verbal</td>
+                                                    <td><label class="switch "><input type="radio" id="rdWarningVerbal" name="WarningWritten"><div class="slider round"></div></label></td>
+                                                </tr>
 
-                                        </table>
-
+                                            </table>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6 col-12">
-                                        <table class="w-100">
-                                            <tr>
-                                                <td width="81%">Substandard Work</td>
-                                                <td><label class="switch"><input type="checkbox"  id="ChkWarningSubstandard"><div class="slider round"></div></label></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Violation of Company Policies </td>
-                                                <td><label class="switch"><input type="checkbox" id="ChkWarningPolicies"><div class="slider round"></div></label></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Rudenesss to Customers/Coworkers</td>
-                                                <td><label class="switch"><input type="checkbox"  id="ChkWarningRudeness"><div class="slider round"></div></label></td>
-                                            </tr>
 
-                                        </table>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="border mt-2">
+                                    <div class="bg-secondary-subtle p-2"><h5>Type of offense</h5></div>
+                                    <div class="row p-4">
+                                        <div class="col-md-6 col-12">
+                                            <table class="w-100">
+                                                <tr>
+                                                    <td> Tardiness/Leaving Early</td>
+                                                    <td><label class="switch"><input type="checkbox" id="ChkWarningTardiness"><div class="slider round"></div></label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Absenteeism </td>
+                                                    <td><label class="switch"><input type="checkbox" id="ChkWarningAbsenteeism"><div class="slider round"></div></label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Violation of Safety Rules</td>
+                                                    <td><label class="switch"><input type="checkbox" id="ChkWarningViolation"><div class="slider round"></div></label></td>
+                                                </tr>
 
-                                    </div>
-                                    <div class=" col-12">
-                                        <table class="w-100">
-                                            <tr>
-                                                <td width="8%">Other</td>
-                                                <td width="8%"><label class="switch"><input type="checkbox"  id="ChkWarningOther"><div class="slider round"></div></label></td>
-                                                <td><input type="text" class="form-control form-control-sm" id="txtWarningOtherDetail" /></td>
-                                            </tr>
+                                            </table>
+
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <table class="w-100">
+                                                <tr>
+                                                    <td width="81%">Substandard Work</td>
+                                                    <td><label class="switch"><input type="checkbox" id="ChkWarningSubstandard"><div class="slider round"></div></label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Violation of Company Policies </td>
+                                                    <td><label class="switch"><input type="checkbox" id="ChkWarningPolicies"><div class="slider round"></div></label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Rudenesss to Customers/Coworkers</td>
+                                                    <td><label class="switch"><input type="checkbox" id="ChkWarningRudeness"><div class="slider round"></div></label></td>
+                                                </tr>
+
+                                            </table>
+
+                                        </div>
+                                        <div class=" col-12">
+                                            <table class="w-100">
+                                                <tr>
+                                                    <td width="8%">Other</td>
+                                                    <td width="8%"><label class="switch"><input type="checkbox" id="ChkWarningOther"><div class="slider round"></div></label></td>
+                                                    <td><input type="text" class="form-control form-control-sm" id="txtWarningOtherDetail" /></td>
+                                                </tr>
 
 
-                                        </table>
+                                            </table>
 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="border  mt-2">
-                        <div class="bg-secondary-subtle p-2"><h5>Details</h5></div>
-                        <div class="p-3">
-                            <div>
-                                Description of Infraction:
-                                <input type="text" class="form-control form-control-sm" id="txtWarningInfraction" />
-                            </div>
-                            <div class="mb-2">
-                                Plan for Improvement:
-                                <input type="text" class="form-control form-control-sm" id="txtWarningImprovement" />
-                            </div>
-                            <div class="mb-2">
-                                Consequences of Further Infractions:
-                                <input type="text" class="form-control form-control-sm" id="txtWarningConsequences" />
-                            </div>
-                            <div class="mb-3">
-                                <label class="custom-file-upload btn btn-primary">
-                                    <input type="file" id="txtWarningFileFileID" />
-                                    <i class="fa fa-cloud-upload"></i> Browse Employee Scanned Sheet
-                                </label>
-                                <a href="javascript:void(0)" id="aWarningSheet">Download sheet</a>
-                                <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeWarning()">Save</button>
-                                <button class="btn btn-danger" type="reset" onclick="CancelNewWarning()">Clear</button>
+                        <div class="border  mt-2">
+                            <div class="bg-secondary-subtle p-2"><h5>Details</h5></div>
+                            <div class="p-3">
+                                <div>
+                                    Description of Infraction:
+                                    <input type="text" class="form-control form-control-sm" id="txtWarningInfraction" />
+                                </div>
+                                <div class="mb-2">
+                                    Plan for Improvement:
+                                    <input type="text" class="form-control form-control-sm" id="txtWarningImprovement" />
+                                </div>
+                                <div class="mb-2">
+                                    Consequences of Further Infractions:
+                                    <input type="text" class="form-control form-control-sm" id="txtWarningConsequences" />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="custom-file-upload btn btn-primary">
+                                        <input type="file" id="txtWarningFileFileID" />
+                                        <i class="fa fa-cloud-upload"></i> Browse Employee Scanned Sheet
+                                    </label>
+                                    <a href="javascript:void(0)" id="aWarningSheet">Download sheet</a>
+                                    <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeWarning()">Save</button>
+                                    <button class="btn btn-danger" type="reset" onclick="CancelNewWarning()">Clear</button>
 
 
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
-@section Scripts{
-    @Scripts.Render("~/lib/hr/employeewarning")
-}
+    @section Scripts{
+        @Scripts.Render("~/lib/hr/employeewarning")
+    }

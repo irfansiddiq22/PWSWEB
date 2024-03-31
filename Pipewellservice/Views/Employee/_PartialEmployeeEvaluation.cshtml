@@ -1,0 +1,536 @@
+﻿<div class="blue">
+    <h5>Employee Iqama/Passport Handover</h5>
+</div>
+
+
+<div class="border p-2">
+    <div id="dvClearanceList">
+        <div class="p-3 border my-2">
+            <div class="row">
+
+                <div class="form-group col-md-3 row">
+                    <label class="col-md-2 col-form-label p-0"> Employee:</label>
+                    <div class="col">
+                        <select class="js-example-basic-single js-states form-control" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <button class="btn btn-sm btn-primary" onclick="NewClearance()">Add Clearance </button>
+                </div>
+            </div>
+        </div>
+        <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+            <thead class="blue">
+                <tr>
+                    <th>ID</th>
+                    <th>EmployeeID</th>
+
+                    <th>Contact</th>
+                    <th>HandOver</th>
+                    <th>Last Working Date</th>
+                    <th>Clearance Date</th>
+                    <th>Prepared By</th>
+                    <th>Employee Name</th>
+                    <th>Department Name</th>
+                    <th>Position</th>
+                    <th>Nationality</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tblEmployeeClearanceList"></tbody>
+        </table>
+    </div>
+    <div id="dvEditClearance">
+        <form id="frmClearance">
+            <div class="border">
+                <div class="blue p-1"><h6>Employee Iqama/Passport Handover</h6></div>
+                <div class="p-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <!-- Row 1: Visit Date -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="visitDate">Visit Date:</label>
+                                    <input type="date" class="form-control" id="visitDate" name="visitDate">
+                                </div>
+                            </div>
+
+                            <!-- Row 2: Nationality -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="nationality">Nationality:</label>
+                                    <select class="form-select" id="nationality" name="nationality">
+                                        <!-- Options for nationality selection -->
+                                        <option value="option1">Option 1</option>
+                                        <option value="option2">Option 2</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Row 3: Contact Information -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="contactNumber">Contact #:</label>
+                                    <input type="text" class="form-control" id="contactNumber" name="contactNumber">
+                                </div>
+                            </div>
+
+                            <!-- Row 4: Iqama Details -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="iqamaNumber">Iqama #:</label>
+                                    <input type="text" class="form-control" id="iqamaNumber" name="iqamaNumber">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="iqamaExpiry">Iqama Expiry:</label>
+                                    <input type="date" class="form-control" id="iqamaExpiry" name="iqamaExpiry">
+                                </div>
+                            </div>
+
+                            <!-- Row 5: Iqama Profession -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="iqamaProfession">Iqama Profession:</label>
+                                    <input type="text" class="form-control" id="iqamaProfession" name="iqamaProfession">
+                                </div>
+                            </div>
+
+                            <!-- Row 6: Job Details -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="jobApplied">Job Applied for:</label>
+                                    <input type="text" class="form-control" id="jobApplied" name="jobApplied">
+                                </div>
+                            </div>
+
+                            <!-- Row 7: Education Qualification -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="educationQualification">Education Qualification:</label>
+                                    <input type="text" class="form-control" id="educationQualification" name="educationQualification">
+                                </div>
+                            </div>
+
+                            <!-- Row 8: Technical Qualification -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="techQualification">Tech Qualification:</label>
+                                    <input type="text" class="form-control" id="techQualification" name="techQualification">
+                                </div>
+                            </div>
+
+                            <!-- Row 9: Training Course -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="trainingCourse">Training Course:</label>
+                                    <input type="text" class="form-control" id="trainingCourse" name="trainingCourse">
+                                </div>
+                            </div>
+
+                            <!-- Row 10: Years of Experience -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="yearsOfExp">Year of Experience:</label>
+                                    <input type="text" class="form-control" id="yearsOfExp" name="yearsOfExp">
+                                </div>
+                            </div>
+
+                            <!-- Row 11: Other Years of Experience -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="otherYearsOfExp">Year of Experience (Other):</label>
+                                    <input type="text" class="form-control" id="otherYearsOfExp" name="otherYearsOfExp">
+                                </div>
+                            </div>
+
+                            <!-- Row 12: Initial Interview -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="initialInterview">Initial Interview:</label>
+                                    <input type="text" class="form-control" id="initialInterview" name="initialInterview">
+                                </div>
+                            </div>
+
+                            <!-- Row 13: Reference -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="reference">Reference:</label>
+                                    <input type="text" class="form-control" id="reference" name="reference">
+                                </div>
+                            </div>
+
+                            <!-- Row 14: Computer Skill -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="computerSkill">Computer Skill:</label>
+                                    <input type="text" class="form-control" id="computerSkill" name="computerSkill">
+                                </div>
+                            </div>
+
+                            <!-- Row 15: Email -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" id="email" name="email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Row 1: Basic Salary and Requirement Type -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="basicSalary">Basic Salary:</label>
+                                    <input type="text" class="form-control" id="basicSalary" name="basicSalary">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="requirementType">Requirement Type:</label>
+                                    <select class="form-select" id="requirementType" name="requirementType">
+                                        <option value="transfer">Transfer</option>
+                                        <option value="visa">Visa</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Row 2: Transportation and Working Hour -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="transportation">Transportation:</label>
+                                    <input type="text" class="form-control" id="transportation" name="transportation">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="workingHour">Working Hour:</label>
+                                    <input type="text" class="form-control" id="workingHour" name="workingHour">
+                                </div>
+                            </div>
+
+                            <!-- Row 3: Accommodation and Vacation Rotation -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="accommodation">Accommodation:</label>
+                                    <input type="text" class="form-control" id="accommodation" name="accommodation">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="vacationRotation">Vacation Rotation:</label>
+                                    <input type="text" class="form-control" id="vacationRotation" name="vacationRotation">
+                                </div>
+                            </div>
+
+                            <!-- Row 4: Food Allowance and Amount Paid by Emp -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="foodAllowance">Food Allowance:</label>
+                                    <input type="text" class="form-control" id="foodAllowance" name="foodAllowance">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="amountPaid">Amount Paid by Emp:</label>
+                                    <input type="text" class="form-control" id="amountPaid" name="amountPaid">
+                                </div>
+                            </div>
+
+                            <!-- Row 5: Overtime -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="overtime">Overtime:</label>
+                                    <input type="text" class="form-control" id="overtime" name="overtime">
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Spacer -->
+                                </div>
+                            </div>
+
+                            <!-- Row 6: Other -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="other">Other:</label>
+                                    <input type="text" class="form-control" id="other" name="other">
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Spacer -->
+                                </div>
+                            </div>
+
+                            <!-- Row 7: Total Salary (Readonly) -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="totalSalary">Total Salary:</label>
+                                    <input type="text" class="form-control" id="totalSalary" name="totalSalary" readonly>
+                                </div>
+                            </div>
+
+                            <!-- Row 8: O.M. Remarks -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="omRemarks">O.M. Remarks:</label>
+                                    <textarea class="form-control" id="omRemarks" name="omRemarks" rows="3"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Row 9: H.R. Remarks -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="hrRemarks">H.R. Remarks:</label>
+                                    <textarea class="form-control" id="hrRemarks" name="hrRemarks" rows="3"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Row 10: Current Status -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="currentStatus">Current Status:</label>
+                                    <select class="form-select" id="currentStatus" name="currentStatus">
+                                        <!-- Options for current status selection -->
+                                        <option value="option1">Option 1</option>
+                                        <option value="option2">Option 2</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Row 1: Legend Presentation -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <legend>Presentation:</legend>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="presentation" id="presentationExcellent" value="excellent">
+                                            <label class="form-check-label" for="presentationExcellent">Excellent</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="presentation" id="presentationGood" value="good">
+                                            <label class="form-check-label" for="presentationGood">Good</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="presentation" id="presentationAvg" value="avg">
+                                            <label class="form-check-label" for="presentationAvg">Average</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="presentation" id="presentationPoor" value="poor">
+                                            <label class="form-check-label" for="presentationPoor">Poor</label>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    <input type="text" class="form-control" id="presentationInput" name="presentationInput">
+                                </div>
+                            </div>
+
+                            <!-- Row 2: Legend Job Knowledge -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <legend>Job Knowledge:</legend>
+                                        <div class="form-check form-check-inline">
+
+                                            <input class="form-check-input" type="radio" name="jobKnowledge" id="jobKnowledgeExcellent" value="excellent">
+                                            <label class="form-check-label" for="jobKnowledgeExcellent">Excellent</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+
+                                            <input class="form-check-input" type="radio" name="jobKnowledge" id="jobKnowledgeGood" value="good">
+                                            <label class="form-check-label" for="jobKnowledgeGood">Good</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+
+                                            <input class="form-check-input" type="radio" name="jobKnowledge" id="jobKnowledgeAvg" value="avg">
+                                            <label class="form-check-label" for="jobKnowledgeAvg">Average</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+
+                                            <input class="form-check-input" type="radio" name="jobKnowledge" id="jobKnowledgePoor" value="poor">
+                                            <label class="form-check-label" for="jobKnowledgePoor">Poor</label>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    
+                                    <input type="text" class="form-control" id="jobKnowledgeInput" name="jobKnowledgeInput">
+                                </div>
+                            </div>
+
+                            <!-- Row 3: Legend Language Skill -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <legend>Language Skill:</legend>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="languageSkill" id="languageSkillExcellent" value="excellent">
+                                            <label class="form-check-label" for="languageSkillExcellent">Excellent</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+
+                                            <input class="form-check-input" type="radio" name="languageSkill" id="languageSkillGood" value="good">
+                                            <label class="form-check-label" for="languageSkillGood">Good</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+
+                                            <input class="form-check-input" type="radio" name="languageSkill" id="languageSkillAvg" value="avg">
+                                            <label class="form-check-label" for="languageSkillAvg">Average</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+
+                                            <input class="form-check-input" type="radio" name="languageSkill" id="languageSkillPoor" value="poor">
+                                            <label class="form-check-label" for="languageSkillPoor">Poor</label>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    <input type="text" class="form-control" id="languageSkillInput" name="languageSkillInput">
+                                </div>
+                            </div>
+
+                            <!-- Row 4: Legend Practical Exam -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <legend>Practical Exam:</legend>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="practicalExam" id="practicalExamExcellent" value="excellent">
+                                            <label class="form-check-label" for="practicalExamExcellent">Excellent</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="practicalExam" id="practicalExamGood" value="good">
+                                            <label class="form-check-label" for="practicalExamGood">Good</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="practicalExam" id="practicalExamAvg" value="avg">
+                                            <label class="form-check-label" for="practicalExamAvg">Average</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="practicalExam" id="practicalExamPoor" value="poor">
+                                            <label class="form-check-label" for="practicalExamPoor">Poor</label>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    
+                                    <input type="text" class="form-control" id="practicalExamInput" name="practicalExamInput">
+                                </div>
+                            </div>
+
+                            <!-- Row 5: English Skills Checkbox -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <legend>English Skills:</legend>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="englishSpeak" name="englishSpeak">
+                                            <label class="form-check-label" for="englishSpeak">Speak</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="englishRead" name="englishRead">
+                                            <label class="form-check-label" for="englishRead">Read</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="englishWrite" name="englishWrite">
+                                            <label class="form-check-label" for="englishWrite">Write</label>
+                                        </div>
+                                        
+                                    </fieldset>
+                                </div>
+                            </div>
+
+                            <!-- Row 6: Knowledge of Quality Management -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <legend>Knowledge of Quality Management (ISO 9001):</legend>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="iso9001" id="iso9001Excellent" value="excellent">
+                                            <label class="form-check-label" for="iso9001Excellent">Excellent</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="iso9001" id="iso9001Good" value="good">
+                                            <label class="form-check-label" for="iso9001Good">Good</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="iso9001" id="iso9001Avg" value="avg">
+                                            <label class="form-check-label" for="iso9001Avg">Average</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="iso9001" id="iso9001Poor" value="poor">
+                                            <label class="form-check-label" for="iso9001Poor">Poor</label>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+                            </div>
+
+                            <!-- Row 7: Knowledge of Health and Safety Management -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <legend>Knowledge of Health and Safety Management (OHSAS 18001):</legend>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="ohsas18001" id="ohsas18001Excellent" value="excellent">
+                                            <label class="form-check-label" for="ohsas18001Excellent">Excellent</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="ohsas18001" id="ohsas18001Good" value="good">
+                                            <label class="form-check-label" for="ohsas18001Good">Good</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="ohsas18001" id="ohsas18001Avg" value="avg">
+                                            <label class="form-check-label" for="ohsas18001Avg">Average</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="ohsas18001" id="ohsas18001Poor" value="poor">
+                                            <label class="form-check-label" for="ohsas18001Poor">Poor</label>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+                            </div>
+
+                            <!-- Row 8: Knowledge of Environment Management -->
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <legend>Knowledge of Environment Management (ISO 14001):</legend>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="iso14001" id="iso14001Excellent" value="excellent">
+                                            <label class="form-check-label" for="iso14001Excellent">Excellent</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="iso14001" id="iso14001Good" value="good">
+                                            <label class="form-check-label" for="iso14001Good">Good</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="iso14001" id="iso14001Avg" value="avg">
+                                            <label class="form-check-label" for="iso14001Avg">Average</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="iso14001" id="iso14001Poor" value="poor">
+                                            <label class="form-check-label" for="iso14001Poor">Poor</label>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+                            </div>
+                            
+
+
+                        </div>
+
+                    
+                    <div class="my-3">
+
+                        <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeClearance()">Save</button>
+                        <button class="btn btn-danger" type="reset" onclick="CancelNewClearance()">Clear</button>
+
+
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/lib/hr/employeeclearance")
+}

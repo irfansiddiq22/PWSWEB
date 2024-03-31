@@ -347,6 +347,7 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Asset.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Employee.js" />
+    <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeClearance.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeFamily.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeFamilyID.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeID.js" />
@@ -453,6 +454,21 @@
     <Content Include="Scripts\moment-with-locales.min.js.map" />
     <Content Include="Views\Employee\_PartialEmployeeWarning.cshtml" />
     <Content Include="Scripts\libraries\daterangepicker\daterangepicker.css" />
+    <Content Include="Views\Employee\_PartialEmployeeClearance.cshtml" />
+    <Content Include="Views\Employee\_PartialEmployeeJoining.cshtml" />
+    <Content Include="Views\Employee\_PartialEmployeeVacation.cshtml" />
+    <Content Include="Views\Employee\_PartialCompanyVistor.cshtml" />
+    <Content Include="Views\Employee\_PartialEmployeeTravel.cshtml" />
+    <Content Include="Views\Employee\_PartialEmployeeLeave.cshtml" />
+    <Content Include="Views\Employee\_PartialCompanyTravel.cshtml" />
+    <Content Include="Views\Employee\_PartialEmployeeTravelRequest.cshtml" />
+    <Content Include="Views\Employee\_PartialEmployeeLeaveRequet.cshtml" />
+    <Content Include="Views\Employee\_PartialEmployeeInquiry.cshtml" />
+    <Content Include="Views\Employee\_PartialEmployeePassport.cshtml" />
+    <Content Include="Views\Employee\_PartialTempEmployee.cshtml" />
+    <Content Include="Views\Employee\_PartialEmployeeShortLeave.cshtml" />
+    <Content Include="Views\Employee\_PartialEmployeeHandover.cshtml" />
+    <Content Include="Views\Employee\_PartialEmployeeEvaluation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
