@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auth\AuthService.cs" />
     <Compile Include="DataServices.cs" />
     <Compile Include="HR\Employee\EmployeeService.cs" />
     <Compile Include="HR\Setting\SettingService.cs" />

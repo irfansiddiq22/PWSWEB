@@ -9,6 +9,11 @@ namespace Pipewellservice.Controllers
     public class EmployeeController : Controller
     {
         // GET: Employee
+        public ActionResult Home()
+        {
+            ViewBag.Title = "Home";
+            return View();
+        }
         public ActionResult Index()
         {
             ViewBag.Title = "Index";

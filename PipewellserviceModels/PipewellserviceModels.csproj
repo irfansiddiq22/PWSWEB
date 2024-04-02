@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Auth.cs" />
     <Compile Include="Common\Constant.cs" />
     <Compile Include="Common\DataChangeLog.cs" />
     <Compile Include="Common\DataUpdateResult.cs" />

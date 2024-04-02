@@ -345,6 +345,7 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\ProjectScripts\Auth\Login.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Asset.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Employee.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeClearance.js" />
@@ -448,7 +449,6 @@
     <Content Include="Views\Employee\_PartialFamilyID.cshtml" />
     <Content Include="Views\Employee\_PartialContract.cshtml" />
     <Content Include="Views\Setting\Index.cshtml" />
-    <Content Include="Views\Sweet\Alert.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeNameCode.cshtml" />
     <Content Include="Scripts\moment.min.js.map" />
     <Content Include="Scripts\moment-with-locales.min.js.map" />
@@ -469,6 +469,7 @@
     <Content Include="Views\Employee\_PartialEmployeeShortLeave.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeHandover.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeEvaluation.cshtml" />
+    <Content Include="Views\Employee\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

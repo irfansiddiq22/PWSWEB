@@ -105,24 +105,10 @@ input[type="file"] {
 }
 
 .login_wrapper .form-control {
-    height: 53px;
-    padding: 15px 20px;
-    font-size: 14px;
-    line-height: 24px;
-    border: 1px solid #fafafa;
-    border-radius: 3px;
-    box-shadow: none;
-    -webkit-transition: all 0.3s ease 0s;
-    -moz-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
-    background-color: #fafafa;
+    
 }
 
     .login_wrapper .form-control:focus {
-        color: #999;
-        background-color: fafafa;
-        border: 1px solid #4285f4 !important;
     }
 
 .login_remember_box {
