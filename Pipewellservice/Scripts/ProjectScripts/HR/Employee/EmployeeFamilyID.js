@@ -14,7 +14,7 @@
 };
 var IDFileList = [];
 
-function _Int() {
+function _Init() {
     HideSpinner();
     BindUsers();
 }

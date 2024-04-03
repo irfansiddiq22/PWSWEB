@@ -12,7 +12,7 @@
 };
 var IDFileList = [];
 
-function _Int() {
+function _Init() {
     HideSpinner();
     FillIDTypeList("datalistOptions")
     BindUsers();

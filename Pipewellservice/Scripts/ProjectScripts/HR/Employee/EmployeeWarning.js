@@ -1,6 +1,6 @@
 ﻿var WarningList = [];
 var Warning = {ID:0};
-function _Int() {
+function _Init() {
     HideSpinner();
     $("#aWarningSheet").hide()
     $("#ddlWarningDataRange").val(moment().startOf('year').format('MM/DD/YYYY') + ' - ' + moment().endOf('week').format('MM/DD/YYYY'));

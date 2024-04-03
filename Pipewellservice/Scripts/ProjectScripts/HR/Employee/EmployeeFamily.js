@@ -14,7 +14,7 @@
 };
 var FamilyList = [];
 
-function _Int() {
+function _Init() {
     HideSpinner();
     BindUsers();
 }

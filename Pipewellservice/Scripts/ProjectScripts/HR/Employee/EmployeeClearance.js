@@ -2,7 +2,7 @@
 var ApprovalList = [];
 var AssetList = [];
 var Clearance = { ID: 0, Approvals: [], Assets: [] };
-function _Int() {
+function _Init() {
     HideSpinner();
     SetvalOf("txtPreparedBy", User.Name);
     $("#dvEditClearance").hide();

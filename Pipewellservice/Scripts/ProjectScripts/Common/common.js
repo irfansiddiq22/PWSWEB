@@ -230,3 +230,12 @@ $('.daterangepicker').daterangepicker({
             Range = 8;
     });
 
+
+function LoadBreadCrumb(Parent,Page) {
+    $(".breadcrumb-item").remove();
+    $("#breadcrumb").append($('<li class="breadcrumb-item home"><a href="/home">Home</a></li>'));
+    if (Parent!=null)
+        $("#breadcrumb").append($('<li class="breadcrumb-item"><a href="' + Parent.URL + '">' + Parent.Title + '</a></li>'));
+    if (Page != null && Page!="")
+        $("#breadcrumb").append($('<li class="breadcrumb-item active">' + Page + '</li>'));
+}

@@ -9,7 +9,7 @@
 };
 var AssetList = [];
 
-function _Int() {
+function _Init() {
     HideSpinner();
     BindUsers();
 }
