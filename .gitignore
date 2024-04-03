@@ -263,3 +263,8 @@ __pycache__/
 web.config
 *.zip
 *.config
+/Pipewellservice/Pipewellservice.csproj
+/PipewellserviceDB/PipewellserviceDB.csproj
+/PipewellserviceJson/PipewellserviceJson.csproj
+/PipewellserviceModels/PipewellserviceModels.csproj
+/Pipewellservice/Web.config
