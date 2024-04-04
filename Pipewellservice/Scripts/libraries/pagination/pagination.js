@@ -330,7 +330,10 @@
                     html += '<div class="ml-5 d-inline">Show: <select class="dd-pagesize form-control-sm"> ' +
                         '<Option>5<\/Option>' +
                         '<Option>10<\/Option>' +
+                        '<Option>20<\/Option>' +
                         '<Option>25<\/Option>' +
+                        '<Option>30<\/Option>' +
+                        '<Option>40<\/Option>' +
                         '<Option>50<\/Option>' +
                         '<Option>100<\/Option>' +
                         '<\/select > entries<\/div><\/div>';
@@ -733,7 +736,7 @@
                     var current = $(event.currentTarget);
                     var pageNumber = 1;
                     attributes.pageSize = $(current).val();
-                    localStorage.setItem("ATDataTablePageLength", attributes.pageSize);
+                    localStorage.setItem("PageLength", attributes.pageSize);
                     //if (!pageNumber || current.hasClass(attributes.disableClassName) || current.hasClass(attributes.activeClassName)) return;
 
                     // Before page button clicked

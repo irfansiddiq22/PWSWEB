@@ -221,7 +221,7 @@ p {
 }
 
 .table-sm {
-    font-size: 12px;
+    font-size: 0.91rem;
 }
 
 .switch {
@@ -452,9 +452,9 @@ input:checked + .slider:before {
     }
 
 .blue {
-    background-color: #0055e6 !important;
+    background-color: #036c0a !important;
     padding: 5px 0px 5px 15px;
-    color: #fff;
+    color: #FFF;
 }
 
 thead.blue tr > th {

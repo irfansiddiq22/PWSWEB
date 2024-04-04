@@ -1,7 +1,7 @@
 ﻿var EmployeeList = [];
 var Employee = {}
 function _Init() {
-    
+
     HideSpinner();
     BindUsers();
     FillEmployeeDataList()
@@ -59,6 +59,9 @@ function _Init() {
 
     });
 }
+$(".keyupfilter").keyup(function () {
+    /// FillEmployeeTable();
+})
 function FillEmployeeDataList() {
     Post("/EmployeeAPI/EmployeeDataList", {}).done(function (Response) {
         var Departments = Response.departments;
@@ -95,11 +98,18 @@ function BindUsers() {
     //FillIDTypeList("datalistOptions")
 
 }
+function CancelEdit() {
+    $("#dvEditEmplyee").addClass("d-none")
+    $("#dvEmployeeList").removeClass("d-none")
+    $(".breadcrumb-item.active").find("a").contents().unwrap();
+
+}
 function FillEmployee() {
 
 
     $("#tblEmployeeList").empty();
     Employee = {};
+    ShowSpinner();
     Post("/EmployeeAPI/EmployeeList", {}).done(function (Response) {
         EmployeeList = Response;
 
@@ -126,9 +136,10 @@ function FillEmployee() {
         FillList("ddEmployeeNationality", Nationality, "Nationality", "Nationality", "#")
 
         FillEmployeeTable();
-        $("#nav-list-tab").trigger("click")
+        
         $("#dvEditEmplyee").addClass("d-none")
         $("#dvEmployeeList").removeClass("d-none")
+        HideSpinner();
     });
 
 
@@ -136,53 +147,95 @@ function FillEmployee() {
 function FillEmployeeTable() {
     var pageSize = localStorage.getItem("PageLength");
     if (pageSize == "" || pageSize == null) {
-        pageSize = 5;
+        pageSize = 10;
+    }
+    var FilteredData = EmployeeList;
+    if (valOf("txtEmployeeIDFilter") != "")
+        FilteredData = FilteredData.filter(x => x.ID == valOf("txtEmployeeIDFilter"));
+
+    if (valOf("txtEmployeeIqamaFilter") != "")
+        FilteredData = FilteredData.filter(x => x.Iqama != null && (x.Iqama.search(valOf("txtEmployeeIqamaFilter")) > -1));
+
+    if (valOf("txtEmployeeNameFilter") != "")
+        FilteredData = FilteredData.filter(x => x.Name != null && x.Name.toUpperCase().indexOf(valOf("txtEmployeeNameFilter").toUpperCase()) > -1);
+
+    if (valOf("txtEmployeeArabicNameFilter") != "")
+        FilteredData = FilteredData.filter(x => x.ArabicName != null && x.ArabicName.toUpperCase().indexOf(valOf("txtEmployeeArabicNameFilter").toUpperCase()) > -1);
+
+    if (GetChecked("chkEmployeeOnJobEmployee")) {
+        FilteredData = FilteredData.filter(x => x.JobStatus==1);
     }
 
     $('#dvEmployeePaging').pagination({
-        dataSource: EmployeeList,
+        dataSource: FilteredData,
         pageSize: pageSize,
         showGoInput: true,
         showGoButton: true,
         callback: function (data, pagination) {
+
             $("#tblEmployeeList").empty();
             $.each(data, function (i, e) {
                 var tr = $('<tr data-id=' + e.ID + '> ');
 
                 tr.append($('<td>').html(e.ID));
                 tr.append($('<td>').html(e.Name));
-                tr.append($('<td>').html(e.Iqama));
                 tr.append($('<td>').html(e.ArabicName));
                 tr.append($('<td>').html(e.Nationality));
+                tr.append($('<td class="iqamadata">').html(e.Iqama))
+                tr.append($('<td class="iqamadata">').html(e.IqamaExpiryDate == null ? "" : moment(e.IqamaExpiryDate).format("MM/DD/YYYY")))
+
+                tr.append($('<td class="iqamadata">').html(e.Passport));
+                tr.append($('<td class="iqamadata">').html(e.PassportExpiryDate == null ? "" : moment(e.PassportExpiryDate).format("MM/DD/YYYY")))
+
                 tr.append($('<td>').html(e.PhoneNumber));
-                tr.append($('<td>').html(e.DataOfBirth == null ? "" : moment(e.DataOfBirth).format("MM/DD/YYYY")));
-                tr.append($('<td>').html(e.DataOfBirth == null ? "" : moment(e.DataOfBirth).format("MM/DD/YYYY")));
-                tr.append($('<td>').html(e.Company));
+                tr.append($('<td>').html(e.DataOfBirth == null ? "" : moment().diff(e.DataOfBirth, "years")));
+                tr.append($('<td>').html(e.SponsorCompany));
                 tr.append($('<td>').html(e.Division));
                 tr.append($('<td>').html(e.Position));
+
                 tr.append($('<td>').html(e.Supervisor));
 
-                tr.append($('<td>').html(e.ExpiryDate == null ? "" : moment(e.ExpiryDate).format("MM/DD/YYYY")));
-                tr.append($('<td>').html(e.Passport));
-                tr.append($('<td>').html(e.VacationRotation));
-                tr.append($('<td>').html(e.NextVacation));
 
-                tr.append($('<td>').html(e.JobStatus));
                 tr.append($('<td>').html(e.HiringDate == null ? "" : moment(e.HiringDate).format("MM/DD/YYYY")));
-                tr.append($('<td>').html(e.JobLeftDate == null ? "" : moment(e.JobLeftDate).format("MM/DD/YYYY")));
-
+                tr.append($('<td class="jobstatus">').html(e.CurrentJobStatus));
+                tr.append($('<td class="jobstatus">').html(e.JobLeftDate == null ? "" : moment(e.JobLeftDate).format("MM/DD/YYYY")));
+                /*tr.append($('<td>').html(e.JobLeftDate == null ? "" : moment(e.JobLeftDate).format("MM/DD/YYYY")));
+                
                 tr.append($('<td>').html(e.ShowInAttendence));
-                tr.append($('<td>').html(e.DeductSalary));
+                tr.append($('<td>').html(e.DeductSalary));*/
 
                 tr.append($('<td>').html('<a href="javascript:void(0)" onclick="EditEmployee(\'' + e.ID + '\')"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)"onclick="DeleteEmployee(\'' + e.id + '\',this)"><i class="fa fa-trash"></i></a>'));
 
                 $("#tblEmployeeList").append(tr);//'<a class="fc-event fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-future fc-event-upcoming p-1" style="color:#FFF!important;" data-id=\'' + e.PostIDEnc + '\'>' + e.title + ' ' + new moment(e.start).format("MM/DD/YY") + '</a>')
             })
 
+            if (GetChecked("chkEmployeeIqamainfo"))
+                $(".iqamadata").show()
+            else
+                $(".iqamadata").hide()
+
+            if (GetChecked("chkEmployeeOnJobEmployee")) 
+                $(".jobstatus").show()
+            else
+                $(".jobstatus").hide()
+
         }
     })
 }
+function ToggleIqamaData() {
 
+    if (GetChecked("chkEmployeeIqamainfo"))
+        $(".iqamadata").show()
+    else
+        $(".iqamadata").hide()
+}
+
+function ShowJobLeft() {
+    if (valOf("ddEmployeeStatus") == 2)
+        $(".jobleftdate").show();
+    else
+        $(".jobleftdate").hide();
+}
 function EditEmployee(ID) {
 
     Post("/EmployeeAPI/EmployeeDetail", { EmployeeID: ID }).done(function (Response) {
@@ -196,10 +249,12 @@ function EditEmployee(ID) {
                 $(this).val(Employee[$(this).attr("data-id")]);
         })
         $("#ddEmployeeHiringSource").trigger("change")
+        $("#ddEmployeeStatus").trigger("change")
         $("#ddEmployeeNationality").trigger("change")
         $("#nav-detail-tab").trigger("click")
         $("#dvEditEmplyee").removeClass("d-none")
         $("#dvEmployeeList").addClass("d-none")
+        $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:CancelEdit()"));
 
     });
 }
@@ -218,15 +273,16 @@ function UpdateEmployee() {
                 if (Employee[$(this).attr("data-id")] == "Invalid date")
                     Employee[$(this).attr("data-id")] = '';
             }
+            console.log($(this).attr("data-id"));
             if (employeeToUpdate[$(this).attr("data-id")] != Employee[$(this).attr("data-id")].toString()) {
                 DataChangeLog.DataUpdated.push({ Field: $(this).attr("data-id"), Data: { OLD: Employee[$(this).attr("data-id")], New: employeeToUpdate[$(this).attr("data-id")] } });
             }
         });
 
         $.each($("select[data-id]"), function (i, c) {
-            
+
             if ($(this).val() != Employee[$(this).attr("data-id")].toString()) {
-                DataChangeLog.DataUpdated.push({ Field: $(this).attr("data-id"), Data: { OLD:$(this).find("option[value="+ Employee[$(this).attr("data-id")] +"]").text(), New: $(this).find("option:selected").text()  } });
+                DataChangeLog.DataUpdated.push({ Field: $(this).attr("data-id"), Data: { OLD: $(this).find("option[value=" + Employee[$(this).attr("data-id")] + "]").text(), New: $(this).find("option:selected").text() } });
             }
         });
 
@@ -235,7 +291,7 @@ function UpdateEmployee() {
                 swal({ text: "Employee record updated.", icon: "success" });
                 SaveLog(Employee.ID)
                 FillEmployee();
-                
+
                 document.getElementById("frmEmployeeData").reset();
 
 
@@ -268,3 +324,51 @@ $("#ddEmployeeNationality").blur(function () {
         $("#txtEmployeeHomeCountryPhoneNumber").removeAttr("readonly")
 
 });
+
+function SortData(sender, field) {
+    if (Sort.Field == field) {
+        if (Sort.Dir == 'asc')
+            Sort.Dir = 'desc'
+        else
+            Sort.Dir = 'asc'
+    } else
+        Sort.Dir = 'asc'
+
+    var table = $(sender).closest('table');
+    table.find("i.sort").remove();
+    Sort.Field = field;
+    if (Sort.Dir == "asc") {
+        $(sender).append($('<i>').addClass("fa ms-1 fa fa-sort-asc sort"))
+
+    }
+    else {
+        $(sender).append($('<i>').addClass("fa ms-1 fa fa-sort-desc sort"))
+    }
+    //EmployeeList=    _.sortBy(EmployeeList, Sort.Field);
+
+    EmployeeList = EmployeeList.sort(sortdata(Sort.Field, Sort.Dir));
+    FillEmployeeTable();
+}
+function sortdata(key, order = 'asc') {
+    return function innerSort(a, b) {
+        if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+            // property doesn't exist on either object
+            return 0;
+        }
+
+        const varA = (typeof a[key] === 'string')
+            ? a[key].toUpperCase() : a[key];
+        const varB = (typeof b[key] === 'string')
+            ? b[key].toUpperCase() : b[key];
+
+        let comparison = 0;
+        if (varA > varB) {
+            comparison = 1;
+        } else if (varA < varB) {
+            comparison = -1;
+        }
+        return (
+            (order === 'desc') ? (comparison * -1) : comparison
+        );
+    };
+}

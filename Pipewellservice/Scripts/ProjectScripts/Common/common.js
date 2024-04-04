@@ -27,7 +27,10 @@ function ResetChangeLog(Form) {
         DataUpdated: []
     }
 }
-
+var Sort = {
+    Field: 'ID',
+    Dir:'ASC'
+}
 $.validator.setDefaults({
     highlight: function (element) {
         if ($(element).closest('.form-group').length) 

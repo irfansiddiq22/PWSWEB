@@ -17,92 +17,101 @@
     </nav>
     <div id="dvEmployeeList">
         <div class="my-2 p-2">
-            <div class="border p-4 w-75 m-auto">
+            <div class="w-100 m-auto">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-2 col-sm-12">
-                                <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="floatingInput" placeholder="Emp #">
-                                    <label for="floatingInput">Emp #:</label>
-                                </div>
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="floatingInput" placeholder="Iqma #">
-                                    <label for="floatingInput">Iqma #:</label>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-md-2 col-sm-12">
-                                <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="floatingInput" placeholder="Name">
-                                    <label for="floatingInput">Name:</label>
-                                </div>
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="floatingInput" placeholder="الاسم">
-                                    <label for="floatingInput">الاسم:</label>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-md-3 col-sm-12 text-left">
-                                <div class="row mb-2">
-
-                                    <div class="col-7">Show only iqama info</div>
-                                    <div class="col">
-                                        <label class="switch"><input type="checkbox" checked="checked"><div class="slider round"></div></label>
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-
-                                    <div class="col-7">Show only job Employees</div>
-                                    <div class="col">
-                                        <label class="switch"><input type="checkbox" checked="checked"><div class="slider round"></div></label>
-                                    </div>
-                                </div>
-
-
-                                <button type="button" class="btn btn-danger wrn-btn">Search</button>
-                            </div>
-
+                    <div class="col-md-2">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control keyupfilter" id="txtEmployeeIDFilter" placeholder="Emp #">
+                            <label for="floatingInput">Emp #:</label>
                         </div>
                     </div>
+                    <div class="col-md-2">
+                        <div class="form-floating">
+                            <input type="email" class="form-control keyupfilter"  id="txtEmployeeIqamaFilter" placeholder="Iqma #">
+                            <label for="floatingInput">Iqma #:</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control keyupfilter" id="txtEmployeeNameFilter" placeholder="Name">
+                            <label for="floatingInput">Name:</label>
+                        </div>
+                    </div><div class="col-md-2">
+                        <div class="form-floating">
+                            <input type="email" class="form-control keyupfilter" id="txtEmployeeArabicNameFilter" placeholder="الاسم">
+                            <label for="floatingInput">الاسم:</label>
+                        </div>
+                    </div>
+
+                    <div class=" col-md-2 text-left">
+                        <div class="row mb-2">
+
+                            <div class="col-auto">Show only iqama info &nbsp;&nbsp;</div>
+                            <div class="col">
+                                <label class="switch"><input type="checkbox" checked="checked" id="chkEmployeeIqamainfo" onclick="ToggleIqamaData()"><div class="slider round"></div></label>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+
+                            <div class="col-auto">Show only job Employees</div>
+                            <div class="col">
+                                <label class="switch"><input type="checkbox" checked="checked" id="chkEmployeeOnJobEmployee" onclick="FillEmployeeTable()"><div class="slider round"></div></label>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-md-2"><button type="button" class="btn btn-danger wrn-btn" onclick="FillEmployeeTable();">Search</button></div>
+
                 </div>
+
 
             </div>
 
         </div>
+        <div class="table-responsive">
+            <table id="table"></table>
 
-        <table class="table table-sm table-striped table-hover-warning table-bordered" id="tblEmployeeListTable">
-            <thead class="blue">
-                <tr>
-                    <th>Emp #</th>
-                    <th>Emp Name</th>
-                    <th>Iqama</th>
-                    <th>Name/Arabic</th>
-                    <th>Nationality</th>
-                    <th>Phone Number</th>
-                    <th>DOB</th>
-                    <th>Age</th>
-                    <th>Company</th>
-                    <th>Division</th>
-                    <th>Position</th>
-                    <th>Supervisor</th>
 
-                    <th class="iqmadata"> Expiry Date</th>
-                    <th class="iqmadata"> Passport Number</th>
+            <table class="table table-sm table-striped table-hover-warning table-bordered" id="tblEmployeeListTable">
+                <thead class="blue">
+                    <tr>
+                        <th onclick="SortData(this,'id')">Emp #</th>
+                        <th onclick="SortData(this,'Name')">Emp Name</th>
+                        <th onclick="SortData(this,'ArabicName')">Name/Arabic</th>
+                        <th onclick="SortData(this,'Nationality')">Nationality</th>
+                        <th class="iqamadata" onclick="SortData(this,'Iqama')">Iqama</th>
+                        <th class="iqamadata" onclick="SortData(this,'Iqama')">Expiry Date</th>
 
-                    <th class="employeedata">Vacation After</th>
-                    <th class="employeedata">Next Vacation</th>
-                    <th>Status</th>
-                    <th>Hiring Date</th>
-                    <th>Job Left Date</th>
-                    <th class="employeedata">Sow in Attrndence</th>
-                    <th class="employeedata">Is Deduct Salary</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody id="tblEmployeeList"></tbody>
+                        <th class="iqamadata" onclick="SortData(this,'Passport')">Passport</th>
+                        <th class="iqamadata" onclick="SortData(this,'Passport')">Expiry Date</th>
 
-        </table><div id="dvEmployeePaging"></div>
+
+                        <th onclick="SortData(this,'PhoneNumber')">Phone Number</th>
+                        <th onclick="SortData(this,'DataOfBirth')">Age</th>
+                        <th onclick="SortData(this,'Company')">Company</th>
+                        <th onclick="SortData(this,'Division')">Division</th>
+                        <th onclick="SortData(this,'Position')">Position</th>
+                        <th onclick="SortData(this,'Supervisor')">Supervisor</th>
+
+                        <th onclick="SortData(this,'HiringDate')">Hiring Date</th>
+                        <th class="jobstatus"  onclick="SortData(this,'Status')">Status</th>
+                        <th class="jobstatus" onclick="SortData(this,'JobLeftDate')">Job Left Date</th>
+
+                        <!--
+    <th onclick="SortData(this,'JobLeftDate')">Job Left Date</th>
+    <th onclick="SortData(this,'ShowInAttendence')" class="employeedata">Sow in Attendence</th>
+    <th onclick="SortData(this,'DeductSalary')" class="employeedata">Is Deduct Salary</th>-->
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tblEmployeeList"></tbody>
+
+            </table>
+        </div>
+        <div id="dvEmployeePaging"></div>
     </div>
     <div id="dvEditEmplyee" class="d-none">
         <form id="frmEmployeeData">
@@ -166,7 +175,10 @@
 
 
                         <div class="col-4"><label>Status</label></div>
-                        <div class="col-8"><select class="form-select form-select-sm" id="txtEmployeeStatus" data-id="JobStatus"><option value="1">On the Job</option><option value="2">Left the Job</option><option value="0"> </option></select></div>
+                        <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeeStatus" onchange="ShowJobLeft()" data-id="JobStatus"><option value="1">On the Job</option><option value="2">Left the Job</option><option value="0"> </option></select></div>
+
+                        <div class="col-4 jobleftdate"><label>Date</label></div>
+                        <div class="col-8 jobleftdate"><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeJobLeftDate" data-id="JobLeftDate" data-type="date" /></div>
 
                         <div class="col-4"><label>Email</label></div>
                         <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeAddress" data-id="EmailAddress" required data-msg="Please enter email address" /></div>
@@ -252,3 +264,4 @@
     @Scripts.Render("~/lib/hr/employee")
     @Styles.Render("~/bundles/paginationcss")
 }
+<script type="text/javascript" src="~/Scripts/underscore.js"></script>

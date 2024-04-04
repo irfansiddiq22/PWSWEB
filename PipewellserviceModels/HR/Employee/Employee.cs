@@ -24,12 +24,23 @@ namespace PipewellserviceModels.HR.Employee
     }
     public class EmployeeListView : EmployeeData
     {
+        public string SponsorCompany { get; set; }
         public string Division { get; set; }
         public string Position { get; set; }
         public string Supervisor { get; set; }
         public string Iqama { get; set; }
         public string Passport { get; set; }
-        public DateTime? ExpiryDate { get; set; }
+        public DateTime? IqamaExpiryDate { get; set; }
+        public DateTime? PassportExpiryDate { get; set; }
+        public string CurrentJobStatus { get
+            {
+                if (JobStatus == Common.JobStatus.LeftJob)
+                    return "Left the job";
+                else if (JobStatus == Common.JobStatus.OnJob)
+                    return "On the job";
+                else
+                    return "";
+            } }
     }
     public class EmployeeData: EmployeeReferenceData
     {
@@ -53,6 +64,7 @@ namespace PipewellserviceModels.HR.Employee
         public string Location { get; set; }
         public string Grade { get; set; }
         public JobStatus? JobStatus { get; set; }
+        
 
         public string Remarks { get; set; }
         public string GOSI { get; set; }
