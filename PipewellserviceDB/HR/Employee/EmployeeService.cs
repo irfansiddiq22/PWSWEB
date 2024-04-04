@@ -478,7 +478,7 @@ namespace PipewellserviceDB.HR.Employee
 
             try
             {
-                SqlParameter[] collSP = new SqlParameter[38];
+                SqlParameter[] collSP = new SqlParameter[39];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = employee.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@Name", Value = employee.Name };
                 collSP[2] = new SqlParameter { ParameterName = "@ArabicName", Value = employee.ArabicName };
@@ -519,6 +519,7 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[35] = new SqlParameter { ParameterName = "@ContractType", Value = employee.ContractType };
                 collSP[36] = new SqlParameter { ParameterName = "@NoOfDependent", Value = employee.NoOfDependent };
                 collSP[37] = new SqlParameter { ParameterName = "@AnnualTicket", Value = employee.AnnualTicket };
+                collSP[38] = new SqlParameter { ParameterName = "@JobLeftDate", Value = employee.JobLeftDate };
 
                 await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateEmployee", CommandType.StoredProcedure, collSP);
                 return new ResultDTO() { Status = true, Message = "Record Added" };
