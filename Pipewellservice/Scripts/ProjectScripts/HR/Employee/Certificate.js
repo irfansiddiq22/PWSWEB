@@ -10,7 +10,8 @@
 };
 var CertificateList = [];
 
-function _Int() {
+function _Init() {
+    LoadBreadCrumb({ Url: "/employee/home", Title: "Employee Management" }, { Url: "#", Title: "Employee Certificate" });
     HideSpinner();
     BindUsers();
 }

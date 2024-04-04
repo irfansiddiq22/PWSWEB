@@ -10,7 +10,7 @@ function ResetForm() {
     Settings.Data.ID = 0;
     ResetChangeLog();
 }
-function _Int() {
+function _Init() {
     BindDivision();
     BindPositions();
     BindDepartments();

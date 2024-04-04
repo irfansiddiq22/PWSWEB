@@ -1,6 +1,7 @@
 ﻿var EmployeeList = [];
 var Employee = {}
-function _Int() {
+function _Init() {
+    
     HideSpinner();
     BindUsers();
     FillEmployeeDataList()

@@ -11,6 +11,8 @@ namespace Pipewellservice.Controllers
         // GET: Setting
         public ActionResult Index()
         {
+            ViewBag.Title = "Setting";
+            ViewBag.Parent = null;
             return View();
         }
     }
