@@ -1,4 +1,5 @@
 ﻿using Pipewellservice.App_Start;
+using Pipewellservice.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,17 @@ namespace Pipewellservice
     {
         protected void Application_Start()
         {
+            
+            ModelBinders.Binders.Add(typeof(DateTime), new DateTimeBinder());
+            ModelBinders.Binders.Add(typeof(DateTime?), new DateTimeBinder());
+
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AppData.RegisterConstants();
+
         }
     }
 }

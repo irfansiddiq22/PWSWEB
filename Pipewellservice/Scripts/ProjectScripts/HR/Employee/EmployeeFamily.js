@@ -31,11 +31,11 @@ function InitilzeFamily() {
     Family.HomePhoneNumber = ''
 
     SetvalOf("txtFamilyName", Family.Name);
-    SetvalOf("txtFamilyDateOfBirth", (moment(Family.DateOfBirth).format("MM/DD/YYYY")));
+    SetvalOf("txtFamilyDateOfBirth", (moment(Family.DateOfBirth).format("DD/MM/YYYY")));
     SetvalOf("txtFamilyRelationship", Family.Relation);
     SetvalOf("txtFamilyPassportNumber", Family.PassportNumber);
-    SetvalOf("txtFamilyPassportIssueDate", (moment(Family.PassportIssueDate).format("MM/DD/YYYY")));
-    SetvalOf("txtFamilyPassportExpiryDate", moment(Family.PassportExpiryDate).format("MM/DD/YYYY"));
+    SetvalOf("txtFamilyPassportIssueDate", (moment(Family.PassportIssueDate).format("DD/MM/YYYY")));
+    SetvalOf("txtFamilyPassportExpiryDate", moment(Family.PassportExpiryDate).format("DD/MM/YYYY"));
     SetvalOf("txtFamilyIqamaNumber", Family.IqamaNumber);
     SetvalOf("txtFamilyLocalPhoneNumber", Family.LocalPhoneNumber);
     SetvalOf("txtFamilyHomePhoneNumber", Family.HomePhoneNumber);
@@ -81,15 +81,15 @@ function FillEmployeeFamilyTable(Response) {
         var tr = $('<tr>');
         tr.append($('<td>').text(c.ID))
         tr.append($('<td>').text(c.Name))
-        tr.append($('<td>').text(moment(c.DateOfBirth).format("MM/DD/YYYY")))
+        tr.append($('<td>').text(moment(c.DateOfBirth).format("DD/MM/YYYY")))
         tr.append($('<td>').text(c.Relation))
 
 
         tr.append($('<td>').text(c.PassportNumber))
         tr.append($('<td>').text(c.IqamaNumber))
 
-        tr.append($('<td>').text(moment(c.PassportIssueDate).format("MM/DD/YYYY")))
-        tr.append($('<td>').text(moment(c.PassportExpiryDate).format("MM/DD/YYYY")))
+        tr.append($('<td>').text(moment(c.PassportIssueDate).format("DD/MM/YYYY")))
+        tr.append($('<td>').text(moment(c.PassportExpiryDate).format("DD/MM/YYYY")))
 
         tr.append($('<td>').text(c.HomePhoneNumber))
         tr.append($('<td>').text(c.LocalPhoneNumber))
@@ -113,11 +113,11 @@ function DownloadPassportFile(EmployeeID, FileName, FileID) {
 function EditFamilyMember(index) {
     Family = FamilyList[index];
     SetvalOf("txtFamilyName", Family.Name);
-    SetvalOf("txtFamilyDateOfBirth", (moment(Family.DateOfBirth).format("MM/DD/YYYY")));
+    SetvalOf("txtFamilyDateOfBirth", (moment(Family.DateOfBirth).format("DD/MM/YYYY")));
     SetvalOf("txtFamilyRelationship", Family.Relation);
     SetvalOf("txtFamilyPassportNumber", Family.PassportNumber);
-    SetvalOf("txtFamilyPassportIssueDate", (moment(Family.PassportIssueDate).format("MM/DD/YYYY")));
-    SetvalOf("txtFamilyPassportExpiryDate", moment(Family.PassportExpiryDate).format("MM/DD/YYYY"));
+    SetvalOf("txtFamilyPassportIssueDate", (moment(Family.PassportIssueDate).format("DD/MM/YYYY")));
+    SetvalOf("txtFamilyPassportExpiryDate", moment(Family.PassportExpiryDate).format("DD/MM/YYYY"));
     SetvalOf("txtFamilyIqamaNumber", Family.IqamaNumber);
     SetvalOf("txtFamilyLocalPhoneNumber", Family.LocalPhoneNumber);
     SetvalOf("txtFamilyHomePhoneNumber", Family.HomePhoneNumber);
@@ -138,8 +138,8 @@ function SaveFamily() {
             if ($.trim(Family.Name) != $.trim(valOf("txtFamilyName"))) 
                 DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: Family.Name, New: valOf("txtFamilyName") } });
 
-            if (moment(Family.DateOfBirth).format("MM/DD/YYYY") != $.trim(valOf("txtFamilyDateOfBirth")))
-                DataChangeLog.DataUpdated.push({ Field: "DateOfBirth", Data: { OLD: moment(Family.DateOfBirth).format("MM/DD/YYYY"), New: valOf("txtFamilyDateOfBirth") } });
+            if (moment(Family.DateOfBirth).format("DD/MM/YYYY") != $.trim(valOf("txtFamilyDateOfBirth")))
+                DataChangeLog.DataUpdated.push({ Field: "DateOfBirth", Data: { OLD: moment(Family.DateOfBirth).format("DD/MM/YYYY"), New: valOf("txtFamilyDateOfBirth") } });
             if ($.trim(Family.Relation) != $.trim(valOf("txtFamilyRelationship")))
                 DataChangeLog.DataUpdated.push({ Field: "Relation", Data: { OLD: Family.Relation, New: valOf("txtFamilyRelationship") } });
 
@@ -147,11 +147,11 @@ function SaveFamily() {
             if ($.trim(Family.PassportNumber) != $.trim(valOf("txtFamilyPassportNumber")))
                 DataChangeLog.DataUpdated.push({ Field: "PassportNumber", Data: { OLD: Family.PassportNumber, New: valOf("txtFamilyPassportNumber") } });
 
-            if (moment(Family.PassportIssueDate).format("MM/DD/YYYY") != $.trim(valOf("txtFamilyPassportIssueDate")))
-                DataChangeLog.DataUpdated.push({ Field: "PassportIssueDate", Data: { OLD: moment(Family.PassportIssueDate).format("MM/DD/YYYY"), New: valOf("txtFamilyPassportIssueDate") } });
+            if (moment(Family.PassportIssueDate).format("DD/MM/YYYY") != $.trim(valOf("txtFamilyPassportIssueDate")))
+                DataChangeLog.DataUpdated.push({ Field: "PassportIssueDate", Data: { OLD: moment(Family.PassportIssueDate).format("DD/MM/YYYY"), New: valOf("txtFamilyPassportIssueDate") } });
 
-            if (moment(Family.PassportExpiryDate).format("MM/DD/YYYY") != $.trim(valOf("txtFamilyPassportExpiryDate")))
-                DataChangeLog.DataUpdated.push({ Field: "PassportExpiryDate", Data: { OLD: moment(Family.PassportExpiryDate).format("MM/DD/YYYY"), New: valOf("txtFamilyPassportExpiryDate") } });
+            if (moment(Family.PassportExpiryDate).format("DD/MM/YYYY") != $.trim(valOf("txtFamilyPassportExpiryDate")))
+                DataChangeLog.DataUpdated.push({ Field: "PassportExpiryDate", Data: { OLD: moment(Family.PassportExpiryDate).format("DD/MM/YYYY"), New: valOf("txtFamilyPassportExpiryDate") } });
 
             if ($.trim(Family.IqamaNumber) != $.trim(valOf("txtFamilyIqamaNumber")))
                 DataChangeLog.DataUpdated.push({ Field: "IqamaNumber", Data: { OLD: Family.IqamaNumber, New: valOf("txtFamilyIqamaNumber") } });

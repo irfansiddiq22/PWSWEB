@@ -65,8 +65,8 @@ function FillCertificates(EmployeeID) {
             var tr = $('<tr>');
             tr.append($('<td>').text((i + 1)))
             tr.append($('<td>').text(c.Name))
-            tr.append($('<td>').text(moment(c.IssueDate).format("MM/DD/YYYY")))
-            tr.append($('<td>').text(c.ExpiryDate ? moment(c.ExpiryDate).format("MM/DD/YYYY") : ""))
+            tr.append($('<td>').text(moment(c.IssueDate).format("DD/MM/YYYY")))
+            tr.append($('<td>').text(c.ExpiryDate ? moment(c.ExpiryDate).format("DD/MM/YYYY") : ""))
             tr.append($('<td>').append(c.Remarks))
             tr.append($('<td>').append(CheckboxSwitch("", c.OnShore ? "checked" : "", "", "")))
             var Icons = $('<div class="icons">');
@@ -81,8 +81,8 @@ function FillCertificates(EmployeeID) {
 function EditCertificate(index) {
     Certificate = CertificateList[index];
     SetvalOf("txtCertificateName", Certificate.Name);
-    SetvalOf("txtCertificateIssueDate", (moment(Certificate.IssueDate).format("MM/DD/YYYY")));
-    SetvalOf("txtCertificateExpiryDate", (Certificate.ExpiryDate ? moment(Certificate.ExpiryDate).format("MM/DD/YYYY") : ""));
+    SetvalOf("txtCertificateIssueDate", (moment(Certificate.IssueDate).format("DD/MM/YYYY")));
+    SetvalOf("txtCertificateExpiryDate", (Certificate.ExpiryDate ? moment(Certificate.ExpiryDate).format("DD/MM/YYYY") : ""));
     SetvalOf("txtCertificateRemarks", Certificate.Remarks);
     SetChecked("chkCertificateOnshore", Certificate.OnShore)
     Certificate.OnShore == null ? "" : SetChecked("chkCertificateOffshore", !Certificate.OnShore)
@@ -118,11 +118,11 @@ function SaveCertificate() {
                 if ($.trim(Certificate.Name) != $.trim(valOf("txtCertificateName"))) {
                     DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: Certificate.Name, New: valOf("txtCertificateName") } });
                 }
-                if (moment(Certificate.IssueDate).format("MM/DD/YYYY") != $.trim(valOf("txtCertificateIssueDate"))) {
-                    DataChangeLog.DataUpdated.push({ Field: "IssueDate", Data: { OLD: moment(Certificate.IssueDate).format("MM/DD/YYYY"), New: valOf("txtCertificateIssueDate") } });
+                if (moment(Certificate.IssueDate).format("DD/MM/YYYY") != $.trim(valOf("txtCertificateIssueDate"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "IssueDate", Data: { OLD: moment(Certificate.IssueDate).format("DD/MM/YYYY"), New: valOf("txtCertificateIssueDate") } });
                 }
-                if (moment(Certificate.ExpiryDate).format("MM/DD/YYYY") != $.trim(valOf("txtCertificateExpiryDate"))) {
-                    DataChangeLog.DataUpdated.push({ Field: "ExpiryDate", Data: { OLD: moment(Certificate.ExpiryDate).format("MM/DD/YYYY"), New: valOf("txtCertificateExpiryDate") } });
+                if (moment(Certificate.ExpiryDate).format("DD/MM/YYYY") != $.trim(valOf("txtCertificateExpiryDate"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "ExpiryDate", Data: { OLD: moment(Certificate.ExpiryDate).format("DD/MM/YYYY"), New: valOf("txtCertificateExpiryDate") } });
                 }
                 if ($.trim(Certificate.OnShore) != $.trim(GetChecked("chkCertificateOnshore"))) {
                     DataChangeLog.DataUpdated.push({ Field: "OnShore", Data: { OLD: Certificate.OnShore, New: GetChecked("chkCertificateOnshore") } });

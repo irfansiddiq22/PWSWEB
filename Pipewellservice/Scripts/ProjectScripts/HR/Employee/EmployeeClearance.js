@@ -118,8 +118,8 @@ function BindClearance() {
             tr.append($('<td>').append(r.EmployeeID).append("<br>").append("Name:" + r.EmployeeName).append("<br>Division: " + r.Division).append("<br>Position: " + r.Position))
             tr.append($('<td>').text(r.ContactNumber))
             tr.append($('<td>').text(r.Handover))
-            tr.append($('<td>').text(moment(r.LastWorkingDate).format("MM/DD/YYYY")))
-            tr.append($('<td>').text(moment(r.ClearanceDate).format("MM/DD/YYYY")))
+            tr.append($('<td>').text(moment(r.LastWorkingDate).format("DD/MM/YYYY")))
+            tr.append($('<td>').text(moment(r.ClearanceDate).format("DD/MM/YYYY")))
             tr.append($('<td>').append(r.PreparedBy))
             tr.append($('<td>').append(r.EmployeeName))
 
@@ -151,11 +151,11 @@ function EditClearance(index) {
     SetvalOf("ddEmployeeDivision", Clearance.DivisionID);
     SetvalOf("ddEmployeePosition", Clearance.PositionID);
     SetvalOf("ddEmployeeNationality", Clearance.NationalityID);
-    SetvalOf("txtClearanceDate", moment(Clearance.ClearanceDate).format("MM/DD/YYYY"))
+    SetvalOf("txtClearanceDate", moment(Clearance.ClearanceDate).format("DD/MM/YYYY"))
     SetvalOf("txtClearanceContact", Clearance.ContactNumber);
     SetvalOf("txtClearancehandover", Clearance.Handover);
     SetvalOf("txtPreparedBy", Clearance.Preparedby);
-    SetvalOf("txtClearanceLastWorkingDate", moment(Clearance.LastWorkingDate).format("MM/DD/YYYY"))
+    SetvalOf("txtClearanceLastWorkingDate", moment(Clearance.LastWorkingDate).format("DD/MM/YYYY"))
     $.each(Approvals, function (i, a) {
         SetvalOf("ddSupervisorApproval" + (i + 1), a.ApprovalBy).trigger("change");
     });
@@ -192,7 +192,7 @@ function SaveEmployeeClearance() {
             } else {
                 DataChangeLog.DataUpdated = [];
 
-                if (moment(Clearance.ClearanceDate).format("MM/DD/YYYY") != valOf("txtClearanceDate")) {
+                if (moment(Clearance.ClearanceDate).format("DD/MM/YYYY") != valOf("txtClearanceDate")) {
                     DataChangeLog.DataUpdated.push({ Field: "ClearanceDate", Data: { OLD: Clearance.ClearanceDate, New: valOf("txtClearanceDate") } });
                 }
                 if ($.trim(Clearance.ContactNumber) != valOf("txtClearanceContact")) {
@@ -201,7 +201,7 @@ function SaveEmployeeClearance() {
                 if ($.trim(Clearance.Handover) != valOf("txtClearancehandover")) {
                     DataChangeLog.DataUpdated.push({ Field: "Handover", Data: { OLD: Clearance.Handover, New: valOf("txtClearancehandover") } });
                 }
-                if (moment(Clearance.LastWorkingDate).format("MM/DD/YYYY") != valOf("txtClearanceLastWorkingDate")) {
+                if (moment(Clearance.LastWorkingDate).format("DD/MM/YYYY") != valOf("txtClearanceLastWorkingDate")) {
                     DataChangeLog.DataUpdated.push({ Field: "LastWorkingDate", Data: { OLD: Clearance.LastWorkingDate, New: valOf("txtClearanceLastWorkingDate") } });
                 }
 
@@ -288,11 +288,11 @@ function CancelNewClearance() {
     SetvalOf("ddEmployeeDivision", 0);
     SetvalOf("ddEmployeePosition", 0);
     SetvalOf("ddEmployeeNationality", 0);
-    SetvalOf("txtClearanceDate", moment().format("MM/DD/YYYY"))
+    SetvalOf("txtClearanceDate", moment().format("DD/MM/YYYY"))
     SetvalOf("txtClearanceContact", "");
     SetvalOf("txtClearancehandover", "");
     SetvalOf("txtPreparedBy", User.Name);
-    SetvalOf("txtClearanceLastWorkingDate", moment().format("MM/DD/YYYY"))
+    SetvalOf("txtClearanceLastWorkingDate", moment().format("DD/MM/YYYY"))
     $("#tblClearanceAssets").empty();
     for (i = 1; i <= 8; i++) {
         SetvalOf("ddSupervisorApproval" + (i), 0).trigger("change");

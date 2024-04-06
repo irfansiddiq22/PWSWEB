@@ -142,6 +142,7 @@
     <Compile Include="Areas\API\Controllers\SettingAPIController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Helper\BaseController.cs" />
     <Compile Include="Helper\Config.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
@@ -490,6 +491,7 @@
     <Folder Include="Resources\Employee\1\" />
     <Folder Include="Resources\Employee\2\" />
     <Folder Include="Scripts\ProjectScripts\Home\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

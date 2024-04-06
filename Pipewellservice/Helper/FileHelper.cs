@@ -12,12 +12,19 @@ namespace Pipewellservice.Helper
 {
     public class FileHelper
     {
-        public async static Task<bool> SaveFile(HttpPostedFileBase file, int FileID, DirectoryNames Dir)
+        public async static Task<bool> SaveFile(HttpPostedFileBase file, int FileID, string ParentDir,DirectoryNames Dir)
         {
             string extension = Path.GetExtension(file.FileName);
             Constant DirectoryToSave = await AppData.Get(ParentValues.RESOURCES,(int) Dir);
 
             DirectoryInfo Directory = new DirectoryInfo($"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.ToString()}");
+            string FileSavePath = $"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.ToString()}\\{FileID}{extension}";
+
+            if (ParentDir != "")
+            {
+                Directory = new DirectoryInfo($"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.ToString()}\\{ParentDir}");
+                FileSavePath = $"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.ToString()}\\{ParentDir}\\{FileID}{extension}";
+            }
             if (!Directory.Exists)
             {
                 Directory.Create();
@@ -25,10 +32,10 @@ namespace Pipewellservice.Helper
             try
             {
 
-                if (System.IO.File.Exists($"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.ToString()}\\{FileID}{extension}"))
-                    System.IO.File.Delete($"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.ToString()}\\{FileID}{extension}");
+                if (System.IO.File.Exists(FileSavePath))
+                    System.IO.File.Delete(FileSavePath);
 
-                file.SaveAs($"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.ToString()}\\{FileID}{extension}");
+                file.SaveAs(FileSavePath);
                 return true;
             }
             catch (Exception e)
@@ -37,13 +44,18 @@ namespace Pipewellservice.Helper
             }
         }
 
-        public async static Task<string> GetFile(string FileID, DirectoryNames Dir)
+        public async static Task<string> GetFile(string FileID,string ParentDir, DirectoryNames Dir)
         {
             try
             {
                 Constant DirectoryToSave = await AppData.Get(ParentValues.RESOURCES, (int)Dir);
-                return $"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.ToString()}\\{FileID}";
-            }catch(Exception e)
+                string Root= $"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.ToString()}";
+                if (ParentDir!="")
+                    Root= $"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.ToString()}\\{ParentDir}";
+
+                return $"{Root}\\{FileID}";
+            }
+            catch(Exception e)
             {
                 return "";
             }

@@ -70,8 +70,8 @@ function FillIDListTable(Response) {
         tr.append($('<td>').append(c.FileName == "null" || c.FileName=="" ?"":$(Link)))
         tr.append($('<td>').text(c.Description))
         tr.append($('<td>').text(c.IDNumber))
-        tr.append($('<td>').text(moment(c.IssueDate).format("MM/DD/YYYY")))
-        tr.append($('<td>').text(moment(c.ExpiryDate).format("MM/DD/YYYY")))
+        tr.append($('<td>').text(moment(c.IssueDate).format("DD/MM/YYYY")))
+        tr.append($('<td>').text(moment(c.ExpiryDate).format("DD/MM/YYYY")))
 
         tr.append($('<td>').append(c.Remarks))
 
@@ -93,8 +93,8 @@ function EditIDFile(index) {
     SetvalOf("txtIDFileDescription", IDFile.Description);
     SetvalOf("txtIDFileNumber", IDFile.IDNumber);
 
-    SetvalOf("txtIDFileIssueDate", (moment(IDFile.IssueDate).format("MM/DD/YYYY")));
-    SetvalOf("txtIDFileExpiryDate", moment(IDFile.ExpiryDate).format("MM/DD/YYYY") );
+    SetvalOf("txtIDFileIssueDate", (moment(IDFile.IssueDate).format("DD/MM/YYYY")));
+    SetvalOf("txtIDFileExpiryDate", moment(IDFile.ExpiryDate).format("DD/MM/YYYY") );
     SetvalOf("txtIDFileRemarks", IDFile.Remarks);
     
 }
@@ -136,11 +136,11 @@ function SaveIDFile() {
                 if ($.trim(IDFile.IDNumber) != $.trim(valOf("txtIDFileNumber"))) {
                     DataChangeLog.DataUpdated.push({ Field: "ID", Data: { OLD: IDFile.IDNumber, New: valOf("txtIDFileNumber") } });
                 }
-                if (moment(IDFile.IssueDate).format("MM/DD/YYYY") != $.trim(valOf("txtIDFileIssueDate"))) {
-                    DataChangeLog.DataUpdated.push({ Field: "IssueDate", Data: { OLD: moment(IDFile.IssueDate).format("MM/DD/YYYY"), New: valOf("txtIDFileIssueDate") } });
+                if (moment(IDFile.IssueDate).format("DD/MM/YYYY") != $.trim(valOf("txtIDFileIssueDate"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "IssueDate", Data: { OLD: moment(IDFile.IssueDate).format("DD/MM/YYYY"), New: valOf("txtIDFileIssueDate") } });
                 }
-                if (moment(IDFile.ExpiryDate).format("MM/DD/YYYY") != $.trim(valOf("txtIDFileExpiryDate"))) {
-                    DataChangeLog.DataUpdated.push({ Field: "ExpiryDate", Data: { OLD: moment(IDFile.ExpiryDate).format("MM/DD/YYYY"), New: valOf("txtIDFileExpiryDate") } });
+                if (moment(IDFile.ExpiryDate).format("DD/MM/YYYY") != $.trim(valOf("txtIDFileExpiryDate"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "ExpiryDate", Data: { OLD: moment(IDFile.ExpiryDate).format("DD/MM/YYYY"), New: valOf("txtIDFileExpiryDate") } });
                 }
 
                 if ($.trim(IDFile.Remarks) != $.trim(valOf("txtIDFileRemarks"))) {
