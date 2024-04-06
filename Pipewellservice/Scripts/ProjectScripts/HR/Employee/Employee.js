@@ -244,7 +244,7 @@ function EditEmployee(ID) {
 
         $.each($("input[data-id],select[data-id]"), function (i, c) {
             if ($(this).attr("data-type") == "date")
-                    $(this).val(Employee[$(this).attr("data-id")] == null ? "" : moment(Employee[$(this).attr("data-id")]).format("DD/MM/YYYY"));
+                $(this).val(Employee[$(this).attr("data-id")] == null ? "" : moment(Employee[$(this).attr("data-id")]).format("DD/MM/YYYY"));
             else
                 $(this).val(Employee[$(this).attr("data-id")]);
         })
@@ -256,7 +256,9 @@ function EditEmployee(ID) {
         $("#dvEditEmplyee").removeClass("d-none")
         $("#dvEmployeeList").addClass("d-none")
         $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:CancelEdit()"));
-
+        $(".datepicker").each(function () {
+            $(this).datepicker('update', $(this).val());
+        });
     });
 }
 
@@ -276,12 +278,12 @@ function UpdateEmployee() {
             }
 
             if (employeeToUpdate[$(this).attr("data-id")] != NullToString(Employee[$(this).attr("data-id")])) {
-                DataChangeLog.DataUpdated.push({ Field: $(this).attr("data-id"), Data: { OLD: NullToString( Employee[$(this).attr("data-id")]), New: employeeToUpdate[$(this).attr("data-id")] } });
+                DataChangeLog.DataUpdated.push({ Field: $(this).attr("data-id"), Data: { OLD: NullToString(Employee[$(this).attr("data-id")]), New: employeeToUpdate[$(this).attr("data-id")] } });
             }
         });
 
         $.each($("select[data-id]"), function (i, c) {
-            
+
             if ($(this).val() != NullToString(Employee[$(this).attr("data-id")])) {
                 DataChangeLog.DataUpdated.push({ Field: $(this).attr("data-id"), Data: { OLD: $(this).find("option[value='" + Employee[$(this).attr("data-id")] + "']").text(), New: $(this).find("option:selected").text() } });
             }

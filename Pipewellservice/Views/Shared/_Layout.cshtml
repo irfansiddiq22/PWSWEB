@@ -144,10 +144,10 @@
         $(function () {
             $(".datepicker").datepicker({
                 autoclose: true,
-                todayHighlight: true,
-                format: 'dd/mm/yyyy' 
-
+                todayHighlight: false,
+                format: 'dd/mm/yyyy'
             })
+            
             _Init();
             var d = null
             if('@Html.Raw(ViewBag.Parent)'!='')d=$.parseJSON('@Html.Raw(ViewBag.Parent)');
