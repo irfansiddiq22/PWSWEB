@@ -55,7 +55,7 @@ function FillAssets(EmployeeID) {
             var tr = $('<tr>');
             tr.append($('<td>').text((i + 1)))
             tr.append($('<td>').text(c.Name))
-            tr.append($('<td>').text(moment(c.IssueDate).format("MM/DD/YYYY")))
+            tr.append($('<td>').text(moment(c.IssueDate).format("DD/MM/YYYY")))
             
             tr.append($('<td>').append(c.Remarks))
             
@@ -71,7 +71,7 @@ function FillAssets(EmployeeID) {
 function EditAsset(index) {
     Asset = AssetList[index];
     SetvalOf("txtAssetName", Asset.Name);
-    SetvalOf("txtAssetIssueDate", (moment(Asset.IssueDate).format("MM/DD/YYYY")));
+    SetvalOf("txtAssetIssueDate", (moment(Asset.IssueDate).format("DD/MM/YYYY")));
     SetvalOf("txtAssetRemarks", Asset.Remarks);
     
     
@@ -108,8 +108,8 @@ function SaveAsset() {
                 if ($.trim(Asset.Name) != $.trim(valOf("txtAssetName"))) {
                     DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: Asset.Name, New: valOf("txtAssetName") } });
                 }
-                if (moment(Asset.IssueDate).format("MM/DD/YYYY") != $.trim(valOf("txtAssetIssueDate"))) {
-                    DataChangeLog.DataUpdated.push({ Field: "IssueDate", Data: { OLD: moment(Asset.IssueDate).format("MM/DD/YYYY"), New: valOf("txtAssetIssueDate") } });
+                if (moment(Asset.IssueDate).format("DD/MM/YYYY") != $.trim(valOf("txtAssetIssueDate"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "IssueDate", Data: { OLD: moment(Asset.IssueDate).format("DD/MM/YYYY"), New: valOf("txtAssetIssueDate") } });
                 }
                 
                 if ($.trim(Asset.Remarks) != $.trim(valOf("txtAssetRemarks"))) {

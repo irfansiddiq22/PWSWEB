@@ -30,7 +30,7 @@ function BindContracts() {
             tr.append($('<td>').text(r.EmployeeID))
             tr.append($('<td>').text(r.Name))
             tr.append($('<td>').text(r.ArabicName))
-            tr.append($('<td>').text(moment(r.RecordDateUpdated).format("MM/DD/YYYY")))
+            tr.append($('<td>').text(moment(r.RecordDateUpdated).format("DD/MM/YYYY")))
             tr.append($('<td>').text(r.Nationality))
             var Link = $('<a>').attr("href", "javascript:void(0)").attr("onclick", "DownloadContract('" + r.EmployeeID + "','" + r.FileName + "','" + r.FileID + "')").text(r.FileName);
             tr.append($('<td>').append($(Link)))

@@ -11,7 +11,7 @@ using System.Web.Mvc;
 using System.IO;
 namespace Pipewellservice.Areas.API.Controllers
 {
-    public class EmployeeAPIController : Controller
+    public class EmployeeAPIController : BaseController
     {
         EmployeeJson json = new EmployeeJson();
 

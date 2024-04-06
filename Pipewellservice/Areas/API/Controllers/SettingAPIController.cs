@@ -1,4 +1,5 @@
-﻿using PipewellserviceJson.HR.Setting;
+﻿using Pipewellservice.Helper;
+using PipewellserviceJson.HR.Setting;
 using PipewellserviceModels.Common;
 using PipewellserviceModels.HR.Settings;
 using PipewellserviceModels.User;
@@ -11,7 +12,7 @@ using System.Web.Mvc;
 
 namespace Pipewellservice.Areas.API.Controllers
 {
-    public class SettingAPIController : Controller
+    public class SettingAPIController : BaseController
     {
         SettingJson json = new SettingJson();
         public async Task<JsonResult> DivisionList()

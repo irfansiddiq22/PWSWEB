@@ -3,7 +3,7 @@ var Warning = {ID:0};
 function _Init() {
     HideSpinner();
     $("#aWarningSheet").hide()
-    $("#ddlWarningDataRange").val(moment().startOf('year').format('MM/DD/YYYY') + ' - ' + moment().endOf('week').format('MM/DD/YYYY'));
+    $("#ddlWarningDataRange").val(moment().startOf('year').format('DD/MM/YYYY') + ' - ' + moment().endOf('week').format('DD/MM/YYYY'));
 
     BindUsers();
     BindWarnings();
@@ -74,7 +74,7 @@ function BindWarnings() {
             var tr = $('<tr>')
             tr.append($('<td>').text(r.ID))
             tr.append($('<td>').append(r.EmployeeID).append("<br>").append("Name:" + r.EmployeeName).append("<br>Division: " + r.Division).append("<br>Position: " + r.Position))
-            tr.append($('<td>').text(moment(r.WarningDate).format("MM/DD/YYYY")))
+            tr.append($('<td>').text(moment(r.WarningDate).format("DD/MM/YYYY")))
             tr.append($('<td>').text(r.WarningTypeName))
             tr.append($('<td>').append("Written:<label class='switch float-end'><input type='checkbox' " + (r.Written ?"checked" :"" )+ "><div class='slider round'></div></label><br>")
                 .append("Tardiness: <label class='switch float-end'><input type='checkbox'  " + (r.Tardiness ? "checked" : "") + "><div class='slider round'></div></label><br>")
@@ -113,7 +113,7 @@ function EditWarning(index) {
     Warning = WarningList[index];
 
     SetvalOf("ddEmployeeName", Warning.EmployeeID).trigger("change")
-    SetvalOf("txtWarningDate", moment(Warning.WarningDate).format("MM/DD/YYYY"))
+    SetvalOf("txtWarningDate", moment(Warning.WarningDate).format("DD/MM/YYYY"))
     SetvalOf("ddEmployeeDivision", Warning.DivisionID)
     SetvalOf("ddEmployeePosition", Warning.PositionID)
 
@@ -297,7 +297,7 @@ function SaveEmployeeWarning() {
                     document.getElementById("frmWarning").reset();
                     BindWarnings()
                     SetvalOf("ddEmployeeName",0).trigger("change")
-                    SetvalOf("txtWarningDate", moment().format("MM/DD/YYYY"))
+                    SetvalOf("txtWarningDate", moment().format("DD/MM/YYYY"))
                     SetvalOf("ddEmployeeDivision", 0)
                     SetvalOf("ddEmployeePosition", 0)
 
@@ -335,7 +335,7 @@ function CancelNewWarning() {
     document.getElementById("frmWarning").reset();
     Warning = { ID: 0 };
     SetvalOf("ddEmployeeName", 0).trigger("change")
-    SetvalOf("txtWarningDate", moment().format("MM/DD/YYYY"))
+    SetvalOf("txtWarningDate", moment().format("DD/MM/YYYY"))
     SetvalOf("ddEmployeeDivision", 0)
     SetvalOf("ddEmployeePosition", 0)
 
