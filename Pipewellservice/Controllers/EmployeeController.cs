@@ -61,6 +61,8 @@ namespace Pipewellservice.Controllers
         }
         public ActionResult Warning()
         {
+            ViewBag.Title = "Employee warning ";
+            ViewBag.Parent = Parent;
             return View("_PartialEmployeeWarning");
         }
         public ActionResult Clearance()

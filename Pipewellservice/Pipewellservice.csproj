@@ -185,6 +185,7 @@
     <Content Include="Content\fixedHeader.bootstrap5.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\images\default_user.jpg" />
     <Content Include="Content\libraries\bootstrap-table\bootstrap-table.min.css" />
     <Content Include="Content\libraries\bootstrap-table\bootstrap-table.min.js" />
     <Content Include="Content\libraries\slidemenu\bootsidemenu.css" />
@@ -486,7 +487,6 @@
     <Folder Include="Areas\API\Views\Employee\" />
     <Folder Include="Areas\API\Views\SettingAPI\" />
     <Folder Include="Areas\API\Views\Shared\" />
-    <Folder Include="Content\images\" />
     <Folder Include="Models\" />
     <Folder Include="Resources\Employee\1\" />
     <Folder Include="Resources\Employee\2\" />

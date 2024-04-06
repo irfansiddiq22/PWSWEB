@@ -100,7 +100,11 @@ function BindUsers() {
 
 }
 function ResetNav() {
+    document.getElementById("frmEmployeeData").reset();
+    Employee = { ID: 0 }
     $("#dvEditEmplyee").addClass("d-none")
+    $("#imgEmployeePicture").attr("src","")
+
     $("#dvEmployeeList").removeClass("d-none")
     $(".breadcrumb-item.active").find("a").contents().unwrap();
 
@@ -246,6 +250,7 @@ function NewEmployee() {
     $("#nav-detail-tab").trigger("click")
     $("#dvEditEmplyee").removeClass("d-none")
     $("#dvEmployeeList").addClass("d-none")
+    $("#imgEmployeePicture").attr("src", "")
     $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
     $(".datepicker").each(function () {
         $(this).datepicker('update', $(this).val());
