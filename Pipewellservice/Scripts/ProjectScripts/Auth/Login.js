@@ -25,7 +25,7 @@ function Login() {
             Password: $("#txtPassword").val()
         }, function (resp) {
             if (resp)
-                window.location = "/Employee/home";
+                window.location = "/home";
             else
                 swal("Please enter valid credentials",{ icon: 'error' });
             $("#spinner").hide()

@@ -153,6 +153,10 @@ namespace PipewellserviceJson.HR.Employee
         {
             return await service.UpdateEmployee(employee);
         }
+        public async Task<ResultDTO> UpdateEmployeePicture(int EmployeeID,string FileName,string FileID)
+        {
+            return await service.UpdateEmployeePicture(EmployeeID, FileName, FileID);
+        }
         //////////...............................
 
         public async Task<List<EmployeeWarning>> EmployeeWarningList(EmployeeWarningDTO dTO)

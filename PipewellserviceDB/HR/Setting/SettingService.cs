@@ -15,6 +15,22 @@ namespace PipewellserviceDB.HR.Setting
     public class SettingService : DataServices
     {
 
+        public async Task<DataTable> ConstantList()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEnumList", CommandType.StoredProcedure);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
         public async Task<DataTable> DivisionList()
         {
             try

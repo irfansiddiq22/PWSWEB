@@ -136,7 +136,7 @@ function FillEmployee() {
         FillList("ddEmployeeNationality", Nationality, "Nationality", "Nationality", "#")
 
         FillEmployeeTable();
-        
+
         $("#dvEditEmplyee").addClass("d-none")
         $("#dvEmployeeList").removeClass("d-none")
         HideSpinner();
@@ -163,7 +163,7 @@ function FillEmployeeTable() {
         FilteredData = FilteredData.filter(x => x.ArabicName != null && x.ArabicName.toUpperCase().indexOf(valOf("txtEmployeeArabicNameFilter").toUpperCase()) > -1);
 
     if (GetChecked("chkEmployeeOnJobEmployee")) {
-        FilteredData = FilteredData.filter(x => x.JobStatus==1);
+        FilteredData = FilteredData.filter(x => x.JobStatus == 1);
     }
 
     $('#dvEmployeePaging').pagination({
@@ -214,7 +214,7 @@ function FillEmployeeTable() {
             else
                 $(".iqamadata").hide()
 
-            if (GetChecked("chkEmployeeOnJobEmployee")) 
+            if (GetChecked("chkEmployeeOnJobEmployee"))
                 $(".jobstatus").show()
             else
                 $(".jobstatus").hide()
@@ -248,6 +248,7 @@ function EditEmployee(ID) {
             else
                 $(this).val(Employee[$(this).attr("data-id")]);
         })
+        $("#imgEmployeePicture").attr("src", "/EmployeeAPI/EmployeePicture?FileID=" + Employee.FileID + "&FileName=" + Employee.FileName)
         $("#ddEmployeeHiringSource").trigger("change")
         $("#ddEmployeeStatus").trigger("change")
         $("#ddEmployeeNationality").trigger("change")
@@ -273,35 +274,78 @@ function UpdateEmployee() {
                 if (Employee[$(this).attr("data-id")] == "Invalid date")
                     Employee[$(this).attr("data-id")] = '';
             }
-            console.log($(this).attr("data-id"));
+
             if (employeeToUpdate[$(this).attr("data-id")] != Employee[$(this).attr("data-id")].toString()) {
                 DataChangeLog.DataUpdated.push({ Field: $(this).attr("data-id"), Data: { OLD: Employee[$(this).attr("data-id")], New: employeeToUpdate[$(this).attr("data-id")] } });
             }
         });
 
         $.each($("select[data-id]"), function (i, c) {
-
+            console.log($(this).attr("data-id"));
             if ($(this).val() != Employee[$(this).attr("data-id")].toString()) {
-                DataChangeLog.DataUpdated.push({ Field: $(this).attr("data-id"), Data: { OLD: $(this).find("option[value=" + Employee[$(this).attr("data-id")] + "]").text(), New: $(this).find("option:selected").text() } });
+                DataChangeLog.DataUpdated.push({ Field: $(this).attr("data-id"), Data: { OLD: $(this).find("option[value='" + Employee[$(this).attr("data-id")] + "']").text(), New: $(this).find("option:selected").text() } });
             }
         });
 
         Post("/EmployeeAPI/UpdateEmployee", { Employee: employeeToUpdate }).done(function (Response) {
             if (Response.Status) {
-                swal({ text: "Employee record updated.", icon: "success" });
-                SaveLog(Employee.ID)
-                FillEmployee();
 
-                document.getElementById("frmEmployeeData").reset();
+                var fileUpload = $('#txtEmployeePicture').get(0);
+                var files = fileUpload.files;
+                if (files.length > 0) {
+                    SaveLog(Response.ID);
+                    UploadEmployeePicture(files[0], Response.ID)
 
-
+                } else {
+                    document.getElementById("txtEmployeePicture").reset();
+                    if (Response.Status) {
+                        swal({ text: "Employee record updated.", icon: "success" });
+                        SaveLog(Response.ID);
+                        FillEmployee();
+                        document.getElementById("frmEmployeeData").reset();
+                    }
+                }
             } else {
                 swal({ text: "Employee record failed to update.", icon: "error" });
             }
+
+
         });
 
         return false;
     }
+}
+function UploadEmployeePicture(file, EmployeeID) {
+    var fileData = new FormData();
+    fileData.append(file.name, file);
+    fileData.append("EmployeeID", EmployeeID);
+
+    $.ajax({
+        url: '/EmployeeAPI/UpdateEmployeePicure',
+        type: "POST",
+        contentType: false,
+        processData: false,
+        data: fileData,
+        success: function (Response) {
+            HideSpinner();
+            if (Response.Status) {
+                swal({ text: "Employee record updated.", icon: "success" });
+                DataChangeLog.DataUpdated = [];
+                DataChangeLog.DataUpdated.push({ Field: "Employee Picture", Data: { OLD: Employee[$(this).attr("FileName")], New: file.Name } });
+                SaveLog(Response.ID);
+
+            }
+            FillEmployee();
+            document.getElementById("frmEmployeeData").reset();
+
+            document.getElementById("txtEmployeePicture").reset();
+
+        }, error: function (errormessage) {
+            HideSpinner();
+            swal({ text: "Failed to upload Employee Picture.", icon: "error" });
+        }
+    });
+
 }
 $("#ddEmployeeHiringSource").change(function () {
     if ($(this).val() == 3)

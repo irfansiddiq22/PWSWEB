@@ -521,16 +521,32 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[37] = new SqlParameter { ParameterName = "@AnnualTicket", Value = employee.AnnualTicket };
                 collSP[38] = new SqlParameter { ParameterName = "@JobLeftDate", Value = employee.JobLeftDate };
 
-                await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateEmployee", CommandType.StoredProcedure, collSP);
-                return new ResultDTO() { Status = true, Message = "Record Added" };
+                var Result= SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployee", CommandType.StoredProcedure, collSP);
+                return new ResultDTO() {ID=Convert.ToInt32 (Result), Status = true, Message = "Record Added" };
             }
             catch (Exception e)
             {
-                return new ResultDTO() { Status = false, Message = e.Message };
+                return new ResultDTO() { ID=0, Status = false, Message = e.Message };
             }
 
         }
 
+        public async Task<ResultDTO> UpdateEmployeePicture(int EmployeeID, string FileName,string FileID)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[3];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = EmployeeID };
+                collSP[1] = new SqlParameter { ParameterName = "@FileName", Value = FileName };
+                collSP[2] = new SqlParameter { ParameterName = "@FileID", Value = FileID };
+                SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcUpdateEmployeePicture", CommandType.StoredProcedure, collSP);
+                return new ResultDTO() { ID = EmployeeID, Status = true, Message = "Employee Picture Updated" };
+            }
+            catch(Exception e)
+            {
+                return new ResultDTO() { ID = EmployeeID, Status = false, Message =e.Message};
+            }
+        }
         ///////////////////-------------------------------------------------
 
 

@@ -1,4 +1,5 @@
-﻿using PipewellserviceModels.Common;
+﻿using Pipewellservice.App_Start;
+using PipewellserviceModels.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,8 +15,9 @@ namespace Pipewellservice.Helper
         public async static Task<bool> SaveFile(HttpPostedFileBase file, int FileID, DirectoryNames Dir)
         {
             string extension = Path.GetExtension(file.FileName);
+            Constant DirectoryToSave = await AppData.Get(ParentValues.RESOURCES,(int) Dir);
 
-            DirectoryInfo Directory = new DirectoryInfo($"{Config.ResourcesDirectory}\\{Dir.ToString()}");
+            DirectoryInfo Directory = new DirectoryInfo($"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.ToString()}");
             if (!Directory.Exists)
             {
                 Directory.Create();
@@ -23,10 +25,10 @@ namespace Pipewellservice.Helper
             try
             {
 
-                if (System.IO.File.Exists($"{Config.ResourcesDirectory}\\{Dir.ToString()}\\{FileID}{extension}"))
-                    System.IO.File.Delete($"{Config.ResourcesDirectory}\\{Dir.ToString()}\\{FileID}{extension}");
+                if (System.IO.File.Exists($"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.ToString()}\\{FileID}{extension}"))
+                    System.IO.File.Delete($"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.ToString()}\\{FileID}{extension}");
 
-                file.SaveAs($"{Config.ResourcesDirectory}\\{Dir.ToString()}\\{FileID}{extension}");
+                file.SaveAs($"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.ToString()}\\{FileID}{extension}");
                 return true;
             }
             catch (Exception e)
@@ -37,8 +39,14 @@ namespace Pipewellservice.Helper
 
         public async static Task<string> GetFile(string FileID, DirectoryNames Dir)
         {
-            return $"{Config.ResourcesDirectory}\\{Dir.ToString()}\\{FileID}";
-            
+            try
+            {
+                Constant DirectoryToSave = await AppData.Get(ParentValues.RESOURCES, (int)Dir);
+                return $"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.ToString()}\\{FileID}";
+            }catch(Exception e)
+            {
+                return "";
+            }
 
         }
     }

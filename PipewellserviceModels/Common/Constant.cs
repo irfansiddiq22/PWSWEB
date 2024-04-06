@@ -6,6 +6,21 @@ using System.Threading.Tasks;
 
 namespace PipewellserviceModels.Common
 {
+    public class Constant
+    {
+        public string Name { get; set; }
+        public int Value { get; set; }
+        public int ParentID { get; set; }
+    }
+    public enum ParentValues
+    {
+        WARNING_TYPES=1,
+        APPROVAL_TYPES=2,
+        APPOVALFORM_TYPES=3,
+        RESOURCES=4,
+        PAGES=5,
+        LEAVE_TPES=6
+    }
     public enum Gender
     {
         Male = 1,
@@ -88,6 +103,8 @@ namespace PipewellserviceModels.Common
 
     public enum DirectoryNames
     {
+        
+        EmployeePictures =1,
         EmployeeCertifications,
         EmployeeAssets,
         EmployeeIDs,

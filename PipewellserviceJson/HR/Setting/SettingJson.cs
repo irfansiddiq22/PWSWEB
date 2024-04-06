@@ -14,6 +14,13 @@ namespace PipewellserviceJson.HR.Setting
     public class SettingJson
     {
         SettingService service = new SettingService();
+
+        
+        public async Task<List<Constant>> ConstantList()
+        {
+            return await JsonHelper.Convert<List<Constant>, DataTable>(await service.ConstantList());
+        }
+
         public async Task<List<Division>> DivisionList()
         {
             return await JsonHelper.Convert<List<Division>, DataTable>(await service.DivisionList());
