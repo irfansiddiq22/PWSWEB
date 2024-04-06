@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-floating">
-                            <input type="email" class="form-control keyupfilter"  id="txtEmployeeIqamaFilter" placeholder="Iqma #">
+                            <input type="email" class="form-control keyupfilter" id="txtEmployeeIqamaFilter" placeholder="Iqma #">
                             <label for="floatingInput">Iqma #:</label>
                         </div>
                     </div>
@@ -97,13 +97,13 @@
                         <th onclick="SortData(this,'Supervisor')">Supervisor</th>
 
                         <th onclick="SortData(this,'HiringDate')">Hiring Date</th>
-                        <th class="jobstatus"  onclick="SortData(this,'Status')">Status</th>
+                        <th class="jobstatus" onclick="SortData(this,'Status')">Status</th>
                         <th class="jobstatus" onclick="SortData(this,'JobLeftDate')">Job Left Date</th>
 
                         <!--
-    <th onclick="SortData(this,'JobLeftDate')">Job Left Date</th>
-    <th onclick="SortData(this,'ShowInAttendence')" class="employeedata">Sow in Attendence</th>
-    <th onclick="SortData(this,'DeductSalary')" class="employeedata">Is Deduct Salary</th>-->
+                        <th onclick="SortData(this,'JobLeftDate')">Job Left Date</th>
+                        <th onclick="SortData(this,'ShowInAttendence')" class="employeedata">Sow in Attendence</th>
+                        <th onclick="SortData(this,'DeductSalary')" class="employeedata">Is Deduct Salary</th>-->
                         <th></th>
                     </tr>
                 </thead>
@@ -160,7 +160,7 @@
 
                         <div class="col-4"><label>Location</label></div>
                         <div class="col-8">
-                            <select class="form-select form-select-sm" id="txtEmployeeLocation" data-id="Location" required data-min="0" data-msg="Please select location"><option value="Dammam">Dammam</option><option value="Jubail">Jubail</option><option value=""></option></select>
+                            <select class="form-select form-select-sm" id="txtEmployeeLocation" data-id="Location" required data-min="0" data-msg="Please select location"><option value="Dammam">Dammam</option><option value="Jubail">Jubail</option><option value="-"></option></select>
                         </div>
 
                         <div class="col-4"><label>Division</label></div>
@@ -248,8 +248,11 @@
                 </div>
 
                 <div class="col-lg-2 d-none d-md-block">
-
-                    <img src="https://specials-images.forbesimg.com/dam/imageserve/930116744/960x0.jpg?fit=scale" class="img-thumbnail" />
+                    <img id="imgEmployeePicture" src="" class="img-thumbnail" />
+                    <label class="custom-file-upload  btn btn-primary">
+                        <input type="file" id="txtEmployeePicture" />
+                        <i class="fa fa-cloud-upload"></i> Upload Picture
+                    </label>
                 </div>
 
 

@@ -302,6 +302,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        
         public async Task<JsonResult> UpdateEmployeeFamily(EmployeeFamily family)
         {
 
@@ -381,6 +382,47 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        public async Task<FileResult> EmployeePicture(string FileID, string FileName)
+        {
+            string FilePath = await FileHelper.GetFile(FileID, DirectoryNames.EmployeePictures); ;
+            if (FilePath != "")
+                return File(FilePath, System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
+            else
+                return null;
+        }
+
+        public async Task<JsonResult> UpdateEmployeePicure(int EmployeeID)
+        {
+
+
+            if (Request.Files.Count > 0)
+            {
+                HttpPostedFileBase file = Request.Files[0];
+                bool result = await FileHelper.SaveFile(Request.Files[0], EmployeeID, DirectoryNames.EmployeePictures);
+                string FileID =$"{EmployeeID}{Path.GetExtension(file.FileName)}";
+
+                if (result)
+                {
+                    var Update = await json.UpdateEmployeePicture(EmployeeID, file.FileName, FileID);
+
+                    return new JsonResult
+                    {
+                        Data = Update,
+                        JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                    };
+                }
+            }
+
+
+            return new JsonResult
+            {
+                Data = new ResultDTO() { ID = EmployeeID, Status = false, Message = "No file to upload" },
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+            
+
+        }
+
 
         ////////////////////////////////////////////////////
 
@@ -421,7 +463,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
         }
 
-        
+
         ////////////////////////////////////////////////////
 
         public async Task<JsonResult> EmployeeClearanceList(int EmployeeID)
@@ -434,10 +476,10 @@ namespace Pipewellservice.Areas.API.Controllers
         }
         public async Task<JsonResult> UpdateEmployeeClearance(EmployeeClearance clearance)
         {
-            
+
             int ID = await json.UpdateEmployeeClearance(clearance);
 
-            
+
 
             return new JsonResult
             {

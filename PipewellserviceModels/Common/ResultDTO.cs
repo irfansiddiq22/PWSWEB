@@ -8,6 +8,7 @@ namespace PipewellserviceModels.Common
 {
    public class ResultDTO
     {
+        public int ID { get; set; }
         public bool Status { get; set; }
         public string Message { get; set; }
     }
