@@ -93,6 +93,7 @@ namespace PipewellserviceModels.HR.Employee
         public string FileName { get; set; }
         public string FileID { get; set; }
         public string RecordUpdatedBy { get; set; }
+        public string Iqama { get; set; }
     }
     public class EmployeeContract
     {
@@ -113,6 +114,7 @@ namespace PipewellserviceModels.HR.Employee
         public DataTable Position { get; set; }
         public DataTable Supervisior { get; set; }
         public DataTable Sponsor { get; set; }
+        public DataTable Nationality { get; set; }
         public DataTable WorkTime { get; set; }
         public EmployeeDataSql()
         {
@@ -122,6 +124,7 @@ namespace PipewellserviceModels.HR.Employee
             Supervisior = new DataTable();
             Sponsor = new DataTable();
             WorkTime = new DataTable();
+            Nationality = new DataTable();
         }
     }
     public class EmployeeListData
@@ -132,5 +135,6 @@ namespace PipewellserviceModels.HR.Employee
         public List<EmployeeIDView> supervisior { get; set; }
         public List<SponsorCompany> sponsors { get; set; }
         public List<WorkInOutTime> worktime { get; set; }
+        public List<Nationality> nationalities { get; set; }
     }
 }

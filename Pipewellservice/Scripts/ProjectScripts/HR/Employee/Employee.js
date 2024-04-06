@@ -1,5 +1,5 @@
 ﻿var EmployeeList = [];
-var Employee = {}
+var Employee = {ID:0}
 function _Init() {
 
     HideSpinner();
@@ -73,6 +73,7 @@ function FillEmployeeDataList() {
         FillList("ddEmployeePosition", Positions, "Name", "ID", "Select Posstion")
         FillList("ddEmployeeSponsor", Sponsors, "Name", "ID", "Select Sponsor")
         FillList("ddEmployeeWorkInOutTime", Worktime, "Time", "ID", "")
+        FillList("ddEmployeeNationality", Response.nationalities, "Name", "ID", "Select Nationality")
     });
 }
 function BindUsers() {
@@ -83,7 +84,7 @@ function BindUsers() {
         var data = [];
         data.push({ id: 0, text: 'Select an employee' });
         $.each(Response, function (i, emp) {
-            data.push({ id: emp.ID, text: emp.Code + " - " + emp.Name });
+            data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name });
         })
         $("#ddIDFileEmployeeCode").select2({
             tags: "true",
@@ -98,7 +99,7 @@ function BindUsers() {
     //FillIDTypeList("datalistOptions")
 
 }
-function CancelEdit() {
+function ResetNav() {
     $("#dvEditEmplyee").addClass("d-none")
     $("#dvEmployeeList").removeClass("d-none")
     $(".breadcrumb-item.active").find("a").contents().unwrap();
@@ -108,7 +109,7 @@ function FillEmployee() {
 
 
     $("#tblEmployeeList").empty();
-    Employee = {};
+    Employee = { ID: 0};
     ShowSpinner();
     Post("/EmployeeAPI/EmployeeList", {}).done(function (Response) {
         EmployeeList = Response;
@@ -133,7 +134,7 @@ function FillEmployee() {
         FillList("ddEmployeeSupervisor", Supervisor, "Name", "ID")
 
 
-        FillList("ddEmployeeNationality", Nationality, "Nationality", "Nationality", "#")
+        //FillList("ddEmployeeNationality", Nationality, "Nationality", "Nationality", "#")
 
         FillEmployeeTable();
 
@@ -236,6 +237,32 @@ function ShowJobLeft() {
     else
         $(".jobleftdate").hide();
 }
+function NewEmployee() {
+    ResetChangeLog(PAGES.EmployeeDetail);
+    document.getElementById("frmEmployeeData").reset();
+    $("#ddEmployeeHiringSource").trigger("change")
+    $("#ddEmployeeStatus").trigger("change")
+    $("#ddEmployeeNationality").trigger("change")
+    $("#nav-detail-tab").trigger("click")
+    $("#dvEditEmplyee").removeClass("d-none")
+    $("#dvEmployeeList").addClass("d-none")
+    $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
+    $(".datepicker").each(function () {
+        $(this).datepicker('update', $(this).val());
+    });
+
+}
+function FindEmployee(ID) {
+    if (!isNaN(parseInt(ID)) && Employee.ID != parseInt(ID)) {
+        var EmployeeSearch = EmployeeList.find(x => x.ID == parseInt(ID))
+        if (EmployeeSearch != null) {
+            //if  (Employee.ID == 0)
+                EditEmployee(EmployeeSearch.ID)
+            //else
+                //SwalConfirm("Do you want to cancel ")
+        }
+    }
+}
 function EditEmployee(ID) {
 
     Post("/EmployeeAPI/EmployeeDetail", { EmployeeID: ID }).done(function (Response) {
@@ -255,7 +282,7 @@ function EditEmployee(ID) {
         $("#nav-detail-tab").trigger("click")
         $("#dvEditEmplyee").removeClass("d-none")
         $("#dvEmployeeList").addClass("d-none")
-        $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:CancelEdit()"));
+        $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
         $(".datepicker").each(function () {
             $(this).datepicker('update', $(this).val());
         });
@@ -299,6 +326,7 @@ function UpdateEmployee() {
                     UploadEmployeePicture(files[0], Response.ID)
 
                 } else {
+                    ResetNav();
                     $("#txtEmployeePicture").val('');
                     if (Response.Status) {
                         swal({ text: "Employee record updated.", icon: "success" });
@@ -331,6 +359,7 @@ function UploadEmployeePicture(file, EmployeeID) {
         success: function (Response) {
             HideSpinner();
             if (Response.Status) {
+                
                 swal({ text: "Employee record updated.", icon: "success" });
                 DataChangeLog.DataUpdated = [];
                 DataChangeLog.DataUpdated.push({ Field: "Employee Picture", Data: { OLD: Employee[$(this).attr("FileName")], New: file.Name } });
@@ -339,7 +368,7 @@ function UploadEmployeePicture(file, EmployeeID) {
             }
             FillEmployee();
             document.getElementById("frmEmployeeData").reset();
-
+            ResetNav();
             $("#txtEmployeePicture").val('');
 
         }, error: function (errormessage) {

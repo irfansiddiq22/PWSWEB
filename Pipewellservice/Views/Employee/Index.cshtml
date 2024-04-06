@@ -63,7 +63,10 @@
 
 
                     </div>
-                    <div class="col-md-2"><button type="button" class="btn btn-danger wrn-btn" onclick="FillEmployeeTable();">Search</button></div>
+                    <div class="col-md-2">
+                    <button type="button" class="btn btn-danger wrn-btn" onclick="FillEmployeeTable();">Search</button>
+                    <button type="button" class="btn btn-success wrn-btn" onclick="NewEmployee();">Add Employee</button> 
+                    </div>
 
                 </div>
 
@@ -120,9 +123,9 @@
                 <div class="col-lg-5 col-md-12">
                     <div class="row form">
                         <div class="col-4"><label>Emp.NO.</label></div>
-                        <div class="col-3"><input type="text" class="form-control form-control-sm" id="txtEmployeeID" data-id="ID" readonly value="0" /></div>
+                        <div class="col-3"><input type="number"  class="form-control form-control-sm" id="txtEmployeeID" data-id="ID" value="0" onblur="FindEmployee(this.value)" /></div>
                         <div class="col-1"><label>ID#</label></div>
-                        <div class="col-4"><input type="text" class="form-control form-control-sm" id="txtEmployeeSponorID" readonly /></div>
+                        <div class="col-4"><input type="text" class="form-control form-control-sm" id="txtEmployeeIqama" readonly data-id="Iqama" /></div>
 
 
                         <div class="col-4"><label>Name</label></div>
@@ -131,9 +134,7 @@
                         <div class="col-8"><input type="text" lang="ar" dir="rtl" class="form-control form-control-sm" id="txtEmployeeArabicName" name="ArabicName" data-id="ArabicName" data-required="true" required data-msg="Please enter name in arabic" /></div>
                         <div class="col-4"><label>Nationality</label></div>
                         <div class="col-8">
-                            <input type="text" class="form-control form-control-sm" list="ddEmployeeNationality" id="txtEmployeeNationality" data-id="Nationality" required data-msg="Please enter nationality" />
-                            <datalist id="ddEmployeeNationality"></datalist>
-
+                            <select class="form-select form-select-sm" list="" id="ddEmployeeNationality" data-id="NationalityID" required data-msg="Please select nationality"></select>
                         </div>
                         <div class="col-4 col-md-4"><label>Gender</label></div>
                         <div class="col-8 col-md-3"><select class="form-select form-select-sm" id="ddEmployeeGender" data-id="Gender" required data-msg="Please select gender"><option value="1">Male</option><option value="2">Female</option></select></div>
@@ -216,7 +217,7 @@
                         <div class="col-4"><label>Hiring Cost</label></div>
                         <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeHiringCost" data-id="HiringCost" /></div>
                         <div class="col-4"><label>Hire Date:</label></div>
-                        <div class="col-8"><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeHiringDate" data-id="HiringDate" data-type="date" required data-msg="Please enter hiring date" /></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeHiringDate" name="EmployeeHiringDate" data-id="HiringDate" data-type="date" required data-msg="Please enter hiring date" /></div>
 
 
 

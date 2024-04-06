@@ -147,6 +147,7 @@ namespace PipewellserviceJson.HR.Employee
             //model.supervisior = await JsonHelper.Convert<List<EmployeeIDView>, DataTable>(result.Supervisior);
             model.sponsors = await JsonHelper.Convert<List<SponsorCompany>, DataTable>(result.Sponsor);
             model.worktime = await JsonHelper.Convert<List<WorkInOutTime>, DataTable>(result.WorkTime);
+            model.nationalities = await JsonHelper.Convert<List<Nationality>, DataTable>(result.Nationality);
             return model;
         }
         public async Task<ResultDTO> UpdateEmployee(EmployeeData employee)
