@@ -70,7 +70,7 @@ namespace Pipewellservice.Areas.API.Controllers
             if (Request.Files.Count > 0)
             {
                 HttpPostedFileBase file = Request.Files[0];
-                await FileHelper.SaveFile(Request.Files[0], ID, DirectoryNames.EmployeeCertifications);
+                await FileHelper.SaveFile(Request.Files[0], ID,"", DirectoryNames.EmployeeCertifications);
             }
 
             return new JsonResult
@@ -115,7 +115,7 @@ namespace Pipewellservice.Areas.API.Controllers
             if (Request.Files.Count > 0)
             {
                 HttpPostedFileBase file = Request.Files[0];
-                await FileHelper.SaveFile(Request.Files[0], ID, DirectoryNames.EmployeeAssets);
+                await FileHelper.SaveFile(Request.Files[0], ID,"", DirectoryNames.EmployeeAssets);
             }
 
 
@@ -139,7 +139,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
         public async Task<FileResult> DownloadContract(int EmployeeID, string FileName, string FileID)
         {
-            return File(await FileHelper.GetFile(FileID, DirectoryNames.EmployeeContract), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
+            return File(await FileHelper.GetFile(FileID, "",DirectoryNames.EmployeeContract), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
 
         }
         public async Task<JsonResult> ContractList()
@@ -159,7 +159,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 HttpPostedFileBase file = Request.Files[0];
                 contract.FileName = file.FileName;
                 contract.FileID = Path.GetExtension(file.FileName);
-                await FileHelper.SaveFile(file, contract.EmployeeID, DirectoryNames.EmployeeContract);
+                await FileHelper.SaveFile(file, contract.EmployeeID,"", DirectoryNames.EmployeeContract);
                 return new JsonResult
                 {
                     Data = await json.UpdateContract(contract),
@@ -175,7 +175,7 @@ namespace Pipewellservice.Areas.API.Controllers
         ///////////////////////////////////////////
         public async Task<FileResult> DownloadIDFile(int EmployeeID, string FileName, string FileID)
         {
-            return File(await FileHelper.GetFile(FileID, DirectoryNames.EmployeeIDs), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
+            return File(await FileHelper.GetFile(FileID,"", DirectoryNames.EmployeeIDs), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
         }
 
         public async Task<JsonResult> EmployeeIDTypeList()
@@ -211,7 +211,7 @@ namespace Pipewellservice.Areas.API.Controllers
             if (Request.Files.Count > 0)
             {
                 HttpPostedFileBase file = Request.Files[0];
-                await FileHelper.SaveFile(Request.Files[0], ID, DirectoryNames.EmployeeIDs);
+                await FileHelper.SaveFile(Request.Files[0], ID, "",DirectoryNames.EmployeeIDs);
             }
 
             return new JsonResult
@@ -232,7 +232,7 @@ namespace Pipewellservice.Areas.API.Controllers
         ///////////////////////////////////////////
         public async Task<FileResult> DownloadFamilyIDFile(int EmployeeID, string FileName, string FileID)
         {
-            return File(await FileHelper.GetFile(FileID, DirectoryNames.EmployeeFamilyIDs), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
+            return File(await FileHelper.GetFile(FileID, "",DirectoryNames.EmployeeFamilyIDs), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
 
         }
         public async Task<JsonResult> EmployeeFamilyIDFileList(int EmployeeID)
@@ -261,7 +261,7 @@ namespace Pipewellservice.Areas.API.Controllers
             if (Request.Files.Count > 0)
             {
                 HttpPostedFileBase file = Request.Files[0];
-                await FileHelper.SaveFile(Request.Files[0], ID, DirectoryNames.EmployeeFamilyIDs);
+                await FileHelper.SaveFile(Request.Files[0], ID, "",DirectoryNames.EmployeeFamilyIDs);
             }
 
             return new JsonResult
@@ -284,7 +284,7 @@ namespace Pipewellservice.Areas.API.Controllers
         ///////////////////////////////////////////
         public async Task<FileResult> DownloadFamilyFile(int EmployeeID, string FileName, string FileID)
         {
-            return File(await FileHelper.GetFile(FileID, DirectoryNames.EmployeeFamily), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
+            return File(await FileHelper.GetFile(FileID, "",DirectoryNames.EmployeeFamily), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
         }
         public async Task<JsonResult> EmployeeRelationList()
         {
@@ -320,7 +320,7 @@ namespace Pipewellservice.Areas.API.Controllers
             if (Request.Files.Count > 0)
             {
                 HttpPostedFileBase file = Request.Files[0];
-                await FileHelper.SaveFile(Request.Files[0], ID, DirectoryNames.EmployeeFamily);
+                await FileHelper.SaveFile(Request.Files[0], ID,"", DirectoryNames.EmployeeFamily);
             }
 
             return new JsonResult
@@ -382,9 +382,9 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        public async Task<FileResult> EmployeePicture(string FileID, string FileName)
+        public async Task<FileResult> EmployeePicture(int EmployeeID,string FileID, string FileName)
         {
-            string FilePath = await FileHelper.GetFile(FileID, DirectoryNames.EmployeePictures); ;
+            string FilePath = await FileHelper.GetFile(FileID, EmployeeID.ToString(),DirectoryNames.EmployeePictures); ;
             if (FilePath != "")
                 return File(FilePath, System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
             else
@@ -398,7 +398,7 @@ namespace Pipewellservice.Areas.API.Controllers
             if (Request.Files.Count > 0)
             {
                 HttpPostedFileBase file = Request.Files[0];
-                bool result = await FileHelper.SaveFile(Request.Files[0], EmployeeID, DirectoryNames.EmployeePictures);
+                bool result = await FileHelper.SaveFile(Request.Files[0], EmployeeID, EmployeeID.ToString(), DirectoryNames.EmployeePictures);
                 string FileID =$"{EmployeeID}{Path.GetExtension(file.FileName)}";
 
                 if (result)
@@ -451,7 +451,7 @@ namespace Pipewellservice.Areas.API.Controllers
             if (Request.Files.Count > 0)
             {
                 HttpPostedFileBase file = Request.Files[0];
-                await FileHelper.SaveFile(Request.Files[0], ID, DirectoryNames.EmployeeWarnings);
+                await FileHelper.SaveFile(Request.Files[0] ,ID,"", DirectoryNames.EmployeeWarnings);
             }
 
             return new JsonResult

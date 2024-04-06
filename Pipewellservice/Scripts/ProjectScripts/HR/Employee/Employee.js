@@ -248,7 +248,7 @@ function EditEmployee(ID) {
             else
                 $(this).val(Employee[$(this).attr("data-id")]);
         })
-        $("#imgEmployeePicture").attr("src", "/EmployeeAPI/EmployeePicture?FileID=" + Employee.FileID + "&FileName=" + Employee.FileName)
+        $("#imgEmployeePicture").attr("src", "/EmployeeAPI/EmployeePicture?EmployeeID=" + Employee.ID + "&FileID=" + Employee.FileID + "&FileName=" + Employee.FileName)
         $("#ddEmployeeHiringSource").trigger("change")
         $("#ddEmployeeStatus").trigger("change")
         $("#ddEmployeeNationality").trigger("change")
