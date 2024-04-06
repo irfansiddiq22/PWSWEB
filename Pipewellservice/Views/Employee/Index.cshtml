@@ -45,16 +45,16 @@
                     </div>
 
                     <div class=" col-md-2 text-left">
-                        <div class="row mb-2">
+                        <div class="row my-2">
 
-                            <div class="col-auto">Show only iqama info &nbsp;&nbsp;</div>
+                            <div class="col-8">Show only iqama info</div>
                             <div class="col">
                                 <label class="switch"><input type="checkbox" checked="checked" id="chkEmployeeIqamainfo" onclick="ToggleIqamaData()"><div class="slider round"></div></label>
                             </div>
                         </div>
                         <div class="row mb-2">
 
-                            <div class="col-auto">Show only job Employees</div>
+                            <div class="col-8">Show only job Employees</div>
                             <div class="col">
                                 <label class="switch"><input type="checkbox" checked="checked" id="chkEmployeeOnJobEmployee" onclick="FillEmployeeTable()"><div class="slider round"></div></label>
                             </div>
@@ -242,6 +242,7 @@
                         </div>
                         <div class="col text-center">
                             <button class="btn btn-primary btn-lg" onclick="UpdateEmployee()" type="button">Save</button>
+                            <button class="btn btn-danger btn-lg" onclick="ResetNav()" type="button">Cancel</button>
                         </div>
 
 
@@ -249,11 +250,13 @@
                 </div>
 
                 <div class="col-lg-2 d-none d-md-block">
-                    <img id="imgEmployeePicture" src="" class="img-thumbnail" />
-                    <label class="custom-file-upload  btn btn-primary">
-                        <input type="file" id="txtEmployeePicture" />
-                        <i class="fa fa-cloud-upload"></i> Upload Picture
-                    </label>
+                    <img id="imgEmployeePicture" src="" class="img-thumbnail h-25" />
+                    <div class="my-2">
+                        <label class="custom-file-upload  btn btn-primary">
+                            <input type="file" id="txtEmployeePicture" />
+                            <i class="fa fa-cloud-upload"></i> Upload Picture
+                        </label>
+                    </div>
                 </div>
 
 

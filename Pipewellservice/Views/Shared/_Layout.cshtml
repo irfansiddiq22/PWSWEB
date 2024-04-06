@@ -6,17 +6,48 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    </head>
+</head>
 <body class="position-relative">
-    <div id="nav-bar">
-        <a class="logo" href="/home">
-            <img src="~/Content/images/logo.jpg" alt="">
-        </a>
-        <div class="nav-link"></div>
-        <div class="nav-logout">
-            <a href="">Logout</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+        <div class="container-fluid mx-2">
+            @*<div id="nav-bar">*@
+            <a class="navbar-brand" href="/home">
+                <img src="~/Content/images/logo.jpg" alt="">
+            </a>
+            <div class="collapse navbar-collapse navbar-custom"></div>
+            <ul class="nav navbar-brand">
+                <li class="nav-item dropdown">
+                    <div class="fim-dropdown">
+                        <label>
+                            <a href="#" class="name" style="max-width: 80px;"> <img src="~/Content/images/default_user.jpg" /> <span class="UserName">Demo</span></a>
+                        </label>
+                        <div class="inner" style="z-index:1000;right:-22px">
+                            <div class="row">
+                                <div class="col-4">User Name:</div>
+                                <div class="col text-start">Demo</div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-3">Last Login :</div>
+                                <div class="col">@DateTime.Now.ToString()</div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col"><button class="btn btn-success btn-sm w-100">Profile</button></div>
+                            </div>
+                            <div class="row my-2">
+
+                                <div class="col"><button class="btn btn-danger btn-sm w-100">Log out</button></div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+
+            @*</div>*@
         </div>
-    </div>
+    </nav>
     @*<nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-fixed-top">
             <div class="container-fluid">
 
@@ -98,9 +129,9 @@
 
     <div class="container-fluid body-content">
         <div class="m-2">
-            <div class="border">
+            <div class="border rounded">
 
-                <div class="blue menu">
+                <div class="blue menu rounded-top">
                     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
                         <ol class="breadcrumb" id="breadcrumb">
                             <li class="breadcrumb-item home"><a href="/home">Home</a></li>
@@ -116,7 +147,7 @@
         </div>
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year</p>
+            <p>PW &copy; @DateTime.Now.Year</p>
         </footer>
     </div>
     <div id="leftmenu">
@@ -142,16 +173,29 @@
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
         $(function () {
+            $(".fim-dropdown > label").click(function () {
+                $(".fim-dropdown").not($(this).parent()[0]).removeClass('active');
+
+                $(this).parent().toggleClass('active');
+                return false;
+            });
+
+            $(document).click(function (e) {
+                that = e.target;
+                if ($(that).closest(".fim-dropdown").length < 1 && !$(that).hasClass("fim-dropdown")) $(".fim-dropdown").removeClass('active');
+            });
+
+
             $(".datepicker").datepicker({
                 autoclose: true,
                 todayHighlight: false,
                 format: 'dd/mm/yyyy'
             })
-            
+
             _Init();
             var d = null
             if('@Html.Raw(ViewBag.Parent)'!='')d=$.parseJSON('@Html.Raw(ViewBag.Parent)');
-            
+
             LoadBreadCrumb(d,'@ViewBag.Title');
         })
     </script>

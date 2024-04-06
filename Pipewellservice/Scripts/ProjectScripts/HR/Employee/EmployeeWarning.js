@@ -21,7 +21,8 @@ function BindUsers() {
             tags: "true",
             placeholder: "Select an option",
             allowClear: true,
-            data: data
+            data: data,
+            width: "100%"
         }).on('select2:select', function (e) {
             BindWarnings();
         });
@@ -29,7 +30,8 @@ function BindUsers() {
             tags: "true",
             placeholder: "Select an option",
             allowClear: true,
-            data: data
+            data: data,
+            width:"100%"
         }).on('select2:select', function (e) {
             BindEmployeePositionDivision();
         });
@@ -53,7 +55,8 @@ function BindUsers() {
 
         $("#ddWarningApproval1,#ddWarningApproval2,#ddWarningApproval3").select2({
             placeholder: "Select Supervisor",
-            data: data
+            data: data,
+            width: "100%"
         })
     });
 
