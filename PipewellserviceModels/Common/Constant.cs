@@ -105,13 +105,13 @@ namespace PipewellserviceModels.Common
     {
         
         EmployeePictures =1,
-        EmployeeCertifications,
-        EmployeeAssets,
-        EmployeeIDs,
-        EmployeeFamilyIDs,
-        EmployeeFamily,
-        EmployeeContract,
-        EmployeeWarnings,
+        EmployeeCertifications=2,
+        EmployeeAssets=3,
+        EmployeeIDs=4,
+        EmployeeFamilyIDs=5,
+        EmployeeFamily=6,
+        EmployeeContract=7,
+        EmployeeWarnings=8,
     }
     public enum ApprovalTypes
     {

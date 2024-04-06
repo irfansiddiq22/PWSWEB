@@ -29,7 +29,7 @@ function BindUsers() {
         var data = []
         data.push({ id: 0, text: 'Select an employee' });
         $.each(Response, function (i, emp) {
-            data.push({ id: emp.ID, text: emp.Code + " - " + emp.Name });
+            data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name });
         })
         $("#ddAssetEmployeeCode").select2({
             tags: "true",

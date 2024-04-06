@@ -465,6 +465,7 @@ namespace PipewellserviceDB.HR.Employee
                 //   model.Supervisior.Load(result);
                 model.Sponsor.Load(result);
                 model.WorkTime.Load(result);
+                model.Nationality.Load(result);
                 return model;
             }
             catch (Exception e)
@@ -484,7 +485,7 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[2] = new SqlParameter { ParameterName = "@ArabicName", Value = employee.ArabicName };
                 collSP[3] = new SqlParameter { ParameterName = "@SupervisorID", Value = employee.SupervisorID };
                 collSP[4] = new SqlParameter { ParameterName = "@EmailAddress", Value = employee.EmailAddress };
-                collSP[5] = new SqlParameter { ParameterName = "@Nationality", Value = employee.Nationality };
+                collSP[5] = new SqlParameter { ParameterName = "@NationalityID", Value = employee.NationalityID };
                 collSP[6] = new SqlParameter { ParameterName = "@PositionID", Value = employee.PositionID };
                 collSP[7] = new SqlParameter { ParameterName = "@DivisionID", Value = employee.DivisionID };
                 collSP[8] = new SqlParameter { ParameterName = "@Religion", Value = employee.Religion };
