@@ -275,14 +275,14 @@ function UpdateEmployee() {
                     Employee[$(this).attr("data-id")] = '';
             }
 
-            if (employeeToUpdate[$(this).attr("data-id")] != Employee[$(this).attr("data-id")].toString()) {
-                DataChangeLog.DataUpdated.push({ Field: $(this).attr("data-id"), Data: { OLD: Employee[$(this).attr("data-id")], New: employeeToUpdate[$(this).attr("data-id")] } });
+            if (employeeToUpdate[$(this).attr("data-id")] != NullToString(Employee[$(this).attr("data-id")])) {
+                DataChangeLog.DataUpdated.push({ Field: $(this).attr("data-id"), Data: { OLD: NullToString( Employee[$(this).attr("data-id")]), New: employeeToUpdate[$(this).attr("data-id")] } });
             }
         });
 
         $.each($("select[data-id]"), function (i, c) {
-            console.log($(this).attr("data-id"));
-            if ($(this).val() != Employee[$(this).attr("data-id")].toString()) {
+            
+            if ($(this).val() != NullToString(Employee[$(this).attr("data-id")])) {
                 DataChangeLog.DataUpdated.push({ Field: $(this).attr("data-id"), Data: { OLD: $(this).find("option[value='" + Employee[$(this).attr("data-id")] + "']").text(), New: $(this).find("option:selected").text() } });
             }
         });
