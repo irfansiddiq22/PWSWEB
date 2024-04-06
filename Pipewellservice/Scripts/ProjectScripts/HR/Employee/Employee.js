@@ -297,7 +297,7 @@ function UpdateEmployee() {
                     UploadEmployeePicture(files[0], Response.ID)
 
                 } else {
-                    document.getElementById("txtEmployeePicture").reset();
+                    $("#txtEmployeePicture").val('');
                     if (Response.Status) {
                         swal({ text: "Employee record updated.", icon: "success" });
                         SaveLog(Response.ID);
@@ -338,7 +338,7 @@ function UploadEmployeePicture(file, EmployeeID) {
             FillEmployee();
             document.getElementById("frmEmployeeData").reset();
 
-            document.getElementById("txtEmployeePicture").reset();
+            $("#txtEmployeePicture").val('');
 
         }, error: function (errormessage) {
             HideSpinner();
