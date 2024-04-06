@@ -90,6 +90,10 @@ function GetChecked(input) {
 function Clear(input) {
     $("#" + input).val('')
 }
+function NullToString(val) {
+    if (val == null) return "";
+    return val.toString();
+}
 function AppendListItem(text,value) {
     return $('<option>', {
         value: value,
