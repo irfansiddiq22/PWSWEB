@@ -260,6 +260,6 @@ paket-files/
 __pycache__/
 *.pyc
 /Pipewellservice/Resources
-web.config
+*/web.config
 *.zip
 *.config
