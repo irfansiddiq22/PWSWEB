@@ -191,8 +191,11 @@ function FillEmployeeTable() {
                 tr.append($('<td class="iqamadata">').append((e.Iqama == null || e.Iqama == "" ? "" : link)));
 
                 tr.append($('<td class="iqamadata">').html(e.IqamaExpiryDate == null ? "" : moment(e.IqamaExpiryDate).format("DD/MM/YYYY")))
+                link = $('<a>').attr("href", "javascript:void(0)").attr("onclick", "DownloadIDFile(" + e.ID + ",'" + e.FileName + "','" + e.FileID + "')").text(e.Passport)
 
-                tr.append($('<td class="iqamadata">').html(e.Passport));
+                tr.append($('<td class="iqamadata">').append((e.Passport == null || e.Passport == "" ? "" : link)));
+
+                
                 tr.append($('<td class="iqamadata">').html(e.PassportExpiryDate == null ? "" : moment(e.PassportExpiryDate).format("DD/MM/YYYY")))
 
                 tr.append($('<td>').html(e.PhoneNumber));
@@ -223,9 +226,9 @@ function FillEmployeeTable() {
                 $(".iqamadata").hide()
 
             if (GetChecked("chkEmployeeOnJobEmployee"))
-                $(".jobstatus").show()
-            else
                 $(".jobstatus").hide()
+            else
+                $(".jobstatus").show()
 
         }
     })
