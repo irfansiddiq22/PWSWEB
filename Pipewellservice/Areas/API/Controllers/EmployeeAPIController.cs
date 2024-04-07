@@ -46,6 +46,11 @@ namespace Pipewellservice.Areas.API.Controllers
 
         ///////////////////////////////////////////
 
+        public async Task<FileResult> DownloadCertificateFile(int EmployeeID, string FileName, string FileID)
+        {
+            return File(await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.EmployeeCertifications), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
+
+        }
         public async Task<JsonResult> CertificateList(int EmployeeID)
         {
             return new JsonResult
@@ -89,7 +94,11 @@ namespace Pipewellservice.Areas.API.Controllers
         }
 
         ///////////////////////////////////////////
+        public async Task<FileResult> DownloadAssetFile(int EmployeeID, string FileName, string FileID)
+        {
+            return File(await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.EmployeeAssets), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
 
+        }
         public async Task<JsonResult> AssetList(int EmployeeID)
         {
             return new JsonResult
@@ -347,7 +356,9 @@ namespace Pipewellservice.Areas.API.Controllers
             return new JsonResult
             {
                 Data = await json.EmployeeList(),
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                MaxJsonLength=int.MaxValue
+                
             };
         }
         public async Task<JsonResult> EmployeeDetail(int EmployeeID)

@@ -12,14 +12,15 @@ namespace PipewellserviceModels.Common
         public int Value { get; set; }
         public int ParentID { get; set; }
     }
-    public enum ParentValues
+    public enum ParentEnums
     {
         WARNING_TYPES=1,
         APPROVAL_TYPES=2,
         APPOVALFORM_TYPES=3,
         RESOURCES=4,
         PAGES=5,
-        LEAVE_TPES=6
+        LEAVE_TPES=6,
+        CERTIFICATE_TYPES=7
     }
     public enum Gender
     {

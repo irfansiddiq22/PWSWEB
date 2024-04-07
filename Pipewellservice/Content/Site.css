@@ -205,10 +205,10 @@ p {
 
 .form > div {
     margin-bottom: 10px;
-    text-align: end
+    text-align: end;
 }
 
-    .form > div label {
+    .form > div label, .col-form-label {
         font-weight: 600;
     }
 
@@ -517,12 +517,13 @@ input:checked + .slider:before {
     background-color: #036c0a !important;
     padding: 5px 0px 5px 15px;
     color: #FFF;
+    border-top-left-radius: var(--bs-border-radius) !important;
+    border-top-right-radius: var(--bs-border-radius) !important;
 }
-
-    .blue a {
+ .blue a {
         color: #FFF;
     }
-
+    
 thead.blue tr > th {
     padding: 8px;
     border: 0;

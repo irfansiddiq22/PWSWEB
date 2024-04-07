@@ -138,6 +138,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\API\APIAreaRegistration.cs" />
+    <Compile Include="Areas\API\Controllers\DataListController.cs" />
     <Compile Include="Areas\API\Controllers\EmployeeAPIController.cs" />
     <Compile Include="Areas\API\Controllers\SettingAPIController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -484,6 +485,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\API\Models\" />
+    <Folder Include="Areas\API\Views\DataList\" />
     <Folder Include="Areas\API\Views\Employee\" />
     <Folder Include="Areas\API\Views\SettingAPI\" />
     <Folder Include="Areas\API\Views\Shared\" />

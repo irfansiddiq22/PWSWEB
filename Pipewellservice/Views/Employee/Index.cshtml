@@ -5,14 +5,7 @@
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <button class="nav-link" id="nav-detail-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Add/Edit View Detail</button>
             <button class="nav-link active" id="nav-list-tab" data-bs-toggle="tab" data-bs-target="#nav-list" type="button" role="tab" aria-controls="nav-list" aria-selected="false">View Detail</button>
-            <!--<button class="nav-link" id="nav-data-tab" data-bs-toggle="tab" data-bs-target="#nav-data" type="button" role="tab" aria-controls="nav-data" aria-selected="false">Employee Data</button>
-
-            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Asset</button>
-            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Family Information</button>
-            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">ID</button>
-            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Family ID's</button>
-            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Employee Contracts</button>-->
-
+            
         </div>
     </nav>
     <div id="dvEmployeeList">
@@ -28,7 +21,7 @@
                     <div class="col-md-2">
                         <div class="form-floating">
                             <input type="email" class="form-control keyupfilter" id="txtEmployeeIqamaFilter" placeholder="Iqma #">
-                            <label for="floatingInput">Iqma #:</label>
+                            <label for="floatingInput">Iqama #:</label>
                         </div>
                     </div>
 
@@ -47,14 +40,14 @@
                     <div class=" col-md-2 text-left">
                         <div class="row my-2">
 
-                            <div class="col-8">Show only iqama info</div>
+                            <div class="col-8">Show iqama info</div>
                             <div class="col">
-                                <label class="switch"><input type="checkbox" checked="checked" id="chkEmployeeIqamainfo" onclick="ToggleIqamaData()"><div class="slider round"></div></label>
+                                <label class="switch"><input type="checkbox"  id="chkEmployeeIqamainfo" onclick="ToggleIqamaData()"><div class="slider round"></div></label>
                             </div>
                         </div>
                         <div class="row mb-2">
 
-                            <div class="col-8">Show only job Employees</div>
+                            <div class="col-8">Show active employees</div>
                             <div class="col">
                                 <label class="switch"><input type="checkbox" checked="checked" id="chkEmployeeOnJobEmployee" onclick="FillEmployeeTable()"><div class="slider round"></div></label>
                             </div>

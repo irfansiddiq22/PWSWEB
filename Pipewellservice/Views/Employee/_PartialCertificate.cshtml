@@ -1,10 +1,10 @@
 ﻿
 <div class="border p-2">
     <div class="row">
-        <div class="col-5">
+        <div class="col-md-5">
             <form id="frmCertificate">
                 <div class="mb-3 row">
-                    <label for="ddCertificateEmployeeCode" class="col-sm-2 col-form-label">Code </label>
+                    <label for="ddCertificateEmployeeCode" class="col-sm-2 col-form-label">Employee </label>
                     <div class="col">
                         <select class="js-example-basic-single js-states form-control" id="ddCertificateEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
                     </div>
@@ -12,7 +12,7 @@
                 <div class="mb-3 row">
                     <label for="txtCertificateName" class="col-sm-2 col-form-label">Name </label>
                     <div class="col">
-                        <input type="text" class="form-control form-control-sm" id="txtCertificateName" name="CertificateName" />
+                        <select class="form-select form-select-sm" id="ddCertificateName" name="CertificateName" ></select>
                     </div>
                 </div>
                 <div class="mb-3 row">
@@ -44,24 +44,29 @@
 
 
                 </div>
+                <div class="border-top">
+                    <img id="imgEmployeeCetficate" />
+                </div>
 
             </form>
         </div>
-        <div class="col border-start">
-            <table class="table table-sm table-striped table-hover-warning table-bordered">
-                <thead class="blue">
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Issue Date</th>
-                        <th>Expiry Date</th>
-                        <th>Remarks</th>
-                        <th>Onshore</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody id="tblCertificateList"></tbody>
-            </table>
+        <div class="col-md-7 border-start">
+            <div class="table-responsive">
+                <table class="table table-sm table-striped table-hover-warning table-bordered">
+                    <thead class="blue">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Issue Date</th>
+                            <th>Expiry Date</th>
+                            <th>Remarks</th>
+                            <th>Onshore</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tblCertificateList"></tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
