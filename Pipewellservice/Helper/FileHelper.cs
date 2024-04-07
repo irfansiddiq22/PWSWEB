@@ -16,15 +16,15 @@ namespace Pipewellservice.Helper
         {
             string extension = Path.GetExtension(file.FileName);
             Constant DirectoryToSave = await AppData.Get(ParentEnums.RESOURCES, (int)Dir);
-
-            DirectoryToSave.Name = DirectoryToSave.Name.Replace("{ID}", (ID > 0 ? ID.ToString() : ""));
+            string Resouces= DirectoryToSave.Name.Replace("{ID}", (ID > 0 ? ID.ToString() : "")); 
+             
             if (Name != "")
             {
                 Name = Name.Replace("\\", "").Replace("/", "").Replace(":", "").Replace("*", "").Replace("?", "").Replace("<", "").Replace(">", "").Replace("|", "").Replace("|", "");
-                DirectoryToSave.Name = DirectoryToSave.Name.Replace("{Name}", Name);
+                Resouces = Resouces.Replace("{Name}", Name);
             }
-            DirectoryInfo Directory = new DirectoryInfo($"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.ToString()}");
-            string FileSavePath = $"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.ToString()}\\{FileID}{extension}";
+            DirectoryInfo Directory = new DirectoryInfo($"{Config.ResourcesDirectory}\\{Resouces}");
+            string FileSavePath = $"{Config.ResourcesDirectory}\\{Resouces}\\{FileID}{extension}";
 
             if (!Directory.Exists)
             {
@@ -50,13 +50,15 @@ namespace Pipewellservice.Helper
             try
             {
                 Constant DirectoryToSave = await AppData.Get(ParentEnums.RESOURCES, (int)Dir);
+                string Resouces = DirectoryToSave.Name.Replace("{ID}", (ID > 0 ? ID.ToString() : "")) ;
+
                 if (Name != "")
                 {
                     Name = Name.Replace("\\", "").Replace("/", "").Replace(":", "").Replace("*", "").Replace("?", "").Replace("<", "").Replace(">", "").Replace("|", "").Replace("|", "");
-                    DirectoryToSave.Name = DirectoryToSave.Name.Replace("{Name}", Name);
+                    Resouces = Resouces.Replace("{Name}", Name);
                 }
 
-                string Root = $"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.Replace("{ID}", (ID > 0 ? ID.ToString() : ""))}";
+                string Root = $"{Config.ResourcesDirectory}\\{Resouces}";
 
 
                 return $"{Root}\\{FileID}";
