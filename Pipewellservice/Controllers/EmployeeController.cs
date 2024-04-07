@@ -55,7 +55,7 @@ namespace Pipewellservice.Controllers
         }
         public ActionResult Contract()
         {
-            ViewBag.Title = "Employee contracts";
+            ViewBag.Title = "Employee Contracts";
             ViewBag.Parent = Parent;
             return View("_PartialContract");
         }
