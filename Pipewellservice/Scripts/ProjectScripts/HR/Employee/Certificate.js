@@ -27,7 +27,7 @@ function InitializeCertificate() {
     Certificate.Remarks = "";
     Certificate.FileName = "";
     $("#ddCertificateName").val("").trigger("change");
-    $("#imgEmployeeCetficate").hide();
+    $("#imgEmployeeCertficate").hide();
     ResetChangeLog(PAGES.Certificate);
 }
 function ToggleOffShore(sender) {
@@ -109,8 +109,8 @@ function EditCertificate(index) {
     SetvalOf("txtCertificateExpiryDate", (Certificate.ExpiryDate ? moment(Certificate.ExpiryDate).format("DD/MM/YYYY") : ""));
     SetvalOf("txtCertificateRemarks", Certificate.Remarks);
     SetChecked("chkCertificateOnshore", Certificate.OnShore)
-    $("#imgEmployeeCetficate").show();
-    $("#imgEmployeeCetficate").attr("src", "/EmployeeAPI/DownloadCertificateFile?EmployeeID=" + Certificate.EmployeeID + "&FileName=" + Certificate.FileName + "&FileID=" + Certificate.FileID)
+    $("#imgEmployeeCertficate").show();
+    $("#imgEmployeeCertficate").attr("src", "/EmployeeAPI/DownloadCertificateFile?EmployeeID=" + Certificate.EmployeeID + "&FileName=" + Certificate.FileName + "&FileID=" + Certificate.FileID)
     Certificate.OnShore == null ? "" : SetChecked("chkCertificateOffshore", !Certificate.OnShore)
 }
 function SaveCertificate() {

@@ -182,9 +182,9 @@ namespace Pipewellservice.Areas.API.Controllers
         }
 
         ///////////////////////////////////////////
-        public async Task<FileResult> DownloadIDFile(int EmployeeID, string FileName, string FileID)
+        public async Task<FileResult> DownloadIDFile(int EmployeeID,  string FileName, string FileID,string Type)
         {
-            return File(await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.EmployeeIDs), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
+            return File(await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.EmployeeIDs, Type), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
         }
 
         public async Task<JsonResult> EmployeeIDTypeList()
@@ -220,7 +220,7 @@ namespace Pipewellservice.Areas.API.Controllers
             if (Request.Files.Count > 0)
             {
                 HttpPostedFileBase file = Request.Files[0];
-                await FileHelper.SaveFile(Request.Files[0], ID, Idfile.EmployeeID, DirectoryNames.EmployeeIDs);
+                await FileHelper.SaveFile(Request.Files[0], ID, Idfile.EmployeeID, DirectoryNames.EmployeeIDs,Idfile.Description);
             }
 
             return new JsonResult
