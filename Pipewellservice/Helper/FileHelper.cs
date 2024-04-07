@@ -50,6 +50,12 @@ namespace Pipewellservice.Helper
             try
             {
                 Constant DirectoryToSave = await AppData.Get(ParentEnums.RESOURCES, (int)Dir);
+                if (Name != "")
+                {
+                    Name = Name.Replace("\\", "").Replace("/", "").Replace(":", "").Replace("*", "").Replace("?", "").Replace("<", "").Replace(">", "").Replace("|", "").Replace("|", "");
+                    DirectoryToSave.Name = DirectoryToSave.Name.Replace("{Name}", Name);
+                }
+
                 string Root = $"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.Replace("{ID}", (ID > 0 ? ID.ToString() : ""))}";
 
 
