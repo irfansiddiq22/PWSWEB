@@ -15,7 +15,7 @@ namespace Pipewellservice.Helper
         public async static Task<bool> SaveFile(HttpPostedFileBase file, int FileID, int ID,DirectoryNames Dir)
         {
             string extension = Path.GetExtension(file.FileName);
-            Constant DirectoryToSave = await AppData.Get(ParentValues.RESOURCES,(int) Dir);
+            Constant DirectoryToSave = await AppData.Get(ParentEnums.RESOURCES,(int) Dir);
 
             DirectoryToSave.Name = DirectoryToSave.Name.Replace("{ID}", (ID > 0 ? ID.ToString() : ""));
 
@@ -45,7 +45,7 @@ namespace Pipewellservice.Helper
         {
             try
             {
-                Constant DirectoryToSave = await AppData.Get(ParentValues.RESOURCES, (int)Dir);
+                Constant DirectoryToSave = await AppData.Get(ParentEnums.RESOURCES, (int)Dir);
                 string Root= $"{Config.ResourcesDirectory}\\{DirectoryToSave.Name.Replace("{ID}",(ID>0 ? ID.ToString():""))}";
                
                 

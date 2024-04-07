@@ -30,16 +30,16 @@ function InitilzeFamily() {
     Family.LocalPhoneNumber = ''
     Family.HomePhoneNumber = ''
 
-    SetvalOf("txtFamilyName", Family.Name);
-    SetvalOf("txtFamilyDateOfBirth", (moment(Family.DateOfBirth).format("DD/MM/YYYY")));
-    SetvalOf("txtFamilyRelationship", Family.Relation);
-    SetvalOf("txtFamilyPassportNumber", Family.PassportNumber);
-    SetvalOf("txtFamilyPassportIssueDate", (moment(Family.PassportIssueDate).format("DD/MM/YYYY")));
-    SetvalOf("txtFamilyPassportExpiryDate", moment(Family.PassportExpiryDate).format("DD/MM/YYYY"));
-    SetvalOf("txtFamilyIqamaNumber", Family.IqamaNumber);
-    SetvalOf("txtFamilyLocalPhoneNumber", Family.LocalPhoneNumber);
-    SetvalOf("txtFamilyHomePhoneNumber", Family.HomePhoneNumber);
-
+    SetvalOf("txtFamilyName", "");
+    SetvalOf("txtFamilyDateOfBirth", "");
+    SetvalOf("txtFamilyRelationship", "");
+    SetvalOf("txtFamilyPassportNumber", "");
+    SetvalOf("txtFamilyPassportIssueDate","");
+    SetvalOf("txtFamilyPassportExpiryDate", "");
+    SetvalOf("txtFamilyIqamaNumber", "");
+    SetvalOf("txtFamilyLocalPhoneNumber", "");
+    SetvalOf("txtFamilyHomePhoneNumber", "");
+    $("#imgEmployeeFamily").hide();
 }
 
 function BindUsers() {
@@ -94,8 +94,8 @@ function FillEmployeeFamilyTable(Response) {
         tr.append($('<td>').text(c.HomePhoneNumber))
         tr.append($('<td>').text(c.LocalPhoneNumber))
 
-        var Link = $('<a>').attr("href", "javascript:void(0)").attr("onclick", "DownloadPassportFile('" + c.EmployeeID + "','" + c.FileName + "','" + c.FileID + "')").text(c.FileName);
-        tr.append($('<td>').append(c.FileName == "null" || c.FileName == "" ? "" : $(Link)))
+        //var Link = $('<a>').attr("href", "javascript:void(0)").attr("onclick", "DownloadPassportFile('" + c.EmployeeID + "','" + c.FileName + "','" + c.FileID + "')").text(c.FileName);
+        //tr.append($('<td>').append(c.FileName == "null" || c.FileName == "" ? "" : $(Link)))
 
         var Icons = $('<div class="icons">');
         $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2" onclick="EditFamilyMember(' + i + ')"><i class="fa fa-edit"></i></a>'));
@@ -121,6 +121,8 @@ function EditFamilyMember(index) {
     SetvalOf("txtFamilyIqamaNumber", Family.IqamaNumber);
     SetvalOf("txtFamilyLocalPhoneNumber", Family.LocalPhoneNumber);
     SetvalOf("txtFamilyHomePhoneNumber", Family.HomePhoneNumber);
+
+    $("#imgEmployeeFamily").attr("src", "/EmployeeAPI/DownloadFamilyFile?EmployeeID=" + Family.EmployeeID + "&FileName=" + Family.FileName + "&FileID=" + Family.FileID);
 
 }
 function SaveFamily() {

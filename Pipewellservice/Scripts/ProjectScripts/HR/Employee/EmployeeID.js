@@ -27,7 +27,8 @@ function InitializeIDFile() {
     IDFile.Remarks = "";
     IDFile.FileName = "";
     ResetChangeLog(PAGES.EmployeeID)
-    
+    $("#imgEmployeeID").hide();
+    $("#imgEmployeeID").attr("src","");
 }
 
 function BindUsers() {
@@ -66,8 +67,7 @@ function FillIDListTable(Response) {
     $("#tblEmployeeIDList").empty();
     $.each(Response, function (i, c) {
         var tr = $('<tr>');
-        var Link = $('<a>').attr("href", "javascript:void(0)").attr("onclick", "DownloadIDFile('" + c.EmployeeID + "','" + c.FileName + "','" + c.FileID + "')").text(c.FileName);
-        tr.append($('<td>').append(c.FileName == "null" || c.FileName=="" ?"":$(Link)))
+        tr.append($('<td>').append(c.ID))
         tr.append($('<td>').text(c.Description))
         tr.append($('<td>').text(c.IDNumber))
         tr.append($('<td>').text(moment(c.IssueDate).format("DD/MM/YYYY")))
@@ -96,7 +96,8 @@ function EditIDFile(index) {
     SetvalOf("txtIDFileIssueDate", (moment(IDFile.IssueDate).format("DD/MM/YYYY")));
     SetvalOf("txtIDFileExpiryDate", moment(IDFile.ExpiryDate).format("DD/MM/YYYY") );
     SetvalOf("txtIDFileRemarks", IDFile.Remarks);
-    
+    $("#imgEmployeeID").attr("src", "/EmployeeAPI/DownloadIDFile?EmployeeID=" + IDFile.EmployeeID + "&FileName=" + IDFile.FileName + "&FileID=" + IDFile.FileID);
+    $("#imgEmployeeID").show();
 }
 function SaveIDFile() {
     $("#frmIDFile").validate({

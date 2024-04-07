@@ -28,7 +28,10 @@ namespace PipewellserviceModels.HR.Employee
         public string Division { get; set; }
         public string Position { get; set; }
         public string Supervisor { get; set; }
-        public string Iqama { get; set; }
+        
+        public string IqamaFileName { get; set; }
+        public string IqamaFileID { get; set; }
+
         public string Passport { get; set; }
         public DateTime? IqamaExpiryDate { get; set; }
         public DateTime? PassportExpiryDate { get; set; }

@@ -186,7 +186,10 @@ function FillEmployeeTable() {
                 tr.append($('<td>').html(e.Name));
                 tr.append($('<td>').html(e.ArabicName));
                 tr.append($('<td>').html(e.Nationality));
-                tr.append($('<td class="iqamadata">').html(e.Iqama))
+                var link = $('<a>').attr("href", "javascript:void(0)").attr("onclick", "DownloadIDFile(" + e.ID + ",'" + e.IqamaFileName + "','" + e.IqamaFileID +"')").text(e.Iqama)
+
+                tr.append($('<td class="iqamadata">').append((e.Iqama == null || e.Iqama == "" ? "" : link)));
+
                 tr.append($('<td class="iqamadata">').html(e.IqamaExpiryDate == null ? "" : moment(e.IqamaExpiryDate).format("DD/MM/YYYY")))
 
                 tr.append($('<td class="iqamadata">').html(e.Passport));
@@ -226,6 +229,10 @@ function FillEmployeeTable() {
 
         }
     })
+}
+function DownloadIDFile(EmployeeID, FileName, FileID) {
+    ShowSpinner();
+    DownloadFile("/EmployeeAPI/DownloadIDFile?EmployeeID=" + String(EmployeeID) + "&FileName=" + FileName + "&FileID=" + FileID, FileName);
 }
 function ToggleIqamaData() {
 

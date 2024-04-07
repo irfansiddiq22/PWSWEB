@@ -15,6 +15,10 @@ function _Init() {
     HideSpinner();
     BindUsers();
 }
+$('form').on('reset', function (e) {
+    $("#ddCertificateName").val("").trigger("change");
+    InitializeCertificate();
+})
 function InitializeCertificate() {
     Certificate.ID = 0;
     Certificate.Name = "";
@@ -22,7 +26,8 @@ function InitializeCertificate() {
     Certificate.ExpiryDate = "";
     Certificate.Remarks = "";
     Certificate.FileName = "";
-    
+    $("#ddCertificateName").val("").trigger("change");
+    $("#imgEmployeeCetficate").hide();
     ResetChangeLog(PAGES.Certificate);
 }
 function ToggleOffShore(sender) {
@@ -45,12 +50,31 @@ function BindUsers() {
             tags: "true",
             placeholder: "Select an option",
             allowClear: true,
+            width: '100%',
             data: data
         }).on('select2:select', function (e) {
             var data = e.params.data;
             FillCertificates(parseInt(data.id));
         });
     })
+    Post("/DataList/CertificeTypes", {}).done(function (Response) {
+
+
+        var data = []
+        data.push({ id: 0, text: 'Select Certificate' });
+        $.each(Response, function (i, c) {
+            data.push({ id: c.Name, text:  c.Name });
+        })
+        $("#ddCertificateName").select2({
+            tags: "false",
+            placeholder: "Select a Certificate",
+            allowClear: true,
+            width: '100%',
+            data: data
+        }).on('select2:select', function (e) {
+            
+        });
+    });
 }
 
 function FillCertificates(EmployeeID) {
@@ -60,7 +84,7 @@ function FillCertificates(EmployeeID) {
 
     Post("/EmployeeAPI/CertificateList", { EmployeeID: EmployeeID }).done(function (Response) {
         CertificateList = Response;
-        console.log(Response)
+        
         $.each(Response, function (i, c) {
             var tr = $('<tr>');
             tr.append($('<td>').text((i + 1)))
@@ -80,11 +104,13 @@ function FillCertificates(EmployeeID) {
 }
 function EditCertificate(index) {
     Certificate = CertificateList[index];
-    SetvalOf("txtCertificateName", Certificate.Name);
+    SetvalOf("ddCertificateName", $.trim(Certificate.Name)).trigger("change");
     SetvalOf("txtCertificateIssueDate", (moment(Certificate.IssueDate).format("DD/MM/YYYY")));
     SetvalOf("txtCertificateExpiryDate", (Certificate.ExpiryDate ? moment(Certificate.ExpiryDate).format("DD/MM/YYYY") : ""));
     SetvalOf("txtCertificateRemarks", Certificate.Remarks);
     SetChecked("chkCertificateOnshore", Certificate.OnShore)
+    $("#imgEmployeeCetficate").show();
+    $("#imgEmployeeCetficate").attr("src", "/EmployeeAPI/DownloadCertificateFile?EmployeeID=" + Certificate.EmployeeID + "&FileName=" + Certificate.FileName + "&FileID=" + Certificate.FileID)
     Certificate.OnShore == null ? "" : SetChecked("chkCertificateOffshore", !Certificate.OnShore)
 }
 function SaveCertificate() {

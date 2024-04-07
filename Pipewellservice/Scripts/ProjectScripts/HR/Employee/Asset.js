@@ -20,7 +20,8 @@ function InitilzeAsset() {
     Asset.Remarks = "";
     Asset.FileName = "";
     ResetChangeLog(PAGES.Asset)
-    
+    $("#imgEmployeeAsset").attr("src", "");
+    $("#imgEmployeeAsset").hide();   
 }
 
 function BindUsers() {
@@ -73,8 +74,8 @@ function EditAsset(index) {
     SetvalOf("txtAssetName", Asset.Name);
     SetvalOf("txtAssetIssueDate", (moment(Asset.IssueDate).format("DD/MM/YYYY")));
     SetvalOf("txtAssetRemarks", Asset.Remarks);
-    
-    
+    $("#imgEmployeeAsset").attr("src", "/EmployeeAPI/DownloadAssetFile?EmployeeID=" + Family.EmployeeID + "&FileName=" + Family.FileName + "&FileID=" + Family.FileID);
+    $("#imgEmployeeAsset").show();
 }
 function SaveAsset() {
     $("#frmAsset").validate({
