@@ -1,11 +1,12 @@
 ﻿var EmployeeList = [];
 var Employee = {ID:0}
 function _Init() {
+    FillEmployee();
 
-    HideSpinner();
+    //HideSpinner();
     BindUsers();
     FillEmployeeDataList()
-    FillEmployee();
+    
     var rules = [];
     /* $.each($("input[data-msg],select[data-msg]"), function (i, c) {
          
@@ -186,12 +187,12 @@ function FillEmployeeTable() {
                 tr.append($('<td>').html(e.Name));
                 tr.append($('<td>').html(e.ArabicName));
                 tr.append($('<td>').html(e.Nationality));
-                var link = $('<a>').attr("href", "javascript:void(0)").attr("onclick", "DownloadIDFile(" + e.ID + ",'" + e.IqamaFileName + "','" + e.IqamaFileID +"')").text(e.Iqama)
+                var link = $('<a>').attr("href", "javascript:void(0)").attr("onclick", "DownloadIDFile(" + e.ID + ",'" + e.IqamaFileName + "','" + e.IqamaFileID +"','Iqama')").text(e.Iqama)
 
-                tr.append($('<td class="iqamadata">').append((e.Iqama == null || e.Iqama == "" ? "" : link)));
+                tr.append($('<td>').append((e.Iqama == null || e.Iqama == "" ? "" : link)));
 
                 tr.append($('<td class="iqamadata">').html(e.IqamaExpiryDate == null ? "" : moment(e.IqamaExpiryDate).format("DD/MM/YYYY")))
-                link = $('<a>').attr("href", "javascript:void(0)").attr("onclick", "DownloadIDFile(" + e.ID + ",'" + e.FileName + "','" + e.FileID + "')").text(e.Passport)
+                link = $('<a>').attr("href", "javascript:void(0)").attr("onclick", "DownloadIDFile(" + e.ID + ",'" + e.FileName + "','" + e.FileID + "','Passport')").text(e.Passport)
 
                 tr.append($('<td class="iqamadata">').append((e.Passport == null || e.Passport == "" ? "" : link)));
 
@@ -233,9 +234,9 @@ function FillEmployeeTable() {
         }
     })
 }
-function DownloadIDFile(EmployeeID, FileName, FileID) {
+function DownloadIDFile(EmployeeID, FileName, FileID,Type) {
     ShowSpinner();
-    DownloadFile("/EmployeeAPI/DownloadIDFile?EmployeeID=" + String(EmployeeID) + "&FileName=" + FileName + "&FileID=" + FileID, FileName);
+    DownloadFile("/EmployeeAPI/DownloadIDFile?EmployeeID=" + String(EmployeeID) + "&FileName=" + FileName + "&FileID=" + FileID + "&Type=" + Type, FileName);
 }
 function ToggleIqamaData() {
 

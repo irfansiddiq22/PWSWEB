@@ -13,6 +13,11 @@ function _Init() {
     HideSpinner();
     BindUsers();
 }
+$('form').on('reset', function (e) {
+    
+    InitilzeAsset();
+})
+
 function InitilzeAsset() {
     Asset.ID = 0;
     Asset.Name = "";
@@ -74,8 +79,9 @@ function EditAsset(index) {
     SetvalOf("txtAssetName", Asset.Name);
     SetvalOf("txtAssetIssueDate", (moment(Asset.IssueDate).format("DD/MM/YYYY")));
     SetvalOf("txtAssetRemarks", Asset.Remarks);
-    $("#imgEmployeeAsset").attr("src", "/EmployeeAPI/DownloadAssetFile?EmployeeID=" + Family.EmployeeID + "&FileName=" + Family.FileName + "&FileID=" + Family.FileID);
+    $("#imgEmployeeAsset").attr("src", "/EmployeeAPI/DownloadAssetFile?EmployeeID=" + Asset.EmployeeID + "&FileName=" + Asset.FileName + "&FileID=" + Asset.FileID);
     $("#imgEmployeeAsset").show();
+
 }
 function SaveAsset() {
     $("#frmAsset").validate({

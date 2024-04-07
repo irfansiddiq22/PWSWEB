@@ -18,6 +18,10 @@ function _Init() {
     HideSpinner();
     BindUsers();
 }
+$('form').on('reset', function (e) {
+    
+    InitilzeFamily();
+})
 function InitilzeFamily() {
     ResetChangeLog(PAGES.Family)
     Family.Name = '';
@@ -40,6 +44,7 @@ function InitilzeFamily() {
     SetvalOf("txtFamilyLocalPhoneNumber", "");
     SetvalOf("txtFamilyHomePhoneNumber", "");
     $("#imgEmployeeFamily").hide();
+    $("#imgEmployeeFamily").attr("src","")
 }
 
 function BindUsers() {
@@ -123,7 +128,7 @@ function EditFamilyMember(index) {
     SetvalOf("txtFamilyHomePhoneNumber", Family.HomePhoneNumber);
 
     $("#imgEmployeeFamily").attr("src", "/EmployeeAPI/DownloadFamilyFile?EmployeeID=" + Family.EmployeeID + "&FileName=" + Family.FileName + "&FileID=" + Family.FileID);
-
+    $("#imgEmployeeFamily").show();
 }
 function SaveFamily() {
     if ($("#frmEmployeeFamily").valid()) {

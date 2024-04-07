@@ -14,9 +14,12 @@ var IDFileList = [];
 
 function _Init() {
     HideSpinner();
-    FillIDTypeList("datalistOptions")
+    FillIDTypeList("ddFileTypeList")
     BindUsers();
 }
+$('form').on('reset', function (e) {
+    InitializeIDFile();
+})
 function InitializeIDFile() {
     IDFile.ID = 0;
     
@@ -43,7 +46,8 @@ function BindUsers() {
             tags: "true",
             placeholder: "Select an option",
             allowClear: true,
-            data: data
+            data: data,
+            width:'100%'
         }).on('select2:select', function (e) {
             var data = e.params.data;
             FillIDFiles(parseInt(data.id));
@@ -83,9 +87,9 @@ function FillIDListTable(Response) {
         $("#tblEmployeeIDList").append(tr)
     })
 }
-function DownloadIDFile(EmployeeID, FileName, FileID) {
+function DownloadIDFile(EmployeeID,Type, FileName, FileID) {
     ShowSpinner();
-    DownloadFile("/EmployeeAPI/DownloadIDFile?EmployeeID=" + String(EmployeeID) + "&FileName=" + FileName + "&FileID=" + FileID, FileName);
+    DownloadFile("/EmployeeAPI/DownloadIDFile?EmployeeID=" +  String(EmployeeID) + "&Type="+ Type +"&FileName=" + FileName + "&FileID=" + FileID, FileName);
 }
 function EditIDFile(index) {
     IDFile = IDFileList[index];
@@ -96,7 +100,7 @@ function EditIDFile(index) {
     SetvalOf("txtIDFileIssueDate", (moment(IDFile.IssueDate).format("DD/MM/YYYY")));
     SetvalOf("txtIDFileExpiryDate", moment(IDFile.ExpiryDate).format("DD/MM/YYYY") );
     SetvalOf("txtIDFileRemarks", IDFile.Remarks);
-    $("#imgEmployeeID").attr("src", "/EmployeeAPI/DownloadIDFile?EmployeeID=" + IDFile.EmployeeID + "&FileName=" + IDFile.FileName + "&FileID=" + IDFile.FileID);
+    $("#imgEmployeeID").attr("src", "/EmployeeAPI/DownloadIDFile?EmployeeID=" + IDFile.EmployeeID + "&Type=" + IDFile.Description +"&FileName=" + IDFile.FileName + "&FileID=" + IDFile.FileID);
     $("#imgEmployeeID").show();
 }
 function SaveIDFile() {
