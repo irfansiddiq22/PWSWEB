@@ -1,0 +1,156 @@
+﻿
+<div class="border p-2">
+    <div id="dvJobContractList">
+        <div class="my-2 p-2">
+            <div class="w-100 m-auto">
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="txtJobContractNameFilter" placeholder="Name">
+                            <label for="floatingInput">Name:</label>
+                        </div>
+                    </div><div class="col-md-2">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="txtJobContractArabicNameFilter" placeholder="الاسم">
+                            <label for="floatingInput">الاسم:</label>
+                        </div>
+                    </div><div class="col-md-2">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="txtJobContractTitleFilter" placeholder="Job Title">
+                            <label for="floatingInput">Job Title:</label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-danger wrn-btn" onclick="FillOfferTable();">Search</button>
+                        <button type="button" class="btn btn-success wrn-btn" onclick="NewJobContract();">Add Job Contract</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover-warning table-bordered">
+                <thead class="blue">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Name/Arabic</th>
+                        <th>Nationality</th>
+                        <th>Job Title</th>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>MobileNumber</th>
+
+                        <th>Basic</th>
+                        <th>Tranportation</th>
+                        <th>Date</th>
+                        <th>Download</th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody id="tblJobContracts"></tbody>
+            </table>
+        </div>
+        <div id="dvPaging"></div>
+    </div>
+    <div id="dvEditJobContract" class="my-0 container">
+        <form id="frmJobContract">
+            <div class="blue"><h6>Add/Job Contract</h6></div>
+            <div class="border p-2">
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-roup">
+                            <label class="col-form-label" for="txtemployeeName">Name:</label>
+                            <input class="form-control form-control-sm" id="txtemployeeName" name="employeeName">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-goup">
+                            <label class="col-form-label" for="txtemployeeNameArabic">الاسم:</label>
+                            <input class="form-control form-control-sm" id="txtemployeeNameArabic" name="employeeNameArabic">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-grop">
+                            <label class="col-form-label" for="ddJobContractCountries">Nationality</label>
+                            <select class="form-select form-select-sm" id="ddJobContractCountries" name="JobContractCountries"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-roup">
+                            <label class="col-form-label" for="txtemployeeName">ID:</label>
+                            <input class="form-control form-control-sm" id="txtemployeeID" name="employeeID">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-goup">
+                            <label class="col-form-label" for="txtEmployeeEmailAddress">Email Address</label>
+                            <input type="email" class="form-control form-control-sm" id="txtEmployeeEmailAddress" name="EmployeeEmailAddress">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-grop">
+                            <label class="col-form-label" for="txtEmployeeMobileNumber">Mobile Number</label>
+                            <input class="form-control form-control-sm" id="txtEmployeeMobileNumber" name="EmployeeMobileNumber">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-3">
+                        <div class="form-grop">
+                            <label class="col-form-label" for="txtJobContractTitle">Job Title:</label>
+                            <input type="text" class="form-control form-control-sm" id="txtJobContractTitle" name="JobContractTitle">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-goup">
+                            <label class="col-form-label" for="txtJobContractBasic">Basic :</label>
+                            <input type="number" class="form-control form-control-sm" id="txtJobContractBasic" name="JobContractBasic">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-goup">
+                            <label class="col-form-label" for="txtJobContractTransportation">Transportation</label>
+                            <input type="number" class="form-control form-control-sm" id="txtJobContractTransportation" name="JobContractTransportation">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-grup">
+                            <label class="col-form-label" for="txtJobContractPeriod">Period</label>
+                            <input type="number" class="form-control form-control-sm" id="txtJobContractPeriod" name="JobContractPeriod">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <button class="btn btn-sm btn-primary" type="submit" onclick="SaveJobContract()">Save</button>
+                        <button class="btn btn-sm btn-danger" type="reset">Clear</button>
+                        <button class="btn btn-sm btn-danger" type="button" onclick="CancelJobContract()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/pagination")
+    @Scripts.Render("~/lib/hr/jobcontract")
+    @Styles.Render("~/bundles/paginationcss")
+}

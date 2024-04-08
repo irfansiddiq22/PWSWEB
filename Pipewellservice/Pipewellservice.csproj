@@ -140,6 +140,7 @@
     <Compile Include="Areas\API\APIAreaRegistration.cs" />
     <Compile Include="Areas\API\Controllers\DataListController.cs" />
     <Compile Include="Areas\API\Controllers\EmployeeAPIController.cs" />
+    <Compile Include="Areas\API\Controllers\JobController.cs" />
     <Compile Include="Areas\API\Controllers\SettingAPIController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -362,6 +363,8 @@
     <Content Include="Scripts\ProjectScripts\HR\Employee\Certificate.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Contract.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeWarning.js" />
+    <Content Include="Scripts\ProjectScripts\HR\Employee\JobContract.js" />
+    <Content Include="Scripts\ProjectScripts\HR\Employee\JobOffer.js" />
     <Content Include="Scripts\ProjectScripts\HR\Settings\Setting.js" />
     <Content Include="Scripts\libraries\sweetalert\bootstrap-sweetalert.png" />
     <Content Include="Scripts\libraries\sweetalert\docs.css" />
@@ -481,12 +484,15 @@
     <Content Include="Views\Employee\Home.cshtml" />
     <Content Include="Scripts\underscore.min.map" />
     <Content Include="Views\Employee\_PartialEmployeeSetting.cshtml" />
+    <Content Include="Views\Employee\_PartialJobContract.cshtml" />
+    <Content Include="Views\Employee\_PartialJobOffer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\API\Models\" />
     <Folder Include="Areas\API\Views\DataList\" />
     <Folder Include="Areas\API\Views\Employee\" />
+    <Folder Include="Areas\API\Views\Job\" />
     <Folder Include="Areas\API\Views\SettingAPI\" />
     <Folder Include="Areas\API\Views\Shared\" />
     <Folder Include="Models\" />

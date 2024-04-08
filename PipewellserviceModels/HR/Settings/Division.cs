@@ -25,6 +25,15 @@ namespace PipewellserviceModels.HR.Settings
         public string Name { get; set; }
         public DataChangeLog log { get; set; }
     }
+    public class Country
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string ArabicName { get; set; }
+        public string Nationality { get; set; }
+        public string ArabicNationality{ get; set; }
+        public DataChangeLog log { get; set; }
+    }
     public class Nationality
     {
         public int ID { get; set; }

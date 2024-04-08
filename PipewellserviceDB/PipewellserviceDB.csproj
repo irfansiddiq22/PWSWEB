@@ -54,6 +54,7 @@
     <Compile Include="Common\DataListService.cs" />
     <Compile Include="DataServices.cs" />
     <Compile Include="HR\Employee\EmployeeService.cs" />
+    <Compile Include="HR\JobService.cs" />
     <Compile Include="HR\Setting\SettingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

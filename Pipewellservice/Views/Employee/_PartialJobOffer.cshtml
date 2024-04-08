@@ -1,0 +1,133 @@
+﻿
+<div class="border p-2">
+    <div id="dvJobOfferList">
+        <div class="my-2 p-2">
+            <div class="w-100 m-auto">
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="txtJobOfferNameFilter" placeholder="Name">
+                            <label for="floatingInput">Name:</label>
+                        </div>
+                    </div><div class="col-md-2">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="txtJobOfferArabicNameFilter" placeholder="الاسم">
+                            <label for="floatingInput">الاسم:</label>
+                        </div>
+                    </div><div class="col-md-2">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="txtJobOfferTitleFilter" placeholder="Job Title">
+                            <label for="floatingInput">Job Title:</label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-danger wrn-btn" onclick="FillOfferTable();">Search</button>
+                        <button type="button" class="btn btn-success wrn-btn" onclick="NewJobOffer();">Add Job Offer</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover-warning table-bordered">
+                <thead class="blue">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+
+                        <th>Name/Arabic</th>
+                        <th>Nationality</th>
+                        <th>Job Title</th>
+                        <th>Basic</th>
+                        <th>Tranportation</th>
+                        <th>Date</th>
+                        <th>Download</th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody id="tblJobOffers"></tbody>
+            </table>
+        </div>
+        <div id="dvPaging"></div>
+    </div>
+    <div id="dvEditJobOffer" class="my-0 container">
+        <form id="frmJobOffer">
+            <div class="blue"><h6>Add/Job Offer</h6></div>
+            <div class="border p-2">
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-roup">
+                            <label class="col-form-label" for="txtemployeeName">Name:</label>
+                            <input class="form-control form-control-sm" id="txtemployeeName" name="employeeName">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-goup">
+                            <label class="col-form-label" for="txtemployeeNameArabic">الاسم:</label>
+                            <input class="form-control form-control-sm" id="txtemployeeNameArabic" name="employeeNameArabic">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-grop">
+                            <label class="col-form-label" for="ddJobOfferCountries">Nationality</label>
+                            <select class="form-select form-select-sm" id="ddJobOfferCountries" name="JobOfferCountries"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-3">
+                        <div class="form-grop">
+                            <label class="col-form-label" for="txtJobOfferTitle">Job Title:</label>
+                            <input type="text" class="form-control form-control-sm" id="txtJobOfferTitle" name="JobOfferTitle">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-goup">
+                            <label class="col-form-label" for="txtJobOfferBasic">Basic :</label>
+                            <input type="number" class="form-control form-control-sm" id="txtJobOfferBasic" name="JobOfferBasic">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-goup">
+                            <label class="col-form-label" for="txtJobOfferTransportation">Transportation</label>
+                            <input type="number" class="form-control form-control-sm" id="txtJobOfferTransportation" name="JobOfferTransportation">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-grup">
+                            <label class="col-form-label" for="txtJobOfferPeriod">Period</label>
+                            <input type="number" class="form-control form-control-sm" id="txtJobOfferPeriod" name="JobOfferPeriod">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <button class="btn btn-sm btn-primary" type="submit" onclick="SaveJobOffer()">Save</button>
+                        <button class="btn btn-sm btn-danger" type="reset">Clear</button>
+                        <button class="btn btn-sm btn-danger" type="button" onclick="CancelJobOffer()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/pagination")
+    @Scripts.Render("~/lib/hr/joboffer")
+    @Styles.Render("~/bundles/paginationcss")
+}

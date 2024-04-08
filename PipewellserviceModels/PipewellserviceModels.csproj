@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9E28D415-C765-4B53-85E2-CF8614E0816C}</ProjectGuid>
+    <ProjectGuid>{BF6824ED-72E3-42D1-8E0E-0B4A996FE4CF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PipewellserviceJson</RootNamespace>
-    <AssemblyName>PipewellserviceJson</AssemblyName>
+    <RootNamespace>PipewellserviceModels</RootNamespace>
+    <AssemblyName>PipewellserviceModels</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,27 +46,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Auth\AuthUserJson.cs" />
-    <Compile Include="Common\DataListJson.cs" />
-    <Compile Include="HR\Employee\EmployeeJson.cs" />
-    <Compile Include="HR\Job\JobJson.cs" />
-    <Compile Include="HR\Setting\SettingJson.cs" />
-    <Compile Include="Parse.cs" />
+    <Compile Include="Common\Auth.cs" />
+    <Compile Include="Common\Constant.cs" />
+    <Compile Include="Common\DataChangeLog.cs" />
+    <Compile Include="Common\DataUpdateResult.cs" />
+    <Compile Include="Common\DeleteDTO.cs" />
+    <Compile Include="Common\ResultDTO.cs" />
+    <Compile Include="HR\Employee\Asset.cs" />
+    <Compile Include="HR\Employee\Certificate.cs" />
+    <Compile Include="HR\Employee\Employee.cs" />
+    <Compile Include="HR\Employee\EmployeeApproval.cs" />
+    <Compile Include="HR\Employee\EmployeeClearance.cs" />
+    <Compile Include="HR\Employee\EmployeeFamily.cs" />
+    <Compile Include="HR\Employee\EmployeeFamilyID.cs" />
+    <Compile Include="HR\Employee\EmployeeID.cs" />
+    <Compile Include="HR\Employee\EmployeeNameCode.cs" />
+    <Compile Include="HR\Employee\EmployeeWarning.cs" />
+    <Compile Include="HR\Job\JobContract.cs" />
+    <Compile Include="HR\Job\JobOffer.cs" />
+    <Compile Include="HR\Settings\Division.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PipewellserviceDB\PipewellserviceDB.csproj">
-      <Project>{C0FF549B-AE99-4EC2-8415-AD00BB3B7AF1}</Project>
-      <Name>PipewellserviceDB</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PipewellserviceModels\PipewellserviceModels.csproj">
-      <Project>{BF6824ED-72E3-42D1-8E0E-0B4A996FE4CF}</Project>
-      <Name>PipewellserviceModels</Name>
-    </ProjectReference>
+    <Compile Include="User\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
