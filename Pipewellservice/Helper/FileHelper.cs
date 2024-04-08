@@ -60,12 +60,14 @@ namespace Pipewellservice.Helper
 
                 string Root = $"{Config.ResourcesDirectory}\\{Resouces}";
 
-
-                return $"{Root}\\{FileID}";
+                if (System.IO.File.Exists($"{Root}\\{FileID}"))
+                    return $"{Root}\\{FileID}";
+                else
+                    return "/Content/images/spacer.gif";
             }
             catch (Exception e)
             {
-                return "";
+                return "/Content/images/spacer.gif";
             }
 
         }
