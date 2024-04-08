@@ -87,7 +87,11 @@ namespace Pipewellservice
                                   "~/Scripts/ProjectScripts/HR/Employee/EmployeeWarning.js"));
             bundles.Add(new Bundle("~/lib/hr/employeeclearance").Include(
                                   "~/Scripts/ProjectScripts/HR/Employee/EmployeeClearance.js"));
-            
+
+            bundles.Add(new Bundle("~/lib/hr/joboffer").Include(
+                                  "~/Scripts/ProjectScripts/HR/Employee/JobOffer.js"));
+            bundles.Add(new Bundle("~/lib/hr/jobcontract").Include(
+                                              "~/Scripts/ProjectScripts/HR/Employee/JobContract.js"));
 
 
         }

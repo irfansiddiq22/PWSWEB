@@ -47,6 +47,7 @@
     <Compile Include="Auth\AuthUserJson.cs" />
     <Compile Include="Common\DataListJson.cs" />
     <Compile Include="HR\Employee\EmployeeJson.cs" />
+    <Compile Include="HR\Job\JobJson.cs" />
     <Compile Include="HR\Setting\SettingJson.cs" />
     <Compile Include="Parse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

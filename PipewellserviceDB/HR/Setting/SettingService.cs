@@ -191,7 +191,7 @@ namespace PipewellserviceDB.HR.Setting
         {
             try
             {
-                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcNationalityList", CommandType.StoredProcedure);
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcCountryList", CommandType.StoredProcedure);
                 DataTable dt = new DataTable();
                 dt.Load(result);
                 result.Close();

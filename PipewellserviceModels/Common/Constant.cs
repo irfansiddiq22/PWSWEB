@@ -100,6 +100,9 @@ namespace PipewellserviceModels.Common
         EmployeeWarning=11,
         EmployeeClearance = 12,
         EmployeeVacation = 13,
+
+        JobOffers=14,
+        JobContracts=15
     }
 
     public enum DirectoryNames

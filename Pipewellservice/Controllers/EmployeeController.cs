@@ -59,6 +59,20 @@ namespace Pipewellservice.Controllers
             ViewBag.Parent = Parent;
             return View("_PartialContract");
         }
+        public ActionResult JobOffer()
+        {
+            ViewBag.Title = "Job Offer";
+            ViewBag.Parent = Parent;
+            return View("_PartialJobOffer");
+        }
+        public ActionResult JobContract()
+        {
+            ViewBag.Title = "Job Contracts";
+            ViewBag.Parent = Parent;
+            return View("_PartialJobContract");
+        }
+
+        
         public ActionResult Warning()
         {
             ViewBag.Title = "Employee warning ";

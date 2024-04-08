@@ -61,6 +61,8 @@
     <Compile Include="HR\Employee\EmployeeID.cs" />
     <Compile Include="HR\Employee\EmployeeNameCode.cs" />
     <Compile Include="HR\Employee\EmployeeWarning.cs" />
+    <Compile Include="HR\Job\JobContract.cs" />
+    <Compile Include="HR\Job\JobOffer.cs" />
     <Compile Include="HR\Settings\Division.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User\User.cs" />
