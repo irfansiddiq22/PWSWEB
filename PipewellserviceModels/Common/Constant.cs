@@ -20,8 +20,10 @@ namespace PipewellserviceModels.Common
         RESOURCES=4,
         PAGES=5,
         LEAVE_TPES=6,
-        CERTIFICATE_TYPES=7
+        CERTIFICATE_TYPES=7,
+        DocTemplates=10
     }
+    
     public enum Gender
     {
         Male = 1,
@@ -116,10 +118,19 @@ namespace PipewellserviceModels.Common
         EmployeeFamily=6,
         EmployeeContract=7,
         EmployeeWarnings=8,
+        EmployeeJobOffer=9,
+        EmployeeJobContract=10,    
+        Templates=11,
+
     }
     public enum ApprovalTypes
     {
         Clearance=1,
         Warning=2
+    }
+    public enum DocTemplates
+    {
+        JobOffer=1,
+        Contract=2
     }
 }

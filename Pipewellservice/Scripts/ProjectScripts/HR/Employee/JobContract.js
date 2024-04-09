@@ -13,7 +13,7 @@
     UserName: User.Name
 };
 var JobContractList = [];
-
+var Nationalites = [];
 function _Init() {
 
     $("#dvEditJobContract").addClass("d-none")
@@ -24,14 +24,16 @@ function _Init() {
         var data = []
         data.push({ id: 0, text: 'Select Nationality' });
         $.each(Response, function (i, c) {
-            data.push({ id: c.ID, text: c.Nationality });
+            data.push({ id: c.ID, text: c.Nationality, NationalityAR:c.ArabicNationality, Country: c.Name, CountryAR: c.NameArabic });
         })
+        Nationalites = Response
         $("#ddJobContractCountries").select2({
             tags: "true",
             placeholder: "Select Nationality",
             allowClear: true,
             data: data,
-            width: "100%"
+            width: "100%",
+           
         })
     });
     InitilzeJobContract();
@@ -109,8 +111,10 @@ function FillContactTable() {
 
                 tr.append($('<td>').html(e.ID));
                 tr.append($('<td>').html(e.Name));
-                tr.append($('<td>').html(e.ArabicName));
+                tr.append($('<td>').html(e.NameAr));
                 tr.append($('<td>').html(e.Nationality));
+                tr.append($('<td>').html(e.CompanyRegNumber));
+
                 tr.append($('<td>').html(e.JobTitle));
                 tr.append($('<td>').html(e.IDNumber));
 
@@ -119,10 +123,14 @@ function FillContactTable() {
 
                 
                 tr.append($('<td>').html(e.Basic));
-                tr.append($('<td>').html(e.Transportation));
+                tr.append($('<td>').html(e.Transportation == 0 ? "Will be provided by the Company" : e.Transportation + "% of the Basic"));
+                tr.append($('<td>').html(e.Housing == 0 ? "Will be provided by the Company" : e.Housing + "% of the Basic"));
+
                 tr.append($('<td>').html(e.Period));
 
-                tr.append($('<td>'));
+                var link = $('<a>').attr("href", "/Job/DownloadContractLetter?FileID=" + e.FileID).text(e.FileID);
+
+                tr.append($('<td>').append(link));
                 tr.append($('<td>').html('<a href="javascript:void(0)" onclick="EditJobContract(\'' + e.ID + '\')"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)"onclick="DeleteJobContract(\'' + e.id + '\',this)"><i class="fa fa-trash"></i></a>'));
 
                 $("#tblJobContracts").append(tr);
@@ -139,17 +147,23 @@ function EditJobContract(ID) {
     JobContract = JobContractList.find(x => x.ID == ID);
 
     SetvalOf("txtemployeeName", JobContract.Name);
-    SetvalOf("txtemployeeNameArabic", JobContract.ArabicName);
+    SetvalOf("txtemployeeNameArabic", JobContract.NameAr);
     SetvalOf("ddJobContractCountries", JobContract.CountryID).trigger("change");
-
+    
+    SetvalOf("txtCompanyRegNumber", JobContract.CompanyRegNumber);
     SetvalOf("txtemployeeID", JobContract.IDNumber);
     SetvalOf("txtEmployeeEmailAddress", JobContract.EmailAddress);
     SetvalOf("txtEmployeeMobileNumber", JobContract.MobileNumber);
 
     SetvalOf("txtJobContractTitle", JobContract.JobTitle);
+    SetvalOf("txtJobContractTitleArabic", JobContract.JobTitleAr);
+
     SetvalOf("txtJobContractBasic", JobContract.Basic);
     SetvalOf("txtJobContractTransportation", JobContract.Transportation);
+    SetvalOf("txtJobContractHousing", JobContract.Housing);
+
     SetvalOf("txtJobContractPeriod", JobContract.Period);
+    SetvalOf("txtJobContractPeriodAr", JobContract.PeriodAr);
     $("#dvEditJobContract").removeClass("d-none")
     $("#dvJobContractList").addClass("d-none")
 }
@@ -164,11 +178,14 @@ function SaveJobContract() {
             employeeID: "required",
             EmployeeEmailAddress: "required",
             EmployeeMobileNumber: "required",
-
+            CompanyRegNumber:"required",
             JobContractTitle: "required",
+            ArabicJobTitle:"required",
             JobContractBasic: "required",
             JobContractTransportation: "required",
-            JobContractPeriod: "required"
+            JobContractHousing:"required",
+            JobContractPeriod: "required",
+            JobContractPeriodAr:"required"
 
         },
         messages: {
@@ -176,12 +193,16 @@ function SaveJobContract() {
             employeeNameArabic: "Please enter employee name in arabic",
             JobContractCountries: { min: "Please select nationality" },
             employeeID: "Please enter ID number",
+            CompanyRegNumber:"Please enter company registeration number",
             EmployeeEmailAddress: "Please enter email address",
             EmployeeMobileNumber: "Please enter mobile number",
             JobContractTitle: "Please enter job title",
+            ArabicJobTitle: "Please enter job title",
             JobContractBasic: "Please enter basic salary",
-            JobContractTransportation: "please enter transportation ",
-            JobContractPeriod: "Please enter job period"
+            JobContractTransportation: "Please enter transportation ",
+            JobContractHousing: "Please enter housing ",
+            JobContractPeriod: "Please enter job period",
+            JobContractPeriodAr: "Please enter job period"
 
         },
         submitHandler: function (form) {
@@ -193,8 +214,8 @@ function SaveJobContract() {
                 if ($.trim(JobContract.Name) != $.trim(valOf("txtemployeeName"))) {
                     DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: JobContract.Name, New: valOf("txtemployeeName") } });
                 }
-                if ($.trim(JobContract.ArabicName) != $.trim(valOf("txtemployeeNameArabic"))) {
-                    DataChangeLog.DataUpdated.push({ Field: "ArabicName", Data: { OLD: JobContract.ArabicName, New: valOf("txtemployeeNameArabic") } });
+                if ($.trim(JobContract.NameAr) != $.trim(valOf("txtemployeeNameArabic"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "NameAr", Data: { OLD: JobContract.NameAr, New: valOf("txtemployeeNameArabic") } });
                 }
                 if (JobContract.CountryID != valOf("ddJobContractCountries")) {
                     DataChangeLog.DataUpdated.push({ Field: "Nationality", Data: { OLD: JobContract.CountryID, New: valOf("ddJobContractCountries") } });
@@ -202,10 +223,19 @@ function SaveJobContract() {
                 if ($.trim(JobContract.JobTitle) != $.trim(valOf("txtJobContractTitle"))) {
                     DataChangeLog.DataUpdated.push({ Field: "JobTitle", Data: { OLD: JobContract.JobTitle, New: valOf("txtJobContractTitle") } });
                 }
+                if ($.trim(JobContract.JobTitleAr) != $.trim(valOf("txtJobContractTitle"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "JobTitleAr", Data: { OLD: JobContract.JobTitleAr, New: valOf("txtJobContractTitle") } });
+                }
 
+                
+                if ($.trim(JobContract.CompanyRegNumber) != $.trim(valOf("txtCompanyRegNumber"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "CompanyRegNumber", Data: { OLD: JobContract.CompanyRegNumber, New: valOf("txtCompanyRegNumber") } });
+                }
                 if ($.trim(JobContract.IDNumber) != $.trim(valOf("txtemployeeID"))) {
                     DataChangeLog.DataUpdated.push({ Field: "IDNumber", Data: { OLD: JobContract.IDNumber, New: valOf("txtemployeeID") } });
                 }
+
+
                 if ($.trim(JobContract.EmailAddress) != $.trim(valOf("txtEmployeeEmailAddress"))) {
                     DataChangeLog.DataUpdated.push({ Field: "Email Address", Data: { OLD: JobContract.EmailAddress, New: valOf("txtEmployeeEmailAddress") } });
                 }
@@ -222,32 +252,45 @@ function SaveJobContract() {
                     DataChangeLog.DataUpdated.push({ Field: "Transportation", Data: { OLD: JobContract.Transportation, New: valOf("txtJobContractTransportation") } });
                 }
 
-                if ($.trim(JobContract.Transportation) != $.trim(valOf("txtJobContractPeriod"))) {
+                if ($.trim(JobContract.Housing) != $.trim(valOf("txtJobContractHousing"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "Housing", Data: { OLD: JobContract.Housing, New: valOf("txtJobContractHousing") } });
+                }
+
+                if ($.trim(JobContract.Period) != $.trim(valOf("txtJobContractPeriod"))) {
                     DataChangeLog.DataUpdated.push({ Field: "Period", Data: { OLD: JobContract.Period, New: valOf("txtJobContractPeriod") } });
+                }
+                if ($.trim(JobContract.PeriodAr) != $.trim(valOf("txtJobContractPeriodAr"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "PeriodAr", Data: { OLD: JobContract.Period, New: valOf("txtJobContractPeriodAr") } });
                 }
 
 
 
             }
 
+            var country = Nationalites.find(x => x.ID == valOf("ddJobContractCountries"))
+
             Post("/Job/UpdateJobContract", {
                 job: {
                     ID: JobContract.ID,
                     Name: valOf("txtemployeeName"),
-                    ArabicName: valOf("txtemployeeNameArabic"),
+                    NameAr: valOf("txtemployeeNameArabic"),
                     CountryID: valOf("ddJobContractCountries"),
                     JobTitle: valOf("txtJobContractTitle"),
-
+                    JobTitleAr: valOf("txtJobContractTitleArabic"),
+                    CompanyRegNumber: valOf("txtCompanyRegNumber"),
+                    Nationality: textOf("ddJobContractCountries"),
                     IDNumber: valOf("txtemployeeID"),
                     EmailAddress: valOf("txtEmployeeEmailAddress"),
                     MobileNumber: valOf("txtEmployeeMobileNumber"),
 
                     Basic: valOf("txtJobContractBasic"),
                     Transportation: valOf("txtJobContractTransportation"),
+                    Housing: valOf("txtJobContractHousing"),
                     Period: valOf("txtJobContractPeriod"),
+                    PeriodAr: valOf("txtJobContractPeriodAr"),
                     UserName: User.Name
 
-                }
+                }, country: country
             }).done(function (Response) {
                 if (JobContract.ID > 0)
                     swal({ text: "Job Contract Updated Successfully", icon: "success" });
