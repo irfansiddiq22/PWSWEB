@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PipewellserviceDB.HR
 {
-    public class JobService:DataServices
+    public class JobService : DataServices
     {
 
         public async Task<DataTable> JobOfferList()
@@ -30,9 +30,9 @@ namespace PipewellserviceDB.HR
                 return null;
             }
         }
-        public async Task<bool>DeleteJobOffer(DeleteDTO delete) 
+        public async Task<bool> DeleteJobOffer(DeleteDTO delete)
         {
-            
+
             try
             {
                 SqlParameter[] collSP = new SqlParameter[2];
@@ -52,19 +52,21 @@ namespace PipewellserviceDB.HR
 
             try
             {
-                SqlParameter[] collSP = new SqlParameter[9];
+                SqlParameter[] collSP = new SqlParameter[11];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = job.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@Name", Value = job.Name };
-                collSP[2] = new SqlParameter { ParameterName = "@ArabicName", Value = job.ArabicName };
+                collSP[2] = new SqlParameter { ParameterName = "@NameAr", Value = job.NameAr };
                 collSP[3] = new SqlParameter { ParameterName = "@CountryID", Value = job.CountryID };
                 collSP[4] = new SqlParameter { ParameterName = "@JobTitle", Value = job.JobTitle };
                 collSP[5] = new SqlParameter { ParameterName = "@Basic", Value = job.Basic };
 
                 collSP[6] = new SqlParameter { ParameterName = "@Transportation", Value = job.Transportation };
-                collSP[7] = new SqlParameter { ParameterName = "@Period", Value = job.Period };
-                collSP[8] = new SqlParameter { ParameterName = "@UserName", Value = job.UserName };
+                collSP[7] = new SqlParameter { ParameterName = "@Housing", Value = job.Housing };
+                collSP[8] = new SqlParameter { ParameterName = "@Period", Value = job.Period };
+                collSP[9] = new SqlParameter { ParameterName = "@UserName", Value = job.UserName };
+                collSP[10] = new SqlParameter { ParameterName = "@FileID", Value = job.FileID };
 
-                var result =   SqlHelper.ExecuteScalar(this.ConnectionString, "ProcAddUpdateJobOffer", CommandType.StoredProcedure, collSP);
+                var result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcAddUpdateJobOffer", CommandType.StoredProcedure, collSP);
                 return Convert.ToInt32(result);
             }
             catch (Exception e)
@@ -117,20 +119,27 @@ namespace PipewellserviceDB.HR
                     {
                         new SqlParameter { ParameterName = "@ID", Value = job.ID },
                         new SqlParameter { ParameterName = "@Name", Value = job.Name },
-                        new SqlParameter { ParameterName = "@ArabicName", Value = job.ArabicName },
+                        new SqlParameter { ParameterName = "@NameAr", Value = job.NameAr },
                         new SqlParameter { ParameterName = "@CountryID", Value = job.CountryID },
+                        new SqlParameter { ParameterName = "@CompanyRegNumber", Value = job.CompanyRegNumber },
                         new SqlParameter { ParameterName = "@JobTitle", Value = job.JobTitle },
+                        new SqlParameter { ParameterName = "@JobTitleAr", Value = job.JobTitleAr  },
                         new SqlParameter { ParameterName = "@IDNumber", Value = job.IDNumber },
                         new SqlParameter { ParameterName = "@EmailAddress", Value = job.EmailAddress },
                         new SqlParameter { ParameterName = "@MobileNumber", Value = job.MobileNumber },
                         new SqlParameter { ParameterName = "@Period", Value = job.Period },
+                        new SqlParameter { ParameterName = "@PeriodAr", Value = job.PeriodAr },
                         new SqlParameter { ParameterName = "@Basic", Value = job.Basic },
                         new SqlParameter { ParameterName = "@Transportation", Value = job.Transportation },
+                        new SqlParameter { ParameterName = "@Housing", Value = job.Housing },
                         new SqlParameter { ParameterName = "@UserName", Value = job.UserName },
+                        new SqlParameter { ParameterName = "@FileID", Value = job.FileID },
                         
-                    };
 
-                var result =   SqlHelper.ExecuteScalar (this.ConnectionString, "ProcAddUpdateJobContract", CommandType.StoredProcedure, parameters);
+
+            };
+
+                var result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcAddUpdateJobContract", CommandType.StoredProcedure, parameters);
                 return Convert.ToInt32(result);
             }
             catch (Exception e)

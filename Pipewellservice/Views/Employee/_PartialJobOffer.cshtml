@@ -49,7 +49,8 @@
                         <th>Job Title</th>
                         <th>Basic</th>
                         <th>Tranportation</th>
-                        <th>Date</th>
+                        <th>Housing</th>
+                        <th>Period</th>
                         <th>Download</th>
                         <th></th>
 
@@ -93,22 +94,28 @@
                             <input type="text" class="form-control form-control-sm" id="txtJobOfferTitle" name="JobOfferTitle">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-goup">
                             <label class="col-form-label" for="txtJobOfferBasic">Basic :</label>
                             <input type="number" class="form-control form-control-sm" id="txtJobOfferBasic" name="JobOfferBasic">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-goup">
                             <label class="col-form-label" for="txtJobOfferTransportation">Transportation</label>
-                            <input type="number" class="form-control form-control-sm" id="txtJobOfferTransportation" name="JobOfferTransportation">
+                            <input type="number" min="0" max="100" class="form-control form-control-sm" id="txtJobOfferTransportation" name="JobOfferTransportation">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-goup">
+                            <label class="col-form-label" for="txtJobOfferTransportation">Hosing</label>
+                            <input type="number" min="0" max="100" class="form-control form-control-sm" id="txtJobOfferHosing" name="JobOfferHosing">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-grup">
                             <label class="col-form-label" for="txtJobOfferPeriod">Period</label>
-                            <input type="number" class="form-control form-control-sm" id="txtJobOfferPeriod" name="JobOfferPeriod">
+                            <input type="text" maxlength="50" class="form-control form-control-sm" id="txtJobOfferPeriod" name="JobOfferPeriod">
                         </div>
                     </div>
                 </div>

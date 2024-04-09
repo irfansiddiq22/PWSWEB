@@ -50,6 +50,7 @@
     <Compile Include="Common\DataChangeLog.cs" />
     <Compile Include="Common\DataUpdateResult.cs" />
     <Compile Include="Common\DeleteDTO.cs" />
+    <Compile Include="Common\MergeField.cs" />
     <Compile Include="Common\ResultDTO.cs" />
     <Compile Include="HR\Employee\Asset.cs" />
     <Compile Include="HR\Employee\Certificate.cs" />

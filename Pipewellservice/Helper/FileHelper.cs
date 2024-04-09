@@ -71,6 +71,41 @@ namespace Pipewellservice.Helper
             }
 
         }
+        public async static Task<string> GetPath(DirectoryNames dir)
+        {
+            try
+            {
+                Constant DirectoryToSave = await AppData.Get(ParentEnums.RESOURCES, (int)dir);
+                return $"{Config.ResourcesDirectory}\\{DirectoryToSave.Name}";
+            }
+            catch(Exception e)
+            {
+                return "";
+            }
+        }
+        public async static Task<string> GetTemplateFile( DirectoryNames Dir, DocTemplates template)
+        {
+            try
+            {
+                Constant DirectoryToSave = await AppData.Get(ParentEnums.RESOURCES, (int)Dir);
+                Constant Template= await AppData.Get(ParentEnums.DocTemplates, (int)template);
+
+                string Resouces = DirectoryToSave.Name;
+
+                
+                string TemplateFile = $"{Config.ResourcesDirectory}\\{Resouces}\\{ Template.Name }";
+
+                if (System.IO.File.Exists(TemplateFile))
+                    return TemplateFile;
+                else
+                    return "";
+            }
+            catch (Exception e)
+            {
+                return "";
+            }
+
+        }
     }
 
 }

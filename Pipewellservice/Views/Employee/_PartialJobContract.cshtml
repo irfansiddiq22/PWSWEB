@@ -45,6 +45,7 @@
                         <th>Name</th>
                         <th>Name/Arabic</th>
                         <th>Nationality</th>
+                        <th>Company Reg #</th>
                         <th>Job Title</th>
                         <th>ID</th>
                         <th>Email</th>
@@ -52,7 +53,8 @@
 
                         <th>Basic</th>
                         <th>Tranportation</th>
-                        <th>Date</th>
+                        <th>Housing</th>
+                        <th>Period</th>
                         <th>Download</th>
                         <th></th>
 
@@ -91,10 +93,17 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-roup">
+                            <label class="col-form-label" for="txtemployeeName">Company Registeration Number:</label>
+                            <input class="form-control form-control-sm" id="txtCompanyRegNumber" name="CompanyRegNumber">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-roup">
                             <label class="col-form-label" for="txtemployeeName">ID:</label>
                             <input class="form-control form-control-sm" id="txtemployeeID" name="employeeID">
                         </div>
                     </div>
+
                     <div class="col-md-3">
                         <div class="form-goup">
                             <label class="col-form-label" for="txtEmployeeEmailAddress">Email Address</label>
@@ -117,21 +126,39 @@
                         </div>
                     </div>
                     <div class="col-md-3">
+                        <div class="form-grop">
+                            <label class="col-form-label" for="txtJobContractTitle">بوظيفة :</label>
+                            <input type="text" class="form-control form-control-sm" id="txtJobContractTitleArabic" name="ArabicJobTitle">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
                         <div class="form-goup">
                             <label class="col-form-label" for="txtJobContractBasic">Basic :</label>
                             <input type="number" class="form-control form-control-sm" id="txtJobContractBasic" name="JobContractBasic">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
+                        <div class="form-goup">
+                            <label class="col-form-label" for="txtJobContractTransportation">Housing</label>
+                            <input type="number" class="form-control form-control-sm" id="txtJobContractHousing" name="JobContractHousing">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
                         <div class="form-goup">
                             <label class="col-form-label" for="txtJobContractTransportation">Transportation</label>
                             <input type="number" class="form-control form-control-sm" id="txtJobContractTransportation" name="JobContractTransportation">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-grup">
                             <label class="col-form-label" for="txtJobContractPeriod">Period</label>
-                            <input type="number" class="form-control form-control-sm" id="txtJobContractPeriod" name="JobContractPeriod">
+                            <input type="text" class="form-control form-control-sm" id="txtJobContractPeriod" name="JobContractPeriod">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-grup">
+                            <label class="col-form-label" for="txtJobContractPeriod">فترة</label>
+                            <input type="text" class="form-control form-control-sm" id="txtJobContractPeriodAr" name="JobContractPeriodAr">
                         </div>
                     </div>
                 </div>

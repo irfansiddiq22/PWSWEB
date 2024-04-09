@@ -43,7 +43,7 @@ function InitilzeJobOffer() {
     JobOffer = {
         
         Name: '',
-        NameArabic: '',
+        NameAr: '',
         CountryID: 0,
         JobTitle: '',
         Basic: 0,
@@ -83,7 +83,7 @@ function FillOfferTable() {
         FilteredData = FilteredData.filter(x => x.Name != null && (x.Name.search(valOf("txtJobOfferNameFilter")) > -1));
 
     if (valOf("txtJobOfferArabicNameFilter") != "")
-        FilteredData = FilteredData.filter(x => x.ArabicName != null && x.ArabicName.toUpperCase().indexOf(valOf("txtJobOfferArabicNameFilter").toUpperCase()) > -1);
+        FilteredData = FilteredData.filter(x => x.NameAr != null && x.NameAr.toUpperCase().indexOf(valOf("txtJobOfferArabicNameFilter").toUpperCase()) > -1);
 
     if (valOf("txtJobOfferTitleFilter") != "")
         FilteredData = FilteredData.filter(x => x.JobTitle != null && x.JobTitle.toUpperCase().indexOf(valOf("txtJobOfferTitleFilter").toUpperCase()) > -1);
@@ -103,15 +103,18 @@ function FillOfferTable() {
 
                 tr.append($('<td>').html(e.ID));
                 tr.append($('<td>').html(e.Name));
-                tr.append($('<td>').html(e.ArabicName));
+                tr.append($('<td>').html(e.NameAr));
                 tr.append($('<td>').html(e.Nationality));
 
                 tr.append($('<td>').html(e.JobTitle));
                 tr.append($('<td>').html(e.Basic));
-                tr.append($('<td>').html(e.Transportation));
+                tr.append($('<td>').html(e.Transportation == 0 ? "Will be provided by the Company" : e.Transportation + "% of the Basic"));
+                tr.append($('<td>').html(e.Housing == 0 ? "Will be provided by the Company" : e.Housing + "% of the Basic"));
                 tr.append($('<td>').html(e.Period));
+                
+                var link = $('<a>').attr("href", "/Job/DownloadOfferLetter?FileID=" + e.FileID).text(e.FileID);
 
-                tr.append($('<td>'));
+                tr.append($('<td>').append(link));
                 tr.append($('<td>').html('<a href="javascript:void(0)" onclick="EditJobOffer(\'' + e.ID + '\')"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)"onclick="DeleteJobOffer(\'' + e.id + '\',this)"><i class="fa fa-trash"></i></a>'));
 
                 $("#tblJobOffers").append(tr);
@@ -128,11 +131,12 @@ function EditJobOffer(ID) {
     JobOffer = JobOfferList.find(x => x.ID == ID);
 
     SetvalOf("txtemployeeName", JobOffer.Name);
-    SetvalOf("txtemployeeNameArabic", JobOffer.ArabicName);
+    SetvalOf("txtemployeeNameArabic", JobOffer.NameAr);
     SetvalOf("ddJobOfferCountries", JobOffer.CountryID).trigger("change");
     SetvalOf("txtJobOfferTitle", JobOffer.JobTitle);
     SetvalOf("txtJobOfferBasic", JobOffer.Basic);
     SetvalOf("txtJobOfferTransportation", JobOffer.Transportation);
+    SetvalOf("txtJobOfferHosing", JobOffer.Housing);
     SetvalOf("txtJobOfferPeriod", JobOffer.Period);
     $("#dvEditJobOffer").removeClass("d-none")
     $("#dvJobOfferList").addClass("d-none")
@@ -148,6 +152,7 @@ function SaveJobOffer() {
             JobOfferTitle: "required",
             JobOfferBasic: "required",
             JobOfferTransportation: "required",
+            JobOfferHosing:"required",
             JobOfferPeriod: "required"
 
         },
@@ -157,7 +162,8 @@ function SaveJobOffer() {
             JobOfferCountries: { min: "Please select nationality"},
             JobOfferTitle: "Please enter job title",
             JobOfferBasic: "Please enter basic salary",
-            JobOfferTransportation: "please enter transportation ",
+            JobOfferTransportation: "Please enter transportation ",
+            JobOfferHosing:"Please enter housing",
             JobOfferPeriod: "Please enter job period"
 
         },
@@ -170,8 +176,8 @@ function SaveJobOffer() {
                 if ($.trim(JobOffer.Name) != $.trim(valOf("txtemployeeName"))) {
                     DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: JobOffer.Name, New: valOf("txtemployeeName") } });
                 }
-                if ($.trim(JobOffer.ArabicName) != $.trim(valOf("txtemployeeNameArabic"))) {
-                    DataChangeLog.DataUpdated.push({ Field: "ArabicName", Data: { OLD: JobOffer.ArabicName, New: valOf("txtemployeeNameArabic") } });
+                if ($.trim(JobOffer.NameAr) != $.trim(valOf("txtemployeeNameArabic"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "NameAr", Data: { OLD: JobOffer.NameAr, New: valOf("txtemployeeNameArabic") } });
                 }
                 if (JobOffer.CountryID != valOf("ddJobOfferCountries")) {
                     DataChangeLog.DataUpdated.push({ Field: "Nationality", Data: { OLD: JobOffer.CountryID, New: valOf("ddJobOfferCountries") } });
@@ -187,6 +193,10 @@ function SaveJobOffer() {
                     DataChangeLog.DataUpdated.push({ Field: "Transportation", Data: { OLD: JobOffer.Transportation, New: valOf("txtJobOfferTransportation") } });
                 }
 
+                if ($.trim(JobOffer.Housing) != $.trim(valOf("txtJobOfferHosing"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "Housing", Data: { OLD: JobOffer.Housing, New: valOf("txtJobOfferHosing") } });
+                }
+                
                 if ($.trim(JobOffer.Transportation) != $.trim(valOf("txtJobOfferPeriod"))) {
                     DataChangeLog.DataUpdated.push({ Field: "Period", Data: { OLD: JobOffer.Period, New: valOf("txtJobOfferPeriod") } });
                 }
@@ -199,11 +209,13 @@ function SaveJobOffer() {
                 job: {
                     ID: JobOffer.ID,
                     Name: valOf("txtemployeeName"),
-                    ArabicName: valOf("txtemployeeNameArabic"),
+                    NameAr: valOf("txtemployeeNameArabic"),
+                    Nationality: textOf("ddJobOfferCountries"),
                     CountryID: valOf("ddJobOfferCountries"),
                     JobTitle: valOf("txtJobOfferTitle"),
                     Basic: valOf("txtJobOfferBasic"),
                     Transportation: valOf("txtJobOfferTransportation"),
+                    Housing: valOf("txtJobOfferHosing"),
                     Period: valOf("txtJobOfferPeriod"),
                     UserName: User.Name
 
