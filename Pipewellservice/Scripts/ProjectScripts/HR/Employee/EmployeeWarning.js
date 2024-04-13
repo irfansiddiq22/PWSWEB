@@ -76,9 +76,8 @@ function BindWarnings() {
         $.each(Response, function (i, r) {
             var tr = $('<tr>')
             tr.append($('<td>').text(r.ID))
-            tr.append($('<td>').append(r.EmployeeID).append("<br>").append("Name:" + r.EmployeeName).append("<br>Division: " + r.Division).append("<br>Position: " + r.Position))
-            tr.append($('<td>').text(moment(r.WarningDate).format("DD/MM/YYYY")))
-            tr.append($('<td>').text(r.WarningTypeName))
+            tr.append($('<td>').append(r.EmployeeID).append("<br>").append("" + r.EmployeeName).append("<br><hr>Division:<br>" + r.Division).append("<br><hr>Position:<br> " + r.Position))
+            tr.append($('<td>').append("<span class='badge bg-" + (r.WarningType == 1 ? "info" : (r.WarningType==2 ? "warning"  : "danger"))+"'>" + r.WarningTypeName +"</span> " +moment(r.WarningDate).format("DD/MM/YYYY")))
             tr.append($('<td>').append("Written:<label class='switch float-end'><input type='checkbox' " + (r.Written ?"checked" :"" )+ "><div class='slider round'></div></label><br>")
                 .append("Tardiness: <label class='switch float-end'><input type='checkbox'  " + (r.Tardiness ? "checked" : "") + "><div class='slider round'></div></label><br>")
                 .append("Absenteeism: <label class='switch float-end'><input type='checkbox'  " + (r.Absenteeism ? "checked" : "") + "><div class='slider round'></div></label><br> ")
@@ -87,16 +86,17 @@ function BindWarnings() {
                 .append("Policies: <label class='switch float-end'><input type='checkbox'  " + (r.Policies ? "checked" : "") + "><div class='slider round'></div></label><br> ")
                 .append("Rudeness: <label class='switch float-end'><input type='checkbox' " + (r.Rudeness ? "checked" : "") + "><div class='slider round'></div></label><br> ")
                 .append("Other: <label class='switch float-end'><input type='checkbox' " + (r.Other ? "checked" : "") + "><div class='slider round'></div></labels><br> ")
+                .append("Other: +r.OtherDetail")
 
             )
-            tr.append($('<td>').text(r.OtherDetail))
-            tr.append($('<td>').text(r.Infraction))
-            tr.append($('<td>').text(r.Improvement))
-            tr.append($('<td>').text(r.Consequences))
+            //tr.append($('<td>').text(r.OtherDetail))
+            tr.append($('<td>').append("<span class='badge bg-warning'>Infraction:</span> " + r.Infraction + "<br><br><span class='badge bg-primary'> Improvement:</span>" + r.Improvement + "<br><br><span class='badge bg-danger'>Consequences:</span>" + r.Consequences))
+            //tr.append($('<td>').text(r.Improvement))
+            //tr.append($('<td>').text(r.Consequences))
 
-            tr.append($('<td>').append(r.ApprovedBy1 > 0 ? r.ApprovedBy1Name + (r.Approved1 != 3 ? "<br> Date: " + moment(r.ApprovedDate1).format("MM/DD/YYYYY") + "<br> Approval :" + r.Approved1Name : "") : ""))
-            tr.append($('<td>').append(r.ApprovedBy2 > 0 ? r.ApprovedBy2Name + (r.Approved2 != 3 ? "<br> Date: " + moment(r.ApprovedDate2).format("MM/DD/YYYYY") + "<br> Approval :" + r.Approved2Name : "") : ""))
-            tr.append($('<td>').append(r.ApprovedBy3 > 0 ? r.ApprovedBy3Name + (r.Approved3 != 3 ? "<br> Date: " + moment(r.ApprovedDate3).format("MM/DD/YYYYY") + "<br> Approval :" + r.Approved3Name : "") : ""))
+            tr.append($('<td>').append(r.ApprovedBy1 > 0 ? r.ApprovedBy1Name + (r.Approved1 != 3 ? "<br> Date: " + moment(r.ApprovedDate1).format("MM/DD/YYYYY") + "<br> Status :" + r.Approved1Name : "") : ""))
+            tr.append($('<td>').append(r.ApprovedBy2 > 0 ? r.ApprovedBy2Name + (r.Approved2 != 3 ? "<br> Date: " + moment(r.ApprovedDate2).format("MM/DD/YYYYY") + "<br> Status :" + r.Approved2Name : "") : ""))
+            tr.append($('<td>').append(r.ApprovedBy3 > 0 ? r.ApprovedBy3Name + (r.Approved3 != 3 ? "<br> Date: " + moment(r.ApprovedDate3).format("MM/DD/YYYYY") + "<br> Status :" + r.Approved3Name : "") : ""))
             tr.append($('<td>').append(r.PreparedBy))
 
             var Icons = $('<div class="icons">');
