@@ -270,3 +270,6 @@ __pycache__/
 /Pipewellservice/Web.config
 /Pipewellservice/Pipewellservice.csproj
 /Pipewellservice/Web.config
+/Pipewellservice/Web.config
+/Pipewellservice/Pipewellservice.csproj
+/.gitignore
