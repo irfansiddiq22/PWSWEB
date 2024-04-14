@@ -363,6 +363,7 @@
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeID.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Certificate.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Contract.js" />
+    <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeInquiry.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeWarning.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\JobContract.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\JobOffer.js" />

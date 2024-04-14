@@ -367,7 +367,7 @@ function UploadEmployeePicture(file, EmployeeID) {
     fileData.append("EmployeeID", EmployeeID);
 
     $.ajax({
-        url: '/EmployeeAPI/UpdateEmployeePicure',
+        url: '/EmployeeAPI/UpdateEmployeePicture',
         type: "POST",
         contentType: false,
         processData: false,

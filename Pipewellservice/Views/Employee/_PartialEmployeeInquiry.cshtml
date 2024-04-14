@@ -1,17 +1,17 @@
 ﻿
 <div class="border p-2">
-    <div id="dvClearanceList">
+    <div id="dvInquiryList">
         <div class="p-3 border my-2">
             <div class="row">
 
                 <div class="form-group col-md-3 row">
                     <label class="col-md-2 col-form-label p-0"> Employee:</label>
                     <div class="col">
-                        <select class="js-example-basic-single js-states form-control" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                        <select class="form-select form-select-sm" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
                     </div>
                 </div>
                 <div class="form-group col-md-2">
-                    <button class="btn btn-sm btn-primary" onclick="NewClearance()">Add Clearance </button>
+                    <button class="btn btn-sm btn-primary" onclick="NewInquiry()">Add Requesst </button>
                 </div>
             </div>
         </div>
@@ -19,76 +19,106 @@
             <thead class="blue">
                 <tr>
                     <th>ID</th>
-                    <th>EmployeeID</th>
+                    <th>Employee </th>
 
-                    <th>Contact</th>
-                    <th>HandOver</th>
-                    <th>Last Working Date</th>
-                    <th>Clearance Date</th>
-                    <th>Prepared By</th>
-                    <th>Employee Name</th>
                     <th>Department Name</th>
                     <th>Position</th>
                     <th>Nationality</th>
+                    <th>Request Date</th>
+                    <th>Remarks</th>
+                    <th>Prepared by</th>
+                    <th>Personal</th>
+                    <th>General</th>
+                    <th>Loan</th>
+
                     <th></th>
                 </tr>
             </thead>
-            <tbody id="tblEmployeeClearanceList"></tbody>
+            <tbody id="tblEmployeeInQuiryList"></tbody>
         </table>
+        <div id="dvEmployeeInquiryPaging"></div>
     </div>
-    <div id="dvEditClearance">
-        <form id="frmClearance">
-            <div class="border">
-                <div class="blue p-1"><h6>Employee Inquiry</h6></div>
-                <div class="p-4">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="employeeName">Employee Name:</label>
-                                <select class="form-select" id="employeeName" name="employeeName"></select>
+    <div id="dvEditInquiry" class="d-none">
+        <form id="frmInquiry">
+            <div class=" container">
+                <div class="border">
+                    <div class="blue p-1"><h6>Employee Inquiry</h6></div>
+                    <div class="p-4">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="employeeName">Employee Name:</label>
+                                    <select class="form-select" id="ddEmployeeName" name="EmployeeName"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="columnDate">Date:</label>
+                                    <input type="text" class="form-control form-control-sm datepicker" id="txtInquiryDate" name="InquiryDate" required>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="columnDate">Prepared by:</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtInquiryPreparedBy" name="PreparedBy" readonly>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="columnDate">Date:</label>
-                                <input type="text" class="form-control" id="columnDate" name="columnDate">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ddSupervisorApproval1">Approval 1:</label>
+                                    <select class="form-select supervisor" id="ddSupervisorApproval1" name="SupervisorApproval1"></select>
+                                </div><div class="form-group">
+                                    <label for="ddSupervisorApproval2">Approval 2:</label>
+                                    <select class="form-select supervisor" id="ddSupervisorApproval2" name="SupervisorApproval2"></select>
+                                </div><div class="form-group">
+                                    <label for="ddSupervisorApproval3">Approval 3:</label>
+                                    <select class="form-select supervisor" id="ddSupervisorApproval3" name="SupervisorApproval3"></select>
+                                </div><div class="form-group">
+                                    <label for="ddSupervisorApproval4">Approval 4:</label>
+                                    <select class="form-select supervisor" id="ddSupervisorApproval4" name="SupervisorApproval4"></select>
+                                </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="remarks">Remarks:</label>
+                                    <textarea class="form-control form-control-sm" rows="10" id="txtInquiryRemarks" name="InquiryRemarks"></textarea>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="chkInquiryPersonal" name="InquiryPersonal">
+                                    <label class="form-check-label" for="chkInquiryPersonal">Personal</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="chkInquiryGeneral" name="InquiryGeneral">
+                                    <label class="form-check-label" for="chkInquiryGeneral">General</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="chkInquiryLoan" name="InquiryLoan">
+                                    <label class="form-check-label" for="chkInquiryLoan">Loan</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-2">
+                            
                         </div>
 
+                        <div class="my-3">
+                            
+                            <label class="custom-file-upload btn btn-primary">
+                                <input type="file" id="InquiryFile" />
+                                <i class="fa fa-cloud-upload"></i> Upload Scanned Sheet
+                            </label>
+                            <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeInquiry()">Save</button>
+                            <button class="btn btn-danger" type="button" onclick="ResetNav()">Cancel</button>
+                            <button class="btn btn-danger" type="reset">Clear</button>
+
+
+
+                        </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="approval1">Approval 1:</label>
-                                <select class="form-select" id="approval1" name="approval1"></select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="remarks">Remarks:</label>
-                                <textarea class="form-control" id="remarks" name="remarks"></textarea>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="personalCheckbox" name="personalCheckbox">
-                                <label class="form-check-label" for="personalCheckbox">Personal</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="generalLoanCheckbox" name="generalLoanCheckbox">
-                                <label class="form-check-label" for="generalLoanCheckbox">General Loan</label>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="my-3">
-
-                        <button class="btn btn-primary ms-5" type="submit" onclick="swal('to do')">Save</button>
-                        <button class="btn btn-danger" type="reset" onclick="swal('to do')">Clear</button>
-
-
-                    </div>
                 </div>
-
-
 
 
 
@@ -97,4 +127,7 @@
     </div>
 </div>
 @section Scripts{
+    @Scripts.Render("~/bundles/pagination")
+    @Scripts.Render("~/lib/hr/employeeinquiry")
+    @Styles.Render("~/bundles/paginationcss")
 }

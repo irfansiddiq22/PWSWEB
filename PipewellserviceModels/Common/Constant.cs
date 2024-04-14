@@ -121,6 +121,7 @@ namespace PipewellserviceModels.Common
         EmployeeJobOffer=9,
         EmployeeJobContract=10,    
         Templates=11,
+        EmployeeInquiry = 12,
 
     }
     public enum ApprovalTypes
