@@ -11,16 +11,16 @@ namespace Pipewellservice.Helper
     public class BaseController : Controller
     {
         // GET: Base
-        //protected override void OnActionExecuting(
-        //    ActionExecutingContext filterContext)
-        //{
-        //    base.OnActionExecuting(filterContext);
-        //    var cultureInfo = CultureInfo.GetCultureInfo("ar-SA");
-        //    Thread.CurrentThread.CurrentCulture = cultureInfo;
-        //    Thread.CurrentThread.CurrentUICulture = cultureInfo;
-        //    CultureInfo.CurrentCulture = cultureInfo;
-            
-        //}
+        protected override void OnActionExecuting(
+            ActionExecutingContext filterContext)
+        {
+            base.OnActionExecuting(filterContext);
+            var cultureInfo = CultureInfo.GetCultureInfo("ar-SA");
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
+            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            CultureInfo.CurrentCulture = cultureInfo;
+
+        }
 
     }
     public class DateTimeBinder : IModelBinder
@@ -32,7 +32,7 @@ namespace Pipewellservice.Helper
             var value = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
             try
             {
-                DateTime date = DateTime.ParseExact(value.AttemptedValue, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime date = DateTime.ParseExact(value.AttemptedValue.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 return date;
             }catch(Exception e)
             {
