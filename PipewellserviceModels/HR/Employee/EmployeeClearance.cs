@@ -64,4 +64,11 @@ namespace PipewellserviceModels.HR.Employee
         public int AssetID { get; set; }
     }
 
+    public class InquiryParam
+    {
+        public int EmployeeID { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
+        
+    }
 }

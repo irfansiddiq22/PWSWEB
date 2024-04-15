@@ -181,6 +181,32 @@ namespace PipewellserviceJson.HR.Employee
         {
             return await service.UpdateEmployeeClearance(dTO);
         }
+        public async Task<EmployeeInquiryListView> EmployeeInquiryList(EmployeeInquiryParam param)
+        {
+            var db = await service.EmployeeInquiryList(param);
+            EmployeeInquiryListView model = new EmployeeInquiryListView();
+            model.Inquiry = await JsonHelper.Convert<List<EmployeeInquiry>, DataTable>(db.Inquiry);
+            model.TotalRecords = 0;
+            if (model.Inquiry.Count > 0)
+                model.TotalRecords = model.Inquiry[0].TotalRecords;
+            return model;
+        }
+        public async Task<EmployeeInquiry> EmployeeInquiryDetail(int ID)
+        {
+            var db = await service.EmployeeInquiryDetail(ID);
+
+            EmployeeInquiry inquiry = (await JsonHelper.Convert<List<EmployeeInquiry>, DataTable>(db.Inquiry)).FirstOrDefault();
+            inquiry.Approvals= await JsonHelper.Convert<List<EmployeeApproval>, DataTable>(db.Approvals);
+            return inquiry;
+        }
+        public async Task<int> UpdateEmployeeInquiry(EmployeeInquiry inquiry)
+        {
+            return await service.UpdateEmployeeInquiry(inquiry);
+        }
+        public async Task<bool> UpdateEmployeeInquiryFile(int ID,string FileName,string FileID)
+        {
+            return await service.UpdateEmployeeInquiryFile(ID,FileName,FileID);
+        }
 
         
         public async Task<List<EmployeeIDView>> WarningSupervisors()

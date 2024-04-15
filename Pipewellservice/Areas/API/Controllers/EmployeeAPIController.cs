@@ -124,7 +124,7 @@ namespace Pipewellservice.Areas.API.Controllers
             if (Request.Files.Count > 0)
             {
                 HttpPostedFileBase file = Request.Files[0];
-                await FileHelper.SaveFile(Request.Files[0], ID,asset.EmployeeID, DirectoryNames.EmployeeAssets);
+                await FileHelper.SaveFile(Request.Files[0], ID, asset.EmployeeID, DirectoryNames.EmployeeAssets);
             }
 
 
@@ -182,7 +182,7 @@ namespace Pipewellservice.Areas.API.Controllers
         }
 
         ///////////////////////////////////////////
-        public async Task<FileResult> DownloadIDFile(int EmployeeID,  string FileName, string FileID,string Type)
+        public async Task<FileResult> DownloadIDFile(int EmployeeID, string FileName, string FileID, string Type)
         {
             return File(await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.EmployeeIDs, Type), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
         }
@@ -220,7 +220,7 @@ namespace Pipewellservice.Areas.API.Controllers
             if (Request.Files.Count > 0)
             {
                 HttpPostedFileBase file = Request.Files[0];
-                await FileHelper.SaveFile(Request.Files[0], ID, Idfile.EmployeeID, DirectoryNames.EmployeeIDs,Idfile.Description);
+                await FileHelper.SaveFile(Request.Files[0], ID, Idfile.EmployeeID, DirectoryNames.EmployeeIDs, Idfile.Description);
             }
 
             return new JsonResult
@@ -311,7 +311,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        
+
         public async Task<JsonResult> UpdateEmployeeFamily(EmployeeFamily family)
         {
 
@@ -329,7 +329,7 @@ namespace Pipewellservice.Areas.API.Controllers
             if (Request.Files.Count > 0)
             {
                 HttpPostedFileBase file = Request.Files[0];
-                await FileHelper.SaveFile(Request.Files[0], ID,family.EmployeeID, DirectoryNames.EmployeeFamily);
+                await FileHelper.SaveFile(Request.Files[0], ID, family.EmployeeID, DirectoryNames.EmployeeFamily);
             }
 
             return new JsonResult
@@ -357,8 +357,8 @@ namespace Pipewellservice.Areas.API.Controllers
             {
                 Data = await json.EmployeeList(),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet,
-                MaxJsonLength=int.MaxValue
-                
+                MaxJsonLength = int.MaxValue
+
             };
         }
         public async Task<JsonResult> EmployeeDetail(int EmployeeID)
@@ -393,16 +393,16 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        public async Task<FileResult> EmployeePicture(int EmployeeID,string FileID, string FileName)
+        public async Task<FileResult> EmployeePicture(int EmployeeID, string FileID, string FileName)
         {
-            string FilePath = await FileHelper.GetFile(FileID, EmployeeID,DirectoryNames.EmployeePictures); ;
+            string FilePath = await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.EmployeePictures); ;
             if (FilePath != "")
                 return File(FilePath, System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
             else
                 return null;
         }
 
-        public async Task<JsonResult> UpdateEmployeePicure(int EmployeeID)
+        public async Task<JsonResult> UpdateEmployeePicture(int EmployeeID)
         {
 
 
@@ -410,7 +410,7 @@ namespace Pipewellservice.Areas.API.Controllers
             {
                 HttpPostedFileBase file = Request.Files[0];
                 bool result = await FileHelper.SaveFile(Request.Files[0], EmployeeID, EmployeeID, DirectoryNames.EmployeePictures);
-                string FileID =$"{EmployeeID}{Path.GetExtension(file.FileName)}";
+                string FileID = $"{EmployeeID}{Path.GetExtension(file.FileName)}";
 
                 if (result)
                 {
@@ -430,7 +430,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 Data = new ResultDTO() { ID = EmployeeID, Status = false, Message = "No file to upload" },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
-            
+
 
         }
 
@@ -462,7 +462,7 @@ namespace Pipewellservice.Areas.API.Controllers
             if (Request.Files.Count > 0)
             {
                 HttpPostedFileBase file = Request.Files[0];
-                await FileHelper.SaveFile(Request.Files[0] ,ID,warning.EmployeeID, DirectoryNames.EmployeeWarnings);
+                await FileHelper.SaveFile(Request.Files[0], ID, warning.EmployeeID, DirectoryNames.EmployeeWarnings);
             }
 
             return new JsonResult
@@ -487,14 +487,70 @@ namespace Pipewellservice.Areas.API.Controllers
         }
         public async Task<JsonResult> UpdateEmployeeClearance(EmployeeClearance clearance)
         {
-
             int ID = await json.UpdateEmployeeClearance(clearance);
+            return new JsonResult
+            {
+                Data = ID,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
 
+        }
+
+        /// 
+
+        public async Task<JsonResult> EmployeeInquiryList(EmployeeInquiryParam param)
+        {
+            return new JsonResult
+            {
+                Data = await json.EmployeeInquiryList(param),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public async Task<JsonResult> EmployeeInquiryDetail(int ID)
+        {
+            return new JsonResult
+            {
+                Data = await json.EmployeeInquiryDetail(ID),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public async Task<JsonResult> UpdateEmployeeInquiry(EmployeeInquiry inquiry)
+        {
+            int ID = await json.UpdateEmployeeInquiry(inquiry);
+            return new JsonResult
+            {
+                Data = ID,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        
+
+        public async Task<JsonResult> UpdateEmployeeInquiryFile(int EmployeeID,int ID)
+        {
+
+
+            if (Request.Files.Count > 0)
+            {
+                HttpPostedFileBase file = Request.Files[0];
+                bool result = await FileHelper.SaveFile(Request.Files[0], ID, EmployeeID, DirectoryNames.EmployeeInquiry );
+                string FileID = $"{ID}{Path.GetExtension(file.FileName)}";
+
+                if (result)
+                {
+                    var Update = await json.UpdateEmployeeInquiryFile(EmployeeID, file.FileName, FileID);
+
+                    return new JsonResult
+                    {
+                        Data = Update,
+                        JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                    };
+                }
+            }
 
 
             return new JsonResult
             {
-                Data = ID,
+                Data = new ResultDTO() { ID = EmployeeID, Status = false, Message = "No file to upload" },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
 

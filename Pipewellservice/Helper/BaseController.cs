@@ -11,7 +11,7 @@ namespace Pipewellservice.Helper
     public class BaseController : Controller
     {
         // GET: Base
-        protected override void OnActionExecuting(
+     /*   protected override void OnActionExecuting(
             ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
@@ -20,7 +20,7 @@ namespace Pipewellservice.Helper
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
             CultureInfo.CurrentCulture = cultureInfo;
 
-        }
+        }*/
 
     }
     public class DateTimeBinder : IModelBinder

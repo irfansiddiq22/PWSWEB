@@ -13,7 +13,8 @@
     EmployeeClearance: 12,
     EmployeeVacation: 13,
     JobOffers:14,
-    JobContracts:15
+    JobContracts: 15,
+    EmployeeInquiry: 16,
 }
 var DataChangeLog = {
     Form: 0,
@@ -32,6 +33,10 @@ function ResetChangeLog(Form) {
 var Sort = {
     Field: 'ID',
     Dir:'ASC'
+}
+var pageSize = localStorage.getItem("PageLength");
+if (pageSize == "" || pageSize == null) {
+    pageSize = 10;
 }
 $.validator.setDefaults({
     highlight: function (element) {
@@ -123,6 +128,24 @@ function DownloadFile(Url,FileName) {
 
     };
     req.send();
+}
+function UploadFile(Url, file, Data,CallBack) {
+    var fileData = new FormData();
+    fileData.append(file.name, file);
+    fileData.append("EmployeeID", Data.EmployeeID);
+    fileData.append("ID", Data.ID);
+    $.ajax({
+        url: Url,
+        type: "POST",
+        contentType: false,
+        processData: false,
+        data: fileData,
+        success: function (Response) {
+            CallBack(1,Response)
+        }, error: function (Response) {
+            CallBack(0, Response)
+        }
+    });
 }
 
 function FillIDTypeList(List) {
