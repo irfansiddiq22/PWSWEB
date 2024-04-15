@@ -2,18 +2,63 @@
 <div class="border p-2">
     <div id="dvInquiryList">
         <div class="p-3 border my-2">
+            
             <div class="row">
 
                 <div class="form-group col-md-3 row">
                     <label class="col-md-2 col-form-label p-0"> Employee:</label>
                     <div class="col">
-                        <select class="form-select form-select-sm" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                        <select class="form-select" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-2 row">
+                    <label class="col-md-auto col-form-label p-0"> Date Range:</label>
+                    <div class="col position-relative">
+                        <input type="text" name="ddlInquiryDataRange" id="ddlInquiryDataRange" class="form-control form-control-sm daterangepicker" autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group col-md-auto row">
+
+                    <label class="col-md-auto col-form-label p-0"> Personal:</label>
+                    <div class="col">
+                        <select class="form-select" id="ddPersonalInquiry">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                            <option value="2" selected> Personal Inquiry</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-auto row">
+                    <label class="col-md-auto col-form-label p-0"> General:</label>
+                    <div class="col">
+                        <select class="form-select" id="ddGeneralInquiry">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                            <option value="2" selected> General Inquiry</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-auto row">
+                    <label class="col-md-auto col-form-label p-0"> Loan:</label>
+                    <div class="col">
+                        <select class="form-select" id="ddLoanInquiry">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                            <option value="2" selected> Loan Inquiry</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group col-md-2">
-                    <button class="btn btn-sm btn-primary" onclick="NewInquiry()">Add Requesst </button>
+                    <button class="btn btn-sm btn-primary" onclick="BindInquiryList()">Search </button>
+
+                    <button class="btn btn-sm btn-success" onclick="NewInquiry()">Add Request </button>
                 </div>
             </div>
+
+
+                
+            
         </div>
         <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
             <thead class="blue">

@@ -263,3 +263,7 @@ __pycache__/
 */web.config
 *.zip
 *.config
+/Pipewellservice/Reports/OrderDetailsReport.rdlx
+/Pipewellservice/Reports/OrderReport.resx
+/Pipewellservice/Reports/OrderReport.Designer.cs
+/Pipewellservice/Reports/OrderReport.cs

@@ -26,7 +26,9 @@ namespace PipewellserviceModels.HR.Employee
         public DateTime WarningDate { get; set; }
         public WarningTypes WarningType { get; set; }
         public string WarningTypeName { get { return WarningType.ToString(); } }
-
+        public bool FirstWarning { get { return WarningType == WarningTypes.FirstWarning;  } }
+        public bool SecondWarning { get { return WarningType == WarningTypes.SecondWarning ; } }
+        public bool ThirdWarning { get { return WarningType == WarningTypes.ThirdWarning ; } }
         public bool Written { get; set; }
         public bool Tardiness { get; set; }
         public bool Absenteeism { get; set; }

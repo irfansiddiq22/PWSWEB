@@ -572,6 +572,22 @@ namespace PipewellserviceDB.HR.Employee
             }
 
         }
+        public async Task<DataTable> EmployeeWarningDetail(int ID)
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcWarningDetail", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
         public async Task<int> UpdateEmployeeWarning(EmployeeWarning dTO)
         {
             try

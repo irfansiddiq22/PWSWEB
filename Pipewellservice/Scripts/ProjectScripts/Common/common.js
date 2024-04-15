@@ -38,6 +38,7 @@ var pageSize = localStorage.getItem("PageLength");
 if (pageSize == "" || pageSize == null) {
     pageSize = 10;
 }
+var pageNumber = 1;
 $.validator.setDefaults({
     highlight: function (element) {
         if ($(element).closest('.form-group').length) 

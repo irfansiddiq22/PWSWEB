@@ -57,7 +57,8 @@ function InitilzeJobContract() {
         Basic: 0,
         Transportation: 0,
         Period: 0,
-        UserName: User.Name
+        UserName: User.Name,
+        StartDate:'',
     }
     ResetChangeLog(PAGES.JobContracts)
 
@@ -157,6 +158,7 @@ function EditJobContract(ID) {
 
     SetvalOf("txtJobContractTitle", JobContract.JobTitle);
     SetvalOf("txtJobContractTitleArabic", JobContract.JobTitleAr);
+    SetvalOf("txtJobContractStartDate", JobContract.StartDate == null ? "" : moment(JobContract.StartDate, "DD/MM/YYYY"));
 
     SetvalOf("txtJobContractBasic", JobContract.Basic);
     SetvalOf("txtJobContractTransportation", JobContract.Transportation);
@@ -185,7 +187,8 @@ function SaveJobContract() {
             JobContractTransportation: "required",
             JobContractHousing:"required",
             JobContractPeriod: "required",
-            JobContractPeriodAr:"required"
+            JobContractPeriodAr: "required",
+            JobContractStartDate:"required"
 
         },
         messages: {
@@ -202,7 +205,8 @@ function SaveJobContract() {
             JobContractTransportation: "Please enter transportation ",
             JobContractHousing: "Please enter housing ",
             JobContractPeriod: "Please enter job period",
-            JobContractPeriodAr: "Please enter job period"
+            JobContractPeriodAr: "Please enter job period",
+            JobContractStartDate:"Please enter job start date"
 
         },
         submitHandler: function (form) {
@@ -244,6 +248,10 @@ function SaveJobContract() {
                 }
 
 
+                if (JobContract.StartDate == null ? "" : moment(JobContract.StartDate, "DD/MM/YYYY") != $.trim(valOf("txtJobContractStartDate"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "StartDate", Data: { OLD: JobContract.StartDate, New: valOf("txtJobContractStartDate") } });
+                }
+
                 if ($.trim(JobContract.Basic) != $.trim(valOf("txtJobContractBasic"))) {
                     DataChangeLog.DataUpdated.push({ Field: "Basic", Data: { OLD: JobContract.Basic, New: valOf("txtJobContractBasic") } });
                 }
@@ -282,7 +290,7 @@ function SaveJobContract() {
                     IDNumber: valOf("txtemployeeID"),
                     EmailAddress: valOf("txtEmployeeEmailAddress"),
                     MobileNumber: valOf("txtEmployeeMobileNumber"),
-
+                    StartDate: valOf("txtJobContractStartDate"),
                     Basic: valOf("txtJobContractBasic"),
                     Transportation: valOf("txtJobContractTransportation"),
                     Housing: valOf("txtJobContractHousing"),
