@@ -6,7 +6,7 @@ function _Init() {
     SetvalOf("txtInquiryPreparedBy", User.Name);
     $("#dvEditClearance").hide();
     $("#dvClearanceList").show();
-
+    pageNumber =1
     BindUsers();
     BindInquiryList();
 }
@@ -71,14 +71,23 @@ function BindUsers() {
 
 }
 
-function BindInquiryList() {
-    $("#tblEmployeeClearanceList").empty();
-    Inquiry = { ID: 0, Approvals: [], Assets: [] };
+function BindInquiryList(PageNumber = 1) {
+    pageNumber = PageNumber;
+    $("#tblEmployeeInQuiryList").empty();
+
+    var StartDate="", EndDate="";
+    if (valOf("ddlInquiryDataRange") != "") {
+        StartDate = $.trim(valOf("ddlInquiryDataRange").split("-")[0]);
+        EndDate = $.trim(valOf("ddlInquiryDataRange").split("-")[1]);
+    }
+
+    Inquiry = { ID: 0, Approvals: [] };
     ResetChangeLog(PAGES.EmployeeInquiry);
 
     $('#dvEmployeeInquiryPaging').pagination({
         dataSource: "/EmployeeAPI/EmployeeInquiryList",
         pageSize: pageSize,
+        pageNumber: pageNumber,
         showGoInput: true,
         showGoButton: true,
         locator: function (response) {
@@ -92,7 +101,12 @@ function BindInquiryList() {
             type: "POST",
             dataType: "json",
             data: {
-
+                EmployeeID: valOf("ddEmployeeCode"),
+                StartDate: StartDate,
+                EndDate: EndDate,
+                PersonalInquiry: valOf("ddPersonalInquiry"),
+                GeneralInquiry: valOf("ddGeneralInquiry"),
+                LoanInquiry: valOf("ddLoanInquiry")
             },
             beforeSend: function () {
                 ShowSpinner();
@@ -114,7 +128,7 @@ function BindInquiryList() {
                 tr.append($('<td>').append(r.Remarks))
 
                 tr.append($('<td>').append(r.Preparedby))
-                tr.append($('<td>').append(CheckboxSwitch("", (r.PersonalIquiry ? "checked" : ""), "", "")))
+                tr.append($('<td>').append(CheckboxSwitch("", (r.PersonalInquiry ? "checked" : ""), "", "")))
                 tr.append($('<td>').append(CheckboxSwitch("", (r.GeneralInquiry ? "checked" : ""), "", "")))
                 tr.append($('<td>').append(CheckboxSwitch("", (r.LoanInquiry ? "checked" : ""), "", "")))
 
@@ -165,6 +179,8 @@ function ResetNav() {
     for (i = 1; i <= 4; i++) {
         SetvalOf("ddSupervisorApproval" + (i), 0).trigger("change");
     }
+    SetvalOf("ddEmployeeName", 0).trigger("change");
+    
     $("#dvEditInquiry").addClass("d-none")
     $("#dvInquiryList").removeClass("d-none")
     $(".breadcrumb-item.active").find("a").contents().unwrap();
@@ -302,7 +318,7 @@ function SaveEmployeeInquiry() {
 
 function NewInquiry() {
     ResetNav();
-    $("#dvEditInquiry").addClass("d-none")
-    $("#dvInquiryList").removeClass("d-none")
+    $("#dvEditInquiry").removeClass("d-none")
+    $("#dvInquiryList").addClass ("d-none")
     $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
 }

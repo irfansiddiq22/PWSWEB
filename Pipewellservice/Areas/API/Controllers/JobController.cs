@@ -132,6 +132,11 @@ namespace Pipewellservice.Areas.API.Controllers
             mergeFields.Add(new MergeField("<HOUSING>", job.Housing > 0 ? $"{job.Housing}% from Basic" : "Will be provided by the Company"));
             mergeFields.Add(new MergeField("<HOUSING-AR>", job.Housing > 0 ? $"من الراتب الأساسي {job.Transportation}%" : "سيتم توفيرها من قبل الشركة"));
 
+            mergeFields.Add(new MergeField("<date>", job.StartDate==null ? "": Convert.ToDateTime (job.StartDate).ToString("DD/MM/YYYY")));
+            mergeFields.Add(new MergeField("<date-ar>", job.StartDate == null ? "" : Convert.ToDateTime(job.StartDate).ToString("YYYY/MM/DD")));
+
+            mergeFields.Add(new MergeField("<TRANSPORT>", job.Transportation > 0 ? $"{job.Transportation}% from Basic" : "Will be provided by the Company"));
+            
             DocHelper DocHelper = new DocHelper();
 
 

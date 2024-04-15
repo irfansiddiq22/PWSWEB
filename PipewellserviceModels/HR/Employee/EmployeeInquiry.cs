@@ -49,9 +49,9 @@ namespace PipewellserviceModels.HR.Employee
         public int EmployeeID { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public bool PersonalInquiry { get; set; }
-        public bool GeneralInquiry { get; set; }
-        public bool LoanInquiry { get; set; }
+        public int PersonalInquiry { get; set; }
+        public int GeneralInquiry { get; set; }
+        public int LoanInquiry { get; set; }
         public int PageNumber { get; set; }
         public int pageSize { get; set; }
 

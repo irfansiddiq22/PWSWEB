@@ -31,7 +31,9 @@ namespace PipewellserviceModels.HR.Job
         public int Housing { get; set; }
         public string UserName { get; set; }
         public string CompanyRegNumber { get; set; }
-        
+        public DateTime? StartDate { get; set; }
+
+
         public string FileID { get; set; }
     }
 

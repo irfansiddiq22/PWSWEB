@@ -1,7 +1,14 @@
 ﻿using Newtonsoft.Json;
+using Pipewellservice.Reports;
+using PipewellserviceDB.HR.Employee;
+using PipewellserviceJson;
+using PipewellserviceModels.Common;
+using PipewellserviceModels.HR.Employee;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -171,6 +178,28 @@ namespace Pipewellservice.Controllers
             ViewBag.Title = "Settings";
             ViewBag.Parent = Parent;
             return View("_PartialEmployeeSetting");
+        }
+        public async Task<ActionResult> PrintReport(int ID, Pages ReportID)
+        {
+            object report = null;
+            switch (ReportID)
+            {
+                case Pages.EmployeeWarning:
+                    EmployeeService service = new EmployeeService();
+                    var data = await JsonHelper.Convert<List<EmployeeWarning>, DataTable>(await service.EmployeeWarningDetail(495));
+                    report = new rpEmployeeWarning { DataSource = data, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait }, };
+                    break;
+                  
+                    /*_reportdata = Repository.GetDetails(reportdesc.Id);
+                    report = new PageReport(new FileInfo(Server.MapPath("~/Reports/OrderDetailsReport.rdlx")));
+                    ((PageReport)(report)).Document.LocateDataSource += Document_LocateDataSource;*/
+
+                    
+            }
+
+            
+            ViewBag.Report = report;
+            return PartialView("WebViewer");
         }
 
     }

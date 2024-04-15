@@ -24,7 +24,7 @@
 
 
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-danger wrn-btn" onclick="FillOfferTable();">Search</button>
+                        <button type="button" class="btn btn-primary wrn-btn" onclick="FillOfferTable();">Search</button>
                         <button type="button" class="btn btn-success wrn-btn" onclick="NewJobContract();">Add Job Contract</button>
                     </div>
 
@@ -133,17 +133,23 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-goup">
+                            <label class="col-form-label" for="txtJobContractBasic">Start Date :</label>
+                            <input type="text" class="form-control form-control-sm datepicker" id="txtJobContractStartDate" name="JobContractStartDate">
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-goup">
                             <label class="col-form-label" for="txtJobContractBasic">Basic :</label>
                             <input type="number" class="form-control form-control-sm" id="txtJobContractBasic" name="JobContractBasic">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <div class="form-goup">
                             <label class="col-form-label" for="txtJobContractTransportation">Housing</label>
                             <input type="number" class="form-control form-control-sm" id="txtJobContractHousing" name="JobContractHousing">
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <div class="form-goup">
                             <label class="col-form-label" for="txtJobContractTransportation">Transportation</label>
                             <input type="number" class="form-control form-control-sm" id="txtJobContractTransportation" name="JobContractTransportation">

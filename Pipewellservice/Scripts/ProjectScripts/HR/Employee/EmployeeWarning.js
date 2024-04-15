@@ -86,24 +86,24 @@ function BindWarnings() {
                 .append("Policies: <label class='switch float-end'><input type='checkbox'  " + (r.Policies ? "checked" : "") + "><div class='slider round'></div></label><br> ")
                 .append("Rudeness: <label class='switch float-end'><input type='checkbox' " + (r.Rudeness ? "checked" : "") + "><div class='slider round'></div></label><br> ")
                 .append("Other: <label class='switch float-end'><input type='checkbox' " + (r.Other ? "checked" : "") + "><div class='slider round'></div></labels><br> ")
-                .append("Other: +r.OtherDetail")
+                .append("Other: "+r.OtherDetail)
 
             )
-            //tr.append($('<td>').text(r.OtherDetail))
-            tr.append($('<td>').append("<span class='badge bg-warning'>Infraction:</span> " + r.Infraction + "<br><br><span class='badge bg-primary'> Improvement:</span>" + r.Improvement + "<br><br><span class='badge bg-danger'>Consequences:</span>" + r.Consequences))
-            //tr.append($('<td>').text(r.Improvement))
-            //tr.append($('<td>').text(r.Consequences))
-
+            
+            tr.append($('<td>').append(
+                "<span class='badge bg-warning'>Infraction:</span> " + r.Infraction + "<br><br><span class='badge bg-primary'> Improvement:</span>" + r.Improvement + "<br><br><span class='badge bg-danger'>Consequences:</span>" + r.Consequences)
+                )
+            
             tr.append($('<td>').append(r.ApprovedBy1 > 0 ? r.ApprovedBy1Name + (r.Approved1 != 3 ? "<br> Date: " + moment(r.ApprovedDate1).format("MM/DD/YYYYY") + "<br> Status :" + r.Approved1Name : "") : ""))
             tr.append($('<td>').append(r.ApprovedBy2 > 0 ? r.ApprovedBy2Name + (r.Approved2 != 3 ? "<br> Date: " + moment(r.ApprovedDate2).format("MM/DD/YYYYY") + "<br> Status :" + r.Approved2Name : "") : ""))
             tr.append($('<td>').append(r.ApprovedBy3 > 0 ? r.ApprovedBy3Name + (r.Approved3 != 3 ? "<br> Date: " + moment(r.ApprovedDate3).format("MM/DD/YYYYY") + "<br> Status :" + r.Approved3Name : "") : ""))
             tr.append($('<td>').append(r.PreparedBy))
 
             var Icons = $('<div class="icons">');
-            $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2" onclick="EditWarning(' + i + ')"><i class="fa fa-edit"></i></a>'));
-            $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="DeleteWarning(' + i + ')"><i class="fa fa-trash"></i></a>'));
+            $(Icons).append($('<a href="javascript:void(0)" class="me-2" onclick="EditWarning(' + i + ')"><i class="fa fa-edit"></i></a>'));
+            $(Icons).append($('<a href="javascript:void(0)" class="" onclick="DeleteWarning(' + i + ')"><i class="fa fa-trash"></i></a>'));
+            $(Icons).append($('<a href="javascript:void(0)" class="" onclick="PrintWarning(' + r.ID + ')"><i class="fa fa-print"></i></a>'));
             tr.append($('<td>').append($(Icons)));
-
 
             var Link = $('<a>').attr("href", "javascript:void(0)").attr("onclick", "DownloadContract('" + r.EmployeeID + "','" + r.FileName + "','" + r.FileID + "')").text(r.FileName);
             //tr.append($('<td>').append($(Link)))
@@ -157,7 +157,9 @@ function EditWarning(index) {
     $("#dvEditWarning").show();
     $("#dvWarningList").hide();
 }
-
+function PrintWarning(ID) {
+    window.open("/Employee/PrintReport?ID=" + ID + "&ReportID=" + PAGES.EmployeeWarning , "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
+}
 function SaveEmployeeWarning() {
     $("#frmWarning").validate({
         errorClass: "text-danger",

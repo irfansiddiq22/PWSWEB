@@ -263,6 +263,7 @@ __pycache__/
 */web.config
 *.zip
 *.config
+<<<<<<< HEAD
 /Pipewellservice/Pipewellservice.csproj
 /PipewellserviceDB/PipewellserviceDB.csproj
 /PipewellserviceJson/PipewellserviceJson.csproj
@@ -273,3 +274,9 @@ __pycache__/
 /Pipewellservice/Web.config
 /Pipewellservice/Pipewellservice.csproj
 /.gitignore
+=======
+/Pipewellservice/Reports/OrderDetailsReport.rdlx
+/Pipewellservice/Reports/OrderReport.resx
+/Pipewellservice/Reports/OrderReport.Designer.cs
+/Pipewellservice/Reports/OrderReport.cs
+>>>>>>> 50d939601a25f2735a90ca79ee076509991dbc25

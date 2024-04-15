@@ -134,7 +134,7 @@ namespace PipewellserviceDB.HR
                         new SqlParameter { ParameterName = "@Housing", Value = job.Housing },
                         new SqlParameter { ParameterName = "@UserName", Value = job.UserName },
                         new SqlParameter { ParameterName = "@FileID", Value = job.FileID },
-                        
+                        new SqlParameter { ParameterName = "@StartDate", Value = job.StartDate },
 
 
             };
