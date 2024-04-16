@@ -14,6 +14,16 @@ namespace PipewellserviceModels.HR.Employee
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }
+    public class EmployeeWarningReport: EmployeeWarning {
+        public Byte[] ApprovalSign1 { get; set; }
+        public Byte[] ApprovalSign2 { get; set; }
+        public Byte[] ApprovalSign3 { get; set; }
+        public string ApprovalPosition1 { get; set; }
+        public string ApprovalPosition2 { get; set; }
+        public string ApprovalPosition3 { get; set; }
+
+
+    }
     public class EmployeeWarning
     {
         public string EmployeeName { get; set; }

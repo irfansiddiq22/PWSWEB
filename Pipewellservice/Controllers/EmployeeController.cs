@@ -2,6 +2,7 @@
 using Pipewellservice.Reports;
 using PipewellserviceDB.HR.Employee;
 using PipewellserviceJson;
+using PipewellserviceJson.HR.Employee;
 using PipewellserviceModels.Common;
 using PipewellserviceModels.HR.Employee;
 using System;
@@ -17,7 +18,7 @@ namespace Pipewellservice.Controllers
     public class EmployeeController : Controller
     {
         // GET: Employee
-        private string Parent = JsonConvert.SerializeObject(new {URL="/Employee/home",Title= "Human Resources" });
+        private string Parent = JsonConvert.SerializeObject(new { URL = "/Employee/home", Title = "Human Resources" });
         public ActionResult Home()
         {
             ViewBag.Title = "Human Resources";
@@ -79,7 +80,7 @@ namespace Pipewellservice.Controllers
             return View("_PartialJobContract");
         }
 
-        
+
         public ActionResult Warning()
         {
             ViewBag.Title = "Employee warning ";
@@ -181,23 +182,30 @@ namespace Pipewellservice.Controllers
         }
         public async Task<ActionResult> PrintReport(int ID, Pages ReportID)
         {
+            EmployeeService service = new EmployeeService();
             object report = null;
+            object data = null;
             switch (ReportID)
             {
                 case Pages.EmployeeWarning:
-                    EmployeeService service = new EmployeeService();
-                    var data = await JsonHelper.Convert<List<EmployeeWarning>, DataTable>(await service.EmployeeWarningDetail(495));
-                    report = new rpEmployeeWarning { DataSource = data, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait }, };
-                    break;
-                  
-                    /*_reportdata = Repository.GetDetails(reportdesc.Id);
-                    report = new PageReport(new FileInfo(Server.MapPath("~/Reports/OrderDetailsReport.rdlx")));
-                    ((PageReport)(report)).Document.LocateDataSource += Document_LocateDataSource;*/
 
+                    data = await JsonHelper.Convert<List<EmployeeWarningReport>, DataTable>(await service.EmployeeWarningDetail(ID));
+                    report = new rpEmployeeWarning { DataSource = data, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 }, };
+                    break;
+
+                case Pages.EmployeeInquiry:
+                    data = await JsonHelper.Convert<List<EmployeeInquiryReport>, DataTable>(await service.EmployeeInquiryReportDetail (ID));
+
+                    report = new rpEmployeeInquiry { DataSource = data, Document = { CacheToDisk = true }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind=System.Drawing.Printing.PaperKind.A4 } };
                     
+
+                    break;
+
+
+
             }
 
-            
+
             ViewBag.Report = report;
             return PartialView("WebViewer");
         }
