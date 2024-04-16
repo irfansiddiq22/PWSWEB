@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using PipewellserviceModels.HR.Employee;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 namespace Pipewellservice.Reports
@@ -26,9 +28,9 @@ namespace Pipewellservice.Reports
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(rpEmployeeWarning));
             GrapeCity.ActiveReports.SectionReportModel.Label Label16;
             Label16 = new GrapeCity.ActiveReports.SectionReportModel.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rpEmployeeWarning));
             this.Detail = new GrapeCity.ActiveReports.SectionReportModel.Detail();
             this.PageHeader = new GrapeCity.ActiveReports.SectionReportModel.PageHeader();
             this.PageFooter = new GrapeCity.ActiveReports.SectionReportModel.PageFooter();
@@ -39,7 +41,6 @@ namespace Pipewellservice.Reports
             this.TextBox1 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.Label = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.txtHeaderCompany = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.Picture = new GrapeCity.ActiveReports.SectionReportModel.Picture();
             this.txtHeaderArabic = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.Label2 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Label3 = new GrapeCity.ActiveReports.SectionReportModel.Label();
@@ -118,13 +119,13 @@ namespace Pipewellservice.Reports
             this.Label20 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Label22 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.GroupFooter1 = new GrapeCity.ActiveReports.SectionReportModel.GroupFooter();
+            this.Picture = new GrapeCity.ActiveReports.SectionReportModel.Picture();
             ((System.ComponentModel.ISupportInitialize)(Label16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeaderCompany)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Picture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeaderArabic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label3)).BeginInit();
@@ -189,6 +190,7 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.Label18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Picture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Label16
@@ -260,7 +262,6 @@ namespace Pipewellservice.Reports
             this.TextBox1,
             this.Label,
             this.txtHeaderCompany,
-            this.Picture,
             this.txtHeaderArabic,
             this.Label2,
             this.Label3,
@@ -338,7 +339,8 @@ namespace Pipewellservice.Reports
             this.Label31,
             this.Label18,
             this.Label20,
-            this.Label22});
+            this.Label22,
+            this.Picture});
             this.GroupHeader1.Height = 9.948611F;
             this.GroupHeader1.Name = "GroupHeader1";
             // 
@@ -374,17 +376,6 @@ namespace Pipewellservice.Reports
             this.txtHeaderCompany.Text = null;
             this.txtHeaderCompany.Top = 0.3125F;
             this.txtHeaderCompany.Width = 3.375F;
-            // 
-            // Picture
-            // 
-            this.Picture.Height = 1F;
-            this.Picture.ImageData = null;
-            this.Picture.Left = 3.25F;
-            this.Picture.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Picture.Name = "Picture";
-            this.Picture.SizeMode = GrapeCity.ActiveReports.SectionReportModel.SizeModes.Stretch;
-            this.Picture.Top = 0F;
-            this.Picture.Width = 1.0625F;
             // 
             // txtHeaderArabic
             // 
@@ -959,7 +950,7 @@ namespace Pipewellservice.Reports
             // 
             // Label26
             // 
-            this.Label26.DataField = "SignManager3";
+            this.Label26.DataField = "ApprovalPosition3";
             this.Label26.Height = 0.2F;
             this.Label26.HyperLink = null;
             this.Label26.Left = 3.9375F;
@@ -972,7 +963,7 @@ namespace Pipewellservice.Reports
             // 
             // Label27
             // 
-            this.Label27.DataField = "SignManager2";
+            this.Label27.DataField = "ApprovalPosition2";
             this.Label27.Height = 0.2F;
             this.Label27.HyperLink = null;
             this.Label27.Left = 2.453125F;
@@ -1106,7 +1097,6 @@ namespace Pipewellservice.Reports
             // 
             // Picture3
             // 
-            this.Picture3.DataField = "Signature2";
             this.Picture3.Height = 0.6425F;
             this.Picture3.ImageData = null;
             this.Picture3.Left = 2.421875F;
@@ -1118,7 +1108,6 @@ namespace Pipewellservice.Reports
             // 
             // Picture5
             // 
-            this.Picture5.DataField = "Signature3";
             this.Picture5.Height = 0.6425F;
             this.Picture5.ImageData = null;
             this.Picture5.Left = 3.921875F;
@@ -1155,7 +1144,7 @@ namespace Pipewellservice.Reports
             // 
             // Label28
             // 
-            this.Label28.DataField = "SignManager1";
+            this.Label28.DataField = "ApprovalPosition1";
             this.Label28.Height = 0.2F;
             this.Label28.HyperLink = null;
             this.Label28.Left = 0.953125F;
@@ -1192,7 +1181,6 @@ namespace Pipewellservice.Reports
             // 
             // Picture7
             // 
-            this.Picture7.DataField = "Signature1";
             this.Picture7.Height = 0.6425F;
             this.Picture7.ImageData = null;
             this.Picture7.Left = 0.90625F;
@@ -1293,6 +1281,18 @@ namespace Pipewellservice.Reports
             this.GroupFooter1.Height = 0F;
             this.GroupFooter1.Name = "GroupFooter1";
             // 
+            // Picture
+            // 
+            this.Picture.Height = 1F;
+            this.Picture.HyperLink = null;
+            this.Picture.ImageData = ((System.IO.Stream)(resources.GetObject("Picture.ImageData")));
+            this.Picture.Left = 3.25F;
+            this.Picture.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Picture.Name = "Picture";
+            this.Picture.SizeMode = GrapeCity.ActiveReports.SectionReportModel.SizeModes.Stretch;
+            this.Picture.Top = 0F;
+            this.Picture.Width = 1.0625F;
+            // 
             // rpEmployeeWarning
             // 
             this.MasterReport = false;
@@ -1314,13 +1314,13 @@ namespace Pipewellservice.Reports
             this.StyleSheet.Add(new DDCssLib.StyleSheetRule("font-family: inherit; font-style: inherit; font-variant: inherit; font-weight: bo" +
             "ld; font-size: 13pt; font-size-adjust: inherit; font-stretch: inherit; color: Bl" +
             "ack", "Heading3", "Normal"));
+            this.ReportStart += new System.EventHandler(this.rpEmployeeWarning_ReportStart);
             ((System.ComponentModel.ISupportInitialize)(Label16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeaderCompany)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Picture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeaderArabic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label3)).EndInit();
@@ -1385,6 +1385,7 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.Label18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Picture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -1398,7 +1399,6 @@ namespace Pipewellservice.Reports
         private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox1;
         private GrapeCity.ActiveReports.SectionReportModel.Label Label;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox txtHeaderCompany;
-        private GrapeCity.ActiveReports.SectionReportModel.Picture Picture;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox txtHeaderArabic;
         private GrapeCity.ActiveReports.SectionReportModel.Label Label2;
         private GrapeCity.ActiveReports.SectionReportModel.Label Label3;
@@ -1476,6 +1476,26 @@ namespace Pipewellservice.Reports
         private GrapeCity.ActiveReports.SectionReportModel.Label Label18;
         private GrapeCity.ActiveReports.SectionReportModel.Label Label20;
         private GrapeCity.ActiveReports.SectionReportModel.Label Label22;
+        private GrapeCity.ActiveReports.SectionReportModel.Picture Picture;
         private GrapeCity.ActiveReports.SectionReportModel.GroupFooter GroupFooter1;
+
+        private void rpEmployeeWarning_ReportStart(object sender, System.EventArgs e)
+        {
+            List<EmployeeWarningReport> data = (List<EmployeeWarningReport>)this.DataSource;
+            if (data.Count > 0)
+            {
+                try
+                {
+                    if (data[0].ApprovalSign1 != null)
+                        this.Picture7.Image = new System.Drawing.Bitmap(System.Drawing.Image.FromStream(new MemoryStream(data[0].ApprovalSign1)));
+                    if (data[0].ApprovalSign2 != null)
+                        this.Picture3.Image = new System.Drawing.Bitmap(System.Drawing.Image.FromStream(new MemoryStream(data[0].ApprovalSign2)));
+                    if (data[0].ApprovalSign3 != null)
+                        this.Picture5.Image = new System.Drawing.Bitmap(System.Drawing.Image.FromStream(new MemoryStream(data[0].ApprovalSign3)));
+                    
+                }
+                catch (Exception ex) { }
+            }
+        }
     }
 }

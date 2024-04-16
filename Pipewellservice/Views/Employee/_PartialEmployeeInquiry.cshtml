@@ -18,40 +18,22 @@
                         <input type="text" name="ddlInquiryDataRange" id="ddlInquiryDataRange" class="form-control form-control-sm daterangepicker" autocomplete="off">
                     </div>
                 </div>
-                <div class="form-group col-md-auto row">
+                <div class="form-group col-md-auto">
 
                     <label class="col-md-auto col-form-label p-0"> Personal:</label>
-                    <div class="col">
-                        <select class="form-select" id="ddPersonalInquiry">
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                            <option value="2" selected> Personal Inquiry</option>
-                        </select>
-                    </div>
+                    <label class="switch"><input type="checkbox" id="ChkInquiryPersonalFilter"  class="form-check-inline"><span class="slider round"></span></label>
                 </div>
-                <div class="form-group col-md-auto row">
+                <div class="form-group col-md-auto">
                     <label class="col-md-auto col-form-label p-0"> General:</label>
-                    <div class="col">
-                        <select class="form-select" id="ddGeneralInquiry">
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                            <option value="2" selected> General Inquiry</option>
-                        </select>
-                    </div>
+                    <label class="switch"><input type="checkbox" id="ChkInquiryGeneralFilter" checked="" class="form-check-inline"><span class="slider round"></span></label>
+
                 </div>
-                <div class="form-group col-md-auto row">
+                <div class="form-group col-md-auto">
                     <label class="col-md-auto col-form-label p-0"> Loan:</label>
-                    <div class="col">
-                        <select class="form-select" id="ddLoanInquiry">
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                            <option value="2" selected> Loan Inquiry</option>
-                        </select>
-                    </div>
+                    <label class="switch"><input type="checkbox" id="ChkInquiryLoanFilter" class="form-check-inline"><span class="slider round"></span></label>
                 </div>
                 <div class="form-group col-md-2">
                     <button class="btn btn-sm btn-primary" onclick="BindInquiryList()">Search </button>
-
                     <button class="btn btn-sm btn-success" onclick="NewInquiry()">Add Request </button>
                 </div>
             </div>

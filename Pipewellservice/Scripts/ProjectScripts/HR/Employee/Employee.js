@@ -78,7 +78,7 @@ function FillEmployeeDataList() {
     });
 }
 function BindUsers() {
-    Post("/EmployeeAPI/CodeName", {}).done(function (Response) {
+    $.post("/EmployeeAPI/CodeName", {}).done(function (Response) {
 
 
 

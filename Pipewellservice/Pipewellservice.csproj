@@ -155,11 +155,8 @@
     </Compile>
     <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\OrderReport.cs">
+    <Compile Include="Reports\rpEmployeeInquiry.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\OrderReport.Designer.cs">
-      <DependentUpon>OrderReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\rpEmployeeWarning.cs">
       <SubType>Component</SubType>
@@ -433,7 +430,6 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
-    <Content Include="Reports\OrderDetailsReport.rdlx" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -570,8 +566,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="licenses.licx" />
-    <EmbeddedResource Include="Reports\OrderReport.resx">
-      <DependentUpon>OrderReport.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\rpEmployeeInquiry.resx">
+      <DependentUpon>rpEmployeeInquiry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rpEmployeeWarning.resx">
       <DependentUpon>rpEmployeeWarning.cs</DependentUpon>

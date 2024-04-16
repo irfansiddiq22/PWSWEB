@@ -104,7 +104,8 @@ namespace PipewellserviceModels.Common
         EmployeeVacation = 13,
 
         JobOffers=14,
-        JobContracts=15
+        JobContracts=15,
+        EmployeeInquiry=16
     }
 
     public enum DirectoryNames

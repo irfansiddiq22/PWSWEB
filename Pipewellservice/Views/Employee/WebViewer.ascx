@@ -4,7 +4,8 @@
 <script runat="server">
     void Page_Load()
     {
-        ARWebViewer.Report = ViewBag.Report;                   
+        ARWebViewer.Report = ViewBag.Report;       
+    
     }                                                     
 </script>
 

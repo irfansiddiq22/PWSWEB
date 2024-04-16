@@ -586,7 +586,6 @@ namespace PipewellserviceDB.HR.Employee
             {
                 return null;
             }
-
         }
         public async Task<int> UpdateEmployeeWarning(EmployeeWarning dTO)
         {
@@ -729,13 +728,30 @@ namespace PipewellserviceDB.HR.Employee
         }
         public async Task<EmployeeInquiryDB> EmployeeInquiryDetail(int ID)
         {
+            try
+            {
 
-            var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeInquiryDetil", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeInquiryDetail", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
             EmployeeInquiryDB model = new EmployeeInquiryDB();
             model.Inquiry.Load(result);
             model.Approvals.Load(result);
             result.Close();
             return model;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public async Task<DataTable> EmployeeInquiryReportDetail(int ID)
+        {
+
+            var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeInquiryReport", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+            EmployeeInquiryDB model = new EmployeeInquiryDB();
+            model.Inquiry.Load(result);
+            
+            
+            return model.Inquiry;
 
         }
         public async Task<int> UpdateEmployeeInquiry(EmployeeInquiry dTO)

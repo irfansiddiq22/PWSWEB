@@ -71,6 +71,32 @@ namespace Pipewellservice.Helper
             }
 
         }
+        public static string GetFile1(string FileID, int ID, DirectoryNames Dir, string Name = "")
+        {
+            try
+            {
+                Constant DirectoryToSave =  AppData.Get1(ParentEnums.RESOURCES, (int)Dir);
+                string Resouces = DirectoryToSave.Name.Replace("{ID}", (ID > 0 ? ID.ToString() : ""));
+
+                if (Name != "")
+                {
+                    Name = Name.Replace("\\", "").Replace("/", "").Replace(":", "").Replace("*", "").Replace("?", "").Replace("<", "").Replace(">", "").Replace("|", "").Replace("|", "");
+                    Resouces = Resouces.Replace("{Name}", Name);
+                }
+
+                string Root = $"{Config.ResourcesDirectory}\\{Resouces}";
+
+                if (System.IO.File.Exists($"{Root}\\{FileID}"))
+                    return $"{Root}\\{FileID}";
+                else
+                    return "/Content/images/spacer.gif";
+            }
+            catch (Exception e)
+            {
+                return "/Content/images/spacer.gif";
+            }
+
+        }
         public async static Task<string> GetPath(DirectoryNames dir)
         {
             try

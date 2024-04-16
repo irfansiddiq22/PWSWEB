@@ -21,6 +21,10 @@ namespace Pipewellservice.App_Start
         {
             return Constants.Find(x => x.ParentID ==(int) parent && x.Value == Enum);
         }
+        public  static Constant Get1(ParentEnums parent, int Enum)
+        {
+            return Constants.Find(x => x.ParentID == (int)parent && x.Value == Enum);
+        }
 
 
     }

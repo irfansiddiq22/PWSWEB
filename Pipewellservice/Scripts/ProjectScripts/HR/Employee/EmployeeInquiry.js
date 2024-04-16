@@ -104,9 +104,9 @@ function BindInquiryList(PageNumber = 1) {
                 EmployeeID: valOf("ddEmployeeCode"),
                 StartDate: StartDate,
                 EndDate: EndDate,
-                PersonalInquiry: valOf("ddPersonalInquiry"),
-                GeneralInquiry: valOf("ddGeneralInquiry"),
-                LoanInquiry: valOf("ddLoanInquiry")
+                PersonalInquiry: GetChecked("ChkInquiryPersonalFilter"),
+                GeneralInquiry: GetChecked("ChkInquiryGeneralFilter"),
+                LoanInquiry: GetChecked("ChkInquiryLoanFilter")
             },
             beforeSend: function () {
                 ShowSpinner();
@@ -134,8 +134,9 @@ function BindInquiryList(PageNumber = 1) {
 
 
                 var Icons = $('<div class="icons">');
-                $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2" onclick="EditInquiry(' + r.ID + ')"><i class="fa fa-edit"></i></a>'));
-                $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="DeleteInquiry(' + r.ID + ')"><i class="fa fa-trash"></i></a>'));
+                $(Icons).append($('<a href="javascript:void(0)" class="me-2" onclick="EditInquiry(' + r.ID + ')"><i class="fa fa-edit"></i></a>'));
+                $(Icons).append($('<a href="javascript:void(0)" class="" onclick="DeleteInquiry(' + r.ID + ')"><i class="fa fa-trash"></i></a>'));
+                $(Icons).append($('<a href="javascript:void(0)" class="" onclick="PrintInquiry(' + r.ID + ')"><i class="fa fa-print"></i></a>'));
                 tr.append($('<td>').append($(Icons)));
 
                 $("#tblEmployeeInQuiryList").append(tr);
@@ -146,6 +147,10 @@ function BindInquiryList(PageNumber = 1) {
         }
     })
 
+}
+
+function PrintInquiry(ID) {
+    window.open("/Employee/PrintReport?ID=" + ID + "&ReportID=" + PAGES.EmployeeInquiry, "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
 }
 function EditInquiry(ID) {
 
