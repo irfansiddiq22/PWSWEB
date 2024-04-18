@@ -15,7 +15,17 @@
     JobOffers:14,
     JobContracts: 15,
     EmployeeInquiry: 16,
+    Users:17,
+    Permissions:18
+
+
 }
+var PAGEGROUPS = {
+    HR:1,
+    HRSetting:2,
+    Setting:3
+}
+var User = { Name: 'demo', ID: 0 };
 var DataChangeLog = {
     Form: 0,
     UserName: User.Name,
@@ -64,6 +74,30 @@ $.validator.setDefaults({
         }
     }
 });
+
+function SetGroupPermissions(ID) {
+    $.each(ID, function (i, gid) {
+        var WritePermisssions = User.Permissions.filter(x => x.PageGroup == gid && x.CanWrite == true);
+        var DeletePermisssions = User.Permissions.filter(x => x.PageGroup == gid && x.CanDelete == true);
+        var ViewPermisssions = User.Permissions.filter(x => x.PageGroup == gid && x.CanView == true);
+        if (!(WritePermisssions.length > 0 || DeletePermisssions.length > 0 || ViewPermisssions.length > 0)) {
+            $('.page-group-' + gid).remove();
+        }
+    })
+   
+}
+
+function SetPagePermissions(ID) {
+    $.each(ID, function (i, gid) {
+        var WritePermisssions = User.Permissions.filter(x => x.PageID == gid && x.CanWrite == true);
+        var DeletePermisssions = User.Permissions.filter(x => x.PageID == gid && x.CanDelete == true);
+        var ViewPermisssions = User.Permissions.filter(x => x.PageID == gid && x.CanView == true);
+        if (!(WritePermisssions.length > 0 || DeletePermisssions.length > 0 || ViewPermisssions.length > 0)) {
+            $('.page-' + gid).remove();
+        }
+    })
+
+}
 
 function ShowSpinner() {
     $("#spinner").show()

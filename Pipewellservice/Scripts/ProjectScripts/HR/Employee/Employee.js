@@ -395,10 +395,11 @@ function UploadEmployeePicture(file, EmployeeID) {
 
 }
 $("#ddEmployeeHiringSource").change(function () {
-    if ($(this).val() == 3)
-        $("#txtEmployeeHiringCost").removeAttr("readonly")
-    else
+    if ($(this).val() == 1)
         $("#txtEmployeeHiringCost").attr("readonly", "readonly")
+        
+    else
+        $("#txtEmployeeHiringCost").removeAttr("readonly")
 
 })
 $("#ddEmployeeNationality").change(function () {

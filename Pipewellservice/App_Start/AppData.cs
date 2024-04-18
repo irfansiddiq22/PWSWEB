@@ -17,6 +17,10 @@ namespace Pipewellservice.App_Start
             Constants = await (new SettingJson()).ConstantList();
 
         }
+        public async static Task<List<Constant>> List(ParentEnums parent)
+        {
+            return Constants.FindAll (x => x.ParentID == (int)parent);
+        }
         public async static Task<Constant> Get(ParentEnums parent,int Enum)
         {
             return Constants.Find(x => x.ParentID ==(int) parent && x.Value == Enum);

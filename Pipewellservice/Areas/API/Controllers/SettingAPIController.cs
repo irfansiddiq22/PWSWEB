@@ -19,10 +19,10 @@ namespace Pipewellservice.Areas.API.Controllers
         {
             return new JsonResult
             {
-                Data =await json.DivisionList(),
+                Data = await json.DivisionList(),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
-        
+
         }
         public async Task<JsonResult> UpdateDivision(Division division)
         {
@@ -130,5 +130,31 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
+
+        ////////////////////////
+
+        public async Task<JsonResult> ListGroupNPermissions()
+        {
+
+            var result = await json.ListGroupNPermissions();
+            result.Pages = await App_Start.AppData.List(ParentEnums.PAGES);
+            result.PageGroups = await App_Start.AppData.List(ParentEnums.PAGEGROUPS);
+
+            
+
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public async Task<JsonResult> UpdateGroupPermissions(PermissionGroup group)
+        {
+            return new JsonResult
+            {
+                Data = await json.UpdateGroupPermissions(group),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
     }
 }

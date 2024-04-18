@@ -581,3 +581,14 @@ legend {
 .breadcrumb-item {
     color: #fff;
 }
+.treegrid-expander{
+    margin-right:10px;
+}
+.table-striped1 tr:hover td {
+    background-color: #ffeeba;
+}
+
+.table-striped1 > tr:nth-of-type(odd) > * {
+    
+    background-color: var(--bs-table-striped-bg);
+}

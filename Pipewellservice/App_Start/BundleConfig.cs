@@ -35,6 +35,15 @@ namespace Pipewellservice
             bundles.Add(new Bundle("~/lib/sidemenu").Include(
                       "~/Content/libraries/slidemenu/bootsidemenu.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/treegrid").Include(
+                "~/Scripts/libraries/tabletreegrid/jquery.treegrid.js"
+                ));
+
+            bundles.Add(new StyleBundle("~/Content/treegrid").Include(
+                "~/Scripts/Libraries/tabletreegrid/jquery.treegrid.css"
+                ));
+
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
@@ -63,6 +72,8 @@ namespace Pipewellservice
 
 
 
+            bundles.Add(new Bundle("~/lib/setting/setting").Include(
+                      "~/Scripts/ProjectScripts/Setting/Setting.js"));
             bundles.Add(new Bundle("~/lib/hr/setting").Include(
                       "~/Scripts/ProjectScripts/HR/Settings/Setting.js"));
 
