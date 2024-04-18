@@ -1,4 +1,5 @@
-﻿using PipewellserviceJson.Auth;
+﻿using Pipewellservice.Helper;
+using PipewellserviceJson.Auth;
 using PipewellserviceModels.Common;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Pipewellservice.Controllers
 {
-    public class AuthController : Controller
+    public class AuthController : BaseController
     {
         AuthUserJson json = new AuthUserJson();
         // GET: Auth
@@ -20,12 +21,25 @@ namespace Pipewellservice.Controllers
 
         public async Task<JsonResult> ProcessLogin(UserAuth user)
         {
+            var result = await json.ProcessLogin(user);
+            if (result.ID > 0)
+            {
+                SessionHelper.SetUserSession(result);
+            }
             return new JsonResult
             {
-                Data = await json.ProcessLogin(user),
+                Data = (result.ID>0),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
 
+        }
+        public async Task<JsonResult> Identity()
+        {
+            return new JsonResult
+            {
+                Data = SessionHelper.UserSession(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
         }
     }
 }

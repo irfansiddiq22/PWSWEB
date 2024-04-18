@@ -83,6 +83,23 @@ namespace PipewellserviceJson.HR.Setting
         {
             return await service.RemoveUser(ID);
         }
+        public async Task<PermissionGroupView> ListGroupNPermissions()
+        {
+
+            PermissionGroupSQL sq = await service.ListGroupNPermissions();
+            PermissionGroupView model = new PermissionGroupView();
+            model.Groups = await JsonHelper.Convert<List<PermissionGroup>, DataTable>(sq.Groups);
+            model.Permissions = await JsonHelper.Convert<List<PagePermisson>, DataTable>(sq.Pages);
+
+        
+            return model;
+            // await JsonHelper.Convert<List<User>, DataTable>();
+        }
+        public async Task<bool> UpdateGroupPermissions(PermissionGroup group)
+        {
+            return await service.UpdateGroupPermissions(group);
+        }
+
 
     }
 }

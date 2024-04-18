@@ -14,7 +14,7 @@ function _Init() {
     BindDivision();
     BindPositions();
     BindDepartments();
-    BindUsers();
+    
 }
 
 ///////////////////////////
@@ -227,58 +227,4 @@ function DeleteDepartment(i) {
             }
         });
     })
-}
-///////////////////
-
-function BindUsers() {
-    Post("/SettingAPI/UserList", {}).done(function (Response) {
-        $("#tblUserList").empty();
-        FillUserList(Response)
-    });
-
-}
-function FillUserList(Response) {
-    $("#tblUserList").empty();
-    $.each(Response, function (i, r) {
-        var tr = $('<tr>');
-        tr.append($('<td class="text-center">').text(i + 1))
-        tr.append($('<td>').text(r.Name))
-        tr.append($('<td>').text(""))
-        $("#tblUserList").append(tr);
-    })
-}
-
-function SaveUser() {
-    $("#frmUsers").validate({
-        errorClass: "text-danger",
-
-        rules: {
-            txtUserName: "required",
-            txtUserPassword: {
-                required: true,
-                minlength: 5,
-            }
-        },
-        messages: {
-            txtUserName: "Please specify user name",
-            txtUserPassword: {
-                required: "Please enter user password",
-                minlength: "Password should be 5 character long"
-            }
-        },
-        submitHandler: function (form) {
-            Post("/SettingAPI/UpdateUser", { ID: 0, Name: valOf("txtUserName"), Password: valOf("txtUserPassword") }).done(function (Response) {
-                swal({ text: "New user record added.", icon: "success" });
-                Clear("txtUserName")
-                Clear("txtUserPassword")
-
-                FillUserList(Response);
-            }).fail(function () {
-                swal({ text: "Failed to create new user record.", icon: "error" });
-            });
-            return false;
-        }
-
-    });
-    // return false;
 }

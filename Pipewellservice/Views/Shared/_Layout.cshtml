@@ -155,8 +155,8 @@
     </div>
 
     <div id="spinner"></div>
-    <script type="text/javascript">
-        var User = { Name: 'demo', ID: 0 };
+   <script type="text/javascript">
+        
     </script>
     @Styles.Render("~/bundles/sweetalertcss")
 
@@ -191,8 +191,13 @@
                 todayHighlight: false,
                 format: 'dd/mm/yyyy'
             })
-
-            _Init();
+            $.post("/Auth/Identity", {}, function (resp) {
+                User = resp;
+                _Init();
+            }).fail(function () {
+                HideSpinner();
+            })
+            
             var d = null
             if('@Html.Raw(ViewBag.Parent)'!='')d=$.parseJSON('@Html.Raw(ViewBag.Parent)');
 

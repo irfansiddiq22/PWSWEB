@@ -10,17 +10,22 @@ namespace Pipewellservice.Helper
 {
     public class BaseController : Controller
     {
-        // GET: Base
-     /*   protected override void OnActionExecuting(
-            ActionExecutingContext filterContext)
+        public SessionHelper SessionHelper;
+        public BaseController()
         {
-            base.OnActionExecuting(filterContext);
-            var cultureInfo = CultureInfo.GetCultureInfo("ar-SA");
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
-            CultureInfo.CurrentCulture = cultureInfo;
+            SessionHelper = new SessionHelper();
+        }
+        // GET: Base
+        /*   protected override void OnActionExecuting(
+               ActionExecutingContext filterContext)
+           {
+               base.OnActionExecuting(filterContext);
+               var cultureInfo = CultureInfo.GetCultureInfo("ar-SA");
+               Thread.CurrentThread.CurrentCulture = cultureInfo;
+               Thread.CurrentThread.CurrentUICulture = cultureInfo;
+               CultureInfo.CurrentCulture = cultureInfo;
 
-        }*/
+           }*/
 
     }
     public class DateTimeBinder : IModelBinder

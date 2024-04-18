@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="TextBox1.OutputFormat" xml:space="preserve">
-    <value>dd/MM/yy h:mm tt</value>
+    <value />
   </data>
   <data name="TextBox4.OutputFormat" xml:space="preserve">
     <value>dd-MMM-yyyy</value>
   </data>
   <data name="TextBox1.OutputFormat" xml:space="preserve">
-    <value>dd/MM/yy h:mm tt</value>
+    <value />
   </data>
   <data name="Picture.ImageData" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -6541,6 +6541,36 @@
 </value>
   </data>
   <data name="TextBox4.OutputFormat" xml:space="preserve">
+    <value>dd-MMM-yyyy</value>
+  </data>
+  <data name="TextBox8.OutputFormat" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TextBox9.OutputFormat" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TextBox10.OutputFormat" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TextBox11.OutputFormat" xml:space="preserve">
+    <value>dd-MMM-yyyy</value>
+  </data>
+  <data name="TextBox16.OutputFormat" xml:space="preserve">
+    <value>dd-MMM-yyyy</value>
+  </data>
+  <data name="TextBox24.OutputFormat" xml:space="preserve">
+    <value>dd-MMM-yyyy</value>
+  </data>
+  <data name="TextBox12.OutputFormat" xml:space="preserve">
+    <value>dd-MMM-yyyy</value>
+  </data>
+  <data name="TextBox17.OutputFormat" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TextBox18.OutputFormat" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TextBox19.OutputFormat" xml:space="preserve">
     <value>dd-MMM-yyyy</value>
   </data>
   <data name="TextBox8.OutputFormat" xml:space="preserve">

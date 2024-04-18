@@ -11,19 +11,21 @@ namespace PipewellserviceModels.Common
         public string Name { get; set; }
         public int Value { get; set; }
         public int ParentID { get; set; }
+        public int SubParentID { get; set; }
     }
     public enum ParentEnums
     {
-        WARNING_TYPES=1,
-        APPROVAL_TYPES=2,
-        APPOVALFORM_TYPES=3,
-        RESOURCES=4,
-        PAGES=5,
-        LEAVE_TPES=6,
-        CERTIFICATE_TYPES=7,
-        DocTemplates=10
+        WARNING_TYPES = 1,
+        APPROVAL_TYPES = 2,
+        APPOVALFORM_TYPES = 3,
+        RESOURCES = 4,
+        PAGES = 5,
+        LEAVE_TPES = 6,
+        CERTIFICATE_TYPES = 7,
+        DocTemplates = 10,
+        PAGEGROUPS = 12
     }
-    
+
     public enum Gender
     {
         Male = 1,
@@ -74,17 +76,25 @@ namespace PipewellserviceModels.Common
     }
     public enum WarningTypes
     {
-        FirstWarning=1,
-        SecondWarning=2,
-        ThirdWarning=3
+        FirstWarning = 1,
+        SecondWarning = 2,
+        ThirdWarning = 3
     }
-    public enum WarningApprovalType {
-        NotApproved=0,
-        Approved=1,
-        Rejected=2,
-        None=3
+    public enum WarningApprovalType
+    {
+        NotApproved = 0,
+        Approved = 1,
+        Rejected = 2,
+        None = 3
 
 
+
+    }
+    public enum PageGroups
+    {
+        HR=1,
+        HRSetting=2,
+        Setting=3
 
     }
     public enum Pages
@@ -97,42 +107,44 @@ namespace PipewellserviceModels.Common
         EmployeeID = 6,
         Family = 7,
         FamilyID = 8,
-        Contract=9,
-        EmployeeDetail=10,
-        EmployeeWarning=11,
+        Contract = 9,
+        EmployeeDetail = 10,
+        EmployeeWarning = 11,
         EmployeeClearance = 12,
         EmployeeVacation = 13,
 
-        JobOffers=14,
-        JobContracts=15,
-        EmployeeInquiry=16
+        JobOffers = 14,
+        JobContracts = 15,
+        EmployeeInquiry = 16,
+        Users=17,
+        Permissions=18
     }
 
     public enum DirectoryNames
     {
-        
-        EmployeePictures =1,
-        EmployeeCertifications=2,
-        EmployeeAssets=3,
-        EmployeeIDs=4,
-        EmployeeFamilyIDs=5,
-        EmployeeFamily=6,
-        EmployeeContract=7,
-        EmployeeWarnings=8,
-        EmployeeJobOffer=9,
-        EmployeeJobContract=10,    
-        Templates=11,
+
+        EmployeePictures = 1,
+        EmployeeCertifications = 2,
+        EmployeeAssets = 3,
+        EmployeeIDs = 4,
+        EmployeeFamilyIDs = 5,
+        EmployeeFamily = 6,
+        EmployeeContract = 7,
+        EmployeeWarnings = 8,
+        EmployeeJobOffer = 9,
+        EmployeeJobContract = 10,
+        Templates = 11,
         EmployeeInquiry = 12,
 
     }
     public enum ApprovalTypes
     {
-        Clearance=1,
-        Warning=2
+        Clearance = 1,
+        Warning = 2
     }
     public enum DocTemplates
     {
-        JobOffer=1,
-        Contract=2
+        JobOffer = 1,
+        Contract = 2
     }
 }

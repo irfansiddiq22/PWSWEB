@@ -12,20 +12,26 @@ namespace PipewellserviceDB.Auth
 {
     public class AuthService:DataServices
     {
-        public async Task<bool> ProcessLogin(UserAuth user)
+        public async Task<UserAuthSQL> ProcessLogin(UserAuth user)
         {
             try
             {
                 SqlParameter[] collSP = new SqlParameter[2];
                 collSP[0] = new SqlParameter { ParameterName = "@UserName", Value = user.UserName };
                 collSP[1] = new SqlParameter { ParameterName = "@Password", Value = user.Password };
-                var result =  SqlHelper.ExecuteScalar(this.ConnectionString, "ProcProcessLogin", CommandType.StoredProcedure, collSP);
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcProcessLogin", CommandType.StoredProcedure, collSP);
+                UserAuthSQL model = new UserAuthSQL();
+                model.User.Load(result);
+                model.Permissions.Load(result);
+                result.Close();
+
                 
-                return Convert.ToInt16(result)==1;
+                return model;
             }
             catch (Exception e)
             {
-                return false;
+                return null;
             }
 
         }

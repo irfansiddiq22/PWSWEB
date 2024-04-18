@@ -226,10 +226,11 @@ namespace PipewellserviceDB.HR.Setting
         {
             try
             {
-                SqlParameter[] collSP = new SqlParameter[3];
+                SqlParameter[] collSP = new SqlParameter[4];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = user.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@Name", Value = user.Name };
                 collSP[2] = new SqlParameter { ParameterName = "@Password", Value = user.Password };
+                collSP[3] = new SqlParameter { ParameterName = "@GroupID", Value = user.GroupID };
                 var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcSaveUser", CommandType.StoredProcedure, collSP);
                 return await UserList();
             }
@@ -252,6 +253,52 @@ namespace PipewellserviceDB.HR.Setting
             }
 
         }
+
+
+        public async Task<PermissionGroupSQL> ListGroupNPermissions()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcListGroupsPermissions", CommandType.StoredProcedure);
+                PermissionGroupSQL model = new PermissionGroupSQL();
+                model.Groups.Load(result);
+                model.Pages.Load(result);
+                result.Close();
+                return model;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+
+        public async Task<bool> UpdateGroupPermissions(PermissionGroup group)
+        {
+            try
+            {
+                StringBuilder permissions = new StringBuilder();
+                permissions.AppendLine("<NewDataSet>");
+                foreach (PagePermisson pagePermisson in group.Permissions)
+                {
+                    permissions.Append($"<Table1><PageID>{pagePermisson.PageID}</PageID><CanWrite>{pagePermisson.CanWrite}</CanWrite><CanDelete>{pagePermisson.CanDelete}</CanDelete><CanView>{pagePermisson.CanView}</CanView></Table1>");
+                }
+                permissions.AppendLine("</NewDataSet>");
+
+
+                SqlParameter[] collSP = new SqlParameter[3];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = group.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@Name", Value = group.Name };
+                collSP[2] = new SqlParameter { ParameterName = "@Permission", Value = permissions.ToString() };
+
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateGroupPermissions", CommandType.StoredProcedure, collSP);
+                return true;
+            }catch(Exception e)
+            {
+                return false;
+            }
+        }
+
 
 
     }
