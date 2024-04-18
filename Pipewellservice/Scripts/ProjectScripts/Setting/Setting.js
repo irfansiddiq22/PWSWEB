@@ -33,9 +33,10 @@ function FillUserList(Response) {
         var tr = $('<tr>');
         tr.append($('<td class="text-center">').text( r.ID))
         tr.append($('<td>').text(r.Name))
+        tr.append($('<td>').text(r.UserName))
         tr.append($('<td>').text(r.EmployeeID))
         var Icons = $('<div class="icons">');
-        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2" onclick="EditUser(' + i + ')"><i class="fa fa-edit"></i></a>'));
+        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2" onclick="EditUser(' + r.ID + ')"><i class="fa fa-edit"></i></a>'));
         tr.append($('<td>').append($(Icons)));
 
         $("#tblUserList").append(tr);
@@ -46,9 +47,9 @@ $("#txtFindUser").keyup(function () {
 });
 
 function EditUser(i) {
-    Settings.Data = Settings.Users[i];
-
-    SetvalOf("txtUserName", Settings.Data.Name)
+    Settings.Data = Settings.Users.find(x=>x.ID==i);
+    SetvalOf("txtName", Settings.Data.Name)
+    SetvalOf("txtUserName", Settings.Data.UserName)
     SetvalOf("txtUserPassword", Settings.Data.Password)
     SetvalOf("ddUserPermissions", Settings.Data.GroupID)
 }
@@ -57,6 +58,7 @@ function SaveUser() {
         errorClass: "text-danger",
 
         rules: {
+            txtName: "required",
             txtUserName: "required",
             txtUserPassword: {
                 required: true,
@@ -64,6 +66,7 @@ function SaveUser() {
             }
         },
         messages: {
+            txtName: "Please specify name",
             txtUserName: "Please specify user name",
             txtUserPassword: {
                 required: "Please enter user password",
@@ -72,7 +75,7 @@ function SaveUser() {
         },
         submitHandler: function (form) {
             Post("/SettingAPI/UpdateUser", {
-                ID: Settings.Data.ID, Name: valOf("txtUserName"), Password: valOf("txtUserPassword"), GroupID: valOf("ddUserPermissions")
+                ID: Settings.Data.ID, Name: valOf("txtName"), UserName: valOf("txtUserName"), Password: valOf("txtUserPassword"), GroupID: valOf("ddUserPermissions")
             }).done(function (Response) {
                 if (Settings.Data.ID==0)
                     swal({ text: "New user record added.", icon: "success" });
@@ -216,7 +219,7 @@ function SaveGroupPermissions() {
 
     
     
-    Post("/SettingAPI/UpdateGroupPermissions", { group: PermissionGroup }).done(function (Response) {
+    Post("/SettingAPI/UpdateGroupPermissions", { group: PermissionGroup }).done(function (Resp) {
 
         if (Resp) {
             swal("Permissions saved", { icon: "success" });

@@ -226,11 +226,12 @@ namespace PipewellserviceDB.HR.Setting
         {
             try
             {
-                SqlParameter[] collSP = new SqlParameter[4];
+                SqlParameter[] collSP = new SqlParameter[5];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = user.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@Name", Value = user.Name };
-                collSP[2] = new SqlParameter { ParameterName = "@Password", Value = user.Password };
-                collSP[3] = new SqlParameter { ParameterName = "@GroupID", Value = user.GroupID };
+                collSP[2] = new SqlParameter { ParameterName = "@UserName", Value = user.UserName };
+                collSP[3] = new SqlParameter { ParameterName = "@Password", Value = user.Password };
+                collSP[4] = new SqlParameter { ParameterName = "@GroupID", Value = user.GroupID };
                 var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcSaveUser", CommandType.StoredProcedure, collSP);
                 return await UserList();
             }

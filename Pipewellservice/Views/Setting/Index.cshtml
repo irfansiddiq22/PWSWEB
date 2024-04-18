@@ -24,7 +24,7 @@
 
                             <table class="table table-sm table-bordered table-hover-warning table-striped">
                                 <thead class="blue">
-                                    <tr><th></th><th>Name</th><th>Employee ID</th><th></th></tr>
+                                    <tr><th></th><th>Name</th><th>User Name</th><th>Employee ID</th><th></th></tr>
                                 </thead>
                                 <tbody id="tblUserList"></tbody>
                             </table>
@@ -39,6 +39,16 @@
                                 <div class="mb-3 row">
 
                                     <label for="txtUserName" class="col-sm-1 col-form-label">Name</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control form-control-sm" id="txtName" name="txtName" required>
+                                    </div>
+                                    <div class="col-sm-5">
+                                    </div>
+
+                                </div>
+                                <div class="mb-3 row">
+
+                                    <label for="txtUserName" class="col-sm-1 col-form-label">User Name</label>
                                     <div class="col-sm-5">
                                         <input type="text" class="form-control form-control-sm" id="txtUserName" name="txtUserName" required>
                                     </div>
@@ -99,7 +109,7 @@
                                         </div>
                                         <div class="col-sm-5">
                                             <button type="button" class="btn btn-primary btn-sm" onclick="SaveGroupPermissions()">Save</button>
-                                            <button class="btn  btn-danger" type="reset">Clear</button>
+                                            <button class="btn btn-sm  btn-danger" type="reset">Clear</button>
                                         </div>
                                     </div>
                                     <table class="table table-sm table-striped1 border" id="tblPermissionGroup"></table>
