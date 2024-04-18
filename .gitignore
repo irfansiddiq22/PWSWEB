@@ -284,3 +284,5 @@ __pycache__/
 /Pipewellservice/Web.config
 /Pipewellservice/Pipewellservice.csproj
 /Pipewellservice/packages.config
+/Pipewellservice/Pipewellservice.csproj
+/Pipewellservice/licenses.licx
