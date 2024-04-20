@@ -32,7 +32,7 @@ function ShowApprovalList() {
         btng += '  <input name="approvals' + d.ID + '" type="radio" class="btn-check" id="btnReject' + d.ID + '" autocomplete="off">'
         btng += '  <label class="btn btn-sm btn-outline-danger " for="btnReject' + d.ID + '">Reject</label>'
         btng += '  <input name="approvals' + d.ID + '" type="radio" class="btn-check"  id="btnDeclined' + d.ID + '" autocomplete="off">'
-        btng += '  <label class="btn btn-sm btn-outline-warning" for="btnDeclined' + d.ID + '">Declined</label>'
+        btng += '  <label class="btn btn-sm btn-outline-warning" for="btnDeclined' + d.ID + '">Decline</label>'
         btng += '  </div></div>'
         $(tr).append($('<td>').append($(Remarks)).append(btng))
         var link = '';
