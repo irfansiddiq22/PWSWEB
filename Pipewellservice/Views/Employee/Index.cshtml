@@ -1,13 +1,7 @@
 ﻿
 
 <div class="border p-2">
-    <nav hidden>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <button class="nav-link" id="nav-detail-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Add/Edit View Detail</button>
-            <button class="nav-link active" id="nav-list-tab" data-bs-toggle="tab" data-bs-target="#nav-list" type="button" role="tab" aria-controls="nav-list" aria-selected="false">View Detail</button>
-            
-        </div>
-    </nav>
+   
     <div id="dvEmployeeList">
         <div class="my-2 p-2">
             <div class="w-100 m-auto">
@@ -58,7 +52,7 @@
                     </div>
                     <div class="col-md-2">
                     <button type="button" class="btn btn-danger wrn-btn" onclick="FillEmployeeTable();">Search</button>
-                    <button type="button" class="btn btn-success wrn-btn" onclick="NewEmployee();">Add Employee</button> 
+                    <button type="button" class="btn btn-success wrn-btn writecontainer" onclick="NewEmployee();">Add Employee</button> 
                     </div>
 
                 </div>
@@ -109,7 +103,7 @@
         </div>
         <div id="dvEmployeePaging"></div>
     </div>
-    <div id="dvEditEmplyee" class="d-none">
+    <div id="dvEditEmplyee" class="d-none writecontainer">
         <form id="frmEmployeeData">
             <div class="row container-fluid">
 

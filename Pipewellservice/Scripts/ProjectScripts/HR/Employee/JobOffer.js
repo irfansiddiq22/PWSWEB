@@ -15,24 +15,26 @@ function _Init() {
 
     $("#dvEditJobOffer").addClass ("d-none")
     $("#dvJobOfferList").removeClass("d-none")
+    SetPagePermission(PAGES.JobOffers, function () {
+        Post("/DataList/CountryList", {}).done(function (Response) {
 
-    Post("/DataList/CountryList", {}).done(function (Response) {
-
-        var data = []
-        data.push({ id: 0, text: 'Select Nationality' });
-        $.each(Response, function (i, c) {
-            data.push({ id: c.ID, text: c.Nationality });
-        })
-        $("#ddJobOfferCountries").select2({
-            tags: "true",
-            placeholder: "Select Nationality",
-            allowClear: true,
-            data: data,
-            width:"100%"
-        })
+            var data = []
+            data.push({ id: 0, text: 'Select Nationality' });
+            $.each(Response, function (i, c) {
+                data.push({ id: c.ID, text: c.Nationality });
+            })
+            $("#ddJobOfferCountries").select2({
+                tags: "true",
+                placeholder: "Select Nationality",
+                allowClear: true,
+                data: data,
+                width: "100%"
+            })
+        });
+        InitilzeJobOffer();
+        BindOffers();
     });
-    InitilzeJobOffer();
-    BindOffers();
+
 }
 $('form').on('reset', function (e) {
     InitilzeJobOffer();
@@ -115,7 +117,7 @@ function FillOfferTable() {
                 var link = $('<a>').attr("href", "/Job/DownloadOfferLetter?FileID=" + e.FileID).text(e.FileID);
 
                 tr.append($('<td>').append(link));
-                tr.append($('<td>').html('<a href="javascript:void(0)" onclick="EditJobOffer(\'' + e.ID + '\')"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)"onclick="DeleteJobOffer(\'' + e.id + '\',this)"><i class="fa fa-trash"></i></a>'));
+                tr.append($('<td>').html('<a href="javascript:void(0)" class="writeble" onclick="EditJobOffer(\'' + e.ID + '\')"><i class="fa fa-edit"></i></a> <a class="deleteble" href="javascript:void(0)"onclick="DeleteJobOffer(\'' + e.id + '\',this)"><i class="fa fa-trash"></i></a>'));
 
                 $("#tblJobOffers").append(tr);
             })

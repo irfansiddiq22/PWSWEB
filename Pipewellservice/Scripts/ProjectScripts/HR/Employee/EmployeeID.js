@@ -14,8 +14,12 @@ var IDFileList = [];
 
 function _Init() {
     HideSpinner();
-    FillIDTypeList("ddFileTypeList")
-    BindUsers();
+    SetPagePermission(PAGES.EmployeeID, function () {
+
+        FillIDTypeList("ddFileTypeList")
+        BindUsers();
+    });
+    
 }
 $('form').on('reset', function (e) {
     InitializeIDFile();
@@ -80,8 +84,8 @@ function FillIDListTable(Response) {
         tr.append($('<td>').append(c.Remarks))
 
         var Icons = $('<div class="icons">');
-        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2" onclick="EditIDFile(' + i + ')"><i class="fa fa-edit"></i></a>'));
-        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="DeleteIDFile(' + i + ')"><i class="fa fa-trash"></i></a>'));
+        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2 writeble" onclick="EditIDFile(' + i + ')"><i class="fa fa-edit"></i></a>'));
+        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger deleteble" onclick="DeleteIDFile(' + i + ')"><i class="fa fa-trash"></i></a>'));
         tr.append($('<td>').append($(Icons)));
 
         $("#tblEmployeeIDList").append(tr)

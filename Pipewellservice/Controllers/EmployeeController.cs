@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Pipewellservice.Helper;
 using Pipewellservice.Reports;
 using PipewellserviceDB.HR.Employee;
 using PipewellserviceJson;
@@ -19,60 +20,70 @@ namespace Pipewellservice.Controllers
     {
         // GET: Employee
         private string Parent = JsonConvert.SerializeObject(new { URL = "/Employee/home", Title = "Human Resources" });
+        [Authorization]
         public ActionResult Home()
         {
             ViewBag.Title = "Human Resources";
             ViewBag.Parent = null;
             return View();
         }
+        [Authorization(Pages.EmployeeDetail)]
         public ActionResult Index()
         {
             ViewBag.Title = "Employee List";
             ViewBag.Parent = Parent;
             return View();
         }
+        [Authorization(Pages.Certificates)]
         public ActionResult Certificate()
         {
             ViewBag.Title = "Employee Certificates";
             ViewBag.Parent = Parent;
             return View("_PartialCertificate");
         }
+        [Authorization(Pages.Assets)]
         public ActionResult Asset()
         {
             ViewBag.Title = "Assets with Employee";
             ViewBag.Parent = Parent;
             return View("_PartialAsset");
         }
+        [Authorization(Pages.Family)]
         public ActionResult Family()
         {
             ViewBag.Title = "Employee Family";
             ViewBag.Parent = Parent;
             return View("_PartialFamily");
         }
+        [Authorization(Pages.EmployeeID)]
         public ActionResult ID()
         {
             ViewBag.Title = "Employee ID";
             ViewBag.Parent = Parent;
             return View("_PartialID");
         }
+        [Authorization(Pages.FamilyID)]
         public ActionResult FamilyID()
         {
             ViewBag.Title = "Employee Family ID";
             ViewBag.Parent = Parent;
             return View("_PartialFamilyID");
         }
+        [Authorization(Pages.Contract)]
         public ActionResult Contract()
         {
             ViewBag.Title = "Employee Contracts";
             ViewBag.Parent = Parent;
             return View("_PartialContract");
         }
+        [Authorization(Pages.JobOffers)]
         public ActionResult JobOffer()
         {
             ViewBag.Title = "Job Offer";
             ViewBag.Parent = Parent;
             return View("_PartialJobOffer");
         }
+        [Authorization(Pages.JobContracts)]
         public ActionResult JobContract()
         {
             ViewBag.Title = "Job Contracts";
@@ -80,25 +91,28 @@ namespace Pipewellservice.Controllers
             return View("_PartialJobContract");
         }
 
-
+        [Authorization(Pages.EmployeeWarning)]
         public ActionResult Warning()
         {
             ViewBag.Title = "Employee warning ";
             ViewBag.Parent = Parent;
             return View("_PartialEmployeeWarning");
         }
+        [Authorization(Pages.EmployeeClearance )]
         public ActionResult Clearance()
         {
             ViewBag.Title = "Employee Warning Notices";
             ViewBag.Parent = Parent;
             return View("_PartialEmployeeClearance");
         }
+        [Authorization(Pages.EmployeeVacation )]
         public ActionResult Vacation()
         {
             ViewBag.Title = "Employee Vactions";
             ViewBag.Parent = Parent;
             return View("_PartialEmployeeVacation");
         }
+        
         public ActionResult Joining()
         {
             ViewBag.Title = "Employee Joining";
@@ -137,6 +151,7 @@ namespace Pipewellservice.Controllers
 
             return View("_PartialEmployeeLeaveRequet");
         }
+        [Authorization(Pages.EmployeeInquiry )]
         public ActionResult Inquiry()
         {
             ViewBag.Title = "Employee Inquiry Form";
@@ -174,6 +189,7 @@ namespace Pipewellservice.Controllers
             ViewBag.Parent = Parent;
             return View("_PartialEmployeeEvaluation");
         }
+        
         public ActionResult Setting()
         {
             ViewBag.Title = "Settings";

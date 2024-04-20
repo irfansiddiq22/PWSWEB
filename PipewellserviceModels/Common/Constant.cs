@@ -99,6 +99,7 @@ namespace PipewellserviceModels.Common
     }
     public enum Pages
     {
+        None=0,
         Divisions = 1,
         Positions = 2,
         Departments = 3,

@@ -4,12 +4,15 @@ var AssetList = [];
 var Clearance = { ID: 0, Approvals: [], Assets: [] };
 function _Init() {
     HideSpinner();
-    SetvalOf("txtPreparedBy", User.Name);
-    $("#dvEditClearance").hide();
-    $("#dvClearanceList").show();
+    SetPagePermission(PAGES.EmployeeClearance, function () {
 
-    BindUsers();
-    BindClearance();
+        SetvalOf("txtPreparedBy", User.Name);
+        $("#dvEditClearance").hide();
+        $("#dvClearanceList").show();
+        BindUsers();
+        BindClearance();
+    });
+    
 }
 function BindUsers() {
     Post("/EmployeeAPI/CodeName", {}).done(function (Response) {
@@ -73,6 +76,7 @@ function BindUsers() {
 
 
 }
+
 function BindEmployeePositionDivision() {
     var EmployeeID = $("#ddEmployeeName").val();
     Post("/EmployeeAPI/EmployeeData", { EmployeeID: EmployeeID }).done(function (Response) {
@@ -130,8 +134,8 @@ function BindClearance() {
 
 
             var Icons = $('<div class="icons">');
-            $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2" onclick="EditClearance(' + i + ')"><i class="fa fa-edit"></i></a>'));
-            $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="DeleteClearance(' + i + ')"><i class="fa fa-trash"></i></a>'));
+            $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary writeble me-2" onclick="EditClearance(' + i + ')"><i class="fa fa-edit"></i></a>'));
+            $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger deleteble" onclick="DeleteClearance(' + i + ')"><i class="fa fa-trash"></i></a>'));
             tr.append($('<td>').append($(Icons)));
 
             $("#tblEmployeeClearanceList").append(tr);

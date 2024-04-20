@@ -32,6 +32,27 @@ var DataChangeLog = {
     RecordID: 0,
     DataUpdated: []
 }
+function SetPagePermission(Form,CallBack) {
+    var Page = User.Permissions.find(x => x.PageID == Form);
+    if (!Page.CanDelete) {
+        $(".deleteble").remove();
+        $(".deleteble" + Form).remove();
+    }
+    if (!Page.CanWrite) {
+        $(".writeble").remove();
+        $(".writeble" + Form).remove();
+        $(".writecontainer").remove();
+    }
+    if (!Page.CanDelete && !Page.CanWrite) {
+        if (!Page.CanView)
+            RedirectHome();
+    }
+    CallBack();
+    
+}
+function RedirectHome() {
+    window.location = "/home"
+}
 function ResetChangeLog(Form) {
     DataChangeLog = {
         Form: Form,
