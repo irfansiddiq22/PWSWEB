@@ -86,9 +86,12 @@ namespace PipewellserviceModels.Common
         Approved = 1,
         Declined = 2,
         None = 3
-
-
-
+    }
+    public enum ApprovalTypes
+    {
+        Clearance = 1,
+        Warning = 2,
+        Inquiry=3
     }
     public enum PageGroups
     {
@@ -138,11 +141,7 @@ namespace PipewellserviceModels.Common
         EmployeeInquiry = 12,
 
     }
-    public enum ApprovalTypes
-    {
-        Clearance = 1,
-        Warning = 2
-    }
+    
     public enum DocTemplates
     {
         JobOffer = 1,

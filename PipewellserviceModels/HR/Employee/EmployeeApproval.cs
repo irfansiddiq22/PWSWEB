@@ -31,6 +31,7 @@ namespace PipewellserviceModels.HR.Employee
         public string Remarks { get; set; }
         public ApprovalStatus Status { get; set; }
         public string ApprovalForm { get; set; }
+        public int PageID { get; set; }
         public string PreparedBy { get; set; }
 
         public DateTime RecordDate { get; set; }

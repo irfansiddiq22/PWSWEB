@@ -22,7 +22,7 @@ function ShowApprovalList() {
     $.each(PendingApprovalList, function (i, d) {
         var tr = $('<tr data-id="' + d.ID + '">')
         $(tr).append($('<td>').text(d.ApprovalForm))
-        $(tr).append($('<td>').text(d.ID))
+        $(tr).append($('<td>').append($('<a>').attr("href", "javascript:void(0)").attr("onclick", "Print(" + d.ID + "," + d.PageID + ")").text(d.ID)))
         $(tr).append($('<td>').text(moment(d.RecordDate).format("DD/MM/YYYY hh:mm A")));
         $(tr).append($('<td>').text(d.PreparedBy))
         var Remarks = $('<textarea id="txtApprovalRemarks' + d.ID + '" class="form-control form-control-sm" rows="4">')
@@ -35,7 +35,13 @@ function ShowApprovalList() {
         btng += '  <label class="btn btn-sm btn-outline-warning" for="btnDeclined' + d.ID + '">Declined</label>'
         btng += '  </div></div>'
         $(tr).append($('<td>').append($(Remarks)).append(btng))
-        $(tr).append($('<td>').text(d.FileID))
+        var link = '';
+        if (d.FileName!="")
+        link = $('<a>').attr("href", "javascript:void(0)").attr("onclick", "DownloadFile(" + d.EmployeeID + ",'" + d.FileName + "','" + d.FileID + "','" + d.RecordType + "')").text(d.FileName);
+
+        
+
+        $(tr).append($('<td>').append(link));
         $(tr).append($('<td>').text("Employee ID =" + d.EmployeeID));
 
 
@@ -79,3 +85,17 @@ $("#dlgPendingApprovals").on("hidden.bs.modal", function () {
         });
     }
 });
+
+
+function DownloadFile(EmployeeID, FileName, FileID, Type) {
+    ShowSpinner();
+    if(Type==1)
+        DownloadFile("/EmployeeAPI/DownloadClearanceFile?EmployeeID=" + String(EmployeeID) + "&FileName=" + FileName + "&FileID=" + FileID);
+    else if (Type == 2)
+        DownloadFile("/EmployeeAPI/DownloadInQuiryFile?EmployeeID=" + String(EmployeeID) + "&FileName=" + FileName + "&FileID=" + FileID);
+    else if (Type == 3)
+        DownloadFile("/EmployeeAPI/DownloadWarningFile?EmployeeID=" + String(EmployeeID) + "&FileName=" + FileName + "&FileID=" + FileID);
+}
+function Print(ID,Page) {
+    window.open("/Employee/PrintReport?ID=" + ID + "&ReportID=" + Page, "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
+}
