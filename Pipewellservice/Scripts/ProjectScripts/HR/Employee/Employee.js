@@ -1,64 +1,57 @@
 ﻿var EmployeeList = [];
 var Employee = {ID:0}
 function _Init() {
-    FillEmployee();
+    SetPagePermission(PAGES.EmployeeDetail, function () {
 
-    //HideSpinner();
-    BindUsers();
-    FillEmployeeDataList()
-    
-    var rules = [];
-    /* $.each($("input[data-msg],select[data-msg]"), function (i, c) {
-         
-         $(this).rules("add", {
-             required: true,
-             messages: {
-                 required: $(this).attr("msg")
-             }
- 
-         });
- 
-     });
-     */
-    $("#frmEmployeeData").validate()
+        FillEmployee();
 
-    $.each($("select[data-msg]"), function (i, c) {
-        $(this).attr("name", $(this).attr("id"));
 
-        $(this).rules("add", {
-            required: true,
-            messages: {
-                required: $(this).attr("msg")
+        BindUsers();
+        FillEmployeeDataList()
 
-            }
+        var rules = [];
+
+        $("#frmEmployeeData").validate()
+
+        $.each($("select[data-msg]"), function (i, c) {
+            $(this).attr("name", $(this).attr("id"));
+
+            $(this).rules("add", {
+                required: true,
+                messages: {
+                    required: $(this).attr("msg")
+
+                }
+
+            });
 
         });
+        $.each($("select[data-msg]"), function (i, c) {
+            $(this).attr("name", $(this).attr("id"));
+            if (!$(this).attr("data-min")) {
+                $(this).rules("add", {
+                    required: true,
+                    min: 1,
+                    messages: {
+                        required: $(this).attr("msg"),
+                        min: $(this).attr("msg")
+                    }
 
+                });
+            } else {
+                $(this).rules("add", {
+                    required: true,
+                    messages: {
+                        required: $(this).attr("msg"),
+                    }
+
+                });
+            }
+
+
+        });
     });
-    $.each($("select[data-msg]"), function (i, c) {
-        $(this).attr("name", $(this).attr("id"));
-        if (!$(this).attr("data-min")) {
-            $(this).rules("add", {
-                required: true,
-                min: 1,
-                messages: {
-                    required: $(this).attr("msg"),
-                    min: $(this).attr("msg")
-                }
 
-            });
-        } else {
-            $(this).rules("add", {
-                required: true,
-                messages: {
-                    required: $(this).attr("msg"),
-                }
-
-            });
-        }
-
-
-    });
 }
 $(".keyupfilter").keyup(function () {
     /// FillEmployeeTable();
@@ -216,7 +209,7 @@ function FillEmployeeTable() {
                 tr.append($('<td>').html(e.ShowInAttendence));
                 tr.append($('<td>').html(e.DeductSalary));*/
 
-                tr.append($('<td>').html('<a href="javascript:void(0)" onclick="EditEmployee(\'' + e.ID + '\')"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)"onclick="DeleteEmployee(\'' + e.id + '\',this)"><i class="fa fa-trash"></i></a>'));
+                tr.append($('<td>').html('<a href="javascript:void(0)" class="writeble" onclick="EditEmployee(\'' + e.ID + '\')"><i class="fa fa-edit"></i></a> <a class="deleteble" href="javascript:void(0)"onclick="DeleteEmployee(\'' + e.id + '\',this)"><i class="fa fa-trash"></i></a>'));
 
                 $("#tblEmployeeList").append(tr);//'<a class="fc-event fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-future fc-event-upcoming p-1" style="color:#FFF!important;" data-id=\'' + e.PostIDEnc + '\'>' + e.title + ' ' + new moment(e.start).format("MM/DD/YY") + '</a>')
             })

@@ -4,9 +4,11 @@ function _Init() {
     HideSpinner();
     $("#aWarningSheet").hide()
     $("#ddlWarningDataRange").val(moment().startOf('year').format('DD/MM/YYYY') + ' - ' + moment().endOf('week').format('DD/MM/YYYY'));
-
-    BindUsers();
-    BindWarnings();
+    SetPagePermission(PAGES.EmployeeWarning, function () {
+        BindUsers();
+        BindWarnings();
+    });
+    
 }
 
 function BindUsers() {
@@ -100,8 +102,8 @@ function BindWarnings() {
             tr.append($('<td>').append(r.PreparedBy))
 
             var Icons = $('<div class="icons">');
-            $(Icons).append($('<a href="javascript:void(0)" class="me-2" onclick="EditWarning(' + i + ')"><i class="fa fa-edit"></i></a>'));
-            $(Icons).append($('<a href="javascript:void(0)" class="" onclick="DeleteWarning(' + i + ')"><i class="fa fa-trash"></i></a>'));
+            $(Icons).append($('<a href="javascript:void(0)" class="me-2 writeble" onclick="EditWarning(' + i + ')"><i class="fa fa-edit"></i></a>'));
+            $(Icons).append($('<a href="javascript:void(0)" class="deleteble" onclick="DeleteWarning(' + i + ')"><i class="fa fa-trash"></i></a>'));
             $(Icons).append($('<a href="javascript:void(0)" class="" onclick="PrintWarning(' + r.ID + ')"><i class="fa fa-print"></i></a>'));
             tr.append($('<td>').append($(Icons)));
 

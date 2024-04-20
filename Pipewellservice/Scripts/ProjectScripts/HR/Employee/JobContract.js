@@ -18,26 +18,28 @@ function _Init() {
 
     $("#dvEditJobContract").addClass("d-none")
     $("#dvJobContractList").removeClass("d-none")
+    SetPagePermission(PAGES.JobContracts, function () {
+        Post("/DataList/CountryList", {}).done(function (Response) {
 
-    Post("/DataList/CountryList", {}).done(function (Response) {
+            var data = []
+            data.push({ id: 0, text: 'Select Nationality' });
+            $.each(Response, function (i, c) {
+                data.push({ id: c.ID, text: c.Nationality, NationalityAR: c.ArabicNationality, Country: c.Name, CountryAR: c.NameArabic });
+            })
+            Nationalites = Response
+            $("#ddJobContractCountries").select2({
+                tags: "true",
+                placeholder: "Select Nationality",
+                allowClear: true,
+                data: data,
+                width: "100%",
 
-        var data = []
-        data.push({ id: 0, text: 'Select Nationality' });
-        $.each(Response, function (i, c) {
-            data.push({ id: c.ID, text: c.Nationality, NationalityAR:c.ArabicNationality, Country: c.Name, CountryAR: c.NameArabic });
-        })
-        Nationalites = Response
-        $("#ddJobContractCountries").select2({
-            tags: "true",
-            placeholder: "Select Nationality",
-            allowClear: true,
-            data: data,
-            width: "100%",
-           
-        })
+            })
+        });
+        InitilzeJobContract();
+        BindContracts();
     });
-    InitilzeJobContract();
-    BindContracts();
+    
 }
 $('form').on('reset', function (e) {
     InitilzeJobContract();
@@ -132,7 +134,7 @@ function FillContactTable() {
                 var link = $('<a>').attr("href", "/Job/DownloadContractLetter?FileID=" + e.FileID).text(e.FileID);
 
                 tr.append($('<td>').append(link));
-                tr.append($('<td>').html('<a href="javascript:void(0)" onclick="EditJobContract(\'' + e.ID + '\')"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)"onclick="DeleteJobContract(\'' + e.id + '\',this)"><i class="fa fa-trash"></i></a>'));
+                tr.append($('<td>').html('<a href="javascript:void(0)" class="writeble" onclick="EditJobContract(\'' + e.ID + '\')"><i class="fa fa-edit"></i></a> <a class="btdelete" href="javascript:void(0)"onclick="DeleteJobContract(\'' + e.id + '\',this)"><i class="fa fa-trash"></i></a>'));
 
                 $("#tblJobContracts").append(tr);
             })

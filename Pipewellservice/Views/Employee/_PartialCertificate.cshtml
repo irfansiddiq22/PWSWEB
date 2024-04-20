@@ -1,12 +1,12 @@
 ﻿
 <div class="border p-2">
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-5 ">
             <form id="frmCertificate">
                 <div class="mb-3 row">
                     <label for="ddCertificateEmployeeCode" class="col-sm-2 col-form-label">Employee </label>
                     <div class="col">
-                        <select class="js-example-basic-single js-states form-control" id="ddCertificateEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                        <select class="form-select" id="ddCertificateEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
                     </div>
                 </div>
                 <div class="mb-3 row">
@@ -35,12 +35,12 @@
                 <div class="mb-3">
                     <label class="switch"><input type="checkbox" id="chkCertificateOnshore" onclick="ToggleOffShore(this)"><div class="slider round"></div></label>Onshore <label class="switch"><input type="checkbox" onclick="ToggleOnShore(this)" id="chkCertificateOffshore"><div class="slider round"></div></label>OffShore
 
-                    <label class="custom-file-upload btn btn-primary">
+                    <label class="custom-file-upload btn btn-primary writecontainer">
                         <input type="file" id="txtCertificateImage" />
                         <i class="fa fa-cloud-upload"></i> Upload Certificate File
                     </label>
-                    <button class="btn btn-primary ms-5" type="submit" onclick="SaveCertificate()">Save</button>
-                    <button class="btn btn-danger" type="reset">Clear</button>
+                    <button class="btn btn-primary ms-5 writecontainer" type="submit" onclick="SaveCertificate()">Save</button>
+                    <button class="btn btn-danger writecontainer" type="reset">Clear</button>
                 </div>
                 <div class="border-top mt-1">
                     <img id="imgEmployeeCertficate" class="img-fluid" />

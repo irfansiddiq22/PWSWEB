@@ -3,12 +3,16 @@ var ApprovalList = [];
 var Inquiry = { ID: 0, Approvals: [] };
 function _Init() {
     HideSpinner();
+    pageNumber = 1
     SetvalOf("txtInquiryPreparedBy", User.Name);
     $("#dvEditClearance").hide();
     $("#dvClearanceList").show();
-    pageNumber =1
-    BindUsers();
-    BindInquiryList();
+    SetPagePermission(PAGES.EmployeeInquiry, function () {
+        BindUsers();
+        BindInquiryList();
+    });
+    
+    
 }
 function BindUsers() {
     $.post("/EmployeeAPI/CodeName", {}).done(function (Response) {
@@ -134,8 +138,8 @@ function BindInquiryList(PageNumber = 1) {
 
 
                 var Icons = $('<div class="icons">');
-                $(Icons).append($('<a href="javascript:void(0)" class="me-2" onclick="EditInquiry(' + r.ID + ')"><i class="fa fa-edit"></i></a>'));
-                $(Icons).append($('<a href="javascript:void(0)" class="" onclick="DeleteInquiry(' + r.ID + ')"><i class="fa fa-trash"></i></a>'));
+                $(Icons).append($('<a href="javascript:void(0)" class="me-2 writeble" onclick="EditInquiry(' + r.ID + ')"><i class="fa fa-edit"></i></a>'));
+                $(Icons).append($('<a href="javascript:void(0)" class="deleteble" onclick="DeleteInquiry(' + r.ID + ')"><i class="fa fa-trash"></i></a>'));
                 $(Icons).append($('<a href="javascript:void(0)" class="" onclick="PrintInquiry(' + r.ID + ')"><i class="fa fa-print"></i></a>'));
                 tr.append($('<td>').append($(Icons)));
 

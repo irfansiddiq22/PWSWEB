@@ -11,10 +11,9 @@ var AssetList = [];
 
 function _Init() {
     HideSpinner();
-    BindUsers();
+    SetPagePermission(PAGES.Asset, function () { BindUsers(); })
 }
 $('form').on('reset', function (e) {
-    
     InitilzeAsset();
 })
 
@@ -28,7 +27,9 @@ function InitilzeAsset() {
     $("#imgEmployeeAsset").attr("src", "");
     $("#imgEmployeeAsset").hide();   
 }
-
+function ResetNav() {
+    window.location="/home"
+}
 function BindUsers() {
     Post("/EmployeeAPI/CodeName", {}).done(function (Response) {
 
@@ -66,8 +67,8 @@ function FillAssets(EmployeeID) {
             tr.append($('<td>').append(c.Remarks))
             
             var Icons = $('<div class="icons">');
-            $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2" onclick="EditAsset(' + i + ')"><i class="fa fa-edit"></i></a>'));
-            $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="DeleteAsset(' + i + ')"><i class="fa fa-trash"></i></a>'));
+            $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2 writeble" onclick="EditAsset(' + i + ')"><i class="fa fa-edit"></i></a>'));
+            $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger deleteble" onclick="DeleteAsset(' + i + ')"><i class="fa fa-trash"></i></a>'));
             tr.append($('<td>').append($(Icons)));
 
             $("#tblAssetList").append(tr)

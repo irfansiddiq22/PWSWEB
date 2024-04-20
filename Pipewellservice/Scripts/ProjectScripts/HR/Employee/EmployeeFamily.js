@@ -16,7 +16,10 @@ var FamilyList = [];
 
 function _Init() {
     HideSpinner();
-    BindUsers();
+    SetPagePermission(PAGES.Family, function () {
+        BindUsers();
+    });
+    
 }
 $('form').on('reset', function (e) {
     
@@ -103,8 +106,8 @@ function FillEmployeeFamilyTable(Response) {
         //tr.append($('<td>').append(c.FileName == "null" || c.FileName == "" ? "" : $(Link)))
 
         var Icons = $('<div class="icons">');
-        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2" onclick="EditFamilyMember(' + i + ')"><i class="fa fa-edit"></i></a>'));
-        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="DeleteIDFile(' + i + ')"><i class="fa fa-trash"></i></a>'));
+        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2 writeble" onclick="EditFamilyMember(' + i + ')"><i class="fa fa-edit"></i></a>'));
+        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger deleteble" onclick="DeleteIDFile(' + i + ')"><i class="fa fa-trash"></i></a>'));
         tr.append($('<td>').append($(Icons)));
 
         $("#tblEmployeeFamily").append(tr)

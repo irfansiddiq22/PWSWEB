@@ -11,9 +11,15 @@
 var CertificateList = [];
 
 function _Init() {
-    LoadBreadCrumb({ Url: "/employee/home", Title: "Employee Management" }, { Url: "#", Title: "Employee Certificate" });
+    
     HideSpinner();
-    BindUsers();
+    SetPagePermission(PAGES.Certificate, function () {
+        BindUsers();
+    });
+    
+}
+function ResetNav() {
+    window.location = "/home"
 }
 $('form').on('reset', function (e) {
     $("#ddCertificateName").val("").trigger("change");
@@ -94,12 +100,13 @@ function FillCertificates(EmployeeID) {
             tr.append($('<td>').append(c.Remarks))
             tr.append($('<td>').append(CheckboxSwitch("", c.OnShore ? "checked" : "", "", "")))
             var Icons = $('<div class="icons">');
-            $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2" onclick="EditCertificate(' + i + ')"><i class="fa fa-edit"></i></a>'));
-            $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="DeleteCertificate(' + i + ')"><i class="fa fa-trash"></i></a>'));
+            $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary writeble me-2" onclick="EditCertificate(' + i + ')"><i class="fa fa-edit"></i></a>'));
+            $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger deleteble" onclick="DeleteCertificate(' + i + ')"><i class="fa fa-trash"></i></a>'));
             tr.append($('<td>').append($(Icons)));
 
             $("#tblCertificateList").append(tr)
         })
+        SetPagePermission(PAGES.Certificate);
     });
 }
 function EditCertificate(index) {

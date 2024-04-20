@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using System.IO;
 namespace Pipewellservice.Areas.API.Controllers
 {
+    [Authorization]
     public class EmployeeAPIController : BaseController
     {
         EmployeeJson json = new EmployeeJson();
@@ -59,6 +60,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.Certificates,1,2)]
         public async Task<JsonResult> UpdateCertificate(EmployeeCertificate certificate)
         {
             if (Request.Files.Count > 0)
@@ -84,6 +86,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.Certificates, 2, 1)]
         public async Task<JsonResult> RemoveCertificate(DeleteDTO delete)
         {
             return new JsonResult
@@ -107,6 +110,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.Assets, 1,2)]
         public async Task<JsonResult> UpdateAsset(EmployeeAsset asset)
         {
             if (Request.Files.Count > 0)
@@ -134,6 +138,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.Assets, 2,1)]
         public async Task<JsonResult> RemoveAsset(DeleteDTO delete)
         {
             return new JsonResult
@@ -203,6 +208,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.EmployeeID, 1,2)]
         public async Task<JsonResult> UpdateEmployeeIDFile(EmployeeIDFile Idfile)
         {
 
@@ -229,6 +235,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.EmployeeID, 2,1)]
         public async Task<JsonResult> RemoveEmployeeIDFile(DeleteDTO delete)
         {
             return new JsonResult
@@ -244,6 +251,7 @@ namespace Pipewellservice.Areas.API.Controllers
             return File(await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.EmployeeFamilyIDs), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
 
         }
+        
         public async Task<JsonResult> EmployeeFamilyIDFileList(int EmployeeID)
         {
             return new JsonResult
@@ -252,6 +260,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.FamilyID, 1,2)]
         public async Task<JsonResult> UpdateEmployeeFamilyIDFile(EmployeeFamilyIDFile Idfile)
         {
 
@@ -281,6 +290,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
 
         }
+        [Authorization(Pages.FamilyID, 2,1)]
         public async Task<JsonResult> RemoveEmployeeFamilyIDFile(DeleteDTO delete)
         {
             return new JsonResult
@@ -311,6 +321,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.Family, 1,2)]
 
         public async Task<JsonResult> UpdateEmployeeFamily(EmployeeFamily family)
         {
@@ -340,6 +351,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
 
         }
+        [Authorization(Pages.Family, 2,1)]
         public async Task<JsonResult> RemoveEmployeeFamily(DeleteDTO delete)
         {
             return new JsonResult
@@ -385,6 +397,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.EmployeeDetail, 1,2)]
         public async Task<JsonResult> UpdateEmployee(EmployeeData employee)
         {
             return new JsonResult
@@ -393,6 +406,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.EmployeeDetail, 1,2)]
         public async Task<FileResult> EmployeePicture(int EmployeeID, string FileID, string FileName)
         {
             string FilePath = await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.EmployeePictures); ;
@@ -401,7 +415,7 @@ namespace Pipewellservice.Areas.API.Controllers
             else
                 return null;
         }
-
+        [Authorization(Pages.EmployeeDetail, 1,2)]
         public async Task<JsonResult> UpdateEmployeePicture(int EmployeeID)
         {
 
@@ -445,6 +459,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.EmployeeWarning, 1,2)]
         public async Task<JsonResult> UpdateEmployeeWarning(EmployeeWarning warning)
         {
 
@@ -485,6 +500,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.EmployeeClearance , 1,2)]
         public async Task<JsonResult> UpdateEmployeeClearance(EmployeeClearance clearance)
         {
             int ID = await json.UpdateEmployeeClearance(clearance);
@@ -514,6 +530,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.EmployeeInquiry , 1,2)]
         public async Task<JsonResult> UpdateEmployeeInquiry(EmployeeInquiry inquiry)
         {
             int ID = await json.UpdateEmployeeInquiry(inquiry);
@@ -523,8 +540,8 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        
 
+        [Authorization(Pages.EmployeeInquiry, 1,2)]
         public async Task<JsonResult> UpdateEmployeeInquiryFile(int EmployeeID,int ID)
         {
 

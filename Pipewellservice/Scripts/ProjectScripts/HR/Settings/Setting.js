@@ -11,6 +11,10 @@ function ResetForm() {
     ResetChangeLog();
 }
 function _Init() {
+    SetPagePermission(PAGES.Division);
+    SetPagePermission(PAGES.Position);
+    SetPagePermission(PAGES.Department);
+
     BindDivision();
     BindPositions();
     BindDepartments();
@@ -36,8 +40,8 @@ function FillDivisionList(Response) {
         tr.append($('<td>').text(r.Name))
 
         var Icons = $('<div class="icons">');
-        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2" onclick="EditDivision(' + i + ')"><i class="fa fa-edit"></i></a>'));
-        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="DeleteDivision(' + i + ')"><i class="fa fa-trash"></i></a>'));
+        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary writeble1 me-2" onclick="EditDivision(' + i + ')"><i class="fa fa-edit"></i></a>'));
+        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger deleteble1" onclick="DeleteDivision(' + i + ')"><i class="fa fa-trash"></i></a>'));
         tr.append($('<td>').append($(Icons)));
 
         $("#tblDivisionList").append(tr);
@@ -107,8 +111,8 @@ function FillPositionList(Response) {
         tr.append($('<td>').text(r.Name))
 
         var Icons = $('<div class="icons">');
-        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2" onclick="EditPosition(' + i + ')"><i class="fa fa-edit"></i></a>'));
-        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="DeletePosition(' + i + ')"><i class="fa fa-trash"></i></a>'));
+        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary writeble2 me-2" onclick="EditPosition(' + i + ')"><i class="fa fa-edit"></i></a>'));
+        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger deleteble2" onclick="DeletePosition(' + i + ')"><i class="fa fa-trash"></i></a>'));
         tr.append($('<td>').append($(Icons)));
 
         $("#tblPositionList").append(tr);
@@ -181,8 +185,8 @@ function FillDepartmentList(Response) {
         tr.append($('<td class="text-center">').text(i + 1))
         tr.append($('<td>').text(r.Name))
         var Icons = $('<div class="icons">');
-        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2" onclick="EditDepartment(' + i + ')"><i class="fa fa-edit"></i></a>'));
-        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="DeleteDepartment(' + i + ')"><i class="fa fa-trash"></i></a>'));
+        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2 writeble3" onclick="EditDepartment(' + i + ')"><i class="fa fa-edit"></i></a>'));
+        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger deleteble3" onclick="DeleteDepartment(' + i + ')"><i class="fa fa-trash"></i></a>'));
         tr.append($('<td>').append($(Icons)));
 
         $("#tblDepartmentList").append(tr);
