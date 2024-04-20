@@ -70,7 +70,8 @@ namespace Pipewellservice
                       "~/Scripts/libraries/pagination/pagination.css"));
 
 
-
+            bundles.Add(new Bundle("~/lib/home").Include(
+                                  "~/Scripts/ProjectScripts/Home/home.js"));
 
             bundles.Add(new Bundle("~/lib/setting/setting").Include(
                       "~/Scripts/ProjectScripts/Setting/Setting.js"));

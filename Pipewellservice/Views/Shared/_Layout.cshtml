@@ -24,7 +24,7 @@
                         <div class="inner" style="z-index:1000;right:-22px">
                             <div class="row">
                                 <div class="col-4">User Name:</div>
-                                <div class="col text-start">Demo</div>
+                                <div class="col text-start UserName" >Demo</div>
                             </div>
                             <div class="row my-2">
                                 <div class="col-3">Last Login :</div>
@@ -36,7 +36,7 @@
                             </div>
                             <div class="row my-2">
 
-                                <div class="col"><button class="btn btn-danger btn-sm w-100">Log out</button></div>
+                                <div class="col"><a class="btn btn-danger text-white btn-sm w-100" href="/Auth/Logout">Log out</a></div>
                             </div>
                             
                         </div>
@@ -193,6 +193,7 @@
             })
             $.post("/Auth/Identity", {}, function (resp) {
                 User = resp;
+                $(".UserName").text(User.Name);
                 _Init();
             }).fail(function () {
                 HideSpinner();

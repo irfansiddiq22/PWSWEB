@@ -138,6 +138,7 @@ namespace PipewellserviceModels.HR.Employee
         public string Remarks { get; set; }
         public string Preparedby { get; set; }
         public string UserName { get; set; }
+        public int RecordCreatedBy { get; set; }
         public bool PersonalInquiry { get; set; }
         public bool GeneralInquiry { get; set; }
         public bool LoanInquiry { get; set; }

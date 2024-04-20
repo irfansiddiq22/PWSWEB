@@ -41,5 +41,11 @@ namespace Pipewellservice.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        public async Task<ActionResult> Logout()
+        {
+            SessionHelper h = new SessionHelper();
+            h.LogOut();
+            return RedirectToAction("Index");
+        }
     }
 }

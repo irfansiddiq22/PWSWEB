@@ -592,3 +592,8 @@ legend {
     
     background-color: var(--bs-table-striped-bg);
 }
+@media (min-width: 1200px) {
+    .modal-xl {
+        --bs-modal-width: 90%;
+    }
+}

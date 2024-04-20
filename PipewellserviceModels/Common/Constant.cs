@@ -80,11 +80,11 @@ namespace PipewellserviceModels.Common
         SecondWarning = 2,
         ThirdWarning = 3
     }
-    public enum WarningApprovalType
+    public enum ApprovalStatus
     {
         NotApproved = 0,
         Approved = 1,
-        Rejected = 2,
+        Declined = 2,
         None = 3
 
 

@@ -260,6 +260,7 @@ function SaveEmployeeInquiry() {
                 GeneralInquiry: GetChecked("chkInquiryGeneral") ,
                 LoanInquiry: GetChecked("chkInquiryLoan"),
                 UserName: User.Name,
+                RecordCreatedBy:User.ID,
                 Approvals: []
             };
 

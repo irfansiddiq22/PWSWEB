@@ -17,6 +17,7 @@ namespace PipewellserviceModels.User
         public string Password { get; set; }
         public string Designation { get; set; }
         public bool Status { get; set; }
+        public bool ApprovalRequests { get; set; }
         public List<PagePermisson> Permissions { get; set; }
     }
 }
