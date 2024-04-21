@@ -11,6 +11,10 @@ namespace Pipewellservice.Helper
 {
     public class SessionHelper
     {
+        public void LogOut()
+        {
+            HttpContext.Current.Session.RemoveAll();
+        }
         public void SetUserSession(User user)
         {
             user.Password = "";
@@ -20,6 +24,10 @@ namespace Pipewellservice.Helper
         public User UserSession()
         {
             return (User)HttpContext.Current.Session["User"];
+        }
+        public int EmployeeID()
+        {
+            return ((User)HttpContext.Current.Session["User"]).EmployeeID;
         }
         public PagePermisson PageSession(Pages Page)
         {

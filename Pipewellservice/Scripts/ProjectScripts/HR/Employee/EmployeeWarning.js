@@ -283,6 +283,7 @@ function SaveEmployeeWarning() {
             fileData.append('FileID', Warning.FileID);
             fileData.append('FileName', Warning.FileName);
             fileData.append('RecordAddedBy', User.Name);
+            fileData.append('RecordCreatedBy', User.ID);
             
 
             ShowSpinner();

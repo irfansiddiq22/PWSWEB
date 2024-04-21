@@ -59,9 +59,9 @@ namespace PipewellserviceModels.HR.Employee
         public string ApprovedBy1Name { get; set; }
         public string ApprovedBy2Name { get; set; }
         public string ApprovedBy3Name { get; set; }
-        public WarningApprovalType Approved1 { get; set; }
-        public WarningApprovalType Approved2 { get; set; }
-        public WarningApprovalType Approved3 { get; set; }
+        public ApprovalStatus Approved1 { get; set; }
+        public ApprovalStatus Approved2 { get; set; }
+        public ApprovalStatus Approved3 { get; set; }
         public string Approved1Name { get { return Approved1.ToString(); } }
         public string Approved2Name { get { return Approved2.ToString(); } }
         public string Approved3Name { get { return Approved3.ToString(); } }
@@ -77,5 +77,6 @@ namespace PipewellserviceModels.HR.Employee
         public string PreparedBy { get; set; }
         public DateTime RecordDateAdded { get; set; }
         public string RecordAddedBy { get; set; }
+        public int RecordCreatedBy { get; set; }
     }
 }

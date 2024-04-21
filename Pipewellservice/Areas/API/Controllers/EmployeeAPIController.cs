@@ -472,6 +472,11 @@ namespace Pipewellservice.Areas.API.Controllers
                     warning.FileID = $"{warning.ID}{warning.FileID}";
 
             }
+            else
+            {
+                warning.FileName = "";
+                warning.FileID = "";
+            }
             int ID = await json.UpdateEmployeeWarning(warning);
 
             if (Request.Files.Count > 0)
@@ -487,6 +492,10 @@ namespace Pipewellservice.Areas.API.Controllers
             };
 
 
+        }
+        public async Task<FileResult> DownloadWarningFile(int EmployeeID, string FileName, string FileID)
+        {
+            return File(await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.EmployeeWarnings), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
         }
 
 
@@ -510,6 +519,11 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
 
+        }
+
+        public async Task<FileResult> DownloadClearanceFile(int EmployeeID, string FileName, string FileID)
+        {
+            return File(await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.EmployeeAssets), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
         }
 
         /// 
@@ -574,7 +588,10 @@ namespace Pipewellservice.Areas.API.Controllers
 
         }
 
-
+        public async Task<FileResult> DownloadInQuiryFile(int EmployeeID, string FileName, string FileID)
+        {
+            return File(await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.EmployeeInquiry), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
+        }
         //////////////////////////////////////////////////////////
 
         public async Task<JsonResult> WarningSupervisors()
@@ -585,5 +602,26 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
+
+
+        public async Task<JsonResult> PendingApprovals(bool Declined)
+        {
+            return new JsonResult
+            {
+                Data = await json.ApprovalList(SessionHelper.EmployeeID(), Declined),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        [Authorization(Pages.Users, 1, 2)]
+        public async Task<JsonResult> ApproveRequests(List<PendingApproval> approvals)
+        {
+            return new JsonResult
+            {
+                Data = await json.ApproveRequest(SessionHelper.EmployeeID(), approvals),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
     }
 }

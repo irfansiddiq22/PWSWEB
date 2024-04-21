@@ -591,7 +591,7 @@ namespace PipewellserviceDB.HR.Employee
         {
             try
             {
-                SqlParameter[] collSP = new SqlParameter[22];
+                SqlParameter[] collSP = new SqlParameter[23];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = dTO.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = dTO.EmployeeID };
                 collSP[2] = new SqlParameter { ParameterName = "@WarningDate", Value = dTO.WarningDate };
@@ -617,6 +617,7 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[19] = new SqlParameter { ParameterName = "@FileName", Value = dTO.FileName };
                 collSP[20] = new SqlParameter { ParameterName = "@FileID", Value = dTO.FileID };
                 collSP[21] = new SqlParameter { ParameterName = "@PreparedBy", Value = dTO.RecordAddedBy };
+                collSP[22] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = dTO.RecordCreatedBy };
 
                 var result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeWarning", CommandType.StoredProcedure, collSP);
                 return Convert.ToInt32(result);
@@ -749,8 +750,6 @@ namespace PipewellserviceDB.HR.Employee
             var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeInquiryReport", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
             EmployeeInquiryDB model = new EmployeeInquiryDB();
             model.Inquiry.Load(result);
-            
-            
             return model.Inquiry;
 
         }
@@ -770,7 +769,7 @@ namespace PipewellserviceDB.HR.Employee
                 }
                 Approvals.AppendLine("</NewDataSet>");
 
-                SqlParameter[] collSP = new SqlParameter[10];
+                SqlParameter[] collSP = new SqlParameter[11];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = dTO.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = dTO.EmployeeID };
                 collSP[2] = new SqlParameter { ParameterName = "@InquiryDate", Value = dTO.InquiryDate };
@@ -780,9 +779,8 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[6] = new SqlParameter { ParameterName = "@LoanInquiry", Value = dTO.LoanInquiry };
                 collSP[7] = new SqlParameter { ParameterName = "@Preparedby", Value = dTO.Preparedby };
                 collSP[8] = new SqlParameter { ParameterName = "@UserName", Value = dTO.UserName };
-
-
-                collSP[9] = new SqlParameter { ParameterName = "@Approvals", Value = Approvals.ToString() };
+                collSP[9] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = dTO.RecordCreatedBy };
+                collSP[10] = new SqlParameter { ParameterName = "@Approvals", Value = Approvals.ToString() };
 
                 var result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeInquiry", CommandType.StoredProcedure, collSP);
                 return Convert.ToInt32(result);
@@ -822,5 +820,40 @@ namespace PipewellserviceDB.HR.Employee
 
         }
 
+        public async Task<DataTable> ApprovalList(int ID, bool Declined)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = ID };
+                collSP[1] = new SqlParameter { ParameterName = "@Declined", Value = Declined };
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcApprovalList", CommandType.StoredProcedure, collSP);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+
+        public async Task<bool> ApproveRequest(int ID, List<PendingApproval> approvals)
+        {
+            SqlParameter[] collSP = new SqlParameter[3];
+            foreach (PendingApproval p in approvals)
+            {
+                collSP = new SqlParameter[3];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = p.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@Remarks", Value = p.Remarks };
+                collSP[2] = new SqlParameter { ParameterName = "@Status", Value = p.Status };
+                SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcUpdateEmployeeApprovalRequest", CommandType.StoredProcedure, collSP);
+                
+            }
+            return true;
+        }
     }
 }

@@ -214,6 +214,20 @@ namespace PipewellserviceJson.HR.Employee
             return await JsonHelper.Convert<List<EmployeeIDView>, DataTable>(await service.WarningSupervisors());
         }
 
+        public async Task<List<PendingApproval>> ApprovalList(int ID,bool Declined)
+        {
+            var db = await service.ApprovalList(ID, Declined);
+            return await JsonHelper.Convert<List<PendingApproval>, DataTable>(db);
+            
+        }
+        public async Task<bool> ApproveRequest(int ID, List<PendingApproval> approvals)
+        {
+            return await service.ApproveRequest(ID, approvals);
+            
+
+        }
+
+        
         ////////////////////
 
 

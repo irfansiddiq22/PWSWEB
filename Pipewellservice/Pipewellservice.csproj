@@ -366,6 +366,7 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\ProjectScripts\Auth\Login.js" />
+    <Content Include="Scripts\ProjectScripts\Home\home.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Asset.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Employee.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeClearance.js" />
@@ -514,7 +515,6 @@
     <Folder Include="Models\" />
     <Folder Include="Resources\Employee\1\" />
     <Folder Include="Resources\Employee\2\" />
-    <Folder Include="Scripts\ProjectScripts\Home\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

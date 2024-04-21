@@ -13,15 +13,60 @@
                 <div class="o_caption w-100 text-center text-truncate mt-2">Settings</div>
             </div>
 
+            <div class="col-3 col-md-2 d-none" id="dvApprovals">
+                <a href="javascript:void(0)" onclick="ShowApprovalList()" class="d-flex flex-column rounded-3 justify-content-start align-items-center w-100 p-1 p-md-2"><img class="pws_icon rounded-3" src="data:image/png;base64,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" /></a>
+                <div class="o_caption w-100 text-center text-truncate mt-2">Approvals</div>
+            </div>
 
+
+
+
+        </div>
+
+
+        
+        <div class="modal fade" id="dlgPendingApprovals" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="dlgPendingApprovals" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Approval List</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-auto"><h3>Pending Approvals</h3> </div>
+                            <div class="col mt-2"><input type="checkbox" id="chkDeclinedApprovals" onclick="GetPendingRequests();"/><label class="form-label ms-2" for="chkDeclinedApprovals">Show Decline Approvals</label></div>
+                        </div>
+                        
+                        <table class="table table-sm table-striped table-hover-warning table-bordered">
+                            <thead class="blue">
+                                <tr>
+                                    <th width="10%;">Approval Type</th>
+                                    <th  width="5%;">ID</th>
+
+                                    <th width="10%;">Date</th>
+                                    <th  width="10%;">Prepared by</th>
+                                    <th>Remarks</th>
+                                    <th width="10%;">File </th>
+                                    <th width="10%;">Employee/ID</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="tblPendingApprovals"></tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
 </div>
+@section Scripts{
+    @Scripts.Render("~/lib/home")
+}
 
-<script type="text/javascript">
-    function _Init() {
-        $("#spinner").hide();
-        SetGroupPermissions([1,3]);
-    }
-</script>
+
+
