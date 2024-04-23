@@ -480,7 +480,7 @@ namespace PipewellserviceDB.HR.Employee
 
             try
             {
-                SqlParameter[] collSP = new SqlParameter[39];
+                SqlParameter[] collSP = new SqlParameter[40];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = employee.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@Name", Value = employee.Name };
                 collSP[2] = new SqlParameter { ParameterName = "@ArabicName", Value = employee.ArabicName };
@@ -522,6 +522,7 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[36] = new SqlParameter { ParameterName = "@NoOfDependent", Value = employee.NoOfDependent };
                 collSP[37] = new SqlParameter { ParameterName = "@AnnualTicket", Value = employee.AnnualTicket };
                 collSP[38] = new SqlParameter { ParameterName = "@JobLeftDate", Value = employee.JobLeftDate };
+                collSP[39] = new SqlParameter { ParameterName = "@VendorID", Value = employee.VendorID };
 
                 var Result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployee", CommandType.StoredProcedure, collSP);
                 return new ResultDTO() { ID = Convert.ToInt32(Result), Status = true, Message = "Record Added" };
@@ -855,5 +856,58 @@ namespace PipewellserviceDB.HR.Employee
             }
             return true;
         }
+        public async Task<DataTable> VendorList()
+        {
+            try
+            {
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeVendorList", CommandType.StoredProcedure);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+
+        public async Task<int> UpdateVendor(Vendor dTO)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[21];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = dTO.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@Name", Value = dTO.Name };
+                collSP[2] = new SqlParameter { ParameterName = "@CSR", Value = dTO.CSR };
+                collSP[3] = new SqlParameter { ParameterName = "@Contact", Value = dTO.Contact };
+                collSP[4] = new SqlParameter { ParameterName = "@EmergencyContact", Value = dTO.EmergencyContact };
+                collSP[5] = new SqlParameter { ParameterName = "@Address", Value = dTO.Address };
+                collSP[6] = new SqlParameter { ParameterName = "@EmailAddress", Value = dTO.EmailAddress };
+                collSP[7] = new SqlParameter { ParameterName = "@WorkScope", Value = dTO.WorkScope };
+                collSP[8] = new SqlParameter { ParameterName = "@HourlyPrice", Value = dTO.HourlyPrice };
+                collSP[9] = new SqlParameter { ParameterName = "@WorkHours", Value = dTO.WorkHours };
+                collSP[10] = new SqlParameter { ParameterName = "@OverTimeHourlyPrice", Value = dTO.OverTimeHourlyPrice };
+                collSP[11] = new SqlParameter { ParameterName = "@MinWorkHours", Value = dTO.MinWorkHours };
+                collSP[12] = new SqlParameter { ParameterName = "@Accommodation", Value = dTO.Accommodation };
+                collSP[13] = new SqlParameter { ParameterName = "@Food", Value = dTO.Food };
+                collSP[14] = new SqlParameter { ParameterName = "@Transport", Value = dTO.Transport };
+                collSP[15] = new SqlParameter { ParameterName = "@AjeerProvided", Value = dTO.AjeerProvided };
+                collSP[16] = new SqlParameter { ParameterName = "@AjeerType", Value = dTO.AjeerType };
+                collSP[17] = new SqlParameter { ParameterName = "@AjeerSaudization", Value = dTO.AjeerSaudization };
+                collSP[18] = new SqlParameter { ParameterName = "@PWSCR", Value = dTO.PWSCR };
+                collSP[19] = new SqlParameter { ParameterName = "@Remarks", Value = dTO.Remarks };
+                collSP[20] = new SqlParameter { ParameterName = "@RecordAddedBy", Value = dTO.RecordAddedBy };
+
+                return (int) SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeVendor", CommandType.StoredProcedure, collSP);
+            }catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+
     }
 }

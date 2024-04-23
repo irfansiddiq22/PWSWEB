@@ -121,7 +121,8 @@ namespace PipewellserviceModels.Common
         JobContracts = 15,
         EmployeeInquiry = 16,
         Users=17,
-        Permissions=18
+        Permissions=18,
+        Vendor=19
     }
 
     public enum DirectoryNames

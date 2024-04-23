@@ -503,6 +503,8 @@
     <Content Include="Views\Employee\_PartialJobContract.cshtml" />
     <Content Include="Views\Employee\_PartialJobOffer.cshtml" />
     <Content Include="Views\Home\AccessDenied.cshtml" />
+    <Content Include="Views\Employee\_PartialSponsor.cshtml" />
+    <Content Include="Scripts\ProjectScripts\HR\Settings\Vendor.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

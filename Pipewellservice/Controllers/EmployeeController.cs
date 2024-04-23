@@ -196,6 +196,13 @@ namespace Pipewellservice.Controllers
             ViewBag.Parent = Parent;
             return View("_PartialEmployeeSetting");
         }
+
+        public ActionResult Sponsors()
+        {
+            ViewBag.Title = "Employee Sponor";
+            ViewBag.Parent = Parent;
+            return View("_PartialSponsor");
+        }
         public async Task<ActionResult> PrintReport(int ID, Pages ReportID)
         {
             EmployeeService service = new EmployeeService();

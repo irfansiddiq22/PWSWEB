@@ -227,8 +227,17 @@ namespace PipewellserviceJson.HR.Employee
 
         }
 
-        
+
         ////////////////////
+        public async Task<List<Vendor>>VendorList()
+        {
+            return await JsonHelper.Convert<List<Vendor>, DataTable>(await service.VendorList());
+        }
+        public async Task<List<Vendor>> UpdateVendor(Vendor dto)
+        {
+            int result=await service.UpdateVendor(dto);
+            return await VendorList();
+        }
 
 
 

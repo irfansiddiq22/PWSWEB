@@ -74,6 +74,8 @@ namespace PipewellserviceModels.HR.Employee
         public string SocialInsuranceNo { get; set; }
         public SocialInsuranceClass SocialInsuranceClass { get; set; }
         public int? SponsorID { get; set; }
+        public int? VendorID { get; set; }
+
         public ContractType ContractType { get; set; }
         public int NoOfDependent { get; set; }
         public HiringSource? HiringSource { get; set; }

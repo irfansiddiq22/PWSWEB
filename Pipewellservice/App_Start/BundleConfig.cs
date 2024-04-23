@@ -92,9 +92,12 @@ namespace Pipewellservice
             bundles.Add(new Bundle("~/lib/hr/employeefamily").Include(
                                   "~/Scripts/ProjectScripts/HR/Employee/EmployeeFamily.js"));
 
+            bundles.Add(new Bundle("~/lib/hr/vendor").Include(
+                      "~/Scripts/ProjectScripts/HR/Settings/Vendor.js"));
+
 
             bundles.Add(new Bundle("~/lib/hr/employee").Include(
-                                  "~/Scripts/ProjectScripts/HR/Employee/Employee.js"));
+                                  "~/Scripts/ProjectScripts/HR/Employee/Employee.js", "~/Scripts/ProjectScripts/HR/Settings/Vendor.js"));
             bundles.Add(new Bundle("~/lib/hr/employeewarning").Include(
                                   "~/Scripts/ProjectScripts/HR/Employee/EmployeeWarning.js"));
             bundles.Add(new Bundle("~/lib/hr/employeeclearance").Include(
