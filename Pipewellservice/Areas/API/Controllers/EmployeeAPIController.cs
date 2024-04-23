@@ -623,5 +623,26 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
+        [Authorization(Pages.Vendor)]
+        public async Task<JsonResult> VendorList()
+        {
+            return new JsonResult
+            {
+                Data = await json.VendorList(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        [Authorization(Pages.Vendor,1,1)]
+        public async Task<JsonResult> UpdateVendor(Vendor Vendor)
+        {
+            Vendor.RecordAddedBy = SessionHelper.UserSession().ID;
+
+            return new JsonResult
+            {
+                Data = await json.UpdateVendor(Vendor),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
     }
 }

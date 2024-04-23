@@ -8,7 +8,7 @@ function _Init() {
 
         BindUsers();
         FillEmployeeDataList()
-
+        LoadVendor();
         var rules = [];
 
         $("#frmEmployeeData").validate()
@@ -57,7 +57,7 @@ $(".keyupfilter").keyup(function () {
     /// FillEmployeeTable();
 })
 function FillEmployeeDataList() {
-    Post("/EmployeeAPI/EmployeeDataList", {}).done(function (Response) {
+    $.post("/EmployeeAPI/EmployeeDataList", {}).done(function (Response) {
         var Departments = Response.departments;
         var Positions = Response.positions;
         var Sponsors = Response.sponsors;
@@ -388,12 +388,14 @@ function UploadEmployeePicture(file, EmployeeID) {
 
 }
 $("#ddEmployeeHiringSource").change(function () {
-    if ($(this).val() == 1)
+    if ($(this).val() == 1) {
         $("#txtEmployeeHiringCost").attr("readonly", "readonly")
-        
-    else
+        $(".vendor").hide();
+    }
+    else {
         $("#txtEmployeeHiringCost").removeAttr("readonly")
-
+        $(".vendor").show();
+    }
 })
 $("#ddEmployeeNationality").change(function () {
     if ($(this).val() == "Saudi")

@@ -1,7 +1,7 @@
 ﻿
 
 <div class="border p-2">
-   
+
     <div id="dvEmployeeList">
         <div class="my-2 p-2">
             <div class="w-100 m-auto">
@@ -36,7 +36,7 @@
 
                             <div class="col-8">Show iqama info</div>
                             <div class="col">
-                                <label class="switch"><input type="checkbox"  id="chkEmployeeIqamainfo" onclick="ToggleIqamaData()"><div class="slider round"></div></label>
+                                <label class="switch"><input type="checkbox" id="chkEmployeeIqamainfo" onclick="ToggleIqamaData()"><div class="slider round"></div></label>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -51,8 +51,8 @@
 
                     </div>
                     <div class="col-md-2">
-                    <button type="button" class="btn btn-danger wrn-btn" onclick="FillEmployeeTable();">Search</button>
-                    <button type="button" class="btn btn-success wrn-btn writecontainer" onclick="NewEmployee();">Add Employee</button> 
+                        <button type="button" class="btn btn-danger wrn-btn" onclick="FillEmployeeTable();">Search</button>
+                        <button type="button" class="btn btn-success wrn-btn writecontainer" onclick="NewEmployee();">Add Employee</button>
                     </div>
 
                 </div>
@@ -72,7 +72,7 @@
                         <th onclick="SortData(this,'Name')">Emp Name</th>
                         <th onclick="SortData(this,'ArabicName')">Name/Arabic</th>
                         <th onclick="SortData(this,'Nationality')">Nationality</th>
-                        <th  onclick="SortData(this,'Iqama')">Iqama</th>
+                        <th onclick="SortData(this,'Iqama')">Iqama</th>
                         <th class="iqamadata" onclick="SortData(this,'Iqama')">Expiry Date</th>
 
                         <th class="iqamadata" onclick="SortData(this,'Passport')">Passport</th>
@@ -110,7 +110,7 @@
                 <div class="col-lg-5 col-md-12">
                     <div class="row form">
                         <div class="col-4"><label>Emp.NO.</label></div>
-                        <div class="col-3"><input type="number"  class="form-control form-control-sm" id="txtEmployeeID" data-id="ID" value="0" onblur="FindEmployee(this.value)" /></div>
+                        <div class="col-3"><input type="number" class="form-control form-control-sm" id="txtEmployeeID" data-id="ID" value="0" onblur="FindEmployee(this.value)" /></div>
                         <div class="col-1"><label>ID#</label></div>
                         <div class="col-4"><input type="text" class="form-control form-control-sm" id="txtEmployeeIqama" readonly data-id="Iqama" /></div>
 
@@ -194,7 +194,16 @@
 
 
                         <div class="col-4"><label>Source Of Hiring</label></div>
-                        <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeeHiringSource" data-id="HiringSource" required data-msg="Please select hiring source"><option value="1">Direct</option><option value="2">Supplier</option><option value="3">Agency</option><option value="3">Agency</option><option value=""></option></select></div>
+                        <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeeHiringSource" data-id="HiringSource" required data-msg="Please select hiring source"><option value="1">Direct</option><option value="2">Supplier</option><option value="3">Vendor</option><option value=""></option></select></div>
+
+                        <div class="col-4 vendor"><label>Vendor</label><a href="javascript:void(0)" onclick="ShowVendorList()" class="ms-2 text-success"><i class="fa fa-plus-circle"></i></a></div>
+                        <div class="col-8 vendor">
+                            <div class="row">
+                                <div class="col"><select class="form-select form-select-sm" id="ddEmployeeHiringVendor" data-id="VendorID" required data-msg="Please select vendor"></select> </div>
+                                <div class="col-auto"><a href="javascript:void(0)" onclick="EditVendorData();" class="ms-2 text-primary"><i class="fa fa-edit"></i></a> </div>
+                            </div>
+                        </div>
+
 
                         <div class="col-4"><label>Type of Contract</label></div>
                         <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeeContractType" data-id="ContractType" required data-msg="Please select contract type"><option value="1">Family</option><option value="2">Single</option><option value="0"></option></select></div>
@@ -251,6 +260,24 @@
         </form>
     </div>
 
+
+    <div class="modal fade" id="dlgVendorList" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="dlgVendorList" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Vendor List</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @Html.Partial("_PartialSponsor")
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="SaveVendor()">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 @section Scripts{
