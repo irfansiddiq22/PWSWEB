@@ -260,9 +260,7 @@ function SaveEmployeeClearance() {
                 }
 
             });
-            console.log(DataChangeLog);
-            console.log(NewClearance);
-
+            
             Post("/EmployeeAPI/UpdateEmployeeClearance", { clearance: NewClearance }).done(function (ID) {
                 if (ID > 0) {
                     if (NewClearance.ID > 0)

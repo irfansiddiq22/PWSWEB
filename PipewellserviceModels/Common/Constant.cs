@@ -91,7 +91,9 @@ namespace PipewellserviceModels.Common
     {
         Clearance = 1,
         Warning = 2,
-        Inquiry=3
+        Inquiry=3,
+        Vacation=4
+
     }
     public enum PageGroups
     {

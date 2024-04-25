@@ -181,6 +181,25 @@ namespace PipewellserviceJson.HR.Employee
         {
             return await service.UpdateEmployeeClearance(dTO);
         }
+
+        public async Task<EmployeeVacationListView> EmployeeVacationList(EmployeeVacationParam param)
+        {
+            var db = await service.EmployeeVacationList(param);
+            EmployeeVacationListView model = new EmployeeVacationListView();
+            model.Vacation = await JsonHelper.Convert<List<EmployeeVacation>, DataTable>(db.Vacation);
+            model.Assets = await JsonHelper.Convert<List<VacationAsset>, DataTable>(db.Assets);
+            model.Approvals = await JsonHelper.Convert<List<EmployeeApproval>, DataTable>(db.Approvals);
+            return model;
+        }
+        public async Task<int> UpdateEmployeeVacation(EmployeeVacation dTO)
+        {
+            return await service.UpdateEmployeeVacation(dTO);
+        }
+        public async Task<bool> DeleteEmployeeVacation(int ID,int UserID)
+        {
+            return await service.DeleteEmployeeVacation(ID,UserID);
+        }
+
         public async Task<EmployeeInquiryListView> EmployeeInquiryList(EmployeeInquiryParam param)
         {
             var db = await service.EmployeeInquiryList(param);

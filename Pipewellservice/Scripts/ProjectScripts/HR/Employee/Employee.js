@@ -58,12 +58,12 @@ $(".keyupfilter").keyup(function () {
 })
 function FillEmployeeDataList() {
     $.post("/EmployeeAPI/EmployeeDataList", {}).done(function (Response) {
-        var Departments = Response.departments;
+        var Divisions = Response.divisions;
         var Positions = Response.positions;
         var Sponsors = Response.sponsors;
         var Worktime = Response.worktime;
 
-        FillList("ddEmployeeDivision", Departments, "Name", "ID", "Select Division")
+        FillList("ddEmployeeDivision", Divisions, "Name", "ID", "Select Division")
         FillList("ddEmployeePosition", Positions, "Name", "ID", "Select Posstion")
         FillList("ddEmployeeSponsor", Sponsors, "Name", "ID", "Select Sponsor")
         FillList("ddEmployeeWorkInOutTime", Worktime, "Time", "ID", "")

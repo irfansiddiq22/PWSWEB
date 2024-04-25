@@ -125,12 +125,14 @@ function SaveCertificate() {
         errorClass: "text-danger",
 
         rules: {
-            EmployeeCode: "required",
+            EmployeeCode: {
+                required: true,
+                min: 1},
             CertificateName: "required",
             CertificateIssueDate: "required"
         },
         messages: {
-            EmployeeCode: "Please select employee",
+            EmployeeCode: { required: "Please select employee", min: "Please select employee"},
             CertificateName: "Please enter certificate name",
             CertificateIssueDate: "Please enter certificate issue date",
 

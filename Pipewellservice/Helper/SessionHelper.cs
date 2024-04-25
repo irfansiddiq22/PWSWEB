@@ -29,6 +29,10 @@ namespace Pipewellservice.Helper
         {
             return ((User)HttpContext.Current.Session["User"]).EmployeeID;
         }
+        public int UserID()
+        {
+            return ((User)HttpContext.Current.Session["User"]).ID;
+        }
         public PagePermisson PageSession(Pages Page)
         {
             User user = UserSession();
