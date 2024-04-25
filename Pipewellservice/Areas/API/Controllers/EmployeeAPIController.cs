@@ -383,9 +383,10 @@ namespace Pipewellservice.Areas.API.Controllers
         }
         public async Task<JsonResult> EmployeeData(int EmployeeID)
         {
+            var result = await json.EmployeeData(EmployeeID);
             return new JsonResult
             {
-                Data = await json.EmployeeData(EmployeeID),
+                Data = result,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -512,6 +513,7 @@ namespace Pipewellservice.Areas.API.Controllers
         [Authorization(Pages.EmployeeClearance , 1,2)]
         public async Task<JsonResult> UpdateEmployeeClearance(EmployeeClearance clearance)
         {
+            
             int ID = await json.UpdateEmployeeClearance(clearance);
             return new JsonResult
             {
@@ -519,8 +521,42 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
 
+        }////////////////////////////////////////////////////
+
+        public async Task<JsonResult> EmployeeVacationList(EmployeeVacationParam param)
+        {
+            return new JsonResult
+            {
+                Data = await json.EmployeeVacationList(param),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        [Authorization(Pages.EmployeeVacation, 1, 2)]
+        public async Task<JsonResult> UpdateEmployeeVacation(EmployeeVacation vacation)
+        {
+            vacation.RecordCreatedBy = SessionHelper.EmployeeID();
+            int ID = await json.UpdateEmployeeVacation(vacation);
+            return new JsonResult
+            {
+                Data = ID,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+
+        }
+        [Authorization(Pages.EmployeeVacation, 1, 1)]
+        public async Task<JsonResult> DeleteEmployeeVacation(int ID)
+        {
+            int UserID = SessionHelper.UserID();
+            bool result = await json.DeleteEmployeeVacation(ID,UserID);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+
         }
 
+        
         public async Task<FileResult> DownloadClearanceFile(int EmployeeID, string FileName, string FileID)
         {
             return File(await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.EmployeeAssets), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);

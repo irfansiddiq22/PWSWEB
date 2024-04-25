@@ -457,7 +457,7 @@ namespace PipewellserviceDB.HR.Employee
         public async Task<EmployeeDataSql> EmployeeDataList()
         {
             try
-            {
+            {   
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeDataList", CommandType.StoredProcedure);
                 EmployeeDataSql model = new EmployeeDataSql();
                 model.Department.Load(result);
@@ -697,6 +697,120 @@ namespace PipewellserviceDB.HR.Employee
                 return 0;
             }
 
+        }
+        ///////////////////-------------------------------------------------
+        public async Task<EmployeeVacationDB> EmployeeVacationList(EmployeeVacationParam param)
+        {
+            try
+            {
+
+                SqlParameter[] collSP = new SqlParameter[4];
+                collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = param.EmployeeID };
+                collSP[1] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate };
+                collSP[2] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate };
+                collSP[3] = new SqlParameter { ParameterName = "@Emergency", Value = param.EmergencyOnly };
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeVacationList", CommandType.StoredProcedure, collSP);
+                EmployeeVacationDB model = new EmployeeVacationDB();
+                model.Vacation.Load(result);
+                model.Approvals.Load(result);
+                model.Assets.Load(result);
+                result.Close();
+                return model;
+            }
+            catch (Exception e)
+                {
+                return null;
+            }
+
+        }
+        public async Task<int> UpdateEmployeeVacation(EmployeeVacation dTO)
+        {
+            try
+            {
+                StringBuilder Assets = new StringBuilder();
+                StringBuilder Approvals = new StringBuilder();
+                Assets.AppendLine("<NewDataSet>");
+                if (dTO.Assets != null && dTO.Assets.Count > 0)
+                {
+                    foreach (VacationAsset a in dTO.Assets)
+                    {
+                        Assets.AppendLine($"<Table1><AssetID>{a.AssetID}</AssetID></Table1>");
+                    }
+                }
+                Assets.AppendLine("</NewDataSet>");
+
+                Approvals.AppendLine("<NewDataSet>");
+                if (dTO.Approvals != null && dTO.Approvals.Count > 0)
+                {
+                    foreach (EmployeeApproval a in dTO.Approvals)
+                    {
+                        Approvals.AppendLine($"<Table1><ApprovedBy>{a.ApprovalBy}</ApprovedBy></Table1>");
+                    }
+                }
+                Approvals.AppendLine("</NewDataSet>");
+
+                SqlParameter[] parameters = new SqlParameter[28];
+                parameters[0] = new SqlParameter { ParameterName = "@ID", Value = dTO.ID };
+                parameters[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = dTO.EmployeeID };
+                parameters[2] = new SqlParameter { ParameterName = "@RecordDate", Value = dTO.RecordDate };
+                parameters[3] = new SqlParameter { ParameterName = "@WithPay", Value = dTO.WithPay };
+                parameters[4] = new SqlParameter { ParameterName = "@WithoutPay", Value = dTO.WithOutPay };
+                parameters[5] = new SqlParameter { ParameterName = "@Approved", Value = dTO.Approved };
+                parameters[6] = new SqlParameter { ParameterName = "@Destination", Value = dTO.Destination };
+                parameters[7] = new SqlParameter { ParameterName = "@DepartDate", Value = dTO.DepartDate };
+                parameters[8] = new SqlParameter { ParameterName = "@ReturnDate", Value = dTO.ReturnDate };
+                parameters[9] = new SqlParameter { ParameterName = "@Dues", Value = dTO.Dues };
+                parameters[10] = new SqlParameter { ParameterName = "@Duration", Value = dTO.Duration };
+                parameters[11] = new SqlParameter { ParameterName = "@MonthsEarly", Value = dTO.MonthsEarly };
+                parameters[12] = new SqlParameter { ParameterName = "@Reason", Value = dTO.Reason };
+                parameters[13] = new SqlParameter { ParameterName = "@Remarks", Value = dTO.Remarks };
+                parameters[14] = new SqlParameter { ParameterName = "@Emergency", Value = dTO.Emergency };
+                parameters[15] = new SqlParameter { ParameterName = "@VacationDue", Value = dTO.VacationDue };
+                parameters[16] = new SqlParameter { ParameterName = "@TravelOrder", Value = dTO.TravelOrder };
+                parameters[17] = new SqlParameter { ParameterName = "@Ticket", Value = dTO.Ticket };
+                parameters[18] = new SqlParameter { ParameterName = "@IqamaRenewal", Value = dTO.IqamaRenewal };
+                parameters[19] = new SqlParameter { ParameterName = "@EntryExitVisa", Value = dTO.EntryExitVisa };
+                parameters[20] = new SqlParameter { ParameterName = "@Contact", Value = dTO.Contact };
+                parameters[21] = new SqlParameter { ParameterName = "@HandOver", Value = dTO.HandOver };
+                parameters[22] = new SqlParameter { ParameterName = "@LastWorkingDate", Value = dTO.LastWorkingDate };
+                parameters[23] = new SqlParameter { ParameterName = "@FinalDepartDate", Value = dTO.FinalDepartDate };
+                parameters[24] = new SqlParameter { ParameterName = "@PreparedBy", Value = dTO.PreparedBy };
+                parameters[25] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = dTO.RecordCreatedBy };
+                parameters[26] = new SqlParameter { ParameterName = "@Assets", Value = Assets.ToString() };
+                parameters[27] = new SqlParameter { ParameterName = "@Approvals", Value = Approvals.ToString() };
+                
+                
+
+
+
+                var result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeVacation", CommandType.StoredProcedure, parameters);
+                return Convert.ToInt32(result);
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+
+        }
+        public async Task<bool> DeleteEmployeeVacation(int ID, int UserID)
+        {
+            try
+            {
+
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = ID };
+                collSP[1] = new SqlParameter { ParameterName = "@UserID", Value = UserID };
+                
+
+                await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcDeleteEmployeeVacation", CommandType.StoredProcedure, collSP);
+                
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
         ///////////////////-------------------------------------------------
 

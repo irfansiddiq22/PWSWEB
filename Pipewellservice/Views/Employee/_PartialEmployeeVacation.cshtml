@@ -1,45 +1,87 @@
 ﻿
 <div class="border p-2">
-    <div id="dvClearanceList">
+    <div id="dvVacationList">
+
         <div class="p-3 border my-2">
             <div class="row">
 
-                <div class="form-group col-md-3 row">
+                <div class="form-group col-md-3 row ms-1 mb-0">
                     <label class="col-md-2 col-form-label p-0"> Employee:</label>
                     <div class="col">
-                        <select class="js-states form-control" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                        <select class="form-select" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
                     </div>
                 </div>
+
+                <div class="form-group col-md-3 row ms-1 mb-0">
+                    <label class="col-md-3 col-form-label p-0"> Date Range:</label>
+                    <div class="col position-relative">
+                        <input type="text" name="ddlDataRange" id="ddlDataRange" class="form-control form-control-sm daterangepicker" autocomplete="off">
+                    </div>
+                </div>
+                <div class=" col-md-auto text-left  mb-0">
+                    <div class="row my-2">
+                        <div class="col-auto">Summary only</div>
+                        <div class="col">
+                            <label class="switch"><input type="checkbox" id="ChkVacationSummaryOnly"><div class="slider round"></div></label>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-md-auto text-left">
+                    <div class="row my-2">
+
+                        <div class="col-auto">Emergenecy</div>
+                        <div class="col">
+                            <label class="switch"><input type="checkbox" checked="checked" id="chkEmergencyOnly"><div class="slider round"></div></label>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
                 <div class="form-group col-md-2">
-                    <button class="btn btn-sm btn-primary" onclick="NewClearance()">Add Clearance </button>
+                    <button class="btn btn-sm btn-primary" onclick="BindVacation()">Search </button>
+
+                    <button class="btn btn-sm btn-success writecontainer" onclick="NewVacation()">Add Vacation </button>
                 </div>
             </div>
         </div>
+
         <div class="table-responsive">
             <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
                 <thead class="blue">
                     <tr>
                         <th>ID</th>
-                        <th>EmployeeID</th>
+                        <th>Employee</th>
+                        <th>Pay</th>
+                        <th>Without Pay</th>
+                        <th>Approved</th>
+                        <th>Destination</th>
+                        <th>Depart Date</th>
+                        <th>Return Date</th>
+                        <th>Reason</th>
+                        <th>Leave Schedule</th>
+                        <th>Dues</th>
+                        <th>Duration</th>>
 
-                        <th>Contact</th>
-                        <th>HandOver</th>
-                        <th>Last Working Date</th>
-                        <th>Clearance Date</th>
+                        <th>Vacations</th>
+                        <th>Record Date</th>
                         <th>Prepared By</th>
-                        <th>Employee Name</th>
-                        <th>Department Name</th>
-                        <th>Position</th>
-                        <th>Nationality</th>
+                        <th>Find Depart Date</th>
+                        <th>Last Working Date</th>
+                        <th>Handover</th>
+                        <th>Contact</th>
+                        <th>Remarks</th>
                         <th></th>
                     </tr>
                 </thead>
-                <tbody id="tblEmployeeClearanceList"></tbody>
+                <tbody id="tblEmployeeVacationList"></tbody>
             </table>
         </div>
     </div>
-    <div id="dvEditClearance">
-        <form id="frmClearance">
+    <div id="dvEditVacation">
+        <form id="frmVacation" name="frmVacation">
             <div class="border">
                 <div class="blue p-1"><h>Employee Vacation</h></div>
                 <div class="p-4">
@@ -48,7 +90,7 @@
                             <label class="col-form-label">Employee Name:</label>
                         </div>
                         <div class="col-md-3 col-12">
-                            <select class="form-select-sm form-select w-100" id="ddEmployeeName" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                            <select class="form-select-sm form-select w-100" id="ddEmployeeName" name="ddEmployeeName" data-placeholder="Type to search" data-allow-clear="true"></select>
                         </div>
                         <div class="col-md-auto col-12">Division</div>
                         <div class="col-md-2 col-12"> <select class="form-select form-select-sm" disabled id="ddEmployeeDivision" name="ddEmployeeDivision"></select></div>
@@ -58,9 +100,9 @@
                         <div class="col-md-2 col-12"> <select class="form-select form-select-sm" disabled id="ddEmployeeNationality" name="ddEmployeeNationality"></select></div>
                         <div class="col-12"></div>
                         <div class="col-md-auto col-12">Date</div>
-                        <div class="col-md-2 col-12"><input type="text" class="form-control form-control-sm datepicker" id="txtClearanceDate" name="ClearanceDate" required data-msg="Enter date" /></div>
+                        <div class="col-md-2 col-12"><input type="text" class="form-control form-control-sm datepicker" id="txtRecordDate" name="txtRecordDate" required data-msg="Enter date" /></div>
                         <div class="col-md-auto col-12">Prepared By</div>
-                        <div class="col-md-2 col-12"><input type="text" class="form-control form-control-sm datepicker" id="txtClearanceDate" name="ClearanceDate" required data-msg="Enter date" /></div>
+                        <div class="col-md-2 col-12"><input type="text" class="form-control form-control-sm" id="txtPreparedBy" /></div>
                     </div>
 
                     <div class="border mt-2">
@@ -70,52 +112,52 @@
                                 <div class="col-md-3 col-12">
                                     <div class="form-group">
                                         <label for="withPay">With Pay:</label>
-                                        <input type="text" class="form-control form-control-sm" id="withPay" name="withPay" required data-msg="Enter date">
+                                        <input type="text" class="form-control form-control-sm" id="txtwithPay" name="withPay">
                                     </div>
                                     <div class="form-group">
                                         <label for="withoutPay">With Out Pay:</label>
-                                        <input type="text" class="form-control form-control-sm" id="withoutPay" name="withoutPay" required data-msg="Enter date">
+                                        <input type="text" class="form-control form-control-sm" id="txtwithoutPay" name="withoutPay">
                                     </div>
                                     <div class="form-group">
                                         <label for="reason">Reason:</label>
-                                        <textarea class="form-control form-control-sm" id="reason" name="reason"></textarea>
+                                        <textarea class="form-control form-control-sm" id="txtreason" name="reason"></textarea>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-4 col-md-6">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="emergency" name="emergency">
+                                                <input class="form-check-input" type="checkbox" id="Chkemergency" name="emergency">
                                                 <label class="form-check-label" for="emergency">Emergencey ?</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4 col-md-6">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="vacationDue" name="vacationDue">
+                                                <input class="form-check-input" type="checkbox" id="ChkvacationDue" name="vacationDue">
                                                 <label class="form-check-label" for="vacationDue">Vacation Due</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4 col-md-6">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="travelOrder" name="travelOrder">
+                                                <input class="form-check-input" type="checkbox" id="chktravelOrder" name="travelOrder">
                                                 <label class="form-check-label" for="travelOrder">Travel Order</label>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4 col-md-6">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="ticket" name="ticket">
+                                                <input class="form-check-input" type="checkbox" id="chkticket" name="ticket">
                                                 <label class="form-check-label" for="ticket">Ticket</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4 col-md-6">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="iqamaRenewal" name="iqamaRenewal">
+                                                <input class="form-check-input" type="checkbox" id="chkiqamaRenewal" name="iqamaRenewal">
                                                 <label class="form-check-label" for="iqamaRenewal">Iqama renewal</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-4 col-md-6">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="entryExitVisa" name="entryExitVisa">
+                                                <input class="form-check-input" type="checkbox" id="chkentryExitVisa" name="entryExitVisa">
                                                 <label class="form-check-label" for="entryExitVisa">Entry Exit Visa</label>
                                             </div>
                                         </div>
@@ -124,7 +166,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="remarks">Remarks:</label>
-                                            <textarea class="form-control form-control-sm" id="remarks" name="remarks" required data-msg="Enter date"></textarea>
+                                            <textarea class="form-control form-control-sm" id="txtremarks" name="remarks" required data-msg="Enter remarks"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -132,7 +174,7 @@
                                 <div class="col-md-5 col-12">
                                     <div class="form-group">
                                         <label for="txtApproved">Approved:</label>
-                                        <input type="text" class="form-control form-control-sm" id="txtApproved" name="approved" required data-msg="Enter date">
+                                        <input type="text" class="form-control form-control-sm" id="txtApproved" name="approved">
                                     </div>
                                     <div class="row">
                                         <div class="col-12 col-md-6">
@@ -144,37 +186,37 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="txtIqama">Iqama:</label>
-                                                <input type="text" class="form-control form-control-sm" id="txtIqama" name="iqama" required data-msg="Enter date">
+                                                <input type="text" class="form-control form-control-sm " readonly id="txtIqama" name="iqama">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="txtDepartDate">Depart Date:</label>
-                                                <input type="text" class="form-control form-control-sm" id="txtDepartDate" name="departDate" required data-msg="Enter date">
+                                                <input type="text" class="form-control form-control-sm datepicker" id="txtDepartDate" name="departDate" required data-msg="Enter date">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="txtReturnDate">Return Date:</label>
-                                                <input type="text" class="form-control form-control-sm" id="txtReturnDate" name="returnDate" required data-msg="Enter date">
+                                                <input type="text" class="form-control form-control-sm datepicker" id="txtReturnDate" name="returnDate" required data-msg="Enter date">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="txtLastJoinDate">Last Join Date:</label>
-                                                <input type="text" class="form-control form-control-sm" id="txtLastJoinDate" name="lastJoinDate" required data-msg="Enter date">
+                                                <input type="text" class="form-control form-control-sm datepicker" id="txtLastJoinDate" name="lastJoinDate" required data-msg="Enter date">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="txtLeaveSchedule">Leave Schedule:</label>
-                                                <input type="text" class="form-control form-control-sm" id="txtLeaveSchedule" name="leaveSchedule" required data-msg="Enter date">
+                                                <input type="text" class="form-control form-control-sm" id="txtLeaveSchedule" name="leaveSchedule">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="txtDues">Dues:</label>
-                                                <input type="text" class="form-control form-control-sm" id="txtDues" name="dues" required data-msg="Enter date">
+                                                <input type="text" class="form-control form-control-sm" id="txtDues" name="dues">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -186,27 +228,27 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="txtMonthsEarly">Months Early:</label>
-                                                <input type="text" class="form-control form-control-sm" id="txtMonthsEarly" name="monthsEarly" required data-msg="Enter date">
+                                                <input type="number" class="form-control form-control-sm" id="txtMonthsEarly" name="monthsEarly">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="border mt-2">
-                                        <div class="bg-secondary-subtle"><h5>Assets</h5></div>
+                                        <div class="bg-secondary-subtle p-2"><h5>Assets</h5></div>
                                         <div class="ps-3 my-2">
                                             <table class="table table-sm table-bordered table-striped">
-                                                <tbody id="tblClearanceAssets"></tbody>
+                                                <tbody id="tblVacationAssets"></tbody>
                                             </table>
                                         </div>
                                     </div>
 
                                     <div class="border mt-2">
-                                        <div class="bg-secondary-subtle"><h5>Clearance Detail</h5></div>
+                                        <div class="bg-secondary-subtle p-2"><h5>Clearance Detail</h5></div>
                                         <div class="p-2 row">
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label for="txtContact">Contact:</label>
-                                                    <input type="text" class="form-control form-control-sm" id="txtContact" name="contact" required data-msg="Enter date">
+                                                    <input type="text" class="form-control form-control-sm" id="txtContact" name="contact">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
@@ -224,7 +266,7 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="form-group">
                                                     <label for="txtFindDepartDate">Find Depart Date:</label>
-                                                    <input type="text" class="form-control form-control-sm" id="txtFindDepartDate" name="findDepartDate" required data-msg="Enter date">
+                                                    <input type="text" class="form-control form-control-sm" id="txtFinalDepartDate" name="FinalDepartDate" required data-msg="Enter date">
                                                 </div>
                                             </div>
                                         </div>
@@ -291,14 +333,14 @@
                             </div>
 
 
-                            
+
                         </div>
                     </div>
-                    
+
                     <div class="my-3">
 
-                        <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeClearance()">Save</button>
-                        <button class="btn btn-danger" type="reset" onclick="CancelNewClearance()">Clear</button>
+                        <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeVacation();">Save</button>
+                        <button class="btn btn-danger" type="reset" onclick="CancelNewVacation()">Clear</button>
 
 
                     </div>
@@ -313,5 +355,5 @@
     </div>
 </div>
 @section Scripts{
-    @Scripts.Render("~/lib/hr/employeeclearance")
+    @Scripts.Render("~/lib/hr/employeevacation")
 }

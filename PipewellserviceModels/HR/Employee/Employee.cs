@@ -15,6 +15,9 @@ namespace PipewellserviceModels.HR.Employee
         public int? NationalityID { get; set; }
         public int? PositionID { get; set; }
         public int? DivisionID { get; set; }
+
+        public int? VacationRotation { get; set; }
+        public DateTime? IqmaExpiryDate { get; set; }
     }
         public class EmployeeIDView
     {
@@ -82,7 +85,7 @@ namespace PipewellserviceModels.HR.Employee
         public string HiringCost { get; set; }
         public DateTime? HiringDate { get; set; }
         public DateTime? LastJoinDate { get; set; }
-        public int? VacationRotation { get; set; }
+        
         public DateTime? LastVacation { get; set; }
         public DateTime? NextVacation { get; set; }
 
