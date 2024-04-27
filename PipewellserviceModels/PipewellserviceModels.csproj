@@ -50,6 +50,7 @@
     <Compile Include="Common\Constant.cs" />
     <Compile Include="Common\DataChangeLog.cs" />
     <Compile Include="Common\DataUpdateResult.cs" />
+    <Compile Include="Common\DateParam.cs" />
     <Compile Include="Common\DeleteDTO.cs" />
     <Compile Include="Common\MergeField.cs" />
     <Compile Include="Common\ResultDTO.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="HR\Employee\EmployeeFamilyID.cs" />
     <Compile Include="HR\Employee\EmployeeID.cs" />
     <Compile Include="HR\Employee\EmployeeInquiry.cs" />
+    <Compile Include="HR\Employee\Employeejoining.cs" />
     <Compile Include="HR\Employee\EmployeeNameCode.cs" />
     <Compile Include="HR\Employee\EmployeeVacation.cs" />
     <Compile Include="HR\Employee\EmployeeWarning.cs" />

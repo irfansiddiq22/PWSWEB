@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PipewellserviceModels.Common;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -64,11 +65,7 @@ namespace PipewellserviceModels.HR.Employee
         public int AssetID { get; set; }
     }
 
-    public class InquiryParam
+    public class InquiryParam: DateParam
     {
-        public int EmployeeID { get; set; }
-        public string StartDate { get; set; }
-        public string EndDate { get; set; }
-        
     }
 }

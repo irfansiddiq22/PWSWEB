@@ -1,25 +1,44 @@
 ﻿<div class="border p-2">
     <div id="dvJoiningList">
-        <div class="p-3 border my-2">
+        <div class="p-3 border m-2">
             <div class="row">
 
-                <div class="form-group col-md-3 row">
+                <div class="form-group col-md-3 row ">
                     <label class="col-md-2 col-form-label p-0"> Employee:</label>
                     <div class="col">
-                        <select class="js-example-basic-single js-states form-control" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                        <select class="form-select" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3 row">
+                    <label class="col-md-3 col-form-label p-0"> Date Range:</label>
+                    <div class="col position-relative">
+                        <input type="text" name="ddlDataRange" id="ddlDataRange" class="form-control form-control-sm daterangepicker" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group col-md-2">
-                    <button class="btn btn-sm btn-primary" onclick="NewClearance()">Add Joining </button>
+                    <button class="btn btn-sm btn-primary" onclick="BindJoining()">Search </button>
+
+                    <button class="btn btn-sm btn-success writecontainer" onclick="NewJoining()">Add Joining </button>
                 </div>
             </div>
         </div>
+
+        
         <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
             <thead class="blue">
                 <tr>
                     <th>ID</th>
                     <th>EmployeeID</th>
-
+                    <th>Remarks</th>
+                    <th>Last Depart Date</th>
+                    <th>Joining Date</th>
+                    <th>NOD Stay</th>
+                    <th>Next Depart Date</th>
+                    <th>Record Date</th>
+                    <th>Division</th>
+                    <th>Position</th>
+                    <th>Nationality</th>
                     <th></th>
                 </tr>
             </thead>
@@ -27,7 +46,7 @@
         </table>
     </div>
     <div id="dvEditJoining" class="my-2 container">
-        <form id="frmClearance">
+        <form id="frmJoining">
             <div class="blue"><h6>Add/Edit Joining</h6></div>
             <div class="border p-2">
 
@@ -35,79 +54,86 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="employeeName">Employee Name:</label>
-                            <select class="form-select" id="employeeName" name="employeeName"></select>
+                            <select class="form-select" id="ddEmployeeName" name="employeeName"></select>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="position">Position:</label>
-                            <select class="form-select" id="position" name="position"></select>
+                            <select class="form-select" id="ddEmployeePosition" disabled name="position"></select>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="division">Division:</label>
-                            <select class="form-select" id="division" name="division"></select>
+                            <select class="form-select" id="ddEmployeeDivision" disabled name="division"></select>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="nationality">Nationality:</label>
-                            <select class="form-select" id="nationality" name="nationality"></select>
+                            <select class="form-select" id="ddEmployeeNationality" disabled name="nationality"></select>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="date">Date:</label>
-                            <input type="text" class="form-control datepicker" id="date" name="date">
+                            <input type="text" class="form-control datepicker" id="recorddate" name="recorddate">
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group">
                             <label for="date1">Last Dept Date:</label>
-                            <input type="text" class="form-control datepicker" id="date1" name="date1">
+                            <input type="text" class="form-control datepicker" id="LastDepartDate" name="LastDepartDate">
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group">
                             <label for="date2">Joining Date:</label>
-                            <input type="text" class="form-control datepicker" id="date2" name="date2">
+                            <input type="text" class="form-control datepicker" id="JoiningDate" name="JoiningDate">
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group">
                             <label for="date3">Next Dept Date:</label>
-                            <input type="text" class="form-control datepicker" id="date3" name="date3">
+                            <input type="text" class="form-control datepicker" id="NextDepartDate" name="NextDepartDate">
                         </div>
                     </div>
                 </div>
 
 
                 <div class="row">
-
-                </div>
-                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="approval1">Approval From 1:</label>
-                            <select class="form-select" id="approval1" name="approval1"></select>
+                            <select class="form-select supervisor" id="ddlapproval1" name="approval1"></select>
                         </div><div class="form-group">
                             <label for="approval2">Approval From 2:</label>
-                            <select class="form-select" id="approval2" name="approval2"></select>
+                            <select class="form-select supervisor" id="ddlapproval2" name="approval2"></select>
                         </div><div class="form-group">
                             <label for="approval3">Approval From 3:</label>
-                            <select class="form-select" id="approval3" name="approval3"></select>
+                            <select class="form-select supervisor" id="ddlapproval3" name="approval3"></select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="remarks">Remarks:</label>
-                            <textarea class="form-control" id="remarks" name="remarks" rows="10"></textarea>
+                            <textarea class="form-control" id="Remarks" name="Remarks" rows="10"></textarea>
                         </div>
                     </div>
                     
                 </div>
-                
+                <div class="my-2">
+
+
+                    <label class="custom-file-upload btn btn-primary writecontainer">
+                        <input type="file" id="JoiningSheet" />
+                        <i class="fa fa-cloud-upload"></i> Upload Joining Sheet
+                    </label>
+                    <button class="btn btn-primary ms-5 writecontainer" type="submit" onclick="SaveEmployeeJoining()">Save</button>
+                    <button class="btn btn-danger writecontainer" type="reset">Clear</button>
+
+                </div>
             </div>
 
 
@@ -115,5 +141,5 @@
     </div>
 </div>
 @section Scripts{
-    @Scripts.Render("~/lib/hr/employeeclearance")
+    @Scripts.Render("~/lib/hr/employeejoining")
 }

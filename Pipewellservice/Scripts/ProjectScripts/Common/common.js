@@ -17,7 +17,8 @@
     EmployeeInquiry: 16,
     Users:17,
     Permissions:18,
-    Vendor:19
+    Vendor: 19,
+    EmployeeJoining:20
 
 }
 var PAGEGROUPS = {
@@ -326,4 +327,10 @@ function LoadBreadCrumb(Parent,Page) {
         $("#breadcrumb").append($('<li class="breadcrumb-item"><a href="' + Parent.URL + '">' + Parent.Title + '</a></li>'));
     if (Page != null && Page!="")
         $("#breadcrumb").append($('<li class="breadcrumb-item active">' + Page + '</li>'));
+}
+
+function ResetDatePicker(){
+    $(".datepicker").each(function () {
+        $(this).datepicker('update', $(this).val());
+    });
 }

@@ -600,11 +600,8 @@ legend {
         --bs-modal-width: 90%;
     }
 }
-
-.form-group {
-    padding: 0.25rem !important;
-}
-
+ 
     .form-group.has-error {
+        padding: 0.25rem !important;
         border-radius: var(--bs-border-radius) !important
     }
