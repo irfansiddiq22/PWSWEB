@@ -132,6 +132,7 @@ function EditFamilyMember(index) {
 
     $("#imgEmployeeFamily").attr("src", "/EmployeeAPI/DownloadFamilyFile?EmployeeID=" + Family.EmployeeID + "&FileName=" + Family.FileName + "&FileID=" + Family.FileID);
     $("#imgEmployeeFamily").show();
+    ResetDatePicker();
 }
 function SaveFamily() {
     if ($("#frmEmployeeFamily").valid()) {

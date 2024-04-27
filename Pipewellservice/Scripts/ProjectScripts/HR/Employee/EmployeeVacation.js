@@ -95,6 +95,7 @@ function BindEmployeePositionDivision() {
 
         SetvalOf("txtIqama", moment(IqmaExpiryDate).format("DD/MM/YYYY"));
         SetvalOf("txtLeaveSchedule", VacationRotation);
+
     });
 }
 
@@ -239,6 +240,7 @@ function EditVacation(index) {
         tr.append($('<td>').append(a.Name))
         $("#tblVacationAssets").append(tr);
     });
+    ResetDatePicker();
 }
 
 function SaveEmployeeVacation() {
@@ -416,6 +418,7 @@ function CancelNewVacation() {
     $("#dvEditVacation").hide();
     $("#dvVacationList").show();
     $(".breadcrumb-item.active").find("a").contents().unwrap();
+    ResetDatePicker();
 }
 
 function NewVacation() {

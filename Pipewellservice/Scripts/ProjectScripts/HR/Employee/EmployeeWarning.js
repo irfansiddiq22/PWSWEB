@@ -158,6 +158,7 @@ function EditWarning(index) {
     }
     $("#dvEditWarning").show();
     $("#dvWarningList").hide();
+    ResetDatePicker();
 }
 function PrintWarning(ID) {
     window.open("/Employee/PrintReport?ID=" + ID + "&ReportID=" + PAGES.EmployeeWarning , "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
@@ -350,7 +351,9 @@ function CancelNewWarning() {
     SetvalOf("ddWarningApproval1", 0).trigger("change")
     SetvalOf("ddWarningApproval2", 0).trigger("change")
     SetvalOf("ddWarningApproval3", 0).trigger("change")
+    ResetDatePicker();
 }
+
 
 
 

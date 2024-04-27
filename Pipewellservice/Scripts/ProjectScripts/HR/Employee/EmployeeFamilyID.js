@@ -106,7 +106,7 @@ function EditIDFile(index) {
     SetvalOf("txtIDFileIssueDate", (moment(IDFile.IssueDate).format("DD/MM/YYYY")));
     SetvalOf("txtIDFileExpiryDate", moment(IDFile.ExpiryDate).format("DD/MM/YYYY"));
     SetvalOf("txtIDFileRemarks", IDFile.Remarks);
-
+    ResetDatePicker();
 }
 function SaveIDFile() {
     $("#frmIDFile").validate({

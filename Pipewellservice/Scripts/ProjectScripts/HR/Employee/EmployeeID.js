@@ -106,6 +106,7 @@ function EditIDFile(index) {
     SetvalOf("txtIDFileRemarks", IDFile.Remarks);
     $("#imgEmployeeID").attr("src", "/EmployeeAPI/DownloadIDFile?EmployeeID=" + IDFile.EmployeeID + "&Type=" + IDFile.Description +"&FileName=" + IDFile.FileName + "&FileID=" + IDFile.FileID);
     $("#imgEmployeeID").show();
+    ResetDatePicker();
 }
 function SaveIDFile() {
     $("#frmIDFile").validate({

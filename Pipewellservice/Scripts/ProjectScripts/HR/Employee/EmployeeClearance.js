@@ -170,6 +170,7 @@ function EditClearance(index) {
         tr.append($('<td>').append(a.Name))
         $("#tblClearanceAssets").append(tr);
     });
+    ResetDatePicker();
 }
 
 function SaveEmployeeClearance() {
@@ -302,7 +303,7 @@ function CancelNewClearance() {
 
     $("#dvEditClearance").hide();
     $("#dvClearanceList").show();
-
+    ResetDatePicker();
 }
 
 function NewClearance() {
