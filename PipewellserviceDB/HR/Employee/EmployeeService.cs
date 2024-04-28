@@ -1021,6 +1021,86 @@ namespace PipewellserviceDB.HR.Employee
                 return 0;
             }
         }
+        /////////////////////////////////////////////////////////////////
+
+        public async Task<EmployeeJoiningDB> EmployeeJoining(DateParam param)
+        {
+            try
+            {
+
+                SqlParameter[] collSP = new SqlParameter[3];
+                collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = param.EmployeeID };
+                collSP[1] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate };
+                collSP[2] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate };
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeJoiningList", CommandType.StoredProcedure, collSP);
+                EmployeeJoiningDB dt = new EmployeeJoiningDB();
+                dt.Joining.Load(result);
+                dt.Approvals.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+
+
+        public async Task<int> UpdateEmployeeJoining(EmployeeJoining record)
+        {
+            try
+            {
+                StringBuilder Approvals = new StringBuilder();
+                Approvals.AppendLine("<NewDataSet>");
+                if (record.Approvals != null && record.Approvals.Count > 0)
+                {
+                    foreach (EmployeeApproval a in record.Approvals)
+                    {
+                        Approvals.AppendLine($"<Table1><ApprovedBy>{a.ApprovalBy}</ApprovedBy></Table1>");
+                    }
+                }
+                Approvals.AppendLine("</NewDataSet>");
+
+
+                SqlParameter[] parameters = new SqlParameter[10];
+                parameters[0] = new SqlParameter { ParameterName = "@ID", Value = record.ID };
+                parameters[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = record.EmployeeID };
+                parameters[2] = new SqlParameter { ParameterName = "@RecordDate", Value = record.RecordDate };
+                parameters[3] = new SqlParameter { ParameterName = "@LastDepartDate", Value = record.LastDepartDate };
+                parameters[4] = new SqlParameter { ParameterName = "@JoiningDate", Value = record.JoiningDate };
+                parameters[5] = new SqlParameter { ParameterName = "@NextDepartDate", Value = record.NextDepartDate };
+                parameters[6] = new SqlParameter { ParameterName = "@Remarks", Value = record.Remarks };
+                parameters[7] = new SqlParameter { ParameterName = "@PreparedBy", Value = record.PreparedBy };
+                parameters[8] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = record.RecordCreatedBy };
+                parameters[9] = new SqlParameter { ParameterName = "@Approvals", Value = Approvals.ToString() };
+
+
+
+                return (int)SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeJoining", CommandType.StoredProcedure, parameters);
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+        public async Task<ResultDTO> UpdateEmployeeJoiningSheet(int EmployeeID, string FileName, string FileID)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[3];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = EmployeeID };
+                collSP[1] = new SqlParameter { ParameterName = "@FileName", Value = FileName };
+                collSP[2] = new SqlParameter { ParameterName = "@FileID", Value = FileID };
+                SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcUpdateEmployeeJoiningSheet", CommandType.StoredProcedure, collSP);
+                return new ResultDTO() { ID = EmployeeID, Status = true, Message = "Employee Joining Sheet Updated" };
+            }
+            catch (Exception e)
+            {
+                return new ResultDTO() { ID = EmployeeID, Status = false, Message = e.Message };
+            }
+        }
+
 
 
     }

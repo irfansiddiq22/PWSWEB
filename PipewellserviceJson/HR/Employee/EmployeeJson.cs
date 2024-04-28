@@ -258,7 +258,24 @@ namespace PipewellserviceJson.HR.Employee
             return await VendorList();
         }
 
+        /////////////////////
+        public async Task<EmployeeJoiningListView> EmployeeJoining(DateParam param)
+        {
+            EmployeeJoiningDB db = await service.EmployeeJoining(param);
+            EmployeeJoiningListView model = new EmployeeJoiningListView();
+            model.Joining= await JsonHelper.Convert<List<EmployeeJoining>, DataTable>(db.Joining);
+            model.Approvals = await JsonHelper.Convert<List<EmployeeApproval>, DataTable>(db.Approvals);
+            return model;
+        }
+        public async Task<int> UpdateEmployeeJoining(EmployeeJoining record)
+        {
+            return await service.UpdateEmployeeJoining(record);
+        }
 
+        public async Task<ResultDTO> UpdateEmployeeJoiningSheet(int EmployeeID, string FileName, string FileID)
+        {
+            return await service.UpdateEmployeeJoiningSheet(EmployeeID, FileName, FileID);
+        }
 
     }
 }

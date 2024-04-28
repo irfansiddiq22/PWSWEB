@@ -119,6 +119,7 @@ function EditCertificate(index) {
     $("#imgEmployeeCertficate").show();
     $("#imgEmployeeCertficate").attr("src", "/EmployeeAPI/DownloadCertificateFile?EmployeeID=" + Certificate.EmployeeID + "&FileName=" + Certificate.FileName + "&FileID=" + Certificate.FileID)
     Certificate.OnShore == null ? "" : SetChecked("chkCertificateOffshore", !Certificate.OnShore)
+    ResetDatePicker();
 }
 function SaveCertificate() {
     $("#frmCertificate").validate({

@@ -680,5 +680,57 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
+        [Authorization(Pages.Joining)]
+        public async Task<JsonResult> EmployeeJoining(DateParam param)
+        {
+            return new JsonResult
+            {
+                Data = await json.EmployeeJoining(param),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        [Authorization(Pages.Joining, 1, 1)]
+        public async Task<JsonResult> UpdateEmployeeJoining(EmployeeJoining record)
+        {
+            record.RecordCreatedBy = SessionHelper.UserSession().ID;
+
+            return new JsonResult
+            {
+                Data = await json.UpdateEmployeeJoining(record),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+
+        }
+        [Authorization(Pages.Joining, 1, 2)]
+        public async Task<JsonResult> UpdateJoiningSheet(int EmployeeID, int ID)
+        {
+            if (Request.Files.Count > 0)
+            {
+                HttpPostedFileBase file = Request.Files[0];
+                bool result = await FileHelper.SaveFile(Request.Files[0], ID, EmployeeID, DirectoryNames.EmployeeJoining);
+                string FileID = $"{EmployeeID}{Path.GetExtension(file.FileName)}";
+
+                if (result)
+                {
+                    var Update = await json.UpdateEmployeeJoiningSheet(EmployeeID, file.FileName, FileID);
+
+                    return new JsonResult
+                    {
+                        Data = Update,
+                        JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                    };
+                }
+            }
+
+
+            return new JsonResult
+            {
+                Data = new ResultDTO() { ID = EmployeeID, Status = false, Message = "No file to upload" },
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+     
+
     }
 }

@@ -92,7 +92,9 @@ namespace PipewellserviceModels.Common
         Clearance = 1,
         Warning = 2,
         Inquiry=3,
-        Vacation=4
+        Vacation=4,
+        Joining=5,
+
 
     }
     public enum PageGroups
@@ -124,7 +126,8 @@ namespace PipewellserviceModels.Common
         EmployeeInquiry = 16,
         Users=17,
         Permissions=18,
-        Vendor=19
+        Vendor=19,
+        Joining=20
     }
 
     public enum DirectoryNames
@@ -142,7 +145,7 @@ namespace PipewellserviceModels.Common
         EmployeeJobContract = 10,
         Templates = 11,
         EmployeeInquiry = 12,
-
+        EmployeeJoining=13,
     }
     
     public enum DocTemplates

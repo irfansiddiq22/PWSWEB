@@ -178,7 +178,7 @@ function EditInquiry(ID) {
 
         $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
     });
-    
+    ResetDatePicker();
 
 }
 
@@ -194,6 +194,7 @@ function ResetNav() {
     $("#dvInquiryList").removeClass("d-none")
     $(".breadcrumb-item.active").find("a").contents().unwrap();
     SetvalOf("txtInquiryPreparedBy", User.Name);
+    ResetDatePicker();
 }
 function SaveEmployeeInquiry() {
     $("#frmInquiry").validate({
