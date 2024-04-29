@@ -256,10 +256,8 @@ function NewEmployee() {
     $("#dvEmployeeList").addClass("d-none")
     $("#imgEmployeePicture").attr("src", "")
     $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
-    $(".datepicker").each(function () {
-        $(this).datepicker('update', $(this).val());
-    });
-
+    
+    ResetDatePicker();
 }
 function FindEmployee(ID) {
     if (!isNaN(parseInt(ID)) && Employee.ID != parseInt(ID)) {
@@ -292,9 +290,7 @@ function EditEmployee(ID) {
         $("#dvEditEmplyee").removeClass("d-none")
         $("#dvEmployeeList").addClass("d-none")
         $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
-        $(".datepicker").each(function () {
-            $(this).datepicker('update', $(this).val());
-        });
+        ResetDatePicker();
     });
 }
 

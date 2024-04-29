@@ -1,17 +1,30 @@
 ﻿
 <div class="border p-2">
-    <div id="dvClearanceList">
+    <div id="dvShortLeaveList">
         <div class="p-3 border my-2">
             <div class="row">
 
-                <div class="form-group col-md-3 row">
+                <div class="form-group col-md-3 row ms-1 mb-0">
                     <label class="col-md-2 col-form-label p-0"> Employee:</label>
                     <div class="col">
-                        <select class="js-example-basic-single js-states form-control" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                        <select class="form-select" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
                     </div>
                 </div>
+
+                <div class="form-group col-md-3 row ms-1 mb-0">
+                    <label class="col-md-3 col-form-label p-0"> Date Range:</label>
+                    <div class="col position-relative">
+                        <input type="text" name="ddlDataRange" id="ddlDataRange" class="form-control form-control-sm daterangepicker" autocomplete="off">
+                    </div>
+                </div>
+                
+                
+
+
                 <div class="form-group col-md-2">
-                    <button class="btn btn-sm btn-primary" onclick="NewClearance()">Add Clearance </button>
+                    <button class="btn btn-sm btn-primary" onclick="BindShortLeaves()">Search </button>
+
+                    <button class="btn btn-sm btn-success writecontainer" onclick="NewLeave()">Add Leave </button>
                 </div>
             </div>
         </div>
@@ -20,50 +33,38 @@
                 <tr>
                     <th>ID</th>
                     <th>EmployeeID</th>
+                    <th>Leave Date&Time</th>
+                    <th>Remarks</th>
 
-                    <th>Contact</th>
-                    <th>HandOver</th>
-                    <th>Last Working Date</th>
-                    <th>Clearance Date</th>
-                    <th>Prepared By</th>
-                    <th>Employee Name</th>
-                    <th>Department Name</th>
-                    <th>Position</th>
-                    <th>Nationality</th>
                     <th></th>
                 </tr>
             </thead>
-            <tbody id="tblEmployeeClearanceList"></tbody>
+            <tbody id="tblEmployeeShortLeaveList"></tbody>
         </table>
     </div>
-    <div id="dvEditClearance">
-        <form id="frmClearance">
+    <div id="dvEditShortLeave">
+        <form id="frmShortLeave">
             <div class="border">
                 <div class="blue p-1"><h6>Employee Short Leave</h6></div>
                 <div class="p-4">
                     <div class="row">
-                        <!-- Row 1 -->
                         <div class="col-md-3">
-                            <!-- Employee Name (Dropdown) -->
                             <div class="form-group">
                                 <label for="employeeName">Employee Name:</label>
-                                <select class="form-control" id="employeeName" name="employeeName">
-                                    <!-- Options for employee names -->
+                                <select class="form-control" id="ddEmployeeName" name="ddEmployeeName">
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <!-- From Date -->
                             <div class="form-group">
                                 <label for="fromDate">Date:</label>
-                                <input type="text" class="form-control" id="fromDate" name="fromDate">
+                                <input type="text" class="form-control datepicker" id="txtRecordDate" name="RecordDate">
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <!-- To Date -->
                             <div class="form-group">
                                 <label for="toDate">Time:</label>
-                                <input type="text" class="form-control" id="toDate" name="toDate">
+                                <input type="time" class="form-control time" id="txtRecrordTime" name="txtRecrordTime">
                             </div>
                         </div>
 
@@ -72,33 +73,33 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <!-- Approval From Dropdowns -->
                             <div class="form-group">
                                 <label for="approval1">Approval 1:</label>
-                                <select class="form-select" id="approval1" name="approval1">
-                                    <!-- Options for Approval 1 dropdown -->
+                                <select class="form-select supervisor" id="ddlapproval1" name="approval1">
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="approval1">Approval 2:</label>
-                                <select class="form-select" id="approval2" name="approval2">
-                                    <!-- Options for Approval 1 dropdown -->
+                                <select class="form-select supervisor" id="ddlapproval2" name="approval2">
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="remarks">Remarks:</label>
-                                <textarea class="form-control" id="remarks" name="remarks"></textarea>
+                                <textarea class="form-control" id="txtremarks" name="txtremarks"></textarea>
                             </div>
                         </div>
 
                     </div>
-                        <div class="my-3">
+                    <div class="my-3">
+                        <label class="custom-file-upload btn btn-primary">
+                            <input type="file" id="LeaveFileID" />
+                            <i class="fa fa-cloud-upload"></i> Browse  Sheet
+                        </label>
+                        <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeLeave()">Save</button>
+                        <button class="btn btn-danger" type="reset" onclick="CancelNewLeave()">Clear</button>
 
-                            <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeClearance()">Save</button>
-                            <button class="btn btn-danger" type="reset" onclick="CancelNewClearance()">Clear</button>
 
-
-                        </div>
+                    </div>
                     </div>
 
 
@@ -110,5 +111,5 @@
     </div>
 </div>
 @section Scripts{
-    @Scripts.Render("~/lib/hr/employeeclearance")
+    @Scripts.Render("~/lib/hr/employeeshortleave")
 }

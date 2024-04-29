@@ -12,6 +12,7 @@ function _Init() {
         $("#dvVacationList").show();
         BindUsers();
         BindVacation();
+        ResetChangeLog(PAGES.EmployeeVacation)
     });
 
 }
@@ -376,7 +377,7 @@ function SaveEmployeeVacation() {
                     if (NewVacation.ID > 0)
                         swal("Employee Vacation record added", { icon: "success" })
                     else
-                        swal("Employee Vacation updated added", { icon: "success" })
+                        swal("Employee Vacation updated" { icon: "success" })
                     SaveLog(ID);
                     BindVacation()
                     CancelNewVacation();

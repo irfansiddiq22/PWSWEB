@@ -118,7 +118,9 @@ namespace Pipewellservice.Helper
 
                 string Resouces = DirectoryToSave.Name;
 
-                
+                Resouces = @"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\Template\";
+
+
                 string TemplateFile = $"{Config.ResourcesDirectory}\\{Resouces}\\{ Template.Name }";
 
                 if (System.IO.File.Exists(TemplateFile))

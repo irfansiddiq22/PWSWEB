@@ -150,6 +150,7 @@ namespace PipewellserviceJson.HR.Employee
             model.nationalities = await JsonHelper.Convert<List<Nationality>, DataTable>(result.Nationality);
             return model;
         }
+        
         public async Task<ResultDTO> UpdateEmployee(EmployeeData employee)
         {
             return await service.UpdateEmployee(employee);
@@ -272,9 +273,37 @@ namespace PipewellserviceJson.HR.Employee
             return await service.UpdateEmployeeJoining(record);
         }
 
+        public async Task<bool> DeleteEmployeeJoining(int ID,int EmployeeID)
+        {
+            return await service.DeleteEmployeeJoining(ID,EmployeeID);
+        }
+
         public async Task<ResultDTO> UpdateEmployeeJoiningSheet(int EmployeeID, string FileName, string FileID)
         {
             return await service.UpdateEmployeeJoiningSheet(EmployeeID, FileName, FileID);
+        }
+        /////////////////////
+        public async Task<EmployeeShortLeaveListView> EmployeeShortLeaves(DateParam param)
+        {
+            EmployeeJoiningDB db = await service.EmployeeShortLeaves(param);
+            EmployeeShortLeaveListView model = new EmployeeShortLeaveListView();
+            model.Leaves = await JsonHelper.Convert<List<EmployeeShortLeave >, DataTable>(db.Joining);
+            model.Approvals = await JsonHelper.Convert<List<EmployeeApproval>, DataTable>(db.Approvals);
+            return model;
+        }
+        public async Task<int> UpdateEmployeeShortLeave(EmployeeShortLeave record)
+        {
+            return await service.UpdateEmployeeShortLeave(record);
+        }
+
+        public async Task<bool> DeleteEmployeeShortLeave(int ID, int EmployeeID)
+        {
+            return await service.DeleteEmployeeShortLeave(ID, EmployeeID);
+        }
+
+        public async Task<ResultDTO> UpdateEmployeeShortLeaveSheet(int EmployeeID, string FileName, string FileID)
+        {
+            return await service.UpdateEmployeeShortLeaveSheet(EmployeeID, FileName, FileID);
         }
 
     }

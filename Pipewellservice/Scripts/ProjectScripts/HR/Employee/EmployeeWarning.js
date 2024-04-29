@@ -80,15 +80,15 @@ function BindWarnings() {
             tr.append($('<td>').text(r.ID))
             tr.append($('<td>').append(r.EmployeeID).append("<br>").append("" + r.EmployeeName).append("<br><hr>Division:<br>" + r.Division).append("<br><hr>Position:<br> " + r.Position))
             tr.append($('<td>').append("<span class='badge bg-" + (r.WarningType == 1 ? "info" : (r.WarningType==2 ? "warning"  : "danger"))+"'>" + r.WarningTypeName +"</span> " +moment(r.WarningDate).format("DD/MM/YYYY")))
-            tr.append($('<td>').append("Written:<label class='switch float-end'><input type='checkbox' " + (r.Written ?"checked" :"" )+ "><div class='slider round'></div></label><br>")
-                .append("Tardiness: <label class='switch float-end'><input type='checkbox'  " + (r.Tardiness ? "checked" : "") + "><div class='slider round'></div></label><br>")
-                .append("Absenteeism: <label class='switch float-end'><input type='checkbox'  " + (r.Absenteeism ? "checked" : "") + "><div class='slider round'></div></label><br> ")
-                .append("Violation: <label class='switch float-end'><input type='checkbox'  " + (r.Violation ? "checked" : "") + "><div class='slider round'></div></label><br> ")
-                .append("Substandard: <label class='switch float-end'><input type='checkbox'  " + (r.Substandard ? "checked" : "") + "><div class='slider round'></div></label><br>")
-                .append("Policies: <label class='switch float-end'><input type='checkbox'  " + (r.Policies ? "checked" : "") + "><div class='slider round'></div></label><br> ")
-                .append("Rudeness: <label class='switch float-end'><input type='checkbox' " + (r.Rudeness ? "checked" : "") + "><div class='slider round'></div></label><br> ")
-                .append("Other: <label class='switch float-end'><input type='checkbox' " + (r.Other ? "checked" : "") + "><div class='slider round'></div></labels><br> ")
-                .append("Other: "+r.OtherDetail)
+            tr.append($('<td>').append(!r.Written ? "":"Written:<label class='switch float-end'><input type='checkbox' " + (r.Written ?"checked" :"" )+ "><div class='slider round'></div></label><br>")
+                .append(!r.Tardiness ? "" :"Tardiness: <label class='switch float-end'><input type='checkbox'  " + (r.Tardiness ? "checked" : "") + "><div class='slider round'></div></label><br>")
+                .append(!r.Absenteeism ? "" :"Absenteeism: <label class='switch float-end'><input type='checkbox'  " + (r.Absenteeism ? "checked" : "") + "><div class='slider round'></div></label><br> ")
+                .append(!r.Violation ? "" :"Violation: <label class='switch float-end'><input type='checkbox'  " + (r.Violation ? "checked" : "") + "><div class='slider round'></div></label><br> ")
+                .append(!r.Substandard ? "" :"Substandard: <label class='switch float-end'><input type='checkbox'  " + (r.Substandard ? "checked" : "") + "><div class='slider round'></div></label><br>")
+                .append(!r.Policies ? "" :"Policies: <label class='switch float-end'><input type='checkbox'  " + (r.Policies ? "checked" : "") + "><div class='slider round'></div></label><br> ")
+                .append(!r.Rudeness ? "" :"Rudeness: <label class='switch float-end'><input type='checkbox' " + (r.Rudeness ? "checked" : "") + "><div class='slider round'></div></label><br> ")
+                .append(!r.Other ? "" :"Other: <label class='switch float-end'><input type='checkbox' " + (r.Other ? "checked" : "") + "><div class='slider round'></div></labels><br> ")
+                .append(!r.Other ? "" :"Other: "+r.OtherDetail)
 
             )
             
@@ -159,6 +159,8 @@ function EditWarning(index) {
     $("#dvEditWarning").show();
     $("#dvWarningList").hide();
     ResetDatePicker();
+    $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:CancelNewWarning()"));
+
 }
 function PrintWarning(ID) {
     window.open("/Employee/PrintReport?ID=" + ID + "&ReportID=" + PAGES.EmployeeWarning , "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
@@ -331,6 +333,7 @@ function SaveEmployeeWarning() {
 
 function NewWarning() {
     CancelNewWarning();
+    $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:CancelNewWarning()"));
     $("#dvEditWarning").show();
     $("#dvWarningList").hide();
 
@@ -352,6 +355,7 @@ function CancelNewWarning() {
     SetvalOf("ddWarningApproval2", 0).trigger("change")
     SetvalOf("ddWarningApproval3", 0).trigger("change")
     ResetDatePicker();
+    $(".breadcrumb-item.active").find("a").contents().unwrap();
 }
 
 

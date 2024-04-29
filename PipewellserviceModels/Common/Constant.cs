@@ -94,6 +94,7 @@ namespace PipewellserviceModels.Common
         Inquiry=3,
         Vacation=4,
         Joining=5,
+        ShortLeave=6
 
 
     }
@@ -127,7 +128,8 @@ namespace PipewellserviceModels.Common
         Users=17,
         Permissions=18,
         Vendor=19,
-        Joining=20
+        Joining=20,
+        ShortLeave=21
     }
 
     public enum DirectoryNames
@@ -146,6 +148,7 @@ namespace PipewellserviceModels.Common
         Templates = 11,
         EmployeeInquiry = 12,
         EmployeeJoining=13,
+        EmployeeShortLeave=14
     }
     
     public enum DocTemplates

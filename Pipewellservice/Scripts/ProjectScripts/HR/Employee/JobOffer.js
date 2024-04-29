@@ -138,7 +138,7 @@ function EditJobOffer(ID) {
     SetvalOf("txtJobOfferTitle", JobOffer.JobTitle);
     SetvalOf("txtJobOfferBasic", JobOffer.Basic);
     SetvalOf("txtJobOfferTransportation", JobOffer.Transportation);
-    SetvalOf("txtJobOfferHosing", JobOffer.Housing);
+    SetvalOf("txtJobOfferHousing", JobOffer.Housing);
     SetvalOf("txtJobOfferPeriod", JobOffer.Period);
     $("#dvEditJobOffer").removeClass("d-none")
     $("#dvJobOfferList").addClass("d-none")
@@ -195,8 +195,8 @@ function SaveJobOffer() {
                     DataChangeLog.DataUpdated.push({ Field: "Transportation", Data: { OLD: JobOffer.Transportation, New: valOf("txtJobOfferTransportation") } });
                 }
 
-                if ($.trim(JobOffer.Housing) != $.trim(valOf("txtJobOfferHosing"))) {
-                    DataChangeLog.DataUpdated.push({ Field: "Housing", Data: { OLD: JobOffer.Housing, New: valOf("txtJobOfferHosing") } });
+                if ($.trim(JobOffer.Housing) != $.trim(valOf("txtJobOfferHousing"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "Housing", Data: { OLD: JobOffer.Housing, New: valOf("txtJobOfferHousing") } });
                 }
                 
                 if ($.trim(JobOffer.Transportation) != $.trim(valOf("txtJobOfferPeriod"))) {
@@ -217,7 +217,7 @@ function SaveJobOffer() {
                     JobTitle: valOf("txtJobOfferTitle"),
                     Basic: valOf("txtJobOfferBasic"),
                     Transportation: valOf("txtJobOfferTransportation"),
-                    Housing: valOf("txtJobOfferHosing"),
+                    Housing: valOf("txtJobOfferHousing"),
                     Period: valOf("txtJobOfferPeriod"),
                     UserName: User.Name
 

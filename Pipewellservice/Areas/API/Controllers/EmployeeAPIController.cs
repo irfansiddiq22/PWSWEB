@@ -398,6 +398,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        
         [Authorization(Pages.EmployeeDetail, 1,2)]
         public async Task<JsonResult> UpdateEmployee(EmployeeData employee)
         {
@@ -679,7 +680,9 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-
+        /// <summary>
+        /// //////////////////////////////////
+        
         [Authorization(Pages.Joining)]
         public async Task<JsonResult> EmployeeJoining(DateParam param)
         {
@@ -729,8 +732,80 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.Joining, 1, 1)]
+        public async Task<JsonResult> DeleteEmployeeJoining(int ID)
+        {
+            
+            return new JsonResult
+            {
+                Data = await json.DeleteEmployeeJoining(ID, SessionHelper.UserSession().ID),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
 
-     
+        }
+        /// <summary>
+        /// //////////////////////////////////
+
+        [Authorization(Pages.ShortLeave)]
+        public async Task<JsonResult> EmployeeShortLeaves(DateParam param)
+        {
+            return new JsonResult
+            {
+                Data = await json.EmployeeShortLeaves(param),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        [Authorization(Pages.ShortLeave, 1, 1)]
+        public async Task<JsonResult> UpdateEmployeeShortLeave(EmployeeShortLeave record)
+        {
+            record.RecordCreatedBy = SessionHelper.UserSession().ID;
+
+            return new JsonResult
+            {
+                Data = await json.UpdateEmployeeShortLeave(record),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+
+        }
+        [Authorization(Pages.ShortLeave, 1, 2)]
+        public async Task<JsonResult> UpdateShortLeaveSheet(int EmployeeID, int ID)
+        {
+            if (Request.Files.Count > 0)
+            {
+                HttpPostedFileBase file = Request.Files[0];
+                bool result = await FileHelper.SaveFile(Request.Files[0], ID, EmployeeID, DirectoryNames.EmployeeShortLeave);
+                string FileID = $"{EmployeeID}{Path.GetExtension(file.FileName)}";
+
+                if (result)
+                {
+                    var Update = await json.UpdateEmployeeShortLeaveSheet(EmployeeID, file.FileName, FileID);
+
+                    return new JsonResult
+                    {
+                        Data = Update,
+                        JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                    };
+                }
+            }
+
+
+            return new JsonResult
+            {
+                Data = new ResultDTO() { ID = EmployeeID, Status = false, Message = "No file to upload" },
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        [Authorization(Pages.ShortLeave, 1, 1)]
+        public async Task<JsonResult> DeleteEmployeeShortLeave(int ID)
+        {
+
+            return new JsonResult
+            {
+                Data = await json.DeleteEmployeeShortLeave(ID, SessionHelper.UserSession().ID),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+
+        }
 
     }
 }

@@ -36,6 +36,23 @@ function _Init() {
 
             })
         });
+        Post("/DataList/SponsorList", {}).done(function (Response) {
+
+            var data = []
+            data.push({ id: 0, text: 'Select CSR' });
+            $.each(Response, function (i, c) {
+                data.push({ id: c.ID, text: c.Name });
+            })
+            Nationalites = Response
+            $("#ddCompanyRegNumber").select2({
+                tags: "true",
+                placeholder: "Select Company Registeration Number",
+                allowClear: true,
+                data: data,
+                width: "100%",
+
+            })
+        });
         InitilzeJobContract();
         BindContracts();
     });
@@ -153,7 +170,7 @@ function EditJobContract(ID) {
     SetvalOf("txtemployeeNameArabic", JobContract.NameAr);
     SetvalOf("ddJobContractCountries", JobContract.CountryID).trigger("change");
     
-    SetvalOf("txtCompanyRegNumber", JobContract.CompanyRegNumber);
+    SetvalOf("ddCompanyRegNumber", JobContract.CompanyRegNumber).trigger("change");
     SetvalOf("txtemployeeID", JobContract.IDNumber);
     SetvalOf("txtEmployeeEmailAddress", JobContract.EmailAddress);
     SetvalOf("txtEmployeeMobileNumber", JobContract.MobileNumber);
@@ -234,8 +251,8 @@ function SaveJobContract() {
                 }
 
                 
-                if ($.trim(JobContract.CompanyRegNumber) != $.trim(valOf("txtCompanyRegNumber"))) {
-                    DataChangeLog.DataUpdated.push({ Field: "CompanyRegNumber", Data: { OLD: JobContract.CompanyRegNumber, New: valOf("txtCompanyRegNumber") } });
+                if ($.trim(JobContract.CompanyRegNumber) != $.trim(valOf("ddCompanyRegNumber"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "CompanyRegNumber", Data: { OLD: JobContract.CompanyRegNumber, New: valOf("ddCompanyRegNumber") } });
                 }
                 if ($.trim(JobContract.IDNumber) != $.trim(valOf("txtemployeeID"))) {
                     DataChangeLog.DataUpdated.push({ Field: "IDNumber", Data: { OLD: JobContract.IDNumber, New: valOf("txtemployeeID") } });
@@ -287,7 +304,7 @@ function SaveJobContract() {
                     CountryID: valOf("ddJobContractCountries"),
                     JobTitle: valOf("txtJobContractTitle"),
                     JobTitleAr: valOf("txtJobContractTitleArabic"),
-                    CompanyRegNumber: valOf("txtCompanyRegNumber"),
+                    CompanyRegNumber: valOf("ddCompanyRegNumber"),
                     Nationality: textOf("ddJobContractCountries"),
                     IDNumber: valOf("txtemployeeID"),
                     EmailAddress: valOf("txtEmployeeEmailAddress"),
