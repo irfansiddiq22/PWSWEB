@@ -118,8 +118,8 @@ namespace Pipewellservice.Reports
             this.Label18 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Label20 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Label22 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.GroupFooter1 = new GrapeCity.ActiveReports.SectionReportModel.GroupFooter();
             this.Picture = new GrapeCity.ActiveReports.SectionReportModel.Picture();
+            this.GroupFooter1 = new GrapeCity.ActiveReports.SectionReportModel.GroupFooter();
             ((System.ComponentModel.ISupportInitialize)(Label16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter3)).BeginInit();
@@ -1276,11 +1276,6 @@ namespace Pipewellservice.Reports
             this.Label22.Visible = false;
             this.Label22.Width = 0.375F;
             // 
-            // GroupFooter1
-            // 
-            this.GroupFooter1.Height = 0F;
-            this.GroupFooter1.Name = "GroupFooter1";
-            // 
             // Picture
             // 
             this.Picture.Height = 1F;
@@ -1292,6 +1287,11 @@ namespace Pipewellservice.Reports
             this.Picture.SizeMode = GrapeCity.ActiveReports.SectionReportModel.SizeModes.Stretch;
             this.Picture.Top = 0F;
             this.Picture.Width = 1.0625F;
+            // 
+            // GroupFooter1
+            // 
+            this.GroupFooter1.Height = 0F;
+            this.GroupFooter1.Name = "GroupFooter1";
             // 
             // rpEmployeeWarning
             // 
@@ -1314,6 +1314,8 @@ namespace Pipewellservice.Reports
             this.StyleSheet.Add(new DDCssLib.StyleSheetRule("font-family: inherit; font-style: inherit; font-variant: inherit; font-weight: bo" +
             "ld; font-size: 13pt; font-size-adjust: inherit; font-stretch: inherit; color: Bl" +
             "ack", "Heading3", "Normal"));
+            this.Watermark = ((System.Drawing.Image)(resources.GetObject("$this.Watermark")));
+            this.WatermarkSizeMode = GrapeCity.ActiveReports.SectionReportModel.SizeModes.Zoom;
             this.ReportStart += new System.EventHandler(this.rpEmployeeWarning_ReportStart);
             ((System.ComponentModel.ISupportInitialize)(Label16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter1)).EndInit();

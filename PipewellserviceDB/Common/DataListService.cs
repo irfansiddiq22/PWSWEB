@@ -28,5 +28,20 @@ namespace PipewellserviceDB.Common
             }
 
         }
+        public async Task<DataTable> SponsorList()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcSpnonorList", CommandType.StoredProcedure);
+                DataTable model = new DataTable();
+                model.Load(result);
+                return model;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
     }
 }

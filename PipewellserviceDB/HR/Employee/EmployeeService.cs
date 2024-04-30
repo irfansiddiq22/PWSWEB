@@ -475,6 +475,7 @@ namespace PipewellserviceDB.HR.Employee
             }
 
         }
+    
         public async Task<ResultDTO> UpdateEmployee(EmployeeData employee)
         {
 
@@ -1101,6 +1102,112 @@ namespace PipewellserviceDB.HR.Employee
             }
         }
 
+
+        public async Task<bool> DeleteEmployeeJoining(int ID,int EmployeeID)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = ID };
+                collSP[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID };
+                SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcRemoveEmployeeJoining", CommandType.StoredProcedure, collSP);
+                return   true;
+            }
+            catch (Exception e)
+            {
+                return   false;
+            }
+        }
+        /////////////////////////////////////////////////////////////////
+
+        public async Task<EmployeeJoiningDB> EmployeeShortLeaves(DateParam param)
+        {
+            try
+            {
+
+                SqlParameter[] collSP = new SqlParameter[3];
+                collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = param.EmployeeID };
+                collSP[1] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate };
+                collSP[2] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate };
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeShortLeaveList", CommandType.StoredProcedure, collSP);
+                EmployeeJoiningDB dt = new EmployeeJoiningDB();
+                dt.Joining.Load(result);
+                dt.Approvals.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+
+
+        public async Task<int> UpdateEmployeeShortLeave(EmployeeShortLeave record)
+        {
+            try
+            {
+                StringBuilder Approvals = new StringBuilder();
+                Approvals.AppendLine("<NewDataSet>");
+                if (record.Approvals != null && record.Approvals.Count > 0)
+                {
+                    foreach (EmployeeApproval a in record.Approvals)
+                    {
+                        Approvals.AppendLine($"<Table1><ApprovedBy>{a.ApprovalBy}</ApprovedBy></Table1>");
+                    }
+                }
+                Approvals.AppendLine("</NewDataSet>");
+
+
+                SqlParameter[] parameters = new SqlParameter[6];
+                parameters[0] = new SqlParameter { ParameterName = "@ID", Value = record.ID };
+                parameters[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = record.EmployeeID };
+                parameters[2] = new SqlParameter { ParameterName = "@RecordDate", Value = Convert.ToDateTime( record.RecordDate.ToShortDateString() +" "+ record.LeaveTime )};
+                parameters[3] = new SqlParameter { ParameterName = "@Remarks", Value = record.Remarks };
+                parameters[4] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = record.RecordCreatedBy };
+                parameters[5] = new SqlParameter { ParameterName = "@Approvals", Value = Approvals.ToString() };
+
+                return (int)SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeShortLeave", CommandType.StoredProcedure, parameters);
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+        public async Task<ResultDTO> UpdateEmployeeShortLeaveSheet(int EmployeeID, string FileName, string FileID)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[3];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = EmployeeID };
+                collSP[1] = new SqlParameter { ParameterName = "@FileName", Value = FileName };
+                collSP[2] = new SqlParameter { ParameterName = "@FileID", Value = FileID };
+                SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcUpdateEmployeeShortLeaveSheet", CommandType.StoredProcedure, collSP);
+                return new ResultDTO() { ID = EmployeeID, Status = true, Message = "Employee Joining Sheet Updated" };
+            }
+            catch (Exception e)
+            {
+                return new ResultDTO() { ID = EmployeeID, Status = false, Message = e.Message };
+            }
+        }
+
+        public async Task<bool> DeleteEmployeeShortLeave(int ID, int EmployeeID)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = ID };
+                collSP[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID };
+                SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcRemoveEmployeeShortLeave", CommandType.StoredProcedure, collSP);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        
 
 
     }

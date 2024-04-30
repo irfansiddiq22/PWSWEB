@@ -18,6 +18,11 @@ namespace PipewellserviceJson.Common
             var Data = await service.CountryList();
             return await JsonHelper.Convert<List<Country>, DataTable>(Data);
         }
+        public async Task<List<SponsorCompany>> SponsorList()
+        {
+            DataTable result = await service.SponsorList();
+            return await JsonHelper.Convert<List<SponsorCompany>, DataTable>(result);
 
+        }
     }
 }

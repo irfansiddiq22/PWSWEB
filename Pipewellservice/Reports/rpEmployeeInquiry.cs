@@ -34,7 +34,6 @@ namespace Pipewellservice.Reports
             this.Detail = new GrapeCity.ActiveReports.SectionReportModel.Detail();
             this.TextBox7 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.PageHeader = new GrapeCity.ActiveReports.SectionReportModel.PageHeader();
-            this.TextBox1 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.Label = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.txtHeaderCompany = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.Picture = new GrapeCity.ActiveReports.SectionReportModel.Picture();
@@ -55,7 +54,14 @@ namespace Pipewellservice.Reports
             this.Label9 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Label1 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Picture5 = new GrapeCity.ActiveReports.SectionReportModel.Picture();
+            this.TextBox1 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.PageFooter = new GrapeCity.ActiveReports.SectionReportModel.PageFooter();
+            this.chkPersonal = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
+            this.chkLoan = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
+            this.chkGeneral = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
+            this.Shape1 = new GrapeCity.ActiveReports.SectionReportModel.Shape();
+            this.TextBox10 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
+            this.Label10 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.TextBox13 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.TextBox14 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.TextBox15 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
@@ -66,24 +72,17 @@ namespace Pipewellservice.Reports
             this.Shape4 = new GrapeCity.ActiveReports.SectionReportModel.Shape();
             this.txtFooter1 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.txtFooter3 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.Shape1 = new GrapeCity.ActiveReports.SectionReportModel.Shape();
-            this.Label10 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Label11 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Label12 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Line1 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.Line3 = new GrapeCity.ActiveReports.SectionReportModel.Line();
-            this.Line4 = new GrapeCity.ActiveReports.SectionReportModel.Line();
-            this.Line10 = new GrapeCity.ActiveReports.SectionReportModel.Line();
-            this.Line11 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.TextBox8 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.TextBox9 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.TextBox10 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.TextBox11 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.TextBox16 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.Picture2 = new GrapeCity.ActiveReports.SectionReportModel.Picture();
             this.Picture3 = new GrapeCity.ActiveReports.SectionReportModel.Picture();
             this.Picture4 = new GrapeCity.ActiveReports.SectionReportModel.Picture();
-            this.Line12 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.Label13 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.TextBox24 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.TextBox12 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
@@ -92,16 +91,16 @@ namespace Pipewellservice.Reports
             this.Label18 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Label19 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Label20 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.chkPersonal = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.chkLoan = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.chkGeneral = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.Line2 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.Label21 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.TextBox18 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.Picture6 = new GrapeCity.ActiveReports.SectionReportModel.Picture();
             this.TextBox19 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
+            this.Line11 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line2 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line10 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.line4 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.line5 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeaderCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture)).BeginInit();
@@ -122,6 +121,12 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.Label9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPersonal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkLoan)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkGeneral)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Label10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox15)).BeginInit();
@@ -131,12 +136,10 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.Label15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Label10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture2)).BeginInit();
@@ -150,9 +153,6 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.Label18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkPersonal)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkLoan)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkGeneral)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture6)).BeginInit();
@@ -180,7 +180,6 @@ namespace Pipewellservice.Reports
             // PageHeader
             // 
             this.PageHeader.Controls.AddRange(new GrapeCity.ActiveReports.SectionReportModel.ARControl[] {
-            this.TextBox1,
             this.Label,
             this.txtHeaderCompany,
             this.Picture,
@@ -200,31 +199,20 @@ namespace Pipewellservice.Reports
             this.Label5,
             this.Label9,
             this.Label1,
-            this.Picture5});
+            this.Picture5,
+            this.TextBox1});
             this.PageHeader.Height = 3.177083F;
             this.PageHeader.Name = "PageHeader";
-            // 
-            // TextBox1
-            // 
-            this.TextBox1.DataField = "=System.DateTime.Now";
-            this.TextBox1.Height = 0.2F;
-            this.TextBox1.Left = 1.25F;
-            this.TextBox1.Name = "TextBox1";
-            this.TextBox1.OutputFormat = resources.GetString("TextBox1.OutputFormat");
-            this.TextBox1.Style = "color: Black; font-size: 8.25pt; vertical-align: bottom";
-            this.TextBox1.Text = "TextBox1";
-            this.TextBox1.Top = 0F;
-            this.TextBox1.Width = 1.3125F;
             // 
             // Label
             // 
             this.Label.Height = 0.2F;
             this.Label.HyperLink = null;
-            this.Label.Left = 0.06250024F;
+            this.Label.Left = 0.06250036F;
             this.Label.Name = "Label";
             this.Label.Style = "color: Black; font-size: 8.25pt; font-weight: bold; vertical-align: bottom";
             this.Label.Text = "Print Date and Time";
-            this.Label.Top = 0F;
+            this.Label.Top = 0.01F;
             this.Label.Width = 1.125F;
             // 
             // txtHeaderCompany
@@ -414,7 +402,7 @@ namespace Pipewellservice.Reports
             this.Label9.Name = "Label9";
             this.Label9.Style = "background-color: Black; color: White; font-size: 9.75pt; font-weight: bold; text" +
     "-align: center";
-            this.Label9.Text = "Inquiry Details";
+            this.Label9.Text = "Request Details";
             this.Label9.Top = 2.953125F;
             this.Label9.Width = 7.5005F;
             // 
@@ -426,7 +414,7 @@ namespace Pipewellservice.Reports
             this.Label1.Name = "Label1";
             this.Label1.Style = "color: Black; font-family: Book Antiqua; font-size: 12pt; font-weight: bold; text" +
     "-align: center; text-decoration: underline; ddo-char-set: 1";
-            this.Label1.Text = "E M P L O Y E E   I N Q U I R Y   F O R M ";
+            this.Label1.Text = "E M P L O Y E E   R E Q U E S T   F O R M ";
             this.Label1.Top = 1F;
             this.Label1.Width = 3.625F;
             // 
@@ -443,9 +431,25 @@ namespace Pipewellservice.Reports
             this.Picture5.Top = 1.5F;
             this.Picture5.Width = 1.375F;
             // 
+            // TextBox1
+            // 
+            this.TextBox1.Height = 0.2F;
+            this.TextBox1.Left = 1.188F;
+            this.TextBox1.Name = "TextBox1";
+            this.TextBox1.Style = "color: Black; font-size: 8.25pt; vertical-align: bottom";
+            this.TextBox1.Text = "TextBox1";
+            this.TextBox1.Top = 0.01F;
+            this.TextBox1.Width = 1.3125F;
+            // 
             // PageFooter
             // 
             this.PageFooter.Controls.AddRange(new GrapeCity.ActiveReports.SectionReportModel.ARControl[] {
+            this.chkPersonal,
+            this.chkLoan,
+            this.chkGeneral,
+            this.Shape1,
+            this.TextBox10,
+            this.Label10,
             this.TextBox13,
             this.TextBox14,
             this.TextBox15,
@@ -456,24 +460,17 @@ namespace Pipewellservice.Reports
             this.Shape4,
             this.txtFooter1,
             this.txtFooter3,
-            this.Shape1,
-            this.Label10,
             this.Label11,
             this.Label12,
             this.Line1,
             this.Line3,
-            this.Line4,
-            this.Line10,
-            this.Line11,
             this.TextBox8,
             this.TextBox9,
-            this.TextBox10,
             this.TextBox11,
             this.TextBox16,
             this.Picture2,
             this.Picture3,
             this.Picture4,
-            this.Line12,
             this.Label13,
             this.TextBox24,
             this.TextBox12,
@@ -482,16 +479,86 @@ namespace Pipewellservice.Reports
             this.Label18,
             this.Label19,
             this.Label20,
-            this.chkPersonal,
-            this.chkLoan,
-            this.chkGeneral,
-            this.Line2,
             this.Label21,
             this.TextBox18,
             this.Picture6,
-            this.TextBox19});
+            this.TextBox19,
+            this.Line2,
+            this.Line10,
+            this.Line11,
+            this.line4,
+            this.line5});
             this.PageFooter.Height = 4.304375F;
             this.PageFooter.Name = "PageFooter";
+            // 
+            // chkPersonal
+            // 
+            this.chkPersonal.DataField = "chkPersonal";
+            this.chkPersonal.Height = 0.2F;
+            this.chkPersonal.Left = 6.251125F;
+            this.chkPersonal.Name = "chkPersonal";
+            this.chkPersonal.Style = "color: Black";
+            this.chkPersonal.Text = null;
+            this.chkPersonal.Top = 2.231875F;
+            this.chkPersonal.Visible = false;
+            this.chkPersonal.Width = 1.3125F;
+            // 
+            // chkLoan
+            // 
+            this.chkLoan.DataField = "chkLoan";
+            this.chkLoan.Height = 0.2F;
+            this.chkLoan.Left = 6.251125F;
+            this.chkLoan.Name = "chkLoan";
+            this.chkLoan.Style = "color: Black";
+            this.chkLoan.Text = null;
+            this.chkLoan.Top = 2.494375F;
+            this.chkLoan.Visible = false;
+            this.chkLoan.Width = 1.3125F;
+            // 
+            // chkGeneral
+            // 
+            this.chkGeneral.DataField = "chkGeneral";
+            this.chkGeneral.Height = 0.2F;
+            this.chkGeneral.Left = 6.251125F;
+            this.chkGeneral.Name = "chkGeneral";
+            this.chkGeneral.Style = "color: Black";
+            this.chkGeneral.Text = null;
+            this.chkGeneral.Top = 2.756875F;
+            this.chkGeneral.Visible = false;
+            this.chkGeneral.Width = 1.3125F;
+            // 
+            // Shape1
+            // 
+            this.Shape1.Height = 1.787F;
+            this.Shape1.Left = 0.07912571F;
+            this.Shape1.Name = "Shape1";
+            this.Shape1.RoundingRadius = 9.999999F;
+            this.Shape1.Top = 1.569875F;
+            this.Shape1.Width = 7.515F;
+            // 
+            // TextBox10
+            // 
+            this.TextBox10.DataField = "PreparedBy";
+            this.TextBox10.Height = 0.3470001F;
+            this.TextBox10.Left = 6.111F;
+            this.TextBox10.Name = "TextBox10";
+            this.TextBox10.OutputFormat = resources.GetString("TextBox10.OutputFormat");
+            this.TextBox10.Style = "color: Black; font-size: 9.75pt; font-weight: normal; text-align: center";
+            this.TextBox10.Text = null;
+            this.TextBox10.Top = 1.897F;
+            this.TextBox10.Width = 1.402F;
+            // 
+            // Label10
+            // 
+            this.Label10.Height = 0.2560001F;
+            this.Label10.HyperLink = null;
+            this.Label10.Left = 6.189126F;
+            this.Label10.Name = "Label10";
+            this.Label10.Style = "color: Black; font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; te" +
+    "xt-align: center; ddo-char-set: 0";
+            this.Label10.Text = "Prepared By";
+            this.Label10.Top = 1.589875F;
+            this.Label10.Width = 1.374F;
             // 
             // TextBox13
             // 
@@ -575,13 +642,13 @@ namespace Pipewellservice.Reports
             // 
             this.Label15.Height = 0.2F;
             this.Label15.HyperLink = null;
-            this.Label15.Left = 0.153F;
+            this.Label15.Left = 0.07912571F;
             this.Label15.Name = "Label15";
             this.Label15.Style = "background-color: Black; color: White; font-size: 9.75pt; font-weight: bold; text" +
     "-align: center";
             this.Label15.Text = "For Human Resource Use Only";
             this.Label15.Top = 1.328F;
-            this.Label15.Width = 7.5155F;
+            this.Label15.Width = 7.515F;
             // 
             // Shape4
             // 
@@ -602,7 +669,7 @@ namespace Pipewellservice.Reports
             this.txtFooter1.Style = "color: Black; font-family: Book Antiqua; font-size: 8.25pt; text-align: center; d" +
     "do-char-set: 1";
             this.txtFooter1.Text = "C.R. 2050022534 - P.O. Box 2010 Dammam 31451 – Saudi Arabia – Telex: 803 505 QAHB" +
-    "RO SJ. – Fax: 8593772 – Tel: 8592286/8594716";
+    " RO SJ. – Fax: 8593772 – Tel: 8592286/8594716";
             this.txtFooter1.Top = 3.606875F;
             this.txtFooter1.Width = 7.469F;
             // 
@@ -615,27 +682,6 @@ namespace Pipewellservice.Reports
             this.txtFooter3.Text = "Web: http://www.pwsinspection.com        E-mail: info@pipewellservices.com";
             this.txtFooter3.Top = 3.741875F;
             this.txtFooter3.Width = 7.484F;
-            // 
-            // Shape1
-            // 
-            this.Shape1.Height = 1.787F;
-            this.Shape1.Left = 0.07912571F;
-            this.Shape1.Name = "Shape1";
-            this.Shape1.RoundingRadius = 9.999999F;
-            this.Shape1.Top = 1.569875F;
-            this.Shape1.Width = 7.515F;
-            // 
-            // Label10
-            // 
-            this.Label10.Height = 0.2560001F;
-            this.Label10.HyperLink = null;
-            this.Label10.Left = 6.189126F;
-            this.Label10.Name = "Label10";
-            this.Label10.Style = "color: Black; font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; te" +
-    "xt-align: center; ddo-char-set: 0";
-            this.Label10.Text = "Prepared By";
-            this.Label10.Top = 1.589875F;
-            this.Label10.Width = 1.374F;
             // 
             // Label11
             // 
@@ -691,80 +737,29 @@ namespace Pipewellservice.Reports
             this.Line3.Y1 = 2.981875F;
             this.Line3.Y2 = 2.981875F;
             // 
-            // Line4
-            // 
-            this.Line4.Height = 1.787F;
-            this.Line4.Left = 3.079125F;
-            this.Line4.LineWeight = 1F;
-            this.Line4.Name = "Line4";
-            this.Line4.Top = 1.569875F;
-            this.Line4.Width = 9.536743E-07F;
-            this.Line4.X1 = 3.079126F;
-            this.Line4.X2 = 3.079125F;
-            this.Line4.Y1 = 1.569875F;
-            this.Line4.Y2 = 3.356875F;
-            // 
-            // Line10
-            // 
-            this.Line10.Height = 1.787F;
-            this.Line10.Left = 6.111126F;
-            this.Line10.LineWeight = 1F;
-            this.Line10.Name = "Line10";
-            this.Line10.Top = 1.569875F;
-            this.Line10.Width = 0F;
-            this.Line10.X1 = 6.111126F;
-            this.Line10.X2 = 6.111126F;
-            this.Line10.Y1 = 1.569875F;
-            this.Line10.Y2 = 3.356875F;
-            // 
-            // Line11
-            // 
-            this.Line11.Height = 0F;
-            this.Line11.Left = 0.07912571F;
-            this.Line11.LineWeight = 1F;
-            this.Line11.Name = "Line11";
-            this.Line11.Top = 1.856875F;
-            this.Line11.Width = 7.5155F;
-            this.Line11.X1 = 0.07912571F;
-            this.Line11.X2 = 7.594626F;
-            this.Line11.Y1 = 1.856875F;
-            this.Line11.Y2 = 1.856875F;
-            // 
             // TextBox8
             // 
             this.TextBox8.DataField = "ApprovedBy2Name";
-            this.TextBox8.Height = 0.4375F;
-            this.TextBox8.Left = 1.610374F;
+            this.TextBox8.Height = 0.3470001F;
+            this.TextBox8.Left = 1.614F;
             this.TextBox8.Name = "TextBox8";
             this.TextBox8.OutputFormat = resources.GetString("TextBox8.OutputFormat");
             this.TextBox8.Style = "color: Black; font-size: 9.75pt; font-weight: normal; text-align: center";
             this.TextBox8.Text = null;
-            this.TextBox8.Top = 1.856875F;
-            this.TextBox8.Width = 1.4375F;
+            this.TextBox8.Top = 1.897F;
+            this.TextBox8.Width = 1.42F;
             // 
             // TextBox9
             // 
             this.TextBox9.DataField = "ApprovedBy3Name";
-            this.TextBox9.Height = 0.4375F;
-            this.TextBox9.Left = 3.09475F;
+            this.TextBox9.Height = 0.3470001F;
+            this.TextBox9.Left = 3.08F;
             this.TextBox9.Name = "TextBox9";
             this.TextBox9.OutputFormat = resources.GetString("TextBox9.OutputFormat");
             this.TextBox9.Style = "color: Black; font-size: 9.75pt; font-weight: normal; text-align: center";
             this.TextBox9.Text = null;
-            this.TextBox9.Top = 1.856875F;
-            this.TextBox9.Width = 1.3125F;
-            // 
-            // TextBox10
-            // 
-            this.TextBox10.DataField = "PreparedBy";
-            this.TextBox10.Height = 0.4375F;
-            this.TextBox10.Left = 6.189126F;
-            this.TextBox10.Name = "TextBox10";
-            this.TextBox10.OutputFormat = resources.GetString("TextBox10.OutputFormat");
-            this.TextBox10.Style = "color: Black; font-size: 9.75pt; font-weight: normal; text-align: center";
-            this.TextBox10.Text = null;
-            this.TextBox10.Top = 1.856875F;
-            this.TextBox10.Width = 1.375F;
+            this.TextBox9.Top = 1.897F;
+            this.TextBox9.Width = 1.352F;
             // 
             // TextBox11
             // 
@@ -792,52 +787,39 @@ namespace Pipewellservice.Reports
             // 
             // Picture2
             // 
-            this.Picture2.Height = 0.6424999F;
+            this.Picture2.Height = 0.5580001F;
             this.Picture2.HyperLink = null;
             this.Picture2.ImageData = null;
-            this.Picture2.Left = 1.625999F;
+            this.Picture2.Left = 1.614F;
             this.Picture2.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.Picture2.Name = "Picture2";
             this.Picture2.SizeMode = GrapeCity.ActiveReports.SectionReportModel.SizeModes.Stretch;
-            this.Picture2.Top = 2.31F;
-            this.Picture2.Width = 1.4375F;
+            this.Picture2.Top = 2.345F;
+            this.Picture2.Width = 1.42F;
             // 
             // Picture3
             // 
-            this.Picture3.Height = 0.6424999F;
+            this.Picture3.Height = 0.5580001F;
             this.Picture3.HyperLink = null;
             this.Picture3.ImageData = null;
-            this.Picture3.Left = 3.126F;
+            this.Picture3.Left = 3.08F;
             this.Picture3.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.Picture3.Name = "Picture3";
             this.Picture3.SizeMode = GrapeCity.ActiveReports.SectionReportModel.SizeModes.Stretch;
-            this.Picture3.Top = 2.31F;
-            this.Picture3.Width = 1.25F;
+            this.Picture3.Top = 2.345F;
+            this.Picture3.Width = 1.352F;
             // 
             // Picture4
             // 
-            this.Picture4.Height = 0.5799999F;
+            this.Picture4.Height = 0.5580001F;
             this.Picture4.HyperLink = null;
             this.Picture4.ImageData = null;
-            this.Picture4.Left = 6.230125F;
+            this.Picture4.Left = 6.111F;
             this.Picture4.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.Picture4.Name = "Picture4";
             this.Picture4.SizeMode = GrapeCity.ActiveReports.SectionReportModel.SizeModes.Stretch;
-            this.Picture4.Top = 2.325875F;
-            this.Picture4.Width = 1.3125F;
-            // 
-            // Line12
-            // 
-            this.Line12.Height = 1.79F;
-            this.Line12.Left = 1.579124F;
-            this.Line12.LineWeight = 1F;
-            this.Line12.Name = "Line12";
-            this.Line12.Top = 1.569875F;
-            this.Line12.Width = 2.026558E-06F;
-            this.Line12.X1 = 1.579126F;
-            this.Line12.X2 = 1.579124F;
-            this.Line12.Y1 = 1.569875F;
-            this.Line12.Y2 = 3.359875F;
+            this.Picture4.Top = 2.336F;
+            this.Picture4.Width = 1.402F;
             // 
             // Label13
             // 
@@ -879,38 +861,38 @@ namespace Pipewellservice.Reports
             // 
             // Picture1
             // 
-            this.Picture1.Height = 0.6424999F;
+            this.Picture1.Height = 0.5580001F;
             this.Picture1.HyperLink = null;
             this.Picture1.ImageData = null;
-            this.Picture1.Left = 0.1103757F;
+            this.Picture1.Left = 0.142F;
             this.Picture1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.Picture1.Name = "Picture1";
             this.Picture1.SizeMode = GrapeCity.ActiveReports.SectionReportModel.SizeModes.Stretch;
-            this.Picture1.Top = 2.294375F;
-            this.Picture1.Width = 1.4375F;
+            this.Picture1.Top = 2.345F;
+            this.Picture1.Width = 1.393F;
             // 
             // TextBox17
             // 
             this.TextBox17.DataField = "ApprovedBy1Name";
-            this.TextBox17.Height = 0.4375F;
-            this.TextBox17.Left = 0.1103757F;
+            this.TextBox17.Height = 0.3470001F;
+            this.TextBox17.Left = 0.142F;
             this.TextBox17.Name = "TextBox17";
             this.TextBox17.OutputFormat = resources.GetString("TextBox17.OutputFormat");
             this.TextBox17.Style = "color: Black; font-size: 9.75pt; font-weight: normal; text-align: center";
             this.TextBox17.Text = null;
-            this.TextBox17.Top = 1.856875F;
-            this.TextBox17.Width = 1.4375F;
+            this.TextBox17.Top = 1.897F;
+            this.TextBox17.Width = 1.393F;
             // 
             // Label18
             // 
             this.Label18.Height = 0.125F;
             this.Label18.HyperLink = null;
-            this.Label18.Left = 1.235126F;
+            this.Label18.Left = 1.16F;
             this.Label18.Name = "Label18";
             this.Label18.Style = "font-family: Book Antiqua; font-size: 6.75pt; font-weight: bold; text-align: left" +
     "; ddo-char-set: 0";
             this.Label18.Text = "* Note1";
-            this.Label18.Top = 1.731875F;
+            this.Label18.Top = 1.732F;
             this.Label18.Width = 0.375F;
             // 
             // Label19
@@ -937,55 +919,6 @@ namespace Pipewellservice.Reports
             this.Label20.Top = 1.731875F;
             this.Label20.Width = 0.375F;
             // 
-            // chkPersonal
-            // 
-            this.chkPersonal.DataField = "chkPersonal";
-            this.chkPersonal.Height = 0.2F;
-            this.chkPersonal.Left = 6.251125F;
-            this.chkPersonal.Name = "chkPersonal";
-            this.chkPersonal.Style = "color: Black";
-            this.chkPersonal.Text = null;
-            this.chkPersonal.Top = 2.231875F;
-            this.chkPersonal.Visible = false;
-            this.chkPersonal.Width = 1.3125F;
-            // 
-            // chkLoan
-            // 
-            this.chkLoan.DataField = "chkLoan";
-            this.chkLoan.Height = 0.2F;
-            this.chkLoan.Left = 6.251125F;
-            this.chkLoan.Name = "chkLoan";
-            this.chkLoan.Style = "color: Black";
-            this.chkLoan.Text = null;
-            this.chkLoan.Top = 2.494375F;
-            this.chkLoan.Visible = false;
-            this.chkLoan.Width = 1.3125F;
-            // 
-            // chkGeneral
-            // 
-            this.chkGeneral.DataField = "chkGeneral";
-            this.chkGeneral.Height = 0.2F;
-            this.chkGeneral.Left = 6.251125F;
-            this.chkGeneral.Name = "chkGeneral";
-            this.chkGeneral.Style = "color: Black";
-            this.chkGeneral.Text = null;
-            this.chkGeneral.Top = 2.756875F;
-            this.chkGeneral.Visible = false;
-            this.chkGeneral.Width = 1.3125F;
-            // 
-            // Line2
-            // 
-            this.Line2.Height = 1.787F;
-            this.Line2.Left = 4.504126F;
-            this.Line2.LineWeight = 1F;
-            this.Line2.Name = "Line2";
-            this.Line2.Top = 1.569875F;
-            this.Line2.Width = 0F;
-            this.Line2.X1 = 4.504126F;
-            this.Line2.X2 = 4.504126F;
-            this.Line2.Y1 = 1.569875F;
-            this.Line2.Y2 = 3.356875F;
-            // 
             // Label21
             // 
             this.Label21.DataField = "ApprovalPosition4";
@@ -1003,38 +936,103 @@ namespace Pipewellservice.Reports
             // TextBox18
             // 
             this.TextBox18.DataField = "ApprovedBy4Name";
-            this.TextBox18.Height = 0.4375F;
-            this.TextBox18.Left = 4.678126F;
+            this.TextBox18.Height = 0.3470001F;
+            this.TextBox18.Left = 4.553F;
             this.TextBox18.Name = "TextBox18";
             this.TextBox18.OutputFormat = resources.GetString("TextBox18.OutputFormat");
             this.TextBox18.Style = "color: Black; font-size: 9.75pt; font-weight: normal; text-align: center";
             this.TextBox18.Text = null;
-            this.TextBox18.Top = 1.856875F;
-            this.TextBox18.Width = 1.3125F;
+            this.TextBox18.Top = 1.897F;
+            this.TextBox18.Width = 1.508F;
             // 
             // Picture6
             // 
-            this.Picture6.Height = 0.6424999F;
+            this.Picture6.Height = 0.5580001F;
             this.Picture6.HyperLink = null;
             this.Picture6.ImageData = null;
-            this.Picture6.Left = 4.657125F;
+            this.Picture6.Left = 4.553F;
             this.Picture6.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.Picture6.Name = "Picture6";
             this.Picture6.SizeMode = GrapeCity.ActiveReports.SectionReportModel.SizeModes.Stretch;
-            this.Picture6.Top = 2.314875F;
-            this.Picture6.Width = 1.25F;
+            this.Picture6.Top = 2.345F;
+            this.Picture6.Width = 1.508F;
             // 
             // TextBox19
             // 
             this.TextBox19.DataField = "ApprovalDate4";
             this.TextBox19.Height = 0.1875F;
-            this.TextBox19.Left = 4.741126F;
+            this.TextBox19.Left = 4.677F;
             this.TextBox19.Name = "TextBox19";
             this.TextBox19.OutputFormat = resources.GetString("TextBox19.OutputFormat");
             this.TextBox19.Style = "color: Black; font-size: 9.75pt; font-weight: normal; text-align: center";
             this.TextBox19.Text = null;
-            this.TextBox19.Top = 3.106875F;
+            this.TextBox19.Top = 3.107F;
             this.TextBox19.Width = 1.25F;
+            // 
+            // Line11
+            // 
+            this.Line11.Height = 0F;
+            this.Line11.Left = 0.07912571F;
+            this.Line11.LineWeight = 1F;
+            this.Line11.Name = "Line11";
+            this.Line11.Top = 1.856875F;
+            this.Line11.Width = 7.5155F;
+            this.Line11.X1 = 0.07912571F;
+            this.Line11.X2 = 7.594626F;
+            this.Line11.Y1 = 1.856875F;
+            this.Line11.Y2 = 1.856875F;
+            // 
+            // Line2
+            // 
+            this.Line2.Height = 1.787F;
+            this.Line2.Left = 4.504126F;
+            this.Line2.LineWeight = 1F;
+            this.Line2.Name = "Line2";
+            this.Line2.Top = 1.569875F;
+            this.Line2.Width = 0F;
+            this.Line2.X1 = 4.504126F;
+            this.Line2.X2 = 4.504126F;
+            this.Line2.Y1 = 1.569875F;
+            this.Line2.Y2 = 3.356875F;
+            // 
+            // Line10
+            // 
+            this.Line10.Height = 1.787F;
+            this.Line10.Left = 6.111126F;
+            this.Line10.LineWeight = 1F;
+            this.Line10.Name = "Line10";
+            this.Line10.Top = 1.569875F;
+            this.Line10.Width = 0F;
+            this.Line10.X1 = 6.111126F;
+            this.Line10.X2 = 6.111126F;
+            this.Line10.Y1 = 1.569875F;
+            this.Line10.Y2 = 3.356875F;
+            // 
+            // line4
+            // 
+            this.line4.Height = 1.786999F;
+            this.line4.Left = 1.614F;
+            this.line4.LineWeight = 1F;
+            this.line4.Name = "line4";
+            this.line4.Top = 1.57F;
+            this.line4.Width = 0F;
+            this.line4.X1 = 1.614F;
+            this.line4.X2 = 1.614F;
+            this.line4.Y1 = 1.57F;
+            this.line4.Y2 = 3.356999F;
+            // 
+            // line5
+            // 
+            this.line5.Height = 1.786999F;
+            this.line5.Left = 3.048F;
+            this.line5.LineWeight = 1F;
+            this.line5.Name = "line5";
+            this.line5.Top = 1.59F;
+            this.line5.Width = 0F;
+            this.line5.X1 = 3.048F;
+            this.line5.X2 = 3.048F;
+            this.line5.Y1 = 1.59F;
+            this.line5.Y2 = 3.376999F;
             // 
             // rpEmployeeInquiry
             // 
@@ -1055,9 +1053,10 @@ namespace Pipewellservice.Reports
             this.StyleSheet.Add(new DDCssLib.StyleSheetRule("font-family: inherit; font-style: inherit; font-variant: inherit; font-weight: bo" +
             "ld; font-size: 13pt; font-size-adjust: inherit; font-stretch: inherit; color: Bl" +
             "ack", "Heading3", "Normal"));
+            this.Watermark = ((System.Drawing.Image)(resources.GetObject("$this.Watermark")));
+            this.WatermarkSizeMode = GrapeCity.ActiveReports.SectionReportModel.SizeModes.Zoom;
             this.ReportStart += new System.EventHandler(this.rpEmployeeInquiry_ReportStart);
             ((System.ComponentModel.ISupportInitialize)(this.TextBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeaderCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture)).EndInit();
@@ -1078,6 +1077,12 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.Label9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPersonal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkLoan)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkGeneral)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Label10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox15)).EndInit();
@@ -1087,12 +1092,10 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.Label15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Label10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture2)).EndInit();
@@ -1106,9 +1109,6 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.Label18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkPersonal)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkLoan)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkGeneral)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture6)).EndInit();
@@ -1120,7 +1120,6 @@ namespace Pipewellservice.Reports
         private GrapeCity.ActiveReports.SectionReportModel.PageHeader PageHeader;
         private GrapeCity.ActiveReports.SectionReportModel.PageFooter PageFooter;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox7;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox1;
         private GrapeCity.ActiveReports.SectionReportModel.Label Label;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox txtHeaderCompany;
         private GrapeCity.ActiveReports.SectionReportModel.Picture Picture;
@@ -1157,7 +1156,6 @@ namespace Pipewellservice.Reports
         private GrapeCity.ActiveReports.SectionReportModel.Label Label12;
         private GrapeCity.ActiveReports.SectionReportModel.Line Line1;
         private GrapeCity.ActiveReports.SectionReportModel.Line Line3;
-        private GrapeCity.ActiveReports.SectionReportModel.Line Line4;
         private GrapeCity.ActiveReports.SectionReportModel.Line Line10;
         private GrapeCity.ActiveReports.SectionReportModel.Line Line11;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox8;
@@ -1168,7 +1166,6 @@ namespace Pipewellservice.Reports
         private GrapeCity.ActiveReports.SectionReportModel.Picture Picture2;
         private GrapeCity.ActiveReports.SectionReportModel.Picture Picture3;
         private GrapeCity.ActiveReports.SectionReportModel.Picture Picture4;
-        private GrapeCity.ActiveReports.SectionReportModel.Line Line12;
         private GrapeCity.ActiveReports.SectionReportModel.Label Label13;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox24;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox12;
@@ -1184,10 +1181,14 @@ namespace Pipewellservice.Reports
         private GrapeCity.ActiveReports.SectionReportModel.Label Label21;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox18;
         private GrapeCity.ActiveReports.SectionReportModel.Picture Picture6;
+        private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox1;
+        private GrapeCity.ActiveReports.SectionReportModel.Line line4;
+        private GrapeCity.ActiveReports.SectionReportModel.Line line5;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox19;
 
         private void rpEmployeeInquiry_ReportStart(object sender, System.EventArgs e)
         {
+            TextBox1.Text = System.DateTime.Now.ToString();
             //this.Document.CacheToDisk = true;
             List<EmployeeInquiryReport> data = (List<EmployeeInquiryReport>)this.DataSource;
             if (data.Count > 0)

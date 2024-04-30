@@ -11,13 +11,10 @@ function ResetForm() {
     ResetChangeLog();
 }
 function _Init() {
-    SetPagePermission(PAGES.Division);
-    SetPagePermission(PAGES.Position);
-    SetPagePermission(PAGES.Department);
+    SetPagePermission(PAGES.Division, function () { BindDivision(); });
+    SetPagePermission(PAGES.Position, function () { BindPositions(); });
+    SetPagePermission(PAGES.Department, function () { BindDepartments(); });
 
-    BindDivision();
-    BindPositions();
-    BindDepartments();
     
 }
 

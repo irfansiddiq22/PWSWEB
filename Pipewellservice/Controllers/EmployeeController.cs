@@ -154,7 +154,7 @@ namespace Pipewellservice.Controllers
         [Authorization(Pages.EmployeeInquiry )]
         public ActionResult Inquiry()
         {
-            ViewBag.Title = "Employee Inquiry Form";
+            ViewBag.Title = "Employee Request Form";
             ViewBag.Parent = Parent;
             return View("_PartialEmployeeInquiry");
         }

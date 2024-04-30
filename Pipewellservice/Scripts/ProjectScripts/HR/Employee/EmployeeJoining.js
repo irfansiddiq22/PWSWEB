@@ -263,10 +263,10 @@ function SaveEmployeeJoining() {
 
                             if (Response.Status) {
 
-                                if (NewJoining.ID > 0)
+                                if (NewJoining.ID == 0)
                                     swal("Employee Joining record added", { icon: "success" })
                                 else
-                                    swal("Employee Joining updated added", { icon: "success" })
+                                    swal("Employee Joining updated", { icon: "success" })
                                 BindJoining()
                                 CancelNewJoining();
                             } else {
@@ -279,7 +279,7 @@ function SaveEmployeeJoining() {
                         if (NewJoining.ID > 0)
                             swal("Employee Joining record added", { icon: "success" })
                         else
-                            swal("Employee Joining updated added", { icon: "success" })
+                            swal("Employee Joining updated", { icon: "success" })
 
                         BindJoining()
                         CancelNewJoining();
