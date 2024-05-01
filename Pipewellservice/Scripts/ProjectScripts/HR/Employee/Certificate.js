@@ -98,11 +98,13 @@ function FillCertificates(EmployeeID) {
     InitializeCertificate();
 
     Post("/EmployeeAPI/CertificateList", { EmployeeID: EmployeeID }).done(function (Response) {
+        if (valOf("txtFindCertificate") != "")
+            Response = Response.filter(x => x.Name.toLowerCase().indexOf(valOf("txtFindCertificate").toLowerCase()) > -1  || x.ID == valOf("txtFindCertificate"))
         CertificateList = Response;
         
         $.each(Response, function (i, c) {
             var tr = $('<tr>');
-            tr.append($('<td>').text((i + 1)))
+            tr.append($('<td>').text((c.ID)))
             tr.append($('<td>').text(c.Name))
             tr.append($('<td>').text(moment(c.IssueDate).format("DD/MM/YYYY")))
             tr.append($('<td>').text(c.ExpiryDate ? moment(c.ExpiryDate).format("DD/MM/YYYY") : ""))
@@ -115,7 +117,7 @@ function FillCertificates(EmployeeID) {
 
             $("#tblCertificateList").append(tr)
         })
-        SetPagePermission(PAGES.Certificate);
+        SetPagePermission(PAGES.Certificate, function () { });
     });
 }
 function EditCertificate(index) {
@@ -242,4 +244,8 @@ function SaveCertificate() {
         }
 
     });
+}
+
+function FindCertificate() {
+    FillCertificates($("#ddCertificateEmployeeCode").val())
 }
