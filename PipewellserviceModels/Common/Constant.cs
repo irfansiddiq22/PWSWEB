@@ -23,7 +23,14 @@ namespace PipewellserviceModels.Common
         LEAVE_TPES = 6,
         CERTIFICATE_TYPES = 7,
         DocTemplates = 10,
-        PAGEGROUPS = 12
+        PAGEGROUPS = 12,
+        USERGRPOUPS=13
+    }
+    public enum UserGroups
+    {
+        none=0,
+        Admin=1,
+        Employee=2
     }
 
     public enum Gender

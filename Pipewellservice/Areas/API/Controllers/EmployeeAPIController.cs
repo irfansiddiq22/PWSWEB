@@ -18,7 +18,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
         public async Task<JsonResult> CodeName()
         {
-            var result = await json.CodeName();
+            var result = await json.CodeName(SessionHelper.UserGroup()==(int)UserGroups.Employee? SessionHelper.EmployeeID():0);
             return new JsonResult
             {
                 Data = result,
@@ -27,7 +27,7 @@ namespace Pipewellservice.Areas.API.Controllers
         }
         public async Task<JsonResult> FamilyCodeName()
         {
-            var result = await json.FamilyCodeName();
+            var result = await json.FamilyCodeName(SessionHelper.UserGroup()==(int)UserGroups.Employee? SessionHelper.EmployeeID():0);
             return new JsonResult
             {
                 Data = result,

@@ -54,7 +54,7 @@ function BindUsers() {
     Post("/EmployeeAPI/FamilyCodeName", {}).done(function (Response) {
 
         var data = []
-        data.push({ id: 0, text: 'Select an employee' });
+        if (Response.length>1) data.push({ id: 0, text: 'Select an employee' });
         $.each(Response, function (i, emp) {
             data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name });
         })
@@ -66,7 +66,11 @@ function BindUsers() {
         }).on('select2:select', function (e) {
             var data = e.params.data;
             FillEmployeeFamily(parseInt(data.id));
-        });
+            });
+        if (data.length == 1) {
+            $("#ddEmployeeFamilyCode").val(data[0].ID)
+            FillEmployeeFamily(parseInt(data[0].id));
+        }
     })
     FillRelationList("datalistOptions")
 

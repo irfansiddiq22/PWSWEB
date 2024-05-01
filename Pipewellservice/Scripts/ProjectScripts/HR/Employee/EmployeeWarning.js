@@ -1,5 +1,5 @@
 ﻿var WarningList = [];
-var Warning = {ID:0};
+var Warning = { ID: 0 };
 function _Init() {
     HideSpinner();
     $("#aWarningSheet").hide()
@@ -8,14 +8,14 @@ function _Init() {
         BindUsers();
         BindWarnings();
     });
-    
+
 }
 
 function BindUsers() {
     Post("/EmployeeAPI/CodeName", {}).done(function (Response) {
 
         var data = []
-        data.push({ id: 0, text: 'Select an employee' });
+        if (Response.length > 1) data.push({ id: 0, text: 'Select an employee' });
         $.each(Response, function (i, emp) {
             data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name });
         })
@@ -33,10 +33,17 @@ function BindUsers() {
             placeholder: "Select an option",
             allowClear: true,
             data: data,
-            width:"100%"
+            width: "100%"
         }).on('select2:select', function (e) {
             BindEmployeePositionDivision();
         });
+
+
+        if (data.length == 1) {
+            $("#ddEmployeeName,#ddEmployeeCode").val(data[0].ID)
+            BindEmployeePositionDivision();
+            BindWarnings()
+        }
     })
     Post("/SettingAPI/DivisionList", {}).done(function (Response) {
         FillList("ddEmployeeDivision", Response, "Name", "ID", "Select Division")
@@ -79,23 +86,23 @@ function BindWarnings() {
             var tr = $('<tr>')
             tr.append($('<td>').text(r.ID))
             tr.append($('<td>').append(r.EmployeeID).append("<br>").append("" + r.EmployeeName).append("<br><hr>Division:<br>" + r.Division).append("<br><hr>Position:<br> " + r.Position))
-            tr.append($('<td>').append("<span class='badge bg-" + (r.WarningType == 1 ? "info" : (r.WarningType==2 ? "warning"  : "danger"))+"'>" + r.WarningTypeName +"</span> " +moment(r.WarningDate).format("DD/MM/YYYY")))
-            tr.append($('<td>').append(!r.Written ? "":"Written:<label class='switch float-end'><input type='checkbox' " + (r.Written ?"checked" :"" )+ "><div class='slider round'></div></label><br>")
-                .append(!r.Tardiness ? "" :"Tardiness: <label class='switch float-end'><input type='checkbox'  " + (r.Tardiness ? "checked" : "") + "><div class='slider round'></div></label><br>")
-                .append(!r.Absenteeism ? "" :"Absenteeism: <label class='switch float-end'><input type='checkbox'  " + (r.Absenteeism ? "checked" : "") + "><div class='slider round'></div></label><br> ")
-                .append(!r.Violation ? "" :"Violation: <label class='switch float-end'><input type='checkbox'  " + (r.Violation ? "checked" : "") + "><div class='slider round'></div></label><br> ")
-                .append(!r.Substandard ? "" :"Substandard: <label class='switch float-end'><input type='checkbox'  " + (r.Substandard ? "checked" : "") + "><div class='slider round'></div></label><br>")
-                .append(!r.Policies ? "" :"Policies: <label class='switch float-end'><input type='checkbox'  " + (r.Policies ? "checked" : "") + "><div class='slider round'></div></label><br> ")
-                .append(!r.Rudeness ? "" :"Rudeness: <label class='switch float-end'><input type='checkbox' " + (r.Rudeness ? "checked" : "") + "><div class='slider round'></div></label><br> ")
-                .append(!r.Other ? "" :"Other: <label class='switch float-end'><input type='checkbox' " + (r.Other ? "checked" : "") + "><div class='slider round'></div></labels><br> ")
-                .append(!r.Other ? "" :"Other: "+r.OtherDetail)
+            tr.append($('<td>').append("<span class='badge bg-" + (r.WarningType == 1 ? "info" : (r.WarningType == 2 ? "warning" : "danger")) + "'>" + r.WarningTypeName + "</span> " + moment(r.WarningDate).format("DD/MM/YYYY")))
+            tr.append($('<td>').append(!r.Written ? "" : "Written:<label class='switch float-end'><input type='checkbox' " + (r.Written ? "checked" : "") + "><div class='slider round'></div></label><br>")
+                .append(!r.Tardiness ? "" : "Tardiness: <label class='switch float-end'><input type='checkbox'  " + (r.Tardiness ? "checked" : "") + "><div class='slider round'></div></label><br>")
+                .append(!r.Absenteeism ? "" : "Absenteeism: <label class='switch float-end'><input type='checkbox'  " + (r.Absenteeism ? "checked" : "") + "><div class='slider round'></div></label><br> ")
+                .append(!r.Violation ? "" : "Violation: <label class='switch float-end'><input type='checkbox'  " + (r.Violation ? "checked" : "") + "><div class='slider round'></div></label><br> ")
+                .append(!r.Substandard ? "" : "Substandard: <label class='switch float-end'><input type='checkbox'  " + (r.Substandard ? "checked" : "") + "><div class='slider round'></div></label><br>")
+                .append(!r.Policies ? "" : "Policies: <label class='switch float-end'><input type='checkbox'  " + (r.Policies ? "checked" : "") + "><div class='slider round'></div></label><br> ")
+                .append(!r.Rudeness ? "" : "Rudeness: <label class='switch float-end'><input type='checkbox' " + (r.Rudeness ? "checked" : "") + "><div class='slider round'></div></label><br> ")
+                .append(!r.Other ? "" : "Other: <label class='switch float-end'><input type='checkbox' " + (r.Other ? "checked" : "") + "><div class='slider round'></div></labels><br> ")
+                .append(!r.Other ? "" : "Other: " + r.OtherDetail)
 
             )
-            
+
             tr.append($('<td>').append(
                 "<span class='badge bg-warning'>Infraction:</span> " + r.Infraction + "<br><br><span class='badge bg-primary'> Improvement:</span>" + r.Improvement + "<br><br><span class='badge bg-danger'>Consequences:</span>" + r.Consequences)
-                )
-            
+            )
+
             tr.append($('<td>').append(r.ApprovedBy1 > 0 ? r.ApprovedBy1Name + (r.Approved1 != 3 ? "<br> Date: " + moment(r.ApprovedDate1).format("MM/DD/YYYYY") + "<br> Status :" + r.Approved1Name : "") : ""))
             tr.append($('<td>').append(r.ApprovedBy2 > 0 ? r.ApprovedBy2Name + (r.Approved2 != 3 ? "<br> Date: " + moment(r.ApprovedDate2).format("MM/DD/YYYYY") + "<br> Status :" + r.Approved2Name : "") : ""))
             tr.append($('<td>').append(r.ApprovedBy3 > 0 ? r.ApprovedBy3Name + (r.Approved3 != 3 ? "<br> Date: " + moment(r.ApprovedDate3).format("MM/DD/YYYYY") + "<br> Status :" + r.Approved3Name : "") : ""))
@@ -114,7 +121,7 @@ function BindWarnings() {
     })
 }
 function EditWarning(index) {
-    
+
     Warning = WarningList[index];
 
     SetvalOf("ddEmployeeName", Warning.EmployeeID).trigger("change")
@@ -163,7 +170,7 @@ function EditWarning(index) {
 
 }
 function PrintWarning(ID) {
-    window.open("/Employee/PrintReport?ID=" + ID + "&ReportID=" + PAGES.EmployeeWarning , "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
+    window.open("/Employee/PrintReport?ID=" + ID + "&ReportID=" + PAGES.EmployeeWarning, "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
 }
 function SaveEmployeeWarning() {
     $("#frmWarning").validate({
@@ -205,7 +212,7 @@ function SaveEmployeeWarning() {
                 if ($.trim(Warning.ApprovedBy3) != $.trim(valOf("ddWarningApproval3"))) {
                     DataChangeLog.DataUpdated.push({ Field: "ApprovedBy3", Data: { OLD: Warning.ApprovedBy3Name, New: textOf("ddWarningApproval3") } });
                 }
-                
+
 
                 if ($.trim(Warning.WarningType) != WarningType) {
                     DataChangeLog.DataUpdated.push({ Field: "WarningType", Data: { OLD: Warning.WarningType, New: WarningType } });
@@ -250,16 +257,16 @@ function SaveEmployeeWarning() {
                 if ($.trim(Warning.Consequences) != $.trim(valOf("txtWarningConsequences"))) {
                     DataChangeLog.DataUpdated.push({ Field: "Consequences", Data: { OLD: Warning.Consequences, New: valOf("txtWarningConsequences") } });
                 }
-                
-                
+
+
                 if (files.length > 0) {
                     DataChangeLog.DataUpdated.push({ Field: "FileName", Data: { OLD: Warning.FileName, New: files[0].name } });
                 }
 
             }
 
-            
-            
+
+
 
             fileData.append('ID', Warning.ID);
             fileData.append('EmployeeID', valOf("ddEmployeeName"));
@@ -282,12 +289,12 @@ function SaveEmployeeWarning() {
             fileData.append('ApprovedBy1', valOf("ddWarningApproval1"));
             fileData.append('ApprovedBy2', valOf("ddWarningApproval2"));
             fileData.append('ApprovedBy3', valOf("ddWarningApproval3"));
-            
+
             fileData.append('FileID', Warning.FileID);
             fileData.append('FileName', Warning.FileName);
             fileData.append('RecordAddedBy', User.Name);
             fileData.append('RecordCreatedBy', User.ID);
-            
+
 
             ShowSpinner();
             $.ajax({
@@ -304,10 +311,10 @@ function SaveEmployeeWarning() {
                         swal({ text: "Employee warning record updated.", icon: "success" });
                     SaveLog(Response);
 
-                    
+
                     document.getElementById("frmWarning").reset();
                     BindWarnings()
-                    SetvalOf("ddEmployeeName",0).trigger("change")
+                    SetvalOf("ddEmployeeName", 0).trigger("change")
                     SetvalOf("txtWarningDate", moment().format("DD/MM/YYYY"))
                     SetvalOf("ddEmployeeDivision", 0)
                     SetvalOf("ddEmployeePosition", 0)

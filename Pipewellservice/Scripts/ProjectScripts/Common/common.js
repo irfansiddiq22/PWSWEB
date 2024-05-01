@@ -19,7 +19,7 @@
     Permissions: 18,
     Vendor: 19,
     EmployeeJoining: 20,
-    ShortLeave:21
+    ShortLeave: 21
 
 }
 var PAGEGROUPS = {
@@ -110,6 +110,10 @@ function SetGroupPermissions(ID) {
 
 }
 
+function SetUserGroupPermissions() {
+    $(".page-admin-" + User.GroupID).removeClass("d-none");
+}
+
 function SetPagePermissions(ID) {
     $.each(ID, function (i, gid) {
         var WritePermisssions = User.Permissions.filter(x => x.PageID == gid && x.CanWrite == true);
@@ -125,7 +129,7 @@ function BindEmployeeLists(FillEmployeeData) {
     Post("/EmployeeAPI/CodeName", {}).done(function (Response) {
 
         var data = []
-        data.push({ id: 0, text: 'Select an employee' });
+        if (Response.length>1)     data.push({ id: 0, text: 'Select an employee' });
         $.each(Response, function (i, emp) {
             data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name });
         })
@@ -135,9 +139,7 @@ function BindEmployeeLists(FillEmployeeData) {
             allowClear: true,
             data: data,
             width: "100%"
-        }).on('select2:select', function (e) {
-            BindWarnings();
-        });
+        })
         $("#ddEmployeeName").select2({
             tags: "true",
             placeholder: "Select an option",
@@ -150,6 +152,14 @@ function BindEmployeeLists(FillEmployeeData) {
                 BindEmployeeAssets();
             }
         });
+
+        if (data.length == 1) {
+            $("#ddEmployeeCode,#ddEmployeeName").val(data[0].id);   
+            if (FillEmployeeData) {
+                BindEmployeePositionDivision();
+                BindEmployeeAssets();
+            }
+        }
     })
     if (FillEmployeeData) {
         Post("/SettingAPI/DivisionList", {}).done(function (Response) {

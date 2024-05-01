@@ -14,11 +14,11 @@ namespace PipewellserviceDB.HR.Employee
     public class EmployeeService : DataServices
     {
 
-        public async Task<DataTable> CodeName()
+        public async Task<DataTable> CodeName(int EmployeeID)
         {
             try
             {
-                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "Proc_EmployeeCodeName", CommandType.StoredProcedure);
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "Proc_EmployeeCodeName", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID });
                 DataTable dt = new DataTable();
                 dt.Load(result);
                 result.Close();
@@ -30,11 +30,11 @@ namespace PipewellserviceDB.HR.Employee
             }
 
         }
-        public async Task<DataTable> FamilyCodeName()
+        public async Task<DataTable> FamilyCodeName(int EmployeeID)
         {
             try
             {
-                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "Proc_EmployeeFamilyCodeName", CommandType.StoredProcedure);
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "Proc_EmployeeFamilyCodeName", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID });
                 DataTable dt = new DataTable();
                 dt.Load(result);
                 result.Close();

@@ -15,6 +15,9 @@ function _Init() {
     HideSpinner();
     SetPagePermission(PAGES.Certificate, function () {
         BindUsers();
+        $("#ddCertificateEmployeeCode").change(function () {
+            FillCertificates($(this).val());
+        })
     });
     
 }
@@ -48,6 +51,7 @@ function BindUsers() {
     Post("/EmployeeAPI/CodeName", {}).done(function (Response) {
 
         var data = []
+        if (Response.length>1)
         data.push({ id: 0, text: 'Select an employee' });
         $.each(Response, function (i, emp) {
             data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name });
@@ -58,10 +62,14 @@ function BindUsers() {
             allowClear: true,
             width: '100%',
             data: data
-        }).on('select2:select', function (e) {
-            var data = e.params.data;
-            FillCertificates(parseInt(data.id));
-        });
+        })
+
+        if (Response.length == 1) {
+            $("#ddCertificateEmployeeCode").val(Response[0].ID).trigger("change")
+            
+            //$("#ddCertificateEmployeeCode").val(Response[0].ID).trigger("change")
+            //FillCertificates(Response[0].ID);
+        }
     })
     Post("/DataList/CertificeTypes", {}).done(function (Response) {
 
@@ -81,6 +89,7 @@ function BindUsers() {
             
         });
     });
+   
 }
 
 function FillCertificates(EmployeeID) {
@@ -89,11 +98,13 @@ function FillCertificates(EmployeeID) {
     InitializeCertificate();
 
     Post("/EmployeeAPI/CertificateList", { EmployeeID: EmployeeID }).done(function (Response) {
+        if (valOf("txtFindCertificate") != "")
+            Response = Response.filter(x => x.Name.toLowerCase().indexOf(valOf("txtFindCertificate").toLowerCase()) > -1  || x.ID == valOf("txtFindCertificate"))
         CertificateList = Response;
         
         $.each(Response, function (i, c) {
             var tr = $('<tr>');
-            tr.append($('<td>').text((i + 1)))
+            tr.append($('<td>').text((c.ID)))
             tr.append($('<td>').text(c.Name))
             tr.append($('<td>').text(moment(c.IssueDate).format("DD/MM/YYYY")))
             tr.append($('<td>').text(c.ExpiryDate ? moment(c.ExpiryDate).format("DD/MM/YYYY") : ""))
@@ -106,7 +117,7 @@ function FillCertificates(EmployeeID) {
 
             $("#tblCertificateList").append(tr)
         })
-        SetPagePermission(PAGES.Certificate);
+        SetPagePermission(PAGES.Certificate, function () { });
     });
 }
 function EditCertificate(index) {
@@ -233,4 +244,8 @@ function SaveCertificate() {
         }
 
     });
+}
+
+function FindCertificate() {
+    FillCertificates($("#ddCertificateEmployeeCode").val())
 }

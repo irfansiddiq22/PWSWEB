@@ -14,15 +14,15 @@ namespace PipewellserviceJson.HR.Employee
     public class EmployeeJson
     {
         public EmployeeService service = new EmployeeService();
-        public async Task<List<EmployeeNameCode>> CodeName()
+        public async Task<List<EmployeeNameCode>> CodeName(int EmployeeID)
         {
-            var Data = await service.CodeName();
+            var Data = await service.CodeName(EmployeeID);
             List<EmployeeNameCode> result = await JsonHelper.Convert<List<EmployeeNameCode>, DataTable>(Data);
             return result;
         }
-        public async Task<List<EmployeeNameCode>> FamilyCodeName()
+        public async Task<List<EmployeeNameCode>> FamilyCodeName(int EmployeeID)
         {
-            var Data = await service.FamilyCodeName();
+            var Data = await service.FamilyCodeName(EmployeeID);
             List<EmployeeNameCode> result = await JsonHelper.Convert<List<EmployeeNameCode>, DataTable>(Data);
             return result;
         }

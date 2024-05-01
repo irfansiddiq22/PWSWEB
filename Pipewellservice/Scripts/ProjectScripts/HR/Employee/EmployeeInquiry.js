@@ -9,16 +9,16 @@ function _Init() {
     $("#dvClearanceList").show();
     SetPagePermission(PAGES.EmployeeInquiry, function () {
         BindUsers();
-        BindInquiryList();
+        
     });
-    
-    
+
+
 }
 function BindUsers() {
     $.post("/EmployeeAPI/CodeName", {}).done(function (Response) {
 
         var data = []
-        data.push({ id: 0, text: 'Select an employee' });
+        if (Response.length > 1) data.push({ id: 0, text: 'Select an employee' });
         $.each(Response, function (i, emp) {
             data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name });
         })
@@ -29,8 +29,9 @@ function BindUsers() {
             data: data,
             width: "100%"
         }).on('select2:select', function (e) {
-            BindWarnings();
+            BindInquiryList();
         });
+        
 
         $("#ddEmployeeName").select2({
             tags: "true",
@@ -38,10 +39,12 @@ function BindUsers() {
             allowClear: true,
             data: data,
             width: "100%"
-        }).on('select2:select', function (e) {
-            BindEmployeePositionDivision();
-            BindEmployeeAssets();
         });
+        if (data.length == 1) {
+            $("#ddEmployeeName,#ddEmployeeCode").val(data[0].id).trigger("change")
+        }
+
+        BindInquiryList();
     })
     //Post("/SettingAPI/DivisionList", {}).done(function (Response) {
     //    FillList("ddEmployeeDivision", Response, "Name", "ID", "Select Division")
@@ -79,7 +82,7 @@ function BindInquiryList(PageNumber = 1) {
     pageNumber = PageNumber;
     $("#tblEmployeeInQuiryList").empty();
 
-    var StartDate="", EndDate="";
+    var StartDate = "", EndDate = "";
     if (valOf("ddlInquiryDataRange") != "") {
         StartDate = $.trim(valOf("ddlInquiryDataRange").split("-")[0]);
         EndDate = $.trim(valOf("ddlInquiryDataRange").split("-")[1]);
@@ -162,7 +165,7 @@ function EditInquiry(ID) {
     $("#dvInquiryList").addClass("d-none");
 
     Post("/EmployeeAPI/EmployeeInquiryDetail", { ID: ID }).done(function (resp) {
-    
+
         Inquiry = resp;
         SetvalOf("ddEmployeeName", Inquiry.EmployeeID).trigger("change");
         SetvalOf("txtInquiryDate", moment(Inquiry.InquiryDate).format("DD/MM/YYYY"))
@@ -171,7 +174,7 @@ function EditInquiry(ID) {
         SetChecked("chkInquiryPersonal", Inquiry.PersonalInquiry);
         SetChecked("chkInquiryGeneral", Inquiry.GeneralInquiry);
         SetChecked("chkInquiryLoan", Inquiry.LoanInquiry);
-        
+
         $.each(Inquiry.Approvals, function (i, a) {
             SetvalOf("ddSupervisorApproval" + (i + 1), a.ApprovalBy).trigger("change");
         });
@@ -189,7 +192,7 @@ function ResetNav() {
         SetvalOf("ddSupervisorApproval" + (i), 0).trigger("change");
     }
     SetvalOf("ddEmployeeName", 0).trigger("change");
-    
+
     $("#dvEditInquiry").addClass("d-none")
     $("#dvInquiryList").removeClass("d-none")
     $(".breadcrumb-item.active").find("a").contents().unwrap();
@@ -204,7 +207,7 @@ function SaveEmployeeInquiry() {
             EmployeeName: "required",
             InquiryDate: "required",
             InquiryRemarks: "required",
-            
+
         },
         messages: {
             EmployeeName: "Please select employee",
@@ -249,7 +252,7 @@ function SaveEmployeeInquiry() {
                     }
 
                 }
-           
+
             }
             NewInquiry = {
                 ID: Inquiry.ID,
@@ -258,10 +261,10 @@ function SaveEmployeeInquiry() {
                 Remarks: valOf("txtInquiryRemarks"),
                 Preparedby: valOf("txtInquiryPreparedBy"),
                 PersonalInquiry: GetChecked("chkInquiryPersonal"),
-                GeneralInquiry: GetChecked("chkInquiryGeneral") ,
+                GeneralInquiry: GetChecked("chkInquiryGeneral"),
                 LoanInquiry: GetChecked("chkInquiryLoan"),
                 UserName: User.Name,
-                RecordCreatedBy:User.ID,
+                RecordCreatedBy: User.ID,
                 Approvals: []
             };
 
@@ -270,7 +273,7 @@ function SaveEmployeeInquiry() {
                     NewInquiry.Approvals.push({ ID: i, ApprovalBy: parseInt(valOf("ddSupervisorApproval" + (i))) });
                 }
             }
-            
+
             Post("/EmployeeAPI/UpdateEmployeeInquiry", { Inquiry: NewInquiry }).done(function (ID) {
                 if (ID > 0) {
 
@@ -298,8 +301,8 @@ function SaveEmployeeInquiry() {
                                 BindInquiryList()
                                 ResetNav();
                             } else {
-                                
-                                    swal("Failed to upload inquire file.", { icon: "error" })
+
+                                swal("Failed to upload inquire file.", { icon: "error" })
                             }
                         });
                     } else {
@@ -330,6 +333,6 @@ function SaveEmployeeInquiry() {
 function NewInquiry() {
     ResetNav();
     $("#dvEditInquiry").removeClass("d-none")
-    $("#dvInquiryList").addClass ("d-none")
+    $("#dvInquiryList").addClass("d-none")
     $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
 }
