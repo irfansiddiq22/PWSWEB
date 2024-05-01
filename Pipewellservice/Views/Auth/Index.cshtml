@@ -18,47 +18,86 @@
             <div class="col-md-6 d-none d-md-flex login-bg-image"></div>
             <div class="col-md-4 bg-light column-gap-md-2 border rounded">
                 <div class="md-5"></div>
-                <form id="frmLogin">
-                    <div class="p-md-5 p-2 m-auto">
-                        <h1 class="text-center">Login</h1>
-                        <div class="my-2 text-center">Sign into your account</div>
-                        <div class="login_wrapper border rounded">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="txtUserName" name="UserName" required placeholder="User Name">
-                                <div id="UserNameFeedback" class="invalid-feedback">
-                                    Enter your user name.
-                                </div>
-                                <label id="txtUserName-error" class="" for="txtUserName"> User Name</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="txtPassword" name="Password" placeholder="Password" required>
 
-                                <div id="PasswordFeedback" class="invalid-feedback">
-                                    Enter your password.
-                                </div>
-                                <label id="txtPassword-error" class="" for="txtPassword">Password</label>
-                            </div>
-
-
-                            <div class="login_remember_box">
-                                <label class="">
-                                    Remember me
-                                    <input type="checkbox">
-
-                                </label>
-                                <a href="#" class="forget_password">
-                                    Forgot Password
-                                </a>
-                            </div>
-                            <div class="login_btn_wrapper">
-
-                                <button onclick="return Login();" class="btn btn-primary w-100"> Login</button>
-
-                            </div>
-                            <div id="spinner"></div>
+                <div class="p-md-5 p-2 m-auto">
+                    <h1 class="text-center">Login</h1>
+                    <div class="my-2 text-center">Sign into your account</div>
+                    <div class="login_wrapper border rounded">
+                        <div class="pull-right forget_password mb-2">
+                            <i class="fa fa-address-card-o me-2" aria-hidden="true"></i><a href="javascript:void(0)" id="lnkEmployeeLogin" class="text-danger">Employee Login</a>
                         </div>
+                        <div class="clearfix"> </div>
+                        <div id="dvAdminLogin">
+                            <form id="frmLogin">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="txtUserName" name="UserName" required placeholder="User Name">
+                                    <div id="UserNameFeedback" class="invalid-feedback">
+                                        Enter your user name.
+                                    </div>
+                                    <label id="txtUserName-error" class="" for="txtUserName"> User Name</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="txtPassword" name="Password" placeholder="Password" required>
+
+                                    <div id="PasswordFeedback" class="invalid-feedback">
+                                        Enter your password.
+                                    </div>
+                                    <label id="txtPassword-error" class="" for="txtPassword">Password</label>
+                                </div>
+
+
+                                <div class="login_remember_box">
+                                    <label class="">
+                                        Remember me
+                                        <input type="checkbox">
+
+                                    </label>
+                                    <a href="#" class="forget_password">
+                                        Forgot Password
+                                    </a>
+                                </div>
+
+                                <div class="login_btn_wrapper">
+                                    <button onclick="return Login();" class="btn btn-primary w-100"> Login</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="dvEmployeeLogin" class="d-none">
+                            <form id="frmEmployeeLogin">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="txtEmailAddress" name="EmailAdress" placeholder="Email Address" required>
+
+                                    <div id="EmailAdressFeedback" class="invalid-feedback">
+                                        Enter your email address.
+                                    </div>
+                                    <label id="txtEmailAddress-error" class="" for="txtEmailAddress">Email Address</label>
+                                </div>
+
+                                <div class="login_btn_wrapper">
+                                    <button onclick="return GenerateOTP();" class="btn btn-primary w-100"> Generate OTP</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="dvEmployeeOTPLogin" class="d-none">
+                            <form id="frmEmployeeOTPLogin">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="txtOTP" name="OTP" placeholder="OTP" required>
+
+                                    <div id="OTPFeedback" class="invalid-feedback">
+                                        Enter OTP.
+                                    </div>
+                                    <label id="txtOTP-error" class="" for="txtOTP">OTP</label>
+                                </div>
+
+                                <div class="login_btn_wrapper">
+                                    <button onclick="return VerifyOTP();" class="btn btn-primary w-100"> Login</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="spinner"></div>
                     </div>
-                </form>
+                </div>
+
             </div>
         </div>
     </div>
