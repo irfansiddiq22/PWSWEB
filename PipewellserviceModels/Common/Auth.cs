@@ -23,4 +23,9 @@ namespace PipewellserviceModels.Common
 
         }
     }
+    public class OTP
+    {
+        public string EmailAddress { get; set; }
+        public string OTPPassword { get; set; }
+    }
 }
