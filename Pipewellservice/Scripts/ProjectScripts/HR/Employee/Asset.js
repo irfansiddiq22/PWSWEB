@@ -25,16 +25,17 @@ function InitilzeAsset() {
     Asset.FileName = "";
     ResetChangeLog(PAGES.Asset)
     $("#imgEmployeeAsset").attr("src", "");
-    $("#imgEmployeeAsset").hide();   
+    $("#imgEmployeeAsset").hide();
 }
 function ResetNav() {
-    window.location="/home"
+    window.location = "/home"
 }
 function BindUsers() {
     Post("/EmployeeAPI/CodeName", {}).done(function (Response) {
 
         var data = []
-        data.push({ id: 0, text: 'Select an employee' });
+        if (Response.length > 1)
+            data.push({ id: 0, text: 'Select an employee' });
         $.each(Response, function (i, emp) {
             data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name });
         })
@@ -43,10 +44,15 @@ function BindUsers() {
             placeholder: "Select an option",
             allowClear: true,
             data: data
-        }).on('select2:select', function (e) {
+        })
+            .on('select2:select', function (e) {
             var data = e.params.data;
             FillAssets(parseInt(data.id));
         });
+        if (data.length == 1) {
+            $("#ddCertificateEmployeeCode").val(data[0].ID)
+            FillAssets(parseInt(data[0].id));
+        }
     })
 }
 
@@ -57,15 +63,15 @@ function FillAssets(EmployeeID) {
 
     Post("/EmployeeAPI/AssetList", { EmployeeID: EmployeeID }).done(function (Response) {
         AssetList = Response;
-        
+
         $.each(Response, function (i, c) {
             var tr = $('<tr>');
             tr.append($('<td>').text((i + 1)))
             tr.append($('<td>').text(c.Name))
             tr.append($('<td>').text(moment(c.IssueDate).format("DD/MM/YYYY")))
-            
+
             tr.append($('<td>').append(c.Remarks))
-            
+
             var Icons = $('<div class="icons">');
             $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2 writeble" onclick="EditAsset(' + i + ')"><i class="fa fa-edit"></i></a>'));
             $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger deleteble" onclick="DeleteAsset(' + i + ')"><i class="fa fa-trash"></i></a>'));
@@ -119,7 +125,7 @@ function SaveAsset() {
                 if (moment(Asset.IssueDate).format("DD/MM/YYYY") != $.trim(valOf("txtAssetIssueDate"))) {
                     DataChangeLog.DataUpdated.push({ Field: "IssueDate", Data: { OLD: moment(Asset.IssueDate).format("DD/MM/YYYY"), New: valOf("txtAssetIssueDate") } });
                 }
-                
+
                 if ($.trim(Asset.Remarks) != $.trim(valOf("txtAssetRemarks"))) {
                     DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: Asset.Remarks, New: valOf("txtAssetRemarks") } });
                 }
@@ -133,13 +139,13 @@ function SaveAsset() {
             Asset.Name = valOf("txtAssetName");
             Asset.IssueDate = valOf("txtAssetIssueDate");
             Asset.Remarks = valOf("txtAssetRemarks");
-            
-            
-            
+
+
+
             fileData.append('RecordUpdatedBy', User.Name);
             fileData.append('Name', Asset.Name);
             fileData.append('IssueDate', Asset.IssueDate);
-            
+
             fileData.append('Remarks', Asset.Remarks);
 
             fileData.append('FileID', Asset.FileID);
@@ -147,7 +153,7 @@ function SaveAsset() {
 
             fileData.append('EmployeeID', Asset.EmployeeID);
             fileData.append('ID', Asset.ID);
-            
+
 
             $.ajax({
                 url: '/EmployeeAPI/UpdateAsset',
@@ -156,12 +162,12 @@ function SaveAsset() {
                 processData: false,
                 data: fileData,
                 success: function (result) {
-                    if (Asset.ID==0)
+                    if (Asset.ID == 0)
                         swal({ text: "New employee Asset record added.", icon: "success" });
                     else
                         swal({ text: "Employee Asset record updated.", icon: "success" });
 
-                    
+
                     SaveLog(result);
 
                     FillAssets(Asset.EmployeeID)

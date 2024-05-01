@@ -132,6 +132,15 @@ namespace Pipewellservice.Areas.API.Controllers
 
 
         ////////////////////////
+        public async Task<JsonResult> ListUserGroups()
+        {
+            
+            return new JsonResult
+            {
+                Data = await App_Start.AppData.List(ParentEnums.USERGRPOUPS),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
 
         public async Task<JsonResult> ListGroupNPermissions()
         {
@@ -139,8 +148,6 @@ namespace Pipewellservice.Areas.API.Controllers
             var result = await json.ListGroupNPermissions();
             result.Pages = await App_Start.AppData.List(ParentEnums.PAGES);
             result.PageGroups = await App_Start.AppData.List(ParentEnums.PAGEGROUPS);
-
-            
 
             return new JsonResult
             {

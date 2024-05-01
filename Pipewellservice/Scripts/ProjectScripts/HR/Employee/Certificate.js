@@ -15,6 +15,9 @@ function _Init() {
     HideSpinner();
     SetPagePermission(PAGES.Certificate, function () {
         BindUsers();
+        $("#ddCertificateEmployeeCode").change(function () {
+            FillCertificates($(this).val());
+        })
     });
     
 }
@@ -48,6 +51,7 @@ function BindUsers() {
     Post("/EmployeeAPI/CodeName", {}).done(function (Response) {
 
         var data = []
+        if (Response.length>1)
         data.push({ id: 0, text: 'Select an employee' });
         $.each(Response, function (i, emp) {
             data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name });
@@ -58,10 +62,14 @@ function BindUsers() {
             allowClear: true,
             width: '100%',
             data: data
-        }).on('select2:select', function (e) {
-            var data = e.params.data;
-            FillCertificates(parseInt(data.id));
-        });
+        })
+
+        if (Response.length == 1) {
+            $("#ddCertificateEmployeeCode").val(Response[0].ID).trigger("change")
+            
+            //$("#ddCertificateEmployeeCode").val(Response[0].ID).trigger("change")
+            //FillCertificates(Response[0].ID);
+        }
     })
     Post("/DataList/CertificeTypes", {}).done(function (Response) {
 
@@ -81,6 +89,7 @@ function BindUsers() {
             
         });
     });
+   
 }
 
 function FillCertificates(EmployeeID) {

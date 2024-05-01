@@ -11,6 +11,7 @@ function ResetForm() {
 function _Init() {
     BindUsers();
     BindPermission();
+    BindUserGroups();
 }
 
 
@@ -51,7 +52,9 @@ function EditUser(i) {
     SetvalOf("txtName", Settings.Data.Name)
     SetvalOf("txtUserName", Settings.Data.UserName)
     SetvalOf("txtUserPassword", Settings.Data.Password)
-    SetvalOf("ddUserPermissions", Settings.Data.GroupID)
+    SetvalOf("ddUserPermissions", Settings.Data.PermissionGroupID)
+    SetvalOf("ddUserGroups", Settings.Data.GroupID)
+    
 }
 function SaveUser() {
     $("#frmUsers").validate({
@@ -75,7 +78,7 @@ function SaveUser() {
         },
         submitHandler: function (form) {
             Post("/SettingAPI/UpdateUser", {
-                ID: Settings.Data.ID, Name: valOf("txtName"), UserName: valOf("txtUserName"), Password: valOf("txtUserPassword"), GroupID: valOf("ddUserPermissions")
+                ID: Settings.Data.ID, Name: valOf("txtName"), UserName: valOf("txtUserName"), Password: valOf("txtUserPassword"), GroupID: valOf("ddUserGroups"), PermissionGroupID: valOf("ddUserPermissions")
             }).done(function (Response) {
                 if (Settings.Data.ID==0)
                     swal({ text: "New user record added.", icon: "success" });
@@ -107,6 +110,12 @@ function BindPermission() {
         FillPermissionGroupList(Response.Groups)
         FillPermissons(Response.PageGroups, Response.Pages);
         PermissionGroup = { ID: 0, Name: '', Permissions: [] }
+    });
+}
+function BindUserGroups() {
+    Post("/SettingAPI/ListUserGroups", {}).done(function (Response) {
+        console.log(Response);
+        FillList("ddUserGroups", Response,"Name","Value","User Group"  )
     });
 }
 function FillPermissionGroupList(Response) {

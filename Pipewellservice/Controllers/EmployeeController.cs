@@ -16,10 +16,17 @@ using System.Web.Mvc;
 
 namespace Pipewellservice.Controllers
 {
-    public class EmployeeController : Controller
+    public class EmployeeController : BaseController
     {
         // GET: Employee
         private string Parent = JsonConvert.SerializeObject(new { URL = "/Employee/home", Title = "Human Resources" });
+        public EmployeeController()
+        {
+            if(SessionHelper.UserGroup()== (int)UserGroups.Employee)
+            {
+                Parent = "";
+            }
+        }
         [Authorization]
         public ActionResult Home()
         {

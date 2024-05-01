@@ -42,7 +42,7 @@ function BindUsers() {
     Post("/EmployeeAPI/CodeName", {}).done(function (Response) {
 
         var data = []
-        data.push({ id: 0, text: 'Select an employee' });
+        if (Response.length>1)  data.push({ id: 0, text: 'Select an employee' });
         $.each(Response, function (i, emp) {
             data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name });
         })
@@ -55,7 +55,11 @@ function BindUsers() {
         }).on('select2:select', function (e) {
             var data = e.params.data;
             FillIDFiles(parseInt(data.id));
-        });
+            });
+        if (data.length == 1) {
+            $("#ddIDFileEmployeeCode").val(data[0].ID)
+            FillIDFiles(parseInt(data[0].id));
+        }
     })
     
    

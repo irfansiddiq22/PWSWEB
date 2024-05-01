@@ -18,13 +18,24 @@ namespace Pipewellservice.Helper
         public void SetUserSession(User user)
         {
             user.Password = "";
-
             HttpContext.Current.Session["User"] = user;
         }
         public User UserSession()
         {
             return (User)HttpContext.Current.Session["User"];
         }
+        public int UserGroup()
+        {
+            if (HttpContext.Current.Session["User"] != null)
+            {
+                return ((User)HttpContext.Current.Session["User"]).GroupID;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         public int EmployeeID()
         {
             return ((User)HttpContext.Current.Session["User"]).EmployeeID;

@@ -18,7 +18,7 @@ function BindUsers() {
     Post("/EmployeeAPI/CodeName", {}).done(function (Response) {
 
         var data = []
-        data.push({ id: 0, text: 'Select an employee' });
+        if (Response.length>1) data.push({ id: 0, text: 'Select an employee' });
         $.each(Response, function (i, emp) {
             data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name });
         })
@@ -29,7 +29,7 @@ function BindUsers() {
             data: data,
             width: "100%"
         }).on('select2:select', function (e) {
-            BindWarnings();
+            BindClearance();
         });
         $("#ddEmployeeName").select2({
             tags: "true",
@@ -40,7 +40,13 @@ function BindUsers() {
         }).on('select2:select', function (e) {
             BindEmployeePositionDivision();
             BindEmployeeAssets();
-        });
+            });
+        if (data.length == 1) {
+            $("#ddEmployeeCode,#ddEmployeeName").val(data[0].ID);
+            BindEmployeePositionDivision();
+            BindEmployeeAssets();
+            BindClearance();
+        }
     })
     Post("/SettingAPI/DivisionList", {}).done(function (Response) {
         FillList("ddEmployeeDivision", Response, "Name", "ID", "Select Division")

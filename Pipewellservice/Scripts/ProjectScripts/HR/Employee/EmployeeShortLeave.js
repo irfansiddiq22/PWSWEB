@@ -9,10 +9,63 @@ function _Init() {
 
         $("#dvEditShortLeave").hide();
         $("#dvShortLeaveList").show();
-        BindEmployeeLists(0);
-        BindShortLeaves();
+        BindUsers();
+        
         ResetChangeLog(PAGES.ShortLeave)
+        $("#ddEmployeeCode").change(function () {
+            BindShortLeaves();
+        })
     });
+    
+}
+function BindUsers() {
+    Post("/EmployeeAPI/CodeName", {}).done(function (Response) {
+
+        var data = []
+        if (Response.length > 1) data.push({ id: 0, text: 'Select an employee' });
+        $.each(Response, function (i, emp) {
+            data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name });
+        })
+        $("#ddEmployeeCode").select2({
+            tags: "true",
+            placeholder: "Select an option",
+            allowClear: true,
+            data: data,
+            width: "100%"
+        })
+        $("#ddEmployeeName").select2({
+            tags: "true",
+            placeholder: "Select an option",
+            allowClear: true,
+            data: data,
+            width: "100%"
+        }).on('select2:select', function (e) {
+            
+        });
+
+        if (data.length == 1) {
+            $("#ddEmployeeCode,#ddEmployeeName").val(data[0].id);
+            
+        }
+
+        BindShortLeaves();
+    })
+    
+    if ($(".supervisor").length > 0) {
+        Post("/EmployeeAPI/WarningSupervisors", {}).done(function (Response) {
+            var data = []
+            data.push({ id: 0, text: 'Select Supervisor' });
+            $.each(Response, function (i, emp) {
+                data.push({ id: emp.ID, text: emp.Name });
+            })
+            $(".supervisor").select2({
+                placeholder: "Select Supervisor",
+                data: data,
+                width: "100%"
+            })
+        });
+    }
+
 
 }
 function BindShortLeaves() {
