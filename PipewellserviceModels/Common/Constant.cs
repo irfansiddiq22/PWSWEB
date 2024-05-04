@@ -96,7 +96,8 @@ namespace PipewellserviceModels.Common
         NotApproved = 0,
         Approved = 1,
         Declined = 2,
-        None = 3
+        New = 3,
+        Ready=4
     }
     public enum ApprovalTypes
     {
