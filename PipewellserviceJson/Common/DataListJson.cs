@@ -1,4 +1,5 @@
 ﻿using PipewellserviceDB.Common;
+using PipewellserviceModels.HR.Employee;
 using PipewellserviceModels.HR.Settings;
 using System;
 using System.Collections.Generic;
@@ -24,5 +25,15 @@ namespace PipewellserviceJson.Common
             return await JsonHelper.Convert<List<SponsorCompany>, DataTable>(result);
 
         }
+        public async Task<List<Supervisor>> Supervisors()
+        {
+            return await JsonHelper.Convert<List<Supervisor>, DataTable>(await service.Supervisors());
+        }
+        public async Task<List<Supervisor>> SupervisorList()
+        {
+            return await JsonHelper.Convert<List<Supervisor>, DataTable>(await service.SupervisorList());
+        }
+
+        
     }
 }

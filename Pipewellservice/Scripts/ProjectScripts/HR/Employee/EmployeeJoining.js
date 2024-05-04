@@ -58,11 +58,11 @@ function BindUsers() {
     Post("/SettingAPI/NationalityList", {}).done(function (Response) {
         FillList("ddEmployeeNationality", Response, "Name", "ID", "Select Nationality")
     });
-    Post("/EmployeeAPI/WarningSupervisors", {}).done(function (Response) {
+    Post("/EmployeeAPI/Supervisors", {}).done(function (Response) {
         var data = []
         data.push({ id: 0, text: 'Select Supervisor' });
         $.each(Response, function (i, emp) {
-            data.push({ id: emp.ID, text: emp.Name });
+            data.push({ id: emp.DivisionID, text: emp.Name });
         })
         $(".supervisor").select2({
             placeholder: "Select Supervisor",
@@ -165,7 +165,7 @@ function EditJoining(index) {
 
 
     $.each(Approvals, function (i, a) {
-        SetvalOf("ddlapproval" + (i + 1), a.ApprovalBy).trigger("change");
+        SetvalOf("ddlapproval" + (i + 1), a.DivisionID).trigger("change");
     });
 
 }
@@ -230,7 +230,7 @@ function SaveEmployeeJoining() {
 
                 for (i = 1; i <= 3; i++) {
                     if (i <= Joining.Approvals.length) {
-                        if (Joining.Approvals[i - 1].ApprovalBy != valOf("ddlapproval" + (i))) {
+                        if (Joining.Approvals[i - 1].DivisionID != valOf("ddlapproval" + (i))) {
                             if (valOf("ddlapproval" + (i)) == 0)
                                 DataChangeLog.DataUpdated.push({ Field: "Approval" + i, Data: { OLD: Joining.Approvals[i - 1].Name, New: "-" } });
                             else
@@ -247,12 +247,10 @@ function SaveEmployeeJoining() {
 
             for (i = 1; i <= 3; i++) {
                 if (valOf("ddlapproval" + (i)) > 0) {
-                    NewJoining.Approvals.push({ ID: i, ApprovalBy: parseInt(valOf("ddlapproval" + (i))) });
+                    NewJoining.Approvals.push({ ID: i, DivisionID: parseInt(valOf("ddlapproval" + (i))) });
                 }
             }
-
-            console.log(DataChangeLog);
-            console.log(NewJoining);
+             
 
             Post("/EmployeeAPI/UpdateEmployeeJoining", { record: NewJoining }).done(function (ID) {
 
@@ -283,7 +281,7 @@ function SaveEmployeeJoining() {
                         });
                     } else {
 
-                        if (NewJoining.ID > 0)
+                        if (NewJoining.ID == 0)
                             swal("Employee Joining record added", { icon: "success" })
                         else
                             swal("Employee Joining updated", { icon: "success" })

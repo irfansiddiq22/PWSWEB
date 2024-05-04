@@ -56,16 +56,16 @@ function BindUsers() {
     //Post("/SettingAPI/NationalityList", {}).done(function (Response) {
     //    FillList("ddEmployeeNationality", Response, "Name", "ID", "Select Nationality")
     //});
-    $.post("/EmployeeAPI/WarningSupervisors", {}).done(function (Response) {
+    $.post("/EmployeeAPI/Supervisors", {}).done(function (Response) {
         var data = []
         data.push({ id: 0, text: 'Select Supervisor' });
         $.each(Response, function (i, emp) {
-            data.push({ id: emp.ID, text: emp.Name });
+            data.push({ id: emp.DivisionID, text: emp.Name });
         })
-        FillList("ddSupervisorApproval1", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddSupervisorApproval3", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddSupervisorApproval3", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddSupervisorApproval4", Response, "Name", "ID", "Select Supervisor")
+        //FillList("ddSupervisorApproval1", Response, "Name", "DivisionID", "Select Supervisor")
+        //FillList("ddSupervisorApproval3", Response, "Name", "DivisionID", "Select Supervisor")
+        //FillList("ddSupervisorApproval3", Response, "Name", "DivisionID", "Select Supervisor")
+        //FillList("ddSupervisorApproval4", Response, "Name", "DivisionID", "Select Supervisor")
 
 
         $(".supervisor").select2({
@@ -176,7 +176,7 @@ function EditInquiry(ID) {
         SetChecked("chkInquiryLoan", Inquiry.LoanInquiry);
 
         $.each(Inquiry.Approvals, function (i, a) {
-            SetvalOf("ddSupervisorApproval" + (i + 1), a.ApprovalBy).trigger("change");
+            SetvalOf("ddSupervisorApproval" + (i + 1), a.DivisionID).trigger("change");
         });
 
         $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
@@ -241,7 +241,7 @@ function SaveEmployeeInquiry() {
 
                 for (i = 1; i <= 4; i++) {
                     if (i <= Inquiry.Approvals.length) {
-                        if (Inquiry.Approvals[i - 1].ApprovalBy != valOf("ddSupervisorApproval" + (i))) {
+                        if (Inquiry.Approvals[i - 1].DivisionID != valOf("ddSupervisorApproval" + (i))) {
                             if (valOf("ddSupervisorApproval" + (i)) == 0)
                                 DataChangeLog.DataUpdated.push({ Field: "Approval" + i, Data: { OLD: Inquiry.Approvals[i - 1].Name, New: "-" } });
                             else
@@ -270,7 +270,7 @@ function SaveEmployeeInquiry() {
 
             for (i = 1; i <= 4; i++) {
                 if (valOf("ddSupervisorApproval" + (i)) > 0) {
-                    NewInquiry.Approvals.push({ ID: i, ApprovalBy: parseInt(valOf("ddSupervisorApproval" + (i))) });
+                    NewInquiry.Approvals.push({ ID: i, DivisionID: parseInt(valOf("ddSupervisorApproval" + (i))) });
                 }
             }
 

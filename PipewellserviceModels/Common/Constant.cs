@@ -24,7 +24,8 @@ namespace PipewellserviceModels.Common
         CERTIFICATE_TYPES = 7,
         DocTemplates = 10,
         PAGEGROUPS = 12,
-        USERGRPOUPS=13
+        USERGRPOUPS=13,
+        JOB_STATUS=14
     }
     public enum UserGroups
     {
@@ -56,7 +57,10 @@ namespace PipewellserviceModels.Common
     {
         None = 0,
         OnJob = 1,
-        LeftJob = 2
+        LeftJob = 2,
+        OnVaction=3,
+        Terminated=4,
+        Transfered=5
     }
     public enum HiringSource
     {
@@ -101,7 +105,8 @@ namespace PipewellserviceModels.Common
         Inquiry=3,
         Vacation=4,
         Joining=5,
-        ShortLeave=6
+        ShortLeave=6,
+        Leaves=7
 
 
     }
@@ -136,7 +141,8 @@ namespace PipewellserviceModels.Common
         Permissions=18,
         Vendor=19,
         Joining=20,
-        ShortLeave=21
+        ShortLeave=21,
+        LeaveRequest = 22
     }
 
     public enum DirectoryNames

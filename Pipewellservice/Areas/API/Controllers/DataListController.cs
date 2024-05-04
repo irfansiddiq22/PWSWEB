@@ -29,11 +29,53 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
+        /// <summary>
+        /// with division
+        /// </summary>
+        /// <returns></returns>
+        public async Task<JsonResult> Supervisors()
+        {
+            return new JsonResult
+            {
+                Data = await json.Supervisors(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        /// <summary>
+        /// With/With out dision
+        /// </summary>
+        /// <returns></returns>
+        public async Task<JsonResult> SupervisorList()
+        {
+            return new JsonResult
+            {
+                Data = await json.SupervisorList(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
         public async Task<JsonResult> SponsorList()
         {
             return new JsonResult
             {
                 Data = await json.SponsorList(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public async Task<JsonResult> LeaveTypes()
+        {
+            return new JsonResult
+            {
+                Data =   AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.LEAVE_TPES),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public async Task<JsonResult> JobStatus()
+        {
+            return new JsonResult
+            {
+                Data = AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.JOB_STATUS),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }

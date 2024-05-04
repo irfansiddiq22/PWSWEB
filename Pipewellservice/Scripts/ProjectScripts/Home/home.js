@@ -7,7 +7,7 @@ function _Init() {
         $("#dvApprovals").remove();
         $("#dlgPendingApprovals").remove();
     }
-    SetPagePermissions([0, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,20]);
+    SetPagePermissions([0, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,20,21,22]);
     SetGroupPermissions([1, 2]);
     GetPendingRequests();
     

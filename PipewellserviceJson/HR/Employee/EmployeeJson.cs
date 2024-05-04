@@ -229,9 +229,9 @@ namespace PipewellserviceJson.HR.Employee
         }
 
         
-        public async Task<List<EmployeeIDView>> WarningSupervisors()
+        public async Task<List<Supervisor>> Supervisors()
         {
-            return await JsonHelper.Convert<List<EmployeeIDView>, DataTable>(await service.WarningSupervisors());
+            return await JsonHelper.Convert<List<Supervisor>, DataTable>(await service.Supervisors());
         }
 
         public async Task<List<PendingApproval>> ApprovalList(int ID,bool Declined)

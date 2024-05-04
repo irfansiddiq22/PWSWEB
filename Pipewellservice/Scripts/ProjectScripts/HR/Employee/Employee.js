@@ -10,6 +10,9 @@ function _Init() {
         FillEmployeeDataList()
         LoadVendor();
         BindPermission();
+        $.post("/DataList/JobStatus", {}, function (Response) {
+            FillList("ddEmployeeStatus", Response, "Name", "Value", " ")
+        });
         var rules = [];
 
         $("#frmEmployeeData").validate()
@@ -65,7 +68,7 @@ function FillEmployeeDataList() {
         var Worktime = Response.worktime;
 
         FillList("ddEmployeeDivision", Divisions, "Name", "ID", "Select Division")
-        FillList("ddEmployeePosition", Positions, "Name", "ID", "Select Posstion")
+        FillList("ddEmployeePosition", Positions, "Name", "ID", "Select Position")
         FillList("ddEmployeeSponsor", Sponsors, "Name", "ID", "Select Sponsor")
         FillList("ddEmployeeWorkInOutTime", Worktime, "Time", "ID", "")
         FillList("ddEmployeeNationality", Response.nationalities, "Name", "ID", "Select Nationality")
@@ -233,8 +236,6 @@ function BindPermission() {
     $.post("/SettingAPI/ListGroupNPermissions", {},function (Response) {
         $("#tblPermissionGroups").empty();
         FillList("ddEmployeeWorkPortalPermission", Response.Groups,"Name","ID","Select Permission")
-        
-        
     });
 }
 

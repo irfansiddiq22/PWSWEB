@@ -151,12 +151,13 @@ namespace Pipewellservice.Controllers
             ViewBag.Parent = Parent;
             return View("_PartialEmployeeTravelRequest");
         }
+        [Authorization(Pages.LeaveRequest)]
         public ActionResult LeaveRequest()
         {
             ViewBag.Title = "Employee Leave Request";
             ViewBag.Parent = Parent;
 
-            return View("_PartialEmployeeLeaveRequet");
+            return View("_PartialEmployeeLeaves");
         }
         [Authorization(Pages.EmployeeInquiry )]
         public ActionResult Inquiry()
@@ -182,7 +183,8 @@ namespace Pipewellservice.Controllers
             ViewBag.Title = "Employee Short Leave";
             ViewBag.Parent = Parent;
             return View("_PartialEmployeeShortLeave");
-        }
+        } 
+
         public ActionResult FormHandover()
         {
             ViewBag.Title = "Employee Passport & Iqama Handover";
@@ -196,7 +198,7 @@ namespace Pipewellservice.Controllers
             ViewBag.Parent = Parent;
             return View("_PartialEmployeeEvaluation");
         }
-        
+        [Authorization(Pages.Positions)]
         public ActionResult Setting()
         {
             ViewBag.Title = "Settings";

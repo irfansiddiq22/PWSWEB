@@ -52,11 +52,11 @@ function BindUsers() {
     })
     
     if ($(".supervisor").length > 0) {
-        Post("/EmployeeAPI/WarningSupervisors", {}).done(function (Response) {
+        Post("/EmployeeAPI/Supervisors", {}).done(function (Response) {
             var data = []
             data.push({ id: 0, text: 'Select Supervisor' });
             $.each(Response, function (i, emp) {
-                data.push({ id: emp.ID, text: emp.Name });
+                data.push({ id: emp.DivisionID, text: emp.Name });
             })
             $(".supervisor").select2({
                 placeholder: "Select Supervisor",

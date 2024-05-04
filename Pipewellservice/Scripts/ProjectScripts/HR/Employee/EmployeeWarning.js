@@ -52,15 +52,15 @@ function BindUsers() {
     Post("/SettingAPI/PositionList", {}).done(function (Response) {
         FillList("ddEmployeePosition", Response, "Name", "ID", "Select Position")
     });
-    Post("/EmployeeAPI/WarningSupervisors", {}).done(function (Response) {
+    Post("/EmployeeAPI/Supervisors", {}).done(function (Response) {
         var data = []
         data.push({ id: 0, text: 'Select Supervisor' });
         $.each(Response, function (i, emp) {
-            data.push({ id: emp.ID, text: emp.Name });
+            data.push({ id: emp.DivisionID, text: emp.Name });
         })
-        FillList("ddWarningApproval1", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddWarningApproval2", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddWarningApproval3", Response, "Name", "ID", "Select Supervisor")
+        //FillList("ddWarningApproval1", Response, "Name", "DepartmentID", "Select Supervisor")
+        //FillList("ddWarningApproval2", Response, "Name", "DepartmentID", "Select Supervisor")
+        //FillList("ddWarningApproval3", Response, "Name", "DepartmentID", "Select Supervisor")
 
         $("#ddWarningApproval1,#ddWarningApproval2,#ddWarningApproval3").select2({
             placeholder: "Select Supervisor",
@@ -103,9 +103,9 @@ function BindWarnings() {
                 "<span class='badge bg-warning'>Infraction:</span> " + r.Infraction + "<br><br><span class='badge bg-primary'> Improvement:</span>" + r.Improvement + "<br><br><span class='badge bg-danger'>Consequences:</span>" + r.Consequences)
             )
 
-            tr.append($('<td>').append(r.ApprovedBy1 > 0 ? r.ApprovedBy1Name + (r.Approved1 != 3 ? "<br> Date: " + moment(r.ApprovedDate1).format("MM/DD/YYYYY") + "<br> Status :" + r.Approved1Name : "") : ""))
-            tr.append($('<td>').append(r.ApprovedBy2 > 0 ? r.ApprovedBy2Name + (r.Approved2 != 3 ? "<br> Date: " + moment(r.ApprovedDate2).format("MM/DD/YYYYY") + "<br> Status :" + r.Approved2Name : "") : ""))
-            tr.append($('<td>').append(r.ApprovedBy3 > 0 ? r.ApprovedBy3Name + (r.Approved3 != 3 ? "<br> Date: " + moment(r.ApprovedDate3).format("MM/DD/YYYYY") + "<br> Status :" + r.Approved3Name : "") : ""))
+            tr.append($('<td>').append(r.ApprovalDivisionID1 > 0 ? r.ApprovedBy1Name + (r.Approved1 != 3 ? "<br> Date: " + moment(r.ApprovedDate1).format("MM/DD/YYYYY") + "<br> Status :" + r.Approved1Name : "") : ""))
+            tr.append($('<td>').append(r.ApprovalDivisionID2 > 0 ? r.ApprovedBy2Name + (r.Approved2 != 3 ? "<br> Date: " + moment(r.ApprovedDate2).format("MM/DD/YYYYY") + "<br> Status :" + r.Approved2Name : "") : ""))
+            tr.append($('<td>').append(r.ApprovalDivisionID3 > 0 ? r.ApprovedBy3Name + (r.Approved3 != 3 ? "<br> Date: " + moment(r.ApprovedDate3).format("MM/DD/YYYYY") + "<br> Status :" + r.Approved3Name : "") : ""))
             tr.append($('<td>').append(r.PreparedBy))
 
             var Icons = $('<div class="icons">');
@@ -129,9 +129,9 @@ function EditWarning(index) {
     SetvalOf("ddEmployeeDivision", Warning.DivisionID)
     SetvalOf("ddEmployeePosition", Warning.PositionID)
 
-    SetvalOf("ddWarningApproval1", Warning.ApprovedBy1).trigger("change")
-    SetvalOf("ddWarningApproval2", Warning.ApprovedBy2).trigger("change")
-    SetvalOf("ddWarningApproval3", Warning.ApprovedBy3).trigger("change")
+    SetvalOf("ddWarningApproval1", Warning.ApprovalDivisionID1).trigger("change")
+    SetvalOf("ddWarningApproval2", Warning.ApprovalDivisionID2).trigger("change")
+    SetvalOf("ddWarningApproval3", Warning.ApprovalDivisionID3).trigger("change")
 
     if (Warning.WarningType == 1)
         SetChecked("rdWarningType1", "checked").trigger("click");
@@ -203,14 +203,14 @@ function SaveEmployeeWarning() {
                 DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: "", New: textOf("ddEmployeeName") } });
             } else {
 
-                if ($.trim(Warning.ApprovedBy1) != $.trim(valOf("ddWarningApproval1"))) {
-                    DataChangeLog.DataUpdated.push({ Field: "ApprovedBy1", Data: { OLD: Warning.ApprovedBy1Name, New: textOf("ddWarningApproval1") } });
+                if ($.trim(Warning.ApprovalDivisionID1) != $.trim(valOf("ddWarningApproval1"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "ApprovalDivisionID1", Data: { OLD: Warning.ApprovedBy1Name, New: textOf("ddWarningApproval1") } });
                 }
-                if ($.trim(Warning.ApprovedBy2) != $.trim(valOf("ddWarningApproval2"))) {
-                    DataChangeLog.DataUpdated.push({ Field: "ApprovedBy2", Data: { OLD: Warning.ApprovedBy2Name, New: textOf("ddWarningApproval2") } });
+                if ($.trim(Warning.ApprovalDivisionID2) != $.trim(valOf("ddWarningApproval2"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "ApprovalDivisionID2", Data: { OLD: Warning.ApprovedBy2Name, New: textOf("ddWarningApproval2") } });
                 }
-                if ($.trim(Warning.ApprovedBy3) != $.trim(valOf("ddWarningApproval3"))) {
-                    DataChangeLog.DataUpdated.push({ Field: "ApprovedBy3", Data: { OLD: Warning.ApprovedBy3Name, New: textOf("ddWarningApproval3") } });
+                if ($.trim(Warning.ApprovalDivisionID3) != $.trim(valOf("ddWarningApproval3"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "ApprovalDivisionID3", Data: { OLD: Warning.ApprovedBy3Name, New: textOf("ddWarningApproval3") } });
                 }
 
 
@@ -286,9 +286,9 @@ function SaveEmployeeWarning() {
             fileData.append('Improvement', valOf("txtWarningImprovement"));
             fileData.append('Consequences', valOf("txtWarningConsequences"));
 
-            fileData.append('ApprovedBy1', valOf("ddWarningApproval1"));
-            fileData.append('ApprovedBy2', valOf("ddWarningApproval2"));
-            fileData.append('ApprovedBy3', valOf("ddWarningApproval3"));
+            fileData.append('ApprovalDivisionID1', valOf("ddWarningApproval1"));
+            fileData.append('ApprovalDivisionID2', valOf("ddWarningApproval2"));
+            fileData.append('ApprovalDivisionID3', valOf("ddWarningApproval3"));
 
             fileData.append('FileID', Warning.FileID);
             fileData.append('FileName', Warning.FileName);

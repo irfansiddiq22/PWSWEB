@@ -631,11 +631,11 @@ namespace Pipewellservice.Areas.API.Controllers
         }
         //////////////////////////////////////////////////////////
 
-        public async Task<JsonResult> WarningSupervisors()
+        public async Task<JsonResult> Supervisors()
         {
             return new JsonResult
             {
-                Data = await json.WarningSupervisors(),
+                Data = await json.Supervisors(),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }

@@ -6,7 +6,7 @@
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <button class="nav-link active" id="nav-division-tab" data-bs-toggle="tab" data-bs-target="#nav-division" type="button" role="tab" aria-controls="nav-division" aria-selected="true">Division</button>
             <button class="nav-link" id="nav-positions-tab" data-bs-toggle="tab" data-bs-target="#nav-positions" type="button" role="tab" aria-controls="nav-positions" aria-selected="false">Positions</button>
-            <button class="nav-link" id="nav-departments-tab" data-bs-toggle="tab" data-bs-target="#nav-departments" type="button" role="tab" aria-controls="nav-departments" aria-selected="false">Departments</button>
+            
         </div>
 
         <div class="tab-content border m2 p-3" id="nav-tabContent">
@@ -16,7 +16,7 @@
                         <form>
                             <div class="mb-3 row">
 
-                                <label for="txtDivisionName" class="col-sm-1 col-form-label">Name</label>
+                                <label for="txtDivisionName" class="col-sm-1 col-form-label me-2">Name</label>
                                 <div class="col-sm-5">
                                     <input type="text" class="form-control form-control-sm" id="txtDivisionName">
                                 </div>
@@ -25,12 +25,20 @@
                                     <button class="btn  btn-danger" type="reset">Clear</button>
                                 </div>
 
+                                <div class="mb-3 row">
+
+                                    <label for="ddlSupervisorID" class="col-sm-1 col-form-label me-2">Supervisor:</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-select form-select-sm" id="ddlSupervisorID"></select>
+                                    </div>
+                                </div>
+
                             </div>
                         </form>
                         <div class="mt-2">
                             <table class="table table-sm table-bordered table-hover-warning table-striped">
                                 <thead class="blue">
-                                    <tr><th></th><th>Name</th><th></th></tr>
+                                    <tr><th></th><th>Name</th><th>Supervisor</th><th></th></tr>
                                 </thead>
                                 <tbody id="tblDivisionList"></tbody>
                             </table>
@@ -78,13 +86,16 @@
                                 <div class="col-sm-5">
                                     <input type="text" class="form-control form-control-sm" id="txtDepartmentName">
                                 </div>
+
                                 <div class="col-sm-5">
                                     <button type="button" class="btn  btn-success" onclick="SaveDepartment()">Save</button>
                                     <button class="btn  btn-danger" type="reset">Clear</button>
                                 </div>
 
                             </div>
+
                         </form>
+
                         <div class="mt-2">
                             <table class="table table-sm table-bordered table-hover-warning table-striped">
                                 <thead class="blue">
@@ -97,7 +108,7 @@
 
                 </div>
             </div>
-            
+
         </div>
     </nav>
 

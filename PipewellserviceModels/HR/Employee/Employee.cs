@@ -19,6 +19,12 @@ namespace PipewellserviceModels.HR.Employee
         public int? VacationRotation { get; set; }
         public DateTime? IqmaExpiryDate { get; set; }
     }
+    public class Supervisor
+    {
+        public int ID { get; set; }
+        public int DivisionID { get; set; }
+        public string Name { get; set; }
+    }
     public class EmployeeIDView
     {
         public int ID { get; set; }
