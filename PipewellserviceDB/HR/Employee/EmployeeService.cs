@@ -481,7 +481,7 @@ namespace PipewellserviceDB.HR.Employee
 
             try
             {
-                SqlParameter[] collSP = new SqlParameter[40];
+                SqlParameter[] collSP = new SqlParameter[41];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = employee.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@Name", Value = employee.Name };
                 collSP[2] = new SqlParameter { ParameterName = "@ArabicName", Value = employee.ArabicName };
@@ -524,6 +524,7 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[37] = new SqlParameter { ParameterName = "@AnnualTicket", Value = employee.AnnualTicket };
                 collSP[38] = new SqlParameter { ParameterName = "@JobLeftDate", Value = employee.JobLeftDate };
                 collSP[39] = new SqlParameter { ParameterName = "@VendorID", Value = employee.VendorID };
+                collSP[40] = new SqlParameter { ParameterName = "@PermissionGroupID", Value = employee.PermissionGroupID };
 
                 var Result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployee", CommandType.StoredProcedure, collSP);
                 return new ResultDTO() { ID = Convert.ToInt32(Result), Status = true, Message = "Record Added" };

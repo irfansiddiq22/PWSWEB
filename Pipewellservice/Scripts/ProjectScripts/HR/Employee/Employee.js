@@ -9,6 +9,7 @@ function _Init() {
         BindUsers();
         FillEmployeeDataList()
         LoadVendor();
+        BindPermission();
         var rules = [];
 
         $("#frmEmployeeData").validate()
@@ -227,6 +228,16 @@ function FillEmployeeTable() {
         }
     })
 }
+
+function BindPermission() {
+    $.post("/SettingAPI/ListGroupNPermissions", {},function (Response) {
+        $("#tblPermissionGroups").empty();
+        FillList("ddEmployeeWorkPortalPermission", Response.Groups,"Name","ID","Select Permission")
+        
+        
+    });
+}
+
 function DownloadIDFile(EmployeeID, FileName, FileID,Type) {
     ShowSpinner();
     DownloadFile("/EmployeeAPI/DownloadIDFile?EmployeeID=" + String(EmployeeID) + "&FileName=" + FileName + "&FileID=" + FileID + "&Type=" + Type, FileName);

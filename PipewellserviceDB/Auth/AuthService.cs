@@ -67,7 +67,7 @@ namespace PipewellserviceDB.Auth
                 collSP[0] = new SqlParameter { ParameterName = "@EmailAddress", Value = otp.EmailAddress };
                 collSP[1] = new SqlParameter { ParameterName = "@OTPPassword", Value = otp.OTPPassword };
 
-                var result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateUserOTP", CommandType.StoredProcedure, collSP);
+                var result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeOTP", CommandType.StoredProcedure, collSP);
 
 
                 return result.ToString();
