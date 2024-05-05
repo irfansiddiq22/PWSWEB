@@ -43,6 +43,8 @@ namespace PipewellserviceDB.Common
             }
 
         }
+        
+        
         public async Task<DataTable> Supervisors()
         {
             try
@@ -68,6 +70,22 @@ namespace PipewellserviceDB.Common
                 dt.Load(result);
                 result.Close();
                 return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+
+        public async Task<DataTable> LeaveTypes()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcLeaveTypes", CommandType.StoredProcedure);
+                DataTable model = new DataTable();
+                model.Load(result);
+                return model;
             }
             catch (Exception e)
             {
