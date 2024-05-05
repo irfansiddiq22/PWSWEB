@@ -44,4 +44,15 @@ namespace PipewellserviceModels.HR.Employee
 
 
     }
+    public class RequestApprover
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string EmailAddress { get; set; }
+        public string Position { get; set; }
+        public ApprovalStatus Status { get; set; }
+        public int RowID { get; set; }
+
+    }
+    
 }

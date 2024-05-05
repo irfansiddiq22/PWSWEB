@@ -457,7 +457,7 @@ namespace PipewellserviceDB.HR.Employee
         public async Task<EmployeeDataSql> EmployeeDataList()
         {
             try
-            {   
+            {
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeDataList", CommandType.StoredProcedure);
                 EmployeeDataSql model = new EmployeeDataSql();
                 model.Department.Load(result);
@@ -475,7 +475,7 @@ namespace PipewellserviceDB.HR.Employee
             }
 
         }
-    
+
         public async Task<ResultDTO> UpdateEmployee(EmployeeData employee)
         {
 
@@ -722,7 +722,7 @@ namespace PipewellserviceDB.HR.Employee
                 return model;
             }
             catch (Exception e)
-                {
+            {
                 return null;
             }
 
@@ -782,8 +782,8 @@ namespace PipewellserviceDB.HR.Employee
                 parameters[25] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = dTO.RecordCreatedBy };
                 parameters[26] = new SqlParameter { ParameterName = "@Assets", Value = Assets.ToString() };
                 parameters[27] = new SqlParameter { ParameterName = "@Approvals", Value = Approvals.ToString() };
-                
-                
+
+
 
 
 
@@ -804,10 +804,10 @@ namespace PipewellserviceDB.HR.Employee
                 SqlParameter[] collSP = new SqlParameter[2];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = ID };
                 collSP[1] = new SqlParameter { ParameterName = "@UserID", Value = UserID };
-                
+
 
                 await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcDeleteEmployeeVacation", CommandType.StoredProcedure, collSP);
-                
+
                 return true;
             }
             catch (Exception e)
@@ -827,7 +827,7 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = param.EmployeeID };
                 collSP[1] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate };
                 collSP[2] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate };
-                collSP[3] = new SqlParameter { ParameterName = "@Personal", Value = param.PersonalInquiry  };
+                collSP[3] = new SqlParameter { ParameterName = "@Personal", Value = param.PersonalInquiry };
                 collSP[4] = new SqlParameter { ParameterName = "@General", Value = param.GeneralInquiry };
                 collSP[5] = new SqlParameter { ParameterName = "@Loan", Value = param.LoanInquiry };
                 collSP[6] = new SqlParameter { ParameterName = "@PageNumber", Value = param.PageNumber };
@@ -851,11 +851,11 @@ namespace PipewellserviceDB.HR.Employee
             {
 
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeInquiryDetail", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
-            EmployeeInquiryDB model = new EmployeeInquiryDB();
-            model.Inquiry.Load(result);
-            model.Approvals.Load(result);
-            result.Close();
-            return model;
+                EmployeeInquiryDB model = new EmployeeInquiryDB();
+                model.Inquiry.Load(result);
+                model.Approvals.Load(result);
+                result.Close();
+                return model;
             }
             catch (Exception e)
             {
@@ -876,7 +876,7 @@ namespace PipewellserviceDB.HR.Employee
             try
             {
                 StringBuilder Approvals = new StringBuilder();
-                
+
                 Approvals.AppendLine("<NewDataSet>");
                 if (dTO.Approvals != null && dTO.Approvals.Count > 0)
                 {
@@ -968,7 +968,7 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[1] = new SqlParameter { ParameterName = "@Remarks", Value = p.Remarks };
                 collSP[2] = new SqlParameter { ParameterName = "@Status", Value = p.Status };
                 SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcUpdateEmployeeApprovalRequest", CommandType.StoredProcedure, collSP);
-                
+
             }
             return true;
         }
@@ -1017,8 +1017,9 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[19] = new SqlParameter { ParameterName = "@Remarks", Value = dTO.Remarks };
                 collSP[20] = new SqlParameter { ParameterName = "@RecordAddedBy", Value = dTO.RecordAddedBy };
 
-                return (int) SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeVendor", CommandType.StoredProcedure, collSP);
-            }catch (Exception e)
+                return (int)SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeVendor", CommandType.StoredProcedure, collSP);
+            }
+            catch (Exception e)
             {
                 return 0;
             }
@@ -1104,7 +1105,7 @@ namespace PipewellserviceDB.HR.Employee
         }
 
 
-        public async Task<bool> DeleteEmployeeJoining(int ID,int EmployeeID)
+        public async Task<bool> DeleteEmployeeJoining(int ID, int EmployeeID)
         {
             try
             {
@@ -1112,11 +1113,11 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = ID };
                 collSP[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID };
                 SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcRemoveEmployeeJoining", CommandType.StoredProcedure, collSP);
-                return   true;
+                return true;
             }
             catch (Exception e)
             {
-                return   false;
+                return false;
             }
         }
         /////////////////////////////////////////////////////////////////
@@ -1164,7 +1165,7 @@ namespace PipewellserviceDB.HR.Employee
                 SqlParameter[] parameters = new SqlParameter[6];
                 parameters[0] = new SqlParameter { ParameterName = "@ID", Value = record.ID };
                 parameters[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = record.EmployeeID };
-                parameters[2] = new SqlParameter { ParameterName = "@RecordDate", Value = Convert.ToDateTime( record.RecordDate.ToShortDateString() +" "+ record.LeaveTime )};
+                parameters[2] = new SqlParameter { ParameterName = "@RecordDate", Value = Convert.ToDateTime(record.RecordDate.ToShortDateString() + " " + record.LeaveTime) };
                 parameters[3] = new SqlParameter { ParameterName = "@Remarks", Value = record.Remarks };
                 parameters[4] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = record.RecordCreatedBy };
                 parameters[5] = new SqlParameter { ParameterName = "@Approvals", Value = Approvals.ToString() };
@@ -1185,7 +1186,7 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[1] = new SqlParameter { ParameterName = "@FileName", Value = FileName };
                 collSP[2] = new SqlParameter { ParameterName = "@FileID", Value = FileID };
                 SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcUpdateEmployeeShortLeaveSheet", CommandType.StoredProcedure, collSP);
-                return new ResultDTO() { ID = EmployeeID, Status = true, Message = "Employee Joining Sheet Updated" };
+                return new ResultDTO() { ID = EmployeeID, Status = true, Message = "Employee Short Leave Sheet Updated" };
             }
             catch (Exception e)
             {
@@ -1208,7 +1209,56 @@ namespace PipewellserviceDB.HR.Employee
                 return false;
             }
         }
-        
+
+
+        public async Task<LeaveRequestResultDB> NewLeaveRequest(EmployeeLeave record)
+        {
+
+
+            SqlParameter[] parameters = new SqlParameter[8];
+            parameters[0] = new SqlParameter { ParameterName = "@ID", Value = 0, Direction = ParameterDirection.InputOutput };
+            parameters[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = record.EmployeeID };
+            parameters[2] = new SqlParameter { ParameterName = "@StartDate", Value = record.StartDate };
+            parameters[3] = new SqlParameter { ParameterName = "@EndDate", Value = record.EndDate };
+            parameters[4] = new SqlParameter { ParameterName = "@LeaveType", Value = record.LeaveType };
+            parameters[5] = new SqlParameter { ParameterName = "@Remarks", Value = record.Remarks };
+            parameters[6] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = record.RecordCreatedBy };
+            parameters[7] = new SqlParameter { ParameterName = "@Status", Value = record.RecordCreatedBy, Direction = ParameterDirection.InputOutput };
+
+
+
+            var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcAddNewLeaveRequest", CommandType.StoredProcedure, parameters);
+            LeaveRequestResultDB model = new LeaveRequestResultDB();
+            if (Convert.ToBoolean(parameters[7].Value))
+            {
+                model.Result = true;
+                model.ID = Convert.ToInt32(parameters[7].Value);
+                model.Employees.Load(result);
+                model.EmailTemplate.Load(result);
+            }
+            else
+            {
+                model.Result = false;
+
+            }
+            return model;
+        }
+        public async Task<ResultDTO> UpdateEmployeeLeaveSheet(int EmployeeID, string FileName, string FileID)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[3];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = EmployeeID };
+                collSP[1] = new SqlParameter { ParameterName = "@FileName", Value = FileName };
+                collSP[2] = new SqlParameter { ParameterName = "@FileID", Value = FileID };
+                SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcUpdateEmployeeLeaveSheet", CommandType.StoredProcedure, collSP);
+                return new ResultDTO() { ID = EmployeeID, Status = true, Message = "Employee Leave Sheet Updated" };
+            }
+            catch (Exception e)
+            {
+                return new ResultDTO() { ID = EmployeeID, Status = false, Message = e.Message };
+            }
+        }
 
 
     }

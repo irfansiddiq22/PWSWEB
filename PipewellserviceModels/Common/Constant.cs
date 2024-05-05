@@ -25,7 +25,8 @@ namespace PipewellserviceModels.Common
         DocTemplates = 10,
         PAGEGROUPS = 12,
         USERGRPOUPS=13,
-        JOB_STATUS=14
+        JOB_STATUS=14,
+        EMAIL_TEMPLATE_TYPES=15
     }
     public enum UserGroups
     {
@@ -97,7 +98,9 @@ namespace PipewellserviceModels.Common
         Approved = 1,
         Declined = 2,
         New = 3,
-        Ready=4
+        Ready=4,
+        Pending=5,
+        Requested=6
     }
     public enum ApprovalTypes
     {
@@ -162,7 +165,8 @@ namespace PipewellserviceModels.Common
         Templates = 11,
         EmployeeInquiry = 12,
         EmployeeJoining=13,
-        EmployeeShortLeave=14
+        EmployeeShortLeave=14,
+        Leaves=15
     }
     
     public enum DocTemplates

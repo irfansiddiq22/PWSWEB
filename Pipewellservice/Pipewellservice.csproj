@@ -146,6 +146,13 @@
     <Compile Include="Areas\API\Controllers\SettingAPIController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="EmailTemplateHTML.aspx.cs">
+      <DependentUpon>EmailTemplateHTML.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmailTemplateHTML.aspx.designer.cs">
+      <DependentUpon>EmailTemplateHTML.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Helper\Authorization.cs" />
     <Compile Include="Helper\BaseController.cs" />
     <Compile Include="Helper\Config.cs" />
@@ -154,6 +161,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\EmailHelper.cs" />
     <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="Helper\SessionHelper.cs" />
     <Compile Include="Helper\StringHelper.cs" />
@@ -204,6 +212,7 @@
     <Content Include="Content\libraries\bootstrap-table\bootstrap-table.min.js" />
     <Content Include="Content\libraries\slidemenu\bootsidemenu.css" />
     <Content Include="Content\libraries\slidemenu\bootsidemenu.js" />
+    <Content Include="EmailTemplateHTML.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Compile Include="Helper\DocHelper.cs" />
     <Content Include="Scripts\bootstrap-datepicker.js" />

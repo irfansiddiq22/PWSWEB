@@ -205,7 +205,8 @@ function SaveEmployeeLeave() {
                                 swal("Failed to upload leave sheet file.", { icon: "error" })
                             }
                         });
-                    } else {
+                    }
+                    else {
 
                         if (NewLeave.ID == 0)
                             swal("Employee leave record added", { icon: "success" })

@@ -54,7 +54,6 @@
     <Compile Include="Common\DateParam.cs" />
     <Compile Include="Common\DeleteDTO.cs" />
     <Compile Include="Common\EmailDTO.cs" />
-    <Compile Include="Common\EmailHelper.cs" />
     <Compile Include="Common\MergeField.cs" />
     <Compile Include="Common\RecordLog.cs" />
     <Compile Include="Common\ResultDTO.cs" />
@@ -68,6 +67,7 @@
     <Compile Include="HR\Employee\EmployeeID.cs" />
     <Compile Include="HR\Employee\EmployeeInquiry.cs" />
     <Compile Include="HR\Employee\Employeejoining.cs" />
+    <Compile Include="HR\Employee\EmployeeLeave.cs" />
     <Compile Include="HR\Employee\EmployeeNameCode.cs" />
     <Compile Include="HR\Employee\EmployeeShortLeave.cs" />
     <Compile Include="HR\Employee\EmployeeVacation.cs" />
@@ -78,6 +78,7 @@
     <Compile Include="HR\Settings\Division.cs" />
     <Compile Include="HR\Settings\LeaveType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setting\EmailTemplate.cs" />
     <Compile Include="User\Permissions.cs" />
     <Compile Include="User\User.cs" />
   </ItemGroup>
