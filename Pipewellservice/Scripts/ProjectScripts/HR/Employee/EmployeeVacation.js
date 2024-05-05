@@ -377,8 +377,6 @@ function SaveEmployeeVacation() {
                 }
 
             });
-            console.log(DataChangeLog);
-            console.log(NewVacation);
 
             Post("/EmployeeAPI/UpdateEmployeeVacation", { Vacation: NewVacation }).done(function (ID) {
                 if (ID > 0) {

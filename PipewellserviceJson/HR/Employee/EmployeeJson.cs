@@ -2,6 +2,7 @@
 using PipewellserviceModels.Common;
 using PipewellserviceModels.HR.Employee;
 using PipewellserviceModels.HR.Settings;
+using PipewellserviceModels.Setting;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -304,6 +305,24 @@ namespace PipewellserviceJson.HR.Employee
         public async Task<ResultDTO> UpdateEmployeeShortLeaveSheet(int EmployeeID, string FileName, string FileID)
         {
             return await service.UpdateEmployeeShortLeaveSheet(EmployeeID, FileName, FileID);
+        }
+        //..............................
+        public async Task<LeaveRequestResult> NewLeaveRequest(EmployeeLeave record)
+        {
+            LeaveRequestResultDB db= await service.NewLeaveRequest(record);
+            LeaveRequestResult model = new LeaveRequestResult();
+            model.Result = db.Result;
+            model.ID = db.ID;
+            if (db.Result)
+            {
+                model.Employees= await JsonHelper.Convert<List<RequestApprover>, DataTable>(db.Employees);
+                model.EmailTemplate = await JsonHelper.Convert<List<EmailTemplate>, DataTable>(db.EmailTemplate);
+            }
+            return model;
+        }
+        public async Task<ResultDTO> UpdateEmployeeLeaveSheet(int EmployeeID, string FileName, string FileID)
+        {
+            return await service.UpdateEmployeeLeaveSheet(EmployeeID, FileName, FileID);
         }
 
     }

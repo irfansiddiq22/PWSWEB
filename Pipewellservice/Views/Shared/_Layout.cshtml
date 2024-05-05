@@ -172,6 +172,8 @@
 
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
+//        moment.locale('ar-SA');
+
         $(function () {
             $(".fim-dropdown > label").click(function () {
                 $(".fim-dropdown").not($(this).parent()[0]).removeClass('active');

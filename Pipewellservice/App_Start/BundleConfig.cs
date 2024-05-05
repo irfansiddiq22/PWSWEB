@@ -23,6 +23,7 @@ namespace Pipewellservice
                             "~/Scripts/select2.min.js",
                             "~/Scripts/bootstrap-datepicker.min.js",
                             "~/Scripts/libraries/daterangepicker/daterangepicker.js",
+                            "~/Scripts/moment-with-locales.min.js",
                             "~/Scripts/ProjectScripts/Common/common.js"
                             )
                         );

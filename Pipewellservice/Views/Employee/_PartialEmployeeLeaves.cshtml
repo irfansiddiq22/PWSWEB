@@ -12,32 +12,32 @@
 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="ddEmployeeName">Employee Name:</label>
-                                    <select class="form-select" id="ddEmployeeName" name="ddEmployeeName"></select>
+                                    <label for="EmployeeName">Employee Name:</label>
+                                    <select class="form-select" id="ddEmployeeName" name="EmployeeName"></select>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="fromDate">Date From:</label>
+                                    <label for="fromDate">Start Date:</label>
                                     <input type="text" class="form-control datepicker" id="txtRecordStartDate" name="RecordStartDate">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="toDate">Date To:</label>
-                                    <input type="text" class="form-control datepicker" id="txtRecrordEndDate" name="RecrordEndDate">
+                                    <label for="toDate">Work Resume Date:</label>
+                                    <input type="text" class="form-control datepicker" id="txtRecordEndDate" name="RecordEndDate">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="ddlLeaveTypes">Leave:</label>
-                                    <select class="form-select" id="ddlLeaveTypes" name="ddlLeaveTypes"></select>
+                                    <select class="form-select" id="ddlLeaveTypes" name="LeaveTypes"></select>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="txtRemarks">Remarks:</label>
-                                    <textarea class="form-control" id="txtRemarks" rows="10"></textarea>
+                                    <textarea class="form-control" id="txtRemarks" name="Remarks" rows="10"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -49,10 +49,10 @@
                     <div class="my-3">
                         <label class="custom-file-upload btn btn-primary">
                             <input type="file" id="LeaveFileID" />
-                            <i class="fa fa-cloud-upload"></i> Browse  Sheet
+                            <i class="fa fa-cloud-upload"></i> Browse Sheet
                         </label>
                         <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeLeave()">Save</button>
-                        <button class="btn btn-danger" type="reset" onclick="CancelNewLeave()">Clear</button>
+                        <button class="btn btn-danger" type="reset">Clear</button>
 
 
                     </div>
