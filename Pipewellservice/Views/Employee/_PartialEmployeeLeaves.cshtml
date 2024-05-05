@@ -1,0 +1,67 @@
+﻿
+<div class="border p-2">
+
+
+    <form id="frmLeave">
+        <div class="border">
+            <div class="blue p-1"><h6>Employee Leave Request</h6></div>
+            <div class="p-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="ddEmployeeName">Employee Name:</label>
+                                    <select class="form-select" id="ddEmployeeName" name="ddEmployeeName"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="fromDate">Date From:</label>
+                                    <input type="text" class="form-control datepicker" id="txtRecordDate" name="RecordDate">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="toDate">Date To:</label>
+                                    <input type="text" class="form-control datepicker" id="txtRecrordTime" name="txtRecrordTime">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="ddlLeaveTypes">Leave:</label>
+                                    <select class="form-select" id="ddlLeaveTypes" name="ddlLeaveTypes"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="txtRemarks">Remarks:</label>
+                                    <textarea class="form-control" id="txtRemarks" rows="10"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    </div>
+                    
+
+                    <div class="my-3">
+                        <label class="custom-file-upload btn btn-primary">
+                            <input type="file" id="LeaveFileID" />
+                            <i class="fa fa-cloud-upload"></i> Browse  Sheet
+                        </label>
+                        <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeLeave()">Save</button>
+                        <button class="btn btn-danger" type="reset" onclick="CancelNewLeave()">Clear</button>
+
+
+                    </div>
+                </div>
+
+        </div>
+    </form>
+
+</div>
+@section Scripts{
+    @Scripts.Render("~/lib/hr/employeeleaverequest")
+}

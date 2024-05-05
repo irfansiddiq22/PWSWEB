@@ -19,7 +19,13 @@ namespace PipewellserviceModels.HR.Employee
         public int? VacationRotation { get; set; }
         public DateTime? IqmaExpiryDate { get; set; }
     }
-        public class EmployeeIDView
+    public class Supervisor
+    {
+        public int ID { get; set; }
+        public int DivisionID { get; set; }
+        public string Name { get; set; }
+    }
+    public class EmployeeIDView
     {
         public int ID { get; set; }
         public string Name { get; set; }
@@ -31,14 +37,16 @@ namespace PipewellserviceModels.HR.Employee
         public string Division { get; set; }
         public string Position { get; set; }
         public string Supervisor { get; set; }
-        
+
         public string IqamaFileName { get; set; }
         public string IqamaFileID { get; set; }
 
         public string Passport { get; set; }
         public DateTime? IqamaExpiryDate { get; set; }
         public DateTime? PassportExpiryDate { get; set; }
-        public string CurrentJobStatus { get
+        public string CurrentJobStatus
+        {
+            get
             {
                 if (JobStatus == Common.JobStatus.LeftJob)
                     return "Left the job";
@@ -46,20 +54,17 @@ namespace PipewellserviceModels.HR.Employee
                     return "On the job";
                 else
                     return "";
-            } }
+            }
+        }
     }
-    public class EmployeeData: EmployeeReferenceData
+    public class EmployeeData : EmployeeReferenceData
     {
         public int ID { get; set; }
-        
         public string Name { get; set; }
         public string ArabicName { get; set; }
-
         public string LabourCode { get; set; }
         public string EmailAddress { get; set; }
         public string Nationality { get; set; }
-        
-
         public Religion? Religion { get; set; }
         public Gender? Gender { get; set; }
         public MartialStatus? MartialStatus { get; set; }
@@ -70,38 +75,30 @@ namespace PipewellserviceModels.HR.Employee
         public string Location { get; set; }
         public string Grade { get; set; }
         public JobStatus? JobStatus { get; set; }
-        
-
         public string Remarks { get; set; }
         public string GOSI { get; set; }
         public string SocialInsuranceNo { get; set; }
         public SocialInsuranceClass SocialInsuranceClass { get; set; }
         public int? SponsorID { get; set; }
         public int? VendorID { get; set; }
-
         public ContractType ContractType { get; set; }
         public int NoOfDependent { get; set; }
         public HiringSource? HiringSource { get; set; }
         public string HiringCost { get; set; }
         public DateTime? HiringDate { get; set; }
         public DateTime? LastJoinDate { get; set; }
-        
         public DateTime? LastVacation { get; set; }
         public DateTime? NextVacation { get; set; }
-
-
-
-
         public DateTime? DataOfBirth { get; set; }
-
         public DateTime? JobLeftDate { get; set; }
         public int? JobTimingID { get; set; }
-        public bool ShowInAttendence{get;set;}
+        public bool ShowInAttendence { get; set; }
         public bool DeductSalary { get; set; }
         public string FileName { get; set; }
         public string FileID { get; set; }
         public string RecordUpdatedBy { get; set; }
         public string Iqama { get; set; }
+        public int PermissionGroupID { get; set; }
     }
     public class EmployeeContract
     {

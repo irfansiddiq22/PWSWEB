@@ -14,7 +14,8 @@ namespace PipewellserviceModels.HR.Employee
         public string Name { get; set; }
         public int RecordID { get; set; }
         public ApprovalTypes RecordType { get; set; }
-        public int ApprovalBy { get; set; }
+        public int DivisionID { get; set; }
+        public int SupervisorID { get; set; }
         public DateTime? ApprovalDate { get; set; }
         public string Remarks { get; set; }
 

@@ -481,7 +481,7 @@ namespace PipewellserviceDB.HR.Employee
 
             try
             {
-                SqlParameter[] collSP = new SqlParameter[40];
+                SqlParameter[] collSP = new SqlParameter[41];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = employee.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@Name", Value = employee.Name };
                 collSP[2] = new SqlParameter { ParameterName = "@ArabicName", Value = employee.ArabicName };
@@ -524,6 +524,7 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[37] = new SqlParameter { ParameterName = "@AnnualTicket", Value = employee.AnnualTicket };
                 collSP[38] = new SqlParameter { ParameterName = "@JobLeftDate", Value = employee.JobLeftDate };
                 collSP[39] = new SqlParameter { ParameterName = "@VendorID", Value = employee.VendorID };
+                collSP[40] = new SqlParameter { ParameterName = "@PermissionGroupID", Value = employee.PermissionGroupID };
 
                 var Result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployee", CommandType.StoredProcedure, collSP);
                 return new ResultDTO() { ID = Convert.ToInt32(Result), Status = true, Message = "Record Added" };
@@ -612,9 +613,9 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[14] = new SqlParameter { ParameterName = "@Improvement", Value = dTO.Improvement };
                 collSP[15] = new SqlParameter { ParameterName = "@Consequences", Value = dTO.Consequences };
 
-                collSP[16] = new SqlParameter { ParameterName = "@ApprovedBy1", Value = dTO.ApprovedBy1 };
-                collSP[17] = new SqlParameter { ParameterName = "@ApprovedBy2", Value = dTO.ApprovedBy2 };
-                collSP[18] = new SqlParameter { ParameterName = "@ApprovedBy3", Value = dTO.ApprovedBy3 };
+                collSP[16] = new SqlParameter { ParameterName = "@DivisionID1", Value = dTO.ApprovalDivisionID1 };
+                collSP[17] = new SqlParameter { ParameterName = "@DivisionID2", Value = dTO.ApprovalDivisionID2 };
+                collSP[18] = new SqlParameter { ParameterName = "@DivisionID3", Value = dTO.DivisionID3 };
 
                 collSP[19] = new SqlParameter { ParameterName = "@FileName", Value = dTO.FileName };
                 collSP[20] = new SqlParameter { ParameterName = "@FileID", Value = dTO.FileID };
@@ -673,12 +674,12 @@ namespace PipewellserviceDB.HR.Employee
                 {
                     foreach (EmployeeApproval a in dTO.Approvals)
                     {
-                        Approvals.AppendLine($"<Table1><ApprovedBy>{a.ApprovalBy}</ApprovedBy></Table1>");
+                        Approvals.AppendLine($"<Table1><DivisionID>{a.DivisionID}</DivisionID></Table1>");
                     }
                 }
                 Approvals.AppendLine("</NewDataSet>");
 
-                SqlParameter[] collSP = new SqlParameter[9];
+                SqlParameter[] collSP = new SqlParameter[10];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = dTO.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = dTO.EmployeeID };
                 collSP[2] = new SqlParameter { ParameterName = "@ClearanceDate", Value = dTO.ClearanceDate };
@@ -689,6 +690,7 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[6] = new SqlParameter { ParameterName = "@Preparedby", Value = dTO.Preparedby };
                 collSP[7] = new SqlParameter { ParameterName = "@Assets", Value = Assets.ToString() };
                 collSP[8] = new SqlParameter { ParameterName = "@Approvals", Value = Approvals.ToString() };
+                collSP[9] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = dTO.RecordCreatedBy };
 
                 var result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeClearance", CommandType.StoredProcedure, collSP);
                 return Convert.ToInt32(result);
@@ -746,7 +748,7 @@ namespace PipewellserviceDB.HR.Employee
                 {
                     foreach (EmployeeApproval a in dTO.Approvals)
                     {
-                        Approvals.AppendLine($"<Table1><ApprovedBy>{a.ApprovalBy}</ApprovedBy></Table1>");
+                        Approvals.AppendLine($"<Table1><DivisionID>{a.DivisionID}</DivisionID></Table1>");
                     }
                 }
                 Approvals.AppendLine("</NewDataSet>");
@@ -880,7 +882,7 @@ namespace PipewellserviceDB.HR.Employee
                 {
                     foreach (EmployeeApproval a in dTO.Approvals)
                     {
-                        Approvals.AppendLine($"<Table1><ApprovedBy>{a.ApprovalBy}</ApprovedBy></Table1>");
+                        Approvals.AppendLine($"<Table1><DivisionID>{a.DivisionID}</DivisionID></Table1>");
                     }
                 }
                 Approvals.AppendLine("</NewDataSet>");
@@ -918,12 +920,11 @@ namespace PipewellserviceDB.HR.Employee
             return true;
         }
 
-        public async Task<DataTable> WarningSupervisors()
+        public async Task<DataTable> Supervisors()
         {
             try
             {
-
-                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeWarningSupervisors", CommandType.StoredProcedure);
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcSupervisors", CommandType.StoredProcedure);
                 DataTable dt = new DataTable();
                 dt.Load(result);
                 result.Close();
@@ -1058,7 +1059,7 @@ namespace PipewellserviceDB.HR.Employee
                 {
                     foreach (EmployeeApproval a in record.Approvals)
                     {
-                        Approvals.AppendLine($"<Table1><ApprovedBy>{a.ApprovalBy}</ApprovedBy></Table1>");
+                        Approvals.AppendLine($"<Table1><DivisionID>{a.DivisionID}</DivisionID></Table1>");
                     }
                 }
                 Approvals.AppendLine("</NewDataSet>");
@@ -1154,7 +1155,7 @@ namespace PipewellserviceDB.HR.Employee
                 {
                     foreach (EmployeeApproval a in record.Approvals)
                     {
-                        Approvals.AppendLine($"<Table1><ApprovedBy>{a.ApprovalBy}</ApprovedBy></Table1>");
+                        Approvals.AppendLine($"<Table1><DivisionID>{a.DivisionID}</DivisionID></Table1>");
                     }
                 }
                 Approvals.AppendLine("</NewDataSet>");

@@ -43,6 +43,7 @@ namespace PipewellserviceModels.HR.Employee
         public string RecordAddedby { get; set; }
         public List<ClearanceAsset> Assets { get; set; }
         public List<EmployeeApproval> Approvals { get; set; }
+        public int RecordCreatedBy { get; set; }
 
         public string Division { get; set; }
         public int DivisionID { get; set; }

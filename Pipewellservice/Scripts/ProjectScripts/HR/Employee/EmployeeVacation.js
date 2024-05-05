@@ -62,23 +62,23 @@ function BindUsers() {
     Post("/SettingAPI/NationalityList", {}).done(function (Response) {
         FillList("ddEmployeeNationality", Response, "Name", "ID", "Select Nationality")
     });
-    Post("/EmployeeAPI/WarningSupervisors", {}).done(function (Response) {
+    Post("/EmployeeAPI/Supervisors", {}).done(function (Response) {
         var data = []
         data.push({ id: 0, text: 'Select Supervisor' });
         $.each(Response, function (i, emp) {
-            data.push({ id: emp.ID, text: emp.Name });
+            data.push({ id: emp.DivisionID, text: emp.Name });
         })
-        FillList("ddApproval1", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddApproval2", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddApproval3", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddApproval4", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddApproval5", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddApproval6", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddApproval7", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddApproval8", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddApproval9", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddApproval10", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddApproval11", Response, "Name", "ID", "Select Supervisor")
+        //FillList("ddApproval1", Response, "Name", "DepartmentID", "Select Supervisor")
+        //FillList("ddApproval2", Response, "Name", "DepartmentID", "Select Supervisor")
+        //FillList("ddApproval3", Response, "Name", "DepartmentID", "Select Supervisor")
+        //FillList("ddApproval4", Response, "Name", "DepartmentID", "Select Supervisor")
+        //FillList("ddApproval5", Response, "Name", "DepartmentID", "Select Supervisor")
+        //FillList("ddApproval6", Response, "Name", "DepartmentID", "Select Supervisor")
+        //FillList("ddApproval7", Response, "Name", "DepartmentID", "Select Supervisor")
+        //FillList("ddApproval8", Response, "Name", "DepartmentID", "Select Supervisor")
+        //FillList("ddApproval9", Response, "Name", "DepartmentID", "Select Supervisor")
+        //FillList("ddApproval10", Response, "Name", "DepartmentID", "Select Supervisor")
+        //FillList("ddApproval11", Response, "Name", "DepartmentID", "Select Supervisor")
 
         $(".supervisor").select2({
             placeholder: "Select Supervisor",
@@ -240,7 +240,7 @@ function EditVacation(index) {
     
     
     $.each(Approvals, function (i, a) {
-        SetvalOf("ddApproval" + (i + 1), a.ApprovalBy).trigger("change");
+        SetvalOf("ddApproval" + (i + 1), a.DivisionID).trigger("change");
     });
     $("#tblVacationAssets").empty();
     $.each(Assets, function (i, a) {
@@ -338,7 +338,7 @@ function SaveEmployeeVacation() {
 
                 for (i = 1; i <= 11; i++) {
                     if (i <= Vacation.Approvals.length) {
-                        if (Vacation.Approvals[i - 1].ApprovalBy != valOf("ddApproval" + (i))) {
+                        if (Vacation.Approvals[i - 1].DivisionID != valOf("ddApproval" + (i))) {
                             if (valOf("ddApproval" + (i)) == 0)
                                 DataChangeLog.DataUpdated.push({ Field: "Approval" + i, Data: { OLD: Vacation.Approvals[i - 1].Name, New: "-" } });
                             else
@@ -366,7 +366,7 @@ function SaveEmployeeVacation() {
 
             for (i = 1; i <= 11; i++) {
                 if (valOf("ddApproval" + (i)) > 0) {
-                    NewVacation.Approvals.push({ ID: i, ApprovalBy: parseInt(valOf("ddApproval" + (i))) });
+                    NewVacation.Approvals.push({ ID: i, DivisionID: parseInt(valOf("ddApproval" + (i))) });
                 }
             }
             $("#tblVacationAssets tr").each(function (i, r) {
@@ -385,7 +385,7 @@ function SaveEmployeeVacation() {
                     if (NewVacation.ID > 0)
                         swal("Employee Vacation record added", { icon: "success" })
                     else
-                        swal("Employee Vacation updated" { icon: "success" })
+                        swal("Employee Vacation updated" ,{ icon: "success" })
                     SaveLog(ID);
                     BindVacation()
                     CancelNewVacation();

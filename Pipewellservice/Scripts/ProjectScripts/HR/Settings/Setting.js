@@ -13,7 +13,7 @@ function ResetForm() {
 function _Init() {
     SetPagePermission(PAGES.Division, function () { BindDivision(); });
     SetPagePermission(PAGES.Position, function () { BindPositions(); });
-    SetPagePermission(PAGES.Department, function () { BindDepartments(); });
+    //SetPagePermission(PAGES.Department, function () { BindDepartments(); });
 
     
 }
@@ -25,6 +25,11 @@ function BindDivision() {
         $("#tblDivisionList").empty();
 
         FillDivisionList(Response)
+
+
+    });
+    Post("/DataList/SupervisorList", {}).done(function (Response) {
+        FillList("ddlSupervisorID", Response, "Name", "ID", "Select Supervisor")
     });
 
 }
@@ -35,6 +40,7 @@ function FillDivisionList(Response) {
         var tr = $('<tr>');
         tr.append($('<td class="text-center">').text(i + 1))
         tr.append($('<td>').text(r.Name))
+        tr.append($('<td>').text(r.SupervisorName))
 
         var Icons = $('<div class="icons">');
         $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary writeble1 me-2" onclick="EditDivision(' + i + ')"><i class="fa fa-edit"></i></a>'));
@@ -46,27 +52,31 @@ function FillDivisionList(Response) {
 }
 function EditDivision(i) {
     SetvalOf("txtDivisionName", Settings.Division[i].Name)
+    SetvalOf("ddlSupervisorID", Settings.Division[i].SupervisorID)
     Settings.Data = Settings.Division[i];
 
 }
 function SaveDivision() {
     DataChangeLog.Form = PAGES.Division;
     DataChangeLog.RecordID = Settings.Data.ID;
-    if (Settings.Data.ID > 0 && $.trim(Settings.Data.Name) != $.trim(valOf("txtDivisionName"))) {
-        DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: Settings.Data.Name, New: valOf("txtDivisionName") } });
+    if (Settings.Data.ID > 0) {
+        if($.trim(Settings.Data.Name) != $.trim(valOf("txtDivisionName"))) 
+            DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: Settings.Data.Name, New: valOf("txtDivisionName") } });
+        if ($.trim(Settings.Data.SupervisorID) != $.trim(valOf("ddlSupervisorID")))
+            DataChangeLog.DataUpdated.push({ Field: "SupervisorID", Data: { OLD: Settings.Data.SupervisorID, New: valOf("ddlSupervisorID") } });
+
     } else if (Settings.Data.ID == 0) {
         DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: "", New: valOf("txtDivisionName") }});
     }
 
-    Post("/SettingAPI/UpdateDivision", { ID: Settings.Data.ID, Name: valOf("txtDivisionName"), Log: DataChangeLog }).done(function (Response) {
+    Post("/SettingAPI/UpdateDivision", { ID: Settings.Data.ID, Name: valOf("txtDivisionName"), SupervisorID: valOf("ddlSupervisorID"), Log: DataChangeLog }).done(function (Response) {
         if (Settings.Data.ID == 0)
             swal({ text: "New division record added.", icon: "success" });
         else
             swal({ text: "Division data record updated.", icon: "success" });
         Clear("txtDivisionName")
-
+        valOf("ddlSupervisorID", 0);
         ResetForm();
-
         FillDivisionList(Response);
     }).fail(function () {
         swal({ text: "Failed to create new division record.", icon: "error" });
@@ -169,9 +179,9 @@ function DeletePosition(i) {
 function BindDepartments() {
     Post("/SettingAPI/DepartmentList", {}).done(function (Response) {
         $("#tblDepartmentList").empty();
-        
         FillDepartmentList(Response)
     });
+    
 
 }
 function FillDepartmentList(Response) {

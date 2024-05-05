@@ -58,20 +58,20 @@ function BindUsers() {
     Post("/SettingAPI/NationalityList", {}).done(function (Response) {
         FillList("ddEmployeeNationality", Response, "Name", "ID", "Select Nationality")
     });
-    Post("/EmployeeAPI/WarningSupervisors", {}).done(function (Response) {
+    Post("/EmployeeAPI/Supervisors", {}).done(function (Response) {
         var data = []
         data.push({ id: 0, text: 'Select Supervisor' });
         $.each(Response, function (i, emp) {
-            data.push({ id: emp.ID, text: emp.Name });
+            data.push({ id: emp.DivisionID, text: emp.Name });
         })
-        FillList("ddSupervisorApproval1", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddSupervisorApproval3", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddSupervisorApproval3", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddSupervisorApproval4", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddSupervisorApproval5", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddSupervisorApproval6", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddSupervisorApproval7", Response, "Name", "ID", "Select Supervisor")
-        FillList("ddSupervisorApproval8", Response, "Name", "ID", "Select Supervisor")
+        //FillList("ddSupervisorApproval1", Response, "Name", "DivisionID", "Select Supervisor")
+        //FillList("ddSupervisorApproval3", Response, "Name", "DivisionID", "Select Supervisor")
+        //FillList("ddSupervisorApproval3", Response, "Name", "DivisionID", "Select Supervisor")
+        //FillList("ddSupervisorApproval4", Response, "Name", "DivisionID", "Select Supervisor")
+        //FillList("ddSupervisorApproval5", Response, "Name", "DivisionID", "Select Supervisor")
+        //FillList("ddSupervisorApproval6", Response, "Name", "DivisionID", "Select Supervisor")
+        //FillList("ddSupervisorApproval7", Response, "Name", "DivisionID", "Select Supervisor")
+        //FillList("ddSupervisorApproval8", Response, "Name", "DivisionID", "Select Supervisor")
 
         $(".supervisor").select2({
             placeholder: "Select Supervisor",

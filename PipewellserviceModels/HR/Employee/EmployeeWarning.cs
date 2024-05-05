@@ -49,9 +49,9 @@ namespace PipewellserviceModels.HR.Employee
 
         public string Improvement { get; set; }
         public string Consequences { get; set; }
-        public int ApprovedBy1 { get; set; }
-        public int ApprovedBy2 { get; set; }
-        public int ApprovedBy3 { get; set; }
+        public int ApprovalDivisionID1 { get; set; }
+        public int ApprovalDivisionID2 { get; set; }
+        public int ApprovalDivisionID3 { get; set; }
 
         public string ApprovedBy1Name { get; set; }
         public string ApprovedBy2Name { get; set; }

@@ -43,5 +43,37 @@ namespace PipewellserviceDB.Common
             }
 
         }
+        public async Task<DataTable> Supervisors()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcSupervisors", CommandType.StoredProcedure);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<DataTable> SupervisorList()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcSupervisorList", CommandType.StoredProcedure);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
     }
 }
