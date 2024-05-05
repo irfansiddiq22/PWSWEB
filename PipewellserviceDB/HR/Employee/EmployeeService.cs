@@ -615,7 +615,7 @@ namespace PipewellserviceDB.HR.Employee
 
                 collSP[16] = new SqlParameter { ParameterName = "@DivisionID1", Value = dTO.ApprovalDivisionID1 };
                 collSP[17] = new SqlParameter { ParameterName = "@DivisionID2", Value = dTO.ApprovalDivisionID2 };
-                collSP[18] = new SqlParameter { ParameterName = "@DivisionID3", Value = dTO.DivisionID3 };
+                collSP[18] = new SqlParameter { ParameterName = "@DivisionID3", Value = dTO.ApprovalDivisionID3 };
 
                 collSP[19] = new SqlParameter { ParameterName = "@FileName", Value = dTO.FileName };
                 collSP[20] = new SqlParameter { ParameterName = "@FileID", Value = dTO.FileID };

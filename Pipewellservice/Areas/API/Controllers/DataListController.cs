@@ -67,7 +67,7 @@ namespace Pipewellservice.Areas.API.Controllers
         {
             return new JsonResult
             {
-                Data =   AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.LEAVE_TPES),
+                Data = AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.LEAVE_TPES),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }

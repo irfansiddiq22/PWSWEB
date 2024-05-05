@@ -23,7 +23,11 @@ namespace PipewellserviceJson.Common
         {
             DataTable result = await service.SponsorList();
             return await JsonHelper.Convert<List<SponsorCompany>, DataTable>(result);
-
+        }
+        public async Task<List<LeaveType>> LeaveTypes()
+        {
+            DataTable result = await service.LeaveTypes();
+            return await JsonHelper.Convert<List<LeaveType>, DataTable>(result);
         }
         public async Task<List<Supervisor>> Supervisors()
         {
