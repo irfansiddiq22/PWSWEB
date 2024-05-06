@@ -101,7 +101,22 @@ function BindUsers() {
         }
     })
 }
+$("#ddEmployeeName").change(function () {
+    $.post("/EmployeeAPI/EmployeeLeaveRequest", { EmployeeID: $(this).val() }, function (resp) {
+        $("#tblEmployeeLeaves").empty();
+        $.each(resp, function (i, l) {
+            var tr = $('<tr>');
+            tr.append($('<td>').text(l.LeaveTypeName));
+            tr.append($('<td>').text(moment(l.StartDate).format("DD/MM/YYYY")));
+            tr.append($('<td>').text(moment(l.EndDate).format("DD/MM/YYYY")));
+            tr.append($('<td>').text(l.Remarks));
+            tr.append($('<td>').text(l.LeaveStatus));
+            $("#tblEmployeeLeaves").append(tr);
+        })
+    });
 
+
+})
 function SaveEmployeeLeave() {
     $("#frmLeave").validate({
         errorClass: "text-danger",
@@ -168,7 +183,7 @@ function SaveEmployeeLeave() {
                     }
                 }
                 else {
-                    swal("Sorry your request is not saved, please contact admin", { icon: "error" });
+                    swal("Sorry your request is not saved, please contact admin.", { icon: "error" });
 
                 }
             })

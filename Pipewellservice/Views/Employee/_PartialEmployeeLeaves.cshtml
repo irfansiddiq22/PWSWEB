@@ -42,21 +42,40 @@
                             </div>
                         </div>
                     </div>
-                    
-                    </div>
-                    
-
-                    <div class="my-3">
-                        <label class="custom-file-upload btn btn-primary">
-                            <input type="file" id="LeaveFileID" />
-                            <i class="fa fa-cloud-upload"></i> Browse Sheet
-                        </label>
-                        <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeLeave()">Save</button>
-                        <button class="btn btn-danger" type="reset">Clear</button>
-
+                    <div class="col-md-6">
+                        <div class="border" style="max-height:450px;overflow:auto">
+                            <div class="blue p-1"><h6>Employee Leave Requests</h6></div>
+                            <div class="p-2">
+                                <table class="table-striped table table-sm table-bordered">
+                                    <thead class="blue">
+                                        <tr>
+                                            <th>Leave Type</th>
+                                            <th>Leave Date</th>
+                                            <th>Work Resume Date</th>
+                                            <th>Remarks</th>
+                                            <th>Staus</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tblEmployeeLeaves"></tbody>
+                                </table>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
+
+
+                <div class="my-3">
+                    <label class="custom-file-upload btn btn-primary">
+                        <input type="file" id="LeaveFileID" />
+                        <i class="fa fa-cloud-upload"></i> Browse Sheet
+                    </label>
+                    <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeLeave()">Save</button>
+                    <button class="btn btn-danger" type="reset">Clear</button>
+
+
+                </div>
+            </div>
 
         </div>
     </form>

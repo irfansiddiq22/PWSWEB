@@ -241,10 +241,20 @@ namespace PipewellserviceJson.HR.Employee
             return await JsonHelper.Convert<List<PendingApproval>, DataTable>(db);
             
         }
-        public async Task<bool> ApproveRequest(int ID, List<PendingApproval> approvals)
+        public async Task<ApprovalRequestResult> ApproveRequest( int SupervisorID, PendingApproval approval)
         {
-            return await service.ApproveRequest(ID, approvals);
-            
+            ApprovalRequestResultDB db= await service.ApproveRequest(SupervisorID, approval);
+            ApprovalRequestResult model = new ApprovalRequestResult();
+            model.Result = db.Result;
+            model.ID = db.ID;
+            if (db.Result)
+            {
+                model.Request = await JsonHelper.Convert<List<object>, DataTable>(db.Request);
+                model.Employees = await JsonHelper.Convert<List<RequestApprover>, DataTable>(db.Employees);
+                model.EmailTemplate = await JsonHelper.Convert<List<EmailTemplate>, DataTable>(db.EmailTemplate);
+            }
+            return model;
+
 
         }
 
@@ -307,10 +317,16 @@ namespace PipewellserviceJson.HR.Employee
             return await service.UpdateEmployeeShortLeaveSheet(EmployeeID, FileName, FileID);
         }
         //..............................
-        public async Task<LeaveRequestResult> NewLeaveRequest(EmployeeLeave record)
+
+        public async Task<List<LeaveRequestLog>> EmployeeLeaveRequest(int EmployeeID)
         {
-            LeaveRequestResultDB db= await service.NewLeaveRequest(record);
-            LeaveRequestResult model = new LeaveRequestResult();
+            DataTable db = await service.EmployeeLeaveRequest(EmployeeID);
+            return await JsonHelper.Convert<List<LeaveRequestLog>, DataTable>(db);
+        }
+        public async Task<ApprovalRequestResult> NewLeaveRequest(EmployeeLeave record)
+        {
+            ApprovalRequestResultDB db= await service.NewLeaveRequest(record);
+            ApprovalRequestResult model = new ApprovalRequestResult();
             model.Result = db.Result;
             model.ID = db.ID;
             if (db.Result)

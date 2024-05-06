@@ -536,7 +536,7 @@ namespace Pipewellservice.Areas.API.Controllers
         [Authorization(Pages.EmployeeVacation, 1, 2)]
         public async Task<JsonResult> UpdateEmployeeVacation(EmployeeVacation vacation)
         {
-            vacation.RecordCreatedBy = SessionHelper.EmployeeID();
+            vacation.RecordCreatedBy = SessionHelper.UserID();
             int ID = await json.UpdateEmployeeVacation(vacation);
             return new JsonResult
             {
@@ -557,7 +557,6 @@ namespace Pipewellservice.Areas.API.Controllers
             };
 
         }
-
 
         public async Task<FileResult> DownloadClearanceFile(int EmployeeID, string FileName, string FileID)
         {
@@ -651,12 +650,22 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.Users, 1, 2)]
+        [Authorization(Pages.Approvals, 1, 2)]
         public async Task<JsonResult> ApproveRequests(List<PendingApproval> approvals)
         {
+            ApprovalRequestResult model = new ApprovalRequestResult();
+            ApprovalHelper helper = new ApprovalHelper();
+            foreach (PendingApproval approval in approvals)
+            {
+                model= await json.ApproveRequest(SessionHelper.EmployeeID(), approval);
+                if (model.Result &&  (approval.Status==ApprovalStatus.Approved || approval.Status == ApprovalStatus.Declined || approval.Status == ApprovalStatus.NotApproved ))
+                {
+                    await helper.ProcessRequest(approval.RecordType, model);
+                }
+            }
             return new JsonResult
             {
-                Data = await json.ApproveRequest(SessionHelper.EmployeeID(), approvals),
+                Data = true,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -744,6 +753,13 @@ namespace Pipewellservice.Areas.API.Controllers
             };
 
         }
+
+        public async Task<FileResult> DownloadJoiningFile(int EmployeeID, string FileName, string FileID)
+        {
+            return File(await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.EmployeeJoining), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
+        }
+
+
         /// <summary>
         /// //////////////////////////////////
 
@@ -807,15 +823,29 @@ namespace Pipewellservice.Areas.API.Controllers
             };
 
         }
+        public async Task<FileResult> DownloadShortLeaveFile(int EmployeeID, string FileName, string FileID)
+        {
+            return File(await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.EmployeeShortLeave), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
+        }
 
 
         ////
+        [Authorization(Pages.LeaveRequest, 2, 2)]
+        public async Task<JsonResult> EmployeeLeaveRequest(int EmployeeID)
+        {
+            var result = await json.EmployeeLeaveRequest(EmployeeID);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
 
+        }
         [Authorization(Pages.LeaveRequest, 1, 2)]
         public async Task<JsonResult> NewLeaveRequest(EmployeeLeave record)
         {
             record.RecordCreatedBy = SessionHelper.UserSession().ID;
-            LeaveRequestResult Requestresult = await json.NewLeaveRequest(record);
+            ApprovalRequestResult Requestresult = await json.NewLeaveRequest(record);
             if (Requestresult.Result)
             {
                 List<MergeField> field = new List<MergeField>();
@@ -840,6 +870,8 @@ namespace Pipewellservice.Areas.API.Controllers
                     else if (requestApprover.RowID == 1)
                     {
                         Status = "Pending Approval";
+                        
+                            field.Add(new MergeField("APROVE_NAME", employee.Name));
                         Supervisor = requestApprover;
                     }
                     else if (requestApprover.RowID == 2)
@@ -863,7 +895,9 @@ namespace Pipewellservice.Areas.API.Controllers
                 if (status && Supervisor.ID>0 &&  Supervisor.EmailAddress!="")
                 {
                     field.Add(new MergeField("APPROVE_NAME", Supervisor.Name));
-                    status= await email.SendEmail(new EmailDTO() { To = Supervisor.EmailAddress, From = "no-reply@pipewellservices.com", Subject = SupervisorEmailTemplate.Subject, Body = SupervisorEmailTemplate.Body }, field);
+                    field.Add(new MergeField("PORTAL_LINK", ""));
+                    
+                    status = await email.SendEmail(new EmailDTO() { To = Supervisor.EmailAddress, From = "no-reply@pipewellservices.com", Subject = SupervisorEmailTemplate.Subject, Body = SupervisorEmailTemplate.Body }, field);
                 }
 
             }
@@ -901,5 +935,10 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        public async Task<FileResult> DownloadLeaveFile(int EmployeeID, string FileName, string FileID)
+        {
+            return File(await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.Leaves), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
+        }
+
     }
 }
