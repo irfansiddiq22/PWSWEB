@@ -30,7 +30,12 @@ function _Init() {
                 ResetMessageText();
             });
         })
-        $(".datepicker").val(moment().format("MM/DD/YYYY"));
+        $(".datepicker").val(moment().format("DD/MM/YYYY"));
+        
+        SetvalOf("txtRecordEndDate", moment().add(2, 'day').format("DD/MM/YYYY"));
+        
+         
+
 
         $("#txtRecordStartDate").on('changeDate', function (selected) {
             $('#txtRecordEndDate').datepicker('setStartDate', selected.date)
@@ -102,6 +107,11 @@ function BindUsers() {
     })
 }
 $("#ddEmployeeName").change(function () {
+    
+
+    FillLeaves();
+})
+function FillLeaves() {
     $.post("/EmployeeAPI/EmployeeLeaveRequest", { EmployeeID: $(this).val() }, function (resp) {
         $("#tblEmployeeLeaves").empty();
         $.each(resp, function (i, l) {
@@ -114,9 +124,7 @@ $("#ddEmployeeName").change(function () {
             $("#tblEmployeeLeaves").append(tr);
         })
     });
-
-
-})
+}
 function SaveEmployeeLeave() {
     $("#frmLeave").validate({
         errorClass: "text-danger",
@@ -168,18 +176,20 @@ function SaveEmployeeLeave() {
 
                             if (Response.Status) {
 
-                                if (NewLeave.ID == 0)
+                                if (NewLeave.ID == 0) 
                                     swal("Employee Leave record added", { icon: "success" })
                                 else
                                     swal("Employee Leave record updated ", { icon: "success" })
-
+                                FillLeaves();
                                 document.getElementById("frmLeave").reset();
                             } else {
                                 swal("Failed to upload leave sheet file.", { icon: "error" })
                             }
                         });
                     } else {
+                        FillLeaves();
                         swal("Employee Leave record added", { icon: "success" })
+                        document.getElementById("frmLeave").reset();
                     }
                 }
                 else {

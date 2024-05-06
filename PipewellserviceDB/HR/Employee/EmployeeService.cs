@@ -965,23 +965,25 @@ namespace PipewellserviceDB.HR.Employee
             collSP = new SqlParameter[5];
             collSP[0] = new SqlParameter { ParameterName = "@ID", Value = p.ID };
             collSP[1] = new SqlParameter { ParameterName = "@Remarks", Value = p.Remarks };
-            collSP[2] = new SqlParameter { ParameterName = "@ApprovalStatus", Value =(int) p.Status };
+            collSP[2] = new SqlParameter { ParameterName = "@ApprovalStatus", Value = (int)p.Status };
             collSP[3] = new SqlParameter { ParameterName = "@SupervisorID", Value = SupervisorID };
-            collSP[4] = new SqlParameter { ParameterName = "@Status", Value = 0, DbType=DbType.Int16, Direction = ParameterDirection.ReturnValue };
-            var result=await SqlHelper.ExecuteReader(this.ConnectionString, "ProcUpdateEmployeeApprovalRequest", CommandType.StoredProcedure, collSP);
+            collSP[4] = new SqlParameter { ParameterName = "@Status", Value = 0, DbType = DbType.Int16, Direction = ParameterDirection.ReturnValue };
+            var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcUpdateEmployeeApprovalRequest", CommandType.StoredProcedure, collSP);
             ApprovalRequestResultDB model = new ApprovalRequestResultDB();
             model.Result = false;
-            if(result.NextResult())
+            DataTable status = new DataTable();
+            status.Load(result);
+            if (status.Rows.Count > 0)
             {
-                model.Result=Convert.ToBoolean ( result.GetOrdinal("Status"));
+                model.Result = Convert.ToBoolean(status.Rows[0]["Status"]);
+                if (model.Result)
+                {
+                    model.Request.Load(result);
+                    model.Employees.Load(result);
+                    model.EmailTemplate.Load(result);
+                }
             }
-            if (model.Result)
-            {
-                model.Result = true;
-                model.Request.Load(result);
-                model.Employees.Load(result);
-                model.EmailTemplate.Load(result);
-            }
+
 
 
             return model;
@@ -1241,7 +1243,7 @@ namespace PipewellserviceDB.HR.Employee
             parameters[2] = new SqlParameter { ParameterName = "@StartDate", Value = record.StartDate };
             parameters[3] = new SqlParameter { ParameterName = "@EndDate", Value = record.EndDate };
             parameters[4] = new SqlParameter { ParameterName = "@LeaveType", Value = record.LeaveType };
-            parameters[5] = new SqlParameter { ParameterName = "@Remarks", Value =  record.Remarks };
+            parameters[5] = new SqlParameter { ParameterName = "@Remarks", Value = record.Remarks };
             parameters[6] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = record.RecordCreatedBy };
             parameters[7] = new SqlParameter { ParameterName = "@Status", Value = 0, Direction = ParameterDirection.InputOutput };
 
@@ -1249,18 +1251,18 @@ namespace PipewellserviceDB.HR.Employee
 
             var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcAddNewLeaveRequest", CommandType.StoredProcedure, parameters);
             ApprovalRequestResultDB model = new ApprovalRequestResultDB();
-            if (Convert.ToBoolean(parameters[7].Value))
-            {
-                model.Result = true;
-                model.ID = Convert.ToInt32(parameters[7].Value);
-                model.Employees.Load(result);
-                model.EmailTemplate.Load(result);
-            }
-            else
-            {
-                model.Result = false;
 
+            model.Result = true;
+            model.ID = Convert.ToInt32(parameters[7].Value);
+            model.Employees.Load(result);
+            model.EmailTemplate.Load(result);
+            model.Status.Load(result);
+            if (model.Status.Rows.Count > 0)
+            {
+                model.Result = Convert.ToBoolean(model.Status.Rows[0]["Status"]);
+                model.ID = Convert.ToInt32(model.Status.Rows[0]["ID"]);
             }
+
             return model;
         }
         public async Task<ResultDTO> UpdateEmployeeLeaveSheet(int EmployeeID, string FileName, string FileID)
