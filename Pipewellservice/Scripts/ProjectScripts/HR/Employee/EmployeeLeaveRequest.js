@@ -112,7 +112,7 @@ $("#ddEmployeeName").change(function () {
     FillLeaves();
 })
 function FillLeaves() {
-    $.post("/EmployeeAPI/EmployeeLeaveRequest", { EmployeeID: $(this).val() }, function (resp) {
+    $.post("/EmployeeAPI/EmployeeLeaveRequest", { EmployeeID: $("#ddEmployeeName").val() }, function (resp) {
         $("#tblEmployeeLeaves").empty();
         $.each(resp, function (i, l) {
             var tr = $('<tr>');
