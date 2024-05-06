@@ -48,11 +48,13 @@ namespace PipewellserviceModels.HR.Employee
         public bool Result { get; set; }
         public DataTable Request { get; set; }
         public DataTable Employees { get; set; }
+        public DataTable Status { get; set; }
         public DataTable EmailTemplate { get; set; }
         public ApprovalRequestResultDB()
         {
             Request = new DataTable();
             Employees = new DataTable();
+            Status = new DataTable();
             EmailTemplate = new DataTable();
         }
 
