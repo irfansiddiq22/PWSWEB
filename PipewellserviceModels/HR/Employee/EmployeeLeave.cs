@@ -24,27 +24,48 @@ namespace PipewellserviceModels.HR.Employee
         public string FileName { get; set; }
         public int RecordCreatedBy { get; set; }
     }
-    public class LeaveRequestResultDB
+    public class LeaveRequestLog : EmployeeLeave
+    {
+
+        private int PendingApprovals { get; set; }
+        private int ApprovedApprovals { get; set; }
+        private int RejectApprovals { get; set; }
+        public string LeaveStatus
+        {
+            get
+            {
+                if (RejectApprovals > 0) return "Rejected";
+                else if (PendingApprovals == 0 && ApprovedApprovals>0) return "Approved";
+                else   return "InProcess";
+
+            }
+        }
+
+    }
+    public class ApprovalRequestResultDB
     {
         public int ID { get; set; }
         public bool Result { get; set; }
+        public DataTable Request { get; set; }
         public DataTable Employees { get; set; }
         public DataTable EmailTemplate { get; set; }
-        public LeaveRequestResultDB()
+        public ApprovalRequestResultDB()
         {
+            Request = new DataTable();
             Employees = new DataTable();
             EmailTemplate = new DataTable();
         }
 
     }
 
-    public class LeaveRequestResult
+    public class ApprovalRequestResult
     {
         public int ID { get; set; }
         public bool Result { get; set; }
+        public List<object> Request { get; set; }
         public List<RequestApprover> Employees { get; set; }
         public List<EmailTemplate> EmailTemplate { get; set; }
-        
+
 
     }
 }

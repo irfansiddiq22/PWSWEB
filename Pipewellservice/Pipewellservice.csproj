@@ -153,6 +153,7 @@
     <Compile Include="EmailTemplateHTML.aspx.designer.cs">
       <DependentUpon>EmailTemplateHTML.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ApprovalHelper.cs" />
     <Compile Include="Helper\Authorization.cs" />
     <Compile Include="Helper\BaseController.cs" />
     <Compile Include="Helper\Config.cs" />

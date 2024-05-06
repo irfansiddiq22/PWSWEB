@@ -958,19 +958,33 @@ namespace PipewellserviceDB.HR.Employee
 
         }
 
-        public async Task<bool> ApproveRequest(int ID, List<PendingApproval> approvals)
+        public async Task<ApprovalRequestResultDB> ApproveRequest(int SupervisorID, PendingApproval p)
         {
             SqlParameter[] collSP = new SqlParameter[3];
-            foreach (PendingApproval p in approvals)
-            {
-                collSP = new SqlParameter[3];
-                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = p.ID };
-                collSP[1] = new SqlParameter { ParameterName = "@Remarks", Value = p.Remarks };
-                collSP[2] = new SqlParameter { ParameterName = "@Status", Value = p.Status };
-                SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcUpdateEmployeeApprovalRequest", CommandType.StoredProcedure, collSP);
 
+            collSP = new SqlParameter[5];
+            collSP[0] = new SqlParameter { ParameterName = "@ID", Value = p.ID };
+            collSP[1] = new SqlParameter { ParameterName = "@Remarks", Value = p.Remarks };
+            collSP[2] = new SqlParameter { ParameterName = "@ApprovalStatus", Value =(int) p.Status };
+            collSP[3] = new SqlParameter { ParameterName = "@SupervisorID", Value = SupervisorID };
+            collSP[4] = new SqlParameter { ParameterName = "@Status", Value = 0, DbType=DbType.Int16, Direction = ParameterDirection.ReturnValue };
+            var result=await SqlHelper.ExecuteReader(this.ConnectionString, "ProcUpdateEmployeeApprovalRequest", CommandType.StoredProcedure, collSP);
+            ApprovalRequestResultDB model = new ApprovalRequestResultDB();
+            model.Result = false;
+            if(result.NextResult())
+            {
+                model.Result=Convert.ToBoolean ( result.GetOrdinal("Status"));
             }
-            return true;
+            if (model.Result)
+            {
+                model.Result = true;
+                model.Request.Load(result);
+                model.Employees.Load(result);
+                model.EmailTemplate.Load(result);
+            }
+
+
+            return model;
         }
         public async Task<DataTable> VendorList()
         {
@@ -1210,8 +1224,14 @@ namespace PipewellserviceDB.HR.Employee
             }
         }
 
-
-        public async Task<LeaveRequestResultDB> NewLeaveRequest(EmployeeLeave record)
+        public async Task<DataTable> EmployeeLeaveRequest(int EmployeeID)
+        {
+            var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeLeaveRequests", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID });
+            DataTable data = new DataTable();
+            data.Load(result);
+            return data;
+        }
+        public async Task<ApprovalRequestResultDB> NewLeaveRequest(EmployeeLeave record)
         {
 
 
@@ -1221,14 +1241,14 @@ namespace PipewellserviceDB.HR.Employee
             parameters[2] = new SqlParameter { ParameterName = "@StartDate", Value = record.StartDate };
             parameters[3] = new SqlParameter { ParameterName = "@EndDate", Value = record.EndDate };
             parameters[4] = new SqlParameter { ParameterName = "@LeaveType", Value = record.LeaveType };
-            parameters[5] = new SqlParameter { ParameterName = "@Remarks", Value = record.Remarks };
+            parameters[5] = new SqlParameter { ParameterName = "@Remarks", Value =  record.Remarks };
             parameters[6] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = record.RecordCreatedBy };
-            parameters[7] = new SqlParameter { ParameterName = "@Status", Value = record.RecordCreatedBy, Direction = ParameterDirection.InputOutput };
+            parameters[7] = new SqlParameter { ParameterName = "@Status", Value = 0, Direction = ParameterDirection.InputOutput };
 
 
 
             var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcAddNewLeaveRequest", CommandType.StoredProcedure, parameters);
-            LeaveRequestResultDB model = new LeaveRequestResultDB();
+            ApprovalRequestResultDB model = new ApprovalRequestResultDB();
             if (Convert.ToBoolean(parameters[7].Value))
             {
                 model.Result = true;

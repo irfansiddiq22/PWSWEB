@@ -42,7 +42,7 @@ namespace PipewellserviceModels.HR.Employee
         public string FileID { get; set; }
         public string FileName { get; set; }
 
-
+        public string RequestRemarks { get; set; }
     }
     public class RequestApprover
     {
@@ -52,6 +52,7 @@ namespace PipewellserviceModels.HR.Employee
         public string Position { get; set; }
         public ApprovalStatus Status { get; set; }
         public int RowID { get; set; }
+        public string Remarks { get; set; }
 
     }
     
