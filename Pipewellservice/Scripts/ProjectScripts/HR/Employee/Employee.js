@@ -140,7 +140,7 @@ function FillEmployee() {
             $.each(Response, function (i, emp) {
                 data.push({ id: emp.ID, text: emp.Name });
             })
-            $(".ddEmployeeSupervisor").select2({
+            $("#ddEmployeeSupervisor").select2({
                 placeholder: "Select Supervisor",
                 data: data,
                 width: "100%"
