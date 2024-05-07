@@ -125,15 +125,29 @@ function FillEmployee() {
                 memo.push({ "Nationality": e1.Nationality })
             return memo;
         }, [])
-        var Supervisor = Response.filter(x => x.Position == "HSE Officer").reduce(function (memo, e1) {
+/*        var Supervisor = Response.filter(x => x.Position == "HSE Officer").reduce(function (memo, e1) {
             var matches = memo.filter(function (e2) {
                 return e1.Name == e2.Name
             })
             if (matches.length == 0)
                 memo.push({ "Name": e1.Name, ID: e1.ID })
             return memo;
-        }, [])
-        FillList("ddEmployeeSupervisor", Supervisor, "Name", "ID")
+        }, [])*/
+
+        Post("/EmployeeAPI/Supervisors", {}).done(function (Response) {
+            var data = []
+            data.push({ id: 0, text: 'Select Supervisor' });
+            $.each(Response, function (i, emp) {
+                data.push({ id: emp.ID, text: emp.Name });
+            })
+            $(".ddEmployeeSupervisor").select2({
+                placeholder: "Select Supervisor",
+                data: data,
+                width: "100%"
+            })
+        });
+
+        //FillList("ddEmployeeSupervisor", Supervisor, "Name", "ID")
 
 
         //FillList("ddEmployeeNationality", Nationality, "Nationality", "Nationality", "#")
