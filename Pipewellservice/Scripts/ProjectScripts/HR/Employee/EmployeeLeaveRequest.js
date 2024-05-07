@@ -8,7 +8,7 @@
     RecordCreatedBy: User.ID
 };
 
-var Message = " Sir,\n\rIt is requested that i want to avail #leave# for #day# day(s), kindly allow me leave for #startdate# to #enddate#.Kindly do the needful and oblige.\n\rThanks ,"
+var Message = " Sir,\n\rIt is requested that i want to avail #leave# for #day# day(s), kindly allow me leave for #startdate# to #enddate#.Kindly do the needful and oblige.\n\rThanks,\n#Name#"
 function _Init() {
 
     HideSpinner();
@@ -60,6 +60,9 @@ function ResetMessageText() {
         var end = moment(valOf("txtRecordEndDate"), "DD/MM/YYYY", true);
         var start = moment(valOf("txtRecordStartDate"), "DD/MM/YYYY", true);
         LeaveMessage = LeaveMessage.replace("#day#", end.diff(start, 'days'));
+        var name = $("#ddEmployeeName option:selected").text().split("-")
+        name.splice(0, 1)
+        LeaveMessage = LeaveMessage.replace("#Name#", name.join(" "));
 
         $("#txtRemarks").val(LeaveMessage);
     }
@@ -107,8 +110,7 @@ function BindUsers() {
     })
 }
 $("#ddEmployeeName").change(function () {
-    
-
+    ResetMessageText();
     FillLeaves();
 })
 function FillLeaves() {
