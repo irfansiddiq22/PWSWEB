@@ -126,9 +126,10 @@ namespace Pipewellservice.Helper
 
                 if (RequestStatus == ApprovalStatus.Pending && Supervisor.ID > 0 && Supervisor.EmailAddress != "")
                 {
+                    Supervisor.EmailAddress = "irfanullahurfi@gmail.com";
                     field.Add(new MergeField("APPROVE_NAME", Supervisor.Name));
                     field.Add(new MergeField("PORTAL_LINK", ""));
-                    status = await email.SendEmail(new EmailDTO() { To = "irfan_siddiq_21@yahoo.com", From = "no-reply@pipewellservices.com", Subject = SupervisorEmailTemplate.Subject, Body = SupervisorEmailTemplate.Body }, field);
+                    status = await email.SendEmail(new EmailDTO() { To = Supervisor.EmailAddress, From = "no-reply@pipewellservices.com", Subject = SupervisorEmailTemplate.Subject, Body = SupervisorEmailTemplate.Body }, field);
                 }
                 return status;
 

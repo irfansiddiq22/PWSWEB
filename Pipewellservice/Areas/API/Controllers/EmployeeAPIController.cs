@@ -894,6 +894,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 var status = await email.SendEmail(new EmailDTO() { To = employee.EmailAddress, From = "no-reply@pipewellservices.com", Subject = EmailTemplate.Subject, Body = EmailTemplate.Body }, field);
                 if (status && Supervisor.ID>0 &&  Supervisor.EmailAddress!="")
                 {
+                    Supervisor.EmailAddress = "irfanullahurfi@gmail.com";
                     field.Add(new MergeField("APPROVE_NAME", Supervisor.Name));
                     field.Add(new MergeField("PORTAL_LINK", ""));
                     
