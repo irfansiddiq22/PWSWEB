@@ -313,6 +313,7 @@ function EditEmployee(ID) {
         $("#ddEmployeeStatus").trigger("change")
         $("#ddEmployeeNationality").trigger("change")
         $("#nav-detail-tab").trigger("click")
+        $("#ddEmployeeSupervisor").trigger("change")
         $("#dvEditEmplyee").removeClass("d-none")
         $("#dvEmployeeList").addClass("d-none")
         $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
