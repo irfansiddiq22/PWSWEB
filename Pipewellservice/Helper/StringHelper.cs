@@ -33,6 +33,17 @@ namespace Pipewellservice.Helper
                     return q;
             }
         }
+        public static string NullToString(object value)
+        {
+            if (value == null)
+            {
+                return "";
+            }
+            else
+            {
+                return value.ToString();
+            }
+        }
     }
     
 }

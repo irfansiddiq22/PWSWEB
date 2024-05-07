@@ -39,7 +39,7 @@ namespace Pipewellservice.Helper
             
             foreach (MergeField field in mergeFields)
             {
-                email.Body = Regex.Replace(email.Body,$"#{field.Field}#", field.Value, RegexOptions.IgnoreCase);
+                email.Body = Regex.Replace(email.Body,$"#{field.Field}#", StringHelper.NullToString ( field.Value), RegexOptions.IgnoreCase);
             }
             return await SendEmail(email);
         }
