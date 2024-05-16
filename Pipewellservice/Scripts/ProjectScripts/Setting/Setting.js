@@ -6,6 +6,7 @@
 
 function ResetForm() {
     Settings.Data.ID = 0;
+    document.getElementById("frmUsers").reset();
     ResetChangeLog();
 }
 function _Init() {
@@ -52,6 +53,9 @@ function EditUser(i) {
     SetvalOf("txtName", Settings.Data.Name)
     SetvalOf("txtUserName", Settings.Data.UserName)
     SetvalOf("txtUserPassword", Settings.Data.Password)
+    SetvalOf("txtUserEmailAddress", Settings.Data.EmailAddress)
+    
+    
     SetvalOf("ddUserPermissions", Settings.Data.PermissionGroupID)
     SetvalOf("ddUserGroups", Settings.Data.GroupID)
     
@@ -66,6 +70,10 @@ function SaveUser() {
             txtUserPassword: {
                 required: true,
                 minlength: 5,
+            },
+            txtUserEmailAddress: {
+                required: true,
+                email:true
             }
         },
         messages: {
@@ -74,11 +82,15 @@ function SaveUser() {
             txtUserPassword: {
                 required: "Please enter user password",
                 minlength: "Password should be 5 character long"
+            },
+            txtUserEmailAddress: {
+                required: "Please enter user email address",
+                email: "Please enter a valid email address"
             }
         },
         submitHandler: function (form) {
             Post("/SettingAPI/UpdateUser", {
-                ID: Settings.Data.ID, Name: valOf("txtName"), UserName: valOf("txtUserName"), Password: valOf("txtUserPassword"), GroupID: valOf("ddUserGroups"), PermissionGroupID: valOf("ddUserPermissions")
+                ID: Settings.Data.ID, Name: valOf("txtName"), UserName: valOf("txtUserName"), Password: valOf("txtUserPassword"), GroupID: valOf("ddUserGroups"), PermissionGroupID: valOf("ddUserPermissions"), EmailAddress: valOf("txtUserEmailAddress")
             }).done(function (Response) {
                 if (Settings.Data.ID==0)
                     swal({ text: "New user record added.", icon: "success" });
@@ -87,6 +99,7 @@ function SaveUser() {
 
                 Clear("txtUserName")
                 Clear("txtUserPassword")
+
                 ResetForm();
                 Settings.Users = Response
                 FillUserList(Response);
