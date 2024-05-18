@@ -105,16 +105,26 @@ function BindUsers() {
         })
 
         if (Response.length == 1) {
-            $("#ddEmployeeName").val(Response[0].ID).trigger("change")
+            $("#ddEmployeeCode").val(Response[0].ID).trigger("change")
         }
     })
 }
-$("#ddEmployeeName").change(function () {
+$("#ddEmployeeCode").change(function () {
     ResetMessageText();
     FillLeaves();
 })
 function FillLeaves() {
-    $.post("/EmployeeAPI/EmployeeLeaveRequest", { EmployeeID: $("#ddEmployeeName").val(), StartDate: '', EndDate:'' }, function (resp) {
+    
+
+    var StartDate = "", EndDate = "";
+    if (valOf("ddlLeaveDataRange") != "") {
+        StartDate = $.trim(valOf("ddlLeaveDataRange").split("-")[0]);
+        EndDate = $.trim(valOf("ddlLeaveDataRange").split("-")[1]);
+    }
+    ShowSpinner();
+
+    $.post("/EmployeeAPI/EmployeeLeaveRequest", { EmployeeID: $("#ddEmployeeCode").val(), StartDate: StartDate, EndDate: EndDate }, function (resp) {
+        HideSpinner();
         $("#tblEmployeeLeaves").empty();
         $.each(resp, function (i, l) {
             var tr = $('<tr>');
@@ -127,7 +137,6 @@ function FillLeaves() {
         })
     });
 }
-
 function SaveEmployeeLeave() {
     $("#frmLeave").validate({
         errorClass: "text-danger",
@@ -203,4 +212,19 @@ function SaveEmployeeLeave() {
             return false;
         }
     });
+}
+
+function NewLeave() {
+    $("#ddEmployeeName").val($("#ddEmployeeCode").val());
+    $("#ddEmployeeName").trigger("change");
+    $("#frmLeave").removeClass("d-none");
+    $("#dvEmployeeLeaveList").addClass("d-none");
+    $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:CancelNewLeave()"));
+
+}
+function CancelNewLeave() {
+    $("#frmLeave").addClass("d-none");
+    $("#dvEmployeeLeaveList").removeClass("d-none");
+    $(".breadcrumb-item.active").find("a").contents().unwrap();
+    InitializeLeave();
 }

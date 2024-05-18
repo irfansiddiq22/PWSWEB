@@ -154,10 +154,14 @@ namespace Pipewellservice.Controllers
         [Authorization(Pages.LeaveRequest)]
         public ActionResult LeaveRequest()
         {
+            
             ViewBag.Title = "Employee Leave Request";
             ViewBag.Parent = Parent;
+            if (SessionHelper.UserGroup() == 2)
+                return View("_PartialEmployeeLeaves");
+            else
+                return View("_PartialEmployeeLeavesHr");
 
-            return View("_PartialEmployeeLeaves");
         }
         [Authorization(Pages.EmployeeInquiry )]
         public ActionResult Inquiry()

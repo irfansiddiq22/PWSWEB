@@ -1226,9 +1226,15 @@ namespace PipewellserviceDB.HR.Employee
             }
         }
 
-        public async Task<DataTable> EmployeeLeaveRequest(int EmployeeID)
+        public async Task<DataTable> EmployeeLeaveRequest(DateParam param)
         {
-            var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeLeaveRequests", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID });
+
+            SqlParameter[] collSP = new SqlParameter[3];
+            collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = param.EmployeeID };
+            collSP[1] = new SqlParameter { ParameterName = "@StartDate", Value =  (param.StartDate.Year==1 ? "" : param.StartDate .ToShortDateString())};
+            collSP[2] = new SqlParameter { ParameterName = "@EndDate", Value = (param.EndDate.Year == 1 ? "" : param.EndDate.ToShortDateString()) };
+
+            var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeLeaveRequests", CommandType.StoredProcedure, collSP);
             DataTable data = new DataTable();
             data.Load(result);
             return data;
