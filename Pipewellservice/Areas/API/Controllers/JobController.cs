@@ -139,8 +139,8 @@ namespace Pipewellservice.Areas.API.Controllers
             
             DocHelper DocHelper = new DocHelper();
 
-            JobContract = @"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\JobContract\";
-            JobContractTemplatePath= @"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\Template\CONTRACT TEMPLATE.doc";
+         //   JobContract = @"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\JobContract\";
+         //   JobContractTemplatePath= @"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\Template\CONTRACT TEMPLATE.doc";
             try
             {
                 await DocHelper.ConvertDocument(JobContractTemplatePath, $"{JobContract}\\{ContractID}{Extenstion}", mergeFields);
