@@ -831,9 +831,9 @@ namespace Pipewellservice.Areas.API.Controllers
 
         ////
         [Authorization(Pages.LeaveRequest, 2, 2)]
-        public async Task<JsonResult> EmployeeLeaveRequest(int EmployeeID)
+        public async Task<JsonResult> EmployeeLeaveRequest(DateParam param )
         {
-            var result = await json.EmployeeLeaveRequest(EmployeeID);
+            var result = await json.EmployeeLeaveRequest(param);
             return new JsonResult
             {
                 Data = result,

@@ -1,0 +1,111 @@
+﻿
+<div class="border p-2">
+    <div id="dvEmployeeLeaveList">
+        <div class="p-3 border my-2">
+
+            <div class="row">
+
+                <div class="form-group col-md-3 row">
+                    <label class="col-md-2 col-form-label p-0"> Employee:</label>
+                    <div class="col">
+                        <select class="form-select" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-2 row">
+                    <label class="col-md-auto col-form-label p-0"> Date Range:</label>
+                    <div class="col position-relative">
+                        <input type="text" name="ddlLeaveDataRange" id="ddlLeaveDataRange" class="form-control form-control-sm daterangepicker" autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <button class="btn btn-sm btn-primary" onclick="FillLeaves()">Search </button>
+                    <button class="btn btn-sm btn-success" onclick="NewLeave()">Add Leave </button>
+                </div>
+            </div>
+
+
+            <table class="table-striped table table-sm table-bordered">
+                <thead class="blue">
+                    <tr>
+                        <th>Leave Type</th>
+                        <th>Leave Date</th>
+                        <th>Work Resume Date</th>
+                        <th>Remarks</th>
+                        <th>Staus</th>
+                    </tr>
+                </thead>
+                <tbody id="tblEmployeeLeaves"></tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <form id="frmLeave" class="d-none">
+        <div class="border">
+            <div class="blue p-1"><h6>Employee Leave Request</h6></div>
+            <div class="p-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="EmployeeName">Employee Name:</label>
+                                    <select class="form-select" id="ddEmployeeName" name="EmployeeName"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="fromDate">Start Date:</label>
+                                    <input type="text" class="form-control datepicker" id="txtRecordStartDate" name="RecordStartDate">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="toDate">Work Resume Date:</label>
+                                    <input type="text" class="form-control datepicker" id="txtRecordEndDate" name="RecordEndDate">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="ddlLeaveTypes">Leave:</label>
+                                    <select class="form-select" id="ddlLeaveTypes" name="LeaveTypes"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="txtRemarks">Remarks:</label>
+                                    <textarea class="form-control" id="txtRemarks" name="Remarks" rows="10"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        
+
+                    </div>
+                </div>
+
+
+                <div class="my-3">
+                    <label class="custom-file-upload btn btn-primary">
+                        <input type="file" id="LeaveFileID" />
+                        <i class="fa fa-cloud-upload"></i> Browse Sheet
+                    </label>
+                    <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeLeave()">Save</button>
+                    <button class="btn btn-danger" type="reset">Clear</button>
+
+
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+@section Scripts{
+    @Scripts.Render("~/lib/hr/employeeleaverequesthr")
+}

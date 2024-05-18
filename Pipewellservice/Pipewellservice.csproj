@@ -388,6 +388,7 @@
     <Content Include="Scripts\ProjectScripts\HR\Employee\Contract.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeInquiry.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeJoining.js" />
+    <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeLeaveRequestHr.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeLeaveRequest.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeShortLeave.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeVacation.js" />
@@ -521,6 +522,7 @@
     <Content Include="Views\Employee\_PartialSponsor.cshtml" />
     <Content Include="Scripts\ProjectScripts\HR\Settings\Vendor.js" />
     <Content Include="Views\Employee\_PartialEmployeeLeaves.cshtml" />
+    <Content Include="Views\Employee\_PartialEmployeeLeavesHr.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
