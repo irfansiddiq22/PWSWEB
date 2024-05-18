@@ -34,9 +34,9 @@ namespace PipewellserviceJson.HR.Employee
             return await service.SaveLog(log);
         }
 
-        public async Task<List<EmployeeCertificate>> CertificateList(int EmployeeID)
+        public async Task<List<EmployeeCertificate>> CertificateList(int EmployeeID,string Name)
         {
-            return await JsonHelper.Convert<List<EmployeeCertificate>, DataTable>(await service.CertificateList(EmployeeID));
+            return await JsonHelper.Convert<List<EmployeeCertificate>, DataTable>(await service.CertificateList(EmployeeID,Name));
         }
         public async Task<int> UpdateCertificate(EmployeeCertificate certificate)
         {

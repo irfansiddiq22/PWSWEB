@@ -97,14 +97,16 @@ function FillCertificates(EmployeeID) {
     Certificate.EmployeeID = EmployeeID;
     InitializeCertificate();
 
-    Post("/EmployeeAPI/CertificateList", { EmployeeID: EmployeeID }).done(function (Response) {
-        if (valOf("txtFindCertificate") != "")
-            Response = Response.filter(x => x.Name.toLowerCase().indexOf(valOf("txtFindCertificate").toLowerCase()) > -1  || x.ID == valOf("txtFindCertificate"))
+    Post("/EmployeeAPI/CertificateList", { EmployeeID: EmployeeID, Name: valOf("txtFindCertificate") }).done(function (Response) {
+        //if (valOf("txtFindCertificate") != "")
+        //    Response = Response.filter(x => x.Name.toLowerCase().indexOf(valOf("txtFindCertificate").toLowerCase()) > -1 || x.ID == valOf("txtFindCertificate"))
+
         CertificateList = Response;
         
         $.each(Response, function (i, c) {
             var tr = $('<tr>');
             tr.append($('<td>').text((c.ID)))
+            tr.append($('<td>').text((c.EmployeeID)))
             tr.append($('<td>').text(c.Name))
             tr.append($('<td>').text(moment(c.IssueDate).format("DD/MM/YYYY")))
             tr.append($('<td>').text(c.ExpiryDate ? moment(c.ExpiryDate).format("DD/MM/YYYY") : ""))
@@ -122,11 +124,15 @@ function FillCertificates(EmployeeID) {
 }
 function EditCertificate(index) {
     Certificate = CertificateList[index];
+    
+
     SetvalOf("ddCertificateName", $.trim(Certificate.Name)).trigger("change");
     SetvalOf("txtCertificateIssueDate", (moment(Certificate.IssueDate).format("DD/MM/YYYY")));
     SetvalOf("txtCertificateExpiryDate", (Certificate.ExpiryDate ? moment(Certificate.ExpiryDate).format("DD/MM/YYYY") : ""));
     SetvalOf("txtCertificateRemarks", Certificate.Remarks);
     SetChecked("chkCertificateOnshore", Certificate.OnShore)
+    if (valOf("ddCertificateEmployeeCode") != Certificate.EmployeeID)
+        SetvalOf("ddCertificateEmployeeCode", $.trim(Certificate.EmployeeID));//.trigger("change");
     $("#imgEmployeeCertficate").show();
     $("#imgEmployeeCertficate").attr("src", "/EmployeeAPI/DownloadCertificateFile?EmployeeID=" + Certificate.EmployeeID + "&FileName=" + Certificate.FileName + "&FileID=" + Certificate.FileID)
     Certificate.OnShore == null ? "" : SetChecked("chkCertificateOffshore", !Certificate.OnShore)
@@ -160,10 +166,10 @@ function SaveCertificate() {
 
 
             if (Certificate.ID == 0) {
-                DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: "", New: valOf("txtCertificateName") } });
+                DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: "", New: valOf("ddCertificateName") } });
             } else {
-                if ($.trim(Certificate.Name) != $.trim(valOf("txtCertificateName"))) {
-                    DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: Certificate.Name, New: valOf("txtCertificateName") } });
+                if ($.trim(Certificate.Name) != $.trim(valOf("ddCertificateName"))) {
+                    DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: Certificate.Name, New: valOf("ddCertificateName") } });
                 }
                 if (moment(Certificate.IssueDate).format("DD/MM/YYYY") != $.trim(valOf("txtCertificateIssueDate"))) {
                     DataChangeLog.DataUpdated.push({ Field: "IssueDate", Data: { OLD: moment(Certificate.IssueDate).format("DD/MM/YYYY"), New: valOf("txtCertificateIssueDate") } });
@@ -182,7 +188,7 @@ function SaveCertificate() {
 
 
 
-            Certificate.Name = valOf("txtCertificateName");
+            Certificate.Name = valOf("ddCertificateName");
             Certificate.IssueDate = valOf("txtCertificateIssueDate");
             Certificate.ExpiryDate = valOf("txtCertificateExpiryDate");
             Certificate.Remarks = valOf("txtCertificateRemarks");

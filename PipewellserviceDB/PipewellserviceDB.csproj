@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Auth\AuthService.cs" />
     <Compile Include="Common\DataListService.cs" />
+    <Compile Include="Common\StringHelper.cs" />
     <Compile Include="DataServices.cs" />
     <Compile Include="HR\Employee\EmployeeService.cs" />
     <Compile Include="HR\JobService.cs" />

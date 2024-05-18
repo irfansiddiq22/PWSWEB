@@ -53,11 +53,11 @@ namespace Pipewellservice.Areas.API.Controllers
             return File(await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.EmployeeCertifications), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
 
         }
-        public async Task<JsonResult> CertificateList(int EmployeeID)
+        public async Task<JsonResult> CertificateList(int EmployeeID,string Name)
         {
             return new JsonResult
             {
-                Data = await json.CertificateList(EmployeeID),
+                Data = await json.CertificateList(EmployeeID,Name),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
