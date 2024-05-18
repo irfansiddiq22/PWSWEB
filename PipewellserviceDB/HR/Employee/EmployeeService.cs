@@ -1295,6 +1295,15 @@ namespace PipewellserviceDB.HR.Employee
             }
         }
 
+        public async Task<DataTable> HRManager()
+        {
+            
+            var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetHRManager", CommandType.StoredProcedure);
+            DataTable data = new DataTable();
+            data.Load(result);
+            return data;
+        }
+
 
     }
 }

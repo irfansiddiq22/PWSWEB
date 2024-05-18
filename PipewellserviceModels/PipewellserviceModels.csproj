@@ -72,6 +72,7 @@
     <Compile Include="HR\Employee\EmployeeShortLeave.cs" />
     <Compile Include="HR\Employee\EmployeeVacation.cs" />
     <Compile Include="HR\Employee\EmployeeWarning.cs" />
+    <Compile Include="HR\Employee\HR.cs" />
     <Compile Include="HR\Employee\Vendor.cs" />
     <Compile Include="HR\Job\JobContract.cs" />
     <Compile Include="HR\Job\JobOffer.cs" />
