@@ -55,7 +55,8 @@ namespace Pipewellservice.Areas.API.Controllers
             mergeFields.Add(new MergeField("<PERIOD>", job.Period.ToString()));
             mergeFields.Add(new MergeField("<TRANSPORT>", job.Transportation >0 ?$"{job.Transportation}% from Basic" :"Will be provided by the Company"));
             mergeFields.Add(new MergeField("<HOUSING>", job.Housing > 0 ? $"{job.Housing}% from Basic" : "Will be provided by the Company"));
-            mergeFields.Add(new MergeField("<APPROVAL>", hr.Name);
+            mergeFields.Add(new MergeField("<APPROVAL>", hr.Name));
+            mergeFields.Add(new MergeField("<APPROVAL-AR>", hr.ArabicName));
             DocHelper DocHelper = new DocHelper();
             
 
@@ -139,7 +140,8 @@ namespace Pipewellservice.Areas.API.Controllers
             mergeFields.Add(new MergeField("<date-ar>", job.StartDate == null ? "" : Convert.ToDateTime(job.StartDate).ToString("yyyy/MM/dd")));
 
             mergeFields.Add(new MergeField("<TRANSPORT>", job.Transportation > 0 ? $"{job.Transportation}% from Basic" : "Will be provided by the Company"));
-            mergeFields.Add(new MergeField("<APPROVAL>", hr.Name);
+            mergeFields.Add(new MergeField("<APPROVAL>", hr.Name));
+            mergeFields.Add(new MergeField("<APPROVAL-AR>", hr.ArabicName));
 
             DocHelper DocHelper = new DocHelper();
 
