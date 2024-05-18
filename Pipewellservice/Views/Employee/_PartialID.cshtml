@@ -61,10 +61,19 @@
         <div class="col-md-7 border-start">
             <div class="table-responsive">
 
+                <div class="input-group mb-3">
+
+                    <input type="text" class="form-control" placeholder="Find ID" id="txtFindEmplyeeID">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="btnEmployeeID" onclick="FindEmployeeID()"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+
                 <table class="table table-sm table-striped table-hover-warning table-bordered">
                     <thead class="blue">
                         <tr>
                             <th>ID</th>
+                            <th>Employee ID</th>
                             <th>Description</th>
                             <th>Number</th>
                             <th>Issue Date</th>

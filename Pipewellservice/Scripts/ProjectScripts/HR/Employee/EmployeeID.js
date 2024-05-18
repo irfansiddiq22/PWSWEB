@@ -53,24 +53,24 @@ function BindUsers() {
             data: data,
             width:'100%'
         }).on('select2:select', function (e) {
-            var data = e.params.data;
-            FillIDFiles(parseInt(data.id));
+            FillIDFiles();
             });
         if (data.length == 1) {
-            $("#ddIDFileEmployeeCode").val(data[0].ID)
-            FillIDFiles(parseInt(data[0].id));
+            $("#ddIDFileEmployeeCode").val(parseInt(data[0].id));
+            FillIDFiles();
         }
     })
     
    
 }
 
-function FillIDFiles(EmployeeID) {
+function FillIDFiles() {
+    var EmployeeID = $("#ddIDFileEmployeeCode").val();
     $("#tblEmployeeIDList").empty();
     IDFile.EmployeeID = EmployeeID;
     InitializeIDFile();
 
-    Post("/EmployeeAPI/EmployeeIDFileList", { EmployeeID: EmployeeID }).done(function (Response) {
+    Post("/EmployeeAPI/EmployeeIDFileList", { EmployeeID: EmployeeID, Name: valOf("txtFindEmplyeeID") }).done(function (Response) {
         FillIDListTable(Response)
     });
 }
@@ -80,6 +80,7 @@ function FillIDListTable(Response) {
     $.each(Response, function (i, c) {
         var tr = $('<tr>');
         tr.append($('<td>').append(c.ID))
+        tr.append($('<td>').text(c.EmployeeID))
         tr.append($('<td>').text(c.Description))
         tr.append($('<td>').text(c.IDNumber))
         tr.append($('<td>').text(moment(c.IssueDate).format("DD/MM/YYYY")))
@@ -108,6 +109,9 @@ function EditIDFile(index) {
     SetvalOf("txtIDFileIssueDate", (moment(IDFile.IssueDate).format("DD/MM/YYYY")));
     SetvalOf("txtIDFileExpiryDate", moment(IDFile.ExpiryDate).format("DD/MM/YYYY") );
     SetvalOf("txtIDFileRemarks", IDFile.Remarks);
+    if ($("#ddIDFileEmployeeCode").val() != IDFile.EmployeeID)
+        $("#ddIDFileEmployeeCode").val(IDFile.EmployeeID).trigger("change");
+
     $("#imgEmployeeID").attr("src", "/EmployeeAPI/DownloadIDFile?EmployeeID=" + IDFile.EmployeeID + "&Type=" + IDFile.Description +"&FileName=" + IDFile.FileName + "&FileID=" + IDFile.FileID);
     $("#imgEmployeeID").show();
     ResetDatePicker();
@@ -202,7 +206,7 @@ function SaveIDFile() {
 
                     SaveLog(result);
 
-                    FillIDFiles(IDFile.EmployeeID)
+                    FillIDFiles()
                     document.getElementById("frmIDFile").reset();
                     InitializeIDFile();
                     FillIDTypeList("datalistOptions")
@@ -221,4 +225,7 @@ function SaveIDFile() {
 
     });
 }
- 
+
+function FindEmployeeID() {
+    FillIDFiles();
+}

@@ -228,11 +228,14 @@ namespace PipewellserviceDB.HR.Employee
 
         }
 
-        public async Task<DataTable> EmployeeIDFileList(int EmployeeID)
+        public async Task<DataTable> EmployeeIDFileList(int EmployeeID,string Name)
         {
             try
             {
-                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeIDList", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID });
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID };
+                collSP[1] = new SqlParameter { ParameterName = "@Name", Value = Name };
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeIDList", CommandType.StoredProcedure, collSP);
                 DataTable dt = new DataTable();
                 dt.Load(result);
                 result.Close();
@@ -255,7 +258,7 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[3] = new SqlParameter { ParameterName = "@IDNumber", Value = file.IDNumber };
                 collSP[4] = new SqlParameter { ParameterName = "@IssueDate", Value = file.IssueDate };
                 collSP[5] = new SqlParameter { ParameterName = "@ExpiryDate", Value = file.ExpiryDate };
-                collSP[6] = new SqlParameter { ParameterName = "@Remarks", Value = file.Remarks };
+                collSP[6] = new SqlParameter { ParameterName = "@Remarks", Value =StringHelper.NullToString ( file.Remarks) };
                 collSP[7] = new SqlParameter { ParameterName = "@FileName", Value = file.FileName };
                 collSP[8] = new SqlParameter { ParameterName = "@FileID", Value = file.FileID };
                 collSP[9] = new SqlParameter { ParameterName = "@RecordUpdatedBy", Value = file.RecordUpdatedBy };

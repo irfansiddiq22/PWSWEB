@@ -201,11 +201,11 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        public async Task<JsonResult> EmployeeIDFileList(int EmployeeID)
+        public async Task<JsonResult> EmployeeIDFileList(int EmployeeID,string Name)
         {
             return new JsonResult
             {
-                Data = await json.EmployeeIDFileList(EmployeeID),
+                Data = await json.EmployeeIDFileList(EmployeeID,Name),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
