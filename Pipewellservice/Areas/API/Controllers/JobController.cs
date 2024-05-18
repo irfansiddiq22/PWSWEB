@@ -1,6 +1,8 @@
 ﻿using Pipewellservice.Helper;
+using PipewellserviceJson.HR.Employee;
 using PipewellserviceJson.HR.Job;
 using PipewellserviceModels.Common;
+using PipewellserviceModels.HR.Employee;
 using PipewellserviceModels.HR.Job;
 using PipewellserviceModels.HR.Settings;
 using System;
@@ -42,7 +44,7 @@ namespace Pipewellservice.Areas.API.Controllers
             string Extenstion = Path.GetExtension(JobOfferTemplatePath);
             job.FileID = Extenstion;
             int OfferID = await json.UpdateJobOffer(job);
-
+            HRManager hr = await (new EmployeeJson()).HRManager();
 
             List<MergeField> mergeFields = new List<MergeField>();
             mergeFields.Add(new MergeField("<NAME>", job.Name));
@@ -53,6 +55,7 @@ namespace Pipewellservice.Areas.API.Controllers
             mergeFields.Add(new MergeField("<PERIOD>", job.Period.ToString()));
             mergeFields.Add(new MergeField("<TRANSPORT>", job.Transportation >0 ?$"{job.Transportation}% from Basic" :"Will be provided by the Company"));
             mergeFields.Add(new MergeField("<HOUSING>", job.Housing > 0 ? $"{job.Housing}% from Basic" : "Will be provided by the Company"));
+            mergeFields.Add(new MergeField("<APPROVAL>", hr.Name);
             DocHelper DocHelper = new DocHelper();
             
 
@@ -102,7 +105,7 @@ namespace Pipewellservice.Areas.API.Controllers
             job.FileID = Extenstion;
             int ContractID = await json.UpdateJobContract(job);
 
-
+            HRManager hr = await (new EmployeeJson()).HRManager();
             List<MergeField> mergeFields = new List<MergeField>();
             mergeFields.Add(new MergeField("<CR>", job.CompanyRegNumber));
             mergeFields.Add(new MergeField("<EMP-NAME>", job.Name));
@@ -136,7 +139,8 @@ namespace Pipewellservice.Areas.API.Controllers
             mergeFields.Add(new MergeField("<date-ar>", job.StartDate == null ? "" : Convert.ToDateTime(job.StartDate).ToString("yyyy/MM/dd")));
 
             mergeFields.Add(new MergeField("<TRANSPORT>", job.Transportation > 0 ? $"{job.Transportation}% from Basic" : "Will be provided by the Company"));
-            
+            mergeFields.Add(new MergeField("<APPROVAL>", hr.Name);
+
             DocHelper DocHelper = new DocHelper();
 
          //   JobContract = @"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\JobContract\";

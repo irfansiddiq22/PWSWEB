@@ -341,5 +341,11 @@ namespace PipewellserviceJson.HR.Employee
             return await service.UpdateEmployeeLeaveSheet(EmployeeID, FileName, FileID);
         }
 
+
+        public async Task<HRManager> HRManager()
+        {
+         var data=   await service.HRManager();
+            return (await JsonHelper.Convert<List<HRManager>, DataTable>(data)).FirstOrDefault();
+        }
     }
 }
