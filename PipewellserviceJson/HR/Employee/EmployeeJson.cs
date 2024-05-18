@@ -78,9 +78,9 @@ namespace PipewellserviceJson.HR.Employee
         {
             return await JsonHelper.Convert<List<EmployeeIDFileType>, DataTable>(await service.EmployeeIDTypeList());
         }
-        public async Task<List<EmployeeIDFile>> EmployeeIDFileList(int EmployeeID)
+        public async Task<List<EmployeeIDFile>> EmployeeIDFileList(int EmployeeID,string Name)
         {
-            return await JsonHelper.Convert<List<EmployeeIDFile>, DataTable>(await service.EmployeeIDFileList(EmployeeID));
+            return await JsonHelper.Convert<List<EmployeeIDFile>, DataTable>(await service.EmployeeIDFileList(EmployeeID,Name));
         }
         public async Task<int> UpdateEmployeeIDFile(EmployeeIDFile file)
         {
