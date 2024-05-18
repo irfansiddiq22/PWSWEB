@@ -32,7 +32,7 @@ namespace PipewellserviceDB.Common
         {
             try
             {
-                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcSpnonorList", CommandType.StoredProcedure);
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcSponsorList", CommandType.StoredProcedure);
                 DataTable model = new DataTable();
                 model.Load(result);
                 return model;

@@ -1,4 +1,5 @@
-﻿using PipewellserviceModels.Common;
+﻿using PipewellserviceDB.Common;
+using PipewellserviceModels.Common;
 using PipewellserviceModels.HR.Employee;
 using SQLHelper;
 using System;
@@ -52,11 +53,14 @@ namespace PipewellserviceDB.HR.Employee
         }
         ////////----------------------------------------------------------------------
 
-        public async Task<DataTable> CertificateList(int EmployeeID)
+        public async Task<DataTable> CertificateList(int EmployeeID,string Name)
         {
             try
             {
-                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeCertificateList", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID });
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID };
+                collSP[1] = new SqlParameter { ParameterName = "@Name", Value = Name };
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeCertificateList", CommandType.StoredProcedure, collSP);
                 DataTable dt = new DataTable();
                 dt.Load(result);
                 result.Close();
@@ -79,7 +83,7 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[2] = new SqlParameter { ParameterName = "@EmployeeID", Value = certificate.EmployeeID };
                 collSP[3] = new SqlParameter { ParameterName = "@IssueDate", Value = certificate.IssueDate };
                 collSP[4] = new SqlParameter { ParameterName = "@ExpiryDate", Value = certificate.ExpiryDate };
-                collSP[5] = new SqlParameter { ParameterName = "@Remarks", Value = certificate.Remarks };
+                collSP[5] = new SqlParameter { ParameterName = "@Remarks", Value = StringHelper.NullToString ( certificate.Remarks) };
                 collSP[6] = new SqlParameter { ParameterName = "@OnShore", Value = certificate.OnShore };
                 collSP[7] = new SqlParameter { ParameterName = "@FileName", Value = certificate.FileName };
                 collSP[8] = new SqlParameter { ParameterName = "@FileID", Value = certificate.FileID };

@@ -154,7 +154,7 @@ function SaveJobOffer() {
             JobOfferTitle: "required",
             JobOfferBasic: "required",
             JobOfferTransportation: "required",
-            JobOfferHosing:"required",
+            txtJobOfferHousing:"required",
             JobOfferPeriod: "required"
 
         },
@@ -165,7 +165,7 @@ function SaveJobOffer() {
             JobOfferTitle: "Please enter job title",
             JobOfferBasic: "Please enter basic salary",
             JobOfferTransportation: "Please enter transportation ",
-            JobOfferHosing:"Please enter housing",
+            txtJobOfferHousing:"Please enter housing",
             JobOfferPeriod: "Please enter job period"
 
         },
