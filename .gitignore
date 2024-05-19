@@ -264,7 +264,28 @@ __pycache__/
 */web.config
 *.zip
 *.config
+<<<<<<< HEAD
+/Pipewellservice/Pipewellservice.csproj
+/PipewellserviceDB/PipewellserviceDB.csproj
+/PipewellserviceJson/PipewellserviceJson.csproj
+/PipewellserviceModels/PipewellserviceModels.csproj
+/Pipewellservice/Web.config
+/Pipewellservice/Pipewellservice.csproj
+/Pipewellservice/Web.config
+/Pipewellservice/Web.config
+/Pipewellservice/Pipewellservice.csproj
+/.gitignore
+=======
 /Pipewellservice/Reports/OrderDetailsReport.rdlx
 /Pipewellservice/Reports/OrderReport.resx
 /Pipewellservice/Reports/OrderReport.Designer.cs
 /Pipewellservice/Reports/OrderReport.cs
+>>>>>>> 50d939601a25f2735a90ca79ee076509991dbc25
+/Pipewellservice/Helper/FileHelper.cs
+/Pipewellservice/Web.config
+/Pipewellservice/Pipewellservice.csproj
+/Pipewellservice/packages.config
+/Pipewellservice/Pipewellservice.csproj
+/Pipewellservice/licenses.licx
+/Pipewellservice/Pipewellservice.csproj
+/Pipewellservice/Areas/API/Controllers/JobController.cs
