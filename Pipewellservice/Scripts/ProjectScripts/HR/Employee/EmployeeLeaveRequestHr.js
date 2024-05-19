@@ -43,9 +43,9 @@ function _Init() {
         $(".datepicker").on('changeDate', function (selected) {
             ResetMessageText();
         });
+        
         $("#ddlLeaveDataRange").val(moment().subtract(3, 'month').startOf('month').format("DD/MM/YYYY") + ' - ' + moment().endOf('month').format("DD/MM/YYYY"))
-
-
+        FillLeaves();
     });
 
 }
