@@ -11,8 +11,9 @@ function _Init() {
         BindUsers();
         
     });
+    $("#ddlInquiryDataRange").val(moment().subtract(3, 'month').startOf('month').format("DD/MM/YYYY") + ' - ' + moment().endOf('month').format("DD/MM/YYYY"))
 
-
+    SetvalOf("txtInquiryDate", moment().format("DD/MM/YYYY"));
 }
 function BindUsers() {
     $.post("/EmployeeAPI/CodeName", {}).done(function (Response) {
@@ -198,6 +199,7 @@ function ResetNav() {
     $(".breadcrumb-item.active").find("a").contents().unwrap();
     SetvalOf("txtInquiryPreparedBy", User.Name);
     ResetDatePicker();
+    SetvalOf("txtInquiryDate", moment().format("DD/MM/YYYY"));
 }
 function SaveEmployeeInquiry() {
     $("#frmInquiry").validate({
