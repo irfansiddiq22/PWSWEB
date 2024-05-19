@@ -27,9 +27,9 @@ namespace PipewellserviceModels.HR.Employee
     public class LeaveRequestLog : EmployeeLeave
     {
 
-        private int PendingApprovals { get; set; }
-        private int ApprovedApprovals { get; set; }
-        private int RejectApprovals { get; set; }
+        public int PendingApprovals {private get; set; }
+        public int ApprovedApprovals { private get; set; }
+        public int RejectApprovals { private get; set; }
         public string LeaveStatus
         {
             get
