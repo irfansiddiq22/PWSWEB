@@ -23,7 +23,7 @@ namespace Pipewellservice.Helper
 
             smtpServer.EnableSsl =  true;
             smtpServer.UseDefaultCredentials = false;
-            smtpServer.Credentials = new NetworkCredential("notifications.pws@gmail.com", "wtwiopideeocqswp");
+            smtpServer.Credentials = new NetworkCredential("notifications.pws@gmail.com",  Config.SMTPPassword );
            // smtpServer.Credentials = new NetworkCredential("service.eng2@pipewellservices.com", "W!451462604975ud");
             try
             {

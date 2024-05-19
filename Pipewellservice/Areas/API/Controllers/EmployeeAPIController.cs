@@ -564,7 +564,6 @@ namespace Pipewellservice.Areas.API.Controllers
         }
 
         /// 
-
         public async Task<JsonResult> EmployeeInquiryList(EmployeeInquiryParam param)
         {
             return new JsonResult
@@ -591,6 +590,18 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.EmployeeInquiry, 1, 2)]
+        public async Task<JsonResult> AddEmployeeInquiry(EmployeeInquiry inquiry)
+        {
+            
+            int ID = await json.UpdateEmployeeInquiry(inquiry);
+            return new JsonResult
+            {
+                Data = ID,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
 
         [Authorization(Pages.EmployeeInquiry, 1, 2)]
         public async Task<JsonResult> UpdateEmployeeInquiryFile(int EmployeeID, int ID)

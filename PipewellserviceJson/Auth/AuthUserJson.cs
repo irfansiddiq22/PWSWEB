@@ -1,5 +1,6 @@
 ﻿using PipewellserviceDB.Auth;
 using PipewellserviceModels.Common;
+using PipewellserviceModels.HR.Employee;
 using PipewellserviceModels.User;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace PipewellserviceJson.Auth
             if (model.ID > 0)
             {
                 model.Permissions = await JsonHelper.Convert<List<PagePermisson>, DataTable>(result.Permissions);
+                model.Supervisors = await JsonHelper.Convert<List<EmployeeSupervisor>, DataTable>(result.Supervisor);
             }
             return model;
         }
@@ -36,6 +38,7 @@ namespace PipewellserviceJson.Auth
             if (model.ID > 0)
             {
                 model.Permissions = await JsonHelper.Convert<List<PagePermisson>, DataTable>(result.Permissions);
+                model.Supervisors = await JsonHelper.Convert<List<EmployeeSupervisor>, DataTable>(result.Supervisor);
             }
             return model;
 

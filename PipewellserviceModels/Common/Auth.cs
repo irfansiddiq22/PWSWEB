@@ -16,10 +16,12 @@ namespace PipewellserviceModels.Common
     {
         public DataTable User { get; set; }
         public DataTable Permissions { get; set; }
+        public DataTable Supervisor { get; set; }
         public UserAuthSQL()
         {
             User = new DataTable();
             Permissions = new DataTable();
+            Supervisor = new DataTable();
 
         }
     }

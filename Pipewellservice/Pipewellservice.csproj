@@ -214,6 +214,7 @@
     <Content Include="Content\libraries\slidemenu\bootsidemenu.css" />
     <Content Include="Content\libraries\slidemenu\bootsidemenu.js" />
     <Content Include="EmailTemplateHTML.aspx" />
+    <Content Include="EmployeeInquiryhr.js" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Compile Include="Helper\DocHelper.cs" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -387,6 +388,7 @@
     <Content Include="Scripts\ProjectScripts\HR\Employee\Certificate.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Contract.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeInquiry.js" />
+    <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeInquiryhr.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeJoining.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeLeaveRequestHr.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeLeaveRequest.js" />
@@ -507,7 +509,7 @@
     <Content Include="Views\Employee\_PartialCompanyTravel.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeTravelRequest.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeLeaveRequets.cshtml" />
-    <Content Include="Views\Employee\_PartialEmployeeInquiry.cshtml" />
+    <Content Include="Views\Employee\_PartialEmployeeInquiryHr.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeePassport.cshtml" />
     <Content Include="Views\Employee\_PartialTempEmployee.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeShortLeave.cshtml" />
@@ -523,6 +525,7 @@
     <Content Include="Scripts\ProjectScripts\HR\Settings\Vendor.js" />
     <Content Include="Views\Employee\_PartialEmployeeLeaves.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeLeavesHr.cshtml" />
+    <Content Include="Views\Employee\_PartialEmployeeInquiry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PipewellserviceModels.HR.Employee;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,5 +22,6 @@ namespace PipewellserviceModels.User
         public bool Status { get; set; }
         public bool ApprovalRequests { get; set; }
         public List<PagePermisson> Permissions { get; set; }
+        public List<EmployeeSupervisor> Supervisors { get; set; }
     }
 }

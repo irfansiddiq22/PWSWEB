@@ -175,4 +175,9 @@ namespace PipewellserviceModels.Common
         JobOffer = 1,
         Contract = 2
     }
+    public enum SupervisorTypes
+    {
+        Supervisor=1,
+        HRManager=2
+    }
 }
