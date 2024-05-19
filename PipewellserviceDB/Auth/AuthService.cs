@@ -24,6 +24,7 @@ namespace PipewellserviceDB.Auth
                 UserAuthSQL model = new UserAuthSQL();
                 model.User.Load(result);
                 model.Permissions.Load(result);
+                model.Supervisor.Load(result);
                 result.Close();
 
 
@@ -47,6 +48,7 @@ namespace PipewellserviceDB.Auth
                 UserAuthSQL model = new UserAuthSQL();
                 model.User.Load(result);
                 model.Permissions.Load(result);
+                model.Supervisor.Load(result);
                 result.Close();
 
 

@@ -1,4 +1,5 @@
 ﻿using PipewellserviceModels.Common;
+using PipewellserviceModels.HR.Employee;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -34,6 +35,7 @@ namespace PipewellserviceModels.User
         public int ID { get; set; }
         public string Name { get; set; }
         public List <PagePermisson> Permissions { get; set; }
+        
     }
     public class PagePermisson
     {

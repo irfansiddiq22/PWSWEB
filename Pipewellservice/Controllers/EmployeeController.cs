@@ -168,7 +168,10 @@ namespace Pipewellservice.Controllers
         {
             ViewBag.Title = "Employee Request Form";
             ViewBag.Parent = Parent;
-            return View("_PartialEmployeeInquiry");
+            if (SessionHelper.UserGroup() == 2)
+                return View("_PartialEmployeeInquiry");
+            else
+                return View("_PartialEmployeeInquiryHr");
         }
         public ActionResult Passport()
         {

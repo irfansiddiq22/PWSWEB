@@ -109,6 +109,9 @@ namespace Pipewellservice
 
             bundles.Add(new Bundle("~/lib/hr/employeeinquiry").Include(
                                   "~/Scripts/ProjectScripts/HR/Employee/EmployeeInquiry.js"));
+            bundles.Add(new Bundle("~/lib/hr/employeeinquiryhr").Include(
+                                  "~/Scripts/ProjectScripts/HR/Employee/EmployeeInquiryhr.js"));
+
             bundles.Add(new Bundle("~/lib/hr/employeejoining").Include(
                                               "~/Scripts/ProjectScripts/HR/Employee/EmployeeJoining.js"));
             bundles.Add(new Bundle("~/lib/hr/employeeshortleave").Include(
