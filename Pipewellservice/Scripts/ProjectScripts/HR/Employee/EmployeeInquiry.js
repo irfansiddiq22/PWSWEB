@@ -8,7 +8,7 @@ function _Init() {
     SetPagePermission(PAGES.EmployeeInquiry, function () {
         BindUsers();
     });
-    SetvalOf("txtInquiryDate", moment().format("MM/DD/YYYY"));
+    SetvalOf("txtInquiryDate", moment().format("DD/MM/YYYY"));
 }
 function BindUsers() {
     $.post("/EmployeeAPI/CodeName", {}).done(function (Response) {
@@ -18,7 +18,7 @@ function BindUsers() {
         $.each(Response, function (i, emp) {
             data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name });
         })
-        
+
         $("#ddEmployeeName").select2({
             tags: "true",
             placeholder: "Select an option",
@@ -32,8 +32,8 @@ function BindUsers() {
 
         BindInquiryList();
     })
-    
-   
+
+
 
 
 }
@@ -43,7 +43,7 @@ function BindInquiryList(PageNumber = 1) {
     $("#tblEmployeeInQuiryList").empty();
 
     var StartDate = "", EndDate = "";
-    
+
 
     Inquiry = { ID: 0, Approvals: [] };
     ResetChangeLog(PAGES.EmployeeInquiry);
@@ -83,7 +83,7 @@ function BindInquiryList(PageNumber = 1) {
             $.each(data, function (i, r) {
                 var tr = $('<tr>')
                 tr.append($('<td>').text(r.ID))
-                
+
                 tr.append($('<td>').text(moment(r.InquiryDate).format("DD/MM/YYYY")))
                 tr.append($('<td>').append(r.Remarks))
 
@@ -91,7 +91,7 @@ function BindInquiryList(PageNumber = 1) {
                 tr.append($('<td>').append(CheckboxSwitch("", (r.PersonalInquiry ? "checked" : ""), "", "")))
                 tr.append($('<td>').append(CheckboxSwitch("", (r.GeneralInquiry ? "checked" : ""), "", "")))
                 tr.append($('<td>').append(CheckboxSwitch("", (r.LoanInquiry ? "checked" : ""), "", "")))
-                
+
 
                 $("#tblEmployeeInQuiryList").append(tr);
 
@@ -107,16 +107,12 @@ function BindInquiryList(PageNumber = 1) {
 function ResetNav() {
     document.getElementById("frmInquiry").reset();
     Inquiry = { ID: 0, Approvals: [] };
-    for (i = 1; i <= 4; i++) {
-        SetvalOf("ddSupervisorApproval" + (i), 0).trigger("change");
-    }
-    SetvalOf("ddEmployeeName", 0).trigger("change");
-
-    $("#dvEditInquiry").addClass("d-none")
-    $("#dvInquiryList").removeClass("d-none")
+    
+    
     $(".breadcrumb-item.active").find("a").contents().unwrap();
     SetvalOf("txtInquiryPreparedBy", User.Name);
     ResetDatePicker();
+    SetvalOf("txtInquiryDate", moment().format("DD/MM/YYYY"));
 }
 function SaveEmployeeInquiry() {
     $("#frmInquiry").validate({
@@ -136,7 +132,7 @@ function SaveEmployeeInquiry() {
         submitHandler: function (form) {
             if (Inquiry.ID == 0) {
                 DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: "", New: textOf("ddEmployeeName") } });
-            } 
+            }
             NewInquiry = {
                 ID: Inquiry.ID,
                 EmployeeID: valOf("ddEmployeeName"),
@@ -151,9 +147,10 @@ function SaveEmployeeInquiry() {
                 Approvals: []
             };
             $.each(User.Supervisors, function (i, s) {
-                NewInquiry.Approvals.push({ ID: i, DivisionID: parseInt(valOf("ddSupervisorApproval" + (i))) });
+                NewInquiry.Approvals.push({ ID: s.ID, DivisionID: s.DivisionID });
+            });
 
-            })
+            
             var fileUpload = $('#InquiryFile').get(0);
             var files = fileUpload.files;
             if (files.length == 0) {
@@ -169,36 +166,37 @@ function SaveEmployeeInquiry() {
 
                         UploadFile("/EmployeeAPI/UpdateEmployeeInquiryFile", files[0], { EmployeeID: NewInquiry.EmployeeID, ID: ID }, function (Status, Response) {
 
-                            if (NewInquiry.ID > 0)
-                                swal("Employee Inquiry record added", { icon: "success" })
-                            else
-                                swal("Employee Inquiry updated added", { icon: "success" })
+
                             if (Status == 1) {
 
                                 if (NewInquiry.ID > 0)
-                                    swal("Employee Inquiry record added", { icon: "success" })
+                                    swal("Employee request record added", { icon: "success" })
                                 else
-                                    swal("Employee Inquiry updated added", { icon: "success" })
+                                    swal("Employee request updated added", { icon: "success" })
+                                NewInquiry.ID = ID;
+                                NewInquiry.FileID = Response.FileID;
+                                NewInquiry.FileName = files[0].name;
 
+                                ProcessInquiryMail(NewInquiry);
                                 BindInquiryList()
                                 ResetNav();
                             } else {
 
-                                swal("Failed to upload inquire file.", { icon: "error" })
+                                swal("Failed to upload request file.", { icon: "error" })
                             }
                         });
                     } else {
 
                         if (NewInquiry.ID > 0)
-                            swal("Employee Inquiry record added", { icon: "success" })
+                            swal("Employee request record added", { icon: "success" })
                         else
-                            swal("Employee Inquiry updated added", { icon: "success" })
+                            swal("Employee request updated added", { icon: "success" })
 
                         BindInquiryList()
                         ResetNav();
                     }
                 } else {
-                    swal("Failed to upload inquire.", { icon: "error" })
+                    swal("Failed to upload request.", { icon: "error" })
                 }
 
             })
@@ -210,11 +208,13 @@ function SaveEmployeeInquiry() {
 
 
 }
+function ProcessInquiryMail(Inquiry) {
+    Post("/EmployeeAPI/ProcessInquiryMail", { record: Inquiry }).done(function (ID) { });
+}
 
 
 function NewInquiry() {
     ResetNav();
-    $("#dvEditInquiry").removeClass("d-none")
-    $("#dvInquiryList").addClass("d-none")
+    
     $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
 }

@@ -14,6 +14,7 @@ namespace PipewellserviceModels.Common
         public string CC { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
+        public string Attachment { get; set; }
         
     }
 }

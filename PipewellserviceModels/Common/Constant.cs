@@ -105,8 +105,9 @@ namespace PipewellserviceModels.Common
     public enum ApprovalTypes
     {
         Clearance = 1,
-        Warning = 2,
-        Inquiry=3,
+        Inquiry = 2,
+        Warning = 3,
+        
         Vacation=4,
         Joining=5,
         ShortLeave=6,

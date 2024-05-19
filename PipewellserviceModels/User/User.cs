@@ -21,6 +21,7 @@ namespace PipewellserviceModels.User
         public string EmailAddress { get; set; }
         public bool Status { get; set; }
         public bool ApprovalRequests { get; set; }
+        public string Position { get; set; }
         public List<PagePermisson> Permissions { get; set; }
         public List<EmployeeSupervisor> Supervisors { get; set; }
     }
