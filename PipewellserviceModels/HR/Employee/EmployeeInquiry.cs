@@ -142,6 +142,8 @@ namespace PipewellserviceModels.HR.Employee
         public bool PersonalInquiry { get; set; }
         public bool GeneralInquiry { get; set; }
         public bool LoanInquiry { get; set; }
+        public string FileID { get; set; }
+        public string FileName { get; set; }
 
     }
     public class EmployeeInquiryDB

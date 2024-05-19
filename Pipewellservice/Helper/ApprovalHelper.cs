@@ -14,15 +14,35 @@ namespace Pipewellservice.Helper
     {
         public async Task<bool> ProcessRequest(ApprovalTypes type, ApprovalRequestResult result)
         {
+            List<MergeField> field = new List<MergeField>();
+
+            bool ProcessMail = false;
+
+            string Attachment = "";
+
             if (type == ApprovalTypes.Leaves)
             {
-                List<MergeField> field = new List<MergeField>();
+                ProcessMail = true;
                 EmployeeLeave record = JsonConvert.DeserializeObject<EmployeeLeave>(result.Request[0].ToString());
                 field.Add(new MergeField("LEAVE_TYPE", record.LeaveTypeName));
                 field.Add(new MergeField("START_DATE", record.StartDate.ToString("MM/dd/yyyy")));
                 field.Add(new MergeField("END_DATE", record.EndDate.ToString("MM/dd/yyyy")));
                 field.Add(new MergeField("DAYS", (record.EndDate - record.StartDate).Days.ToString()));
+            }
+            else if (type == ApprovalTypes.Inquiry)
+            {
+                ProcessMail = true;
+                EmployeeInquiry record = JsonConvert.DeserializeObject<EmployeeInquiry>(result.Request[0].ToString());
+                field.Add(new MergeField("DATE", record.InquiryDate == null ? DateTime.Now.ToString("MM/dd/yyyy") : Convert.ToDateTime(record.InquiryDate).ToString("MM/dd/yyyy")));
+                field.Add(new MergeField("REMARKS", record.Remarks));
+                Attachment = await FileHelper.GetFile(record.FileID, record.EmployeeID, DirectoryNames.EmployeeInquiry);
+                ProcessMail = true;
+
+            }
+            if (ProcessMail)
+            {
                 string Row = "";
+
                 string Status = "";
                 ApprovalStatus RequestStatus = ApprovalStatus.Ready;
                 RequestApprover Supervisor = new RequestApprover();
@@ -58,7 +78,7 @@ namespace Pipewellservice.Helper
                             Status = "Pending Approval";
                             Supervisor = requestApprover;
                             requestApprover.Status = ApprovalStatus.Pending;
-                            
+
                         }
 
                     }
@@ -101,9 +121,11 @@ namespace Pipewellservice.Helper
 
                     Row = Row + $"<tr><td>{ requestApprover.Name }</td><td>{ requestApprover.Position }</td><td>{Status}</td></tr>";
                 }
-                if(Supervisor.ID>0) field.Add(new MergeField("APROVE_NAME", Supervisor.Name));
+                if (Supervisor.ID > 0) field.Add(new MergeField("APPROVE_NAME", Supervisor.Name));
 
                 field.Add(new MergeField("APPROVALS", Row));
+
+
                 var EmailTemplate = new EmailTemplate();
                 var SupervisorEmailTemplate = new EmailTemplate();
                 var EmployeeEmailTemplate = new EmailTemplate();
@@ -119,21 +141,21 @@ namespace Pipewellservice.Helper
                 }
 
                 EmailHelper email = new EmailHelper();
-                bool status = false ;
+                bool status = false;
 
                 if (RequestStatus == ApprovalStatus.Approved || RequestStatus == ApprovalStatus.Declined || RequestStatus == ApprovalStatus.NotApproved)
                     status = await email.SendEmail(new EmailDTO() { To = employee.EmailAddress, From = "no-reply@pipewellservices.com", Subject = EmployeeEmailTemplate.Subject, Body = EmployeeEmailTemplate.Body }, field);
 
                 if (RequestStatus == ApprovalStatus.Pending && Supervisor.ID > 0 && Supervisor.EmailAddress != "")
                 {
-                    Supervisor.EmailAddress = "irfanullahurfi@gmail.com";
+
                     field.Add(new MergeField("APPROVE_NAME", Supervisor.Name));
                     field.Add(new MergeField("PORTAL_LINK", ""));
-                    status = await email.SendEmail(new EmailDTO() { To = Supervisor.EmailAddress, From = "no-reply@pipewellservices.com", Subject = SupervisorEmailTemplate.Subject, Body = SupervisorEmailTemplate.Body }, field);
+                    status = await email.SendEmail(new EmailDTO() { To = Supervisor.EmailAddress, From = "no-reply@pipewellservices.com", Subject = SupervisorEmailTemplate.Subject, Body = SupervisorEmailTemplate.Body,Attachment = Attachment }, field);
                 }
                 return status;
-
             }
+            
             return true;
         }
     }

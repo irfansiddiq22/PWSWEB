@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
+using PipewellserviceJson.Common;
+
 namespace Pipewellservice.Areas.API.Controllers
 {
     [Authorization]
@@ -53,11 +55,11 @@ namespace Pipewellservice.Areas.API.Controllers
             return File(await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.EmployeeCertifications), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
 
         }
-        public async Task<JsonResult> CertificateList(int EmployeeID,string Name)
+        public async Task<JsonResult> CertificateList(int EmployeeID, string Name)
         {
             return new JsonResult
             {
-                Data = await json.CertificateList(EmployeeID,Name),
+                Data = await json.CertificateList(EmployeeID, Name),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -201,11 +203,11 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        public async Task<JsonResult> EmployeeIDFileList(int EmployeeID,string Name)
+        public async Task<JsonResult> EmployeeIDFileList(int EmployeeID, string Name)
         {
             return new JsonResult
             {
-                Data = await json.EmployeeIDFileList(EmployeeID,Name),
+                Data = await json.EmployeeIDFileList(EmployeeID, Name),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -593,7 +595,7 @@ namespace Pipewellservice.Areas.API.Controllers
         [Authorization(Pages.EmployeeInquiry, 1, 2)]
         public async Task<JsonResult> AddEmployeeInquiry(EmployeeInquiry inquiry)
         {
-            
+
             int ID = await json.UpdateEmployeeInquiry(inquiry);
             return new JsonResult
             {
@@ -620,7 +622,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
                     return new JsonResult
                     {
-                        Data = Update,
+                        Data = new ResultDTO() { ID = EmployeeID, Status = true, Message = " file uploaded", FileID=FileID },
                         JsonRequestBehavior = JsonRequestBehavior.AllowGet
                     };
                 }
@@ -629,10 +631,89 @@ namespace Pipewellservice.Areas.API.Controllers
 
             return new JsonResult
             {
-                Data = new ResultDTO() { ID = EmployeeID, Status = false, Message = "No file to upload" },
+                Data = new ResultDTO() { ID = EmployeeID, Status = true, Message = "No file to upload" , FileID = "2901.docx" },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
 
+
+        }
+
+
+        public async Task<JsonResult> ProcessInquiryMail(EmployeeInquiry record)
+        {
+            bool result = false;
+            try
+            {
+                var User = SessionHelper.UserSession();
+
+                record.RecordCreatedBy = User.ID;
+
+
+                List<MergeField> field = new List<MergeField>();
+
+                field.Add(new MergeField("DATE", record.InquiryDate == null ? DateTime.Now.ToString("MM/dd/yyyy") : Convert.ToDateTime(record.InquiryDate).ToString("MM/dd/yyyy")));
+                field.Add(new MergeField("REMARKS", record.Remarks));
+                field.Add(new MergeField("EMP_NAME", User.Name));
+                field.Add(new MergeField("EMP_ID", User.EmployeeID.ToString()));
+
+
+                string Row = "";
+                string Status = "";
+                EmployeeSupervisor Supervisor = new EmployeeSupervisor();
+                List<EmailTemplate> EmplyeeRequestTemplates = await (new DataListJson()).EmplyeeRequestTemplates();
+                Row = Row + $"<tr><td>{ User.Name }</td><td>{ User.Position }</td><td>Requested</td></tr>";
+
+
+                foreach (EmployeeSupervisor requestApprover in SessionHelper.UserSession().Supervisors)
+                {
+                    if (requestApprover.SupervisorType == SupervisorTypes.Supervisor)
+                    {
+                        Status = "Pending Approval";
+                        Supervisor = requestApprover;
+                    }
+
+                    else if (requestApprover.SupervisorType == SupervisorTypes.HRManager)
+                        Status = "Pending Approval";
+
+                    Row = Row + $"<tr><td>{ requestApprover.Name }</td><td>{ requestApprover.Position }</td><td>{Status}</td></tr>";
+                }
+
+                field.Add(new MergeField("APPROVALS", Row));
+                var EmailTemplate = new EmailTemplate();
+                var SupervisorEmailTemplate = new EmailTemplate();
+                foreach (EmailTemplate template in EmplyeeRequestTemplates)
+                {
+                    if (template.Type == 1)
+                        EmailTemplate = template;
+                    else if (template.Type == 2)
+                        SupervisorEmailTemplate = template;
+                }
+
+                EmailHelper email = new EmailHelper();
+                var status = await email.SendEmail(new EmailDTO() { To = User.EmailAddress, From = "no-reply@pipewellservices.com", Subject = EmailTemplate.Subject, Body = EmailTemplate.Body }, field);
+                if (status && Supervisor.ID > 0 && Supervisor.EmailAddress != "")
+                {
+
+                    field.Add(new MergeField("APPROVE_NAME", Supervisor.Name));
+                    field.Add(new MergeField("PORTAL_LINK", ""));
+
+                    string Attachment = await FileHelper.GetFile(record.FileID, record.EmployeeID, DirectoryNames.EmployeeInquiry);
+
+                    status = await email.SendEmail(new EmailDTO() { To = Supervisor.EmailAddress, From = "no-reply@pipewellservices.com", Subject = SupervisorEmailTemplate.Subject, Body = SupervisorEmailTemplate.Body, Attachment= Attachment }, field);
+                }
+                result = true;
+            }
+            catch (Exception e)
+            {
+
+            }
+
+
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
 
         }
 
@@ -668,8 +749,8 @@ namespace Pipewellservice.Areas.API.Controllers
             ApprovalHelper helper = new ApprovalHelper();
             foreach (PendingApproval approval in approvals)
             {
-                model= await json.ApproveRequest(SessionHelper.EmployeeID(), approval);
-                if (model.Result &&  (approval.Status==ApprovalStatus.Approved || approval.Status == ApprovalStatus.Declined || approval.Status == ApprovalStatus.NotApproved ))
+                model = await json.ApproveRequest(SessionHelper.EmployeeID(), approval);
+                if (model.Result && (approval.Status == ApprovalStatus.Approved || approval.Status == ApprovalStatus.Declined || approval.Status == ApprovalStatus.NotApproved))
                 {
                     await helper.ProcessRequest(approval.RecordType, model);
                 }
@@ -842,7 +923,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
         ////
         [Authorization(Pages.LeaveRequest, 2, 2)]
-        public async Task<JsonResult> EmployeeLeaveRequest(DateParam param )
+        public async Task<JsonResult> EmployeeLeaveRequest(DateParam param)
         {
             var result = await json.EmployeeLeaveRequest(param);
             return new JsonResult
@@ -860,7 +941,7 @@ namespace Pipewellservice.Areas.API.Controllers
             if (Requestresult.Result)
             {
                 List<MergeField> field = new List<MergeField>();
-                
+
                 field.Add(new MergeField("LEAVE_TYPE", record.LeaveTypeName));
                 field.Add(new MergeField("START_DATE", record.StartDate.ToString("MM/dd/yyyy")));
                 field.Add(new MergeField("END_DATE", record.EndDate.ToString("MM/dd/yyyy")));
@@ -881,8 +962,8 @@ namespace Pipewellservice.Areas.API.Controllers
                     else if (requestApprover.RowID == 1)
                     {
                         Status = "Pending Approval";
-                        
-                            field.Add(new MergeField("APROVE_NAME", employee.Name));
+
+                        field.Add(new MergeField("APPROVE_NAME", employee.Name));
                         Supervisor = requestApprover;
                     }
                     else if (requestApprover.RowID == 2)
@@ -903,12 +984,12 @@ namespace Pipewellservice.Areas.API.Controllers
 
                 EmailHelper email = new EmailHelper();
                 var status = await email.SendEmail(new EmailDTO() { To = employee.EmailAddress, From = "no-reply@pipewellservices.com", Subject = EmailTemplate.Subject, Body = EmailTemplate.Body }, field);
-                if (status && Supervisor.ID>0 &&  Supervisor.EmailAddress!="")
+                if (status && Supervisor.ID > 0 && Supervisor.EmailAddress != "")
                 {
-                    Supervisor.EmailAddress = "irfanullahurfi@gmail.com";
+
                     field.Add(new MergeField("APPROVE_NAME", Supervisor.Name));
                     field.Add(new MergeField("PORTAL_LINK", ""));
-                    
+
                     status = await email.SendEmail(new EmailDTO() { To = Supervisor.EmailAddress, From = "no-reply@pipewellservices.com", Subject = SupervisorEmailTemplate.Subject, Body = SupervisorEmailTemplate.Body }, field);
                 }
 

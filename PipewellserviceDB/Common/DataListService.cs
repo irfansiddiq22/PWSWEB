@@ -93,5 +93,20 @@ namespace PipewellserviceDB.Common
             }
 
         }
+
+        public async Task<DataTable> EmployeeRequestEmailTemplates()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeRequestEmailTemplates", CommandType.StoredProcedure);
+                DataTable model = new DataTable();
+                model.Load(result);
+                return model;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }

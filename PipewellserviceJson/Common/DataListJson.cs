@@ -1,6 +1,7 @@
 ﻿using PipewellserviceDB.Common;
 using PipewellserviceModels.HR.Employee;
 using PipewellserviceModels.HR.Settings;
+using PipewellserviceModels.Setting;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -37,7 +38,13 @@ namespace PipewellserviceJson.Common
         {
             return await JsonHelper.Convert<List<Supervisor>, DataTable>(await service.SupervisorList());
         }
+        public async Task<List<EmailTemplate>> EmplyeeRequestTemplates()
+        {
+            return await JsonHelper.Convert<List<EmailTemplate>, DataTable>(await service.EmployeeRequestEmailTemplates());
+        }
 
         
+
+
     }
 }

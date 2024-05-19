@@ -20,7 +20,10 @@ namespace Pipewellservice.Helper
             mail.IsBodyHtml = true;
             SmtpClient smtpServer = new SmtpClient("smtp.gmail.com", 587);
             //SmtpClient smtpServer = new SmtpClient("smtp.office365.com", 587);
-
+            if(email.Attachment!=null && email.Attachment != "")
+            {
+                mail.Attachments.Add(new Attachment( email.Attachment));
+            }
             smtpServer.EnableSsl =  true;
             smtpServer.UseDefaultCredentials = false;
             smtpServer.Credentials = new NetworkCredential("notifications.pws@gmail.com",  Config.SMTPPassword );

@@ -11,8 +11,9 @@ function _Init() {
         BindUsers();
         
     });
+    $("#ddlInquiryDataRange").val(moment().subtract(3, 'month').startOf('month').format("DD/MM/YYYY") + ' - ' + moment().endOf('month').format("DD/MM/YYYY"))
 
-
+    SetvalOf("txtInquiryDate", moment().format("DD/MM/YYYY"));
 }
 function BindUsers() {
     $.post("/EmployeeAPI/CodeName", {}).done(function (Response) {
@@ -198,6 +199,7 @@ function ResetNav() {
     $(".breadcrumb-item.active").find("a").contents().unwrap();
     SetvalOf("txtInquiryPreparedBy", User.Name);
     ResetDatePicker();
+    SetvalOf("txtInquiryDate", moment().format("DD/MM/YYYY"));
 }
 function SaveEmployeeInquiry() {
     $("#frmInquiry").validate({
@@ -287,36 +289,33 @@ function SaveEmployeeInquiry() {
 
                         UploadFile("/EmployeeAPI/UpdateEmployeeInquiryFile", files[0], { EmployeeID: NewInquiry.EmployeeID, ID: ID }, function (Status, Response) {
 
-                            if (NewInquiry.ID > 0)
-                                swal("Employee Inquiry record added", { icon: "success" })
-                            else
-                                swal("Employee Inquiry updated added", { icon: "success" })
+                            
                             if (Status == 1) {
 
                                 if (NewInquiry.ID > 0)
-                                    swal("Employee Inquiry record added", { icon: "success" })
+                                    swal("Employee request record added", { icon: "success" })
                                 else
-                                    swal("Employee Inquiry updated added", { icon: "success" })
+                                    swal("Employee request updated added", { icon: "success" })
 
                                 BindInquiryList()
                                 ResetNav();
                             } else {
 
-                                swal("Failed to upload inquire file.", { icon: "error" })
+                                swal("Failed to upload request file.", { icon: "error" })
                             }
                         });
                     } else {
 
                         if (NewInquiry.ID > 0)
-                            swal("Employee Inquiry record added", { icon: "success" })
+                            swal("Employee request record added", { icon: "success" })
                         else
-                            swal("Employee Inquiry updated added", { icon: "success" })
+                            swal("Employee request updated added", { icon: "success" })
 
                         BindInquiryList()
                         ResetNav();
                     }
                 } else {
-                    swal("Failed to upload inquire.", { icon: "error" })
+                    swal("Failed to upload request.", { icon: "error" })
                 }
 
             })
