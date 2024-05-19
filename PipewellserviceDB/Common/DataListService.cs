@@ -100,6 +100,7 @@ namespace PipewellserviceDB.Common
             {
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeRequestEmailTemplates", CommandType.StoredProcedure);
                 DataTable model = new DataTable();
+
                 model.Load(result);
                 return model;
             }
