@@ -3,7 +3,7 @@ var ApprovalList = [];
 var ShortLeave = { ID: 0, Approvals: [] }
 function _Init() {
     HideSpinner();
-    $("#ddlDataRange").val(moment().startOf('month').format('DD/MM/YYYY') + ' - ' + moment().endOf('week').format('DD/MM/YYYY'));
+    
     SetPagePermission(PAGES.ShortLeave, function () {
 
 
@@ -16,6 +16,7 @@ function _Init() {
             BindShortLeaves();
         })
     });
+    $("#ddlDataRange").val(moment().subtract(3, 'month').startOf('month').format("DD/MM/YYYY") + ' - ' + moment().endOf('month').format("DD/MM/YYYY"))
     
 }
 function BindUsers() {

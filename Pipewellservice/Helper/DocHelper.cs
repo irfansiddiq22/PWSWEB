@@ -27,7 +27,6 @@ namespace Pipewellservice.Helper
                 foreach(MergeField field in mergefields)
                 {
                     Doc.Content.Find.Execute(FindText: field.Field,  MatchCase:false,Forward:false, ReplaceWith: field.Value, Replace: Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll);
-
                 }
 
                 WordApp.ActiveDocument.SaveAs2(SaveFilePath);

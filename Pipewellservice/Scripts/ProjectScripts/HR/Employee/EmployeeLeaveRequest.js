@@ -40,6 +40,7 @@ function _Init() {
                 SetvalOf("txtRecordEndDate", moment(selected.date).add(1, 'day').format("DD/MM/YYYY"));
         });
 
+        
         $(".datepicker").on('changeDate', function (selected) {
             ResetMessageText();
         });

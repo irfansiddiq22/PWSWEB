@@ -118,9 +118,6 @@ namespace Pipewellservice.Helper
 
                 string Resouces = DirectoryToSave.Name;
 
-             
-
-
                 string TemplateFile = $"{Config.ResourcesDirectory}\\{Resouces}\\{ Template.Name }";
              
                 if (System.IO.File.Exists(TemplateFile))

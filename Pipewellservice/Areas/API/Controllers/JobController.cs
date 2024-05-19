@@ -40,6 +40,7 @@ namespace Pipewellservice.Areas.API.Controllers
         {
             
              string JobOfferTemplatePath=await FileHelper.GetTemplateFile( DirectoryNames.Templates,DocTemplates.JobOffer);
+            
             string JobOffer = await FileHelper.GetPath(DirectoryNames.EmployeeJobOffer);
             string Extenstion = Path.GetExtension(JobOfferTemplatePath);
             job.FileID = Extenstion;
@@ -62,7 +63,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
             try
             {
-                await DocHelper.ConvertDocument(JobOfferTemplatePath, $"{JobOffer}\\{OfferID}{Extenstion}", mergeFields);
+                await DocHelper.ConvertDocument(JobOfferTemplatePath, $"{Config.ResourcesDirectory}\\{JobOffer}\\{OfferID}{Extenstion}", mergeFields);
             }catch(Exception e)
             {
 
@@ -101,6 +102,7 @@ namespace Pipewellservice.Areas.API.Controllers
         {
 
             string JobContractTemplatePath = await FileHelper.GetTemplateFile(DirectoryNames.Templates, DocTemplates.Contract);
+
             string JobContract = await FileHelper.GetPath(DirectoryNames.EmployeeJobContract);
             string Extenstion = Path.GetExtension(JobContractTemplatePath);
             job.FileID = Extenstion;
@@ -139,7 +141,7 @@ namespace Pipewellservice.Areas.API.Controllers
             mergeFields.Add(new MergeField("<date>", job.StartDate==null ? "": Convert.ToDateTime (job.StartDate).ToString("dd/MM/yyyy")));
             mergeFields.Add(new MergeField("<date-ar>", job.StartDate == null ? "" : Convert.ToDateTime(job.StartDate).ToString("yyyy/MM/dd")));
 
-            mergeFields.Add(new MergeField("<TRANSPORT>", job.Transportation > 0 ? $"{job.Transportation}% from Basic" : "Will be provided by the Company"));
+            mergeFields.Add(new MergeField("<TRANSPORT>", job.Transportation > 0 ? $"{Config.ResourcesDirectory}\\{job.Transportation}% from Basic" : "Will be provided by the Company"));
             mergeFields.Add(new MergeField("<APPROVAL>", hr.Name));
             mergeFields.Add(new MergeField("<APPROVAL-AR>", hr.ArabicName));
 
