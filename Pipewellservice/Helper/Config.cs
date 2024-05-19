@@ -10,5 +10,6 @@ namespace Pipewellservice.Helper
     public class Config
     {
         public static readonly string ResourcesDirectory = ConfigurationManager.AppSettings["Resources"];
+        public static readonly string SMTPPassword = ConfigurationManager.AppSettings["SMTPPassword"];
     }
 }
