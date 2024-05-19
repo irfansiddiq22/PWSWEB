@@ -287,3 +287,4 @@ __pycache__/
 /Pipewellservice/Pipewellservice.csproj
 /Pipewellservice/licenses.licx
 /Pipewellservice/Pipewellservice.csproj
+/Pipewellservice/Areas/API/Controllers/JobController.cs
