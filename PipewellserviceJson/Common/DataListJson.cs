@@ -42,8 +42,13 @@ namespace PipewellserviceJson.Common
         {
             return await JsonHelper.Convert<List<EmailTemplate>, DataTable>(await service.EmployeeRequestEmailTemplates());
         }
+        public async Task<List<EmailTemplate>> EmployeeShortLeaveRequestEmailTemplates()
+        {
+            return await JsonHelper.Convert<List<EmailTemplate>, DataTable>(await service.EmployeeShortLeaveRequestEmailTemplates());
+        }
 
         
+
 
 
     }

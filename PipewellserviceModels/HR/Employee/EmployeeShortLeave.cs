@@ -12,6 +12,8 @@ namespace PipewellserviceModels.HR.Employee
         public string Remarks { get; set; }
         public string LeaveTime { get; set; }
         public List<EmployeeApproval> Approvals { get; set; }
+
+
     }
 
     public class EmployeeShortLeaveListView

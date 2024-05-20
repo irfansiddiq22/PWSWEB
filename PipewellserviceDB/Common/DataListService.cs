@@ -109,5 +109,20 @@ namespace PipewellserviceDB.Common
                 return null;
             }
         }
+        public async Task<DataTable> EmployeeShortLeaveRequestEmailTemplates()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeShortLeaveRequestEmailTemplates", CommandType.StoredProcedure);
+                DataTable model = new DataTable();
+
+                model.Load(result);
+                return model;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }

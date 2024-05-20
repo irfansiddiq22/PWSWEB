@@ -189,7 +189,10 @@ namespace Pipewellservice.Controllers
         {
             ViewBag.Title = "Employee Short Leave";
             ViewBag.Parent = Parent;
-            return View("_PartialEmployeeShortLeave");
+            if (SessionHelper.UserGroup() == 2)
+                return View("_PartialEmployeeShortLeave");
+            else
+                return View("_PartialEmployeeShortLeaveHR");
         } 
 
         public ActionResult FormHandover()

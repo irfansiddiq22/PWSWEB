@@ -31,5 +31,22 @@ namespace PipewellserviceModels.Common
 
         public int NationalityID { get; set; }
         public string Nationality { get; set; }
+
+
+
+        public int PendingApprovals { private get; set; }
+        public int ApprovedApprovals { private get; set; }
+        public int RejectApprovals { private get; set; }
+        public string Status
+        {
+            get
+            {
+                if (RejectApprovals > 0) return "Rejected";
+                else if (PendingApprovals == 0 && ApprovedApprovals > 0) return "Approved";
+                else return "InProcess";
+
+            }
+        }
+
     }
 }

@@ -45,6 +45,22 @@ namespace Pipewellservice.Helper
                 ProcessMail = true;
 
             }
+            else if (type == ApprovalTypes.ShortLeave)
+            {
+                ProcessMail = true;
+                EmployeeShortLeave record = JsonConvert.DeserializeObject<EmployeeShortLeave>(result.Request[0].ToString());
+                field.Add(new MergeField("DATE", record.RecordDate == null ? DateTime.Now.ToString("MM/dd/yyyy hh:mm tt") : Convert.ToDateTime(record.RecordDate).ToString("MM/dd/yyyy hh:mm tt")));
+                field.Add(new MergeField("REMARKS", record.Remarks));
+                Attachment = "";
+                if (record.FileID != null)
+                {
+                    Attachment = await FileHelper.GetFile(record.FileID, record.EmployeeID, DirectoryNames.EmployeeShortLeave);
+                }
+
+
+                ProcessMail = true;
+
+            }
             if (ProcessMail)
             {
                 string Row = "";

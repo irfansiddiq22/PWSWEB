@@ -312,9 +312,9 @@ namespace PipewellserviceJson.HR.Employee
             return await service.DeleteEmployeeShortLeave(ID, EmployeeID);
         }
 
-        public async Task<ResultDTO> UpdateEmployeeShortLeaveSheet(int EmployeeID, string FileName, string FileID)
+        public async Task<ResultDTO> UpdateEmployeeShortLeaveSheet(int ID, string FileName, string FileID)
         {
-            return await service.UpdateEmployeeShortLeaveSheet(EmployeeID, FileName, FileID);
+            return await service.UpdateEmployeeShortLeaveSheet(ID, FileName, FileID);
         }
         //..............................
 

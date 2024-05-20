@@ -1152,8 +1152,8 @@ namespace PipewellserviceDB.HR.Employee
 
                 SqlParameter[] collSP = new SqlParameter[3];
                 collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = param.EmployeeID };
-                collSP[1] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate };
-                collSP[2] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate };
+                collSP[1] = new SqlParameter { ParameterName = "@StartDate", Value = (param.StartDate.Year == 1 ? "" : param.StartDate.ToShortDateString()) };
+                collSP[2] = new SqlParameter { ParameterName = "@EndDate", Value = (param.EndDate.Year == 1 ? "" : param.EndDate.ToShortDateString()) };
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeShortLeaveList", CommandType.StoredProcedure, collSP);
                 EmployeeJoiningDB dt = new EmployeeJoiningDB();
                 dt.Joining.Load(result);

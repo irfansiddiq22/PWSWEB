@@ -868,7 +868,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.ShortLeave, 1, 1)]
+        [Authorization(Pages.ShortLeave, 1, 2)]
         public async Task<JsonResult> UpdateEmployeeShortLeave(EmployeeShortLeave record)
         {
             record.RecordCreatedBy = SessionHelper.UserSession().ID;
@@ -891,7 +891,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
                 if (result)
                 {
-                    var Update = await json.UpdateEmployeeShortLeaveSheet(EmployeeID, file.FileName, FileID);
+                    var Update = await json.UpdateEmployeeShortLeaveSheet(ID, file.FileName, FileID);
 
                     return new JsonResult
                     {
@@ -907,6 +907,88 @@ namespace Pipewellservice.Areas.API.Controllers
                 Data = new ResultDTO() { ID = EmployeeID, Status = false, Message = "No file to upload" },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
+        }
+
+        public async Task<JsonResult> ProcessShortLeaveMail(EmployeeShortLeave record)
+        {
+            bool result = false;
+            try
+            {
+                var User = SessionHelper.UserSession();
+
+                record.RecordCreatedBy = User.ID;
+
+
+                List<MergeField> field = new List<MergeField>();
+
+                field.Add(new MergeField("DATE", record.RecordDate == null ? DateTime.Now.ToString("MM/dd/yyyy hh:mm tt") : Convert.ToDateTime(record.RecordDate).ToString("MM/dd/yyyy hh:mm tt")));
+                field.Add(new MergeField("REMARKS", record.Remarks));
+                field.Add(new MergeField("EMP_NAME", User.Name));
+                field.Add(new MergeField("EMP_ID", User.EmployeeID.ToString()));
+
+
+                string Row = "";
+                string Status = "";
+                EmployeeSupervisor Supervisor = new EmployeeSupervisor();
+                List<EmailTemplate> EmplyeeRequestTemplates = await (new DataListJson()).EmployeeShortLeaveRequestEmailTemplates();
+                Row = Row + $"<tr><td>{ User.Name }</td><td>{ User.Position }</td><td>Requested</td></tr>";
+
+
+                foreach (EmployeeSupervisor requestApprover in SessionHelper.UserSession().Supervisors)
+                {
+                    if (requestApprover.SupervisorType == SupervisorTypes.Supervisor)
+                    {
+                        Status = "Pending Approval";
+                        Supervisor = requestApprover;
+                    }
+
+                    else if (requestApprover.SupervisorType == SupervisorTypes.HRManager)
+                        Status = "Pending Approval";
+
+                    Row = Row + $"<tr><td>{ requestApprover.Name }</td><td>{ requestApprover.Position }</td><td>{Status}</td></tr>";
+                }
+
+                field.Add(new MergeField("APPROVALS", Row));
+                var EmailTemplate = new EmailTemplate();
+                var SupervisorEmailTemplate = new EmailTemplate();
+                foreach (EmailTemplate template in EmplyeeRequestTemplates)
+                {
+                    if (template.Type == 1)
+                        EmailTemplate = template;
+                    else if (template.Type == 2)
+                        SupervisorEmailTemplate = template;
+                }
+
+                EmailHelper email = new EmailHelper();
+                var status = await email.SendEmail(new EmailDTO() { To = User.EmailAddress, From = "no-reply@pipewellservices.com", Subject = EmailTemplate.Subject, Body = EmailTemplate.Body }, field);
+                if (status && Supervisor.ID > 0 && Supervisor.EmailAddress != "")
+                {
+
+                    field.Add(new MergeField("APPROVE_NAME", Supervisor.Name));
+                    field.Add(new MergeField("PORTAL_LINK", ""));
+                    string Attachment = "";
+                    if (record.FileID != null)
+                    {
+                        Attachment = await FileHelper.GetFile(record.FileID, record.EmployeeID, DirectoryNames.EmployeeShortLeave);
+                    }
+
+
+                    status = await email.SendEmail(new EmailDTO() { To = Supervisor.EmailAddress, From = "no-reply@pipewellservices.com", Subject = SupervisorEmailTemplate.Subject, Body = SupervisorEmailTemplate.Body, Attachment = Attachment }, field);
+                }
+                result = true;
+            }
+            catch (Exception e)
+            {
+
+            }
+
+
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+
         }
         [Authorization(Pages.ShortLeave, 1, 1)]
         public async Task<JsonResult> DeleteEmployeeShortLeave(int ID)

@@ -392,6 +392,7 @@
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeJoining.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeLeaveRequestHr.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeLeaveRequest.js" />
+    <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeShortLeaveHr.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeShortLeave.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeVacation.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeWarning.js" />
@@ -505,10 +506,8 @@
     <Content Include="Views\Employee\_PartialEmployeeVacation.cshtml" />
     <Content Include="Views\Employee\_PartialCompanyVistor.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeTravel.cshtml" />
-    <Content Include="Views\Employee\_PartialEmployeeLeaveRequest.cshtml" />
     <Content Include="Views\Employee\_PartialCompanyTravel.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeTravelRequest.cshtml" />
-    <Content Include="Views\Employee\_PartialEmployeeLeaveRequets.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeInquiryHr.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeePassport.cshtml" />
     <Content Include="Views\Employee\_PartialTempEmployee.cshtml" />
@@ -526,6 +525,7 @@
     <Content Include="Views\Employee\_PartialEmployeeLeaves.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeLeavesHr.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeInquiry.cshtml" />
+    <Content Include="Views\Employee\_PartialEmployeeShortLeaveHR.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
