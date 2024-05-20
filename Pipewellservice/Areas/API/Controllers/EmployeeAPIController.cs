@@ -618,11 +618,11 @@ namespace Pipewellservice.Areas.API.Controllers
 
                 if (result)
                 {
-                    var Update = await json.UpdateEmployeeInquiryFile(EmployeeID, file.FileName, FileID);
+                    var Update = await json.UpdateEmployeeInquiryFile(ID, file.FileName, FileID);
 
                     return new JsonResult
                     {
-                        Data = new ResultDTO() { ID = EmployeeID, Status = true, Message = " file uploaded", FileID=FileID },
+                        Data = new ResultDTO() { ID = ID, Status = true, Message = " file uploaded", FileID=FileID },
                         JsonRequestBehavior = JsonRequestBehavior.AllowGet
                     };
                 }

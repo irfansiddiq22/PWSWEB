@@ -83,7 +83,7 @@ function BindInquiryList(PageNumber = 1) {
             $.each(data, function (i, r) {
                 var tr = $('<tr>')
                 tr.append($('<td>').text(r.ID))
-
+                tr.append($('<td>').append(r.Division))
                 tr.append($('<td>').text(moment(r.InquiryDate).format("DD/MM/YYYY")))
                 tr.append($('<td>').append(r.Remarks))
 
@@ -153,10 +153,7 @@ function SaveEmployeeInquiry() {
             
             var fileUpload = $('#InquiryFile').get(0);
             var files = fileUpload.files;
-            if (files.length == 0) {
-                swal("Please attach request form", { icon: "error" });
-                return false;
-            }
+            
             Post("/EmployeeAPI/AddEmployeeInquiry", { Inquiry: NewInquiry }).done(function (ID) {
                 if (ID > 0) {
 
@@ -191,7 +188,8 @@ function SaveEmployeeInquiry() {
                             swal("Employee request record added", { icon: "success" })
                         else
                             swal("Employee request updated added", { icon: "success" })
-
+                        NewInquiry.ID = ID;
+                        ProcessInquiryMail(NewInquiry);
                         BindInquiryList()
                         ResetNav();
                     }
