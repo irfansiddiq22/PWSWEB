@@ -35,7 +35,13 @@ namespace Pipewellservice.Helper
                 EmployeeInquiry record = JsonConvert.DeserializeObject<EmployeeInquiry>(result.Request[0].ToString());
                 field.Add(new MergeField("DATE", record.InquiryDate == null ? DateTime.Now.ToString("MM/dd/yyyy") : Convert.ToDateTime(record.InquiryDate).ToString("MM/dd/yyyy")));
                 field.Add(new MergeField("REMARKS", record.Remarks));
-                Attachment = await FileHelper.GetFile(record.FileID, record.EmployeeID, DirectoryNames.EmployeeInquiry);
+                Attachment = "";
+                if (record.FileID != null)
+                {
+                    Attachment = await FileHelper.GetFile(record.FileID, record.EmployeeID, DirectoryNames.EmployeeInquiry);
+                }
+
+                
                 ProcessMail = true;
 
             }
