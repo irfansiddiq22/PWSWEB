@@ -48,7 +48,7 @@ namespace Pipewellservice.Areas.API.Controllers
             HRManager hr = await (new EmployeeJson()).HRManager();
 
             List<MergeField> mergeFields = new List<MergeField>();
-            mergeFields.Add(new MergeField("<NAME>", job.Name));
+        /*    mergeFields.Add(new MergeField("<NAME>", job.Name));
             mergeFields.Add(new MergeField("<NAME-AR>", job.NameAr));
             mergeFields.Add(new MergeField("<NATIONALITY>", job.Nationality));
             mergeFields.Add(new MergeField("<JOB TITLE>", job.JobTitle));
@@ -57,7 +57,20 @@ namespace Pipewellservice.Areas.API.Controllers
             mergeFields.Add(new MergeField("<TRANSPORT>", job.Transportation >0 ?$"{job.Transportation}% from Basic" :"Will be provided by the Company"));
             mergeFields.Add(new MergeField("<HOUSING>", job.Housing > 0 ? $"{job.Housing}% from Basic" : "Will be provided by the Company"));
             mergeFields.Add(new MergeField("<APPROVAL>", hr.Name));
-            mergeFields.Add(new MergeField("<APPROVAL-AR>", hr.ArabicName));
+            mergeFields.Add(new MergeField("<APPROVAL-AR>", hr.ArabicName));*/
+
+            mergeFields.Add(new MergeField("&lt;NAME&gt;", job.Name));
+            mergeFields.Add(new MergeField("&lt;NAME-AR&gt;", job.NameAr));
+            mergeFields.Add(new MergeField("&lt;NATIONALITY&gt;", job.Nationality));
+            mergeFields.Add(new MergeField("&lt;JOB TITLE&gt;", job.JobTitle));
+            mergeFields.Add(new MergeField("&lt;BASIC&gt;", job.Basic.ToString()));
+            mergeFields.Add(new MergeField("&lt;PERIOD&gt;", job.Period.ToString()));
+            mergeFields.Add(new MergeField("&lt;TRANSPORT&gt;", job.Transportation > 0 ? $"{job.Transportation}% from Basic" : "Will be provided by the Company"));
+            mergeFields.Add(new MergeField("&lt;HOUSING&gt;", job.Housing > 0 ? $"{job.Housing}% from Basic" : "Will be provided by the Company"));
+            mergeFields.Add(new MergeField("&lt;APPROVAL&gt;", hr.Name));
+            mergeFields.Add(new MergeField("&lt;APPROVAL-AR&gt;", hr.ArabicName));
+
+            //&lt;
             DocHelper DocHelper = new DocHelper();
             
 
@@ -110,7 +123,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
             HRManager hr = await (new EmployeeJson()).HRManager();
             List<MergeField> mergeFields = new List<MergeField>();
-            mergeFields.Add(new MergeField("<CR>", job.CompanyRegNumber));
+            /*mergeFields.Add(new MergeField("<CR>", job.CompanyRegNumber));
             mergeFields.Add(new MergeField("<EMP-NAME>", job.Name));
             mergeFields.Add(new MergeField("<EMP-NAME-AR>", job.NameAr));
 
@@ -144,6 +157,41 @@ namespace Pipewellservice.Areas.API.Controllers
             mergeFields.Add(new MergeField("<TRANSPORT>", job.Transportation > 0 ? $"{Config.ResourcesDirectory}\\{job.Transportation}% from Basic" : "Will be provided by the Company"));
             mergeFields.Add(new MergeField("<APPROVAL>", hr.Name));
             mergeFields.Add(new MergeField("<APPROVAL-AR>", hr.ArabicName));
+
+            mergeFields.Add(new MergeField("<CR>", job.CompanyRegNumber));
+            mergeFields.Add(new MergeField("<EMP-NAME>", job.Name));
+            mergeFields.Add(new MergeField("<EMP-NAME-AR>", job.NameAr));
+
+            mergeFields.Add(new MergeField("<NATIONALITY>", country.Nationality));
+            mergeFields.Add(new MergeField("<NATIONALITY-AR>", country.ArabicNationality));
+
+            mergeFields.Add(new MergeField("<COUNTRY>", job.Name));
+            mergeFields.Add(new MergeField("<COUNTRY-AR>", country.ArabicName));*/
+
+
+            mergeFields.Add(new MergeField("&lt;ID&gt;", job.IDNumber));
+            mergeFields.Add(new MergeField("&lt;EMAIL&gt;", job.EmailAddress));
+
+            mergeFields.Add(new MergeField("&lt;MOBILE&gt;", job.MobileNumber));
+
+            mergeFields.Add(new MergeField("&lt;JOB TITLE&gt;", job.JobTitle));
+            mergeFields.Add(new MergeField("&lt;JOB TITLE-AR&gt;", job.JobTitleAr));
+            mergeFields.Add(new MergeField("&lt;PERIOD-AR&gt;", job.PeriodAr.ToString()));
+            mergeFields.Add(new MergeField("&lt;PERIOD&gt;", job.Period.ToString()));
+
+            mergeFields.Add(new MergeField("&lt;BASIC&gt;", job.Basic.ToString()));
+            mergeFields.Add(new MergeField("&lt;TRANSPORT-AR&gt;", job.Transportation > 0 ? $"من الراتب الأساسي {job.Transportation}%" : "سيتم توفيرها من قبل الشركة"));
+            mergeFields.Add(new MergeField("&lt;TRANSPORT&gt;", job.Transportation > 0 ? $"{job.Transportation}% from Basic" : "Will be provided by the Company"));
+
+            mergeFields.Add(new MergeField("&lt;HOUSING&gt;", job.Housing >0 ? $"{job.Housing}% from Basic" : "Will be provided by the Company"));
+            mergeFields.Add(new MergeField("&lt;HOUSING-AR&gt;", job.Housing> 0 ? $"من الراتب الأساسي {job.Transportation}%" : "سيتم توفيرها من قبل الشركة"));
+
+            mergeFields.Add(new MergeField("&lt;date&gt;", job.StartDate == null ? "" : Convert.ToDateTime(job.StartDate).ToString("dd/MM/yyyy")));
+            mergeFields.Add(new MergeField("&lt;date-ar&gt;", job.StartDate == null ? "" : Convert.ToDateTime(job.StartDate).ToString("yyyy/MM/dd")));
+
+            mergeFields.Add(new MergeField("&lt;TRANSPORT&gt;", job.Transportation > 0 ? $"{Config.ResourcesDirectory}\\{job.Transportation}% from Basic" : "Will be provided by the Company"));
+            mergeFields.Add(new MergeField("&lt;APPROVAL&gt;", hr.Name));
+            mergeFields.Add(new MergeField("&lt;APPROVAL-AR&gt;", hr.ArabicName));
 
             DocHelper DocHelper = new DocHelper();
 
