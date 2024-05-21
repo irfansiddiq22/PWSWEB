@@ -149,7 +149,7 @@ function SaveEmployeeLeave() {
                                 else
                                     swal("Employee Leave record updated ", { icon: "success" })
                                 ProcessShortLeaveMail();
-                                BindShortLeaves()
+                                BindShortLeaves(NewLeave)
                                 CancelNewLeave();
                             } else {
 
@@ -163,7 +163,7 @@ function SaveEmployeeLeave() {
                             swal("Employee leave record added", { icon: "success" })
                         else
                             swal("Employee leave records updated", { icon: "success" })
-                        ProcessShortLeaveMail();
+                        ProcessShortLeaveMail(NewLeave);
                         BindShortLeaves()
                         CancelNewLeave();
 
@@ -180,7 +180,7 @@ function SaveEmployeeLeave() {
     });
 }
 function ProcessShortLeaveMail() {
-    Post("/EmployeeAPI/ProcessShortLeaveMail", {}, function (resp) { });
+    Post("/EmployeeAPI/ProcessShortLeaveMail", { record: NewLeave}, function (resp) { });
 }
 function CancelNewLeave() {
     document.getElementById("frmShortLeave").reset();

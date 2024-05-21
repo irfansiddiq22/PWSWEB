@@ -921,7 +921,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
                 List<MergeField> field = new List<MergeField>();
 
-                field.Add(new MergeField("DATE", record.RecordDate == null ? DateTime.Now.ToString("MM/dd/yyyy hh:mm tt") : Convert.ToDateTime(record.RecordDate).ToString("MM/dd/yyyy hh:mm tt")));
+                field.Add(new MergeField("DATE", record.RecordDate == null ? DateTime.Now.ToString("MM/dd/yyyy hh:mm tt") : Convert.ToDateTime(record.RecordDate.ToShortDateString() + " " + record.LeaveTime).ToString("MM/dd/yyyy hh:mm tt")));
                 field.Add(new MergeField("REMARKS", record.Remarks));
                 field.Add(new MergeField("EMP_NAME", User.Name));
                 field.Add(new MergeField("EMP_ID", User.EmployeeID.ToString()));
