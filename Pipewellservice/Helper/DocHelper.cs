@@ -74,11 +74,14 @@ namespace Pipewellservice.Helper
             //    return false;
             //}
 
-            System.IO.File.Copy(@"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\Template\CONTRACT TEMPLATE.doc", @"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\Template\CONTRACT TEMPLATE2.doc", true);
+            // System.IO.File.Copy(@"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\Template\CONTRACT TEMPLATE.docx", @"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\Template\CONTRACT TEMPLATE2.docx", true);
+
+            System.IO.File.Copy(@FilePath, SaveFilePath, true);
+
 
 
             using (WordprocessingDocument doc =
-                  WordprocessingDocument.Open(@"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\Template\CONTRACT TEMPLATE2.doc", true))
+                  WordprocessingDocument.Open(SaveFilePath, true))
             {
                 //var body = doc.MainDocumentPart.Document.Body;
                 //var paras = body.Elements<Paragraph>();
