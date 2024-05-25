@@ -137,7 +137,7 @@ function CreateRooms(RoomCount,AppartmentID) {
     var treegrid = 1;
     for (i = 1; i <= RoomCount; i++) {
 
-        var tr = $('<tr class="rooms' + AppartmentID + '" data-id="' + i + '" class="permissiongroup treegrid-' + treegrid + '">')
+        var tr = $('<tr data-id="' + i + '" class="rooms' + AppartmentID + ' treegrid-' + treegrid + '">')
         tr.append($('<td>').text("Room " + i));
         $(table).append(tr);
         var tparent = treegrid;
