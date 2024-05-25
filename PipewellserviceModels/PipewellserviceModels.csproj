@@ -57,6 +57,7 @@
     <Compile Include="Common\MergeField.cs" />
     <Compile Include="Common\RecordLog.cs" />
     <Compile Include="Common\ResultDTO.cs" />
+    <Compile Include="HR\Employee\Accommodation.cs" />
     <Compile Include="HR\Employee\Asset.cs" />
     <Compile Include="HR\Employee\Certificate.cs" />
     <Compile Include="HR\Employee\Employee.cs" />

@@ -1,0 +1,104 @@
+﻿
+<div class="border p-2">
+
+    <nav id="dvBuildingPlan">
+        <div class="nav nav-tabs" id="nav-buildings" role="tablist">
+
+            <button class="nav-link btn btn-sm blue" id="nav-add-building" data-bs-toggle="tab" data-bs-target="#nav-new-building" type="button" role="tab" aria-controls="nav-new-building"><span class="text-white me-2"><i class="fa  fa-plus-circle me-2"></i>Add New Building </span></button>
+        </div>
+        <div class="tab-content border m2 p-3" id="nav-buildingsContent">
+            <div class="tab-pane fade active show" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab"></div>
+            <div class="tab-pane fade " id="nav-new-building" role="tabpanel" aria-labelledby="nav-new-building">
+
+                <div class="container w-50">
+                    <div class="blue"><b>Add New Building</b></div>
+                    <div class="border p-2">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-roup">
+                                    <label class="col-form-label" for="txtbuildingName">Name:</label>
+                                    <input class="form-control form-control-sm" id="txtbuildingName" name="txtbuildingName">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-goup">
+                                    <label class="col-form-label" for="BuildingFloor">Number of Floor</label>
+                                    <input type="number" min="1" max="20" class="form-control form-control-sm" id="txtBuildingFloor" name="BuildingFloor">
+                                </div>
+                            </div>
+                            <div class="col-md-2 align-self-end">
+                                <button class="btn btn-sm btn-primary" onclick="CreateNewBuilding()">Create</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="dvAppartmentPlan" class="d-none">
+
+        <div class="blue" id="dvAppartmentLabel">Build Name , Floor ,Appartment Number</div>
+        <div class="border">
+            <table class="table table-sm w-100">
+                <tbody>
+                    <tr>
+                        <td width="10%"></td>
+                        <td width="130px" class="font-weight-bold"><strong>Number of Rooms:</strong></td>
+                        <td width="8%"><input type="number" class="form-control" id="txtNoOfBeds" onblur="CreateRoomPlan(this,'')" /></td>
+                        <td></td>
+                    </tr>
+                    <tr><td id="trRooms" colspan="4"></td></tr>
+                    <tr><td colspan="4"><button class="btn btn-sm btn-primary">Save</button><button class="btn btn-sm btn-danger" onclick="CancelAppartmentPlan()">Cancel</button></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="dlgNewAppartmentRoom">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Room Plan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="blue" id="dvRoomPlanText">Build Name , Floor ,Appartment Number, Room #</div>
+                    <div class="border">
+                        <table class="table table-sm w-100">
+                            <tbody>
+                                <tr>
+                                    <td>Number of Beds:</td>
+                                    <td><input type="number" class="form-control" id="txtNoOfBeds" onblur="CreateEmployeeBeds(this,'trBeds')" /></td>
+                                </tr>
+                                <tr><td id="trBeds" colspan="2"></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="dlgNewAppartment">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Appartment Plan</h5>
+                    <button type="button" class="btn-close close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/treegrid")
+    @Scripts.Render("~/lib/hr/accommodation")
+    @Styles.Render("~/Content/treegrid")
+
+}

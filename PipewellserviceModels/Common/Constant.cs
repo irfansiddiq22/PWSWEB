@@ -148,7 +148,8 @@ namespace PipewellserviceModels.Common
         Joining=20,
         ShortLeave=21,
         LeaveRequest = 22,
-        Approvals=23
+        Approvals=23,
+        Accommodation=24
     }
 
     public enum DirectoryNames

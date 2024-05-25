@@ -20,7 +20,9 @@
     Vendor: 19,
     EmployeeJoining: 20,
     ShortLeave: 21,
-    LeaveRequest:22
+    LeaveRequest: 22,
+    Approvals:23,
+    Accommodation:24
 
 }
 var PAGEGROUPS = {

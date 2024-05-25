@@ -119,7 +119,14 @@ namespace Pipewellservice.Controllers
             ViewBag.Parent = Parent;
             return View("_PartialEmployeeVacation");
         }
-        
+        [Authorization(Pages.Accommodation)]
+        public ActionResult Accommodation()
+        {
+            ViewBag.Title = "Employee Accommodation";
+            ViewBag.Parent = Parent;
+            return View("_PartialEmployeeAccommodation");
+        }
+
         public ActionResult Joining()
         {
             ViewBag.Title = "Employee Joining";
