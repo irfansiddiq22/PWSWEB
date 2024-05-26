@@ -113,7 +113,9 @@ function CreateFloor(i,ID) {
     $.each(Buildings.Appartments.filter(x => x.BuildingID == ID && x.FloorNumber == i), function (i, apt) {
         treegrid++;
         aptRow = $('<tr class="treegrid-' + treegrid + '">')
-        $(aptRow).append($('<td  class="align-middle blue">').text("Appartment " + apt.AppartmentNumber));
+        var EmpBeds = Buildings.Rooms.filter(x => x.AppartmentID == apt.ID && x.EmployeeID == 0);
+
+        $(aptRow).append($('<td  class="align-middle blue">').append("Appartment " + apt.AppartmentNumber + (EmpBeds.length > 0 ? " Empty Beds: <span class='badge bg-danger' style='font-size:17px'>" + EmpBeds.length + "</span>" : "")));
         $(aptTable).append($(aptRow));
         aptRow = $('<tr class="treegrid-parent-' + treegrid +'">')
         aptRow.append($('<td>').append(CreateAppartment(apt)));
