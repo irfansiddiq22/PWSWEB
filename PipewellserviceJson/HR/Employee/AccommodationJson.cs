@@ -18,7 +18,7 @@ namespace PipewellserviceJson.HR.Employee
             BuildingView model = new BuildingView();
             model.Buildings=await JsonHelper.Convert<List<Building>, DataTable>(db.Buildings);
             model.Appartments = await JsonHelper.Convert<List<Appartment>, DataTable>(db.Appartments);
-            model.Rooms = await JsonHelper.Convert<List<Room>, DataTable>(db.Rooms);
+            model.Rooms = await JsonHelper.Convert<List<RoomBeds>, DataTable>(db.Rooms);
             return model;
         }
 
@@ -34,6 +34,14 @@ namespace PipewellserviceJson.HR.Employee
         {
             return await service.AddAppartment(appt);
         }
-        
+
+        public async Task<bool> AssignRoomBeds(List<RoomBeds> beds)
+        {
+            return await service.AssignRoomBeds(beds);
+        }
+        public async Task<bool> AssignAppartmentPlan(Appartment appertment, List<RoomBeds> beds)
+        {
+            return await service.AssignAppartmentPlan(appertment,beds);
+        }
     }
 }

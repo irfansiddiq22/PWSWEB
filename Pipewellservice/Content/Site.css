@@ -11,7 +11,8 @@
 body {
     /*padding-top: 50px;*/
     padding-bottom: 20px;
-    font-family: 'Source Sans Pro', sans-serif !important
+    font-family: 'Source Sans Pro', sans-serif !important;
+    --bs-nav-tabs-link-active-bg: ##ffc107!important;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -196,7 +197,7 @@ p {
 }
 
 .nav-link {
-    color: var(--bs-navbar-brand-color) !important;
+    /*color: var(--bs-body-bg) !important;*/
 }
 
     .nav-link .active {

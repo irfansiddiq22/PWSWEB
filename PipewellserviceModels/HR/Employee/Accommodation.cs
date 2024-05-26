@@ -25,7 +25,7 @@ namespace PipewellserviceModels.HR.Employee
     public class BuildingView {
         public List<Building> Buildings { get; set; }
         public List<Appartment> Appartments { get; set; }
-        public List<Room> Rooms { get; set; }
+        public List<RoomBeds> Rooms { get; set; }
     }
 
     public class Building
@@ -43,7 +43,7 @@ namespace PipewellserviceModels.HR.Employee
         public int AppartmentNumber { get; set; }
         public int NoOfRoom { get; set; }
     }
-    public class Room
+    public class RoomBeds
     {
         public int AppartmentID { get; set; }
         public int RoomNumber { get; set; }

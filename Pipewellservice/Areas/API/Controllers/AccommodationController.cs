@@ -56,5 +56,26 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
+
+        [Authorization(Pages.Accommodation, 1, 2)]
+        public async Task<JsonResult> AssignRoomBeds(List<RoomBeds> beds)
+        {
+            return new JsonResult
+            {
+                Data = await json.AssignRoomBeds(beds),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        [Authorization(Pages.Accommodation, 1, 2)]
+        public async Task<JsonResult> AssignAppartmentPlan(Appartment appertment,List<RoomBeds> beds)
+        {
+            return new JsonResult
+            {
+                Data = await json.AssignAppartmentPlan(appertment,beds),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
     }
 }
