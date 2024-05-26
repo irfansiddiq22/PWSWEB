@@ -398,7 +398,7 @@ function SaveRoomBedPlan(Beds) {
     Post("/Accommodation/AssignRoomBeds", {
         beds: Beds
     }).done(function (resp) {
-
+        ShowBuildings();
         });
     EditRoomPlanData = [];
 }
@@ -451,6 +451,7 @@ function SaveAppartmentPlan() {
         return false;
     }
     Post("/Accommodation/AssignAppartmentPlan", { appertment: NewAppartmentPlan, beds: Beds}).done(function (resp) {
-
+        ShowBuildings();
+        NewAppartmentPlan = {}
     });
 }
