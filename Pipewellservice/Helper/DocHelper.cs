@@ -113,8 +113,10 @@ namespace Pipewellservice.Helper
                     docText = sr.ReadToEnd();
 
                 foreach (var t in mergefields)
-                    docText = new Regex(t.Field, RegexOptions.IgnoreCase).Replace(docText, t.Value);
-
+                {
+                    
+                    docText = new Regex($"CHANGE-{t.Field}" , RegexOptions.IgnoreCase).Replace(docText, t.Value);
+                }
                 using (StreamWriter sw = new StreamWriter(doc.MainDocumentPart.GetStream(FileMode.Create)))
                     sw.Write(docText);
                 
