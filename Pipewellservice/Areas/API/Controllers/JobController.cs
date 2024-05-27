@@ -211,8 +211,8 @@ namespace Pipewellservice.Areas.API.Controllers
 
             mergeFields.Add(new MergeField("MOBILE", job.MobileNumber));
 
-            mergeFields.Add(new MergeField("JOB TITLE", job.JobTitle));
-            mergeFields.Add(new MergeField("JOB TITLE-AR", job.JobTitleAr));
+            mergeFields.Add(new MergeField("JOBTITLE", job.JobTitle));
+            mergeFields.Add(new MergeField("JOBTITLE-AR", job.JobTitleAr));
             mergeFields.Add(new MergeField("PERIOD-AR", job.PeriodAr.ToString()));
             mergeFields.Add(new MergeField("PERIOD", job.Period.ToString()));
 
@@ -229,6 +229,16 @@ namespace Pipewellservice.Areas.API.Controllers
             mergeFields.Add(new MergeField("TRANSPORT", job.Transportation > 0 ? $"Config.ResourcesDirectory\\job.Transportation% from Basic" : "Will be provided by the Company"));
             mergeFields.Add(new MergeField("APPROVAL", hr.Name));
             mergeFields.Add(new MergeField("APPROVAL-AR", hr.ArabicName));
+
+            mergeFields.Add(new MergeField("CR", job.CompanyRegNumber));
+            mergeFields.Add(new MergeField("EMP-NAME", job.Name));
+            mergeFields.Add(new MergeField("EMP-NAME-AR", job.NameAr));
+
+            mergeFields.Add(new MergeField("NATIONALITY", country.Nationality));
+            mergeFields.Add(new MergeField("NATIONALITY-AR", country.ArabicNationality));
+
+            mergeFields.Add(new MergeField("COUNTRY", job.Name));
+            mergeFields.Add(new MergeField("COUNTRY-AR", country.ArabicName));
 
             DocHelper DocHelper = new DocHelper();
 
