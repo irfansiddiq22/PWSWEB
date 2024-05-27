@@ -76,13 +76,13 @@ namespace PipewellserviceDB.HR.Employee
                 return 0;
             }
         }
-        public async Task<bool> AssignRoomBeds(List<RoomBeds> beds)
+        public async Task<bool> AssignRoomBeds(List<RoomBed> beds)
         {
             try
             {
                 StringBuilder xml = new StringBuilder();
                 xml.Append("<Dataset>");
-                foreach (RoomBeds bed in beds)
+                foreach (RoomBed bed in beds)
                 {
                     xml.Append($"<Bed><AppartmentID>{bed.AppartmentID}</AppartmentID><RoomNumber>{bed.RoomNumber}</RoomNumber><BedNumber>{bed.BedNumber}</BedNumber><EmployeeID>{bed.EmployeeID}</EmployeeID></Bed>");
 
@@ -97,13 +97,13 @@ namespace PipewellserviceDB.HR.Employee
                 return false;
             }
         }
-        public async Task<bool> AssignAppartmentPlan(Appartment appertment, List<RoomBeds> beds)
+        public async Task<bool> AssignAppartmentPlan(Appartment appertment, List<RoomBed> beds)
         {
             try
             {
                 StringBuilder xml = new StringBuilder();
                 xml.Append("<Dataset>");
-                foreach (RoomBeds bed in beds)
+                foreach (RoomBed bed in beds)
                 {
                     xml.Append($"<Bed><RoomNumber>{bed.RoomNumber}</RoomNumber><BedNumber>{bed.BedNumber}</BedNumber><EmployeeID>{bed.EmployeeID}</EmployeeID></Bed>");
 
@@ -124,5 +124,35 @@ namespace PipewellserviceDB.HR.Employee
                 return false;
             }
         }
+
+        public async Task<bool> LeaveRoom(int EmployeeID)
+        {
+            try
+            {
+                var result = SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcLeaveEmployeeRoom", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID });
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false ;
+            }
+        }
+        public async Task<bool> SwapRoom(int EmployeeID,int EmployeeID2)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID };
+                collSP[1] = new SqlParameter { ParameterName = "@EmployeeID2", Value = EmployeeID2 };
+                var result = SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcSwapEmployeeRoom", CommandType.StoredProcedure, collSP);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+
     }
 }

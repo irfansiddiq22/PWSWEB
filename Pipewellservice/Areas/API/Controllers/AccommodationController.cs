@@ -58,7 +58,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
 
         [Authorization(Pages.Accommodation, 1, 2)]
-        public async Task<JsonResult> AssignRoomBeds(List<RoomBeds> beds)
+        public async Task<JsonResult> AssignRoomBeds(List<RoomBed> beds)
         {
             return new JsonResult
             {
@@ -68,7 +68,7 @@ namespace Pipewellservice.Areas.API.Controllers
         }
 
         [Authorization(Pages.Accommodation, 1, 2)]
-        public async Task<JsonResult> AssignAppartmentPlan(Appartment appertment,List<RoomBeds> beds)
+        public async Task<JsonResult> AssignAppartmentPlan(Appartment appertment,List<RoomBed> beds)
         {
             return new JsonResult
             {
@@ -76,6 +76,27 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.Accommodation, 1, 2)]
+        public async Task<JsonResult> LeaveRoom(int EmployeeID)
+        {
+            return new JsonResult
+            {
+                Data = await json.LeaveRoom(EmployeeID),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        [Authorization(Pages.Accommodation, 1, 2)]
+        public async Task<JsonResult> SwapRoom(int EmployeeID,int EmployeeID2)
+        {
+            return new JsonResult
+            {
+                Data = await json.SwapRoom(EmployeeID, EmployeeID2),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
 
     }
+
+    
 }

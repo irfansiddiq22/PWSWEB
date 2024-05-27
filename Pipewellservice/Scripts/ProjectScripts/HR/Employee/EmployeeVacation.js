@@ -190,7 +190,7 @@ function BindVacation() {
     })
 }
 function DeleteVacation(ID) {
-    SwalConfirm("Are you sure to delete this record?", function () {
+    SwalConfirm("Are you sure to delete this record?", "",function () {
         Post("/EmployeeAPI/DeleteEmployeeVacation", { ID: ID }).done(function (ID) {
             BindVacation();
 

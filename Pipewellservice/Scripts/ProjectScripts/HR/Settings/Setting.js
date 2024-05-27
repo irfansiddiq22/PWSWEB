@@ -84,7 +84,7 @@ function SaveDivision() {
 
 }
 function DeleteDivision(i) {
-    SwalConfirm("Are you sure to delete this record", function () {
+    SwalConfirm("Are you sure to delete this record", "",function () {
         Post("/SettingAPI/RemoveDivision", { ID: Settings.Division[i].ID, Name: User.Name }).done(function (Response) {
             ResetForm();
             if (Response) {
@@ -158,7 +158,7 @@ function SavePosition() {
 
 }
 function DeletePosition(i) {
-    SwalConfirm("Are you sure to delete this record", function () {
+    SwalConfirm("Are you sure to delete this record", "",function () {
         Post("/SettingAPI/RemovePosition", { ID: Settings.Postions[i].ID, Name: User.Name }).done(function (Response) {
             ResetForm();
             if (Response) {
@@ -227,7 +227,7 @@ function SaveDepartment() {
 
 }
 function DeleteDepartment(i) {
-    SwalConfirm("Are you sure to delete this record", function () {
+    SwalConfirm("Are you sure to delete this record","", function () {
         Post("/SettingAPI/RemovePosition", { ID: Settings.Postions[i].ID, Name: User.Name }).done(function (Response) {
             ResetForm();
             if (Response) {

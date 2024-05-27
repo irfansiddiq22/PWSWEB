@@ -136,7 +136,7 @@ function BindJoining() {
     })
 }
 function DeleteJoining(ID) {
-    SwalConfirm("Are you sure to delete this record?", function () {
+    SwalConfirm("Are you sure to delete this record?","", function () {
         Post("/EmployeeAPI/DeleteEmployeeJoining", { ID: ID }).done(function (ID) {
             BindJoining();
 

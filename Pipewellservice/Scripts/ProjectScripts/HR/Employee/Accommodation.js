@@ -12,19 +12,28 @@ function _Init() {
 
         $.post("/EmployeeAPI/CodeName", {}).done(function (Response) {
 
-             Employees = []
+            Employees = []
             if (Response.length > 1)
                 Employees.push({ id: 0, text: 'Select an employee' });
             $.each(Response, function (i, emp) {
                 Employees.push({ id: emp.ID, text: emp.ID + " - " + emp.Name });
             })
-            //$("#ddCertificateEmployeeCode").select2({
-            //    tags: "true",
-            //    placeholder: "Select an option",
-            //    allowClear: true,
-            //    width: '100%',
-            //    data: data
-            //})
+
+            $("#ddEmployees").select2({
+                placeholder: "Search Employee",
+                allowClear: true,
+                width: '100%',
+                data: Employees
+            })
+            $("#ddSwapEmployees").select2({
+                placeholder: "Search Employee",
+                allowClear: true,
+                width: '100%',
+                data: Employees,
+                dropdownParent: $("#dlgEmployeeAccomodationSwap")
+            })
+
+            
         })
     })
 }
@@ -37,10 +46,10 @@ function _Init() {
 function ShowBuildings() {
     $(".building").remove();
     treegrid = 0;
-    Post("/Accommodation/ListBuilding", {}).done( function (resp) {
+    Post("/Accommodation/ListBuilding", {}).done(function (resp) {
         Buildings = resp;
         $.each(resp.Buildings, function (i, b) {
-            $('<button class="nav-link" id="nav-building-tab-' + b.ID + '" data-bs-toggle="tab" data-bs-target="#nav-building-tab-content-' + b.ID + '" type="button" role="tab" aria-controls="#nav-building-tab-content-' + b.ID + '" aria-selected="true">' + b.Name + '</button>').insertBefore($("#nav-add-building"))
+            $('<button class="nav-link building" id="nav-building-tab-' + b.ID + '" data-bs-toggle="tab" data-bs-target="#nav-building-tab-content-' + b.ID + '" type="button" role="tab" aria-controls="#nav-building-tab-content-' + b.ID + '" aria-selected="true">' + b.Name + '</button>').insertBefore($("#nav-add-building"))
             CreateBuildingContainer(b);
         })
 
@@ -61,39 +70,71 @@ function ShowBuildings() {
         $($(".nav-link")[0]).trigger("click");
     })
 
-    
+
 
 }
 function CreateBuildingContainer(b) {
     var dv = $('<div class="tab-pane fade building" id="nav-building-tab-content-' + b.ID + '" role="tabpanel" aria-labelledby="nav-building-tab-content-' + b.ID + '"></div>')
     var table = $('<table class="table w-100 table-bordered building  m-0"><tbody>');
     var Row = $('<tr>')
-    $(Row).append($('<td class="align-middle" width="20%" id="building-'+ b.ID +'">').text(b.Name));
+    $(Row).append($('<td class="align-middle" width="20%" id="building-' + b.ID + '">').text(b.Name));
 
     var floorsCol = $('<td>');
     var i;
     for (i = 1; i <= b.NoOfFloor; i++) {
-        $(floorsCol).append($(CreateFloor(i,b.ID)));
+        $(floorsCol).append($(CreateFloor(i, b.ID)));
     }
-    $(floorsCol).append($('<button class="btn btn-sm btn-primary" onclick="AddNewFloor(this,'+ (b.ID) + ')">').text("Add Floor"));
+    $(floorsCol).append($('<button class="btn btn-sm btn-primary" onclick="AddNewFloor(this,' + (b.ID) + ')">').text("Add Floor"));
     $(Row).append($(floorsCol))
     $(table).append($(Row));
     $(dv).append($(table));
-    $(dv).insertBefore( $("#nav-new-building"));
+    $(dv).insertBefore($("#nav-new-building"));
 }
 function AddNewFloor(sender, ID) {
     var floorcount = $('.building-floor-' + ID + '').length + 1;
-    Post("/Accommodation/AddFloor", {ID:ID}).done(function () {
+    Post("/Accommodation/AddFloor", { ID: ID }).done(function () {
         $(CreateFloor(floorcount, ID)).insertBefore($(sender));
     })
-    
+
 }
-function CreateFloor(i,ID) {
-    var FloorTable = $('<table  class="table w-100 table-bordered m-0 building-floor-' + ID +'" id="building-floor-' + (ID + '-' + i) + '"><tbody>');
+function CreateFloor(i, ID) {
+    var FloorTable = $('<table  class="table w-100 table-bordered m-0 building-floor-' + ID + '" id="building-floor-' + (ID + '-' + i) + '"><tbody>');
     var ftr = $('<tr>');
 
     var floorCol = $('<div class="col p-0 border-end border-bottom" >');
-    var floorname = ''
+    var floorname = FloorName(i)
+    
+    ftr.append($('<td   width="20%" class="align-middle">').text(floorname));
+
+    var aptTable = $('<table  class="table w-100 table-bordered" id="building-floor-' + (ID + '-' + i) + 'apt"><tbody>');
+    var aptRow = $('<tr>')
+    var ApptCount = 0;
+
+    $.each(Buildings.Appartments.filter(x => x.BuildingID == ID && x.FloorNumber == i), function (i, apt) {
+        treegrid++;
+        aptRow = $('<tr class="treegrid-' + treegrid + '">')
+        var EmpBeds = Buildings.Rooms.filter(x => x.AppartmentID == apt.ID && x.EmployeeID == 0);
+
+        $(aptRow).append($('<td  class="align-middle blue">').append("Appartment " + apt.AppartmentNumber + (EmpBeds.length > 0 ? " Empty Beds: <span class='badge bg-danger' style='font-size:17px'>" + EmpBeds.length + "</span>" : "")));
+        $(aptTable).append($(aptRow));
+        aptRow = $('<tr class="treegrid-parent-' + treegrid + '">')
+        aptRow.append($('<td>').append(CreateAppartment(apt)));
+        $(aptTable).append($(aptRow));
+
+        ApptCount++;
+    });
+    if (ApptCount > 0)
+        $(aptTable).addClass("apartments");
+    aptRow = $('<tr class="">')
+    $(aptRow).append($('<td class="bg-warning">').append($('<button class="btn btn-sm btn-primary" onclick="AddNewAppt(' + ID + ',' + i + ',' + ApptCount + ')">').text("Add Appartment to " + floorname)));
+    $(aptTable).append($(aptRow));
+    ftr.append($('<td>').append($(aptTable)));
+
+    FloorTable.append($(ftr));
+    return FloorTable;
+}
+function FloorName(i) {
+    var floorname = '';
     if (i == 1)
         floorname = 'Ground Floor'
     else if (i == 2)
@@ -103,40 +144,13 @@ function CreateFloor(i,ID) {
     else if (i == 4)
         floorname = "3rd Floor"
     else
-        floorname = (i-1) + "th Floor";
-    ftr.append($('<td   width="20%" class="align-middle">').text(floorname));
-
-    var aptTable = $('<table  class="table w-100 table-bordered" id="building-floor-' + (ID + '-' + i) + 'apt"><tbody>');
-    var aptRow = $('<tr>')
-    var ApptCount = 0;
-    
-    $.each(Buildings.Appartments.filter(x => x.BuildingID == ID && x.FloorNumber == i), function (i, apt) {
-        treegrid++;
-        aptRow = $('<tr class="treegrid-' + treegrid + '">')
-        var EmpBeds = Buildings.Rooms.filter(x => x.AppartmentID == apt.ID && x.EmployeeID == 0);
-
-        $(aptRow).append($('<td  class="align-middle blue">').append("Appartment " + apt.AppartmentNumber + (EmpBeds.length > 0 ? " Empty Beds: <span class='badge bg-danger' style='font-size:17px'>" + EmpBeds.length + "</span>" : "")));
-        $(aptTable).append($(aptRow));
-        aptRow = $('<tr class="treegrid-parent-' + treegrid +'">')
-        aptRow.append($('<td>').append(CreateAppartment(apt)));
-        $(aptTable).append($(aptRow));
-
-        ApptCount++;
-    });
-    if (ApptCount > 0)
-        $(aptTable).addClass("apartments");
-    aptRow = $('<tr class="">')
-    $(aptRow).append($('<td class="bg-warning">').append($('<button class="btn btn-sm btn-primary" onclick="AddNewAppt(' + ID + ',' + i + ',' + ApptCount +')">').text("Add Appartment to " + floorname)));
-    $(aptTable).append($(aptRow));
-    ftr.append($('<td>').append($(aptTable)));
-
-    FloorTable.append($(ftr));
-    return FloorTable;
+        floorname = (i - 1) + "th Floor";
+    return floorname;
 }
 function CreateAppartment(appt) {
     //var Table = $('<table  class="table w-100 table-bordered building-floor-apt-' + appt.BuildingID + '-' + appt.FloorNumber +'"><tbody>');
     //var tr = $('<tr>');
-    
+
 
 
     var aptTable = $('<table  class="table w-100 table-bordered" id="building-floor-' + (appt.ID) + 'apt"><tbody>');
@@ -145,34 +159,39 @@ function CreateAppartment(appt) {
     $(aptTable).append($(Row));
 
     Row = $('<tr>')
-    $(Row).append($('<td>').append($('<button class="btn btn-sm btn-primary" onclick="AddNewRoom(' + appt.ID + ',' + appt.BuildingID +',' + appt.FloorNumber + ')">').text("Add Room")));
+    $(Row).append($('<td>').append($('<button class="btn btn-sm btn-primary" onclick="AddNewRoom(' + appt.ID + ',' + appt.BuildingID + ',' + appt.FloorNumber + ')">').text("Add Room")));
     $(aptTable).append($(Row));
 
     //tr.append($('<td>').append($(aptTable)));
 
-  //  Table.append($(tr));
+    //  Table.append($(tr));
     return aptTable;
 
 }
-function CreateRooms(RoomCount,AppartmentID) {
+function CreateRooms(RoomCount, AppartmentID) {
 
     var table = $('<table class="table table-sm w-100 rooms">');
-    
+
     treegrid++;
-    var parent = treegrid;  
+    var parent = treegrid;
     for (i = 1; i <= RoomCount; i++) {
         var Beds = Buildings.Rooms.filter(x => x.AppartmentID == AppartmentID && x.RoomNumber == i);
-        var EmpBeds = Buildings.Rooms.filter(x => x.AppartmentID == AppartmentID && x.RoomNumber == i && x.EmployeeID==0);
-        var tr = $('<tr data-id="' + i + '" class="rooms' + AppartmentID + ' treegrid-' + treegrid + ' treegrid-parent-' + parent +'">')
-         
-        tr.append($('<td>').append("<strong>Room " + i + " </strong><strong> Beds: <span class='badge bg-success' style='font-size:17px'>" + Beds.length + "</span>" + (EmpBeds.length > 0 ?" Empty Beds: <span class='badge bg-danger' style='font-size:17px'>" + EmpBeds.length +"</span>" : "")+ "</strong> ").append($('<a href="javascript:void(0)" class="" onclick="EditRoomPlan(' + i + ', ' + AppartmentID + ')">').append($('<i class="fa fa-edit">'))));
+        var EmpBeds = Buildings.Rooms.filter(x => x.AppartmentID == AppartmentID && x.RoomNumber == i && x.EmployeeID == 0);
+        var tr = $('<tr data-id="' + i + '" class="rooms' + AppartmentID + ' treegrid-' + treegrid + ' treegrid-parent-' + parent + '">')
+
+        tr.append($('<td>').append("<strong>Room " + i + " </strong><strong> Beds: <span class='badge bg-success' style='font-size:17px'>" + Beds.length + "</span>" + (EmpBeds.length > 0 ? " Empty Beds: <span class='badge bg-danger' style='font-size:17px'>" + EmpBeds.length + "</span>" : "") + "</strong> ").append($('<a href="javascript:void(0)" class="" onclick="EditRoomPlan(' + i + ', ' + AppartmentID + ')">').append($('<i class="fa fa-edit">'))));
         $(table).append(tr);
         var tparent = treegrid;
-        
-        tr = $('<tr class="treegrid-parent-' + treegrid +'">')
+
+        tr = $('<tr class="treegrid-parent-' + treegrid + '">')
         var tblbed = $('<div class="row ms-3">');
+        var employee = ''
         $.each(Beds, function (j, r) {
-            $(tblbed).append($('<div class="col-4 my-2">').text("Bed #:" + r.BedNumber + " Employee ID:" + r.EmployeeID));
+            if (r.EmployeeID == 0)
+                employee = " <span class='ml-3 badge bg-danger'>Empty</span>"
+            else
+                employee = " " + r.EmployeeName + "(" + r.EmployeeID + ") Position: " + r.Position + " Division: " + (r.Division == null ? "" : r.Division) + " Country: " + r.Nationality
+            $(tblbed).append($('<div class="col-4 my-2">').append("Bed #:" + r.BedNumber + employee));
         })
         $(tr).append($('<td>').append(tblbed));
         $(table).append($(tr));
@@ -194,27 +213,18 @@ function AddNewAppt(BuildingID, FloorNumber, ApptCount) {
     $("#dvAppartmentPlan").removeClass("d-none")
     $("#trRooms").empty();
 
-    var floorname = ''
-    if (FloorNumber == 1)
-        floorname = 'Ground Floor'
-    else if (FloorNumber == 2)
-        floorname = "1st Floor"
-    else if (FloorNumber == 3)
-        floorname = "2nd Floor"
-    else if (FloorNumber == 4)
-        floorname = "3rd Floor"
-    else
-        floorname = (FloorNumber - 1) + "th Floor";
+    var floorname = FloorName(FloorNumber)
+    
 
-    $("#dvAppartmentLabel").text("Building - " + $("#building-" + BuildingID).text() + " Floor #" + floorname + " Appartment#:" + (ApptCount+1) +" Plan");
-    NewAppartmentPlan = { BuildingID: BuildingID, FloorNumber: FloorNumber}
+    $("#dvAppartmentLabel").text("Building - " + $("#building-" + BuildingID).text() + " Floor #" + floorname + " Appartment#:" + (ApptCount + 1) + " Plan");
+    NewAppartmentPlan = { BuildingID: BuildingID, FloorNumber: FloorNumber }
     return;
 
     Post("/Accommodation/AddAppartment", {
         ID: 0, BuildingID: BuildingID, FloorNumber: FloorNumber, AppartmentNumber: $(".building-floor-apt-" + BuildingID + '-' + FloorNumber).length + 1
-    }).done( function (resp) {
+    }).done(function (resp) {
         ShowBuildings();
-    }); 
+    });
 }
 function CancelAppartmentPlan() {
     $("#dvAppartmentPlan").addClass("d-none")
@@ -231,27 +241,27 @@ function CreateAppartmentRoomPlan(sender) {
         var tr = $('<tr>')
         tr.append($('<td class="blue p-2" colspan="2">').text("Room #" + i));
         roomtable.append(tr);
-         tr = $('<tr>')
+        tr = $('<tr>')
         tr.append($('<td width="23%">').html("<strong># of Beds:</strong>"));
         tr.append($('<td>').append($("<input type='number' class='form-control form-control-sm' onblur='AddRoomPlan(this," + i + ")'>")));
-        
+
         roomtable.append(tr);
 
         tr = $('<tr>')
-        tr.append($('<td colspan="2" id="roomPlan'+ i +'">'));
+        tr.append($('<td colspan="2" id="roomPlan' + i + '">'));
         roomtable.append(tr);
         $(roomdv).append($(roomtable));
         $(dv).append(roomdv)
     }
     $("#trRooms").empty().append($(dv));
 }
-function AddRoomPlan(sender,room) {
+function AddRoomPlan(sender, room) {
     var NoofBeds = $(sender).val();
     var tbed = $('<table class="table table-sm w-100 table-bordered appartmentroomplan"><tbody>');
     for (i = 1; i <= NoofBeds; i++) {
 
         var tr = $('<tr>')
-        tr.append($('<td>').append("<strong>Bed " + i +"</strong>"))
+        tr.append($('<td>').append("<strong>Bed " + i + "</strong>"))
         tr.append($('<td>').append($(CreateEmployeeList(room))))
         tr.append($('<td>'));
         tbed.append(tr)
@@ -270,20 +280,20 @@ function AddRoomPlan(sender,room) {
 }
 
 function AddNewRoom(AppartmentID, BuildingID, FloorNumber) {
-    
+
     var Rooms = $(".rooms" + AppartmentID).length;
     Room = { AppartmentID: AppartmentID, BuildingID: BuildingID, FloorNumber: FloorNumber, RoomNumber: Rooms + 1 };
     $("#tdDuplicateBeds").empty();
-    $("#dvRoomPlanText").text("Building - " + $("#building-" + BuildingID).text() + " Floor #" + FloorNumber + " Room #" + (Rooms+1) + " Plan");
+    $("#dvRoomPlanText").text("Building - " + $("#building-" + BuildingID).text() + " Floor #" + FloorNumber + " Room #" + (Rooms + 1) + " Plan");
     $("#dlgNewAppartmentRoom").modal("show");
 }
 
 function CreateEmployeeBeds(sender, n) {
     var NoofBeds = $(sender).val();
     var tbed = $('<table class="table table-sm w-100"><tbody>');
-   
+
     for (i = 1; i <= NoofBeds; i++) {
-        
+
         var tr = $('<tr>')
         tr.append($('<td width="25%">').text("Bed " + i))
         tr.append($('<td>').append($(CreateEmployeeList(''))))
@@ -291,7 +301,7 @@ function CreateEmployeeBeds(sender, n) {
         tbed.append(tr)
 
     }
-    
+
 
 
     $("#" + n).empty().append(tbed);
@@ -305,14 +315,14 @@ function CreateEmployeeBeds(sender, n) {
 
     if (EditRoomPlanData != null && EditRoomPlanData.length > 0)
         $.each($("#trBeds > table > tbody > tr"), function (i, tr) {
-            if (i<EditRoomPlanData.length)
+            if (i < EditRoomPlanData.length)
                 $($(tr).find("select")[0]).val(EditRoomPlanData[i].EmployeeID).trigger("change")
         });
 
 }
 function CreateEmployeeList(id) {
-    var Select = $('<select class="form-select form-select-sm selectemployee'+ id +'">')
-    
+    var Select = $('<select class="form-select form-select-sm selectemployee' + id + '">')
+
     return $(Select);
 }
 
@@ -331,7 +341,7 @@ function SaveEmployeeBeds() {
         } else {
             $(tr).find("td:eq(2)").text("")
         }
-        Beds.push({ AppartmentID: Room.AppartmentID, RoomNumber: Room.RoomNumber,BedNumber: (i + 1), EmployeeID:$($(tr).find("select")[0]).val() })
+        Beds.push({ AppartmentID: Room.AppartmentID, RoomNumber: Room.RoomNumber, BedNumber: (i + 1), EmployeeID: $($(tr).find("select")[0]).val() })
 
     })
     $("#tdDuplicateBeds").empty();
@@ -367,7 +377,7 @@ function SaveEmployeeBeds() {
     } else {
         SaveRoomBedPlan(Beds);
     }
-    
+
 
 
 }
@@ -380,13 +390,13 @@ function AssignEmployeeBeds() {
         UnlinkedBeds.push(parseInt($(this).attr("data-empid")));
     })
     $.each($(".unlinkbed"), function (i, c) {
-        if(!$(this).prop("checked"))
+        if (!$(this).prop("checked"))
             IgnoreBeds.push(parseInt($(this).attr("data-empid")));
     })
 
     $.each($("#trBeds > table > tbody > tr"), function (i, tr) {
         if (!IgnoreBeds.includes(parseInt($($(tr).find("select")[0]).val()))) {
-            if ( Beds.find(x => x.EmployeeID == parseInt($($(tr).find("select")[0]).val())) == null)
+            if (Beds.find(x => x.EmployeeID == parseInt($($(tr).find("select")[0]).val())) == null)
                 Beds.push({ AppartmentID: Room.AppartmentID, RoomNumber: Room.RoomNumber, BedNumber: (i + 1), EmployeeID: parseInt($($(tr).find("select")[0]).val()) })
             else
                 Beds.push({ AppartmentID: Room.AppartmentID, RoomNumber: Room.RoomNumber, BedNumber: (i + 1), EmployeeID: 0 })
@@ -401,7 +411,7 @@ function SaveRoomBedPlan(Beds) {
         beds: Beds
     }).done(function (resp) {
         ShowBuildings();
-        });
+    });
     EditRoomPlanData = [];
 }
 
@@ -421,7 +431,7 @@ function EditRoomPlan(RoomNumber, AppartmentID) {
     $("#dvRoomPlanText").text("Building - " + build.Name + " Floor #" + Appt.FloorNumber + " Room #" + (RoomNumber) + " Plan");
     $("#dlgNewAppartmentRoom").modal("show");
     Room = { AppartmentID: AppartmentID, BuildingID: build.ID, FloorNumber: Appt.FloorNumber, RoomNumber: RoomNumber };
-    
+
 
 }
 
@@ -431,29 +441,117 @@ function SaveAppartmentPlan() {
     var Beds = [];
     $.each(appartmentrooms, function (i, room) {
         $.each($(room).find(".appartmentroomplan > tbody >tr"), function (b, tr) {
-            if (parseInt($($(tr).find("select")[0]).val())>0 && Buildings.Rooms.filter(x => x.EmployeeID == parseInt($($(tr).find("select")[0]).val())).length > 0) {
+            if (parseInt($($(tr).find("select")[0]).val()) > 0 && Buildings.Rooms.filter(x => x.EmployeeID == parseInt($($(tr).find("select")[0]).val())).length > 0) {
                 var EmpBed = Buildings.Rooms.find(x => x.EmployeeID == parseInt($($(tr).find("select")[0]).val()));
                 var Appt = Buildings.Appartments.find(x => x.ID = EmpBed.AppartmentID);
                 var build = Buildings.Buildings.find(x => x.ID == Appt.BuildingID);
                 DuplEmployee.push({ EmployeeID: EmpBed.EmployeeID, BuildingName: build.Name, Floor: Appt.FloorNumber, AppartmentNumber: Appt.AppartmentNumber, Room: EmpBed.RoomNumber, BedNumber: EmpBed.BedNumber });
-                $(tr).find("td:eq(2)").text("Employee " + EmpBed.EmployeeID + " has already have a bed assigned in building " + build.Name + " Floor #:" + Appt.FloorNumber + " Appartment #:" + Appt.AppartmentNumber + " Room#:" + EmpBed.RoomNumber + " Bed #:" + EmpBed.BedNumber);
-                
+                $(tr).find("td:eq(2)").text("Employee " + EmpBed.EmployeeID + " has already have a bed assigned in building " + build.Name + " Floor #:" + FloorName( Appt.FloorNumber) + " Appartment #:" + Appt.AppartmentNumber + " Room#:" + EmpBed.RoomNumber + " Bed #:" + EmpBed.BedNumber);
+
             }
             else {
                 $(tr).find("td:eq(2)").text("")
             }
             if (Beds.find(x => x.EmployeeID == parseInt($($(tr).find("select")[0]).val())) == null)
                 Beds.push({ AppartmentID: 0, RoomNumber: i + 1, BedNumber: (b + 1), EmployeeID: parseInt($($(tr).find("select")[0]).val()) })
-           else
-                Beds.push({ AppartmentID: 0, RoomNumber: i+1, BedNumber: (b + 1), EmployeeID: 0 })
+            else
+                Beds.push({ AppartmentID: 0, RoomNumber: i + 1, BedNumber: (b + 1), EmployeeID: 0 })
         });
     })
     if (DuplEmployee.length > 0) {
         swal("Please check the duplicate room assignments and try again", { icon: "error" });
         return false;
     }
-    Post("/Accommodation/AssignAppartmentPlan", { appertment: NewAppartmentPlan, beds: Beds}).done(function (resp) {
+    Post("/Accommodation/AssignAppartmentPlan", { appertment: NewAppartmentPlan, beds: Beds }).done(function (resp) {
         ShowBuildings();
         NewAppartmentPlan = {}
     });
+}
+
+function SearchEmployeeAccomodation() {
+    var EmployeeID = parseInt(valOf("ddEmployees"));
+    if (EmployeeID > 0 && Buildings.Rooms.filter(x => x.EmployeeID == EmployeeID).length > 0) {
+        var EmpBed = Buildings.Rooms.find(x => x.EmployeeID == EmployeeID);
+        var Appt = Buildings.Appartments.find(x => x.ID = EmpBed.AppartmentID);
+        var build = Buildings.Buildings.find(x => x.ID == Appt.BuildingID);
+        $("#tdEmpBuildingName").text(build.Name);
+        $("#tdEmpBuildingFloor").text(FloorName(Appt.FloorNumber));
+        $("#tdEmpBuildingAppartment").text(Appt.AppartmentNumber);
+        $("#tdEmpBuildingRoom").text(EmpBed.RoomNumber);
+        $("#tdEmpBuildingRoomBed").text(EmpBed.BedNumber);
+        $("#dlgEmployeeAccomodation").modal("show")
+
+
+    } else {
+        swal("No accomodation found for this employee", { icon: "error" });
+
+    }
+
+}
+function LeaveEmployeeRoom() {
+    SwalConfirm("Are you sure to empty room for this employee","", function () {
+        var EmployeeID = parseInt(valOf("ddEmployees"));
+        Post("/Accommodation/LeaveRoom", { EmployeeID: EmployeeID }).done(function () {
+            $("#dlgEmployeeAccomodation").modal("hide")
+            swal("Room empty for this employee", { icon: "success" });
+            ShowBuildings();
+            NewAppartmentPlan = {}
+        })
+    })
+}
+function SwapEmployeeRoom() {
+    $("#ddSwapEmployees").val(0).trigger("change");
+    $("#dlgEmployeeAccomodation").modal("hide")
+    $("#dlgEmployeeAccomodationSwap").modal("show")
+}
+function SwapEmployeeRoomConfirm() {
+    var EmployeeID = parseInt(valOf("ddEmployees"));
+    var EmployeeID2 = parseInt(valOf("ddSwapEmployees"));
+    if (EmployeeID2 == 0) {
+        swal("Select employee to swap room with", { icon: "danger" })
+        return false;
+    }
+    if (EmployeeID2 == EmployeeID) {
+        swal("Select a different employee to swap room with", { icon: "danger" })
+        return false;
+    }
+    var EmpName = $("#ddEmployees option:selected").text();
+    var EmpName2 = $("#ddSwapEmployees option:selected").text();
+
+    if (EmployeeID2 > 0 && Buildings.Rooms.filter(x => x.EmployeeID == EmployeeID2).length > 0) {
+
+        var EmpBed = Buildings.Rooms.find(x => x.EmployeeID == EmployeeID);
+        var Appt = Buildings.Appartments.find(x => x.ID = EmpBed.AppartmentID);
+        var build = Buildings.Buildings.find(x => x.ID == Appt.BuildingID);
+
+
+        var EmpBed2 = Buildings.Rooms.find(x => x.EmployeeID == EmployeeID2);
+        var Appt2 = Buildings.Appartments.find(x => x.ID = EmpBed2.AppartmentID);
+        var build2 = Buildings.Buildings.find(x => x.ID == Appt2.BuildingID);
+
+        var Accom1 = build.Name + " Floor #:" + FloorName(Appt.FloorNumber) + " Appartment #:" + Appt.AppartmentNumber + " Room#:" + EmpBed.RoomNumber + " Bed #:" + EmpBed.BedNumber;
+        var Accom2 = build2.Name + " Floor #:" + FloorName(Appt2.FloorNumber) + " Appartment #:" + Appt2.AppartmentNumber + " Room#:" + EmpBed2.RoomNumber + " Bed #:" + EmpBed2.BedNumber;
+        SwalConfirm("Swap Room","Are you sure to swap room between  " + EmpName + " and " + EmpName2 +" from " + Accom1 + " to assign to " + Accom2 , function () {
+
+            Post("/Accommodation/SwapRoom", { EmployeeID: EmployeeID, EmployeeID2: EmployeeID2 }).done(function () {
+                $("#dlgEmployeeAccomodation").modal("hide")
+                swal("Room Swapped between " + EmpName +" and "+EmpName2 , { icon: "success" });
+                ShowBuildings();
+                NewAppartmentPlan = {}
+            })
+        });
+        
+    } else {
+        
+        SwalConfirm("Assign Room","This employee have no room assigned, are you sure to take room from " + EmpName + " and assign to " + EmpName2, function () {
+
+            
+            Post("/Accommodation/SwapRoom", { EmployeeID: EmployeeID, EmployeeID2: EmployeeID2}).done(function () {
+                $("#dlgEmployeeAccomodation").modal("hide")
+                swal("Room assigned " + EmpName2, { icon: "success" });
+                ShowBuildings();
+                NewAppartmentPlan = {}
+            })
+        });
+    }
 }

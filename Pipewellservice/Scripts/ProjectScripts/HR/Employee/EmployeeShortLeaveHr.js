@@ -229,7 +229,7 @@ function SaveEmployeeLeave() {
     });
 }
 function DeleteEmployeeLeave(ID) {
-    SwalConfirm("Are you sure to delete this record ?", function () {
+    SwalConfirm("Are you sure to delete this record ?", "",function () {
         Post("/EmployeeAPI/DeleteEmployeeShortLeave", { ID: ID }).done(function (Resp) {
             if (Resp) {
                 swal("Record Deleted", { icon: "success" });

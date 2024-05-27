@@ -1,6 +1,25 @@
 ﻿
 <div class="border p-2">
+    <div class="my-3">
 
+        <div class="row">
+            <div class="col-auto">Search Employees:</div>
+            <div class="col-md-3">
+                <div class="form-floating mb-3">
+                    <select class="form-select form-select d-sm-block" id="ddEmployees"></select>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-2">
+                <button type="button" class="btn btn-danger wrn-btn" onclick="SearchEmployeeAccomodation();">Search</button>
+
+            </div>
+
+        </div>
+
+    </div>
     <nav id="dvBuildingPlan">
         <div class="nav nav-tabs" id="nav-buildings" role="tablist">
             <button class="nav-link btn btn-sm blue" id="nav-add-building" data-bs-toggle="tab" data-bs-target="#nav-new-building" type="button" role="tab" aria-controls="nav-new-building"><span class="text-white me-2"><i class="fa  fa-plus-circle me-2"></i>Add New Building </span></button>
@@ -80,7 +99,7 @@
         </div>
     </div>
 
-    <div class="modal fade"  role="dialog" id="dlgNewAppartment">
+    <div class="modal fade" role="dialog" id="dlgNewAppartment">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -90,14 +109,87 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" role="dialog" id="dlgEmployeeAccomodation">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Employee Accomodation</h5>
+                    <button type="button" class="btn-close close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="p-2 blue"><h5>Employee Accomodation</h5></div>
+                    <table class="table table-sm border">
+                        <tr>
+                            <td> <strong>Build</strong></td>
+                            <td id="tdEmpBuildingName"></td>
+                        </tr>
+                        <tr>
+                            <td> <strong>Floor</strong></td>
+                            <td id="tdEmpBuildingFloor"></td>
+                        </tr>
+                        <tr>
+                            <td> <strong>Appartment</strong></td>
+                            <td id="tdEmpBuildingAppartment"></td>
+                        </tr>
+                        <tr>
+                            <td> <strong>Room</strong></td>
+                            <td id="tdEmpBuildingRoom"></td>
+                        </tr>
+                        <tr>
+                            <td> <strong>Bed</strong></td>
+                            <td id="tdEmpBuildingRoomBed"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button class="btn btn-sm btn-primary" onclick="LeaveEmployeeRoom()">Leave Room</button>
+                                <button class="btn btn-sm btn-primary" onclick="SwapEmployeeRoom()">Swap Room</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" id="dlgEmployeeAccomodationSwap">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Employee Accomodation Swap</h5>
+                    <button type="button" class="btn-close close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="p-2 blue"><h5>Employee Accomodation Swap</h5></div>
+                    <table class="table table-sm border">
+                        <tr>
+                            <td> <strong>2nd Employee</strong></td>
+                            <td ><select  class="form-select form-select-sm" id="ddSwapEmployees"></select></td>
+                        </tr>
+                        
+                        <tr>
+                            <td colspan="2">
+                                <button class="btn btn-sm btn-primary" onclick="SwapEmployeeRoomConfirm()">Swap Room</button>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <style>
-    .treegrid-indent {display:none!important;}
+    .treegrid-indent {
+        display: none !important;
+    }
     /*span.treegrid-expander{display:none!important;}*/
 </style>
 @section Scripts{

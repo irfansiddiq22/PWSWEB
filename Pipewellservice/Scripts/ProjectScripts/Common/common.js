@@ -329,11 +329,11 @@ function FormatPhone(value) {
 }
 
 
-function SwalConfirm(Message, CallBack) {
+function SwalConfirm(Message,Text, CallBack) {
     swal({
         html: true,
         title: Message,
-        text: "",
+        text: Text,
         icon: "warning",
         buttons: {
             catch: {
