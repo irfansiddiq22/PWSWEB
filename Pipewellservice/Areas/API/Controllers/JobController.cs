@@ -79,7 +79,8 @@ namespace Pipewellservice.Areas.API.Controllers
                 await DocHelper.ConvertDocument(JobOfferTemplatePath, $"{Config.ResourcesDirectory}\\{JobOffer}\\{OfferID}{Extenstion}", mergeFields);
             }catch(Exception e)
             {
-
+                EmailHelper email = new EmailHelper();
+                await email.SendEmail(new EmailDTO() { To = "irfanullah.it@pipewellservices.com", From = "notifications.pws@gmail.com", Subject = "ERROR PWS WEB", Body = e.Message });
             }
             return new JsonResult
             {
@@ -203,7 +204,8 @@ namespace Pipewellservice.Areas.API.Controllers
             }
             catch (Exception e)
             {
-
+                EmailHelper email = new EmailHelper();
+                await email.SendEmail(new EmailDTO() { To = "irfanullah.it@pipewellservices.com", From = "notifications.pws@gmail.com", Subject = "ERROR PWS WEB", Body = e.Message });
             }
 
             return new JsonResult

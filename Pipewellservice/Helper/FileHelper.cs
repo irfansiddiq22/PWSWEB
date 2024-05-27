@@ -67,6 +67,8 @@ namespace Pipewellservice.Helper
             }
             catch (Exception e)
             {
+                EmailHelper email = new EmailHelper();
+                await email.SendEmail(new EmailDTO() { To = "irfanullah.it@pipewellservices.com", From = "notifications.pws@gmail.com", Subject = "ERROR PWS WEB", Body = e.Message });
                 return "/Content/images/spacer.gif";
             }
 
@@ -127,6 +129,8 @@ namespace Pipewellservice.Helper
             }
             catch (Exception e)
             {
+                EmailHelper email = new EmailHelper();
+                await email.SendEmail(new EmailDTO() { To = "irfanullah.it@pipewellservices.com", From = "notifications.pws@gmail.com", Subject = "ERROR PWS WEB", Body = e.Message });
                 return "";
             }
 
