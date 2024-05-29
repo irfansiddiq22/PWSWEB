@@ -74,7 +74,7 @@ namespace Pipewellservice.Areas.API.Controllers
             mergeFields.Add(new MergeField("NAME", job.Name));
             
             mergeFields.Add(new MergeField("NATIONALITY", job.Nationality));
-            mergeFields.Add(new MergeField("JOB TITLE", job.JobTitle));
+            mergeFields.Add(new MergeField("JOBTITLE", job.JobTitle));
             mergeFields.Add(new MergeField("BASIC", job.Basic.ToString()));
             mergeFields.Add(new MergeField("PERIOD", job.Period.ToString()));
             mergeFields.Add(new MergeField("TRANSPORT", job.Transportation > 0 ? $"{job.Transportation}% from Basic" : "Will be provided by the Company"));
@@ -218,11 +218,11 @@ namespace Pipewellservice.Areas.API.Controllers
             mergeFields.Add(new MergeField("PERIOD", job.Period.ToString()));
 
             mergeFields.Add(new MergeField("BASIC", job.Basic.ToString()));
-            mergeFields.Add(new MergeField("TRANSPORT-AR", job.Transportation > 0 ? $"من الراتب الأساسي job.Transportation%" : "سيتم توفيرها من قبل الشركة"));
-            mergeFields.Add(new MergeField("TRANSPORT", job.Transportation > 0 ? $"job.Transportation% from Basic" : "Will be provided by the Company"));
+            mergeFields.Add(new MergeField("TRANSPORT-AR", job.Transportation > 0 ? $"من الراتب الأساسي {job.Transportation}%" : "سيتم توفيرها من قبل الشركة"));
+            mergeFields.Add(new MergeField("TRANSPORT", job.Transportation > 0 ? $"{job.Transportation}% from Basic" : "Will be provided by the Company"));
 
 
-            mergeFields.Add(new MergeField("HOUSING-AR", job.Housing > 0 ? $"من الراتب الأساسي job.Transportation%" : "سيتم توفيرها من قبل الشركة"));
+            mergeFields.Add(new MergeField("HOUSING-AR", job.Housing > 0 ? $"من الراتب الأساسي {job.Housing}%" : "سيتم توفيرها من قبل الشركة"));
             mergeFields.Add(new MergeField("HOUSING", job.Housing > 0 ? $"{job.Housing}% from Basic" : "Will be provided by the Company"));
 
             mergeFields.Add(new MergeField("date-ar", job.StartDate == null ? "" : Convert.ToDateTime(job.StartDate).ToString("yyyy/MM/dd")));
@@ -243,12 +243,12 @@ namespace Pipewellservice.Areas.API.Controllers
 
             mergeFields.Add(new MergeField("COUNTRY-AR", country.ArabicName));
 
-            mergeFields.Add(new MergeField("COUNTRY", job.Name));
+            mergeFields.Add(new MergeField("COUNTRY", country.Name));
             
             DocHelper DocHelper = new DocHelper();
 
-          // JobContract = @"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\JobContract\";
-          // JobContractTemplatePath= @"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\Template\CONTRACT TEMPLATE.docx";
+           /*JobContract = @"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\JobContract\";
+           JobContractTemplatePath= @"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\Template\CONTRACT TEMPLATE.docx";*/
             try
             {
                 await DocHelper.ConvertDocument(JobContractTemplatePath, $"{JobContract}\\{ContractID}{Extenstion}", mergeFields);
