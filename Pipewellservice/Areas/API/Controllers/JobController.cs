@@ -124,7 +124,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        public async Task<JsonResult> UpdateJobContract(JobContract job,Country country)
+        public async Task<JsonResult> UpdateJobContract(JobContract job,Country country, SponsorCompany sponsor)
         {
 
             string JobContractTemplatePath = await FileHelper.GetTemplateFile(DirectoryNames.Templates, DocTemplates.Contract);
@@ -234,7 +234,7 @@ namespace Pipewellservice.Areas.API.Controllers
             mergeFields.Add(new MergeField("APPROVAL", hr.Name));
             
 
-            mergeFields.Add(new MergeField("CR", job.CompanyRegNumber));
+            mergeFields.Add(new MergeField("CR", sponsor.CRNumber.ToString()));
             mergeFields.Add(new MergeField("EMP-NAME-AR", job.NameAr));
             mergeFields.Add(new MergeField("EMP-NAME", job.Name));
 

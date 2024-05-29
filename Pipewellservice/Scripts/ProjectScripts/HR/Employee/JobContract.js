@@ -41,9 +41,9 @@ function _Init() {
             var data = []
             data.push({ id: 0, text: 'Select CSR' });
             $.each(Response, function (i, c) {
-                data.push({ id: c.ID, text: c.Name });
+                data.push({ id: c.ID, text: c.Name, CRNumber: c.CRNumber });
             })
-            Nationalites = Response
+            
             $("#ddCompanyRegNumber").select2({
                 tags: "true",
                 placeholder: "Select Company Registeration Number",
@@ -177,7 +177,7 @@ function EditJobContract(ID) {
 
     SetvalOf("txtJobContractTitle", JobContract.JobTitle);
     SetvalOf("txtJobContractTitleArabic", JobContract.JobTitleAr);
-    SetvalOf("txtJobContractStartDate", JobContract.StartDate == null ? "" : moment(JobContract.StartDate, "DD/MM/YYYY"));
+    SetvalOf("txtJobContractStartDate", JobContract.StartDate == null ? "" : moment(JobContract.StartDate).format("DD/MM/YYYY"));
 
     SetvalOf("txtJobContractBasic", JobContract.Basic);
     SetvalOf("txtJobContractTransportation", JobContract.Transportation);
@@ -295,6 +295,7 @@ function SaveJobContract() {
             }
 
             var country = Nationalites.find(x => x.ID == valOf("ddJobContractCountries"))
+            var sponsor = $('#ddCompanyRegNumber').select2('data');
 
             Post("/Job/UpdateJobContract", {
                 job: {
@@ -317,7 +318,8 @@ function SaveJobContract() {
                     PeriodAr: valOf("txtJobContractPeriodAr"),
                     UserName: User.Name
 
-                }, country: country
+                }, country: country, sponsor: { ID: sponsor[0].id, Name: sponsor[0].text, CRNumber: sponsor[0].CRNumber }
+
             }).done(function (Response) {
                 if (JobContract.ID > 0)
                     swal({ text: "Job Contract Updated Successfully", icon: "success" });
