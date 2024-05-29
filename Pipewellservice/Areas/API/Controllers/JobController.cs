@@ -86,11 +86,11 @@ namespace Pipewellservice.Areas.API.Controllers
             DocHelper DocHelper = new DocHelper();
 
 
-           //  JobContract = @"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\JobContract\";
-           // JobOfferTemplatePath = @"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\Template\Job Offer - TEMPLATE";
+          //  JobOffer = @"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\JobContract\";
+          // JobOfferTemplatePath = @"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\Template\Job Offer - TEMPLATE.docx";
             try
             {
-                await DocHelper.ConvertDocument(JobOfferTemplatePath, $"{JobOffer}\\{JobOffer}\\{OfferID}{Extenstion}", mergeFields);
+                await DocHelper.ConvertDocument(JobOfferTemplatePath, $"{JobOffer}\\{OfferID}{Extenstion}", mergeFields);
             }catch(Exception e)
             {
                 EmailHelper email = new EmailHelper();
