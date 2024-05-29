@@ -180,6 +180,15 @@ namespace Pipewellservice.Controllers
             else
                 return View("_PartialEmployeeInquiryHr");
         }
+
+        [Authorization(Pages.EmployeeWorkTiming)]
+        public ActionResult workschedule()
+        {
+            ViewBag.Title = "Employee Work Schedule";
+            ViewBag.Parent = Parent;
+                return View("_PartialWorkSchedule");
+        }
+        
         public ActionResult Passport()
         {
             ViewBag.Title = "Employee Passport";

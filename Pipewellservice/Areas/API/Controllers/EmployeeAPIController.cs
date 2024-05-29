@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using PipewellserviceJson.Common;
+using PipewellserviceModels.HR.Settings;
 
 namespace Pipewellservice.Areas.API.Controllers
 {
@@ -1118,6 +1119,31 @@ namespace Pipewellservice.Areas.API.Controllers
         {
             return File(await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.Leaves), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
         }
+
+
+
+        ////////////////////////
+        public async Task<JsonResult> EmployeeWorkTimeList(int EmployeeID,DateTime StartDate,DateTime EndDate)
+        {
+
+            return new JsonResult
+            {
+                Data = await json.EmployeeWorkTimeList(EmployeeID,StartDate,EndDate),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public async Task<JsonResult> UpdateEmployeeWorkScheduleTime(EmployeeWorkSchedule employeetime)
+        {
+
+
+            return new JsonResult
+            {
+                Data = await json.UpdateEmployeeWorkSchedule(employeetime),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
 
     }
 }

@@ -1,0 +1,115 @@
+﻿<div class="border p-2">
+    <div class="row">
+
+        <div class="form-group col-md-3 row ms-1 mb-0">
+            <label class="col-md-2 col-form-label p-0"> Employee:</label>
+            <div class="col">
+                <select class="form-select" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" ></select>
+            </div>
+        </div>
+
+        <div class="form-group col-md-3 row ms-1 mb-0">
+            <label class="col-md-3 col-form-label p-0"> Date Range:</label>
+            <div class="col position-relative">
+                <input type="text" name="ddlDataRange" id="ddlDataRange" class="form-control form-control-sm daterangepicker" autocomplete="off">
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group col-md-2">
+            <button class="btn btn-sm btn-primary" onclick="FillWorkSchedule()">Search </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7 border-end">
+            <div class="table-responsive">
+                <table class="table table-sm table-striped table-hover-warning table-bordered">
+                    <thead class="blue">
+                        <tr>
+                            <th>ID</th>
+                            <th>Employee ID</th>
+                            <th>Name</th>
+                            <th>Record Date</th>
+                            <th>Friday</th>
+                            <th>Saturday</th>
+                            <th>Sunday</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tblEmployeeScheduleTimeList"></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-5 ">
+            <form id="frmEmployeeScheduleTime">
+                <div class="mb-3 row">
+                    <label for="ddWorkScheduleEmployeeCode" class="col-sm-2 col-form-label">Employee </label>
+                    <div class="col">
+                        <select class="form-select" id="ddWorkScheduleEmployeeCode" name="ddWorkScheduleEmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="ddWorktimeFriday" class="col-sm-2 col-form-label">Friday </label>
+                    <div class="col">
+                        <select class="form-select form-select-sm worktime" id="ddWorktimeFriday" name="ddWorktimeFriday"></select>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="ddWorktimeSaturday" class="col-sm-2 col-form-label">Saturday </label>
+                    <div class="col">
+                        <select class="form-select form-select-sm worktime" id="ddWorktimeSaturday" name="ddWorktimeSaturday"></select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="ddWorktimeSunday" class="col-sm-2 col-form-label">Sunday </label>
+                    <div class="col">
+                        <select class="form-select form-select-sm worktime" id="ddWorktimeSunday" name="ddWorktimeSunday"></select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="ddWorktimeMonday" class="col-sm-2 col-form-label">Monday </label>
+                    <div class="col">
+                        <select class="form-select form-select-sm worktime" id="ddWorktimeMonday" name="ddWorktimeMonday"></select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="ddWorktimeTuesday" class="col-sm-2 col-form-label">Tuesday </label>
+                    <div class="col">
+                        <select class="form-select form-select-sm worktime" id="ddWorktimeTuesday" name="ddWorktimeTuesday"></select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="ddWorktimeWednesday" class="col-sm-2 col-form-label">Wednesday </label>
+                    <div class="col">
+                        <select class="form-select form-select-sm worktime" id="ddWorktimeWednesday" name="ddWorktimeWednesday"></select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="ddWorktimeThursday" class="col-sm-2 col-form-label">Thursday </label>
+                    <div class="col">
+                        <select class="form-select form-select-sm worktime" id="ddWorktimeThursday" name="ddWorktimeThursday"></select>
+                    </div>
+                </div>
+                <div class="mb-3">
+
+                    <button class="btn btn-primary ms-5 writecontainer" type="button" onclick="return SaveWorkSchedule()">Save</button>
+                    <button class="btn btn-danger writecontainer" type="reset">Clear</button>
+                </div>
+
+
+            </form>
+        </div>
+
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/lib/hr/employeeworkschedule")
+}

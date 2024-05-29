@@ -57,14 +57,29 @@ namespace PipewellserviceModels.HR.Settings
         public int StartMin { get; set; }
         public int EndHour { get; set; }
         public int EndMin { get; set; }
-        public int MinIn { get; set; }
-        public int MinOut { get; set; }
+        public int MarginIn { get; set; }
+        public int MarginOut { get; set; }
         public string Time
         {
             get
             {
-                return $"{StartHour}:{StartMin} - {EndHour}:{EndMin}";
+                return $"{StartHour.ToString("00")}:{StartMin.ToString("00")} - {EndHour.ToString("00")}:{EndMin.ToString("00")}";
             }
         }
+    }
+
+    public class EmployeeWorkSchedule
+    {
+        public int ID { get; set; }
+        public string EmployeeName { get; set; }
+        public DateTime RecordDate { get; set; }
+        public int EmployeeID { get; set; }
+        public int FridayTime { get; set; }
+        public int SaturdayTime { get; set; }
+        public int SundayTime { get; set; }
+        public int MondayTime { get; set; }
+        public int TuesdayTime { get; set; }
+        public int WednesdayTime { get; set; }
+        public int ThursdayTime { get; set; }
     }
 }

@@ -304,6 +304,52 @@ namespace PipewellserviceDB.HR.Setting
         }
 
 
+        public async Task<DataTable> WorkTimeList()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcListWorkTimeSchedule", CommandType.StoredProcedure);
+                DataTable model = new DataTable();
+                model.Load(result);
+                result.Close();
+                return model;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<bool> UpdateWorkTime(WorkInOutTime workInOutTime)
+        {
+            try
+            {
+
+                SqlParameter[] collSP = new SqlParameter[7];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = workInOutTime.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@StartHour", Value = workInOutTime.StartHour };
+                collSP[2] = new SqlParameter { ParameterName = "@StartMin", Value = workInOutTime.StartMin };
+
+                collSP[3] = new SqlParameter { ParameterName = "@EndHour", Value = workInOutTime.EndHour };
+                collSP[4] = new SqlParameter { ParameterName = "@EndMin", Value = workInOutTime.EndMin };
+
+                collSP[5] = new SqlParameter { ParameterName = "@MarginIn", Value = workInOutTime.MarginIn };
+                collSP[6] = new SqlParameter { ParameterName = "@MarginOut", Value = workInOutTime.MarginOut };
+
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateWorkTimeSchedule", CommandType.StoredProcedure, collSP);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
+
+        
+        
+
 
     }
 }

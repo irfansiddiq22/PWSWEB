@@ -482,3 +482,93 @@ function sortdata(key, order = 'asc') {
         );
     };
 }
+
+function ExportEmployeeData() {
+    
+    var FilteredData = EmployeeList;
+    if (valOf("txtEmployeeIDFilter") != "")
+        FilteredData = FilteredData.filter(x => x.ID == valOf("txtEmployeeIDFilter"));
+
+    if (valOf("txtEmployeeIqamaFilter") != "")
+        FilteredData = FilteredData.filter(x => x.Iqama != null && (x.Iqama.search(valOf("txtEmployeeIqamaFilter")) > -1));
+
+    if (valOf("txtEmployeeNameFilter") != "")
+        FilteredData = FilteredData.filter(x => x.Name != null && x.Name.toUpperCase().indexOf(valOf("txtEmployeeNameFilter").toUpperCase()) > -1);
+
+    if (valOf("txtEmployeeArabicNameFilter") != "")
+        FilteredData = FilteredData.filter(x => x.ArabicName != null && x.ArabicName.toUpperCase().indexOf(valOf("txtEmployeeArabicNameFilter").toUpperCase()) > -1);
+
+    if (GetChecked("chkEmployeeOnJobEmployee")) {
+        FilteredData = FilteredData.filter(x => x.JobStatus == 1);
+    }
+
+    var table = $('<table>');
+
+    var tr = $('<tr> ');
+
+    tr.append($('<td>').text("Employee ID"));
+    tr.append($('<td>').text("Employee Name"));
+    tr.append($('<td>').text("Employee Arabic Name"));
+    tr.append($('<td>').text("Nationality"));
+
+    tr.append($('<td>').text("Iqama"));
+    if ($("#chkEmployeeIqamainfo").prop("checked")) {
+        tr.append($('<td>').text("Expiry Date"))
+
+        tr.append($('<td>').text("Passport"));
+        tr.append($('<td>').text("Expiry Date"));
+    }
+    tr.append($('<td>').text("Phone Number"));
+    tr.append($('<td>').text("Age"));
+    tr.append($('<td>').text("Company"));
+    tr.append($('<td>').text("Division"));
+    tr.append($('<td>').text("Position"));
+
+    tr.append($('<td>').text("Supervisor"));
+
+
+    tr.append($('<td>').text("Hiring Date"));
+    if (!GetChecked("chkEmployeeOnJobEmployee")) {
+        tr.append($('<td>').text("Job Status"));
+        tr.append($('<td>').text("Job Left Date"));
+    }
+    $(table).append(tr);
+
+    $.each(FilteredData, function (i, e) {
+         tr = $('<tr> ');
+
+        tr.append($('<td>').html(e.ID));
+        tr.append($('<td>').html(e.Name));
+        tr.append($('<td>').html(e.ArabicName));
+        tr.append($('<td>').html(e.Nationality));
+        
+        tr.append($('<td>').append((e.Iqama == null || e.Iqama == "" ? "" : e.Iqama)));
+        if ($("#chkEmployeeIqamainfo").prop("checked")) {
+        tr.append($('<td class="iqamadata">').html(e.IqamaExpiryDate == null ? "" : moment(e.IqamaExpiryDate).format("DD/MM/YYYY")))
+        
+            tr.append($('<td class="iqamadata">').append((e.Passport == null || e.Passport == "" ? "" : e.Passport)));
+            tr.append($('<td class="iqamadata">').html(e.PassportExpiryDate == null ? "" : moment(e.PassportExpiryDate).format("DD/MM/YYYY")))
+        }
+        tr.append($('<td>').html(e.PhoneNumber));
+        tr.append($('<td>').html(e.DataOfBirth == null ? "" : moment().diff(e.DataOfBirth, "years")));
+        tr.append($('<td>').html(e.SponsorCompany));
+        tr.append($('<td>').html(e.Division));
+        tr.append($('<td>').html(e.Position));
+
+        tr.append($('<td>').html(e.Supervisor));
+
+
+        tr.append($('<td>').html(e.HiringDate == null ? "" : moment(e.HiringDate).format("DD/MM/YYYY")));
+        if (!GetChecked("chkEmployeeOnJobEmployee")) {
+            tr.append($('<td>').html(e.CurrentJobStatus));
+            tr.append($('<td>').html(e.JobLeftDate == null ? "" : moment(e.JobLeftDate).format("DD/MM/YYYY")));
+        }
+
+        $(table).append(tr);
+    })
+
+    
+    var data = $("<div>");
+    $(data).append(table);
+    ExportToExcel($(data).html(),"Employee.xls")
+}

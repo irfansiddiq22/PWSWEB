@@ -347,5 +347,18 @@ namespace PipewellserviceJson.HR.Employee
          var data=   await service.HRManager();
             return (await JsonHelper.Convert<List<HRManager>, DataTable>(data)).FirstOrDefault();
         }
+
+        public async Task<List<EmployeeWorkSchedule>> EmployeeWorkTimeList(int EmployeeID, DateTime StartDate, DateTime EndDate)
+        {
+            var data = await service.EmployeeWorkTimeList(EmployeeID, StartDate, EndDate);
+
+            return await JsonHelper.Convert<List<EmployeeWorkSchedule>, DataTable>(data);
+        }
+
+        public async Task<bool> UpdateEmployeeWorkSchedule(EmployeeWorkSchedule employeetime)
+        {
+            return await service.UpdateEmployeeWorkSchedule(employeetime);
+        }
+
     }
 }

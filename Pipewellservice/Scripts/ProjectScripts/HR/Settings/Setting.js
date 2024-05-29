@@ -13,6 +13,16 @@ function ResetForm() {
 function _Init() {
     SetPagePermission(PAGES.Division, function () { BindDivision(); });
     SetPagePermission(PAGES.Position, function () { BindPositions(); });
+    FillWorkTimeSchedule();
+    for (i = 0; i <= 24; i++) {
+        $("#ddScheduleHourStart,#ddScheduleHourEnd").append(AppendListItem(i,i))
+    }
+    for (i = 0; i <= 60; i++) {
+        $("#ddScheduleMinStart,#ddScheduleMinEnd").append(AppendListItem(i, i))
+    }
+    for (i = 0; i <= 30; i++) {
+        $("#ddScheduleMartingIn,#ddScheduleMarginOut").append(AppendListItem(i, i))
+    }
     //SetPagePermission(PAGES.Department, function () { BindDepartments(); });
 
     
@@ -237,5 +247,73 @@ function DeleteDepartment(i) {
                 swal({ text: "Failed to remove position.", icon: "error" });
             }
         });
+    })
+}
+
+
+//////////////////////////////////////////
+
+var WorkTimeList = [];
+
+function FillWorkTimeSchedule() {
+
+    $("#tblWorkScheduleList").empty();
+    Post("/SettingAPI/WorkTimeList", {}).done(function (Response) {
+        WorkTimeList = Response;
+    $.each(Response, function (i, r) {
+        var tr = $('<tr>');
+        tr.append($('<td class="text-center">').text(r.ID))
+        tr.append($('<td>').text(r.StartHour))
+        tr.append($('<td>').text(r.StartMin))
+        tr.append($('<td>').text(r.EndHour))
+        tr.append($('<td>').text(r.EndMin))
+        tr.append($('<td>').text(r.MarginIn))
+        tr.append($('<td>').text(r.MarginOut))
+        var Icons = $('<div class="icons">');
+        $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary me-2 writeble3" onclick="EditWorkTimeSchedule(' + i + ')"><i class="fa fa-edit"></i></a>'));
+        tr.append($('<td>').append($(Icons)));
+
+        $("#tblWorkScheduleList").append(tr);
+        })
+    })
+}
+function EditWorkTimeSchedule(i) {
+    var WorkTime = WorkTimeList[i];
+    Settings.Data.ID = WorkTime.ID;
+    SetvalOf("ddScheduleHourStart", WorkTime.StartHour)
+    SetvalOf("ddScheduleMinStart", WorkTime.StartMin)
+
+    SetvalOf("ddScheduleHourEnd", WorkTime.EndHour)
+    SetvalOf("ddScheduleMinEnd", WorkTime.EndMin)
+
+    SetvalOf("ddScheduleMartingIn", WorkTime.MarginIn)
+    SetvalOf("ddScheduleMarginOut", WorkTime.MarginOut)
+}
+function SaveWorkScheduleTime() {
+    var WorkTime = {
+        ID: Settings.Data.ID,
+        StartHour: valOf("ddScheduleHourStart"),
+        StartMin: valOf("ddScheduleMinStart"),
+        EndHour: valOf("ddScheduleHourEnd"),
+        EndMin: valOf("ddScheduleMinEnd"),
+        MarginIn: valOf("ddScheduleMartingIn"),
+        MarginOut: valOf("ddScheduleMarginOut")
+    }
+    Post("/SettingAPI/UpdateWorkTime", { time: WorkTime }).done(function (resp) {
+        Settings.Data.ID = 0;
+        if (resp) {
+            swal("Schedule time updated", { icon: "success" });
+            SetvalOf("ddScheduleHourStart", 0)
+            SetvalOf("ddScheduleMinStart", 0)
+
+            SetvalOf("ddScheduleHourEnd", 0)
+            SetvalOf("ddScheduleMinEnd", 0)
+
+            SetvalOf("ddScheduleMartingIn", 0)
+            SetvalOf("ddScheduleMarginOut", 0)
+            FillWorkTimeSchedule();
+        }
+        else
+            swal("Fail to update schedule time", { icon: "error" });
     })
 }

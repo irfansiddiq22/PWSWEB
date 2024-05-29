@@ -149,7 +149,9 @@ namespace PipewellserviceModels.Common
         ShortLeave=21,
         LeaveRequest = 22,
         Approvals=23,
-        Accommodation=24
+        Accommodation=24,
+        WorkTime=25,
+        EmployeeWorkTiming=26
     }
 
     public enum DirectoryNames

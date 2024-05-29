@@ -163,5 +163,30 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
+        //////////////////////////////////
+
+
+        ////////////////////////
+        public async Task<JsonResult> WorkTimeList()
+        {
+
+            return new JsonResult
+            {
+                Data = await json.WorkTimeList(),
+            JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public async Task<JsonResult> UpdateWorkTime(WorkInOutTime time)
+        {
+
+            
+            return new JsonResult
+            {
+                Data = await json.UpdateWorkTime(time),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
     }
 }

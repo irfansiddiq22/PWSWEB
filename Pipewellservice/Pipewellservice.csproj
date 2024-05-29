@@ -405,6 +405,7 @@
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeShortLeave.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeVacation.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeWarning.js" />
+    <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeWorkSchedule.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\JobContract.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\JobOffer.js" />
     <Content Include="Scripts\ProjectScripts\HR\Settings\Setting.js" />
@@ -536,6 +537,7 @@
     <Content Include="Views\Employee\_PartialEmployeeInquiry.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeShortLeaveHR.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeAccommodation.cshtml" />
+    <Content Include="Views\Employee\_PartialWorkschedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

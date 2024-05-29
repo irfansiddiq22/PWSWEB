@@ -22,7 +22,9 @@
     ShortLeave: 21,
     LeaveRequest: 22,
     Approvals:23,
-    Accommodation:24
+    Accommodation: 24,
+    WorkScheduleTime: 25,
+    EmployeeWorkSchedule:26
 
 }
 var PAGEGROUPS = {
@@ -406,4 +408,19 @@ function ResetDatePicker() {
     $(".datepicker").each(function () {
         $(this).datepicker('update', $(this).val());
     });
+}
+function ExportToExcel(html, fileName) {
+    var element = document.createElement('a');
+
+
+    var template = '<html xmlns: o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="UTF-8"><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>Report</x:Name><x:WorksheetOptions><x:DisplayGridlines="1"/></x:WorksheetOptions></x:ExcelWorksheet ></x:ExcelWorksheets ></x:ExcelWorkbook ></xml ></head> <body>' + html + '</body></html > ';
+
+
+
+    element.setAttribute('href', 'data:application/vnd.ms-excel,' + encodeURIComponent(template));
+    element.setAttribute('download', fileName);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
 }

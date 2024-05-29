@@ -134,7 +134,10 @@ namespace Pipewellservice
 
             bundles.Add(new Bundle("~/lib/hr/accommodation").Include(
                                               "~/Scripts/ProjectScripts/HR/Employee/Accommodation.js"));
+            bundles.Add(new Bundle("~/lib/hr/employeeworkschedule").Include(
+                                              "~/Scripts/ProjectScripts/HR/Employee/EmployeeWorkSchedule.js"));
 
+            
 
         }
     }

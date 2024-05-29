@@ -6,7 +6,8 @@
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <button class="nav-link active" id="nav-division-tab" data-bs-toggle="tab" data-bs-target="#nav-division" type="button" role="tab" aria-controls="nav-division" aria-selected="true">Division</button>
             <button class="nav-link" id="nav-positions-tab" data-bs-toggle="tab" data-bs-target="#nav-positions" type="button" role="tab" aria-controls="nav-positions" aria-selected="false">Positions</button>
-            
+            <button class="nav-link" id="nav-workschedule-tab" data-bs-toggle="tab" data-bs-target="#nav-workschedule" type="button" role="tab" aria-controls="nav-workschedule" aria-selected="false">Work Schedule</button>
+
         </div>
 
         <div class="tab-content border m2 p-3" id="nav-tabContent">
@@ -108,7 +109,56 @@
 
                 </div>
             </div>
+            <div class="tab-pane fade" id="nav-workschedule" role="tabpanel" aria-labelledby="nav-workschedule-tab">
+                <div class="m-auto w-50">
+                    <div class="border p-5 ">
+                        <table class="w-50 table">
+                            <tr>
+                                <td></td>
+                                <td><strong>Hour</strong></td>
+                                <td><strong>Minute</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Start:</strong></td>
+                                <td>
+                                    <select id="ddScheduleHourStart" class="form-select form-select-sm"></select>
+                                </td>
+                                <td><select id="ddScheduleMinStart" class="form-select form-select-sm"></select></td>
+                            </tr>
+                            <tr>
+                                <td><strong>End:</strong></td>
+                                <td><select id="ddScheduleHourEnd" class="form-select form-select-sm"></select></td>
+                                <td><select id="ddScheduleMinEnd" class="form-select form-select-sm"></select></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><strong>In</strong></td>
+                                <td><strong>Out</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Margin:</strong></td>
+                                
+                                <td><select id="ddScheduleMartingIn" class="form-select form-select-sm"></select></td>
+                                
+                                <td><select id="ddScheduleMarginOut" class="form-select form-select-sm"></select></td>
+                            </tr>
+                            
+                            <tr>
+                                <td colspan="3" align="center" class="p-3"><button class="btn btn-sm btn-primary" onclick="SaveWorkScheduleTime()">Save</button> <button class="ml-2 btn btn-sm btn-danger" onclick="CancelWorkScheduleTime()">Cancel</button></td>
+                            </tr>
+                        </table>
+                        <div class="mt-2">
+                            <table class="table table-sm table-bordered table-hover-warning table-striped">
+                                <thead class="blue">
+                                    <tr><th>ID</th><th>Hour Start</th><th>Minute Start</th><th>Hour End</th><th>Minute End</th><th>Margin In</th><th>Margin Out</th><th></th></tr>
+                                </thead>
+                                <tbody id="tblWorkScheduleList"></tbody>
+                            </table>
+                        </div>
+                    </div>
 
+                </div>
+            </div>
         </div>
     </nav>
 

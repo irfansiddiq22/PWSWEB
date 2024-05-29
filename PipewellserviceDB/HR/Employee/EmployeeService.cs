@@ -1,6 +1,7 @@
 ﻿using PipewellserviceDB.Common;
 using PipewellserviceModels.Common;
 using PipewellserviceModels.HR.Employee;
+using PipewellserviceModels.HR.Settings;
 using SQLHelper;
 using System;
 using System.Collections.Generic;
@@ -1302,6 +1303,55 @@ namespace PipewellserviceDB.HR.Employee
             DataTable data = new DataTable();
             data.Load(result);
             return data;
+        }
+        public async Task<DataTable> EmployeeWorkTimeList(int EmployeeID, DateTime StartDate, DateTime EndDate)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[3];
+                collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID };
+                collSP[1] = new SqlParameter { ParameterName = "@StartDate", Value = StartDate };
+                collSP[2] = new SqlParameter { ParameterName = "@EndDate", Value = EndDate };
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcListEmployeeWorkTimeSchedule", CommandType.StoredProcedure, collSP);
+                DataTable model = new DataTable();
+                model.Load(result);
+                result.Close();
+                return model;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<bool> UpdateEmployeeWorkSchedule(EmployeeWorkSchedule employeeWork)
+        {
+            try
+            {
+
+                SqlParameter[] collSP = new SqlParameter[9];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = employeeWork.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@FridayTime", Value = employeeWork.FridayTime };
+                collSP[2] = new SqlParameter { ParameterName = "@SaturdayTime", Value = employeeWork.SaturdayTime };
+
+                collSP[3] = new SqlParameter { ParameterName = "@SundayTime", Value = employeeWork.SundayTime };
+                collSP[4] = new SqlParameter { ParameterName = "@MondayTime", Value = employeeWork.MondayTime };
+
+                collSP[5] = new SqlParameter { ParameterName = "@TuesdayTime", Value = employeeWork.TuesdayTime };
+                collSP[6] = new SqlParameter { ParameterName = "@WednesdayTime", Value = employeeWork.WednesdayTime };
+                collSP[7] = new SqlParameter { ParameterName = "@ThursdayTime", Value = employeeWork.ThursdayTime };
+                collSP[8] = new SqlParameter { ParameterName = "@EmployeeID", Value = employeeWork.EmployeeID };
+
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateEmployeeWorkTimeSchedule", CommandType.StoredProcedure, collSP);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
         }
 
 

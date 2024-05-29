@@ -101,5 +101,19 @@ namespace PipewellserviceJson.HR.Setting
         }
 
 
+        public async Task<List<WorkInOutTime>> WorkTimeList()
+        {
+            var data= await service.WorkTimeList();
+
+            return await JsonHelper.Convert<List<WorkInOutTime>, DataTable>(data);
+        }
+
+        public async Task<bool> UpdateWorkTime(WorkInOutTime time)
+        {
+            return await service.UpdateWorkTime(time);
+        }
+
+        
+
     }
 }
