@@ -249,13 +249,14 @@ namespace Pipewellservice.Controllers
 
                     data = await JsonHelper.Convert<List<EmployeeWarningReport>, DataTable>(await service.EmployeeWarningDetail(ID));
                     report = new rpEmployeeWarning { DataSource = data, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 }, };
+                    ViewBag.ReportName = "Warning Notice";
                     break;
 
                 case Pages.EmployeeInquiry:
                     data = await JsonHelper.Convert<List<EmployeeInquiryReport>, DataTable>(await service.EmployeeInquiryReportDetail (ID));
 
                     report = new rpEmployeeInquiry { DataSource = data, Document = { CacheToDisk = true }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind=System.Drawing.Printing.PaperKind.A4 } };
-                    
+                    ViewBag.ReportName = "Employee Request";
 
                     break;
 
