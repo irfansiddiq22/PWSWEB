@@ -18,6 +18,7 @@ function _Init() {
             var data = []
             data.push({ id: 0, text: 'Leave Type' });
             $.each(Response, function (i, Lv) {
+                if (Lv.Value < 13)
                 data.push({ id: Lv.Value, text: Lv.Name });
             })
             $("#ddlLeaveTypes").select2({
