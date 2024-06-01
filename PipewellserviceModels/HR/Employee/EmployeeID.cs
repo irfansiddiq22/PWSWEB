@@ -31,4 +31,21 @@ namespace PipewellserviceModels.HR.Employee
         public DateTime RecordDateUpdated { get; set; }
         public string RecordUpdatedBy { get; set; }
     }
+    public class ExpiringID
+    {
+        public int EmployeeID { get; set; }
+        public string Name { get; set; }
+        public string ArabicName { get; set; }
+        public string Nationality { get; set; }
+        public string IDNumber { get; set; }
+        public string Division { get; set; }
+        public string Position { get; set; }
+        public string IDType { get; set; }
+    }
+    public class ExpistingIDParam
+    {
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string  FileType { get; set; }
+    }
 }

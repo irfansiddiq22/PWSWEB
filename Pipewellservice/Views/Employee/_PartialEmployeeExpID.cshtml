@@ -1,0 +1,55 @@
+﻿
+<div class="border p-2">
+    <div id="dvShortLeaveList">
+        <div class="p-3 border my-2">
+            <div class="row">
+
+                <div class="form-group col-md-3 row ms-1 mb-0">
+                    <label class="col-md-3 col-form-label p-0"> Date Range:</label>
+                    <div class="col position-relative">
+                        <input type="text" name="ddlDataRange" id="ddlDataRange" class="form-control form-control-sm daterangepicker" autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group col-md-3 row ms-1 mb-0">
+                    <label class="col-md-3 col-form-label p-0"> ID:</label>
+                    <div class="col position-relative">
+                        <select class="form-select form-select-sm" id="ddlIDFileType"></select>
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group col-md-2">
+                    <button class="btn btn-sm btn-primary" onclick="BindExpiringID()">Search </button>
+                    <button class="btn btn-sm btn-primary" onclick="ExportExpiringID()"><i class="fa fa-file-excel-o"></i> </button>
+
+
+                </div>
+            </div>
+        </div>
+        <div id="dvExpiringIdData">
+            <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+                <thead class="blue">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Arabic Name</th>
+                        <th>Nationality</th>
+
+                        <th>Division</th>
+                        <th>Position</th>
+                        <th>ID</th>
+                        <th>Number</th>
+                        <th>Expiry Date</th>
+                    </tr>
+                </thead>
+                <tbody id="tblEmployeeExpiringID"></tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+@section Scripts{
+    @Scripts.Render("~/lib/hr/expiringID")
+}

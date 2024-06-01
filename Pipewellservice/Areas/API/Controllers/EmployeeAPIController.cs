@@ -623,7 +623,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
                     return new JsonResult
                     {
-                        Data = new ResultDTO() { ID = ID, Status = true, Message = " file uploaded", FileID=FileID },
+                        Data = new ResultDTO() { ID = ID, Status = true, Message = " file uploaded", FileID = FileID },
                         JsonRequestBehavior = JsonRequestBehavior.AllowGet
                     };
                 }
@@ -632,7 +632,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
             return new JsonResult
             {
-                Data = new ResultDTO() { ID = EmployeeID, Status = true, Message = "No file to upload" , FileID = "2901.docx" },
+                Data = new ResultDTO() { ID = EmployeeID, Status = true, Message = "No file to upload", FileID = "2901.docx" },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
 
@@ -700,11 +700,11 @@ namespace Pipewellservice.Areas.API.Controllers
                     string Attachment = "";
                     if (record.FileID != null)
                     {
-                          Attachment = await FileHelper.GetFile(record.FileID, record.EmployeeID, DirectoryNames.EmployeeInquiry);
+                        Attachment = await FileHelper.GetFile(record.FileID, record.EmployeeID, DirectoryNames.EmployeeInquiry);
                     }
-                    
 
-                    status = await email.SendEmail(new EmailDTO() { To = Supervisor.EmailAddress, From = "no-reply@pipewellservices.com", Subject = SupervisorEmailTemplate.Subject, Body = SupervisorEmailTemplate.Body, Attachment= Attachment }, field);
+
+                    status = await email.SendEmail(new EmailDTO() { To = Supervisor.EmailAddress, From = "no-reply@pipewellservices.com", Subject = SupervisorEmailTemplate.Subject, Body = SupervisorEmailTemplate.Body, Attachment = Attachment }, field);
                 }
                 result = true;
             }
@@ -1123,12 +1123,12 @@ namespace Pipewellservice.Areas.API.Controllers
 
 
         ////////////////////////
-        public async Task<JsonResult> EmployeeWorkTimeList(int EmployeeID,DateTime StartDate,DateTime EndDate)
+        public async Task<JsonResult> EmployeeWorkTimeList(int EmployeeID, DateTime StartDate, DateTime EndDate)
         {
 
             return new JsonResult
             {
-                Data = await json.EmployeeWorkTimeList(EmployeeID,StartDate,EndDate),
+                Data = await json.EmployeeWorkTimeList(EmployeeID, StartDate, EndDate),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -1144,6 +1144,14 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
+        public async Task<JsonResult> ExpiringIDData(ExpistingIDParam param)
+        {
+            return new JsonResult
+            {
+                Data = await json.ExpiringIDData(param),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
 
     }
 }

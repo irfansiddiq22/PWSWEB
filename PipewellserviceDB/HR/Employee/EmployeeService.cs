@@ -1354,6 +1354,19 @@ namespace PipewellserviceDB.HR.Employee
 
         }
 
+        public async Task<DataTable> ExpiringIDData(ExpistingIDParam param)
+        {
+
+            SqlParameter[] collSP = new SqlParameter[3];
+            collSP[0] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate };
+            collSP[1] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate };
+            collSP[2] = new SqlParameter { ParameterName = "@FileType", Value = param.FileType };
+
+            var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeExpiringID", CommandType.StoredProcedure, collSP);
+            DataTable data = new DataTable();
+            data.Load(result);
+            return data;
+        }
 
     }
 }

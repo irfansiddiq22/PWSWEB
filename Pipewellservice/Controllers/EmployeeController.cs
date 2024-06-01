@@ -209,7 +209,13 @@ namespace Pipewellservice.Controllers
                 return View("_PartialEmployeeShortLeave");
             else
                 return View("_PartialEmployeeShortLeaveHR");
-        } 
+        }
+        public ActionResult ExpiringID()
+        {
+            ViewBag.Title = "Employee Expiring ID";
+            ViewBag.Parent = Parent;
+            return View("_PartialEmployeeExpID");
+        }
 
         public ActionResult FormHandover()
         {

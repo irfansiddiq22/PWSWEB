@@ -360,5 +360,13 @@ namespace PipewellserviceJson.HR.Employee
             return await service.UpdateEmployeeWorkSchedule(employeetime);
         }
 
+        public async Task<List<ExpiringID>> ExpiringIDData(ExpistingIDParam param)
+        {
+            var data = await service.ExpiringIDData(param);
+
+            return await JsonHelper.Convert<List<ExpiringID>, DataTable>(data);
+        }
+
+        
     }
 }
