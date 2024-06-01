@@ -41,6 +41,7 @@ namespace PipewellserviceModels.HR.Employee
         public string Division { get; set; }
         public string Position { get; set; }
         public string IDType { get; set; }
+        public DateTime ExpiryDate { get; set; }
     }
     public class ExpistingIDParam
     {
