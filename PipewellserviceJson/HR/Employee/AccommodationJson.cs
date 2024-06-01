@@ -35,9 +35,9 @@ namespace PipewellserviceJson.HR.Employee
             return await service.AddAppartment(appt);
         }
 
-        public async Task<bool> AssignRoomBeds(List<RoomBed> beds)
+        public async Task<bool> AssignRoomBeds(List<RoomBed> beds,int UserID, bool AramcoRoom)
         {
-            return await service.AssignRoomBeds(beds);
+            return await service.AssignRoomBeds(beds, UserID, AramcoRoom);
         }
         public async Task<bool> AssignAppartmentPlan(Appartment appertment, List<RoomBed> beds)
         {

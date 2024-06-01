@@ -53,6 +53,7 @@ namespace PipewellserviceModels.HR.Employee
         public string Position { get; set; }
         public string Division { get; set; }
         public string Nationality { get; set; }
+        public bool AramcoRoom { get; set; }
     }
 
     

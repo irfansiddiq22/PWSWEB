@@ -88,6 +88,8 @@
                                     <td>Number of Beds:</td>
                                     <td><input type="number" class="form-control" id="txtNoOfBeds" onblur="CreateEmployeeBeds(this,'trBeds')" /></td>
                                 </tr>
+                                <tr><td>Amarco Room ?</td>
+                                <td><label class="switch"><input type="checkbox" checked="checked" id="chkAramcoRoom" onclick="LockAramcoRoom()"><div class="slider round"></div></label></td></tr>
                                 <tr><td id="trBeds" colspan="2"></td></tr>
                                 <tr><td colspan="3" id="tdDuplicateBeds"></td></tr>
                                 <tr><td colspan="3"><button class="btn btn-sm btn-primary" onclick="SaveEmployeeBeds()">Save</button></td></tr>

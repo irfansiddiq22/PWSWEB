@@ -76,7 +76,7 @@ namespace PipewellserviceDB.HR.Employee
                 return 0;
             }
         }
-        public async Task<bool> AssignRoomBeds(List<RoomBed> beds)
+        public async Task<bool> AssignRoomBeds(List<RoomBed> beds,int UserID, bool Aramco)
         {
             try
             {
@@ -88,8 +88,14 @@ namespace PipewellserviceDB.HR.Employee
 
                 }
                 xml.Append("</Dataset>");
-                
-                var result = SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcSaveBuildingRoom", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@Xml", Value = xml.ToString() });
+
+
+                SqlParameter[] collSP = new SqlParameter[3];
+                collSP[0] = new SqlParameter { ParameterName = "@Xml", Value = xml.ToString() };
+                collSP[1] = new SqlParameter { ParameterName = "@UserID", Value = UserID };
+                collSP[2] = new SqlParameter { ParameterName = "@AramcoRoom", Value = Aramco };
+
+                var result = SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcSaveBuildingRoom", CommandType.StoredProcedure, collSP);
                 
                 return true;
             }catch(Exception e)

@@ -113,9 +113,15 @@ function CreateFloor(i, ID) {
     $.each(Buildings.Appartments.filter(x => x.BuildingID == ID && x.FloorNumber == i), function (i, apt) {
         treegrid++;
         aptRow = $('<tr class="treegrid-' + treegrid + '">')
-        var EmpBeds = Buildings.Rooms.filter(x => x.AppartmentID == apt.ID && x.EmployeeID == 0);
+        var EmpBeds = Buildings.Rooms.filter(x => x.AppartmentID == apt.ID && x.EmployeeID == 0 && x.AramcoRoom == 0);
+        var AramcoRoom = Buildings.Rooms.filter(x => x.AppartmentID == apt.ID && x.EmployeeID == 0 && x.AramcoRoom == 1);
 
-        $(aptRow).append($('<td  class="align-middle blue">').append("Appartment " + apt.AppartmentNumber + (EmpBeds.length > 0 ? " Empty Beds: <span class='badge bg-danger' style='font-size:17px'>" + EmpBeds.length + "</span>" : "")));
+        var result = [];
+        $.each(AramcoRoom, function (i, v) {
+            if ($.inArray(v.RoomNumber, result) == -1) result.push(v.RoomNumber);
+        });
+
+        $(aptRow).append($('<td  class="align-middle blue">').append("Appartment " + apt.AppartmentNumber + (EmpBeds.length > 0 ? "    Vacant Beds: <span class='badge bg-danger' style='font-size:17px'>" + EmpBeds.length + "</span>" : "") + (result.length > 0 ? "    Aramco Rooms: <span class='badge bg-danger' style='font-size:17px'>" + result.length + "</span>" : "")));
         $(aptTable).append($(aptRow));
         aptRow = $('<tr class="treegrid-parent-' + treegrid + '">')
         aptRow.append($('<td>').append(CreateAppartment(apt)));
@@ -176,23 +182,36 @@ function CreateRooms(RoomCount, AppartmentID) {
     var parent = treegrid;
     for (i = 1; i <= RoomCount; i++) {
         var Beds = Buildings.Rooms.filter(x => x.AppartmentID == AppartmentID && x.RoomNumber == i);
-        var EmpBeds = Buildings.Rooms.filter(x => x.AppartmentID == AppartmentID && x.RoomNumber == i && x.EmployeeID == 0);
+        var EmpBeds = Buildings.Rooms.filter(x => x.AppartmentID == AppartmentID && x.RoomNumber == i && x.EmployeeID == 0 && x.AramcoRoom == 0);
+        
         var tr = $('<tr data-id="' + i + '" class="rooms' + AppartmentID + ' treegrid-' + treegrid + ' treegrid-parent-' + parent + '">')
 
-        tr.append($('<td>').append("<strong>Room " + i + " </strong><strong> Beds: <span class='badge bg-success' style='font-size:17px'>" + Beds.length + "</span>" + (EmpBeds.length > 0 ? " Empty Beds: <span class='badge bg-danger' style='font-size:17px'>" + EmpBeds.length + "</span>" : "") + "</strong> ").append($('<a href="javascript:void(0)" class="" onclick="EditRoomPlan(' + i + ', ' + AppartmentID + ')">').append($('<i class="fa fa-edit">'))));
+        tr.append($('<td>').append("<strong>Room " + i + " </strong><strong> Beds: <span class='badge bg-success' style='font-size:17px'>" + Beds.length + "</span>" + (EmpBeds.length > 0 ? " Vacant Beds: <span class='badge bg-danger' style='font-size:17px'>" + EmpBeds.length + "</span>" : "")  + "</strong> ").append($('<a href="javascript:void(0)" class="" onclick="EditRoomPlan(' + i + ', ' + AppartmentID + ')">').append($('<i class="fa fa-edit">'))));
         $(table).append(tr);
         var tparent = treegrid;
 
         tr = $('<tr class="treegrid-parent-' + treegrid + '">')
         var tblbed = $('<div class="row ms-3">');
         var employee = ''
-        $.each(Beds, function (j, r) {
-            if (r.EmployeeID == 0)
-                employee = " <span class='ml-3 badge bg-danger'>Empty</span>"
-            else
-                employee = " " + r.EmployeeName + "(" + r.EmployeeID + ") Position: " + r.Position + " Division: " + (r.Division == null ? "" : r.Division) + " Country: " + r.Nationality
-            $(tblbed).append($('<div class="col-4 my-2">').append("Bed #:" + r.BedNumber + employee));
-        })
+        for (j = 0; j <= Beds.length-1; j++) {
+            var r = Beds[j];
+            if (r.AramcoRoom == 1) {
+                $(tblbed).append($('<div class="col-8 bg-warning p-2 text-white rounded">').append("Aramco"));
+                break;
+            } else {
+
+
+                if (r.EmployeeID == 0)
+                    employee = " <span class='ml-3 badge bg-danger'>Vacant</span>"
+                
+                else
+                    employee = " " + r.EmployeeName + "(" + r.EmployeeID + ") Position: " + r.Position + " Division: " + (r.Division == null ? "" : r.Division) + " Country: " + r.Nationality
+                $(tblbed).append($('<div class="col-4 my-2">').append("Bed #:" + r.BedNumber + employee));
+            }
+        }
+        /*$.each(Beds, function (j, r) {
+            
+        })*/
         $(tr).append($('<td>').append(tblbed));
         $(table).append($(tr));
         treegrid++;
@@ -325,6 +344,18 @@ function CreateEmployeeList(id) {
 
     return $(Select);
 }
+function LockAramcoRoom() {
+    $("#trBeds").find("select").each(function () {
+        $(this).select2("enable", $("#chkAramcoRoom").prop("checked"))
+        if ($("#chkAramcoRoom").prop("checked")) {
+            $(this).attr("disabled", "disabled")
+        } else
+            $(this).removeAttr("disabled", "disabled")
+
+        
+    });
+
+}
 
 function SaveEmployeeBeds() {
     var Beds = [];
@@ -375,7 +406,7 @@ function SaveEmployeeBeds() {
         $("#tdDuplicateBeds").append(DuplicateTable)
         $("#tdDuplicateBeds").append($('<button class="btn btn-sm btn-primary" onclick="AssignEmployeeBeds()">Unlink and Continue Assignment </button>'))
     } else {
-        SaveRoomBedPlan(Beds);
+        SaveRoomBedPlan(Beds, $("#chkAramcoRoom").prop("checked"));
     }
 
 
@@ -405,10 +436,11 @@ function AssignEmployeeBeds() {
 
     SaveRoomBedPlan(Beds);
 }
-function SaveRoomBedPlan(Beds) {
+function SaveRoomBedPlan(Beds,Aramco) {
 
     Post("/Accommodation/AssignRoomBeds", {
-        beds: Beds
+        beds: Beds,
+        AramcoRoom: Aramco
     }).done(function (resp) {
         ShowBuildings();
     });

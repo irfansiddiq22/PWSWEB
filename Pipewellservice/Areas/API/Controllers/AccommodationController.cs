@@ -12,7 +12,7 @@ using PipewellserviceJson.HR.Employee;
 namespace Pipewellservice.Areas.API.Controllers
 {
     [Authorization]
-    public class AccommodationController : Controller
+    public class AccommodationController : BaseController
     {
         private AccommodationJson json = new AccommodationJson();
         [Authorization(Pages.Accommodation, 1, 2)]
@@ -58,11 +58,11 @@ namespace Pipewellservice.Areas.API.Controllers
 
 
         [Authorization(Pages.Accommodation, 1, 2)]
-        public async Task<JsonResult> AssignRoomBeds(List<RoomBed> beds)
+        public async Task<JsonResult> AssignRoomBeds(List<RoomBed> beds, bool AramcoRoom)
         {
             return new JsonResult
             {
-                Data = await json.AssignRoomBeds(beds),
+                Data = await json.AssignRoomBeds(beds, SessionHelper.UserID(), AramcoRoom),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
