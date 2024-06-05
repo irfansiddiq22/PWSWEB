@@ -236,7 +236,15 @@ namespace Pipewellservice.Controllers
             ViewBag.Title = "Settings";
             ViewBag.Parent = Parent;
             return View("_PartialEmployeeSetting");
+        }[Authorization(Pages.AttendenceReport)]
+        public ActionResult AttendenceReport()
+        {
+            ViewBag.Title = "Attendence Report";
+            ViewBag.Parent = Parent;
+            return View("_PartialEmployeeAttendenceReport");
         }
+
+        
 
         public ActionResult Sponsors()
         {
@@ -244,25 +252,60 @@ namespace Pipewellservice.Controllers
             ViewBag.Parent = Parent;
             return View("_PartialSponsor");
         }
-        public async Task<ActionResult> PrintReport(int ID, Pages ReportID)
+        public async Task<ActionResult> PrintReport(int ID, ReportTypes ReportID)
         {
             EmployeeService service = new EmployeeService();
             object report = null;
             object data = null;
             switch (ReportID)
             {
-                case Pages.EmployeeWarning:
+                case ReportTypes.EmployeeWarning:
 
                     data = await JsonHelper.Convert<List<EmployeeWarningReport>, DataTable>(await service.EmployeeWarningDetail(ID));
                     report = new rpEmployeeWarning { DataSource = data, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 }, };
                     ViewBag.ReportName = "Warning Notice";
                     break;
 
-                case Pages.EmployeeInquiry:
+                case ReportTypes.EmployeeInquiry:
                     data = await JsonHelper.Convert<List<EmployeeInquiryReport>, DataTable>(await service.EmployeeInquiryReportDetail (ID));
 
                     report = new rpEmployeeInquiry { DataSource = data, Document = { CacheToDisk = true }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind=System.Drawing.Printing.PaperKind.A4 } };
                     ViewBag.ReportName = "Employee Request";
+
+                    break;
+
+                    
+
+
+
+            }
+
+
+            ViewBag.Report = report;
+            return PartialView("WebViewer");
+        }
+
+        public async Task<ActionResult> PrintAttendenceReport(int ID, ReportTypes ReportID, DateTime StartDate, DateTime EndDate)
+        {
+            EmployeeService service = new EmployeeService();
+            object report = null;
+            object data = null;
+            switch (ReportID)
+            {
+                
+
+
+                case ReportTypes.EmployeeAttendenceInOut:
+                    data = await JsonHelper.Convert<List<EmployeeAttendenceInOut>, DataTable>(await service.EmployeeAttendenceInOut(new DateParam() { EmployeeID = ID, StartDate = StartDate, EndDate = EndDate }));
+                    report = new rpEmployeeAttendenceInOut { DataSource = data, Document = { CacheToDisk = true }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
+                    ViewBag.ReportName = "Employee Attendence InOut";
+
+                    break;
+
+                case ReportTypes.EmployeeAttendenceDetail:
+                    data = await service.EmployeeAttendenceDetail(new DateParam() { EmployeeID = ID, StartDate = StartDate, EndDate = EndDate });
+                    report = new rptAttendanceDetail { DataSource = data, Document = { }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
+                    ViewBag.ReportName = "Employee Attendence Detaisl";
 
                     break;
 

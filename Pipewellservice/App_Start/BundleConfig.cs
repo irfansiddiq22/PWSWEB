@@ -138,8 +138,10 @@ namespace Pipewellservice
                                               "~/Scripts/ProjectScripts/HR/Employee/EmployeeWorkSchedule.js"));
             bundles.Add(new Bundle("~/lib/hr/expiringID").Include(
                                               "~/Scripts/ProjectScripts/HR/Employee/ExpiringID.js"));
+            bundles.Add(new Bundle("~/lib/hr/attendencereport").Include(
+                                              "~/Scripts/ProjectScripts/HR/Employee/AttendenceReport.js"));
 
-
+            
 
         }
     }

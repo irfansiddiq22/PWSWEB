@@ -175,6 +175,15 @@
     <Compile Include="Helper\SessionHelper.cs" />
     <Compile Include="Helper\StringHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\rpEmployeeAttendenceDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rpEmployeeInOutActivity.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rpEmployeeAttendenceInOut.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\rpEmployeeInquiry.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -389,6 +398,7 @@
     <Content Include="Scripts\ProjectScripts\Home\home.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Accommodation.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Asset.js" />
+    <Content Include="Scripts\ProjectScripts\HR\Employee\AttendenceReport.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Employee.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeClearance.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeFamily.js" />
@@ -540,6 +550,7 @@
     <Content Include="Views\Employee\_PartialEmployeeAccommodation.cshtml" />
     <Content Include="Views\Employee\_PartialWorkschedule.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeExpID.cshtml" />
+    <Content Include="Views\Employee\_PartialEmployeeAttendenceReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -608,6 +619,15 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="licenses.licx" />
+    <EmbeddedResource Include="Reports\rpEmployeeAttendenceDetail.resx">
+      <DependentUpon>rpEmployeeAttendenceDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rpEmployeeInOutActivity.resx">
+      <DependentUpon>rpEmployeeInOutActivity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rpEmployeeAttendenceInOut.resx">
+      <DependentUpon>rpEmployeeAttendenceInOut.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rpEmployeeInquiry.resx">
       <DependentUpon>rpEmployeeInquiry.cs</DependentUpon>
     </EmbeddedResource>

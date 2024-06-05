@@ -122,6 +122,14 @@ namespace PipewellserviceModels.Common
         Setting=3
 
     }
+    public enum ReportTypes
+    {
+        EmployeeAttendenceInOut = 1,
+        EmployeeAttendenceDetail = 2,
+        EmployeeWarning = 11,
+        EmployeeInquiry = 16,
+        
+    }
     public enum Pages
     {
         None=0,
@@ -151,7 +159,8 @@ namespace PipewellserviceModels.Common
         Approvals=23,
         Accommodation=24,
         WorkTime=25,
-        EmployeeWorkTiming=26
+        EmployeeWorkTiming=26,
+        AttendenceReport=27
     }
 
     public enum DirectoryNames

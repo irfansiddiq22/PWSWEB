@@ -996,6 +996,18 @@ namespace PipewellserviceDB.HR.Employee
 
             return model;
         }
+        public async Task<bool> UpdateRequestStatus(int ID, ApprovalTypes type, ApprovalStatus status)
+        {
+            SqlParameter[] collSP = new SqlParameter[3];
+
+            
+            collSP[0] = new SqlParameter { ParameterName = "@ID", Value = ID };
+            collSP[1] = new SqlParameter { ParameterName = "@Type", Value = (int)type };
+            collSP[2] = new SqlParameter { ParameterName = "@ApprovalStatus", Value = (int)status };
+            SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcUpdateEmployeeRequestStatus", CommandType.StoredProcedure, collSP);
+            return true;
+
+        }
         public async Task<DataTable> VendorList()
         {
             try
@@ -1368,5 +1380,48 @@ namespace PipewellserviceDB.HR.Employee
             return data;
         }
 
+
+        public async Task<DataTable> EmployeeAttendenceInOut(DateParam param)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[3];
+                collSP[0] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate };
+                collSP[1] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate };
+                collSP[2] = new SqlParameter { ParameterName = "@EmployeeID", Value = param.EmployeeID };
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeInOutActivity", CommandType.StoredProcedure, collSP);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public async Task<DataTable> EmployeeAttendenceDetail(DateParam param)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[3];
+                collSP[0] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate };
+                collSP[1] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate };
+                collSP[2] = new SqlParameter { ParameterName = "@EmployeeID", Value = param.EmployeeID };
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeAttendenceReport", CommandType.StoredProcedure, collSP);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
+
+
 }

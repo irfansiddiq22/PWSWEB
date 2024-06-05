@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PipewellserviceJson.HR.Employee;
 using PipewellserviceModels.Common;
 using PipewellserviceModels.HR.Employee;
 using PipewellserviceModels.Setting;
@@ -12,6 +13,8 @@ namespace Pipewellservice.Helper
 {
     public class ApprovalHelper
     {
+
+        EmployeeJson json = new EmployeeJson();
         public async Task<bool> ProcessRequest(ApprovalTypes type, ApprovalRequestResult result)
         {
             List<MergeField> field = new List<MergeField>();
@@ -20,6 +23,7 @@ namespace Pipewellservice.Helper
 
             string Attachment = "";
 
+            int RecordID = 0;
             if (type == ApprovalTypes.Leaves)
             {
                 ProcessMail = true;
@@ -28,6 +32,7 @@ namespace Pipewellservice.Helper
                 field.Add(new MergeField("START_DATE", record.StartDate.ToString("MM/dd/yyyy")));
                 field.Add(new MergeField("END_DATE", record.EndDate.ToString("MM/dd/yyyy")));
                 field.Add(new MergeField("DAYS", (record.EndDate - record.StartDate).Days.ToString()));
+                RecordID = record.ID;
             }
             else if (type == ApprovalTypes.Inquiry)
             {
@@ -40,8 +45,8 @@ namespace Pipewellservice.Helper
                 {
                     Attachment = await FileHelper.GetFile(record.FileID, record.EmployeeID, DirectoryNames.EmployeeInquiry);
                 }
+                RecordID = record.ID;
 
-                
                 ProcessMail = true;
 
             }
@@ -56,6 +61,7 @@ namespace Pipewellservice.Helper
                 {
                     Attachment = await FileHelper.GetFile(record.FileID, record.EmployeeID, DirectoryNames.EmployeeShortLeave);
                 }
+                RecordID = record.ID;
 
 
                 ProcessMail = true;
@@ -166,8 +172,10 @@ namespace Pipewellservice.Helper
                 bool status = false;
 
                 if (RequestStatus == ApprovalStatus.Approved || RequestStatus == ApprovalStatus.Declined || RequestStatus == ApprovalStatus.NotApproved)
+                {
                     status = await email.SendEmail(new EmailDTO() { To = employee.EmailAddress, From = "no-reply@pipewellservices.com", Subject = EmployeeEmailTemplate.Subject, Body = EmployeeEmailTemplate.Body }, field);
-
+                    await json.UpdateRequestStatus(RecordID, type, RequestStatus);
+                }
                 if (RequestStatus == ApprovalStatus.Pending && Supervisor.ID > 0 && Supervisor.EmailAddress != "")
                 {
 

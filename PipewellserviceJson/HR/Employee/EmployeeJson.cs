@@ -257,7 +257,10 @@ namespace PipewellserviceJson.HR.Employee
 
 
         }
-
+        public async Task<bool> UpdateRequestStatus(int ID, ApprovalTypes type, ApprovalStatus status)
+        {
+           return await service.UpdateRequestStatus(ID, type, status);
+        }
 
         ////////////////////
         public async Task<List<Vendor>>VendorList()

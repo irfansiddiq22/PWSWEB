@@ -24,7 +24,13 @@
     Approvals:23,
     Accommodation: 24,
     WorkScheduleTime: 25,
-    EmployeeWorkSchedule:26
+    EmployeeWorkSchedule: 26,
+    EmployeeAttendence:27
+
+}
+var REPORTS={
+    EmployeeAttendenceInOut: 1,
+    EmployeeAttendenceDetail:2
 
 }
 var PAGEGROUPS = {
