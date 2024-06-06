@@ -54,6 +54,7 @@ function BindLeaveList() {
 
 }
 function ResetMessageText() {
+    return;
     if (valOf("ddlLeaveTypes") > 0 && (moment(valOf("txtRecordStartDate"), "DD/MM/YYYY", true).isValid() && moment(valOf("txtRecordEndDate"), "DD/MM/YYYY", true).isValid())) {
         var LeaveMessage = Message;
         LeaveMessage = LeaveMessage.replace("#leave#", $("#ddlLeaveTypes option:selected").text())

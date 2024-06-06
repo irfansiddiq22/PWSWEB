@@ -30,7 +30,8 @@
 }
 var REPORTS={
     EmployeeAttendenceInOut: 1,
-    EmployeeAttendenceDetail:2
+    EmployeeAttendenceDetail: 2,
+    EmployeeAttendenceSummary: 3
 
 }
 var PAGEGROUPS = {

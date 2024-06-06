@@ -305,7 +305,14 @@ namespace Pipewellservice.Controllers
                 case ReportTypes.EmployeeAttendenceDetail:
                     data = await service.EmployeeAttendenceDetail(new DateParam() { EmployeeID = ID, StartDate = StartDate, EndDate = EndDate });
                     report = new rptAttendanceDetail { DataSource = data, Document = { }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
-                    ViewBag.ReportName = "Employee Attendence Detaisl";
+                    ViewBag.ReportName = "Employee Attendence Detail";
+
+                    break;
+
+                case ReportTypes.EmployeeAttendenceSummary:
+                    data = await service.EmployeeAttendenceSummary(new DateParam() { EmployeeID = ID, StartDate = StartDate, EndDate = EndDate });
+                    report = new rpEmployeeAttendenceSummary { DataSource = data, Document = { }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
+                    ViewBag.ReportName = "Employee Attendence Summary";
 
                     break;
 

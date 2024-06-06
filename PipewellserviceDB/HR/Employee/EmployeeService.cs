@@ -1269,7 +1269,7 @@ namespace PipewellserviceDB.HR.Employee
             parameters[2] = new SqlParameter { ParameterName = "@StartDate", Value = record.StartDate };
             parameters[3] = new SqlParameter { ParameterName = "@EndDate", Value = record.EndDate };
             parameters[4] = new SqlParameter { ParameterName = "@LeaveType", Value = record.LeaveType };
-            parameters[5] = new SqlParameter { ParameterName = "@Remarks", Value = record.Remarks };
+            parameters[5] = new SqlParameter { ParameterName = "@Remarks", Value =StringHelper.NullToString( record.Remarks) };
             parameters[6] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = record.RecordCreatedBy };
             parameters[7] = new SqlParameter { ParameterName = "@Status", Value = 0, Direction = ParameterDirection.InputOutput };
 
@@ -1411,6 +1411,27 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[2] = new SqlParameter { ParameterName = "@EmployeeID", Value = param.EmployeeID };
 
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeAttendenceReport", CommandType.StoredProcedure, collSP);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public async Task<DataTable> EmployeeAttendenceSummary(DateParam param)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[3];
+                collSP[0] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate.ToString("MM/dd/yyyy") };
+                collSP[1] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate.ToString("MM/dd/yyyy") };
+                collSP[2] = new SqlParameter { ParameterName = "@EmployeeID", Value = param.EmployeeID };
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeAttendenceReportSummary", CommandType.StoredProcedure, collSP);
                 DataTable dt = new DataTable();
                 dt.Load(result);
                 result.Close();

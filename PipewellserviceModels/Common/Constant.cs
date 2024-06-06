@@ -126,6 +126,7 @@ namespace PipewellserviceModels.Common
     {
         EmployeeAttendenceInOut = 1,
         EmployeeAttendenceDetail = 2,
+        EmployeeAttendenceSummary = 3,
         EmployeeWarning = 11,
         EmployeeInquiry = 16,
         

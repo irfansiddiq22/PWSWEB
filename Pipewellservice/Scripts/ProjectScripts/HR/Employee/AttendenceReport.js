@@ -43,4 +43,8 @@ function ShowAttendenceReport() {
         
         window.open("/Employee/PrintAttendenceReport?ID=" + $("#ddEmployeeCode").val() + "&ReportID=" + REPORTS.EmployeeAttendenceDetail + "&StartDate=" + $.trim(StartDate) + "&EndDate=" + $.trim(EndDate), "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
     }
+    else if ($("#chkSummary").prop("checked")) {
+
+        window.open("/Employee/PrintAttendenceReport?ID=" + $("#ddEmployeeCode").val() + "&ReportID=" + REPORTS.EmployeeAttendenceSummary + "&StartDate=" + $.trim(StartDate) + "&EndDate=" + $.trim(EndDate), "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
+    }
 }

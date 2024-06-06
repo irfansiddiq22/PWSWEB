@@ -54,17 +54,63 @@
     <Reference Include="DocumentFormat.OpenXml.Framework, Version=3.0.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.Framework.3.0.2\lib\net46\DocumentFormat.OpenXml.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="Gcef.Data.DataEngine, Version=3.4.0.0, Culture=neutral, PublicKeyToken=0b5e1563d2869208, processorArchitecture=MSIL">
+      <HintPath>..\packages\Gcef.Data.DataEngine.3.4.0\lib\net462\Gcef.Data.DataEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Gcef.Data.ExpressionInfo, Version=3.4.0.0, Culture=neutral, PublicKeyToken=0b5e1563d2869208, processorArchitecture=MSIL">
+      <HintPath>..\packages\Gcef.Data.ExpressionInfo.3.4.0\lib\net462\Gcef.Data.ExpressionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Gcef.Data.VBFunctionLib, Version=3.4.0.0, Culture=neutral, PublicKeyToken=0b5e1563d2869208, processorArchitecture=MSIL">
+      <HintPath>..\packages\Gcef.Data.VBFunctionLib.3.4.0\lib\net462\Gcef.Data.VBFunctionLib.dll</HintPath>
+    </Reference>
     <Reference Include="GrapeCity.ActiveReports.Chart.v8, Version=8.3.634.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL" />
     <Reference Include="GrapeCity.ActiveReports.Design.Win.v8, Version=8.3.634.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL" />
     <Reference Include="GrapeCity.ActiveReports.Document.v8, Version=8.3.634.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
     <Reference Include="GrapeCity.ActiveReports.Export.Pdf.v8, Version=8.3.634.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
     <Reference Include="GrapeCity.ActiveReports.v8, Version=8.3.634.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="GrapeCity.ActiveReports.Viewer.Common, Version=17.2.0.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <HintPath>..\packages\GrapeCity.ActiveReports.Viewer.Common.17.2.0\lib\net462\GrapeCity.ActiveReports.Viewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Viewer.Win, Version=17.2.0.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <HintPath>..\packages\GrapeCity.ActiveReports.Viewer.Win.17.2.0\lib\net462\GrapeCity.ActiveReports.Viewer.Win.dll</HintPath>
+    </Reference>
     <Reference Include="GrapeCity.ActiveReports.Web.v8, Version=8.3.634.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.5.0.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -73,6 +119,7 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -175,10 +222,10 @@
     <Compile Include="Helper\SessionHelper.cs" />
     <Compile Include="Helper\StringHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\rpEmployeeAttendenceDetail.cs">
+    <Compile Include="Reports\rpEmployeeAttendenceSummary.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\rpEmployeeInOutActivity.cs">
+    <Compile Include="Reports\rpEmployeeAttendenceDetail.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\rpEmployeeAttendenceInOut.cs">
@@ -619,11 +666,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="licenses.licx" />
+    <EmbeddedResource Include="Reports\rpEmployeeAttendenceSummary.resx">
+      <DependentUpon>rpEmployeeAttendenceSummary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rpEmployeeAttendenceDetail.resx">
       <DependentUpon>rpEmployeeAttendenceDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\rpEmployeeInOutActivity.resx">
-      <DependentUpon>rpEmployeeInOutActivity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rpEmployeeAttendenceInOut.resx">
       <DependentUpon>rpEmployeeAttendenceInOut.cs</DependentUpon>

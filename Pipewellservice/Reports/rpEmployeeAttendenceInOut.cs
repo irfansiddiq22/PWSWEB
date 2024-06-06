@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using GrapeCity.ActiveReports;
 namespace Pipewellservice.Reports
 {
 
@@ -138,8 +139,7 @@ namespace Pipewellservice.Reports
             this.txtabsent.Height = 0.2F;
             this.txtabsent.Left = 0F;
             this.txtabsent.Name = "txtabsent";
-            this.txtabsent.Style = "color: Black; font-size: 8pt; text-align: center; vertical-align: middle; ddo-cha" +
-    "r-set: 1";
+            this.txtabsent.Style = "color: Black; font-size: 8pt; text-align: center; vertical-align: middle; ddo-char-set: 1";
             this.txtabsent.Text = null;
             this.txtabsent.Top = 0F;
             this.txtabsent.Visible = false;
@@ -749,6 +749,7 @@ namespace Pipewellservice.Reports
             "ght: bold; font-size: 14pt; font-size-adjust: inherit; font-stretch: inherit", "Heading2", "Normal"));
             this.StyleSheet.Add(new DDCssLib.StyleSheetRule("font-family: inherit; font-style: inherit; font-variant: inherit; font-weight: bo" +
             "ld; font-size: 13pt; font-size-adjust: inherit; font-stretch: inherit", "Heading3", "Normal"));
+            this.ReportStart += new System.EventHandler(this.rpEmployeeAttendenceInOut_ReportStart);
             ((System.ComponentModel.ISupportInitialize)(this.txtabsent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtin)).EndInit();
@@ -857,6 +858,11 @@ namespace Pipewellservice.Reports
                     }
                 }catch(Exception ex) { }*/
             }
+
+        private void rpEmployeeAttendenceInOut_ReportStart(object sender, EventArgs e)
+        {
+
         }
+    }
     
 }
