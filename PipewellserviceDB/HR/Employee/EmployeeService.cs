@@ -1069,8 +1069,8 @@ namespace PipewellserviceDB.HR.Employee
 
                 SqlParameter[] collSP = new SqlParameter[3];
                 collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = param.EmployeeID };
-                collSP[1] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate };
-                collSP[2] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate };
+                collSP[1] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate.ToString("MM/dd/yyyy") };
+                collSP[2] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate.ToString("MM/dd/yyyy") };
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeJoiningList", CommandType.StoredProcedure, collSP);
                 EmployeeJoiningDB dt = new EmployeeJoiningDB();
                 dt.Joining.Load(result);
@@ -1165,8 +1165,8 @@ namespace PipewellserviceDB.HR.Employee
 
                 SqlParameter[] collSP = new SqlParameter[3];
                 collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = param.EmployeeID };
-                collSP[1] = new SqlParameter { ParameterName = "@StartDate", Value = (param.StartDate.Year == 1 ? "" : param.StartDate.ToShortDateString()) };
-                collSP[2] = new SqlParameter { ParameterName = "@EndDate", Value = (param.EndDate.Year == 1 ? "" : param.EndDate.ToShortDateString()) };
+                collSP[1] = new SqlParameter { ParameterName = "@StartDate", Value = (param.StartDate.Year == 1 ? "" : param.StartDate.ToString("MM/dd/yyyy")) };
+                collSP[2] = new SqlParameter { ParameterName = "@EndDate", Value = (param.EndDate.Year == 1 ? "" : param.EndDate.ToString("MM/dd/yyyy")) };
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeShortLeaveList", CommandType.StoredProcedure, collSP);
                 EmployeeJoiningDB dt = new EmployeeJoiningDB();
                 dt.Joining.Load(result);
@@ -1251,8 +1251,8 @@ namespace PipewellserviceDB.HR.Employee
 
             SqlParameter[] collSP = new SqlParameter[3];
             collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = param.EmployeeID };
-            collSP[1] = new SqlParameter { ParameterName = "@StartDate", Value =  (param.StartDate.Year==1 ? "" : param.StartDate .ToShortDateString())};
-            collSP[2] = new SqlParameter { ParameterName = "@EndDate", Value = (param.EndDate.Year == 1 ? "" : param.EndDate.ToShortDateString()) };
+            collSP[1] = new SqlParameter { ParameterName = "@StartDate", Value =  (param.StartDate.Year==1 ? "" : param.StartDate.ToString("MM/dd/yyyy")) };
+            collSP[2] = new SqlParameter { ParameterName = "@EndDate", Value = (param.EndDate.Year == 1 ? "" : param.EndDate.ToString("MM/dd/yyyy")) };
 
             var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeLeaveRequests", CommandType.StoredProcedure, collSP);
             DataTable data = new DataTable();
@@ -1386,8 +1386,8 @@ namespace PipewellserviceDB.HR.Employee
             try
             {
                 SqlParameter[] collSP = new SqlParameter[3];
-                collSP[0] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate };
-                collSP[1] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate };
+                collSP[0] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate.ToString("MM/dd/yyyy") };
+                collSP[1] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate.ToString("MM/dd/yyyy") };
                 collSP[2] = new SqlParameter { ParameterName = "@EmployeeID", Value = param.EmployeeID };
 
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeInOutActivity", CommandType.StoredProcedure, collSP);
@@ -1406,8 +1406,8 @@ namespace PipewellserviceDB.HR.Employee
             try
             {
                 SqlParameter[] collSP = new SqlParameter[3];
-                collSP[0] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate };
-                collSP[1] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate };
+                collSP[0] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate.ToString("MM/dd/yyyy") };
+                collSP[1] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate.ToString("MM/dd/yyyy") };
                 collSP[2] = new SqlParameter { ParameterName = "@EmployeeID", Value = param.EmployeeID };
 
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeAttendenceReport", CommandType.StoredProcedure, collSP);
