@@ -15,7 +15,7 @@
 var WorkScheduleList = [];
 
 function _Init() {
-    $("#ddlDataRange").val(moment().startOf('month').format('DD/MM/YYYY') + ' - ' + moment().endOf('week').format('DD/MM/YYYY'));
+    //$("#ddlDataRange").val(moment().startOf('month').format('DD/MM/YYYY') + ' - ' + moment().endOf('week').format('DD/MM/YYYY'));
     HideSpinner();
     SetPagePermission(PAGES.EmployeeWorkSchedule, function () {
         BindUsers();

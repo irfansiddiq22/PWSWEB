@@ -2,7 +2,7 @@
     HideSpinner();
     SetPagePermission(PAGES.EmployeeAttendence, function () {
         BindUsers();
-        $("#ddlReportDataRange").val(moment().subtract(30, 'days').format("DD/MM/YYYY") + ' - ' + moment().format("DD/MM/YYYY"))
+        //$("#ddlReportDataRange").val(moment().subtract(30, 'days').format("DD/MM/YYYY") + ' - ' + moment().format("DD/MM/YYYY"))
 
     })
 }

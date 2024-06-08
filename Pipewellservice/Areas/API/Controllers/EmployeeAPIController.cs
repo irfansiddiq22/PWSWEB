@@ -22,12 +22,25 @@ namespace Pipewellservice.Areas.API.Controllers
 
         public async Task<JsonResult> CodeName()
         {
-            var result = await json.CodeName(SessionHelper.UserGroup() == (int)UserGroups.Employee ? SessionHelper.EmployeeID() : 0);
-            return new JsonResult
+            
+            if (Session["EmployeeCode"] != null)
             {
-                Data = result,
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            };
+                return new JsonResult
+                {
+                    Data = Session["EmployeeCode"],
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+            else
+            {
+                var result = await json.CodeName(SessionHelper.UserGroup() == (int)UserGroups.Employee ? SessionHelper.EmployeeID() : 0);
+                Session["EmployeeCode"] = result;
+                return new JsonResult
+                {
+                    Data = result,
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
         }
         public async Task<JsonResult> FamilyCodeName()
         {

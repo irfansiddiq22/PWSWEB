@@ -16,7 +16,7 @@ function _Init() {
             BindShortLeaves();
         })
     });
-    $("#ddlDataRange").val(moment().subtract(3, 'month').startOf('month').format("DD/MM/YYYY") + ' - ' + moment().endOf('month').format("DD/MM/YYYY"))
+   // $("#ddlDataRange").val(moment().subtract(3, 'month').startOf('month').format("DD/MM/YYYY") + ' - ' + moment().endOf('month').format("DD/MM/YYYY"))
     
 }
 function BindUsers() {

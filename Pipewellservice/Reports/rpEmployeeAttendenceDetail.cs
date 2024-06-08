@@ -1377,8 +1377,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.Label5.HyperLink = null;
             this.Label5.Left = 0F;
             this.Label5.Name = "Label5";
-            this.Label5.Style = "font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; text-align: left" +
-    "; ddo-char-set: 0";
+            this.Label5.Style = "color: Black; font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; te" +
+    "xt-align: left; ddo-char-set: 0";
             this.Label5.Text = "Duration:";
             this.Label5.Top = 1.125F;
             this.Label5.Width = 0.6875F;
@@ -1389,7 +1389,7 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.TextBox.Height = 0.2F;
             this.TextBox.Left = 1.25F;
             this.TextBox.Name = "TextBox";
-            this.TextBox.Style = "font-size: 8.25pt; vertical-align: bottom";
+            this.TextBox.Style = "color: Black; font-size: 8.25pt; vertical-align: bottom";
             this.TextBox.Text = "TextBox1";
             this.TextBox.Top = 0F;
             this.TextBox.Width = 1.3125F;
@@ -1400,7 +1400,7 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.Label.HyperLink = null;
             this.Label.Left = 0F;
             this.Label.Name = "Label";
-            this.Label.Style = "font-size: 8.25pt; font-weight: bold; vertical-align: bottom";
+            this.Label.Style = "color: Black; font-size: 8.25pt; font-weight: bold; vertical-align: bottom";
             this.Label.Text = "Print Date and Time";
             this.Label.Top = 0F;
             this.Label.Width = 1.125F;
@@ -1410,8 +1410,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.txtHeaderCompany.Height = 0.3125F;
             this.txtHeaderCompany.Left = 0F;
             this.txtHeaderCompany.Name = "txtHeaderCompany";
-            this.txtHeaderCompany.Style = "font-family: Book Antiqua; font-size: 14.25pt; font-weight: bold; text-align: lef" +
-    "t; ddo-char-set: 0";
+            this.txtHeaderCompany.Style = "color: Black; font-family: Book Antiqua; font-size: 14.25pt; font-weight: bold; t" +
+    "ext-align: left; ddo-char-set: 0";
             this.txtHeaderCompany.Text = null;
             this.txtHeaderCompany.Top = 0.3125F;
             this.txtHeaderCompany.Width = 3.375F;
@@ -1432,8 +1432,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.txtHeaderArabic.Height = 0.375F;
             this.txtHeaderArabic.Left = 6.3125F;
             this.txtHeaderArabic.Name = "txtHeaderArabic";
-            this.txtHeaderArabic.Style = "font-family: Arabic Typesetting; font-size: 21.75pt; font-weight: bold; text-alig" +
-    "n: center; ddo-char-set: 0";
+            this.txtHeaderArabic.Style = "color: Black; font-family: Arabic Typesetting; font-size: 21.75pt; font-weight: b" +
+    "old; text-align: center; ddo-char-set: 0";
             this.txtHeaderArabic.Text = null;
             this.txtHeaderArabic.Top = 0.3125F;
             this.txtHeaderArabic.Width = 3.625F;
@@ -1444,8 +1444,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.Label1.HyperLink = null;
             this.Label1.Left = 0F;
             this.Label1.Name = "Label1";
-            this.Label1.Style = "font-family: Book Antiqua; font-size: 12pt; font-weight: bold; text-align: left; " +
-    "text-decoration: underline; ddo-char-set: 1";
+            this.Label1.Style = "color: Black; font-family: Book Antiqua; font-size: 12pt; font-weight: bold; text" +
+    "-align: left; text-decoration: underline; ddo-char-set: 1";
             this.Label1.Text = "Monthly Attendance Detail Report ";
             this.Label1.Top = 0.8125F;
             this.Label1.Width = 3.25F;
@@ -1467,8 +1467,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.txtPeriod.Height = 0.2F;
             this.txtPeriod.Left = 0.71875F;
             this.txtPeriod.Name = "txtPeriod";
-            this.txtPeriod.Style = "font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; text-align: left" +
-    "; ddo-char-set: 1";
+            this.txtPeriod.Style = "color: Black; font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; te" +
+    "xt-align: left; ddo-char-set: 1";
             this.txtPeriod.Text = null;
             this.txtPeriod.Top = 1.125F;
             this.txtPeriod.Width = 3.96875F;
@@ -2732,7 +2732,7 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
 
     private void rptAttendanceDetail_ReportStart_1(object sender, EventArgs e)
     {
-
+        txtPeriod.Text = this.Parameters[0].Value;
         DataTable data = (DataTable)this.DataSource;
         if (data.Rows.Count > 0)
         {

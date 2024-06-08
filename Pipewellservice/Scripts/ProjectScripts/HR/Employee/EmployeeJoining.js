@@ -4,7 +4,7 @@ var ApprovalList = [];
 var Joining = { ID: 0, Approvals: [] };
 function _Init() {
     HideSpinner();
-    $("#ddlDataRange").val(moment().startOf('month').format('DD/MM/YYYY') + ' - ' + moment().endOf('week').format('DD/MM/YYYY'));
+   // $("#ddlDataRange").val(moment().startOf('month').format('DD/MM/YYYY') + ' - ' + moment().endOf('week').format('DD/MM/YYYY'));
     SetPagePermission(PAGES.EmployeeJoining, function () {
 
         $("#dvEditJoining").hide();

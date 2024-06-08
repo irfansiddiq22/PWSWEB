@@ -4,7 +4,7 @@ var AssetList = [];
 var Vacation = { ID: 0, Approvals: [], Assets: [] };
 function _Init() {
     HideSpinner();
-    $("#ddlDataRange").val(moment().startOf('month').format('DD/MM/YYYY') + ' - ' + moment().endOf('week').format('DD/MM/YYYY'));
+    //$("#ddlDataRange").val(moment().startOf('month').format('DD/MM/YYYY') + ' - ' + moment().endOf('week').format('DD/MM/YYYY'));
     SetPagePermission(PAGES.EmployeeVacation, function () {
 
         SetvalOf("txtPreparedBy", User.Name);

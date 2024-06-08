@@ -21,14 +21,14 @@
     EmployeeJoining: 20,
     ShortLeave: 21,
     LeaveRequest: 22,
-    Approvals:23,
+    Approvals: 23,
     Accommodation: 24,
     WorkScheduleTime: 25,
     EmployeeWorkSchedule: 26,
-    EmployeeAttendence:27
+    EmployeeAttendence: 27
 
 }
-var REPORTS={
+var REPORTS = {
     EmployeeAttendenceInOut: 1,
     EmployeeAttendenceDetail: 2,
     EmployeeAttendenceSummary: 3
@@ -141,7 +141,7 @@ function BindEmployeeLists(FillEmployeeData) {
     Post("/EmployeeAPI/CodeName", {}).done(function (Response) {
 
         var data = []
-        if (Response.length>1)     data.push({ id: 0, text: 'Select an employee' });
+        if (Response.length > 1) data.push({ id: 0, text: 'Select an employee' });
         $.each(Response, function (i, emp) {
             data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name });
         })
@@ -166,7 +166,7 @@ function BindEmployeeLists(FillEmployeeData) {
         });
 
         if (data.length == 1) {
-            $("#ddEmployeeCode,#ddEmployeeName").val(data[0].id);   
+            $("#ddEmployeeCode,#ddEmployeeName").val(data[0].id);
             if (FillEmployeeData) {
                 BindEmployeePositionDivision();
                 BindEmployeeAssets();
@@ -338,7 +338,7 @@ function FormatPhone(value) {
 }
 
 
-function SwalConfirm(Message,Text, CallBack) {
+function SwalConfirm(Message, Text, CallBack) {
     swal({
         html: true,
         title: Message,
@@ -365,42 +365,48 @@ function SwalConfirm(Message,Text, CallBack) {
         });
 
 }
+$('.daterangepicker').each(function (i, dp) {
+    var dp = $(this)
+    var start = $(dp).attr("start");
+    var end = $(dp).attr("end");
+    var startrange = $(dp).attr("startrange");
+    if (start != undefined) {
+        if (isNaN(start)) {
+            if (startrange != undefined)
+                start = moment().subtract(startrange, start).startOf(start).format("DD/MM/YYYY")
+            else
+                start = moment().startOf(start).format("DD/MM/YYYY")
+        }
+        else
+            start = moment().subtract(start, 'days').format("DD/MM/YYYY")
 
-$('.daterangepicker').daterangepicker({
-    startDate: moment().startOf('year'),
-    endDate: moment().endOf('week'),
-    ranges: {
-        'Current Month': [moment().startOf('month'), moment().endOf('month')],
-        'Current Week': [moment().startOf('week'), moment().endOf('week')],
-        'Today': [moment(), moment()],
-        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
-        'This Year': [moment().startOf('year'), moment().endOf('year')],
-        'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')],
-        'All Time': [moment().subtract(20, 'year').startOf('year'), moment().endOf('year')]
-    }
-},
-    function (start, end, label) {
+    } else 
+        moment().startOf('year')
+    if (end != undefined) {
+        if (isNaN(end))
+            end = moment().endOf(end).format("DD/MM/YYYY")
+        else
+            end = moment().subtract(end, 'days').format("DD/MM/YYYY")
 
+    } else
+        end = moment().endOf('week')
 
-        var Range = 1;
-        if (label == "Current Month")
-            Range = 1;
-        else if (label == "Current Week")
-            Range = 2;
-        else if (label == "Today")
-            Range = 3;
-        else if (label == "Last Month")
-            Range = 4;
-        else if (label == "This Year")
-            Range = 5;
-        else if (label == "Last Year")
-            Range = 6;
-        else if (label == "All Time")
-            Range = 7;
-        else if (label == "Custom Range")
-            Range = 8;
-    });
-
+    $(dp).daterangepicker({
+        startDate: (start != undefined ? start : moment().startOf('year')),
+        endDate: (end != undefined ? end : moment().endOf('week')),
+        ranges: {
+            'Current Month': [moment().startOf('month'), moment().endOf('month')],
+            'Current Week': [moment().startOf('week'), moment().endOf('week')],
+            'Today': [moment(), moment()],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+            'This Year': [moment().startOf('year'), moment().endOf('year')],
+            'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')],
+            'All Time': [moment().subtract(20, 'year').startOf('year'), moment().endOf('year')]
+        }
+    })
+    
+    $(dp).val(start + ' - ' + end);
+})
 
 function LoadBreadCrumb(Parent, Page) {
     $(".breadcrumb-item").remove();

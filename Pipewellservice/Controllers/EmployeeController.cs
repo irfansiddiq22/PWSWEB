@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using GrapeCity.ActiveReports.SectionReportModel;
+using Newtonsoft.Json;
 using Pipewellservice.Helper;
 using Pipewellservice.Reports;
 using PipewellserviceDB.HR.Employee;
@@ -305,20 +306,23 @@ namespace Pipewellservice.Controllers
                 case ReportTypes.EmployeeAttendenceDetail:
                     data = await service.EmployeeAttendenceDetail(new DateParam() { EmployeeID = ID, StartDate = StartDate, EndDate = EndDate });
                     report = new rptAttendanceDetail { DataSource = data, Document = { }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
+                    ((rptAttendanceDetail)report).Parameters.Add(new Parameter() { Key = "DateRange", Value = $"{StartDate.ToString("dd/MM/yyyy")}-{EndDate.ToString("dd/MM/yyyy")}" });
                     ViewBag.ReportName = "Employee Attendence Detail";
 
                     break;
 
                 case ReportTypes.EmployeeAttendenceSummary:
+                    
                     data = await service.EmployeeAttendenceSummary(new DateParam() { EmployeeID = ID, StartDate = StartDate, EndDate = EndDate });
-                    report = new rpEmployeeAttendenceSummary { DataSource = data, Document = { }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
+                    report = new rpEmployeeAttendenceSummary {  DataSource = data, Document = { }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
+                    ((rpEmployeeAttendenceSummary)report).Parameters.Add(new Parameter() { Key = "DateRange", Value = $"{StartDate.ToString("dd/MM/yyyy")}-{EndDate.ToString("dd/MM/yyyy")}" });
                     ViewBag.ReportName = "Employee Attendence Summary";
 
                     break;
 
 
 
-            }
+            }       
 
 
             ViewBag.Report = report;

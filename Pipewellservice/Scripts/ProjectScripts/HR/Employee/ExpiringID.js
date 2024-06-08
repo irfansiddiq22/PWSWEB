@@ -1,5 +1,5 @@
 ﻿function _Init() {
-    $("#ddlDataRange").val(moment().startOf('month').format('DD/MM/YYYY') + ' - ' + moment().endOf('month').format('DD/MM/YYYY'));
+    //$("#ddlDataRange").val(moment().startOf('month').format('DD/MM/YYYY') + ' - ' + moment().endOf('month').format('DD/MM/YYYY'));//
     FillIDTypeList("ddlIDFileType")
     setTimeout(function () {
         $("#ddlIDFileType").prepend($('<option>', {
