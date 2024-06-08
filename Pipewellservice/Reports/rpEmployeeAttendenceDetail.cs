@@ -1494,9 +1494,9 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d1.Left = 2.5625F;
             this.d1.Name = "d1";
             this.d1.ShrinkToFit = true;
-            this.d1.Style = "color: Black; font-family: Book Antiqua; font-size: 7pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; white-space: nowrap; ddo-char-set: 1; d" +
-    "do-shrink-to-fit: true";
+            this.d1.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; white-space: nowrap; ddo-char-set: 1; ddo" +
+    "-shrink-to-fit: true";
             this.d1.Text = "";
             this.d1.Top = 1.4F;
             this.d1.Width = 0.21875F;
@@ -1509,9 +1509,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d2.Left = 2.78125F;
             this.d2.Name = "d2";
             this.d2.ShrinkToFit = true;
-            this.d2.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-char-set: 0; ddo-shrink-to-fit: tru" +
-    "e";
+            this.d2.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-char-set: 1; ddo-shrink-to-fit: true";
             this.d2.Text = "";
             this.d2.Top = 1.4F;
             this.d2.Width = 0.21875F;
@@ -1524,9 +1523,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d3.Left = 3F;
             this.d3.Name = "d3";
             this.d3.ShrinkToFit = true;
-            this.d3.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-char-set: 0; ddo-shrink-to-fit: tru" +
-    "e";
+            this.d3.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-char-set: 1; ddo-shrink-to-fit: true";
             this.d3.Text = "";
             this.d3.Top = 1.4F;
             this.d3.Width = 0.21875F;
@@ -1539,8 +1537,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d4.Left = 3.21875F;
             this.d4.Name = "d4";
             this.d4.ShrinkToFit = true;
-            this.d4.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d4.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d4.Text = "";
             this.d4.Top = 1.4F;
             this.d4.Width = 0.21875F;
@@ -1553,8 +1551,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d5.Left = 3.4375F;
             this.d5.Name = "d5";
             this.d5.ShrinkToFit = true;
-            this.d5.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d5.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d5.Text = " ";
             this.d5.Top = 1.4F;
             this.d5.Width = 0.21875F;
@@ -1567,8 +1565,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d6.Left = 3.65625F;
             this.d6.Name = "d6";
             this.d6.ShrinkToFit = true;
-            this.d6.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d6.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d6.Text = " ";
             this.d6.Top = 1.4F;
             this.d6.Width = 0.21875F;
@@ -1581,8 +1579,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d7.Left = 3.875F;
             this.d7.Name = "d7";
             this.d7.ShrinkToFit = true;
-            this.d7.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d7.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d7.Text = "";
             this.d7.Top = 1.4F;
             this.d7.Width = 0.21875F;
@@ -1595,8 +1593,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d8.Left = 4.09375F;
             this.d8.Name = "d8";
             this.d8.ShrinkToFit = true;
-            this.d8.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d8.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d8.Text = " ";
             this.d8.Top = 1.4F;
             this.d8.Width = 0.21875F;
@@ -1609,8 +1607,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d9.Left = 4.3125F;
             this.d9.Name = "d9";
             this.d9.ShrinkToFit = true;
-            this.d9.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d9.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d9.Text = " ";
             this.d9.Top = 1.4F;
             this.d9.Width = 0.21875F;
@@ -1623,8 +1621,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d10.Left = 4.53125F;
             this.d10.Name = "d10";
             this.d10.ShrinkToFit = true;
-            this.d10.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d10.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d10.Text = " ";
             this.d10.Top = 1.4F;
             this.d10.Width = 0.21875F;
@@ -1650,8 +1648,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d11.Left = 4.75F;
             this.d11.Name = "d11";
             this.d11.ShrinkToFit = true;
-            this.d11.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d11.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d11.Text = " ";
             this.d11.Top = 1.4F;
             this.d11.Width = 0.21875F;
@@ -1677,8 +1675,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d12.Left = 4.96875F;
             this.d12.Name = "d12";
             this.d12.ShrinkToFit = true;
-            this.d12.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d12.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d12.Text = " ";
             this.d12.Top = 1.4F;
             this.d12.Width = 0.21875F;
@@ -1691,8 +1689,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d13.Left = 5.1875F;
             this.d13.Name = "d13";
             this.d13.ShrinkToFit = true;
-            this.d13.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d13.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d13.Text = "";
             this.d13.Top = 1.4F;
             this.d13.Width = 0.21875F;
@@ -1705,8 +1703,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d14.Left = 5.40625F;
             this.d14.Name = "d14";
             this.d14.ShrinkToFit = true;
-            this.d14.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d14.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d14.Text = " ";
             this.d14.Top = 1.4F;
             this.d14.Width = 0.21875F;
@@ -1719,8 +1717,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d16.Left = 5.84375F;
             this.d16.Name = "d16";
             this.d16.ShrinkToFit = true;
-            this.d16.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d16.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d16.Text = " ";
             this.d16.Top = 1.4F;
             this.d16.Width = 0.21875F;
@@ -1733,8 +1731,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d17.Left = 6.0625F;
             this.d17.Name = "d17";
             this.d17.ShrinkToFit = true;
-            this.d17.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d17.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d17.Text = " ";
             this.d17.Top = 1.4F;
             this.d17.Width = 0.21875F;
@@ -1747,8 +1745,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d18.Left = 6.28125F;
             this.d18.Name = "d18";
             this.d18.ShrinkToFit = true;
-            this.d18.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d18.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d18.Text = " ";
             this.d18.Top = 1.4F;
             this.d18.Width = 0.21875F;
@@ -1761,8 +1759,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d19.Left = 6.5F;
             this.d19.Name = "d19";
             this.d19.ShrinkToFit = true;
-            this.d19.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d19.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d19.Text = " ";
             this.d19.Top = 1.4F;
             this.d19.Width = 0.21875F;
@@ -1775,8 +1773,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d20.Left = 6.71875F;
             this.d20.Name = "d20";
             this.d20.ShrinkToFit = true;
-            this.d20.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d20.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d20.Text = " ";
             this.d20.Top = 1.4F;
             this.d20.Width = 0.21875F;
@@ -1789,8 +1787,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d21.Left = 6.9375F;
             this.d21.Name = "d21";
             this.d21.ShrinkToFit = true;
-            this.d21.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d21.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d21.Text = " ";
             this.d21.Top = 1.4F;
             this.d21.Width = 0.21875F;
@@ -1803,8 +1801,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d23.Left = 7.375F;
             this.d23.Name = "d23";
             this.d23.ShrinkToFit = true;
-            this.d23.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d23.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d23.Text = " ";
             this.d23.Top = 1.4F;
             this.d23.Width = 0.21875F;
@@ -1817,8 +1815,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d24.Left = 7.59375F;
             this.d24.Name = "d24";
             this.d24.ShrinkToFit = true;
-            this.d24.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d24.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d24.Text = " ";
             this.d24.Top = 1.4F;
             this.d24.Width = 0.21875F;
@@ -1831,8 +1829,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d26.Left = 8.03125F;
             this.d26.Name = "d26";
             this.d26.ShrinkToFit = true;
-            this.d26.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d26.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d26.Text = " ";
             this.d26.Top = 1.4F;
             this.d26.Width = 0.21875F;
@@ -1845,8 +1843,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d22.Left = 7.15625F;
             this.d22.Name = "d22";
             this.d22.ShrinkToFit = true;
-            this.d22.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d22.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d22.Text = " ";
             this.d22.Top = 1.4F;
             this.d22.Width = 0.21875F;
@@ -1859,8 +1857,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d25.Left = 7.8125F;
             this.d25.Name = "d25";
             this.d25.ShrinkToFit = true;
-            this.d25.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d25.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d25.Text = " ";
             this.d25.Top = 1.4F;
             this.d25.Width = 0.21875F;
@@ -1873,8 +1871,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d27.Left = 8.25F;
             this.d27.Name = "d27";
             this.d27.ShrinkToFit = true;
-            this.d27.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d27.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d27.Text = " ";
             this.d27.Top = 1.4F;
             this.d27.Width = 0.21875F;
@@ -1887,8 +1885,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d28.Left = 8.46875F;
             this.d28.Name = "d28";
             this.d28.ShrinkToFit = true;
-            this.d28.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d28.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d28.Text = " ";
             this.d28.Top = 1.4F;
             this.d28.Width = 0.21875F;
@@ -1901,8 +1899,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d29.Left = 8.6875F;
             this.d29.Name = "d29";
             this.d29.ShrinkToFit = true;
-            this.d29.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d29.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d29.Text = " ";
             this.d29.Top = 1.4F;
             this.d29.Width = 0.21875F;
@@ -1915,8 +1913,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d30.Left = 8.90625F;
             this.d30.Name = "d30";
             this.d30.ShrinkToFit = true;
-            this.d30.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d30.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d30.Text = " ";
             this.d30.Top = 1.4F;
             this.d30.Width = 0.21875F;
@@ -2007,9 +2005,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d31.Left = 9.125F;
             this.d31.Name = "d31";
             this.d31.ShrinkToFit = true;
-            this.d31.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-char-set: 1; ddo-shrink-to-fit: tru" +
-    "e";
+            this.d31.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-char-set: 1; ddo-shrink-to-fit: true";
             this.d31.Text = " ";
             this.d31.Top = 1.4F;
             this.d31.Width = 0.21875F;
@@ -2022,8 +2019,8 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d15.Left = 5.625F;
             this.d15.Name = "d15";
             this.d15.ShrinkToFit = true;
-            this.d15.Style = "color: Black; font-family: Book Antiqua; font-size: 6pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: middle; ddo-shrink-to-fit: true";
+            this.d15.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
+    "align: center; vertical-align: middle; ddo-shrink-to-fit: true";
             this.d15.Text = " ";
             this.d15.Top = 1.4F;
             this.d15.Width = 0.21875F;

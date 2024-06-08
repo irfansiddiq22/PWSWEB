@@ -633,7 +633,7 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.lbl2.HyperLink = null;
             this.lbl2.Left = 0.499999F;
             this.lbl2.Name = "lbl2";
-            this.lbl2.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-c" +
+            this.lbl2.Style = "color: Black; font-family: Book Antiqua; font-size: 8pt; font-weight: bold; ddo-c" +
     "har-set: 1";
             this.lbl2.Text = "Employee Name";
             this.lbl2.Top = 1.359F;
@@ -746,7 +746,7 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.Label3.HyperLink = null;
             this.Label3.Left = 0.06249905F;
             this.Label3.Name = "Label3";
-            this.Label3.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-c" +
+            this.Label3.Style = "color: Black; font-family: Book Antiqua; font-size: 8pt; font-weight: bold; ddo-c" +
     "har-set: 1";
             this.Label3.Text = "Code";
             this.Label3.Top = 1.359F;
@@ -821,8 +821,8 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.Label2.HyperLink = null;
             this.Label2.Left = 2.156F;
             this.Label2.Name = "Label2";
-            this.Label2.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-f" +
-    "ont-vertical: none";
+            this.Label2.Style = "color: Black; font-family: Arial Rounded MT Bold; font-size: 8pt; font-weight: no" +
+    "rmal; ddo-char-set: 1; ddo-font-vertical: none";
             this.Label2.Text = "Present";
             this.Label2.Top = 1.359F;
             this.Label2.Width = 0.4375F;
@@ -833,8 +833,8 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.Label4.HyperLink = null;
             this.Label4.Left = 2.625F;
             this.Label4.Name = "Label4";
-            this.Label4.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-c" +
-    "har-set: 1";
+            this.Label4.Style = "color: Black; font-family: Arial Rounded MT Bold; font-size: 8pt; font-weight: no" +
+    "rmal; ddo-char-set: 1";
             this.Label4.Text = "Absent";
             this.Label4.Top = 1.359F;
             this.Label4.Width = 0.4375F;
@@ -871,8 +871,8 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.label7.HyperLink = null;
             this.label7.Left = 3.594501F;
             this.label7.Name = "label7";
-            this.label7.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-c" +
-    "har-set: 1";
+            this.label7.Style = "color: Black; font-family: Arial Rounded MT Bold; font-size: 8pt; font-weight: no" +
+    "rmal; ddo-char-set: 1";
             this.label7.Text = "Annual Leave";
             this.label7.Top = 1.359F;
             this.label7.Width = 0.4375F;
@@ -909,8 +909,8 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.label10.HyperLink = null;
             this.label10.Left = 5.593F;
             this.label10.Name = "label10";
-            this.label10.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-c" +
-    "har-set: 1";
+            this.label10.Style = "color: Black; font-family: Arial Rounded MT Bold; font-size: 8pt; font-weight: no" +
+    "rmal; ddo-char-set: 1";
             this.label10.Text = "Exam";
             this.label10.Top = 1.359F;
             this.label10.Width = 0.4375F;
@@ -960,8 +960,8 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.label11.HyperLink = null;
             this.label11.Left = 4.0635F;
             this.label11.Name = "label11";
-            this.label11.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-f" +
-    "ont-vertical: none";
+            this.label11.Style = "color: Black; font-family: Arial Rounded MT Bold; font-size: 8pt; font-weight: no" +
+    "rmal; ddo-char-set: 1; ddo-font-vertical: none";
             this.label11.Text = "Athletic Leave";
             this.label11.Top = 1.359F;
             this.label11.Width = 0.4995003F;
@@ -972,8 +972,8 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.label12.HyperLink = null;
             this.label12.Left = 4.5325F;
             this.label12.Name = "label12";
-            this.label12.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-c" +
-    "har-set: 1";
+            this.label12.Style = "color: Black; font-family: Arial Rounded MT Bold; font-size: 8pt; font-weight: no" +
+    "rmal; ddo-char-set: 1";
             this.label12.Text = "Bereavement";
             this.label12.Top = 1.359F;
             this.label12.Width = 0.4375F;
@@ -997,8 +997,8 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.label9.HyperLink = null;
             this.label9.Left = 6.063F;
             this.label9.Name = "label9";
-            this.label9.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-c" +
-    "har-set: 1";
+            this.label9.Style = "color: Black; font-family: Arial Rounded MT Bold; font-size: 8pt; font-weight: no" +
+    "rmal; ddo-char-set: 1";
             this.label9.Text = "Hajj";
             this.label9.Top = 1.359F;
             this.label9.Width = 0.4375F;
@@ -1009,8 +1009,8 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.label13.HyperLink = null;
             this.label13.Left = 7.532F;
             this.label13.Name = "label13";
-            this.label13.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-f" +
-    "ont-vertical: none";
+            this.label13.Style = "color: Black; font-family: Arial Rounded MT Bold; font-size: 8pt; font-weight: no" +
+    "rmal; ddo-char-set: 1; ddo-font-vertical: none";
             this.label13.Text = "Paternity Leave";
             this.label13.Top = 1.359F;
             this.label13.Width = 0.4690003F;
@@ -1073,8 +1073,8 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.label15.HyperLink = null;
             this.label15.Left = 6.532F;
             this.label15.Name = "label15";
-            this.label15.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-f" +
-    "ont-vertical: none";
+            this.label15.Style = "color: Black; font-family: Arial Rounded MT Bold; font-size: 8pt; font-weight: no" +
+    "rmal; ddo-char-set: 1; ddo-font-vertical: none";
             this.label15.Text = "Marriage";
             this.label15.Top = 1.359F;
             this.label15.Width = 0.4375F;
@@ -1085,8 +1085,8 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.label16.HyperLink = null;
             this.label16.Left = 7.032F;
             this.label16.Name = "label16";
-            this.label16.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-c" +
-    "har-set: 1";
+            this.label16.Style = "color: Black; font-family: Arial Rounded MT Bold; font-size: 8pt; font-weight: no" +
+    "rmal; ddo-char-set: 1";
             this.label16.Text = "Maternity Leave";
             this.label16.Top = 1.359F;
             this.label16.Width = 0.4375F;
@@ -1097,8 +1097,8 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.label17.HyperLink = null;
             this.label17.Left = 8.001F;
             this.label17.Name = "label17";
-            this.label17.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-f" +
-    "ont-vertical: none";
+            this.label17.Style = "color: Black; font-family: Arial Rounded MT Bold; font-size: 8pt; font-weight: no" +
+    "rmal; ddo-char-set: 1; ddo-font-vertical: none";
             this.label17.Text = "Umrah Leave";
             this.label17.Top = 1.359F;
             this.label17.Width = 0.4375F;
@@ -1135,8 +1135,8 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.label18.HyperLink = null;
             this.label18.Left = 8.533F;
             this.label18.Name = "label18";
-            this.label18.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-c" +
-    "har-set: 1";
+            this.label18.Style = "color: Black; font-family: Arial Rounded MT Bold; font-size: 8pt; font-weight: no" +
+    "rmal; ddo-char-set: 1";
             this.label18.Text = "Unpaid Leave";
             this.label18.Top = 1.359F;
             this.label18.Width = 0.4680004F;
@@ -1152,8 +1152,8 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.label6.HyperLink = null;
             this.label6.Left = 3.094F;
             this.label6.Name = "label6";
-            this.label6.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-f" +
-    "ont-vertical: none";
+            this.label6.Style = "color: Black; font-family: Arial Rounded MT Bold; font-size: 8pt; font-weight: no" +
+    "rmal; ddo-char-set: 1; ddo-font-vertical: none";
             this.label6.Text = "Weekly Off";
             this.label6.Top = 1.359F;
             this.label6.Width = 0.5000005F;
@@ -1164,8 +1164,8 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.label8.HyperLink = null;
             this.label8.Left = 5.063F;
             this.label8.Name = "label8";
-            this.label8.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-f" +
-    "ont-vertical: none";
+            this.label8.Style = "color: Black; font-family: Arial Rounded MT Bold; font-size: 8pt; font-weight: no" +
+    "rmal; ddo-char-set: 1; ddo-font-vertical: none";
             this.label8.Text = "Emergency";
             this.label8.Top = 1.359F;
             this.label8.Width = 0.4375F;
@@ -1197,7 +1197,7 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.MasterReport = false;
             this.PageSettings.PaperHeight = 11F;
             this.PageSettings.PaperWidth = 8.5F;
-            this.PrintWidth = 9.438497F;
+            this.PrintWidth = 9.042664F;
             this.Sections.Add(this.PageHeader);
             this.Sections.Add(this.Detail);
             this.Sections.Add(this.PageFooter);

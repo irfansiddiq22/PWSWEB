@@ -139,7 +139,8 @@ namespace Pipewellservice.Reports
             this.txtabsent.Height = 0.2F;
             this.txtabsent.Left = 0F;
             this.txtabsent.Name = "txtabsent";
-            this.txtabsent.Style = "color: Black; font-size: 8pt; text-align: center; vertical-align: middle; ddo-char-set: 1";
+            this.txtabsent.Style = "color: Black; font-size: 8pt; text-align: center; vertical-align: middle; ddo-cha" +
+    "r-set: 1";
             this.txtabsent.Text = null;
             this.txtabsent.Top = 0F;
             this.txtabsent.Visible = false;
@@ -471,7 +472,7 @@ namespace Pipewellservice.Reports
             this.Label12,
             this.Label14,
             this.label9});
-            this.GroupHeader1.DataField = "emp_no";
+            this.GroupHeader1.DataField = "EmployeeID";
             this.GroupHeader1.Height = 0.6701389F;
             this.GroupHeader1.Name = "GroupHeader1";
             // 
@@ -581,6 +582,7 @@ namespace Pipewellservice.Reports
             this.TextBox2.Height = 0.2F;
             this.TextBox2.Left = 1.254167F;
             this.TextBox2.Name = "TextBox2";
+            this.TextBox2.Style = "color: Black";
             this.TextBox2.Text = null;
             this.TextBox2.Top = 0F;
             this.TextBox2.Width = 5.4375F;
@@ -595,6 +597,7 @@ namespace Pipewellservice.Reports
             this.TextBox1.Height = 0.2F;
             this.TextBox1.Left = 1.25F;
             this.TextBox1.Name = "TextBox1";
+            this.TextBox1.Style = "color: Black";
             this.TextBox1.Text = null;
             this.TextBox1.Top = 0.1875F;
             this.TextBox1.Width = 5.4375F;
@@ -708,6 +711,8 @@ namespace Pipewellservice.Reports
             this.TextBox7.Name = "TextBox7";
             this.TextBox7.Style = "color: Black";
             this.TextBox7.SummaryGroup = "GroupHeader1";
+            this.TextBox7.SummaryRunning = GrapeCity.ActiveReports.SectionReportModel.SummaryRunning.Group;
+            this.TextBox7.SummaryType = GrapeCity.ActiveReports.SectionReportModel.SummaryType.GrandTotal;
             this.TextBox7.Text = null;
             this.TextBox7.Top = 0.017F;
             this.TextBox7.Width = 2.3125F;
@@ -814,7 +819,6 @@ namespace Pipewellservice.Reports
             private GrapeCity.ActiveReports.SectionReportModel.PageFooter PageFooter;
             private GrapeCity.ActiveReports.SectionReportModel.GroupHeader GroupHeader2;
             private GrapeCity.ActiveReports.SectionReportModel.GroupFooter GroupFooter2;
-            private GrapeCity.ActiveReports.SectionReportModel.GroupHeader GroupHeader1;
             private GrapeCity.ActiveReports.SectionReportModel.Label Label4;
             private GrapeCity.ActiveReports.SectionReportModel.Label lbl2;
             private GrapeCity.ActiveReports.SectionReportModel.Label Label3;
@@ -832,6 +836,7 @@ namespace Pipewellservice.Reports
             private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox7;
             private GrapeCity.ActiveReports.SectionReportModel.Label Label11;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox textBox4;
+        private GrapeCity.ActiveReports.SectionReportModel.GroupHeader GroupHeader1;
         private GrapeCity.ActiveReports.SectionReportModel.Label label9;
 
             private void rpEmployeeInquiry_ReportStart(object sender, System.EventArgs e)
