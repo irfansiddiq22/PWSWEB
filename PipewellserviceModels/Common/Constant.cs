@@ -23,6 +23,7 @@ namespace PipewellserviceModels.Common
         LEAVE_TPES = 6,
         CERTIFICATE_TYPES = 7,
         DocTemplates = 10,
+        REPORTHEADER=11,
         PAGEGROUPS = 12,
         USERGRPOUPS=13,
         JOB_STATUS=14,

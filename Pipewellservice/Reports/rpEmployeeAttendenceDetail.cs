@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Pipewellservice.App_Start;
+using PipewellserviceModels.Common;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -1389,6 +1391,7 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.TextBox.Height = 0.2F;
             this.TextBox.Left = 1.25F;
             this.TextBox.Name = "TextBox";
+            this.TextBox.OutputFormat = resources.GetString("TextBox.OutputFormat");
             this.TextBox.Style = "color: Black; font-size: 8.25pt; vertical-align: bottom";
             this.TextBox.Text = "TextBox1";
             this.TextBox.Top = 0F;
@@ -2730,6 +2733,9 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
     private void rptAttendanceDetail_ReportStart_1(object sender, EventArgs e)
     {
         txtPeriod.Text = this.Parameters[0].Value;
+        List<Constant> cont=  AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.REPORTHEADER);
+        txtHeaderArabic.Text = cont.Find(x => x.Value == 5).Name;
+        txtHeaderCompany.Text = cont.Find(x => x.Value == 4).Name ;
         DataTable data = (DataTable)this.DataSource;
         if (data.Rows.Count > 0)
         {

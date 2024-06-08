@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using GrapeCity.ActiveReports;
+using Pipewellservice.App_Start;
+
 namespace Pipewellservice.Reports
 {
 
@@ -38,7 +40,6 @@ namespace Pipewellservice.Reports
             this.txtin = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.txtout = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.txtMissPunch = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.txtREmarks = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.TextBox6 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.txtDeduct = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.TextBox9 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
@@ -48,7 +49,7 @@ namespace Pipewellservice.Reports
             this.Shape2 = new GrapeCity.ActiveReports.SectionReportModel.Shape();
             this.Shape = new GrapeCity.ActiveReports.SectionReportModel.Shape();
             this.Label5 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.TextBox = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
+            this.textDate = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.Label = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.txtHeaderCompany = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.Picture = new GrapeCity.ActiveReports.SectionReportModel.Picture();
@@ -76,19 +77,19 @@ namespace Pipewellservice.Reports
             this.TextBox8 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.TextBox7 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.Label11 = new GrapeCity.ActiveReports.SectionReportModel.Label();
+            this.txtREmarks = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.txtabsent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMissPunch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtREmarks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDeduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCompName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeaderCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture)).BeginInit();
@@ -111,17 +112,18 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.TextBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtREmarks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new GrapeCity.ActiveReports.SectionReportModel.ARControl[] {
+            this.txtREmarks,
             this.txtabsent,
             this.TextBox3,
             this.txtin,
             this.txtout,
             this.txtMissPunch,
-            this.txtREmarks,
             this.TextBox6,
             this.txtDeduct,
             this.TextBox9,
@@ -215,23 +217,6 @@ namespace Pipewellservice.Reports
             this.txtMissPunch.Top = 0F;
             this.txtMissPunch.Width = 1.09375F;
             // 
-            // txtREmarks
-            // 
-            this.txtREmarks.Border.BottomStyle = GrapeCity.ActiveReports.BorderLineStyle.Solid;
-            this.txtREmarks.Border.LeftStyle = GrapeCity.ActiveReports.BorderLineStyle.Solid;
-            this.txtREmarks.Border.RightStyle = GrapeCity.ActiveReports.BorderLineStyle.Solid;
-            this.txtREmarks.Border.TopStyle = GrapeCity.ActiveReports.BorderLineStyle.Solid;
-            this.txtREmarks.DataField = "Remarks";
-            this.txtREmarks.Height = 0.2F;
-            this.txtREmarks.Left = 4.469F;
-            this.txtREmarks.Name = "txtREmarks";
-            this.txtREmarks.ShrinkToFit = true;
-            this.txtREmarks.Style = "color: Black; font-size: 8pt; text-align: left; vertical-align: middle; ddo-char-" +
-    "set: 1; ddo-shrink-to-fit: true";
-            this.txtREmarks.Text = null;
-            this.txtREmarks.Top = 0F;
-            this.txtREmarks.Width = 3.379F;
-            // 
             // TextBox6
             // 
             this.TextBox6.Border.BottomStyle = GrapeCity.ActiveReports.BorderLineStyle.Solid;
@@ -307,7 +292,7 @@ namespace Pipewellservice.Reports
             this.Shape2,
             this.Shape,
             this.Label5,
-            this.TextBox,
+            this.textDate,
             this.Label,
             this.txtHeaderCompany,
             this.Picture,
@@ -316,6 +301,7 @@ namespace Pipewellservice.Reports
             this.txtPeriod});
             this.PageHeader.Height = 1.375F;
             this.PageHeader.Name = "PageHeader";
+            
             // 
             // lblCompName
             // 
@@ -337,7 +323,7 @@ namespace Pipewellservice.Reports
             this.Shape2.RoundingRadius = 9.999999F;
             this.Shape2.Style = GrapeCity.ActiveReports.SectionReportModel.ShapeType.RoundRect;
             this.Shape2.Top = 1.348958F;
-            this.Shape2.Width = 7.875F;
+            this.Shape2.Width = 8.428F;
             // 
             // Shape
             // 
@@ -348,7 +334,7 @@ namespace Pipewellservice.Reports
             this.Shape.RoundingRadius = 9.999999F;
             this.Shape.Style = GrapeCity.ActiveReports.SectionReportModel.ShapeType.RoundRect;
             this.Shape.Top = 1.0625F;
-            this.Shape.Width = 7.875F;
+            this.Shape.Width = 8.428F;
             // 
             // Label5
             // 
@@ -362,16 +348,19 @@ namespace Pipewellservice.Reports
             this.Label5.Top = 1.125F;
             this.Label5.Width = 0.6875F;
             // 
-            // TextBox
+            // textDate
             // 
-            this.TextBox.DataField = "=System.DateTime.Now";
-            this.TextBox.Height = 0.2F;
-            this.TextBox.Left = 1.25F;
-            this.TextBox.Name = "TextBox";
-            this.TextBox.Style = "color: Black; font-size: 8.25pt; vertical-align: bottom";
-            this.TextBox.Text = "TextBox1";
-            this.TextBox.Top = 0F;
-            this.TextBox.Width = 1.3125F;
+            this.textDate.DataField = "=System.DateTime.Now";
+            this.textDate.DistinctField = "";
+            this.textDate.Height = 0.2F;
+            this.textDate.Left = 1.25F;
+            this.textDate.Name = "textDate";
+            this.textDate.OutputFormat = resources.GetString("textDate.OutputFormat");
+            this.textDate.Style = "color: Black; font-size: 8.25pt; vertical-align: bottom";
+            this.textDate.SummaryGroup = "";
+            this.textDate.Text = "TextBox1";
+            this.textDate.Top = 0F;
+            this.textDate.Width = 1.3125F;
             // 
             // Label
             // 
@@ -409,13 +398,14 @@ namespace Pipewellservice.Reports
             // txtHeaderArabic
             // 
             this.txtHeaderArabic.Height = 0.375F;
-            this.txtHeaderArabic.Left = 4.375F;
+            this.txtHeaderArabic.Left = 4.36F;
             this.txtHeaderArabic.Name = "txtHeaderArabic";
+            this.txtHeaderArabic.ShrinkToFit = true;
             this.txtHeaderArabic.Style = "color: Black; font-family: Arabic Typesetting; font-size: 21.75pt; font-weight: b" +
-    "old; text-align: center; ddo-char-set: 0";
+    "old; text-align: center; ddo-char-set: 0; ddo-shrink-to-fit: true";
             this.txtHeaderArabic.Text = null;
-            this.txtHeaderArabic.Top = 0.3125F;
-            this.txtHeaderArabic.Width = 3.625F;
+            this.txtHeaderArabic.Top = 0.312F;
+            this.txtHeaderArabic.Width = 3.828001F;
             // 
             // Label1
             // 
@@ -459,6 +449,7 @@ namespace Pipewellservice.Reports
             // GroupHeader1
             // 
             this.GroupHeader1.Controls.AddRange(new GrapeCity.ActiveReports.SectionReportModel.ARControl[] {
+            this.Label8,
             this.Label4,
             this.lbl2,
             this.Label3,
@@ -467,7 +458,6 @@ namespace Pipewellservice.Reports
             this.Label6,
             this.TextBox2,
             this.TextBox1,
-            this.Label8,
             this.Label10,
             this.Label12,
             this.Label14,
@@ -616,7 +606,7 @@ namespace Pipewellservice.Reports
     "align: center; ddo-char-set: 1";
             this.Label8.Text = "Remarks";
             this.Label8.Top = 0.4375F;
-            this.Label8.Width = 3.379F;
+            this.Label8.Width = 3.959001F;
             // 
             // Label10
             // 
@@ -733,13 +723,30 @@ namespace Pipewellservice.Reports
             this.Label11.Top = 0F;
             this.Label11.Width = 1.183333F;
             // 
+            // txtREmarks
+            // 
+            this.txtREmarks.Border.BottomStyle = GrapeCity.ActiveReports.BorderLineStyle.Solid;
+            this.txtREmarks.Border.LeftStyle = GrapeCity.ActiveReports.BorderLineStyle.Solid;
+            this.txtREmarks.Border.RightStyle = GrapeCity.ActiveReports.BorderLineStyle.Solid;
+            this.txtREmarks.Border.TopStyle = GrapeCity.ActiveReports.BorderLineStyle.Solid;
+            this.txtREmarks.DataField = "Remarks";
+            this.txtREmarks.Height = 0.2F;
+            this.txtREmarks.Left = 4.469F;
+            this.txtREmarks.Name = "txtREmarks";
+            this.txtREmarks.ShrinkToFit = true;
+            this.txtREmarks.Style = "color: Black; font-size: 8pt; text-align: left; vertical-align: middle; ddo-char-" +
+    "set: 1; ddo-shrink-to-fit: true";
+            this.txtREmarks.Text = null;
+            this.txtREmarks.Top = 0F;
+            this.txtREmarks.Width = 3.959F;
+            // 
             // rpEmployeeAttendenceInOut
             // 
             this.MasterReport = false;
             this.PageSettings.Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Landscape;
             this.PageSettings.PaperHeight = 11F;
             this.PageSettings.PaperWidth = 8.5F;
-            this.PrintWidth = 7.864583F;
+            this.PrintWidth = 8.489F;
             this.Sections.Add(this.PageHeader);
             this.Sections.Add(this.GroupHeader2);
             this.Sections.Add(this.GroupHeader1);
@@ -760,14 +767,13 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.txtin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMissPunch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtREmarks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDeduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCompName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeaderCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture)).EndInit();
@@ -790,6 +796,7 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.TextBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtREmarks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -800,7 +807,6 @@ namespace Pipewellservice.Reports
             private GrapeCity.ActiveReports.SectionReportModel.TextBox txtin;
             private GrapeCity.ActiveReports.SectionReportModel.TextBox txtout;
             private GrapeCity.ActiveReports.SectionReportModel.TextBox txtMissPunch;
-            private GrapeCity.ActiveReports.SectionReportModel.TextBox txtREmarks;
             private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox6;
             private GrapeCity.ActiveReports.SectionReportModel.TextBox txtDeduct;
             private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox9;
@@ -809,7 +815,7 @@ namespace Pipewellservice.Reports
             private GrapeCity.ActiveReports.SectionReportModel.Shape Shape2;
             private GrapeCity.ActiveReports.SectionReportModel.Shape Shape;
             private GrapeCity.ActiveReports.SectionReportModel.Label Label5;
-            private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox;
+            private GrapeCity.ActiveReports.SectionReportModel.TextBox textDate;
             private GrapeCity.ActiveReports.SectionReportModel.Label Label;
             private GrapeCity.ActiveReports.SectionReportModel.TextBox txtHeaderCompany;
             private GrapeCity.ActiveReports.SectionReportModel.Picture Picture;
@@ -837,6 +843,7 @@ namespace Pipewellservice.Reports
             private GrapeCity.ActiveReports.SectionReportModel.Label Label11;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox textBox4;
         private GrapeCity.ActiveReports.SectionReportModel.GroupHeader GroupHeader1;
+        private GrapeCity.ActiveReports.SectionReportModel.TextBox txtREmarks;
         private GrapeCity.ActiveReports.SectionReportModel.Label label9;
 
             private void rpEmployeeInquiry_ReportStart(object sender, System.EventArgs e)
@@ -866,8 +873,13 @@ namespace Pipewellservice.Reports
 
         private void rpEmployeeAttendenceInOut_ReportStart(object sender, EventArgs e)
         {
-
+            textDate.Text = System.DateTime.Now.ToString("dd/MM/yyyy hh:mm tt");
+            txtPeriod.Text = this.Parameters[0].Value;
+            List<Constant> cont = AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.REPORTHEADER);
+            txtHeaderArabic.Text = cont.Find(x => x.Value == 5).Name;
+            txtHeaderCompany.Text = cont.Find(x => x.Value == 4).Name;
         }
+        
     }
     
 }

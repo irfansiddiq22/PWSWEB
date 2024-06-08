@@ -1,4 +1,6 @@
-﻿using PipewellserviceModels.HR.Employee;
+﻿using Pipewellservice.App_Start;
+using PipewellserviceModels.Common;
+using PipewellserviceModels.HR.Employee;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -1483,6 +1485,9 @@ namespace Pipewellservice.Reports
 
         private void rpEmployeeWarning_ReportStart(object sender, System.EventArgs e)
         {
+            List<Constant> cont = AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.REPORTHEADER);
+            txtHeaderArabic.Text = cont.Find(x => x.Value == 5).Name;
+            txtHeaderCompany.Text = cont.Find(x => x.Value == 4).Name;
             List<EmployeeWarningReport> data = (List<EmployeeWarningReport>)this.DataSource;
             if (data.Count > 0)
             {

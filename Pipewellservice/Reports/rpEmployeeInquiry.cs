@@ -1,4 +1,5 @@
-﻿using Pipewellservice.Helper;
+﻿using Pipewellservice.App_Start;
+using Pipewellservice.Helper;
 using PipewellserviceModels.Common;
 using PipewellserviceModels.HR.Employee;
 using System;
@@ -1188,6 +1189,9 @@ namespace Pipewellservice.Reports
 
         private void rpEmployeeInquiry_ReportStart(object sender, System.EventArgs e)
         {
+            List<Constant> cont = AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.REPORTHEADER);
+            txtHeaderArabic.Text = cont.Find(x => x.Value == 5).Name;
+            txtHeaderCompany.Text = cont.Find(x => x.Value == 4).Name;
             TextBox1.Text = System.DateTime.Now.ToString();
             //this.Document.CacheToDisk = true;
             List<EmployeeInquiryReport> data = (List<EmployeeInquiryReport>)this.DataSource;

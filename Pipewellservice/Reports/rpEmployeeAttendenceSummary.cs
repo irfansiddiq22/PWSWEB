@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Pipewellservice.App_Start;
+using PipewellserviceModels.Common;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -1336,5 +1338,8 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
     private void rpEmployeeAttendenceSummary_ReportStart(object sender, EventArgs e)
     {
         txtPeriod.Text = this.Parameters[0].Value;
+        List<Constant> cont = AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.REPORTHEADER);
+        txtHeaderArabic.Text = cont.Find(x => x.Value == 5).Name;
+        txtHeaderCompany.Text = cont.Find(x => x.Value == 4).Name;
     }
 }
