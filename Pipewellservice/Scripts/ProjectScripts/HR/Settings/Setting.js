@@ -36,7 +36,7 @@ function BindDivision() {
 
         FillDivisionList(Response)
 
-
+        FillList("ddlParentDivisionID",Response,"Name","ID","Select ")
     });
     Post("/DataList/SupervisorList", {}).done(function (Response) {
         FillList("ddlSupervisorID", Response, "Name", "ID", "Select Supervisor")
@@ -50,6 +50,7 @@ function FillDivisionList(Response) {
         var tr = $('<tr>');
         tr.append($('<td class="text-center">').text(i + 1))
         tr.append($('<td>').text(r.Name))
+        tr.append($('<td>').text(r.ParentDivisionName))
         tr.append($('<td>').text(r.SupervisorName))
 
         var Icons = $('<div class="icons">');
@@ -63,6 +64,7 @@ function FillDivisionList(Response) {
 function EditDivision(i) {
     SetvalOf("txtDivisionName", Settings.Division[i].Name)
     SetvalOf("ddlSupervisorID", Settings.Division[i].SupervisorID)
+    SetvalOf("ddlParentDivisionID", Settings.Division[i].ParentDivision)
     Settings.Data = Settings.Division[i];
 
 }
@@ -74,18 +76,21 @@ function SaveDivision() {
             DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: Settings.Data.Name, New: valOf("txtDivisionName") } });
         if ($.trim(Settings.Data.SupervisorID) != $.trim(valOf("ddlSupervisorID")))
             DataChangeLog.DataUpdated.push({ Field: "SupervisorID", Data: { OLD: Settings.Data.SupervisorID, New: valOf("ddlSupervisorID") } });
+        if ($.trim(Settings.Data.ParentDivision) != $.trim(valOf("ddlParentDivisionID")))
+            DataChangeLog.DataUpdated.push({ Field: "ParentDivision", Data: { OLD: Settings.Data.ParentDivision, New: valOf("ddlParentDivisionID") } });
 
     } else if (Settings.Data.ID == 0) {
         DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: "", New: valOf("txtDivisionName") }});
     }
 
-    Post("/SettingAPI/UpdateDivision", { ID: Settings.Data.ID, Name: valOf("txtDivisionName"), SupervisorID: valOf("ddlSupervisorID"), Log: DataChangeLog }).done(function (Response) {
+    Post("/SettingAPI/UpdateDivision", { ID: Settings.Data.ID, Name: valOf("txtDivisionName"), SupervisorID: valOf("ddlSupervisorID"), ParentDivision: valOf("ddlParentDivisionID") , Log: DataChangeLog }).done(function (Response) {
         if (Settings.Data.ID == 0)
             swal({ text: "New division record added.", icon: "success" });
         else
             swal({ text: "Division data record updated.", icon: "success" });
         Clear("txtDivisionName")
         valOf("ddlSupervisorID", 0);
+        SetvalOf("ddlParentDivisionID",0)
         ResetForm();
         FillDivisionList(Response);
     }).fail(function () {

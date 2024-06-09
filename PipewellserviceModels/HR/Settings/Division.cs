@@ -13,6 +13,8 @@ namespace PipewellserviceModels.HR.Settings
         public string Name { get; set; }
         public DataChangeLog log { get; set; }
         public int SupervisorID { get; set; }
+        public int ParentDivision { get; set; }
+        public string ParentDivisionName { get; set; }
         public string SupervisorName { get; set; }
     }
     public class Position

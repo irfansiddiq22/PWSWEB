@@ -1,4 +1,5 @@
 ﻿using PipewellserviceDB.Common;
+using PipewellserviceModels.Common;
 using PipewellserviceModels.HR.Employee;
 using PipewellserviceModels.HR.Settings;
 using PipewellserviceModels.Setting;
@@ -47,7 +48,12 @@ namespace PipewellserviceJson.Common
             return await JsonHelper.Convert<List<EmailTemplate>, DataTable>(await service.EmployeeShortLeaveRequestEmailTemplates());
         }
 
-        
+        public async Task<List<PriorityLevel>> PriorityLevels()
+        {
+            DataTable result = await service.PriorityLevels();
+            return await JsonHelper.Convert<List<PriorityLevel>, DataTable>(result);
+        }
+
 
 
 

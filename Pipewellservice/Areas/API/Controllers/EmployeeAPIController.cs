@@ -607,7 +607,7 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
         [Authorization(Pages.EmployeeInquiry, 1, 2)]
-        public async Task<JsonResult> AddEmployeeInquiry(EmployeeInquiry inquiry)
+        public async Task<JsonResult> AddEmployeeInquiry(EmployeeInquiry inquiry,PriorityLevel priorityLevel)
         {
 
             int ID = await json.UpdateEmployeeInquiry(inquiry);
@@ -653,7 +653,7 @@ namespace Pipewellservice.Areas.API.Controllers
         }
 
 
-        public async Task<JsonResult> ProcessInquiryMail(EmployeeInquiry record)
+        public async Task<JsonResult> ProcessInquiryMail(EmployeeInquiry record, PriorityLevel PriorityLevel)
         {
             bool result = false;
             try
@@ -669,6 +669,8 @@ namespace Pipewellservice.Areas.API.Controllers
                 field.Add(new MergeField("REMARKS", record.Remarks));
                 field.Add(new MergeField("EMP_NAME", User.Name));
                 field.Add(new MergeField("EMP_ID", User.EmployeeID.ToString()));
+                field.Add(new MergeField("PRIORITYLEVEL", PriorityLevel.Name));
+                field.Add(new MergeField("PRIORITYLEVELCOLOR", PriorityLevel.ColorCode));
 
 
                 string Row = "";
@@ -1034,7 +1036,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
         }
         [Authorization(Pages.LeaveRequest, 1, 2)]
-        public async Task<JsonResult> NewLeaveRequest(EmployeeLeave record)
+        public async Task<JsonResult> NewLeaveRequest(EmployeeLeave record, PriorityLevel PriorityLevel)
         {
             record.RecordCreatedBy = SessionHelper.UserSession().ID;
             ApprovalRequestResult Requestresult = await json.NewLeaveRequest(record);
@@ -1046,6 +1048,9 @@ namespace Pipewellservice.Areas.API.Controllers
                 field.Add(new MergeField("START_DATE", record.StartDate.ToString("MM/dd/yyyy")));
                 field.Add(new MergeField("END_DATE", record.EndDate.ToString("MM/dd/yyyy")));
                 field.Add(new MergeField("DAYS", (record.EndDate - record.StartDate).Days.ToString()));
+                field.Add(new MergeField("PRIORITYLEVEL", PriorityLevel.Name));
+                field.Add(new MergeField("PRIORITYLEVELCOLOR", PriorityLevel.ColorCode));
+
                 string Row = "";
                 string Status = "";
                 RequestApprover Supervisor = new RequestApprover();

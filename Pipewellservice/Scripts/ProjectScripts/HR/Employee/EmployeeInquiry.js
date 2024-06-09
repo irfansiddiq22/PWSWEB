@@ -1,6 +1,7 @@
 ﻿var IquiryList = [];
 var ApprovalList = [];
 var Inquiry = { ID: 0, Approvals: [] };
+var PriorityLevels = [];
 function _Init() {
     HideSpinner();
     pageNumber = 1
@@ -29,6 +30,10 @@ function BindUsers() {
         if (data.length == 1) {
             $("#ddEmployeeName").val(data[0].id).trigger("change")
         }
+        Post("/DataList/PriorityLevels", {}).done(function (Response) {
+            FillList("ddlPriorityLevel", Response, "Name", "ID", "Choose Request Priority");
+            PriorityLevels = Response;
+        });
 
         BindInquiryList();
     })
@@ -87,10 +92,11 @@ function BindInquiryList(PageNumber = 1) {
                 tr.append($('<td>').text(moment(r.InquiryDate).format("DD/MM/YYYY")))
                 tr.append($('<td>').append(r.Remarks))
 
-                tr.append($('<td>').append(r.Preparedby))
+                tr.append($('<td>').append(r.Preparedby).append(r.PriorityLevelID > 0 ? '<br><span class="badge badge-primary" style="background-color:' + r.ColorCode + '">' + r.PriorityLevelName : ''));
                 tr.append($('<td>').append(CheckboxSwitch("", (r.PersonalInquiry ? "checked" : ""), "", "")))
                 tr.append($('<td>').append(CheckboxSwitch("", (r.GeneralInquiry ? "checked" : ""), "", "")))
                 tr.append($('<td>').append(CheckboxSwitch("", (r.LoanInquiry ? "checked" : ""), "", "")))
+                tr.append($('<td>').append(r.InquiryStatus))
 
 
                 $("#tblEmployeeInQuiryList").append(tr);
@@ -122,17 +128,27 @@ function SaveEmployeeInquiry() {
             EmployeeName: "required",
             InquiryDate: "required",
             InquiryRemarks: "required",
+            PriorityLevel: {
+                required:true,
+                min:1,
+            },
 
         },
         messages: {
             EmployeeName: "Please select employee",
             InquiryDate: "Please enter date",
-            InquiryRemarks: "Please enter remarks"
+            InquiryRemarks: "Please enter remarks",
+            PriorityLevel: {
+                required: "Please choose request priority level",
+                min: "Please choose  request priority level",
+            },
         },
         submitHandler: function (form) {
             if (Inquiry.ID == 0) {
                 DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: "", New: textOf("ddEmployeeName") } });
             }
+            var PriorityLevel = PriorityLevels.find(x => x.ID = NewLeave.PriorityLevel)
+
             NewInquiry = {
                 ID: Inquiry.ID,
                 EmployeeID: valOf("ddEmployeeName"),
@@ -144,6 +160,8 @@ function SaveEmployeeInquiry() {
                 LoanInquiry: GetChecked("chkInquiryLoan"),
                 UserName: User.Name,
                 RecordCreatedBy: User.ID,
+                
+                PriorityLevelID: valOf("ddlPriorityLevel"),
                 Approvals: []
             };
             $.each(User.Supervisors, function (i, s) {
@@ -154,7 +172,7 @@ function SaveEmployeeInquiry() {
             var fileUpload = $('#InquiryFile').get(0);
             var files = fileUpload.files;
             
-            Post("/EmployeeAPI/AddEmployeeInquiry", { Inquiry: NewInquiry }).done(function (ID) {
+            Post("/EmployeeAPI/AddEmployeeInquiry", { Inquiry: NewInquiry  }).done(function (ID) {
                 if (ID > 0) {
 
                     Inquiry.ID = ID;
@@ -174,7 +192,7 @@ function SaveEmployeeInquiry() {
                                 NewInquiry.FileID = Response.FileID;
                                 NewInquiry.FileName = files[0].name;
 
-                                ProcessInquiryMail(NewInquiry);
+                                ProcessInquiryMail(NewInquiry,  PriorityLevel);
                                 BindInquiryList()
                                 ResetNav();
                             } else {
@@ -189,7 +207,7 @@ function SaveEmployeeInquiry() {
                         else
                             swal("Employee request updated added", { icon: "success" })
                         NewInquiry.ID = ID;
-                        ProcessInquiryMail(NewInquiry);
+                        ProcessInquiryMail(NewInquiry, PriorityLevel);
                         BindInquiryList()
                         ResetNav();
                     }
@@ -206,8 +224,8 @@ function SaveEmployeeInquiry() {
 
 
 }
-function ProcessInquiryMail(Inquiry) {
-    Post("/EmployeeAPI/ProcessInquiryMail", { record: Inquiry }).done(function (ID) { });
+function ProcessInquiryMail(Inquiry, PriorityLevel) {
+    Post("/EmployeeAPI/ProcessInquiryMail", { record: Inquiry, PriorityLevel: PriorityLevel }).done(function (ID) { });
 }
 
 

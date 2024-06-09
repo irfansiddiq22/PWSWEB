@@ -7,7 +7,7 @@
     Remarks: '',
     RecordCreatedBy: User.ID
 };
-
+var PriorityLevels= [];
 var Message = " Sir,\n\rIt is requested that i want to avail #leave# for #day# day(s), kindly allow me leave for #startdate# to #enddate#.Kindly do the needful and oblige.\n\rThanks,\n#Name#"
 function _Init() {
 
@@ -31,6 +31,11 @@ function _Init() {
                 ResetMessageText();
             });
         })
+        Post("/DataList/PriorityLevels", {}).done(function (Response) {
+            FillList("ddlPriorityLevel", Response, "Name", "ID", "Choose Request Priority");
+            PriorityLevels = Response;
+        });
+
         $(".datepicker").val(moment().format("DD/MM/YYYY"));
         
         SetvalOf("txtRecordEndDate", moment().add(2, 'day').format("DD/MM/YYYY"));
@@ -121,7 +126,7 @@ function FillLeaves() {
         $("#tblEmployeeLeaves").empty();
         $.each(resp, function (i, l) {
             var tr = $('<tr>');
-            tr.append($('<td>').text(l.LeaveTypeName));
+            tr.append($('<td>').append(l.LeaveTypeName).append(l.PriorityLevelID > 0 ? '<br><span class="badge badge-primary" style="background-color:' + l.ColorCode + '">' + l.PriorityLevelName:''));
             tr.append($('<td>').text(moment(l.StartDate).format("DD/MM/YYYY")));
             tr.append($('<td>').text(moment(l.EndDate).format("DD/MM/YYYY")));
             tr.append($('<td>').text(l.Remarks));
@@ -143,7 +148,11 @@ function SaveEmployeeLeave() {
                 required: true,
                 min: 1
             },
-            Remarks: "required"
+            Remarks: "required",
+            ddlPriorityLevel: {
+                required: true,
+                min: 1
+            },
         },
         messages: {
             EmployeeName: "Please select employee",
@@ -152,6 +161,10 @@ function SaveEmployeeLeave() {
             LeaveTypes: {
                 required: "Please choose leave type",
                 min: "Please choose leave type",
+            },
+            PriorityLevel: {
+                required: "Please choose request priority level",
+                min: "Please choose  request priority level",
             },
             Remarks: "Please enter leave request"
         },
@@ -164,9 +177,11 @@ function SaveEmployeeLeave() {
                 EndDate: valOf("txtRecordEndDate"),
                 LeaveType: valOf("ddlLeaveTypes"),
                 LeaveTypeName: textOf("ddlLeaveTypes"),
-                Remarks: valOf("txtRemarks")
+                Remarks: valOf("txtRemarks"),
+                PriorityLevelID: valOf("ddlPriorityLevel")
             };
 
+            var PriorityLevel = PriorityLevels.find(x => x.ID = NewLeave.PriorityLevelID)
 
             var fileUpload = $('#LeaveFileID').get(0);
             var files = fileUpload.files;
@@ -174,7 +189,7 @@ function SaveEmployeeLeave() {
                 swal("Please attach leave sheet", { icon: "error" });
                 return false;
             }*/
-            Post("/EmployeeAPI/NewLeaveRequest", { record: NewLeave }).done(function (Resp) {
+            Post("/EmployeeAPI/NewLeaveRequest", { record: NewLeave, PriorityLevel: PriorityLevel }).done(function (Resp) {
                 if (Resp.result) {
                     if (files.length > 0) {
 

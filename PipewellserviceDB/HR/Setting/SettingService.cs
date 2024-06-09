@@ -52,10 +52,11 @@ namespace PipewellserviceDB.HR.Setting
             try
             {
                 await this.LogUpdate(division.log);
-                SqlParameter[] collSP = new SqlParameter[3];
+                SqlParameter[] collSP = new SqlParameter[4];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = division.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@Name", Value = division.Name };
                 collSP[2] = new SqlParameter { ParameterName = "@SupervisorID", Value = division.SupervisorID };
+                collSP[3] = new SqlParameter { ParameterName = "@ParentDivision", Value = division.ParentDivision };
                 var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcSaveDivision", CommandType.StoredProcedure, collSP);
                 return await DivisionList();
             }

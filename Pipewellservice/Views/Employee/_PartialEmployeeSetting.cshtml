@@ -17,18 +17,23 @@
                         <form>
                             <div class="mb-3 row">
 
-                                <label for="txtDivisionName" class="col-sm-1 col-form-label me-2">Name</label>
+                                <label for="txtDivisionName" class="col-sm-2 col-form-label me-2">Name</label>
                                 <div class="col-sm-5">
                                     <input type="text" class="form-control form-control-sm" id="txtDivisionName">
                                 </div>
-                                <div class="col-sm-5">
+                                <div class="col-sm-4">
                                     <button type="button" class="btn  btn-success" onclick="SaveDivision()">Save</button>
                                     <button class="btn  btn-danger" type="reset">Clear</button>
                                 </div>
+                                <div class="my-2 row">
+                                    <label for="ddlParentDivisionIDs" class="col-sm-2 col-form-label me-2">Parent Division:</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-select form-select-sm" id="ddlParentDivisionID"></select>
+                                    </div>
+                                </div>
 
-                                <div class="mb-3 row">
-
-                                    <label for="ddlSupervisorID" class="col-sm-1 col-form-label me-2">Supervisor:</label>
+                                <div class="mb-2 row">
+                                    <label for="ddlSupervisorID" class="col-sm-2 col-form-label me-2">Supervisor:</label>
                                     <div class="col-sm-5">
                                         <select class="form-select form-select-sm" id="ddlSupervisorID"></select>
                                     </div>
@@ -39,7 +44,7 @@
                         <div class="mt-2">
                             <table class="table table-sm table-bordered table-hover-warning table-striped">
                                 <thead class="blue">
-                                    <tr><th></th><th>Name</th><th>Supervisor</th><th></th></tr>
+                                    <tr><th></th><th>Name</th><th>Parent Division</th><th>Supervisor</th><th></th></tr>
                                 </thead>
                                 <tbody id="tblDivisionList"></tbody>
                             </table>

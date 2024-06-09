@@ -895,7 +895,7 @@ namespace PipewellserviceDB.HR.Employee
                 }
                 Approvals.AppendLine("</NewDataSet>");
 
-                SqlParameter[] collSP = new SqlParameter[11];
+                SqlParameter[] collSP = new SqlParameter[12];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = dTO.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = dTO.EmployeeID };
                 collSP[2] = new SqlParameter { ParameterName = "@InquiryDate", Value = dTO.InquiryDate };
@@ -906,7 +906,8 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[7] = new SqlParameter { ParameterName = "@Preparedby", Value = dTO.Preparedby };
                 collSP[8] = new SqlParameter { ParameterName = "@UserName", Value = dTO.UserName };
                 collSP[9] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = dTO.RecordCreatedBy };
-                collSP[10] = new SqlParameter { ParameterName = "@Approvals", Value = Approvals.ToString() };
+                collSP[10] = new SqlParameter { ParameterName = "@PriorityLevelID", Value = dTO.PriorityLevelID };
+                collSP[11] = new SqlParameter { ParameterName = "@Approvals", Value =  Approvals.ToString() };
 
                 var result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeInquiry", CommandType.StoredProcedure, collSP);
                 return Convert.ToInt32(result);
@@ -1263,7 +1264,7 @@ namespace PipewellserviceDB.HR.Employee
         {
 
 
-            SqlParameter[] parameters = new SqlParameter[8];
+            SqlParameter[] parameters = new SqlParameter[9];
             parameters[0] = new SqlParameter { ParameterName = "@ID", Value = 0, Direction = ParameterDirection.InputOutput };
             parameters[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = record.EmployeeID };
             parameters[2] = new SqlParameter { ParameterName = "@StartDate", Value = record.StartDate };
@@ -1272,6 +1273,7 @@ namespace PipewellserviceDB.HR.Employee
             parameters[5] = new SqlParameter { ParameterName = "@Remarks", Value =StringHelper.NullToString( record.Remarks) };
             parameters[6] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = record.RecordCreatedBy };
             parameters[7] = new SqlParameter { ParameterName = "@Status", Value = 0, Direction = ParameterDirection.InputOutput };
+            parameters[8] = new SqlParameter { ParameterName = "@PriorityLevelID", Value = record.PriorityLevelID };
 
 
 

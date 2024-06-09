@@ -32,6 +32,9 @@ namespace Pipewellservice.Helper
                 field.Add(new MergeField("START_DATE", record.StartDate.ToString("MM/dd/yyyy")));
                 field.Add(new MergeField("END_DATE", record.EndDate.ToString("MM/dd/yyyy")));
                 field.Add(new MergeField("DAYS", (record.EndDate - record.StartDate).Days.ToString()));
+
+                field.Add(new MergeField("PRIORITYLEVEL", record.PriorityLevelName));
+                field.Add(new MergeField("PRIORITYLEVELCOLOR", record.ColorCode));
                 RecordID = record.ID;
             }
             else if (type == ApprovalTypes.Inquiry)
@@ -40,6 +43,8 @@ namespace Pipewellservice.Helper
                 EmployeeInquiry record = JsonConvert.DeserializeObject<EmployeeInquiry>(result.Request[0].ToString());
                 field.Add(new MergeField("DATE", record.InquiryDate == null ? DateTime.Now.ToString("MM/dd/yyyy") : Convert.ToDateTime(record.InquiryDate).ToString("MM/dd/yyyy")));
                 field.Add(new MergeField("REMARKS", record.Remarks));
+                field.Add(new MergeField("PRIORITYLEVEL", record.PriorityLevelName));
+                field.Add(new MergeField("PRIORITYLEVELCOLOR", record.ColorCode));
                 Attachment = "";
                 if (record.FileID != null)
                 {
@@ -96,6 +101,11 @@ namespace Pipewellservice.Helper
                             Status = "Declined";
                             field.Add(new MergeField("REASON", requestApprover.Remarks));
                         }
+                        else if (requestApprover.Status == ApprovalStatus.NoAction)
+                        {
+                            Status = "NoAction";
+                            field.Add(new MergeField("REASON", requestApprover.Remarks));
+                        }
                         else if (requestApprover.Status == ApprovalStatus.NotApproved)
                         {
                             Status = "Rejected";
@@ -111,9 +121,9 @@ namespace Pipewellservice.Helper
 
                     }
 
-                    else if (requestApprover.RowID == 2)
+                    else 
                     {
-                        if (RequestStatus == ApprovalStatus.Approved)
+                        if (RequestStatus == ApprovalStatus.Approved || RequestStatus==ApprovalStatus.NoAction)
                         {
 
                             if (requestApprover.Status == ApprovalStatus.Approved)

@@ -123,7 +123,6 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d8 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.d9 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.d10 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.Line26 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.d11 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Line27 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.d12 = new GrapeCity.ActiveReports.SectionReportModel.Label();
@@ -144,22 +143,19 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d28 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.d29 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.d30 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.Line84 = new GrapeCity.ActiveReports.SectionReportModel.Line();
-            this.Line85 = new GrapeCity.ActiveReports.SectionReportModel.Line();
-            this.Line86 = new GrapeCity.ActiveReports.SectionReportModel.Line();
-            this.Line87 = new GrapeCity.ActiveReports.SectionReportModel.Line();
-            this.Line88 = new GrapeCity.ActiveReports.SectionReportModel.Line();
-            this.Line89 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.d31 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.d15 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.Line1 = new GrapeCity.ActiveReports.SectionReportModel.Line();
-            this.Line3 = new GrapeCity.ActiveReports.SectionReportModel.Line();
-            this.Line4 = new GrapeCity.ActiveReports.SectionReportModel.Line();
-            this.Line5 = new GrapeCity.ActiveReports.SectionReportModel.Line();
-            this.Line6 = new GrapeCity.ActiveReports.SectionReportModel.Line();
-            this.Line15 = new GrapeCity.ActiveReports.SectionReportModel.Line();
-            this.Line16 = new GrapeCity.ActiveReports.SectionReportModel.Line();
-            this.Line17 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.PageFooter = new GrapeCity.ActiveReports.SectionReportModel.PageFooter();
+            this.Label11 = new GrapeCity.ActiveReports.SectionReportModel.Label();
+            this.Label13 = new GrapeCity.ActiveReports.SectionReportModel.Label();
+            this.Label14 = new GrapeCity.ActiveReports.SectionReportModel.Label();
+            this.Label15 = new GrapeCity.ActiveReports.SectionReportModel.Label();
+            this.Label16 = new GrapeCity.ActiveReports.SectionReportModel.Label();
+            this.Label17 = new GrapeCity.ActiveReports.SectionReportModel.Label();
+            this.Label18 = new GrapeCity.ActiveReports.SectionReportModel.Label();
+            this.Label19 = new GrapeCity.ActiveReports.SectionReportModel.Label();
+            this.Label43 = new GrapeCity.ActiveReports.SectionReportModel.Label();
+            this.Label44 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Line20 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.Line21 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.Line22 = new GrapeCity.ActiveReports.SectionReportModel.Line();
@@ -176,17 +172,21 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.Line35 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.Line36 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.Line37 = new GrapeCity.ActiveReports.SectionReportModel.Line();
-            this.PageFooter = new GrapeCity.ActiveReports.SectionReportModel.PageFooter();
-            this.Label11 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.Label13 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.Label14 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.Label15 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.Label16 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.Label17 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.Label18 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.Label19 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.Label43 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.Label44 = new GrapeCity.ActiveReports.SectionReportModel.Label();
+            this.Line1 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line3 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line4 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line5 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line6 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line15 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line16 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line17 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line86 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line87 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line88 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line89 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line26 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line84 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line85 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             ((System.ComponentModel.ISupportInitialize)(this.d31Data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.d30Data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.d29Data)).BeginInit();
@@ -344,7 +344,7 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.Line57,
             this.Line58,
             this.Line59});
-            this.Detail.Height = 0.2076389F;
+            this.Detail.Height = 0.1659722F;
             this.Detail.KeepTogether = true;
             this.Detail.Name = "Detail";
             // 
@@ -416,15 +416,17 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             // TextBox2
             // 
             this.TextBox2.DataField = "EmployeeName";
-            this.TextBox2.Height = 0.2F;
-            this.TextBox2.Left = 0.516F;
+            this.TextBox2.Height = 0.172F;
+            this.TextBox2.Left = 0.484F;
             this.TextBox2.MultiLine = false;
             this.TextBox2.Name = "TextBox2";
+            this.TextBox2.ShrinkToFit = true;
             this.TextBox2.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: normal; tex" +
-    "t-align: left; vertical-align: bottom; white-space: nowrap; ddo-char-set: 1";
+    "t-align: left; vertical-align: bottom; white-space: nowrap; ddo-char-set: 1; ddo" +
+    "-shrink-to-fit: true";
             this.TextBox2.Text = "0";
-            this.TextBox2.Top = -0.016F;
-            this.TextBox2.Width = 2.03125F;
+            this.TextBox2.Top = 0F;
+            this.TextBox2.Width = 2.058F;
             // 
             // d18Data
             // 
@@ -807,15 +809,16 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             // lblSr
             // 
             this.lblSr.DataField = "EmployeeID";
-            this.lblSr.Height = 0.2F;
-            this.lblSr.Left = 0.03175F;
+            this.lblSr.Height = 0.172F;
+            this.lblSr.Left = 0.021F;
             this.lblSr.Name = "lblSr";
+            this.lblSr.ShrinkToFit = true;
             this.lblSr.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; text-align: left; ddo-ch" +
-    "ar-set: 1";
+    "ar-set: 1; ddo-shrink-to-fit: true";
             this.lblSr.Tag = "";
-            this.lblSr.Text = "0";
-            this.lblSr.Top = -0.016F;
-            this.lblSr.Width = 0.46875F;
+            this.lblSr.Text = "s";
+            this.lblSr.Top = 0F;
+            this.lblSr.Width = 0.463F;
             // 
             // Line9
             // 
@@ -1343,13 +1346,13 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             // 
             this.lbl2.Height = 0.2F;
             this.lbl2.HyperLink = null;
-            this.lbl2.Left = 0.625F;
+            this.lbl2.Left = 0.484F;
             this.lbl2.Name = "lbl2";
             this.lbl2.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-c" +
     "har-set: 1";
             this.lbl2.Text = "Employee Name";
-            this.lbl2.Top = 1.4375F;
-            this.lbl2.Width = 1.5F;
+            this.lbl2.Top = 1.437F;
+            this.lbl2.Width = 2.058F;
             // 
             // Shape2
             // 
@@ -1433,13 +1436,13 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             // txtHeaderArabic
             // 
             this.txtHeaderArabic.Height = 0.375F;
-            this.txtHeaderArabic.Left = 6.3125F;
+            this.txtHeaderArabic.Left = 5.5F;
             this.txtHeaderArabic.Name = "txtHeaderArabic";
-            this.txtHeaderArabic.Style = "color: Black; font-family: Arabic Typesetting; font-size: 21.75pt; font-weight: b" +
-    "old; text-align: center; ddo-char-set: 0";
+            this.txtHeaderArabic.Style = "color: Black; font-family: Tajawal; font-size: 21.75pt; font-weight: bold; text-a" +
+    "lign: center; ddo-char-set: 1";
             this.txtHeaderArabic.Text = null;
-            this.txtHeaderArabic.Top = 0.3125F;
-            this.txtHeaderArabic.Width = 3.625F;
+            this.txtHeaderArabic.Top = 0.312F;
+            this.txtHeaderArabic.Width = 3.844001F;
             // 
             // Label1
             // 
@@ -1457,13 +1460,13 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             // 
             this.Label3.Height = 0.2F;
             this.Label3.HyperLink = null;
-            this.Label3.Left = 0.0625F;
+            this.Label3.Left = 0.021F;
             this.Label3.Name = "Label3";
             this.Label3.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-c" +
     "har-set: 1";
             this.Label3.Text = "Code";
-            this.Label3.Top = 1.4375F;
-            this.Label3.Width = 0.5F;
+            this.Label3.Top = 1.437F;
+            this.Label3.Width = 0.463F;
             // 
             // txtPeriod
             // 
@@ -1497,9 +1500,7 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d1.Left = 2.5625F;
             this.d1.Name = "d1";
             this.d1.ShrinkToFit = true;
-            this.d1.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
-    "align: center; vertical-align: middle; white-space: nowrap; ddo-char-set: 1; ddo" +
-    "-shrink-to-fit: true";
+            this.d1.Style = resources.GetString("d1.Style");
             this.d1.Text = "";
             this.d1.Top = 1.4F;
             this.d1.Width = 0.21875F;
@@ -1629,19 +1630,6 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d10.Text = " ";
             this.d10.Top = 1.4F;
             this.d10.Width = 0.21875F;
-            // 
-            // Line26
-            // 
-            this.Line26.Height = 0.25F;
-            this.Line26.Left = 2.78125F;
-            this.Line26.LineWeight = 1F;
-            this.Line26.Name = "Line26";
-            this.Line26.Top = 1.40625F;
-            this.Line26.Width = 0F;
-            this.Line26.X1 = 2.78125F;
-            this.Line26.X2 = 2.78125F;
-            this.Line26.Y1 = 1.65625F;
-            this.Line26.Y2 = 1.40625F;
             // 
             // d11
             // 
@@ -1922,84 +1910,6 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d30.Top = 1.4F;
             this.d30.Width = 0.21875F;
             // 
-            // Line84
-            // 
-            this.Line84.Height = 0.25F;
-            this.Line84.Left = 3.21875F;
-            this.Line84.LineWeight = 1F;
-            this.Line84.Name = "Line84";
-            this.Line84.Top = 1.40625F;
-            this.Line84.Width = 0F;
-            this.Line84.X1 = 3.21875F;
-            this.Line84.X2 = 3.21875F;
-            this.Line84.Y1 = 1.65625F;
-            this.Line84.Y2 = 1.40625F;
-            // 
-            // Line85
-            // 
-            this.Line85.Height = 0.25F;
-            this.Line85.Left = 3F;
-            this.Line85.LineWeight = 1F;
-            this.Line85.Name = "Line85";
-            this.Line85.Top = 1.40625F;
-            this.Line85.Width = 0F;
-            this.Line85.X1 = 3F;
-            this.Line85.X2 = 3F;
-            this.Line85.Y1 = 1.65625F;
-            this.Line85.Y2 = 1.40625F;
-            // 
-            // Line86
-            // 
-            this.Line86.Height = 0.25F;
-            this.Line86.Left = 4.09375F;
-            this.Line86.LineWeight = 1F;
-            this.Line86.Name = "Line86";
-            this.Line86.Top = 1.40625F;
-            this.Line86.Width = 0F;
-            this.Line86.X1 = 4.09375F;
-            this.Line86.X2 = 4.09375F;
-            this.Line86.Y1 = 1.65625F;
-            this.Line86.Y2 = 1.40625F;
-            // 
-            // Line87
-            // 
-            this.Line87.Height = 0.25F;
-            this.Line87.Left = 3.875F;
-            this.Line87.LineWeight = 1F;
-            this.Line87.Name = "Line87";
-            this.Line87.Top = 1.40625F;
-            this.Line87.Width = 0F;
-            this.Line87.X1 = 3.875F;
-            this.Line87.X2 = 3.875F;
-            this.Line87.Y1 = 1.65625F;
-            this.Line87.Y2 = 1.40625F;
-            // 
-            // Line88
-            // 
-            this.Line88.Height = 0.25F;
-            this.Line88.Left = 3.65625F;
-            this.Line88.LineWeight = 1F;
-            this.Line88.Name = "Line88";
-            this.Line88.Top = 1.40625F;
-            this.Line88.Width = 0F;
-            this.Line88.X1 = 3.65625F;
-            this.Line88.X2 = 3.65625F;
-            this.Line88.Y1 = 1.65625F;
-            this.Line88.Y2 = 1.40625F;
-            // 
-            // Line89
-            // 
-            this.Line89.Height = 0.25F;
-            this.Line89.Left = 3.4375F;
-            this.Line89.LineWeight = 1F;
-            this.Line89.Name = "Line89";
-            this.Line89.Top = 1.40625F;
-            this.Line89.Width = 0F;
-            this.Line89.X1 = 3.4375F;
-            this.Line89.X2 = 3.4375F;
-            this.Line89.Y1 = 1.65625F;
-            this.Line89.Y2 = 1.40625F;
-            // 
             // d31
             // 
             this.d31.DataField = "  ";
@@ -2028,109 +1938,131 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.d15.Top = 1.4F;
             this.d15.Width = 0.21875F;
             // 
-            // Line1
+            // PageFooter
             // 
-            this.Line1.Height = 0.25F;
-            this.Line1.Left = 5.84375F;
-            this.Line1.LineWeight = 1F;
-            this.Line1.Name = "Line1";
-            this.Line1.Top = 1.40625F;
-            this.Line1.Width = 0F;
-            this.Line1.X1 = 5.84375F;
-            this.Line1.X2 = 5.84375F;
-            this.Line1.Y1 = 1.65625F;
-            this.Line1.Y2 = 1.40625F;
+            this.PageFooter.Controls.AddRange(new GrapeCity.ActiveReports.SectionReportModel.ARControl[] {
+            this.Label11,
+            this.Label13,
+            this.Label14,
+            this.Label15,
+            this.Label16,
+            this.Label17,
+            this.Label18,
+            this.Label19,
+            this.Label43,
+            this.Label44});
+            this.PageFooter.Height = 0.2F;
+            this.PageFooter.Name = "PageFooter";
             // 
-            // Line3
+            // Label11
             // 
-            this.Line3.Height = 0.25F;
-            this.Line3.Left = 5.625F;
-            this.Line3.LineWeight = 1F;
-            this.Line3.Name = "Line3";
-            this.Line3.Top = 1.40625F;
-            this.Line3.Width = 0F;
-            this.Line3.X1 = 5.625F;
-            this.Line3.X2 = 5.625F;
-            this.Line3.Y1 = 1.65625F;
-            this.Line3.Y2 = 1.40625F;
+            this.Label11.Height = 0.2F;
+            this.Label11.HyperLink = null;
+            this.Label11.Left = 0F;
+            this.Label11.Name = "Label11";
+            this.Label11.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold";
+            this.Label11.Text = "Present: P";
+            this.Label11.Top = 0F;
+            this.Label11.Width = 0.625F;
             // 
-            // Line4
+            // Label13
             // 
-            this.Line4.Height = 0.25F;
-            this.Line4.Left = 5.40625F;
-            this.Line4.LineWeight = 1F;
-            this.Line4.Name = "Line4";
-            this.Line4.Top = 1.40625F;
-            this.Line4.Width = 0F;
-            this.Line4.X1 = 5.40625F;
-            this.Line4.X2 = 5.40625F;
-            this.Line4.Y1 = 1.65625F;
-            this.Line4.Y2 = 1.40625F;
+            this.Label13.Height = 0.2F;
+            this.Label13.HyperLink = null;
+            this.Label13.Left = 0.671875F;
+            this.Label13.Name = "Label13";
+            this.Label13.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
+            this.Label13.Text = "Absent: A";
+            this.Label13.Top = 0F;
+            this.Label13.Width = 0.65625F;
             // 
-            // Line5
+            // Label14
             // 
-            this.Line5.Height = 0.25F;
-            this.Line5.Left = 5.1875F;
-            this.Line5.LineWeight = 1F;
-            this.Line5.Name = "Line5";
-            this.Line5.Top = 1.40625F;
-            this.Line5.Width = 0F;
-            this.Line5.X1 = 5.1875F;
-            this.Line5.X2 = 5.1875F;
-            this.Line5.Y1 = 1.65625F;
-            this.Line5.Y2 = 1.40625F;
+            this.Label14.Height = 0.2F;
+            this.Label14.HyperLink = null;
+            this.Label14.Left = 1.390625F;
+            this.Label14.Name = "Label14";
+            this.Label14.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
+            this.Label14.Text = "Off Day: O";
+            this.Label14.Top = 0F;
+            this.Label14.Width = 0.75F;
             // 
-            // Line6
+            // Label15
             // 
-            this.Line6.Height = 0.25F;
-            this.Line6.Left = 4.96875F;
-            this.Line6.LineWeight = 1F;
-            this.Line6.Name = "Line6";
-            this.Line6.Top = 1.40625F;
-            this.Line6.Width = 0F;
-            this.Line6.X1 = 4.96875F;
-            this.Line6.X2 = 4.96875F;
-            this.Line6.Y1 = 1.65625F;
-            this.Line6.Y2 = 1.40625F;
+            this.Label15.Height = 0.2F;
+            this.Label15.HyperLink = null;
+            this.Label15.Left = 2.1875F;
+            this.Label15.Name = "Label15";
+            this.Label15.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
+            this.Label15.Text = "Rig: R";
+            this.Label15.Top = 0F;
+            this.Label15.Width = 0.4375F;
             // 
-            // Line15
+            // Label16
             // 
-            this.Line15.Height = 0.25F;
-            this.Line15.Left = 4.75F;
-            this.Line15.LineWeight = 1F;
-            this.Line15.Name = "Line15";
-            this.Line15.Top = 1.40625F;
-            this.Line15.Width = 0F;
-            this.Line15.X1 = 4.75F;
-            this.Line15.X2 = 4.75F;
-            this.Line15.Y1 = 1.65625F;
-            this.Line15.Y2 = 1.40625F;
+            this.Label16.Height = 0.2F;
+            this.Label16.HyperLink = null;
+            this.Label16.Left = 2.6875F;
+            this.Label16.Name = "Label16";
+            this.Label16.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
+            this.Label16.Text = "Sick Leave: S";
+            this.Label16.Top = 0F;
+            this.Label16.Width = 0.875F;
             // 
-            // Line16
+            // Label17
             // 
-            this.Line16.Height = 0.25F;
-            this.Line16.Left = 4.53125F;
-            this.Line16.LineWeight = 1F;
-            this.Line16.Name = "Line16";
-            this.Line16.Top = 1.40625F;
-            this.Line16.Width = 0F;
-            this.Line16.X1 = 4.53125F;
-            this.Line16.X2 = 4.53125F;
-            this.Line16.Y1 = 1.65625F;
-            this.Line16.Y2 = 1.40625F;
+            this.Label17.Height = 0.2F;
+            this.Label17.HyperLink = null;
+            this.Label17.Left = 3.5625F;
+            this.Label17.Name = "Label17";
+            this.Label17.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
+            this.Label17.Text = "Umrah/Hajj: U";
+            this.Label17.Top = 0F;
+            this.Label17.Width = 0.875F;
             // 
-            // Line17
+            // Label18
             // 
-            this.Line17.Height = 0.25F;
-            this.Line17.Left = 4.3125F;
-            this.Line17.LineWeight = 1F;
-            this.Line17.Name = "Line17";
-            this.Line17.Top = 1.40625F;
-            this.Line17.Width = 0F;
-            this.Line17.X1 = 4.3125F;
-            this.Line17.X2 = 4.3125F;
-            this.Line17.Y1 = 1.65625F;
-            this.Line17.Y2 = 1.40625F;
+            this.Label18.Height = 0.2F;
+            this.Label18.HyperLink = null;
+            this.Label18.Left = 4.5F;
+            this.Label18.Name = "Label18";
+            this.Label18.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
+            this.Label18.Text = "Vacations: V";
+            this.Label18.Top = 0F;
+            this.Label18.Width = 0.8125F;
+            // 
+            // Label19
+            // 
+            this.Label19.Height = 0.2F;
+            this.Label19.HyperLink = null;
+            this.Label19.Left = 5.3125F;
+            this.Label19.Name = "Label19";
+            this.Label19.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
+            this.Label19.Text = "Holidays: H";
+            this.Label19.Top = 0F;
+            this.Label19.Width = 0.8125F;
+            // 
+            // Label43
+            // 
+            this.Label43.Height = 0.2F;
+            this.Label43.HyperLink = null;
+            this.Label43.Left = 6.1875F;
+            this.Label43.Name = "Label43";
+            this.Label43.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
+            this.Label43.Text = "Paid Vacation Leave: L";
+            this.Label43.Top = 0F;
+            this.Label43.Width = 1.5F;
+            // 
+            // Label44
+            // 
+            this.Label44.Height = 0.2F;
+            this.Label44.HyperLink = null;
+            this.Label44.Left = 7.75F;
+            this.Label44.Name = "Label44";
+            this.Label44.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
+            this.Label44.Text = "Sick Leave(GOSI): I";
+            this.Label44.Top = 0F;
+            this.Label44.Width = 1.625F;
             // 
             // Line20
             // 
@@ -2340,131 +2272,200 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
             this.Line37.Y1 = 1.65625F;
             this.Line37.Y2 = 1.40625F;
             // 
-            // PageFooter
+            // Line1
             // 
-            this.PageFooter.Controls.AddRange(new GrapeCity.ActiveReports.SectionReportModel.ARControl[] {
-            this.Label11,
-            this.Label13,
-            this.Label14,
-            this.Label15,
-            this.Label16,
-            this.Label17,
-            this.Label18,
-            this.Label19,
-            this.Label43,
-            this.Label44});
-            this.PageFooter.Height = 0.2F;
-            this.PageFooter.Name = "PageFooter";
+            this.Line1.Height = 0.25F;
+            this.Line1.Left = 5.84375F;
+            this.Line1.LineWeight = 1F;
+            this.Line1.Name = "Line1";
+            this.Line1.Top = 1.40625F;
+            this.Line1.Width = 0F;
+            this.Line1.X1 = 5.84375F;
+            this.Line1.X2 = 5.84375F;
+            this.Line1.Y1 = 1.65625F;
+            this.Line1.Y2 = 1.40625F;
             // 
-            // Label11
+            // Line3
             // 
-            this.Label11.Height = 0.2F;
-            this.Label11.HyperLink = null;
-            this.Label11.Left = 0F;
-            this.Label11.Name = "Label11";
-            this.Label11.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold";
-            this.Label11.Text = "Present: P";
-            this.Label11.Top = 0F;
-            this.Label11.Width = 0.625F;
+            this.Line3.Height = 0.25F;
+            this.Line3.Left = 5.625F;
+            this.Line3.LineWeight = 1F;
+            this.Line3.Name = "Line3";
+            this.Line3.Top = 1.40625F;
+            this.Line3.Width = 0F;
+            this.Line3.X1 = 5.625F;
+            this.Line3.X2 = 5.625F;
+            this.Line3.Y1 = 1.65625F;
+            this.Line3.Y2 = 1.40625F;
             // 
-            // Label13
+            // Line4
             // 
-            this.Label13.Height = 0.2F;
-            this.Label13.HyperLink = null;
-            this.Label13.Left = 0.671875F;
-            this.Label13.Name = "Label13";
-            this.Label13.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
-            this.Label13.Text = "Absent: A";
-            this.Label13.Top = 0F;
-            this.Label13.Width = 0.65625F;
+            this.Line4.Height = 0.25F;
+            this.Line4.Left = 5.40625F;
+            this.Line4.LineWeight = 1F;
+            this.Line4.Name = "Line4";
+            this.Line4.Top = 1.40625F;
+            this.Line4.Width = 0F;
+            this.Line4.X1 = 5.40625F;
+            this.Line4.X2 = 5.40625F;
+            this.Line4.Y1 = 1.65625F;
+            this.Line4.Y2 = 1.40625F;
             // 
-            // Label14
+            // Line5
             // 
-            this.Label14.Height = 0.2F;
-            this.Label14.HyperLink = null;
-            this.Label14.Left = 1.390625F;
-            this.Label14.Name = "Label14";
-            this.Label14.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
-            this.Label14.Text = "Off Day: O";
-            this.Label14.Top = 0F;
-            this.Label14.Width = 0.75F;
+            this.Line5.Height = 0.25F;
+            this.Line5.Left = 5.1875F;
+            this.Line5.LineWeight = 1F;
+            this.Line5.Name = "Line5";
+            this.Line5.Top = 1.40625F;
+            this.Line5.Width = 0F;
+            this.Line5.X1 = 5.1875F;
+            this.Line5.X2 = 5.1875F;
+            this.Line5.Y1 = 1.65625F;
+            this.Line5.Y2 = 1.40625F;
             // 
-            // Label15
+            // Line6
             // 
-            this.Label15.Height = 0.2F;
-            this.Label15.HyperLink = null;
-            this.Label15.Left = 2.1875F;
-            this.Label15.Name = "Label15";
-            this.Label15.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
-            this.Label15.Text = "Rig: R";
-            this.Label15.Top = 0F;
-            this.Label15.Width = 0.4375F;
+            this.Line6.Height = 0.25F;
+            this.Line6.Left = 4.96875F;
+            this.Line6.LineWeight = 1F;
+            this.Line6.Name = "Line6";
+            this.Line6.Top = 1.40625F;
+            this.Line6.Width = 0F;
+            this.Line6.X1 = 4.96875F;
+            this.Line6.X2 = 4.96875F;
+            this.Line6.Y1 = 1.65625F;
+            this.Line6.Y2 = 1.40625F;
             // 
-            // Label16
+            // Line15
             // 
-            this.Label16.Height = 0.2F;
-            this.Label16.HyperLink = null;
-            this.Label16.Left = 2.6875F;
-            this.Label16.Name = "Label16";
-            this.Label16.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
-            this.Label16.Text = "Sick Leave: S";
-            this.Label16.Top = 0F;
-            this.Label16.Width = 0.875F;
+            this.Line15.Height = 0.25F;
+            this.Line15.Left = 4.75F;
+            this.Line15.LineWeight = 1F;
+            this.Line15.Name = "Line15";
+            this.Line15.Top = 1.40625F;
+            this.Line15.Width = 0F;
+            this.Line15.X1 = 4.75F;
+            this.Line15.X2 = 4.75F;
+            this.Line15.Y1 = 1.65625F;
+            this.Line15.Y2 = 1.40625F;
             // 
-            // Label17
+            // Line16
             // 
-            this.Label17.Height = 0.2F;
-            this.Label17.HyperLink = null;
-            this.Label17.Left = 3.5625F;
-            this.Label17.Name = "Label17";
-            this.Label17.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
-            this.Label17.Text = "Umrah/Hajj: U";
-            this.Label17.Top = 0F;
-            this.Label17.Width = 0.875F;
+            this.Line16.Height = 0.25F;
+            this.Line16.Left = 4.53125F;
+            this.Line16.LineWeight = 1F;
+            this.Line16.Name = "Line16";
+            this.Line16.Top = 1.40625F;
+            this.Line16.Width = 0F;
+            this.Line16.X1 = 4.53125F;
+            this.Line16.X2 = 4.53125F;
+            this.Line16.Y1 = 1.65625F;
+            this.Line16.Y2 = 1.40625F;
             // 
-            // Label18
+            // Line17
             // 
-            this.Label18.Height = 0.2F;
-            this.Label18.HyperLink = null;
-            this.Label18.Left = 4.5F;
-            this.Label18.Name = "Label18";
-            this.Label18.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
-            this.Label18.Text = "Vacations: V";
-            this.Label18.Top = 0F;
-            this.Label18.Width = 0.8125F;
+            this.Line17.Height = 0.25F;
+            this.Line17.Left = 4.3125F;
+            this.Line17.LineWeight = 1F;
+            this.Line17.Name = "Line17";
+            this.Line17.Top = 1.40625F;
+            this.Line17.Width = 0F;
+            this.Line17.X1 = 4.3125F;
+            this.Line17.X2 = 4.3125F;
+            this.Line17.Y1 = 1.65625F;
+            this.Line17.Y2 = 1.40625F;
             // 
-            // Label19
+            // Line86
             // 
-            this.Label19.Height = 0.2F;
-            this.Label19.HyperLink = null;
-            this.Label19.Left = 5.3125F;
-            this.Label19.Name = "Label19";
-            this.Label19.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
-            this.Label19.Text = "Holidays: H";
-            this.Label19.Top = 0F;
-            this.Label19.Width = 0.8125F;
+            this.Line86.Height = 0.25F;
+            this.Line86.Left = 4.09375F;
+            this.Line86.LineWeight = 1F;
+            this.Line86.Name = "Line86";
+            this.Line86.Top = 1.40625F;
+            this.Line86.Width = 0F;
+            this.Line86.X1 = 4.09375F;
+            this.Line86.X2 = 4.09375F;
+            this.Line86.Y1 = 1.65625F;
+            this.Line86.Y2 = 1.40625F;
             // 
-            // Label43
+            // Line87
             // 
-            this.Label43.Height = 0.2F;
-            this.Label43.HyperLink = null;
-            this.Label43.Left = 6.1875F;
-            this.Label43.Name = "Label43";
-            this.Label43.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
-            this.Label43.Text = "Paid Vacation Leave: L";
-            this.Label43.Top = 0F;
-            this.Label43.Width = 1.5F;
+            this.Line87.Height = 0.25F;
+            this.Line87.Left = 3.875F;
+            this.Line87.LineWeight = 1F;
+            this.Line87.Name = "Line87";
+            this.Line87.Top = 1.40625F;
+            this.Line87.Width = 0F;
+            this.Line87.X1 = 3.875F;
+            this.Line87.X2 = 3.875F;
+            this.Line87.Y1 = 1.65625F;
+            this.Line87.Y2 = 1.40625F;
             // 
-            // Label44
+            // Line88
             // 
-            this.Label44.Height = 0.2F;
-            this.Label44.HyperLink = null;
-            this.Label44.Left = 7.75F;
-            this.Label44.Name = "Label44";
-            this.Label44.Style = "font-family: Book Antiqua; font-size: 9pt; font-weight: bold; ddo-char-set: 1";
-            this.Label44.Text = "Sick Leave(GOSI): I";
-            this.Label44.Top = 0F;
-            this.Label44.Width = 1.625F;
+            this.Line88.Height = 0.25F;
+            this.Line88.Left = 3.65625F;
+            this.Line88.LineWeight = 1F;
+            this.Line88.Name = "Line88";
+            this.Line88.Top = 1.40625F;
+            this.Line88.Width = 0F;
+            this.Line88.X1 = 3.65625F;
+            this.Line88.X2 = 3.65625F;
+            this.Line88.Y1 = 1.65625F;
+            this.Line88.Y2 = 1.40625F;
+            // 
+            // Line89
+            // 
+            this.Line89.Height = 0.25F;
+            this.Line89.Left = 3.4375F;
+            this.Line89.LineWeight = 1F;
+            this.Line89.Name = "Line89";
+            this.Line89.Top = 1.40625F;
+            this.Line89.Width = 0F;
+            this.Line89.X1 = 3.4375F;
+            this.Line89.X2 = 3.4375F;
+            this.Line89.Y1 = 1.65625F;
+            this.Line89.Y2 = 1.40625F;
+            // 
+            // Line26
+            // 
+            this.Line26.Height = 0.25F;
+            this.Line26.Left = 2.78125F;
+            this.Line26.LineWeight = 1F;
+            this.Line26.Name = "Line26";
+            this.Line26.Top = 1.40625F;
+            this.Line26.Width = 0F;
+            this.Line26.X1 = 2.78125F;
+            this.Line26.X2 = 2.78125F;
+            this.Line26.Y1 = 1.65625F;
+            this.Line26.Y2 = 1.40625F;
+            // 
+            // Line84
+            // 
+            this.Line84.Height = 0.25F;
+            this.Line84.Left = 3.21875F;
+            this.Line84.LineWeight = 1F;
+            this.Line84.Name = "Line84";
+            this.Line84.Top = 1.40625F;
+            this.Line84.Width = 0F;
+            this.Line84.X1 = 3.21875F;
+            this.Line84.X2 = 3.21875F;
+            this.Line84.Y1 = 1.65625F;
+            this.Line84.Y2 = 1.40625F;
+            // 
+            // Line85
+            // 
+            this.Line85.Height = 0.25F;
+            this.Line85.Left = 3F;
+            this.Line85.LineWeight = 1F;
+            this.Line85.Name = "Line85";
+            this.Line85.Top = 1.40625F;
+            this.Line85.Width = 0F;
+            this.Line85.X1 = 3F;
+            this.Line85.X2 = 3F;
+            this.Line85.Y1 = 1.65625F;
+            this.Line85.Y2 = 1.40625F;
             // 
             // rptAttendanceDetail
             // 
@@ -2664,7 +2665,6 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
     private GrapeCity.ActiveReports.SectionReportModel.Label d8;
     private GrapeCity.ActiveReports.SectionReportModel.Label d9;
     private GrapeCity.ActiveReports.SectionReportModel.Label d10;
-    private GrapeCity.ActiveReports.SectionReportModel.Line Line26;
     private GrapeCity.ActiveReports.SectionReportModel.Label d11;
     private GrapeCity.ActiveReports.SectionReportModel.Line Line27;
     private GrapeCity.ActiveReports.SectionReportModel.Label d12;
@@ -2685,14 +2685,25 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
     private GrapeCity.ActiveReports.SectionReportModel.Label d28;
     private GrapeCity.ActiveReports.SectionReportModel.Label d29;
     private GrapeCity.ActiveReports.SectionReportModel.Label d30;
+    private GrapeCity.ActiveReports.SectionReportModel.Label d31;
+    private GrapeCity.ActiveReports.SectionReportModel.Label d15;
+    private GrapeCity.ActiveReports.SectionReportModel.PageFooter PageFooter;
+    private GrapeCity.ActiveReports.SectionReportModel.Label Label11;
+    private GrapeCity.ActiveReports.SectionReportModel.Label Label13;
+    private GrapeCity.ActiveReports.SectionReportModel.Label Label14;
+    private GrapeCity.ActiveReports.SectionReportModel.Label Label15;
+    private GrapeCity.ActiveReports.SectionReportModel.Label Label16;
+    private GrapeCity.ActiveReports.SectionReportModel.Label Label17;
+    private GrapeCity.ActiveReports.SectionReportModel.Label Label18;
+    private GrapeCity.ActiveReports.SectionReportModel.Label Label19;
+    private GrapeCity.ActiveReports.SectionReportModel.Label Label43;
+    private GrapeCity.ActiveReports.SectionReportModel.Line Line26;
     private GrapeCity.ActiveReports.SectionReportModel.Line Line84;
     private GrapeCity.ActiveReports.SectionReportModel.Line Line85;
     private GrapeCity.ActiveReports.SectionReportModel.Line Line86;
     private GrapeCity.ActiveReports.SectionReportModel.Line Line87;
     private GrapeCity.ActiveReports.SectionReportModel.Line Line88;
     private GrapeCity.ActiveReports.SectionReportModel.Line Line89;
-    private GrapeCity.ActiveReports.SectionReportModel.Label d31;
-    private GrapeCity.ActiveReports.SectionReportModel.Label d15;
     private GrapeCity.ActiveReports.SectionReportModel.Line Line1;
     private GrapeCity.ActiveReports.SectionReportModel.Line Line3;
     private GrapeCity.ActiveReports.SectionReportModel.Line Line4;
@@ -2717,16 +2728,6 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
     private GrapeCity.ActiveReports.SectionReportModel.Line Line35;
     private GrapeCity.ActiveReports.SectionReportModel.Line Line36;
     private GrapeCity.ActiveReports.SectionReportModel.Line Line37;
-    private GrapeCity.ActiveReports.SectionReportModel.PageFooter PageFooter;
-    private GrapeCity.ActiveReports.SectionReportModel.Label Label11;
-    private GrapeCity.ActiveReports.SectionReportModel.Label Label13;
-    private GrapeCity.ActiveReports.SectionReportModel.Label Label14;
-    private GrapeCity.ActiveReports.SectionReportModel.Label Label15;
-    private GrapeCity.ActiveReports.SectionReportModel.Label Label16;
-    private GrapeCity.ActiveReports.SectionReportModel.Label Label17;
-    private GrapeCity.ActiveReports.SectionReportModel.Label Label18;
-    private GrapeCity.ActiveReports.SectionReportModel.Label Label19;
-    private GrapeCity.ActiveReports.SectionReportModel.Label Label43;
     private GrapeCity.ActiveReports.SectionReportModel.Label Label44;
     
 

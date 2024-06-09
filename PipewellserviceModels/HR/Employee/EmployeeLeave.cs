@@ -23,6 +23,10 @@ namespace PipewellserviceModels.HR.Employee
         public string FileID { get; set; }
         public string FileName { get; set; }
         public int RecordCreatedBy { get; set; }
+        public int PriorityLevelID { get; set; }
+        public string PriorityLevelName { get; set; }
+        public string ColorCode { get; set; }
+        public int Status { get; set; }
     }
     public class LeaveRequestLog : EmployeeLeave
     {

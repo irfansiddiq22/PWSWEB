@@ -79,8 +79,17 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        
 
-        
+        public async Task<JsonResult> PriorityLevels()
+        {
+            return new JsonResult
+            {
+                Data = await json.PriorityLevels(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+
+
     }
 }

@@ -23,17 +23,17 @@ namespace PipewellserviceModels.Common
         LEAVE_TPES = 6,
         CERTIFICATE_TYPES = 7,
         DocTemplates = 10,
-        REPORTHEADER=11,
+        REPORTHEADER = 11,
         PAGEGROUPS = 12,
-        USERGRPOUPS=13,
-        JOB_STATUS=14,
-        EMAIL_TEMPLATE_TYPES=15
+        USERGRPOUPS = 13,
+        JOB_STATUS = 14,
+        EMAIL_TEMPLATE_TYPES = 15
     }
     public enum UserGroups
     {
-        none=0,
-        Admin=1,
-        Employee=2
+        none = 0,
+        Admin = 1,
+        Employee = 2
     }
 
     public enum Gender
@@ -60,9 +60,9 @@ namespace PipewellserviceModels.Common
         None = 0,
         OnJob = 1,
         LeftJob = 2,
-        OnVaction=3,
-        Terminated=4,
-        Transfered=5
+        OnVaction = 3,
+        Terminated = 4,
+        Transfered = 5
     }
     public enum HiringSource
     {
@@ -99,28 +99,29 @@ namespace PipewellserviceModels.Common
         Approved = 1,
         Declined = 2,
         New = 3,
-        Ready=4,
-        Pending=5,
-        Requested=6
+        Ready = 4,
+        Pending = 5,
+        Requested = 6,
+        NoAction=7
     }
     public enum ApprovalTypes
     {
         Clearance = 1,
         Inquiry = 2,
         Warning = 3,
-        
-        Vacation=4,
-        Joining=5,
-        ShortLeave=6,
-        Leaves=7
+
+        Vacation = 4,
+        Joining = 5,
+        ShortLeave = 6,
+        Leaves = 7
 
 
     }
     public enum PageGroups
     {
-        HR=1,
-        HRSetting=2,
-        Setting=3
+        HR = 1,
+        HRSetting = 2,
+        Setting = 3
 
     }
     public enum ReportTypes
@@ -130,11 +131,11 @@ namespace PipewellserviceModels.Common
         EmployeeAttendenceSummary = 3,
         EmployeeWarning = 11,
         EmployeeInquiry = 16,
-        
+
     }
     public enum Pages
     {
-        None=0,
+        None = 0,
         Divisions = 1,
         Positions = 2,
         Departments = 3,
@@ -152,17 +153,17 @@ namespace PipewellserviceModels.Common
         JobOffers = 14,
         JobContracts = 15,
         EmployeeInquiry = 16,
-        Users=17,
-        Permissions=18,
-        Vendor=19,
-        Joining=20,
-        ShortLeave=21,
+        Users = 17,
+        Permissions = 18,
+        Vendor = 19,
+        Joining = 20,
+        ShortLeave = 21,
         LeaveRequest = 22,
-        Approvals=23,
-        Accommodation=24,
-        WorkTime=25,
-        EmployeeWorkTiming=26,
-        AttendenceReport=27
+        Approvals = 23,
+        Accommodation = 24,
+        WorkTime = 25,
+        EmployeeWorkTiming = 26,
+        AttendenceReport = 27
     }
 
     public enum DirectoryNames
@@ -180,11 +181,11 @@ namespace PipewellserviceModels.Common
         EmployeeJobContract = 10,
         Templates = 11,
         EmployeeInquiry = 12,
-        EmployeeJoining=13,
-        EmployeeShortLeave=14,
-        Leaves=15
+        EmployeeJoining = 13,
+        EmployeeShortLeave = 14,
+        Leaves = 15
     }
-    
+
     public enum DocTemplates
     {
         JobOffer = 1,
@@ -192,7 +193,12 @@ namespace PipewellserviceModels.Common
     }
     public enum SupervisorTypes
     {
-        Supervisor=1,
-        HRManager=2
+        Supervisor = 1,
+        HRManager = 2
+    }
+    public enum PriorityTimeUnit
+    {
+        Hour = 1,
+        Day = 2
     }
 }

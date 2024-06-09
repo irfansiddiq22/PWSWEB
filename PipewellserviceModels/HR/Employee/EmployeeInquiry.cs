@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PipewellserviceModels.Common;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -144,7 +145,22 @@ namespace PipewellserviceModels.HR.Employee
         public bool LoanInquiry { get; set; }
         public string FileID { get; set; }
         public string FileName { get; set; }
+        public ApprovalStatus Status { get; set; }
 
+        public int PriorityLevelID { get; set; }
+        public string PriorityLevelName { get; set; }
+        public string ColorCode { get; set; }
+        public string InquiryStatus
+        {
+            get
+            {
+                if (Status==ApprovalStatus.Approved) return "Approved";
+                else if (Status == ApprovalStatus.Declined || Status==ApprovalStatus.NotApproved) return "Not Approved";
+                else if (Status == ApprovalStatus.NoAction) return "";
+                else return "InProcess";
+
+            }
+        }
     }
     public class EmployeeInquiryDB
     {
