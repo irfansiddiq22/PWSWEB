@@ -1260,6 +1260,14 @@ namespace PipewellserviceDB.HR.Employee
             data.Load(result);
             return data;
         }
+        public async Task<DataTable> EmployeeLeaveStats(int EmployeeID)
+        {
+            
+            var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcCalculateEmployeeAnnualLeaves", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID });
+            DataTable data = new DataTable();
+            data.Load(result);
+            return data;
+        }
         public async Task<ApprovalRequestResultDB> NewLeaveRequest(EmployeeLeave record)
         {
 

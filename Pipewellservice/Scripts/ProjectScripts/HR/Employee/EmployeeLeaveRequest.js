@@ -7,7 +7,8 @@
     Remarks: '',
     RecordCreatedBy: User.ID
 };
-var PriorityLevels= [];
+var PriorityLevels = [];
+var LeaveStat = {};
 var Message = " Sir,\n\rIt is requested that i want to avail #leave# for #day# day(s), kindly allow me leave for #startdate# to #enddate#.Kindly do the needful and oblige.\n\rThanks,\n#Name#"
 function _Init() {
 
@@ -28,7 +29,7 @@ function _Init() {
                 width: '100%',
                 data: data
             }).on('select2:select', function (e) {
-                ResetMessageText();
+                BindLeaveStats();
             });
         })
         Post("/DataList/PriorityLevels", {}).done(function (Response) {
@@ -45,19 +46,18 @@ function _Init() {
             if (moment(valOf("txtRecordEndDate"), "DD/MM/YYYY", true).diff(moment(valOf("txtRecordStartDate"), "DD/MM/YYYY", true), 'days') < 0)
                 SetvalOf("txtRecordEndDate", moment(selected.date).add(1, 'day').format("DD/MM/YYYY"));
         });
+        
 
         
-        $(".datepicker").on('changeDate', function (selected) {
+       /* $(".datepicker").on('changeDate', function (selected) {
             ResetMessageText();
         });
-
+        */
 
     });
 
 }
-function BindLeaveList() {
 
-}
 function ResetMessageText() {
     return;
     if (valOf("ddlLeaveTypes") > 0 && (moment(valOf("txtRecordStartDate"), "DD/MM/YYYY", true).isValid() && moment(valOf("txtRecordEndDate"), "DD/MM/YYYY", true).isValid())) {
@@ -118,10 +118,45 @@ function BindUsers() {
     })
 }
 $("#ddEmployeeName").change(function () {
-    ResetMessageText();
     FillLeaves();
 })
+function BindLeaveStats() {
+    $("#tblLeaveStats").empty()
+    if (parseInt($("#ddlLeaveTypes").val()) == 1) {
+        var tr = $('<tr>')
+        $(tr).append($('<td>').append('<b> Allowance'));
+        $(tr).append($('<td>').append('<b> Carried Over'));
+        $(tr).append($('<td>').append('<b> Available'));
+        $(tr).append($('<td>').append('<b> Used'));
+        $(tr).append($('<td>').append('<b> Balance'));
+        $(tr).append($('<td>').append('<b> Unit'));
+        $("#tblLeaveStats").append(tr);
+        if (LeaveStat == null || LeaveStat.Allowance == 0) {
+            LeaveStat = {
+                Allowance: 30,
+                CarriedOver: 0,
+                LeavesTaken: 0,
+                Available: 30,
+                Balance: 30
+
+            }
+        }
+        tr = $('<tr>')
+        $(tr).append($('<td>').append(LeaveStat.Allowance));
+        $(tr).append($('<td>').append(LeaveStat.CarriedOver));
+        $(tr).append($('<td>').append(LeaveStat.Available));
+        $(tr).append($('<td>').append(LeaveStat.LeavesTaken));
+        $(tr).append($('<td>').append(LeaveStat.Balance));
+        $(tr).append($('<td>').append('Days'));
+        $("#tblLeaveStats").append(tr);
+    }
+}
 function FillLeaves() {
+    $.post("/EmployeeAPI/EmployeeLeaveStats", { EmployeeID: $("#ddEmployeeName").val() }, function (resp) {
+        LeaveStat = resp;
+        BindLeaveStats();
+    });
+
     $.post("/EmployeeAPI/EmployeeLeaveRequest", { EmployeeID: $("#ddEmployeeName").val(), StartDate: '', EndDate:'' }, function (resp) {
         $("#tblEmployeeLeaves").empty();
         $.each(resp, function (i, l) {
@@ -149,7 +184,7 @@ function SaveEmployeeLeave() {
                 min: 1
             },
             Remarks: "required",
-            ddlPriorityLevel: {
+            PriorityLevel: {
                 required: true,
                 min: 1
             },
@@ -189,7 +224,7 @@ function SaveEmployeeLeave() {
                 swal("Please attach leave sheet", { icon: "error" });
                 return false;
             }*/
-            Post("/EmployeeAPI/NewLeaveRequest", { record: NewLeave, PriorityLevel: PriorityLevel }).done(function (Resp) {
+            Post("/EmployeeAPI/NewLeaveRequest", { record: NewLeave, PriorityLevel: PriorityLevel, LeaveStat: LeaveStat }).done(function (Resp) {
                 if (Resp.result) {
                     if (files.length > 0) {
 

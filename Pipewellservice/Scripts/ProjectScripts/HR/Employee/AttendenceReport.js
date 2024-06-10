@@ -2,7 +2,10 @@
     HideSpinner();
     SetPagePermission(PAGES.EmployeeAttendence, function () {
         BindUsers();
-        //$("#ddlReportDataRange").val(moment().subtract(30, 'days').format("DD/MM/YYYY") + ' - ' + moment().format("DD/MM/YYYY"))
+        var StartMonth = moment().subtract(2, 'months').format("MM/YYYY")
+        var EndMonth = moment().subtract(1, 'months').format("MM/YYYY")
+
+        $("#ddlReportDataRange").val("20/" + StartMonth + ' - ' + "21/" + EndMonth)
 
     })
 }

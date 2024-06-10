@@ -326,6 +326,13 @@ namespace PipewellserviceJson.HR.Employee
             DataTable db = await service.EmployeeLeaveRequest(param);
             return await JsonHelper.Convert<List<LeaveRequestLog>, DataTable>(db);
         }
+        public async Task<LeaveStats> EmployeeLeaveStats(int  EmployeeID)
+        {
+            DataTable db = await service.EmployeeLeaveStats(EmployeeID);
+            return (await JsonHelper.Convert<List<LeaveStats>, DataTable>(db)).FirstOrDefault();
+        }
+
+        
         public async Task<ApprovalRequestResult> NewLeaveRequest(EmployeeLeave record)
         {
             ApprovalRequestResultDB db= await service.NewLeaveRequest(record);

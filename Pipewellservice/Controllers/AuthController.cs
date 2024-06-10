@@ -21,6 +21,7 @@ namespace Pipewellservice.Controllers
 
         public async Task<JsonResult> ProcessLogin(UserAuth user)
         {
+            Session["EmployeeCode"] = null; 
             var result = await json.ProcessLogin(user);
             if (result.ID > 0)
             {
@@ -38,6 +39,7 @@ namespace Pipewellservice.Controllers
             var result = await json.VerifyOTP(otp);
             if (result.ID > 0)
             {
+                Session["EmployeeCode"] = null;
                 SessionHelper.SetUserSession(result);
             }
             return new JsonResult

@@ -28,6 +28,17 @@ namespace PipewellserviceModels.HR.Employee
         public string ColorCode { get; set; }
         public int Status { get; set; }
     }
+    public class LeaveStats
+    {
+        public int LeavesTaken { get; set; }
+        public int CarriedOver { get; set; }
+        public int Balance { get; set; }
+        public int Allowance { get; set; }
+        public int Available { get
+            {
+                return Allowance + CarriedOver;
+            } }
+    }
     public class LeaveRequestLog : EmployeeLeave
     {
 
