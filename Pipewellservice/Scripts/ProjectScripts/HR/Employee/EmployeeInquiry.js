@@ -147,7 +147,7 @@ function SaveEmployeeInquiry() {
             if (Inquiry.ID == 0) {
                 DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: "", New: textOf("ddEmployeeName") } });
             }
-            var PriorityLevel = PriorityLevels.find(x => x.ID = NewLeave.PriorityLevel)
+            
 
             NewInquiry = {
                 ID: Inquiry.ID,
@@ -164,6 +164,7 @@ function SaveEmployeeInquiry() {
                 PriorityLevelID: valOf("ddlPriorityLevel"),
                 Approvals: []
             };
+            var PriorityLevel = PriorityLevels.find(x => x.ID = NewInquiry.PriorityLevel)
             $.each(User.Supervisors, function (i, s) {
                 NewInquiry.Approvals.push({ ID: s.ID, DivisionID: s.DivisionID });
             });
