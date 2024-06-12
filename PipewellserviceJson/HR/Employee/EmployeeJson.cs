@@ -257,6 +257,23 @@ namespace PipewellserviceJson.HR.Employee
 
 
         }
+        public async Task<ApprovalRequestResult> GetApproveRequestDetail(int ID)
+        {
+            ApprovalRequestResultDB db = await service.GetApproveRequestDetail(ID);
+            ApprovalRequestResult model = new ApprovalRequestResult();
+            model.Result = db.Result;
+            model.ID = db.ID;
+            if (db.Result)
+            {
+                model.Request = await JsonHelper.Convert<List<object>, DataTable>(db.Request);
+                model.Employees = await JsonHelper.Convert<List<RequestApprover>, DataTable>(db.Employees);
+                model.EmailTemplate = await JsonHelper.Convert<List<EmailTemplate>, DataTable>(db.EmailTemplate);
+            }
+            return model;
+
+
+        }
+        
         public async Task<bool> UpdateRequestStatus(int ID, ApprovalTypes type, ApprovalStatus status)
         {
            return await service.UpdateRequestStatus(ID, type, status);

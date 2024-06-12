@@ -997,6 +997,35 @@ namespace PipewellserviceDB.HR.Employee
 
             return model;
         }
+
+        public async Task<ApprovalRequestResultDB> GetApproveRequestDetail(int ID)
+        {
+            SqlParameter[] collSP = new SqlParameter[3];
+
+            collSP = new SqlParameter[2];
+            collSP[0] = new SqlParameter { ParameterName = "@ID", Value = ID };
+            
+            collSP[1] = new SqlParameter { ParameterName = "@Status", Value = 0, DbType = DbType.Int16, Direction = ParameterDirection.ReturnValue };
+            var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetEmployeeApprovalRequestDetail", CommandType.StoredProcedure, collSP);
+            ApprovalRequestResultDB model = new ApprovalRequestResultDB();
+            model.Result = false;
+            DataTable status = new DataTable();
+            status.Load(result);
+            if (status.Rows.Count > 0)
+            {
+                model.Result = Convert.ToBoolean(status.Rows[0]["Status"]);
+                if (model.Result)
+                {
+                    model.Request.Load(result);
+                    model.Employees.Load(result);
+                    model.EmailTemplate.Load(result);
+                }
+            }
+
+
+
+            return model;
+        }
         public async Task<bool> UpdateRequestStatus(int ID, ApprovalTypes type, ApprovalStatus status)
         {
             SqlParameter[] collSP = new SqlParameter[3];

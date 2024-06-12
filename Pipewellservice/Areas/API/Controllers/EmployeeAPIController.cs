@@ -770,7 +770,7 @@ namespace Pipewellservice.Areas.API.Controllers
             foreach (PendingApproval approval in approvals)
             {
                 model = await json.ApproveRequest(SessionHelper.EmployeeID(), approval);
-                if (model.Result && (approval.Status == ApprovalStatus.Approved || approval.Status == ApprovalStatus.Declined || approval.Status == ApprovalStatus.NotApproved))
+                if (model.Result && (approval.Status == ApprovalStatus.Approved || approval.Status == ApprovalStatus.NoAction || approval.Status == ApprovalStatus.NotApproved))
                 {
                     await helper.ProcessRequest(approval.RecordType, model);
                 }
@@ -781,7 +781,30 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        public async Task<JsonResult> ProcessNextApprovalMail(int ID, ApprovalTypes Type)
+        {
+            try
+            {
+                ApprovalHelper helper = new ApprovalHelper();
+                ApprovalRequestResult model = new ApprovalRequestResult();
+                model = await json.GetApproveRequestDetail(ID);
+                await helper.ProcessRequest(Type, model);
+                return new JsonResult
+                {
+                    Data = true,
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+            catch(Exception e)
+            {
+                return new JsonResult
+                {
+                    Data = false,
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
 
+        }
         [Authorization(Pages.Vendor)]
         public async Task<JsonResult> VendorList()
         {

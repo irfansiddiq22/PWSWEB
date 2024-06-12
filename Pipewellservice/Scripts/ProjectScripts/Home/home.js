@@ -35,7 +35,9 @@ function ShowApprovalList() {
         btng += '  <input name="approvals' + d.ID + '" type="radio" class="btn-check" id="btnReject' + d.ID + '" autocomplete="off">'
         btng += '  <label class="btn btn-sm btn-outline-danger " for="btnReject' + d.ID + '">Reject</label>'
         btng += '  <input name="approvals' + d.ID + '" type="radio" class="btn-check"  id="btnDeclined' + d.ID + '" autocomplete="off">'
-        btng += '  <label class="btn btn-sm btn-outline-warning" for="btnDeclined' + d.ID + '">Decline</label>'
+        //btng += '  <label class="btn btn-sm btn-outline-warning" for="btnDeclined' + d.ID + '">Decline</label>'
+       // btng += '  <input name="approvals' + d.ID + '" type="radio" class="btn-check"  id="btnNoAction' + d.ID + '" autocomplete="off">'
+        btng += '  <label class="btn btn-sm btn-outline-primary" for="btnNoAction' + d.ID + '">Forward to higher Level</label>'
         btng += '  </div></div>'
         $(tr).append($('<td>').append($(Remarks)).append(btng))
         var link = '';
@@ -62,6 +64,7 @@ $("#dlgPendingApprovals").on("hidden.bs.modal", function () {
         var Approved = GetChecked("btnApprove" + ID);
         var Rejected = GetChecked("btnReject" + ID);
         var Declined = GetChecked("Declined" + ID);
+        var NoAction = GetChecked("btnNoAction" + ID);
         var Status = 3;
         if (Approved)
             Status = 1;
@@ -69,6 +72,8 @@ $("#dlgPendingApprovals").on("hidden.bs.modal", function () {
             Status = 0;
         else if (Declined)
             Status = 2;
+        else if (NoAction)
+            Status = 7;
         else
             Status = 4;
         List.push({
