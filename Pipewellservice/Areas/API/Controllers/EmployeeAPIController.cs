@@ -1081,9 +1081,11 @@ namespace Pipewellservice.Areas.API.Controllers
                 field.Add(new MergeField("DAYS", (record.EndDate - record.StartDate).Days.ToString()));
                 field.Add(new MergeField("PRIORITYLEVEL", PriorityLevel.Name));
                 field.Add(new MergeField("PRIORITYLEVELCOLOR", PriorityLevel.ColorCode));
-                
-                string table = $"<table style='width:900px;border-style:solid;'><tr><td><b> Allowance</b></td><td><b> Carried Over</b></td><td><b> Available</b></td><td><b> Used</b></td><td><b> Balance</b></td><td><b> Unit</b></td></tr><tr><td><b> {LeaveStat.Allowance}</b></td><td><b> {LeaveStat.CarriedOver}</b></td><td><b> {LeaveStat.Available}</b></td><td><b> {LeaveStat.LeavesTaken}</b></td><td><b> {LeaveStat.Balance}</b></td><td><b> Unit</b></td></tr></table>";
-                field.Add(new MergeField("LEAVESTATS", table));
+                if (record.LeaveType == 1)
+                {
+                    string table = $"<table style='width:900px;border-style:solid;'><tr><td><b> Allowance</b></td><td><b> Carried Over</b></td><td><b> Available</b></td><td><b> Used</b></td><td><b> Balance</b></td><td><b> Unit</b></td></tr><tr><td><b> {LeaveStat.Allowance}</b></td><td><b> {LeaveStat.CarriedOver}</b></td><td><b> {LeaveStat.Available}</b></td><td><b> {LeaveStat.LeavesTaken}</b></td><td><b> {LeaveStat.Balance}</b></td><td><b> Days</b></td></tr></table>";
+                    field.Add(new MergeField("LEAVESTATS", table));
+                }
                 string Row = "";
                 string Status = "";
                 RequestApprover Supervisor = new RequestApprover();

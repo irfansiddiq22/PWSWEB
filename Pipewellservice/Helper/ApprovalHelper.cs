@@ -33,6 +33,19 @@ namespace Pipewellservice.Helper
                 field.Add(new MergeField("END_DATE", record.EndDate.ToString("MM/dd/yyyy")));
                 field.Add(new MergeField("DAYS", (record.EndDate - record.StartDate).Days.ToString()));
 
+                if (record.LeaveType == 1)
+                {
+                    LeaveStats LeaveStat = await json.EmployeeLeaveStats(record.EmployeeID);
+
+                    if (LeaveStat == null || LeaveStat.Allowance == 0)
+                    {
+                        LeaveStat = new LeaveStats() { Allowance = 30, CarriedOver=0, LeavesTaken=0,Balance=30 };
+                    }
+
+                    string table = $"<table style='width:900px;border-style:solid;'><tr><td><b> Allowance</b></td><td><b> Carried Over</b></td><td><b> Available</b></td><td><b> Used</b></td><td><b> Balance</b></td><td><b> Unit</b></td></tr><tr><td><b> {LeaveStat.Allowance}</b></td><td><b> {LeaveStat.CarriedOver}</b></td><td><b> {LeaveStat.Available}</b></td><td><b> {LeaveStat.LeavesTaken}</b></td><td><b> {LeaveStat.Balance}</b></td><td><b> Days</b></td></tr></table>";
+                    field.Add(new MergeField("LEAVESTATS", table));
+                }
+
                 field.Add(new MergeField("PRIORITYLEVEL", record.PriorityLevelName));
                 field.Add(new MergeField("PRIORITYLEVELCOLOR", record.ColorCode));
                 RecordID = record.ID;
@@ -121,9 +134,9 @@ namespace Pipewellservice.Helper
 
                     }
 
-                    else 
+                    else
                     {
-                        if (RequestStatus == ApprovalStatus.Approved || RequestStatus==ApprovalStatus.NoAction)
+                        if (RequestStatus == ApprovalStatus.Approved || RequestStatus == ApprovalStatus.NoAction)
                         {
 
                             if (requestApprover.Status == ApprovalStatus.Approved)
@@ -191,11 +204,11 @@ namespace Pipewellservice.Helper
 
                     field.Add(new MergeField("APPROVE_NAME", Supervisor.Name));
                     field.Add(new MergeField("PORTAL_LINK", ""));
-                    status = await email.SendEmail(new EmailDTO() { To = Supervisor.EmailAddress, From = "no-reply@pipewellservices.com", Subject = SupervisorEmailTemplate.Subject, Body = SupervisorEmailTemplate.Body,Attachment = Attachment }, field);
+                    status = await email.SendEmail(new EmailDTO() { To = Supervisor.EmailAddress, From = "no-reply@pipewellservices.com", Subject = SupervisorEmailTemplate.Subject, Body = SupervisorEmailTemplate.Body, Attachment = Attachment }, field);
                 }
                 return status;
             }
-            
+
             return true;
         }
     }
