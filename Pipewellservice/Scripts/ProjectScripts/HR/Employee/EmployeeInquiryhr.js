@@ -310,7 +310,7 @@ function SaveEmployeeInquiry() {
                                 if (NewInquiry.ID > 0)
                                     swal("Employee request record added", { icon: "success" })
                                 else
-                                    swal("Employee request updated added", { icon: "success" })
+                                    swal("Employee request updated", { icon: "success" })
 
                                 ProcessInquiryMail(NewInquiry, PriorityLevel);
                                 BindInquiryList()
@@ -325,7 +325,7 @@ function SaveEmployeeInquiry() {
                         if (NewInquiry.ID > 0)
                             swal("Employee request record added", { icon: "success" })
                         else
-                            swal("Employee request updated added", { icon: "success" })
+                            swal("Employee request updated", { icon: "success" })
 
                         ProcessInquiryMail(NewInquiry, PriorityLevel);
                         BindInquiryList()

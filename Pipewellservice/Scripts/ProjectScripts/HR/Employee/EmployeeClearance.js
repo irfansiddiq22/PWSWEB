@@ -273,7 +273,7 @@ function SaveEmployeeClearance() {
                     if (NewClearance.ID > 0)
                         swal("Employee Clearance record added", { icon: "success" })
                     else
-                        swal("Employee Clearance updated added", { icon: "success" })
+                        swal("Employee Clearance updated", { icon: "success" })
                     SaveLog(ID);
                     BindClearance()
                     CancelNewClearance();

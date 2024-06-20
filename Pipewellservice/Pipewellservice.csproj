@@ -198,9 +198,11 @@
     <Compile Include="Areas\API\Controllers\DataListController.cs" />
     <Compile Include="Areas\API\Controllers\EmployeeAPIController.cs" />
     <Compile Include="Areas\API\Controllers\JobController.cs" />
+    <Compile Include="Areas\API\Controllers\ProcurementAPIController.cs" />
     <Compile Include="Areas\API\Controllers\SettingAPIController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\ProcurementController.cs" />
     <Compile Include="EmailTemplateHTML.aspx.cs">
       <DependentUpon>EmailTemplateHTML.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -535,6 +537,7 @@
     <Content Include="Scripts\libraries\typeaheadx\typeahead.bundle.min.js" />
     <Content Include="Scripts\libraries\typeaheadx\typeahead.jquery.js" />
     <Content Include="Scripts\libraries\typeaheadx\typeahead.jquery.min.js" />
+    <Content Include="Scripts\ProjectScripts\Procurement\Store\ItemManagement.js" />
     <Content Include="Scripts\ProjectScripts\Setting\Setting.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
@@ -598,6 +601,8 @@
     <Content Include="Views\Employee\_PartialWorkschedule.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeExpID.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeAttendenceReport.cshtml" />
+    <Content Include="Views\Procurement\Home.cshtml" />
+    <Content Include="Views\Procurement\ItemManagement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -606,6 +611,7 @@
     <Folder Include="Areas\API\Views\DataList\" />
     <Folder Include="Areas\API\Views\Employee\" />
     <Folder Include="Areas\API\Views\Job\" />
+    <Folder Include="Areas\API\Views\Procurement\" />
     <Folder Include="Areas\API\Views\SettingAPI\" />
     <Folder Include="Areas\API\Views\Shared\" />
     <Folder Include="Models\" />

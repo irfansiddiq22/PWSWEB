@@ -121,7 +121,9 @@ namespace PipewellserviceModels.Common
     {
         HR = 1,
         HRSetting = 2,
-        Setting = 3
+        Setting = 3,
+        Procurement=4,
+        ProcurementStore=5
 
     }
     public enum ReportTypes
@@ -133,6 +135,7 @@ namespace PipewellserviceModels.Common
         EmployeeInquiry = 16,
 
     }
+    
     public enum Pages
     {
         None = 0,
@@ -163,7 +166,9 @@ namespace PipewellserviceModels.Common
         Accommodation = 24,
         WorkTime = 25,
         EmployeeWorkTiming = 26,
-        AttendenceReport = 27
+        AttendenceReport = 27,
+        ProcurementStoreItemManagement=28
+
     }
 
     public enum DirectoryNames

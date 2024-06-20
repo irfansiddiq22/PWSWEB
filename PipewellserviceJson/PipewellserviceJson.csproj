@@ -52,6 +52,7 @@
     <Compile Include="HR\Job\JobJson.cs" />
     <Compile Include="HR\Setting\SettingJson.cs" />
     <Compile Include="Parse.cs" />
+    <Compile Include="Procurement\Store\StoreItemJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

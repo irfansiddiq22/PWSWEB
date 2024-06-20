@@ -25,7 +25,8 @@
     Accommodation: 24,
     WorkScheduleTime: 25,
     EmployeeWorkSchedule: 26,
-    EmployeeAttendence: 27
+    EmployeeAttendence: 27,
+    ProcurementStoreItem:28
 
 }
 var REPORTS = {

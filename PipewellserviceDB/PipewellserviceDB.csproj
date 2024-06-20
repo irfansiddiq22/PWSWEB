@@ -58,6 +58,7 @@
     <Compile Include="HR\Employee\EmployeeService.cs" />
     <Compile Include="HR\JobService.cs" />
     <Compile Include="HR\Setting\SettingService.cs" />
+    <Compile Include="Procurement\Store\StoreItemService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,5 +70,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

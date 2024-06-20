@@ -188,7 +188,7 @@ function SaveEmployeeInquiry() {
                                 if (NewInquiry.ID > 0)
                                     swal("Employee request record added", { icon: "success" })
                                 else
-                                    swal("Employee request updated added", { icon: "success" })
+                                    swal("Employee request updated", { icon: "success" })
                                 NewInquiry.ID = ID;
                                 NewInquiry.FileID = Response.FileID;
                                 NewInquiry.FileName = files[0].name;
@@ -206,7 +206,7 @@ function SaveEmployeeInquiry() {
                         if (NewInquiry.ID > 0)
                             swal("Employee request record added", { icon: "success" })
                         else
-                            swal("Employee request updated added", { icon: "success" })
+                            swal("Employee request updated", { icon: "success" })
                         NewInquiry.ID = ID;
                         ProcessInquiryMail(NewInquiry, PriorityLevel);
                         BindInquiryList()
