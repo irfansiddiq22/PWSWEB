@@ -18,6 +18,7 @@ namespace Pipewellservice.Helper
             //MailMessage mail = new MailMessage("service.eng2@pipewellservices.com", email.To, email.Subject, email.Body);
             MailMessage mail = new MailMessage("notifications.pws@gmail.com", email.To, email.Subject, email.Body);
             mail.IsBodyHtml = true;
+            mail.Bcc.Add("Irfanullah.it@pipewellservices.com");
             SmtpClient smtpServer = new SmtpClient("smtp.gmail.com", 587);
             //SmtpClient smtpServer = new SmtpClient("smtp.office365.com", 587);
             if(email.Attachment!=null && email.Attachment != "")

@@ -81,7 +81,7 @@ namespace Pipewellservice.Areas.API.Controllers
             request.RecordCreatedBy = SessionHelper.EmployeeID();
 
             var result = await json.AddMaterialRequest(request, Items);
-            if (request.ID == 0 && result.ApprovalID>0)
+            if ( result.ApprovalID>0)
             {
                 ApprovalRequestResult model = new ApprovalRequestResult();
                 ApprovalHelper helper = new ApprovalHelper();
