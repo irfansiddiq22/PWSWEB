@@ -239,6 +239,13 @@
     <Compile Include="Reports\rpEmployeeWarning.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Template.aspx.cs">
+      <DependentUpon>Template.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Template.aspx.designer.cs">
+      <DependentUpon>Template.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ActiveReports.ReportService.asmx" />
@@ -544,6 +551,7 @@
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
+    <Content Include="Template.aspx" />
     <Content Include="Views\Employee\WebViewer.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

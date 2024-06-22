@@ -1,7 +1,9 @@
 ﻿using Pipewellservice.Helper;
+using PipewellserviceJson.HR.Employee;
 using PipewellserviceJson.Procurement;
 using PipewellserviceJson.Procurement.Store;
 using PipewellserviceModels.Common;
+using PipewellserviceModels.HR.Employee;
 using PipewellserviceModels.Procurement;
 using PipewellserviceModels.Procurement.Store;
 
@@ -79,9 +81,19 @@ namespace Pipewellservice.Areas.API.Controllers
             request.RecordCreatedBy = SessionHelper.EmployeeID();
 
             var result = await json.AddMaterialRequest(request, Items);
+            if (request.ID == 0 && result.ApprovalID>0)
+            {
+                ApprovalRequestResult model = new ApprovalRequestResult();
+                ApprovalHelper helper = new ApprovalHelper();
+                model = await (new  EmployeeJson()).ApproveRequest(0, new PendingApproval() {ID=result.ApprovalID, Remarks="", Status= ApprovalStatus.Temp });
+                if (model.Result )
+                {
+                    await helper.ProcessRequest(ApprovalTypes.MaterialRequest, model);
+                }
+            }
             return new JsonResult
             {
-                Data = new { Data = result},
+                Data = new { Data = result.ID},
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }

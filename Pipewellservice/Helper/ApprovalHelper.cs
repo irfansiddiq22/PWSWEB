@@ -2,6 +2,7 @@
 using PipewellserviceJson.HR.Employee;
 using PipewellserviceModels.Common;
 using PipewellserviceModels.HR.Employee;
+using PipewellserviceModels.Procurement;
 using PipewellserviceModels.Setting;
 using System;
 using System.Collections.Generic;
@@ -29,8 +30,8 @@ namespace Pipewellservice.Helper
                 ProcessMail = true;
                 EmployeeLeave record = JsonConvert.DeserializeObject<EmployeeLeave>(result.Request[0].ToString());
                 field.Add(new MergeField("LEAVE_TYPE", record.LeaveTypeName));
-                field.Add(new MergeField("START_DATE", record.StartDate.ToString("MM/dd/yyyy")));
-                field.Add(new MergeField("END_DATE", record.EndDate.ToString("MM/dd/yyyy")));
+                field.Add(new MergeField("START_DATE", record.StartDate.ToString("dd/MM/yyyy")));
+                field.Add(new MergeField("END_DATE", record.EndDate.ToString("dd/MM/yyyy")));
                 field.Add(new MergeField("DAYS", (record.EndDate - record.StartDate).Days.ToString()));
 
                 if (record.LeaveType == 1)
@@ -54,7 +55,7 @@ namespace Pipewellservice.Helper
             {
                 ProcessMail = true;
                 EmployeeInquiry record = JsonConvert.DeserializeObject<EmployeeInquiry>(result.Request[0].ToString());
-                field.Add(new MergeField("DATE", record.InquiryDate == null ? DateTime.Now.ToString("MM/dd/yyyy") : Convert.ToDateTime(record.InquiryDate).ToString("MM/dd/yyyy")));
+                field.Add(new MergeField("DATE", record.InquiryDate == null ? DateTime.Now.ToString("dd/MM/yyyy") : Convert.ToDateTime(record.InquiryDate).ToString("dd/MM/yyyy")));
                 field.Add(new MergeField("REMARKS", record.Remarks));
                 field.Add(new MergeField("PRIORITYLEVEL", record.PriorityLevelName));
                 field.Add(new MergeField("PRIORITYLEVELCOLOR", record.ColorCode));
@@ -72,7 +73,7 @@ namespace Pipewellservice.Helper
             {
                 ProcessMail = true;
                 EmployeeShortLeave record = JsonConvert.DeserializeObject<EmployeeShortLeave>(result.Request[0].ToString());
-                field.Add(new MergeField("DATE", record.RecordDate == null ? DateTime.Now.ToString("MM/dd/yyyy hh:mm tt") : Convert.ToDateTime(record.RecordDate).ToString("MM/dd/yyyy hh:mm tt")));
+                field.Add(new MergeField("DATE", record.RecordDate == null ? DateTime.Now.ToString("dd/MM/yyyy hh:mm tt") : Convert.ToDateTime(record.RecordDate).ToString("dd/MM/yyyy hh:mm tt")));
                 field.Add(new MergeField("REMARKS", record.Remarks));
                 Attachment = "";
                 if (record.FileID != null)
@@ -81,6 +82,44 @@ namespace Pipewellservice.Helper
                 }
                 RecordID = record.ID;
 
+
+                ProcessMail = true;
+
+            }
+            else if (type == ApprovalTypes.MaterialRequest)
+            {
+                ProcessMail = true;
+                List<MaterialRequestMailDetail> record = new List<MaterialRequestMailDetail>();
+                try
+                {
+                    foreach (object  js in result.Request)
+                    {
+                        record.Add(JsonConvert.DeserializeObject<MaterialRequestMailDetail>(js.ToString()));
+                    }
+                }catch(Exception e)
+                {
+                    string g = e.Message;
+                }
+                field.Add(new MergeField("REQUEST_DATE", record[0].RequestDate == null ? DateTime.Now.ToString("dd/MM/yyyy hh:mm tt") :DateTime.Now.ToString("dd/MM/yyyy hh:mm tt")));
+                field.Add(new MergeField("REMARKS", record[0].Remarks));
+                field.Add(new MergeField("REQUEST_TYPE", record[0].RequestType));
+                Attachment = "";
+                
+                RecordID = record[0].ID;
+
+                string items = "";//$"<table style='width:900px;border-style:solid;'><tr><td><b> Allowance</b></td><td><b> Carried Over</b></td><td><b> Available</b></td><td><b> Used</b></td><td><b> Balance</b></td><td><b> Unit</b></td></tr><tr><td><b> {LeaveStat.Allowance}</b></td><td><b> {LeaveStat.CarriedOver}</b></td><td><b> {LeaveStat.Available}</b></td><td><b> {LeaveStat.LeavesTaken}</b></td><td><b> {LeaveStat.Balance}</b></td><td><b> Days</b></td></tr></table>";
+                foreach(MaterialRequestMailDetail detail in record)
+                {
+                    /*<tr>
+                                <td style="font-weight: bold; font-size: 12px; background-color: #f2f2f2">Name</td>
+                                <td style="font-weight: bold; font-size: 12px; background-color: #f2f2f2">Unit</td>
+                                <td style="font-weight: bold; font-size: 12px; background-color: #f2f2f2">Quantity</td>
+                                <td style="font-weight: bold; font-size: 12px; background-color: #f2f2f2">Notes</td>
+                            </tr>*/
+                    items += $"<tr><td>{detail.ItemName}</td><td>{detail.Unit}</td><td>{detail.Quantity}</td><td>{detail.Notes}</td></tr>";
+
+                }
+                field.Add(new MergeField("ITEMS", items));
 
                 ProcessMail = true;
 

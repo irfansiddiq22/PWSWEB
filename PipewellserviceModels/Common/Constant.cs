@@ -103,7 +103,8 @@ namespace PipewellserviceModels.Common
         Ready = 4,
         Pending = 5,
         Requested = 6,
-        NoAction=7
+        NoAction=7,
+        Temp=99
     }
     public enum ApprovalTypes
     {

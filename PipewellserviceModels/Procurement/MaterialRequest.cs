@@ -79,4 +79,21 @@ namespace PipewellserviceModels.Procurement
         public string Notes { get; set; }
 
     }
+    public class MaterialRequestResult
+    {
+        public int ID { get; set; }
+        public int ApprovalID { get; set; }
+    }
+    public class MaterialRequestMailDetail
+    {
+        public DateTime RequestDate { get; set; }
+        public string Remarks { get; set; }
+        public string RequestType { get; set; }
+        public string Quantity { get; set; }
+        public string Unit { get; set; }
+        public string ItemName { get; set; }
+        public string ItemCode { get; set; }
+        public int ID { get; set; }
+        public string Notes { get; set; }
+    }
 }

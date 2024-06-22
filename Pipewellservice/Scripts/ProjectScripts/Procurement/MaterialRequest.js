@@ -58,10 +58,10 @@ function BindUsers() {
         })
     });
 
-    $('#ddEmployeeCode').on('select2:select', function (e) {
+   /* $('#ddEmployeeCode').on('select2:select', function (e) {
         var data = e.params.data;
-        $("#ddSupervisor").val(data.DivisionID).trigger("change")
-    });
+       // $("#ddSupervisor").val(data.DivisionID).trigger("change")
+    });*/
     $('#ddEmployeeCode').val(User.ID).trigger("change")
 
 }
@@ -182,7 +182,7 @@ function EditMaterialRequest(ID) {
         SetvalOf("txtRequestPreparedby", MaterialRequest.RecordCreatedByName)
         SetvalOf("ddRequestType", MaterialRequest.RequestType);
         SetvalOf("ddEmployeeCode", MaterialRequest.RequestedBy).trigger("change");
-        SetvalOf("ddSupervisor", MaterialRequest.ApprovedBy).trigger("change");
+        //SetvalOf("ddSupervisor", MaterialRequest.ApprovedBy).trigger("change");
         SetvalOf("txtRequestRemarks", MaterialRequest.Remarks)
 
         $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
@@ -194,7 +194,7 @@ function EditMaterialRequest(ID) {
 function ResetNav() {
 
 
-    SetvalOf("ddSupervisor", 0).trigger("change");
+    //SetvalOf("ddSupervisor", 0).trigger("change");
 
     SetvalOf("ddEmployeeName", 0).trigger("change");
     SetvalOf("txtRequestDate", moment().format("DD/MM/YYYY"))
@@ -303,7 +303,7 @@ function SaveMaterialRequest() {
         RequestDate: valOf("txtRequestDate"),
         RequestType: valOf("ddRequestType"),
         RequestedBy: valOf("ddEmployeeCode"),
-        ApprovedBy: valOf("ddSupervisor"),
+        //ApprovedBy: valOf("ddSupervisor"),
         Remarks: valOf("txtRequestRemarks")
     }
     var RequestItems = [];

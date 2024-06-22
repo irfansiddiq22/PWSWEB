@@ -54,8 +54,9 @@ namespace PipewellserviceDB.Procurement
             }
 
         }
-        public async Task<int> AddMaterialRequest(MaterialRequest request, List<MaterialRequestItem> Items)
+        public async Task<MaterialRequestResult> AddMaterialRequest(MaterialRequest request, List<MaterialRequestItem> Items)
         {
+            MaterialRequestResult requestResult = new MaterialRequestResult();
             try
             {
                 StringBuilder xml = new StringBuilder();
@@ -64,7 +65,7 @@ namespace PipewellserviceDB.Procurement
                     xml.Append($"<Table1><ID>{item.ID}</ID><Name>{item.ItemName}</Name><Unit>{item.Unit}</Unit><Quantity>{item.Quantity}</Quantity><Notes>{item.Notes}</Notes></Table1>");
                 }
                 xml.Append("</NewDataSet>");
-                SqlParameter[] collSP = new SqlParameter[9];
+                SqlParameter[] collSP = new SqlParameter[8];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = request.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@RequestDate", Value = request.RequestDate };
                 collSP[2] = new SqlParameter { ParameterName = "@RequestedBy", Value = request.RequestedBy };
@@ -73,14 +74,20 @@ namespace PipewellserviceDB.Procurement
                 collSP[5] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = request.RecordCreatedBy };
                 collSP[6] = new SqlParameter { ParameterName = "@FileName", Value = request.FileName };
                 collSP[7] = new SqlParameter { ParameterName = "@RequestItems", Value = xml.ToString() };
-                collSP[8] = new SqlParameter { ParameterName = "@ApprovalBy", Value = request.ApprovedBy };
-                var result =   SqlHelper.ExecuteScalar(this.ConnectionString, "ProcAddUpdateMaterialRequest", CommandType.StoredProcedure, collSP);
 
-                return Convert.ToInt32( result);
+                var result =  await SqlHelper.ExecuteReader(this.ConnectionString, "ProcAddUpdateMaterialRequest", CommandType.StoredProcedure, collSP);
+                
+                if (result.HasRows)
+                {
+                    result.Read();
+                    requestResult.ID = result.GetInt32(0);
+                    requestResult.ApprovalID = result.GetInt32(1);
+                }
+                    return requestResult;
             }
             catch (Exception e)
             {
-                return 0;
+                return requestResult;
             }
 
         }

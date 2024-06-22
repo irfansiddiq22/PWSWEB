@@ -29,7 +29,7 @@ namespace PipewellserviceJson.Procurement
             return model;
         }
         
-        public async Task<int> AddMaterialRequest(MaterialRequest request, List<MaterialRequestItem> Items) {
+        public async Task<MaterialRequestResult> AddMaterialRequest(MaterialRequest request, List<MaterialRequestItem> Items) {
             return await service.AddMaterialRequest(request,Items);
         }
     }

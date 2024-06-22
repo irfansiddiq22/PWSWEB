@@ -16,6 +16,7 @@ namespace Pipewellservice.Reports
         public rpEmployeeAttendenceInOut()
         {
             InitializeComponent();
+
         }
 
         // Form overrides dispose to clean up the component list.
