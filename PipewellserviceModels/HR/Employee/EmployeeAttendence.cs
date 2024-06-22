@@ -44,7 +44,7 @@ namespace PipewellserviceModels.HR.Employee
         {
             get
             {
-                if (DayWorkingTime == "00:00")
+                if (DayWorkingTime == "00:00" && LeaveType==null)
                     return "Off";
                 else if (OnRig != "")
                     return OnRig;
