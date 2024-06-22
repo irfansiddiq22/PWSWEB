@@ -4,8 +4,13 @@
         BindUsers();
         var StartMonth = moment().subtract(2, 'months').format("MM/YYYY")
         var EndMonth = moment().subtract(1, 'months').format("MM/YYYY")
+        if (parseInt(moment().format("D")) > 20) {
+             StartMonth = moment().subtract(1, 'months').format("MM/YYYY")
+             EndMonth = moment().subtract(0, 'months').format("MM/YYYY")
+        }
+        
 
-        $("#ddlReportDataRange").val("20/" + StartMonth + ' - ' + "21/" + EndMonth)
+        $("#ddlReportDataRange").val("21/" + StartMonth + ' - ' + "20/" + EndMonth)
 
     })
 }

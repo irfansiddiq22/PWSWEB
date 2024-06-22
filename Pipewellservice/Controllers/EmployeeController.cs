@@ -298,7 +298,7 @@ namespace Pipewellservice.Controllers
 
                 case ReportTypes.EmployeeAttendenceInOut:
                     data = await JsonHelper.Convert<List<EmployeeAttendenceInOut>, DataTable>(await service.EmployeeAttendenceInOut(new DateParam() { EmployeeID = ID, StartDate = StartDate, EndDate = EndDate }));
-                    report = new rpEmployeeAttendenceInOut { DataSource = data, Document = { CacheToDisk = true }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
+                    report = new rpEmployeeAttendenceInOut { DataSource = data, Document = { }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
                     ViewBag.ReportName = "Employee Attendence InOut";
                     ((rpEmployeeAttendenceInOut)report).Parameters.Add(new Parameter() { Key = "DateRange", Value = $"{StartDate.ToString("dd/MM/yyyy")}-{EndDate.ToString("dd/MM/yyyy")}" });
                     break;

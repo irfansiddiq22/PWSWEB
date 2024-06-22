@@ -16,7 +16,7 @@ namespace Pipewellservice.Helper
     {
 
         EmployeeJson json = new EmployeeJson();
-        public async Task<bool> ProcessRequest(ApprovalTypes type, ApprovalRequestResult result)
+        public async Task<bool> ProcessRequest(ApprovalTypes type, ApprovalRequestResult result, bool NewRequest = false)
         {
             List<MergeField> field = new List<MergeField>();
 
@@ -225,7 +225,8 @@ namespace Pipewellservice.Helper
                         EmployeeEmailTemplate = template;
                     else if ((RequestStatus == ApprovalStatus.Approved) && template.Type == 3)
                         EmployeeEmailTemplate = template;
-
+                    else if (NewRequest && template.Type == 1)
+                        EmployeeEmailTemplate = template; 
                     if ((RequestStatus == ApprovalStatus.Pending || RequestStatus == ApprovalStatus.Ready || RequestStatus == ApprovalStatus.New) && template.Type == 2)
                         SupervisorEmailTemplate = template;
                 }
@@ -233,7 +234,7 @@ namespace Pipewellservice.Helper
                 EmailHelper email = new EmailHelper();
                 bool status = false;
 
-                if (RequestStatus == ApprovalStatus.Approved || RequestStatus == ApprovalStatus.Declined || RequestStatus == ApprovalStatus.NotApproved)
+                if (NewRequest || (RequestStatus == ApprovalStatus.Approved || RequestStatus == ApprovalStatus.Declined || RequestStatus == ApprovalStatus.NotApproved))
                 {
                     status = await email.SendEmail(new EmailDTO() { To = employee.EmailAddress, From = "no-reply@pipewellservices.com", Subject = EmployeeEmailTemplate.Subject, Body = EmployeeEmailTemplate.Body }, field);
                     await json.UpdateRequestStatus(RecordID, type, RequestStatus);

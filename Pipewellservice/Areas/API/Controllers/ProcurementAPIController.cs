@@ -88,7 +88,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 model = await (new  EmployeeJson()).ApproveRequest(0, new PendingApproval() {ID=result.ApprovalID, Remarks="", Status= ApprovalStatus.Temp });
                 if (model.Result )
                 {
-                    await helper.ProcessRequest(ApprovalTypes.MaterialRequest, model);
+                    await helper.ProcessRequest(ApprovalTypes.MaterialRequest, model,true);
                 }
             }
             return new JsonResult
