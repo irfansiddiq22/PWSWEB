@@ -39,5 +39,15 @@ namespace Pipewellservice.Controllers
             ViewBag.Parent = Parent;
             return View();
         }
+        [Authorization(Pages.ProcurementMaterialRequest)]
+        
+        public ActionResult MaterialRequest()
+        {
+            ViewBag.Title = "Material Request ";
+            ViewBag.Parent = Parent;
+            return View();
+        }
+
+        
     }
 }

@@ -43,6 +43,10 @@ namespace Pipewellservice
             bundles.Add(new StyleBundle("~/Content/treegrid").Include(
                 "~/Scripts/Libraries/tabletreegrid/jquery.treegrid.css"
                 ));
+            bundles.Add(new ScriptBundle("~/bundles/typeahead").Include(
+                "~/Scripts/Libraries/typeahead/typeahead.bundle.min.js",
+                "~/Scripts/Libraries/typeahead/typeahead.jquery.js"
+                ));
 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -144,6 +148,10 @@ namespace Pipewellservice
             bundles.Add(new Bundle("~/lib/procurement/store/item").Include(
                                               "~/Scripts/ProjectScripts/Procurement/Store/ItemManagement.js"));
 
+            bundles.Add(new Bundle("~/lib/procurement/MaterialRequest").Include(
+                                              "~/Scripts/ProjectScripts/Procurement/MaterialRequest.js"));
+
+            
 
 
         }

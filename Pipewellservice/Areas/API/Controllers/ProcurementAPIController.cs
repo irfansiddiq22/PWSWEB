@@ -1,6 +1,8 @@
 ﻿using Pipewellservice.Helper;
+using PipewellserviceJson.Procurement;
 using PipewellserviceJson.Procurement.Store;
 using PipewellserviceModels.Common;
+using PipewellserviceModels.Procurement;
 using PipewellserviceModels.Procurement.Store;
 
 using System;
@@ -15,6 +17,7 @@ namespace Pipewellservice.Areas.API.Controllers
     public class ProcurementAPIController : BaseController
     {
         private StoreItemJson itemJson = new StoreItemJson();
+        private ProcurementJson json = new ProcurementJson();
         public async Task<JsonResult> GetStoreItemUnit()
         {
             var result = await itemJson.GetStoreItemUnit();
@@ -33,6 +36,15 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        public async Task<JsonResult> FindStoreItem(string Name)
+        {
+            var result = await itemJson.FindStoreItem(Name);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
         public async Task<JsonResult> AddStoreItem(Item item)
         {
             var result = await itemJson.AddStoreItem(item,SessionHelper.UserID());
@@ -42,5 +54,38 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
+
+        public async Task<JsonResult> GetMatrialRequestList(DateParam date, PagingDTO paging, int RequestType)
+        {
+            var result = await json.GetMatrialRequestList(date,paging, RequestType);
+            return new JsonResult
+            {
+                Data = new { Data = result, TotalRecord = result.Count > 0 ? result[0].Total : 0},
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public async Task<JsonResult> GetMatrialRequestDetail(int ID)
+        {
+            var result = await json.GetMatrialRequestDetail(ID);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public async Task<JsonResult> AddMaterialRequest(MaterialRequest request,List<MaterialRequestItem> Items)
+        {
+            request.RecordCreatedBy = SessionHelper.EmployeeID();
+
+            var result = await json.AddMaterialRequest(request, Items);
+            return new JsonResult
+            {
+                Data = new { Data = result},
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        
     }
 }

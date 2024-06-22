@@ -476,8 +476,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\libraries\typeaheadx\bloodhound.js" />
-    <Content Include="Scripts\libraries\typeaheadx\bloodhound.min.js" />
+    <Content Include="Scripts\libraries\typeahead\bloodhound.js" />
+    <Content Include="Scripts\libraries\typeahead\bloodhound.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -533,10 +533,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\libraries\typeaheadx\typeahead.bundle.js" />
-    <Content Include="Scripts\libraries\typeaheadx\typeahead.bundle.min.js" />
-    <Content Include="Scripts\libraries\typeaheadx\typeahead.jquery.js" />
-    <Content Include="Scripts\libraries\typeaheadx\typeahead.jquery.min.js" />
+    <Content Include="Scripts\libraries\typeahead\typeahead.bundle.js" />
+    <Content Include="Scripts\libraries\typeahead\typeahead.bundle.min.js" />
+    <Content Include="Scripts\libraries\typeahead\typeahead.jquery.js" />
+    <Content Include="Scripts\libraries\typeahead\typeahead.jquery.min.js" />
+    <Content Include="Scripts\ProjectScripts\Procurement\MaterialRequest.js" />
     <Content Include="Scripts\ProjectScripts\Procurement\Store\ItemManagement.js" />
     <Content Include="Scripts\ProjectScripts\Setting\Setting.js" />
     <Content Include="Scripts\select2.js" />
@@ -603,6 +604,7 @@
     <Content Include="Views\Employee\_PartialEmployeeAttendenceReport.cshtml" />
     <Content Include="Views\Procurement\Home.cshtml" />
     <Content Include="Views\Procurement\ItemManagement.cshtml" />
+    <Content Include="Views\Procurement\MaterialRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

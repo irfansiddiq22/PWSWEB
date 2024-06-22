@@ -12,7 +12,7 @@ body {
     /*padding-top: 50px;*/
     padding-bottom: 20px;
     font-family: 'Source Sans Pro', sans-serif !important;
-    --bs-nav-tabs-link-active-bg: ##ffc107!important;
+    --bs-nav-tabs-link-active-bg: ##ffc107 !important;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -495,19 +495,24 @@ input:checked + .slider:before {
     border-radius: 8px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     margin-top: 12px;
-    padding: 8px 0;
-    width: 422px;
+    padding: 8px;
+    min-width: 422px;
+    list-style:none;
 }
 
 .tt-suggestion {
-    font-size: 22px; /* Set suggestion dropdown font size */
-    padding: 3px 20px;
+color:#000;
+text-decoration:none;
+   
 }
 
     .tt-suggestion:hover {
         cursor: pointer;
-        background-color: #0097CF;
+        background-color: #036c0a !important;
         color: #FFFFFF;
+        /*font-weight:bold;
+        background-color: #0097CF;
+      //  color: #FFFFFF;*/
     }
 
     .tt-suggestion p {
@@ -601,8 +606,8 @@ legend {
         --bs-modal-width: 90%;
     }
 }
- 
-    .form-group.has-error {
-        padding: 0.25rem !important;
-        border-radius: var(--bs-border-radius) !important
-    }
+
+.form-group.has-error {
+    padding: 0.25rem !important;
+    border-radius: var(--bs-border-radius) !important
+}

@@ -49,6 +49,21 @@ namespace PipewellserviceDB.Procurement.Store
                 return null;
             }
         }
+        public async Task<DataTable> FindStoreItem(string Name)
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcFindStoreItem", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@Name", Value = Name });
+                DataTable Data = new DataTable();
+                Data.Load(result);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
         public async Task<bool> AddStoreItem(Item item,int UserID)
         {
             try
@@ -76,5 +91,7 @@ namespace PipewellserviceDB.Procurement.Store
                 return false;
             }
         }
+
+      
     }
 }

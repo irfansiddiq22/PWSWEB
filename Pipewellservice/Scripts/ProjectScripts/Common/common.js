@@ -26,7 +26,8 @@
     WorkScheduleTime: 25,
     EmployeeWorkSchedule: 26,
     EmployeeAttendence: 27,
-    ProcurementStoreItem:28
+    ProcurementStoreItem: 28,
+    ProcurementMaterial: 29
 
 }
 var REPORTS = {

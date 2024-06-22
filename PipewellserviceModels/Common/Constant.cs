@@ -27,7 +27,8 @@ namespace PipewellserviceModels.Common
         PAGEGROUPS = 12,
         USERGRPOUPS = 13,
         JOB_STATUS = 14,
-        EMAIL_TEMPLATE_TYPES = 15
+        EMAIL_TEMPLATE_TYPES = 15,
+        MATERIAL_REQUEST_TYPES=16
     }
     public enum UserGroups
     {
@@ -113,7 +114,8 @@ namespace PipewellserviceModels.Common
         Vacation = 4,
         Joining = 5,
         ShortLeave = 6,
-        Leaves = 7
+        Leaves = 7,
+        MaterialRequest=29///SAME AS PAGE ID
 
 
     }
@@ -167,7 +169,9 @@ namespace PipewellserviceModels.Common
         WorkTime = 25,
         EmployeeWorkTiming = 26,
         AttendenceReport = 27,
-        ProcurementStoreItemManagement=28
+        ProcurementStoreItemManagement=28,
+        ProcurementMaterialRequest=29
+
 
     }
 

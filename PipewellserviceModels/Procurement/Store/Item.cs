@@ -15,6 +15,7 @@ namespace PipewellserviceModels.Procurement.Store
         public int ID { get; set; }
         public string ItemCode { get; set; }
         public string Name { get; set; }
+        public string ItemNameCode { get; set; }
         public float Price { get; set; }
         public string Unit { get; set; }
         public int OpeningStock { get; set; }

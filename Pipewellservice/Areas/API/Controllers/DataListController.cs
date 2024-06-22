@@ -71,6 +71,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
         public async Task<JsonResult> JobStatus()
         {
             return new JsonResult
@@ -85,6 +86,15 @@ namespace Pipewellservice.Areas.API.Controllers
             return new JsonResult
             {
                 Data = await json.PriorityLevels(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public async Task<JsonResult> MaterialRequestType()
+        {
+            return new JsonResult
+            {
+                Data = AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.MATERIAL_REQUEST_TYPES),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }

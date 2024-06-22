@@ -1,5 +1,6 @@
 ﻿using PipewellserviceDB.Procurement.Store;
 using PipewellserviceModels.Common;
+using PipewellserviceModels.Procurement;
 using PipewellserviceModels.Procurement.Store;
 using System;
 using System.Collections.Generic;
@@ -21,12 +22,18 @@ namespace PipewellserviceJson.Procurement.Store
         {
             return await JsonHelper.Convert<List<Item>, DataTable>(await itemService.GetStoreItemList(paging, Name));
         }
+        public async Task<List<Item>> FindStoreItem(string Name)
+        {
+            return await JsonHelper.Convert<List<Item>, DataTable>(await itemService.FindStoreItem( Name));
+        }
         
+
         public async Task<bool> AddStoreItem(Item item,int UserID)
         {
             return await itemService.AddStoreItem(item,UserID);
         }
-
         
+
+
     }
 }
