@@ -51,141 +51,141 @@
             <div id="dvMaterialRequestPaging"></div>
         </div>
     </div>
-        <div id="dvEditMaterialRequest" class="d-none writecontainer">
+    <div id="dvEditMaterialRequest" class="d-none writecontainer">
 
-            <div class="container-fluid">
-                <div class="border">
-                    <div class="blue p-1"><h6>Material Request</h6></div>
-                    <div class="p-4">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <div class="form-group">
-                                            <label for="ItemCode">Request Date:</label>
-                                            <input type="text" class="form-control form-control-sm datepicker" id="txtRequestDate" />
-                                        </div>
-                                    </div><div class="col-md-2">
-                                        <div class="form-group">
-                                            <label for="ItemCode">Prepared By:</label>
-                                            <input type="text" class="form-control form-control-sm" id="txtRequestPreparedby" />
-                                        </div>
+        <div class="container-fluid">
+            <div class="border">
+                <div class="blue p-1"><h6>Material Request</h6></div>
+                <div class="p-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label for="ItemCode">Request Date:</label>
+                                        <input type="text" class="form-control form-control-sm datepicker" id="txtRequestDate" />
                                     </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label for="ItemCode">Request Type:</label>
-                                            <select class="form-select" id="ddRequestType" name="RequestType" data-placeholder="Type to search" data-allow-clear="true"></select>
-                                        </div>
+                                </div><div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="ItemCode">Prepared By:</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtRequestPreparedby" />
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="ItemCode">Request By:</label>
-                                            <select class="form-select" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
-                                        </div>
-                                    </div>
-                                    <!--
-    <div class="col-md-3">
-        <div class="form-group">
-            <label for="ItemCode">Approval By:</label>
-            <select class="form-select supervisor" id="ddSupervisor" name="ApprovedBy" data-placeholder="Type to search" data-allow-clear="true"></select>
-        </div>
-    </div>-->
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="ItemCode">Item Description Or Code :</label>
-                                            <input type="text" class="form-control form-control-sm" id="txtRequestItemCode" name="ItemCode" />
-                                        </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="ItemCode">Request Type:</label>
+                                        <select class="form-select" id="ddRequestType" name="RequestType" data-placeholder="Type to search" data-allow-clear="true"></select>
                                     </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label for="txtRequestItemUnit">Unit :</label>
-                                            <input type="text" class="form-control form-control-sm" id="txtRequestItemUnit" name="txtRequestItemUnit" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <div class="form-group">
-                                            <label for="ItemQuantity">Quantity :</label>
-                                            <input type="number" class="form-control form-control-sm" id="txtRequestItemQuantity" min="1" name="ItemQuantity" />
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="ItemQuantity">Notes :</label>
-                                            <input type="text" class="form-control form-control-sm" id="txtRequestItemNotes" name="ItemNotes" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md">
-
-                                        <button class="btn btn-sm btn-primary mt-4" onclick="AddItem()"><i class="fa fa-arrow-circle-right"></i></button>
-
-                                    </div>
-
                                 </div>
-                                <div class="table-responsive">
-                                    <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
-                                        <thead class="blue">
-                                            <tr>
-                                                <th></th>
-                                                <th>Item Code</th>
-                                                <th>Description </th>
-                                                <th>Unit</th>
-                                                <th>Quantity</th>
-
-                                                <th>Notes</th>
-
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tblMaterialRequestItemList"></tbody>
-                                    </table>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-
-                                        <div class="form-group">
-                                            <label for="ItemCode">Remarks:</label>
-                                            <textarea class="form-control form-control-sm" id="txtRequestRemarks" rows="10"></textarea>
-                                        </div>
-
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="ItemCode">Request By:</label>
+                                        <select class="form-select" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
                                     </div>
+                                </div>
+                                <!--
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="ItemCode">Approval By:</label>
+                                        <select class="form-select supervisor" id="ddSupervisor" name="ApprovedBy" data-placeholder="Type to search" data-allow-clear="true"></select>
+                                    </div>
+                                </div>-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="ItemCode">Item Description Or Code :</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtRequestItemCode" name="ItemCode" />
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="txtRequestItemUnit">Unit :</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtRequestItemUnit" name="txtRequestItemUnit" />
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label for="ItemQuantity">Quantity :</label>
+                                        <input type="number" class="form-control form-control-sm" id="txtRequestItemQuantity" min="1" name="ItemQuantity" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="ItemQuantity">Notes :</label>
+                                        <input type="text" class="form-control form-control-sm" id="txtRequestItemNotes" name="ItemNotes" />
+                                    </div>
+                                </div>
+                                <div class="col-md">
+
+                                    <button class="btn btn-sm btn-primary mt-4" onclick="AddItem()"><i class="fa fa-arrow-circle-right"></i></button>
+
                                 </div>
 
                             </div>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+                                    <thead class="blue">
+                                        <tr>
+                                            <th></th>
+                                            <th>Item Code</th>
+                                            <th>Description </th>
+                                            <th>Unit</th>
+                                            <th>Quantity</th>
 
+                                            <th>Notes</th>
+
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tblMaterialRequestItemList"></tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+
+                                    <div class="form-group">
+                                        <label for="ItemCode">Remarks:</label>
+                                        <textarea class="form-control form-control-sm" id="txtRequestRemarks" rows="10"></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
 
                         </div>
 
 
-                        <div class="my-3 row">
-                            <div class="col-md-auto">
-                                <label class="custom-file-upload btn btn-primary">
-                                    <input type="file" id="MaterialRequestFile" />
-                                    <i class="fa fa-cloud-upload"></i> Upload File
-                                </label>
-                            </div>
-                            <div class="col-md-auto">
-                                <button class="btn btn-primary" type="submit" onclick="SaveMaterialRequest()">Save</button>
-                            </div><div class="col-md-auto">
-                                    <button class="btn btn-danger" type="button" onclick="ResetNav()">Cancel</button>
-                                </div> <div class="col-md-auto">
-                                        <button class="btn btn-danger" type="reset">Clear</button>
-
-                                    </div>
-
-                                    </div>
                     </div>
 
+
+                    <div class="my-3 row">
+                        <div class="col-md-auto">
+                            <label class="custom-file-upload btn btn-primary">
+                                <input type="file" id="MaterialRequestFile" />
+                                <i class="fa fa-cloud-upload"></i> Upload File
+                            </label>
+                        </div>
+                        <div class="col-md-auto">
+                            <button class="btn btn-primary" type="submit" onclick="SaveMaterialRequest()">Save</button>
+                        </div><div class="col-md-auto">
+                            <button class="btn btn-danger" type="button" onclick="ResetNav()">Cancel</button>
+                        </div> <div class="col-md-auto">
+                            <button class="btn btn-danger" type="reset">Clear</button>
+
+                        </div>
+
+                    </div>
                 </div>
-
-
 
             </div>
 
+
+
         </div>
+
     </div>
+</div>
 @section Scripts{
     @Scripts.Render("~/bundles/pagination")
     @Scripts.Render("~/bundles/typeahead")

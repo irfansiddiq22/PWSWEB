@@ -90,11 +90,19 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
-        public async Task<JsonResult> MaterialRequestType()
+        public async Task<JsonResult> ProcurementRequestType()
         {
             return new JsonResult
             {
                 Data = AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.MATERIAL_REQUEST_TYPES),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        public async Task<JsonResult> SupplierList()
+        {
+            return new JsonResult
+            {
+                Data = await json.SupplierList(),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }

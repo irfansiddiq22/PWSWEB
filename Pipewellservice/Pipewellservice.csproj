@@ -199,6 +199,7 @@
     <Compile Include="Areas\API\Controllers\EmployeeAPIController.cs" />
     <Compile Include="Areas\API\Controllers\JobController.cs" />
     <Compile Include="Areas\API\Controllers\ProcurementAPIController.cs" />
+    <Compile Include="Areas\API\Controllers\PurchaseAPIController.cs" />
     <Compile Include="Areas\API\Controllers\SettingAPIController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -546,6 +547,7 @@
     <Content Include="Scripts\libraries\typeahead\typeahead.jquery.min.js" />
     <Content Include="Scripts\ProjectScripts\Procurement\MaterialRequest.js" />
     <Content Include="Scripts\ProjectScripts\Procurement\Store\ItemManagement.js" />
+    <Content Include="Scripts\ProjectScripts\Purchase\Internalpurchase.js" />
     <Content Include="Scripts\ProjectScripts\Setting\Setting.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
@@ -613,6 +615,7 @@
     <Content Include="Views\Procurement\Home.cshtml" />
     <Content Include="Views\Procurement\ItemManagement.cshtml" />
     <Content Include="Views\Procurement\MaterialRequest.cshtml" />
+    <Content Include="Views\Procurement\InternalPurchaseRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -622,12 +625,14 @@
     <Folder Include="Areas\API\Views\Employee\" />
     <Folder Include="Areas\API\Views\Job\" />
     <Folder Include="Areas\API\Views\Procurement\" />
+    <Folder Include="Areas\API\Views\PurchaseAPI\" />
     <Folder Include="Areas\API\Views\SettingAPI\" />
     <Folder Include="Areas\API\Views\Shared\" />
     <Folder Include="Models\" />
     <Folder Include="Resources\Employee\1\" />
     <Folder Include="Resources\Employee\2\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Purchase\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

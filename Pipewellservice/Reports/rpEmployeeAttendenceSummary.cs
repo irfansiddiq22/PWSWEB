@@ -62,6 +62,7 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.Line12 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.Line9 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.line3 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line17 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.PageHeader = new GrapeCity.ActiveReports.SectionReportModel.PageHeader();
             this.lbl2 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Label3 = new GrapeCity.ActiveReports.SectionReportModel.Label();
@@ -108,7 +109,6 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.line2 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.line19 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.PageFooter = new GrapeCity.ActiveReports.SectionReportModel.PageFooter();
-            this.Line17 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblSr)).BeginInit();
@@ -239,7 +239,7 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             // 
             // textBox12
             // 
-            this.textBox12.DataField = "Marriage";
+            this.textBox12.DataField = "MA";
             this.textBox12.Height = 0.1875F;
             this.textBox12.Left = 6.532F;
             this.textBox12.Name = "textBox12";
@@ -251,7 +251,7 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             // 
             // textBox9
             // 
-            this.textBox9.DataField = "[Emergency Leave]";
+            this.textBox9.DataField = "EL";
             this.textBox9.Height = 0.1875F;
             this.textBox9.Left = 5.001F;
             this.textBox9.Name = "textBox9";
@@ -263,7 +263,7 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             // 
             // TextBox4
             // 
-            this.TextBox4.DataField = "[Weekly Off]";
+            this.TextBox4.DataField = "WeeklyOff";
             this.TextBox4.Height = 0.1875F;
             this.TextBox4.Left = 3F;
             this.TextBox4.Name = "TextBox4";
@@ -287,7 +287,7 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             // 
             // textBox5
             // 
-            this.textBox5.DataField = "[Bereavement Leave]";
+            this.textBox5.DataField = "BL";
             this.textBox5.Height = 0.1875F;
             this.textBox5.Left = 4.47F;
             this.textBox5.Name = "textBox5";
@@ -299,7 +299,7 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             // 
             // textBox10
             // 
-            this.textBox10.DataField = "[Exam Leave]";
+            this.textBox10.DataField = "EL";
             this.textBox10.Height = 0.1875F;
             this.textBox10.Left = 5.501F;
             this.textBox10.Name = "textBox10";
@@ -311,7 +311,7 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             // 
             // textBox8
             // 
-            this.textBox8.DataField = "[Hajj Leave]";
+            this.textBox8.DataField = "HL";
             this.textBox8.Height = 0.1875F;
             this.textBox8.Left = 5.831F;
             this.textBox8.Name = "textBox8";
@@ -323,7 +323,7 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             // 
             // textBox11
             // 
-            this.textBox11.DataField = "[Paternity Leave]";
+            this.textBox11.DataField = "PL";
             this.textBox11.Height = 0.1875F;
             this.textBox11.Left = 7.598001F;
             this.textBox11.Name = "textBox11";
@@ -335,7 +335,7 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             // 
             // textBox6
             // 
-            this.textBox6.DataField = "[Annual Leave]";
+            this.textBox6.DataField = "AV";
             this.textBox6.Height = 0.1875F;
             this.textBox6.Left = 3.594501F;
             this.textBox6.Name = "textBox6";
@@ -359,7 +359,7 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             // 
             // textBox14
             // 
-            this.textBox14.DataField = "[Umrah Leave]";
+            this.textBox14.DataField = "UL";
             this.textBox14.Height = 0.1875F;
             this.textBox14.Left = 6.108F;
             this.textBox14.Name = "textBox14";
@@ -384,7 +384,7 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             // 
             // textBox13
             // 
-            this.textBox13.DataField = "[Maternity Leave]";
+            this.textBox13.DataField = "ML";
             this.textBox13.Height = 0.1875F;
             this.textBox13.Left = 7.05F;
             this.textBox13.Name = "textBox13";
@@ -474,7 +474,7 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             // 
             // textBox7
             // 
-            this.textBox7.DataField = "[Athletic Leave]";
+            this.textBox7.DataField = "AL";
             this.textBox7.Height = 0.1875F;
             this.textBox7.Left = 4.002F;
             this.textBox7.Name = "textBox7";
@@ -574,6 +574,19 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.line3.X2 = 2.088F;
             this.line3.Y1 = 0.173F;
             this.line3.Y2 = 0.002999976F;
+            // 
+            // Line17
+            // 
+            this.Line17.Height = 0.17F;
+            this.Line17.Left = 6.532001F;
+            this.Line17.LineWeight = 1F;
+            this.Line17.Name = "Line17";
+            this.Line17.Top = 0.002999976F;
+            this.Line17.Width = 0F;
+            this.Line17.X1 = 6.532001F;
+            this.Line17.X2 = 6.532001F;
+            this.Line17.Y1 = 0.173F;
+            this.Line17.Y2 = 0.002999976F;
             // 
             // PageHeader
             // 
@@ -889,7 +902,7 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             this.line24.LineWeight = 1F;
             this.line24.Name = "line24";
             this.line24.Top = 1.359F;
-            this.line24.Width = 0.0003738403F;
+            this.line24.Width = 0.0003728867F;
             this.line24.X1 = 6.532374F;
             this.line24.X2 = 6.532001F;
             this.line24.Y1 = 1.667F;
@@ -1167,19 +1180,6 @@ public partial class rpEmployeeAttendenceSummary : GrapeCity.ActiveReports.Secti
             // 
             this.PageFooter.Height = 0.2291667F;
             this.PageFooter.Name = "PageFooter";
-            // 
-            // Line17
-            // 
-            this.Line17.Height = 0.17F;
-            this.Line17.Left = 6.532001F;
-            this.Line17.LineWeight = 1F;
-            this.Line17.Name = "Line17";
-            this.Line17.Top = 0.002999976F;
-            this.Line17.Width = 0F;
-            this.Line17.X1 = 6.532001F;
-            this.Line17.X2 = 6.532001F;
-            this.Line17.Y1 = 0.173F;
-            this.Line17.Y2 = 0.002999976F;
             // 
             // rpEmployeeAttendenceSummary
             // 

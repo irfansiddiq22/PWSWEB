@@ -48,6 +48,15 @@ namespace Pipewellservice.Controllers
             return View();
         }
 
-        
+        [Authorization(Pages.InternalPurchaseRequest)]
+        [Route("Procurement/Purchase/PurchaseRequest")]
+        public ActionResult PurchaseRequest()
+        {
+            ViewBag.Title = "Internal Purchase Request";
+            ViewBag.Parent = Parent;
+            return View("InternalPurchaseRequest");
+        }
+
+
     }
 }

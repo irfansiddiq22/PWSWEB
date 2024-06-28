@@ -20,6 +20,15 @@ namespace Pipewellservice
                 defaults: new { controller = "Procurement", action = "Index", id = UrlParameter.Optional }
             );
 
+
+            routes.MapRoute(
+                name: "ProcurementPurchase",
+                url: "{controller}/Purchase/{action}/{id}",
+                defaults: new { controller = "Procurement", action = "Index", id = UrlParameter.Optional }
+            );
+
+
+
             routes.MapRoute(
                name: "LoginID",
                url: "",

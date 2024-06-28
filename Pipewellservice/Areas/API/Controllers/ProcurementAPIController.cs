@@ -9,6 +9,7 @@ using PipewellserviceModels.Procurement.Store;
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -56,6 +57,38 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.ProcurementStoreItemManagement, 1, 2)]
+        public async Task<JsonResult> UpdateItemFile(int ID)
+        {
+
+
+            if (Request.Files.Count > 0)
+            {
+                HttpPostedFileBase file = Request.Files[0];
+                bool result = await FileHelper.SaveFile(Request.Files[0], ID, ID, DirectoryNames.StoreItems);
+                string FileID = $"{ID}{Path.GetExtension(file.FileName)}";
+
+                if (result)
+                {
+
+                    return new JsonResult
+                    {
+                        Data = new ResultDTO() { ID = ID, Status = true, Message = "file uploaded" },
+                        JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                    };
+                }
+            }
+
+
+            return new JsonResult
+            {
+                Data = new ResultDTO() { ID = ID, Status = false, Message = "No file to upload" },
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+
+
+        }
+
 
 
         public async Task<JsonResult> GetMatrialRequestList(DateParam date, PagingDTO paging, int RequestType)
@@ -78,7 +111,7 @@ namespace Pipewellservice.Areas.API.Controllers
         }
         public async Task<JsonResult> AddMaterialRequest(MaterialRequest request,List<MaterialRequestItem> Items)
         {
-            request.RecordCreatedBy = SessionHelper.EmployeeID();
+            request.RecordCreatedBy = SessionHelper.UserID();
 
             var result = await json.AddMaterialRequest(request, Items);
             if ( result.ApprovalID>0)
@@ -93,11 +126,44 @@ namespace Pipewellservice.Areas.API.Controllers
             }
             return new JsonResult
             {
-                Data = new { Data = result.ID},
+                Data =result.ID,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
 
-        
+        [Authorization(Pages.ProcurementMaterialRequest, 1, 2)]
+        public async Task<JsonResult> UpdateMaterialRequestFile(int ID)
+        {
+
+
+            if (Request.Files.Count > 0)
+            {
+                HttpPostedFileBase file = Request.Files[0];
+                bool result = await FileHelper.SaveFile(Request.Files[0], ID, 0, DirectoryNames.MaterialRequest);
+                string FileID = $"{ID}{Path.GetExtension(file.FileName)}";
+
+                if (result)
+                {
+
+                    return new JsonResult
+                    {
+                        Data = new ResultDTO() { ID = ID, Status = true, Message = "file uploaded" },
+                        JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                    };
+                }
+            }
+
+
+            return new JsonResult
+            {
+                Data = new ResultDTO() { ID = ID, Status = false, Message = "No file to upload" },
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+
+
+        }
+
+
+
     }
 }

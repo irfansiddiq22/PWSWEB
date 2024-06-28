@@ -5,7 +5,7 @@ function _Init() {
     HideSpinner();
     pageNumber = 1
     $("#ddItemCodeAbv").empty();
-    var a = [], i = 'A'.charCodeAt(0), j ='Z'.charCodeAt(0);
+    var a = [], i = 'A'.charCodeAt(0), j = 'Z'.charCodeAt(0);
     for (; i <= j; ++i) {
         $("#ddItemCodeAbv").append(AppendListItem(String.fromCharCode(i), String.fromCharCode(i)));
     }
@@ -14,7 +14,7 @@ function _Init() {
         FillItemUnits();
         FillStoreItems();
     });
-    
+
 }
 function FillItemUnits() {
     $.post("/ProcurementAPI/GetStoreItemUnit", {}, function (resp) {
@@ -25,15 +25,15 @@ $('form').on('reset', function (e) {
     setTimeout(function () { SetvalOf("txtItemCode", MaxID); }, 1000);
 });
 function FillStoreItems() {
-    
+
     document.getElementById("frmItemManagement").reset();
     SetvalOf("txtItemCode", MaxID);
     $("#tblStoreItemList").empty();
 
-    
 
 
-    
+
+
     ResetChangeLog(PAGES.ProcurementStoreItem);
 
     $('#dvStoreItemPaging').pagination({
@@ -69,7 +69,7 @@ function FillStoreItems() {
                 var tr = $('<tr>')
                 tr.append($('<td>').text(r.ItemCode))
                 tr.append($('<td>').append(r.Name))
-                
+
                 tr.append($('<td>').append(r.Unit))
 
                 tr.append($('<td>').append(r.OpeningStock));
@@ -87,7 +87,7 @@ function FillStoreItems() {
                 $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger deleteble" onclick="DeleteItem(' + i + ')"><i class="fa fa-trash"></i></a>'));
                 tr.append($('<td>').append($(Icons)));
 
-                
+
                 $("#tblStoreItemList").append(tr);
 
             });
@@ -128,8 +128,8 @@ function SaveItem() {
             ItemName: "required",
             ItemUnit: "required",
             ItemStockQty: "required",
-            ItemReOrderLimit:"required",
-            
+            ItemReOrderLimit: "required",
+
 
         },
         messages: {
@@ -158,14 +158,17 @@ function SaveItem() {
                 StockItem: GetChecked("ChkStockItem"),
                 CreticalItem: GetChecked("ChkCriticalItem"),
                 Active: GetChecked("ChkActiveItem"),
-                Tengible: valOf("ddItemType")
-                
+                Tengible: valOf("ddItemType"),
+                Image: ''
             };
-            
+
+
 
             var fileUpload = $('#ItemFile').get(0);
             var files = fileUpload.files;
-
+            if (files.length > 0) {
+                NewItem.Image = files[0].FileName;
+            }
             Post("/ProcurementAPI/AddStoreItem", { item: NewItem }).done(function (ID) {
                 if (ID > 0) {
 
@@ -173,7 +176,7 @@ function SaveItem() {
 
                     if (files.length > 0) {
 
-                        UploadFile("/ProcurementAPI/UpdateItemFile", files[0], {  ID: ID }, function (Status, Response) {
+                        UploadFile("/ProcurementAPI/UpdateItemFile", files[0], { ID: ID }, function (Status, Response) {
 
 
                             if (Status == 1) {
@@ -182,15 +185,16 @@ function SaveItem() {
                                     swal("Item record added", { icon: "success" })
                                 else
                                     swal("Item record updated", { icon: "success" })
-                                
+
                                 FillStoreItems()
-                                
+
                             } else {
 
                                 swal("Failed to upload item file.", { icon: "error" })
                             }
                         });
-                    } else {
+                    }
+                    else {
 
                         if (NewItem.ID > 0)
                             swal("Item record added", { icon: "success" })

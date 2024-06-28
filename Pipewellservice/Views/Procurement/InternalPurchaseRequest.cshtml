@@ -1,0 +1,205 @@
+﻿
+<div class="border p-2">
+    <div id="dvRequestList">
+        <div class="p-3 border my-2">
+
+            <div class="row">
+
+                <div class="form-group col-md-3 row">
+                    <label class="col-md-2 col-form-label p-0"> Type:</label>
+                    <div class="col">
+                        <select class="form-select" id="ddFilterRequestType" name="FilterRequestType" data-placeholder="Type to search" data-allow-clear="true"></select>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-2 row">
+                    <label class="col-md-auto col-form-label p-0"> Date Range:</label>
+                    <div class="col position-relative">
+                        <input type="text" name="ddlDataRange" id="ddlMaterialDataRange" class="form-control form-control-sm daterangepicker" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <button class="btn btn-sm btn-primary" onclick="BindMaterialRequestList()">Search </button>
+                    <button class="btn btn-sm btn-success" onclick="CreateMaterialRequest()">Add Request </button>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+                <thead class="blue">
+                    <tr>
+                        <th>ID</th>
+                        <th>Date Requested </th>
+                        <th>Requested By</th>
+                        <th>Prepared By</th>
+
+                        <th>Approved By</th>
+                        <th>Approved</th>
+                        <th>Remarks</th>
+                        <th>Attachments</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tblMaterialRequestList"></tbody>
+            </table>
+            <div id="dvMaterialRequestPaging"></div>
+        </div>
+    </div>
+
+    <div class="container mt-5 writecontainer" id="dvEditRequest">
+        <div class="border">
+            <div class="blue p-1"><h6>Purchase Request</h6></div>
+            <div class="p-4">
+                <form>
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="date" class="form-label">Date</label>
+                            <input type="text" class="form-control form-control-sm datepicker" id="txtecordDate" value="2024-06-27">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="iprNo" class="form-label">IPR.NO</label>
+                            <input type="text" class="form-control form-control-sm" readonly id="iprNo" value="18256">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="quotationNo" class="form-label">Quotation NO.</label>
+                            <input type="text" class="form-control form-control-sm" id="quotationNo">
+                        </div>
+                        <div class="col-md-3">
+
+                            <input type="file" class="form-control" id="browseQuotation">
+                            <label class="custom-file-upload btn btn-sm btn-primary">
+                                <input type="file" id="MaterialRequestFile" />
+                                <i class="fa fa-cloud-upload"></i> Upload Quotation
+                            </label>
+                            <button class="btn btn-sm btn-primary" type="button">View Quotation</button>
+                        </div>
+
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="partyName" class="form-label">Party Name</label>
+                            <select class="form-select form-select-sm" id="ddSuppliers"></select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="partyName" class="form-label">Maint. Request No</label>
+                            <input type="text" class="form-control form-control-sm" id="partyName">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="unit" class="form-label">Item Name</label>
+                            <input type="text" class="form-control form-control-sm" id="txtRequestItemCode">
+                        </div>
+
+                        <div class="col-md-1">
+                            <label for="unit" class="form-label">Unit</label>
+                            <input type="text" readonly class="form-control form-control-sm" id="txtRequestItemUnit">
+                        </div>
+                        <div class="col-md-1">
+                            <label for="qty" class="form-label">Qty</label>
+                            <input type="text" class="form-control form-control-sm" id="txtRequestItemQuantity">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="part" class="form-label">Part #</label>
+                            <input type="text" class="form-control form-control-sm" id="txtRequestItemPartNo">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="note" class="form-label">Note</label>
+                            <input type="text" class="form-control form-control-sm" id="txtRequestItemNotes">
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="txtRequestItemMSDS">
+                                <label class="form-check-label" for="msds">MSDS</label>
+                            </div>
+                            <button type="button" class="btn btn-secondary ms-2" onclick="AddItem()">Add</button>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <table class="table table-bordered ">
+                            <thead class="blue">
+                                <tr>
+                                    <th></th>
+                                    <th>Item</th>
+                                    <th>Description</th>
+                                    <th>Unit</th>
+                                    <th>Qty</th>
+                                    <th>Part</th>
+                                    <th>Note</th>
+                                    <th>MSDS</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tblPurchaseRequestItems">
+                              
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="deliveryType" class="form-label">Delivery Type</label>
+                            <select class="form-select form-select-sm" id="deliveryType">
+                                <option value="0">Select Delivery Type</option>
+                                <option value="1">Emergency</option>
+                                <option value="2">Urgent</option>
+                                <option value="3">Normal</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="paymentType" class="form-label">Payment Type</label>
+                            <select class="form-select form-select-sm" id="paymentType">
+                                <option value="0">Select Payment Type</option>
+                                <option value="1">Cash</option>
+                                <option value="2">Credit</option>
+                                <option value="3">Check</option>
+                                <option value="4">AFT</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="iprType" class="form-label">IPR Type</label>
+                            <select class="form-select form-select-sm" id="ddRequestType"></select>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="remarks" class="form-label">Remarks</label>
+                            <input type="text" class="form-control form-control-sm" id="remarks">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="preparedBy" class="form-label">Prepared By</label>
+                            <input type="text" class="form-control form-control-sm" id="txtPreparedBy" value="Mohannad Bin Barakat Alazmi" readonly>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="preparedDate" class="form-label">Date</label>
+                            <input type="text" class="form-control form-control-sm datepicker" id="preparedDate" value="2024-06-27">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="requestedBy" class="form-label">Requested By</label>
+                            <select class="form-select form-select-sm" id="ddEmployeeCode"></select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="requestedDate" class="form-label">Date</label>
+                            <input type="text" class="form-control form-control-sm datepicker" id="requestedDate" value="2024-06-27">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+@section Scripts{
+    @Scripts.Render("~/bundles/pagination")
+    @Scripts.Render("~/bundles/typeahead")
+    s
+    @Scripts.Render("~/lib/purchase/internalpurchase")
+    @Styles.Render("~/bundles/paginationcss")
+}

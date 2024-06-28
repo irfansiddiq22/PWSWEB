@@ -116,7 +116,8 @@ namespace PipewellserviceModels.Common
         Joining = 5,
         ShortLeave = 6,
         Leaves = 7,
-        MaterialRequest=29///SAME AS PAGE ID
+        MaterialRequest=29,///SAME AS PAGE ID
+        InternalPurchaseRequest=30
 
 
     }
@@ -126,7 +127,8 @@ namespace PipewellserviceModels.Common
         HRSetting = 2,
         Setting = 3,
         Procurement=4,
-        ProcurementStore=5
+        ProcurementStore=5,
+        Purchase=6
 
     }
     public enum ReportTypes
@@ -171,7 +173,8 @@ namespace PipewellserviceModels.Common
         EmployeeWorkTiming = 26,
         AttendenceReport = 27,
         ProcurementStoreItemManagement=28,
-        ProcurementMaterialRequest=29
+        ProcurementMaterialRequest=29,
+        InternalPurchaseRequest=30
 
 
     }
@@ -193,7 +196,9 @@ namespace PipewellserviceModels.Common
         EmployeeInquiry = 12,
         EmployeeJoining = 13,
         EmployeeShortLeave = 14,
-        Leaves = 15
+        Leaves = 15,
+        StoreItems=16,
+        MaterialRequest=17
     }
 
     public enum DocTemplates

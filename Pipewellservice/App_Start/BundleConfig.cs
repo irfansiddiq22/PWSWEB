@@ -150,10 +150,10 @@ namespace Pipewellservice
 
             bundles.Add(new Bundle("~/lib/procurement/MaterialRequest").Include(
                                               "~/Scripts/ProjectScripts/Procurement/MaterialRequest.js"));
+            bundles.Add(new Bundle("~/lib/purchase/internalpurchase").Include(
+                                              "~/Scripts/ProjectScripts/Purchase/Internalpurchase.js"));
 
             
-
-
         }
     }
 }

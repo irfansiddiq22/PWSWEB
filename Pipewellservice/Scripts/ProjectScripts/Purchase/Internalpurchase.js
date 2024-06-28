@@ -6,15 +6,16 @@ var MaterialRequestItems = [];
 function _Init() {
     HideSpinner();
     pageNumber = 1
-    SetvalOf("txtInquiryPreparedBy", User.Name);
-    $("#dvEditMaterialRequest").addClass("d-none");
-    $("#dvMaterialRequestList").removeClass("d-none");
-    SetPagePermission(PAGES.ProcurementMaterial, function () {
+    SetvalOf("txtPreparedBy", User.Name);
+    $("#dvEditRequest").addClass("d-none");
+    $("#dvRequestList").removeClass("d-none");
+    SetPagePermission(PAGES.InternalPurchaseRequest, function () {
         $.post("/DataList/ProcurementRequestType", {}, function (resp) {
             FillList("ddRequestType", resp, "Name", "Value", "Select Type")
             FillList("ddFilterRequestType", resp, "Name", "Value", "Select Type")
             BindUsers();
             BindItemSearch();
+            BindSuppliers();
             BindMaterialRequestList();
         })
 
@@ -24,17 +25,37 @@ function _Init() {
 
 
 }
+function BindSuppliers() {
+
+    $.post("/DataList/SupplierList", {}, function (Response) {
+        $("#ddSuppliers").empty();
+        var data = []
+        if (Response.length > 1) data.push({ id: 0, text: 'Select Supplier' });
+        $.each(Response, function (i, s) {
+            data.push({ id: s.Code, text: s.Code + " - " + s.Name });
+        })
+        $("#ddSuppliers").select2({
+            tags: "true",
+            placeholder: "Select Supplier",
+            allowClear: true,
+            data: data,
+            width: "100%"
+        })
+
+    })
+
+}
 function BindUsers() {
     $.post("/EmployeeAPI/CodeName", {}).done(function (Response) {
 
         var data = []
-        if (Response.length > 1) data.push({ id: 0, text: 'Select an employee' });
+        if (Response.length > 1) data.push({ id: 0, text: 'Select requested by' });
         $.each(Response, function (i, emp) {
             data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name, DivisionID: emp.DivisionID });
         })
         $("#ddEmployeeCode").select2({
             tags: "true",
-            placeholder: "Select an option",
+            placeholder: "Select requested by",
             allowClear: true,
             data: data,
             width: "100%"
@@ -44,7 +65,7 @@ function BindUsers() {
 
         BindMaterialRequestList();
     })
-    $.post("/EmployeeAPI/Supervisors", {}).done(function (Response) {
+   /* $.post("/EmployeeAPI/Supervisors", {}).done(function (Response) {
         var data = []
         data.push({ id: 0, text: 'Select Supervisor' });
         $.each(Response, function (i, emp) {
@@ -57,16 +78,17 @@ function BindUsers() {
             width: "100%"
         })
     });
-
-   /* $('#ddEmployeeCode').on('select2:select', function (e) {
-        var data = e.params.data;
-       // $("#ddSupervisor").val(data.DivisionID).trigger("change")
-    });*/
-    $('#ddEmployeeCode').val(User.ID).trigger("change")
+    */
+    /* $('#ddEmployeeCode').on('select2:select', function (e) {
+         var data = e.params.data;
+        // $("#ddSupervisor").val(data.DivisionID).trigger("change")
+     });
+    $('#ddEmployeeCode').val(User.ID).trigger("change")*/
 
 }
 
 function BindMaterialRequestList(PageNumber = 1) {
+    return;
     pageNumber = PageNumber;
     $("#tblMaterialRequestList").empty();
 
@@ -150,8 +172,8 @@ function EditMaterialRequest(ID) {
 
 
     Post("/ProcurementAPI/GetMatrialRequestDetail", { ID: ID }).done(function (resp) {
-        $("#dvEditMaterialRequest").removeClass("d-none");
-        $("#dvMaterialRequestList").addClass("d-none");
+        $("#dvEditRequest").removeClass("d-none");
+        $("#dvRequestList").addClass("d-none");
 
 
         MaterialRequest = resp.Request;
@@ -160,19 +182,22 @@ function EditMaterialRequest(ID) {
             var tr = $('<tr>')
 
             tr.attr("data-id", itm == null ? 0 : itm.ItemID);
-            tr.append($('<td>').text($("#tblMaterialRequestItemList tr").length + 1));
+            tr.append($('<td>').text($("#tblPurchaseRequestItems tr").length + 1));
             tr.append($('<td>').text(itm.ItemCode));
             tr.append($('<td>').text(itm.ItemName));
             tr.append($('<td>').text(itm.Unit));
             tr.append($('<td>').append($('<input type="number" min="1" class="form-control form-control-sm">').val(itm.Quantity)));
+            tr.append($('<td>').append($('<input type="text"  class="form-control form-control-sm">').val(newItem.PartNumber)));
             tr.append($('<td>').append($('<input type="text"  class="form-control form-control-sm">').val(itm.Notes)));
+            tr.append($('<td>').append($('<input type="checkbox"  class="">').prop("checked", newItem.MSDS)));
+
             var a = $('<a>').attr("href", "javascript:void(0)")
             $(a).click(function () {
                 $(this).closest('tr').remove()
             })
             $(a).append($('<i class="fa fa-trash text-danger"></i>'))
             tr.append($('<td>').append($(a)));
-            $("#tblMaterialRequestItemList").append(tr);
+            $("#tblPurchaseRequestItems").append(tr);
 
         })
 
@@ -202,11 +227,11 @@ function ResetNav() {
     SetvalOf("ddRequestType", 0);
 
     SetvalOf("txtRequestRemarks", "")
-    $("#dvEditMaterialRequest").addClass("d-none")
-    $("#dvMaterialRequestList").removeClass("d-none")
+    $("#dvEditRequest").addClass("d-none")
+    $("#dvRequestList").removeClass("d-none")
     $(".breadcrumb-item.active").find("a").contents().unwrap();
     SetvalOf("txtRequestPreparedby", User.Name);
-    $("#tblMaterialRequestItemList").empty();
+    $("#tblPurchaseRequestItems").empty();
     ResetDatePicker();
 
 }
@@ -215,10 +240,11 @@ function ResetNav() {
 function CreateMaterialRequest() {
     ResetNav();
     SetvalOf("txtRequestDate", moment().format("DD/MM/YYYY"))
-    $("#dvEditMaterialRequest").removeClass("d-none")
-    $("#dvMaterialRequestList").addClass("d-none")
+    $("#dvEditRequest").removeClass("d-none")
+    $("#dvRequestList").addClass("d-none")
     $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
 }
+
 
 
 function BindItemSearch() {
@@ -260,7 +286,9 @@ function AddItem() {
         Name: valOf("txtRequestItemCode"),
         Unit: valOf("txtRequestItemUnit"),
         Quantity: valOf("txtRequestItemQuantity"),
-        Notes: valOf("txtRequestItemNotes")
+        PartNumber: valOf("txtRequestItemPartNo"),
+        Notes: valOf("txtRequestItemNotes"),
+        MSDS: GetChecked("txtRequestItemMSDS")
 
     }
     if (newItem.Name == "") {
@@ -274,27 +302,36 @@ function AddItem() {
         swal("Please enter quantity to request")
         return false;
     }
+    if (newItem.PartNumber == "") {
+        swal("Please enter item part number")
+        return false;
+    }
     var tr = $('<tr>')
     var itm = Items.find(x => x.ItemNameCode == newItem.Name);
     tr.attr("data-id", itm == null ? 0 : itm.ID);
-    tr.append($('<td>').text($("#tblMaterialRequestItemList tr").length + 1));
+    tr.append($('<td>').text($("#tblPurchaseRequestItems tr").length + 1));
     tr.append($('<td>').text(itm == null ? "0" : itm.ItemCode));
     tr.append($('<td>').text(itm == null ? newItem.Name : itm.Name));
     tr.append($('<td>').text(newItem.Unit));
     tr.append($('<td>').append($('<input type="number" min="1" class="form-control form-control-sm">').val(newItem.Quantity)));
+    tr.append($('<td>').append($('<input type="text" min="1" class="form-control form-control-sm">').val(newItem.PartNumber)));
     tr.append($('<td>').append($('<input type="text"  class="form-control form-control-sm">').val(newItem.Notes)));
+    tr.append($('<td>').append($('<input type="checkbox"  class="">').prop("checked", newItem.MSDS)));
     var a = $('<a>').attr("href", "javascript:void(0)")
     $(a).click(function () {
         $(this).closest('tr').remove()
     })
     $(a).append($('<i class="fa fa-trash text-danger"></i>'))
     tr.append($('<td>').append($(a)));
-    $("#tblMaterialRequestItemList").append(tr);
+    $("#tblPurchaseRequestItems").append(tr);
 
     SetvalOf("txtRequestItemCode", "")
     SetvalOf("txtRequestItemUnit", "")
     SetvalOf("txtRequestItemQuantity", "")
     SetvalOf("txtRequestItemNotes", "")
+    SetvalOf("txtRequestItemPartNo", "")
+    SetChecked("txtRequestItemMSDS", false)
+    
 
 }
 function SaveMaterialRequest() {
@@ -305,7 +342,7 @@ function SaveMaterialRequest() {
         RequestedBy: valOf("ddEmployeeCode"),
         //ApprovedBy: valOf("ddSupervisor"),
         Remarks: valOf("txtRequestRemarks"),
-        FileName:''
+        FileName: ''
     }
     var RequestItems = [];
     if (Request.RequestType == 0) {
@@ -321,13 +358,15 @@ function SaveMaterialRequest() {
         return false;
     }
 
-    $.each($("#tblMaterialRequestItemList tr"), function (i, tr) {
+    $.each($("#tblPurchaseRequestItems tr"), function (i, tr) {
         var Item = {
             ID: $(this).attr("data-id"),
             ItemName: $(this).find("td:eq(2)").text(),
             Unit: $(this).find("td:eq(3)").text(),
             Quantity: $($(this).find("td:eq(4)")[0]).find("input").val(),
-            Notes: $($(this).find("td:eq(5)")[0]).find("input").val(),
+            PartNumber: $($(this).find("td:eq(5)")[0]).find("input").val(),
+            Notes: $($(this).find("td:eq(6)")[0]).find("input").val(),
+            MSDS: $($(this).find("td:eq(7)")[0]).find("input").prop("checked"),
         }
         RequestItems.push(Item)
     })
@@ -357,7 +396,7 @@ function SaveMaterialRequest() {
 
         $.each(MaterialRequestItems, function (i, itm) {
             if (RequestItems.find(x => x.ID == itm.ID) == null) {
-                DataChangeLog.DataUpdated.push({ Field: "Item Removed", Data: { OLD: itm.ItemName , New: ""} });
+                DataChangeLog.DataUpdated.push({ Field: "Item Removed", Data: { OLD: itm.ItemName, New: "" } });
             }
         });
         $.each(RequestItems, function (i, itm) {
@@ -375,7 +414,7 @@ function SaveMaterialRequest() {
         })
 
     }
-    
+
 
     var fileUpload = $('#MaterialRequestFile').get(0);
     var files = fileUpload.files;
@@ -417,8 +456,8 @@ function SaveMaterialRequest() {
                 ResetNav();
             }
 
-            
-            
+
+
         }
     })
 }

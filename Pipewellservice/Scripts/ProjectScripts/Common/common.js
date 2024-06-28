@@ -27,7 +27,8 @@
     EmployeeWorkSchedule: 26,
     EmployeeAttendence: 27,
     ProcurementStoreItem: 28,
-    ProcurementMaterial: 29
+    ProcurementMaterial: 29,
+    InternalPurchaseRequest:30
 
 }
 var REPORTS = {
@@ -39,7 +40,10 @@ var REPORTS = {
 var PAGEGROUPS = {
     HR: 1,
     HRSetting: 2,
-    Setting: 3
+    Setting: 3,
+    Procurement: 4,
+    ProcurementStore: 5,
+    Purchase:6
 }
 var User = { Name: 'demo', ID: 0 };
 var DataChangeLog = {

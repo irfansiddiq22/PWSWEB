@@ -1,4 +1,5 @@
 ﻿using PipewellserviceDB.Common;
+using PipewellserviceModels.Account;
 using PipewellserviceModels.Common;
 using PipewellserviceModels.HR.Employee;
 using PipewellserviceModels.HR.Settings;
@@ -55,7 +56,11 @@ namespace PipewellserviceJson.Common
         }
 
 
-
+        public async Task<List<Supplier>> SupplierList()
+        {
+            DataTable result = await service.SupplierList();
+            return await JsonHelper.Convert<List<Supplier>, DataTable>(result);
+        }
 
     }
 }
