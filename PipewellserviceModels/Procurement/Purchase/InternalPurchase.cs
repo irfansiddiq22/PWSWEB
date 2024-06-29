@@ -47,6 +47,28 @@ namespace PipewellserviceModels.Procurement.Purchase
         public ApprovalStatus ApprovalStatus { get; set; }
         public int RecordCreatedBy { get; set; }
         public int Total { get; set; }
+        public string RecordCreatedByName { get; set; }
+        public string ApprovedByName { get; set; }
+        public ApprovalStatus ApprovalStatus1 { get; set; }
+        public string ApprovalStatusName {
+            get
+            {
+                string Status = "";
+                switch (ApprovalStatus1)
+                {
+                    case Common.ApprovalStatus.Approved:
+                        Status = "Approved";
+                        break;
+                    case Common.ApprovalStatus.NotApproved:
+                        Status = "Not Approved";
+                        break;
+                    default:
+                        Status = "Pending";
+                        break;
+                }
+                return Status;
+            }
+        }
     }
 
     public class InternalPurchaseRequestItem : MaterialRequestItem
