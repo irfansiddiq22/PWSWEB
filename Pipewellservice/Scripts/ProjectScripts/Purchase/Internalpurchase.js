@@ -163,7 +163,7 @@ function BindPurchaseRequestList(PageNumber = 1) {
                 $(Icons).append($('<a href="javascript:void(0)" class="" onclick="PrintPurchaseRequest(' + r.ID + ')"><i class="fa fa-print"></i></a>'));
                 tr.append($('<td>').append($(Icons)));
 
-                $("#tblMaterialRequestList").append(tr);
+                $("#tblPurchaseRequestList").append(tr);
 
             });
 
