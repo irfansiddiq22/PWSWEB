@@ -28,7 +28,8 @@
     EmployeeAttendence: 27,
     ProcurementStoreItem: 28,
     ProcurementMaterial: 29,
-    InternalPurchaseRequest:30
+    InternalPurchaseRequest: 30,
+    OrderPurchaseManagement:31
 
 }
 var REPORTS = {

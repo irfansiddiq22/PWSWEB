@@ -117,7 +117,8 @@ namespace PipewellserviceModels.Common
         ShortLeave = 6,
         Leaves = 7,
         MaterialRequest=29,///SAME AS PAGE ID
-        InternalPurchaseRequest=30
+        InternalPurchaseRequest=30,
+        OrderPurchaseManagement=31
 
 
     }
@@ -199,7 +200,8 @@ namespace PipewellserviceModels.Common
         Leaves = 15,
         StoreItems=16,
         MaterialRequest=17,
-        PurchaseRequest = 18
+        PurchaseRequest = 18,
+        InternalPurchaseRequest=19,
     }
 
     public enum DocTemplates

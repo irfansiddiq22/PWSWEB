@@ -58,5 +58,15 @@ namespace Pipewellservice.Controllers
         }
 
 
+        [Authorization(Pages.InternalPurchaseRequest)]
+        
+        public ActionResult PurchaseOrderManagment()
+        {
+            ViewBag.Title = "Purchase Order Management";
+            ViewBag.Parent = Parent;
+            return View("PurchaseOrderManagement");
+        }
+
+
     }
 }

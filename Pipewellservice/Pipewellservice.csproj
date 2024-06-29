@@ -548,6 +548,7 @@
     <Content Include="Scripts\ProjectScripts\Procurement\MaterialRequest.js" />
     <Content Include="Scripts\ProjectScripts\Procurement\Store\ItemManagement.js" />
     <Content Include="Scripts\ProjectScripts\Purchase\Internalpurchase.js" />
+    <Content Include="Scripts\ProjectScripts\Purchase\purchaseordermanagement.js" />
     <Content Include="Scripts\ProjectScripts\Setting\Setting.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
@@ -616,6 +617,7 @@
     <Content Include="Views\Procurement\ItemManagement.cshtml" />
     <Content Include="Views\Procurement\MaterialRequest.cshtml" />
     <Content Include="Views\Procurement\InternalPurchaseRequest.cshtml" />
+    <Content Include="Views\Procurement\PurchaseOrderManagement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
