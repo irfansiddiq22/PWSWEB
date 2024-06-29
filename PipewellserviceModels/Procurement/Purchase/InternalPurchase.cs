@@ -27,8 +27,8 @@ namespace PipewellserviceModels.Procurement.Purchase
     public class InternalPurchaseRequest
     {
         public int ID { get; set; }
-        public int SupplierID { get; set }
-        public string SupplierName { get; set }
+        public int SupplierID { get; set; }
+        public string SupplierName { get; set; }
         public string Remarks { get; set; }
         public int RequestType { get; set; }
         public string QuotationNumber { get; set; }
@@ -42,11 +42,11 @@ namespace PipewellserviceModels.Procurement.Purchase
         public string FileName { get; set; }
         public string FileID { get; set; }
         public string MaintRequestNumber { get; set; }
-        public string RecordDate { get; set; }
+        public DateTime RecordDate { get; set; }
 
         public ApprovalStatus ApprovalStatus { get; set; }
         public int RecordCreatedBy { get; set; }
-
+        public int Total { get; set; }
     }
 
     public class InternalPurchaseRequestItem : MaterialRequestItem

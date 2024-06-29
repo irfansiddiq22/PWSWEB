@@ -132,7 +132,7 @@ function BindMaterialRequestList(PageNumber = 1) {
 
                 var Icons = $('<div class="icons">');
                 $(Icons).append($('<a href="javascript:void(0)" class="writeble" onclick="EditMaterialRequest(' + r.ID + ')"><i class="fa fa-edit"></i></a>'));
-                $(Icons).append($('<a href="javascript:void(0)" class="deleteble" onclick="DeleteInquiry(' + r.ID + ')"><i class="fa fa-trash"></i></a>'));
+                $(Icons).append($('<a href="javascript:void(0)" class="deleteble" onclick="DeleteMaterialRequest(' + r.ID + ')"><i class="fa fa-trash"></i></a>'));
                 $(Icons).append($('<a href="javascript:void(0)" class="" onclick="PrintInquiry(' + r.ID + ')"><i class="fa fa-print"></i></a>'));
                 tr.append($('<td>').append($(Icons)));
 
@@ -145,7 +145,9 @@ function BindMaterialRequestList(PageNumber = 1) {
     })
 
 }
-
+function DeleteMaterialRequest(ID) {
+    swal("{To DP}", { icon: "error" });
+}
 function EditMaterialRequest(ID) {
 
 
@@ -347,7 +349,7 @@ function SaveMaterialRequest() {
         }
 
         if (MaterialRequest.RequestedBy != Request.RequestedBy) {
-            DataChangeLog.DataUpdated.push({ Field: "Requested By", Data: { OLD: Inquiry.EmployeeID, New: textOf("ddEmployeeCode") } });
+            DataChangeLog.DataUpdated.push({ Field: "Requested By", Data: { OLD: MaterialRequest.RequestedBy, New: textOf("ddEmployeeCode") } });
         }
 
         if (MaterialRequest.RequestType != Request.RequestType) {
@@ -370,7 +372,8 @@ function SaveMaterialRequest() {
                 if (itm.Quantity != oldITem.Quantity)
                     DataChangeLog.DataUpdated.push({ Field: itm.ItemName + " Quantity ", Data: { OLD: oldITem.Quantity, New: itm.Quantity } });
                 if (itm.Notes != oldITem.Notes)
-                    DataChangeLog.DataUpdated.push({ Field: itm.ItemName + " Quantity ", Data: { OLD: oldITem.Quantity, New: itm.Quantity } });
+                    DataChangeLog.DataUpdated.push({ Field: itm.ItemName + " Notes ", Data: { OLD: oldITem.Notes, New: itm.Notes } });
+                    DataChangeLog.DataUpdated.push({ Field: itm.ItemName + " Notes ", Data: { OLD: oldITem.Notes, New: itm.Notes } });
             }
         })
 

@@ -65,16 +65,16 @@ namespace PipewellserviceDB.Procurement.Purchase
                     xml.Append($"<Table1><ID>{item.ID}</ID><Name>{item.ItemName}</Name><Unit>{item.Unit}</Unit><Quantity>{item.Quantity}</Quantity><Notes>{item.Notes}</Notes><MSDS>{item.MSDS}</MSDS><PartNumber>{item.PartNumber}</PartNumber></Table1>");
                 }
                 xml.Append("</NewDataSet>");
-                SqlParameter[] collSP = new SqlParameter[12];
+                SqlParameter[] collSP = new SqlParameter[15];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = request.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@Remarks", Value = request.Remarks };
                 collSP[2] = new SqlParameter { ParameterName = "@RequestType", Value = request.RequestType };
                 collSP[3] = new SqlParameter { ParameterName = "@QuotationNumber", Value = request.QuotationNumber };
                 collSP[4] = new SqlParameter { ParameterName = "@DeliveryType", Value = request.DeliveryType };
-                collSP[5] = new SqlParameter { ParameterName = "@PaymentType", Value = request.@PaymentType };
+                collSP[5] = new SqlParameter { ParameterName = "@PaymentType", Value = request.PaymentType };
                 collSP[6] = new SqlParameter { ParameterName = "@RequestedBy", Value = request.RequestedBy };
                 collSP[7] = new SqlParameter { ParameterName = "@RequestDate", Value = request.RequestDate };
-                    collSP[8] = new SqlParameter { ParameterName = "@RequestSignDate", Value = request.@PaymentType };
+                    collSP[8] = new SqlParameter { ParameterName = "@RequestSignDate", Value = request.RequestSignDate  };
                 collSP[9] = new SqlParameter { ParameterName = "@MaintRequestNumber", Value = request.MaintRequestNumber };
 
                 collSP[10] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = request.RecordCreatedBy };
@@ -82,6 +82,8 @@ namespace PipewellserviceDB.Procurement.Purchase
                 
                 collSP[11] = new SqlParameter { ParameterName = "@FileName", Value = request.FileName };
                 collSP[12] = new SqlParameter { ParameterName = "@RequestItems", Value = xml.ToString() };
+                collSP[13] = new SqlParameter { ParameterName = "@SupplierID", Value = request .SupplierID};
+                collSP[14] = new SqlParameter { ParameterName = "@RecordDate", Value = request.RecordDate };
 
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcAddUpdateInternalPurchaseRequest", CommandType.StoredProcedure, collSP);
 

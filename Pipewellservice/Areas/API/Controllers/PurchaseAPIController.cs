@@ -6,6 +6,7 @@ using PipewellserviceModels.HR.Employee;
 using PipewellserviceModels.Procurement.Purchase;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -34,6 +35,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        [Authorization(Pages.InternalPurchaseRequest, 1, 2)]
         public async Task<JsonResult> AddPurchaseRequest(InternalPurchaseRequest request, List<InternalPurchaseRequestItem> Items)
         {
             request.RecordCreatedBy = SessionHelper.UserID();
@@ -56,15 +58,15 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
-        [Authorization(Pages.ProcurementMaterialRequest, 1, 2)]
-        public async Task<JsonResult> UpdateMaterialRequestFile(int ID)
+        [Authorization(Pages.InternalPurchaseRequest, 1, 2)]
+        public async Task<JsonResult> UpdatePurchaseRequestFile(int ID)
         {
 
 
             if (Request.Files.Count > 0)
             {
                 HttpPostedFileBase file = Request.Files[0];
-                bool result = await FileHelper.SaveFile(Request.Files[0], ID, 0, DirectoryNames.MaterialRequest);
+                bool result = await FileHelper.SaveFile(Request.Files[0], ID, 0, DirectoryNames.PurchaseRequest);
                 string FileID = $"{ID}{Path.GetExtension(file.FileName)}";
 
                 if (result)

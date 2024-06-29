@@ -1,7 +1,7 @@
 ﻿
 var Items = [];
-var MaterialRequest = { ID: 0 };
-var MaterialRequestItems = [];
+var PurchaseRequest = { ID: 0 };
+var PurchaseRequestItems = [];
 
 function _Init() {
     HideSpinner();
@@ -9,6 +9,7 @@ function _Init() {
     SetvalOf("txtPreparedBy", User.Name);
     $("#dvEditRequest").addClass("d-none");
     $("#dvRequestList").removeClass("d-none");
+    ResetNav();
     SetPagePermission(PAGES.InternalPurchaseRequest, function () {
         $.post("/DataList/ProcurementRequestType", {}, function (resp) {
             FillList("ddRequestType", resp, "Name", "Value", "Select Type")
@@ -16,12 +17,12 @@ function _Init() {
             BindUsers();
             BindItemSearch();
             BindSuppliers();
-            BindMaterialRequestList();
+            BindPurchaseRequestList();
         })
 
 
     });
-    $("#ddlMaterialDataRange").val(moment().subtract(3, 'month').startOf('month').format("DD/MM/YYYY") + ' - ' + moment().endOf('month').format("DD/MM/YYYY"))
+    $("#ddlPurchaseRequestDataRange").val(moment().subtract(3, 'month').startOf('month').format("DD/MM/YYYY") + ' - ' + moment().endOf('month').format("DD/MM/YYYY"))
 
 
 }
@@ -63,22 +64,22 @@ function BindUsers() {
 
 
 
-        BindMaterialRequestList();
+        BindPurchaseRequestList();
     })
-   /* $.post("/EmployeeAPI/Supervisors", {}).done(function (Response) {
-        var data = []
-        data.push({ id: 0, text: 'Select Supervisor' });
-        $.each(Response, function (i, emp) {
-            data.push({ id: emp.DivisionID, text: emp.Name });
-        })
-
-        $(".supervisor").select2({
-            placeholder: "Select Supervisor",
-            data: data,
-            width: "100%"
-        })
-    });
-    */
+    /* $.post("/EmployeeAPI/Supervisors", {}).done(function (Response) {
+         var data = []
+         data.push({ id: 0, text: 'Select Supervisor' });
+         $.each(Response, function (i, emp) {
+             data.push({ id: emp.DivisionID, text: emp.Name });
+         })
+ 
+         $(".supervisor").select2({
+             placeholder: "Select Supervisor",
+             data: data,
+             width: "100%"
+         })
+     });
+     */
     /* $('#ddEmployeeCode').on('select2:select', function (e) {
          var data = e.params.data;
         // $("#ddSupervisor").val(data.DivisionID).trigger("change")
@@ -87,23 +88,23 @@ function BindUsers() {
 
 }
 
-function BindMaterialRequestList(PageNumber = 1) {
-    return;
+function BindPurchaseRequestList(PageNumber = 1) {
+
     pageNumber = PageNumber;
-    $("#tblMaterialRequestList").empty();
+    $("#tblPurchaseRequestList").empty();
 
     var StartDate = "", EndDate = "";
-    if (valOf("ddlMaterialDataRange") != "") {
-        StartDate = $.trim(valOf("ddlMaterialDataRange").split("-")[0]);
-        EndDate = $.trim(valOf("ddlMaterialDataRange").split("-")[1]);
+    if (valOf("ddlPurchaseRequestDataRange") != "") {
+        StartDate = $.trim(valOf("ddlPurchaseRequestDataRange").split("-")[0]);
+        EndDate = $.trim(valOf("ddlPurchaseRequestDataRange").split("-")[1]);
     }
 
-    MaterialRequest = { ID: 0 };
-    MaterialRequestItems = [];
-    ResetChangeLog(PAGES.ProcurementMaterial);
+    PurchaseRequest = { ID: 0 };
+    PurchaseRequestItems = [];
+    ResetChangeLog(PAGES.InternalPurchaseRequest);
 
-    $('#dvMaterialRequestPaging').pagination({
-        dataSource: "/ProcurementAPI/GetMatrialRequestList",
+    $('#dvPurchaseRequestPaging').pagination({
+        dataSource: "/PurchaseAPI/GetPurchaseRequestList",
         pageSize: pageSize,
         pageNumber: pageNumber,
         showGoInput: true,
@@ -132,11 +133,15 @@ function BindMaterialRequestList(PageNumber = 1) {
         callback: function (data, pagination) {
             HideSpinner();
 
-            $("#tblMaterialRequestList").empty();
+            $("#tblPurchaseRequestList").empty();
             $.each(data, function (i, r) {
                 var tr = $('<tr>')
                 tr.append($('<td>').text(r.ID))
                 tr.append($('<td>').append(moment(r.RequestDate).format("DD/MM/YYYY")))
+                tr.append($('<td>').append(r.QuotationNumber))
+                tr.append($('<td>').append(r.SupplierName))
+                tr.append($('<td>').append(r.MaintRequestNumber))
+                
 
                 tr.append($('<td>').append(r.RequestedByName))
                 tr.append($('<td>').append(r.RecordCreatedByName))
@@ -153,9 +158,9 @@ function BindMaterialRequestList(PageNumber = 1) {
 
 
                 var Icons = $('<div class="icons">');
-                $(Icons).append($('<a href="javascript:void(0)" class="writeble" onclick="EditMaterialRequest(' + r.ID + ')"><i class="fa fa-edit"></i></a>'));
-                $(Icons).append($('<a href="javascript:void(0)" class="deleteble" onclick="DeleteInquiry(' + r.ID + ')"><i class="fa fa-trash"></i></a>'));
-                $(Icons).append($('<a href="javascript:void(0)" class="" onclick="PrintInquiry(' + r.ID + ')"><i class="fa fa-print"></i></a>'));
+                $(Icons).append($('<a href="javascript:void(0)" class="writeble" onclick="EditPurchaseRequest(' + r.ID + ')"><i class="fa fa-edit"></i></a>'));
+                $(Icons).append($('<a href="javascript:void(0)" class="deleteble" onclick="DeletePurchaseRequest(' + r.ID + ')"><i class="fa fa-trash"></i></a>'));
+                $(Icons).append($('<a href="javascript:void(0)" class="" onclick="PrintPurchaseRequest(' + r.ID + ')"><i class="fa fa-print"></i></a>'));
                 tr.append($('<td>').append($(Icons)));
 
                 $("#tblMaterialRequestList").append(tr);
@@ -168,17 +173,22 @@ function BindMaterialRequestList(PageNumber = 1) {
 
 }
 
-function EditMaterialRequest(ID) {
+function DeletePurchaseRequest(ID) {
+    swal("{To DO}", { icon: "error" });
+} function PrintPurchaseRequests(ID) {
+    swal("{To DO}", { icon: "error" });
+}
+function EditPurchaseRequest(ID) {
 
 
-    Post("/ProcurementAPI/GetMatrialRequestDetail", { ID: ID }).done(function (resp) {
+    Post("/PurchaseAPI/GetPurchaseRequestDetail", { ID: ID }).done(function (resp) {
         $("#dvEditRequest").removeClass("d-none");
         $("#dvRequestList").addClass("d-none");
 
 
-        MaterialRequest = resp.Request;
-        MaterialRequestItems = resp.Items;
-        $.each(MaterialRequestItems, function (i, itm) {
+        PurchaseRequest = resp.Request;
+        PurchaseRequestItems = resp.Items;
+        $.each(PurchaseRequestItems, function (i, itm) {
             var tr = $('<tr>')
 
             tr.attr("data-id", itm == null ? 0 : itm.ItemID);
@@ -202,13 +212,18 @@ function EditMaterialRequest(ID) {
         })
 
 
-
-        SetvalOf("txtRequestDate", moment(MaterialRequest.RequestDate).format("DD/MM/YYYY"))
-        SetvalOf("txtRequestPreparedby", MaterialRequest.RecordCreatedByName)
-        SetvalOf("ddRequestType", MaterialRequest.RequestType);
-        SetvalOf("ddEmployeeCode", MaterialRequest.RequestedBy).trigger("change");
-        //SetvalOf("ddSupervisor", MaterialRequest.ApprovedBy).trigger("change");
-        SetvalOf("txtRequestRemarks", MaterialRequest.Remarks)
+        SetvalOf("txtRecordDate", moment(PurchaseRequest.RecordDate).format("DD/MM/YYYY"))
+        SetvalOf("txtRequestQuotationNumber", PurchaseRequest.QuotationNumber);
+        SetvalOf("ddSuppliers", PurchaseRequest.SupplierID).trigger("change");
+        SetvalOf("txtMaintRequestNumber", PurchaseRequest.MaintRequestNumber);
+        SetvalOf("ddRequestDeliveryType", PurchaseRequest.DeliveryType)
+        SetvalOf("ddRequestPaymentType", PurchaseRequest.PaymentType)
+        SetvalOf("ddRequestType", PurchaseRequest.RequestType);
+        SetvalOf("txtRequestSignDate", moment(PurchaseRequest.RequestSignDate).format("DD/MM/YYYY"))
+        SetvalOf("txtPreparedBy", PurchaseRequest.RecordCreatedByName)
+        SetvalOf("ddEmployeeCode", PurchaseRequest.RequestedBy).trigger("change");
+        SetvalOf("txtRequestDate", moment(PurchaseRequest.RequestDate).format("DD/MM/YYYY"))
+        SetvalOf("txtRequestRemarks", PurchaseRequest.Remarks)
 
         $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
     });
@@ -221,10 +236,17 @@ function ResetNav() {
 
     //SetvalOf("ddSupervisor", 0).trigger("change");
 
-    SetvalOf("ddEmployeeName", 0).trigger("change");
+    SetvalOf("ddEmployeeCode", 0).trigger("change");
+    SetvalOf("ddSuppliers", 0).trigger("change");
+    SetvalOf("txtRecordDate", moment().format("DD/MM/YYYY"))
+    SetvalOf("txtRequestSignDate", moment().format("DD/MM/YYYY"))
     SetvalOf("txtRequestDate", moment().format("DD/MM/YYYY"))
-
+    SetvalOf("txtMaintRequestNumber", "");
+    SetvalOf("PurchaseRequestFile", "")
+    SetvalOf("txtRequestQuotationNumber", "")
     SetvalOf("ddRequestType", 0);
+    SetvalOf("ddRequestPaymentType", 0);
+    SetvalOf("ddRequestDeliveryType", 0);
 
     SetvalOf("txtRequestRemarks", "")
     $("#dvEditRequest").addClass("d-none")
@@ -237,7 +259,7 @@ function ResetNav() {
 }
 
 
-function CreateMaterialRequest() {
+function NewPurchaseRequest() {
     ResetNav();
     SetvalOf("txtRequestDate", moment().format("DD/MM/YYYY"))
     $("#dvEditRequest").removeClass("d-none")
@@ -331,20 +353,49 @@ function AddItem() {
     SetvalOf("txtRequestItemNotes", "")
     SetvalOf("txtRequestItemPartNo", "")
     SetChecked("txtRequestItemMSDS", false)
-    
+
 
 }
-function SaveMaterialRequest() {
+function SavePurchaseRequest() {
     var Request = {
-        ID: MaterialRequest.ID,
-        RequestDate: valOf("txtRequestDate"),
+        ID: PurchaseRequest.ID,
+        RecordDate: valOf("txtRecordDate"),
+        QuotationNumber: valOf("txtRequestQuotationNumber"),
+        SupplierID: valOf("ddSuppliers"),
+        MaintRequestNumber: valOf("txtMaintRequestNumber"),
+        DeliveryType: valOf("ddRequestDeliveryType"),
+        PaymentType: valOf("ddRequestPaymentType"),
         RequestType: valOf("ddRequestType"),
+        RequestSignDate: valOf("txtRequestSignDate"),
         RequestedBy: valOf("ddEmployeeCode"),
+        RequestDate: valOf("txtRequestDate"),
         //ApprovedBy: valOf("ddSupervisor"),
         Remarks: valOf("txtRequestRemarks"),
         FileName: ''
     }
+
+    
     var RequestItems = [];
+    if (Request.QuotationNumber == "") {
+        swal("Please enter quotation number", { icon: "error" });
+        return false;
+    }
+    if (Request.SupplierID == 0) {
+        swal("Please select supplier", { icon: "error" });
+        return false;
+    }
+    if (Request.MaintRequestNumber == "") {
+        swal("Please enter maint. request no", { icon: "error" });
+        return false;
+    }
+    if (Request.DeliveryType == 0) {
+        swal("Please select delivery type", { icon: "error" });
+        return false;
+    }
+    if (Request.PaymentType == 0) {
+        swal("Please select payment type", { icon: "error" });
+        return false;
+    }
     if (Request.RequestType == 0) {
         swal("Please select request type", { icon: "error" });
         return false;
@@ -353,11 +404,6 @@ function SaveMaterialRequest() {
         swal("Please select requested by", { icon: "error" });
         return false;
     }
-    if (Request.ApprovedBy == 0) {
-        swal("Please select approval by", { icon: "error" });
-        return false;
-    }
-
     $.each($("#tblPurchaseRequestItems tr"), function (i, tr) {
         var Item = {
             ID: $(this).attr("data-id"),
@@ -381,26 +427,44 @@ function SaveMaterialRequest() {
     } else {
         DataChangeLog.DataUpdated = [];
 
-        if (moment(MaterialRequest.RequestDate).format("DD/MM/YYYY") != Request.RequestDate) {
-            DataChangeLog.DataUpdated.push({ Field: "RequestDate", Data: { OLD: MaterialRequest.RequestDate, New: Request.RequestDate } });
+        if (moment(PurchaseRequest.RecordDate).format("DD/MM/YYYY") != Request.RecordDate) {
+            DataChangeLog.DataUpdated.push({ Field: "RecordDate", Data: { OLD: PurchaseRequest.RecordDate, New: Request.RecordDate } });
         }
 
-        if (MaterialRequest.RequestedBy != Request.RequestedBy) {
-            DataChangeLog.DataUpdated.push({ Field: "Requested By", Data: { OLD: Inquiry.EmployeeID, New: textOf("ddEmployeeCode") } });
+        if (PurchaseRequest.QuotationNumber != Request.QuotationNumber) {
+            DataChangeLog.DataUpdated.push({ Field: "Quotation Number", Data: { OLD: PurchaseRequest.QuotationNumber, New: Request.QuotationNumber } });
+        }
+        if (PurchaseRequest.SupplierID != Request.SupplierID) {
+            DataChangeLog.DataUpdated.push({ Field: "Supplier ", Data: { OLD: PurchaseRequest.SupplierID, New: Request.SupplierID } });
+        }
+        if (PurchaseRequest.MaintRequestNumber != Request.MaintRequestNumber) {
+            DataChangeLog.DataUpdated.push({ Field: "Maint Request Number ", Data: { OLD: PurchaseRequest.MaintRequestNumber, New: Request.MaintRequestNumber } });
+        }
+        if (PurchaseRequest.DeliveryType != Request.DeliveryType) {
+            DataChangeLog.DataUpdated.push({ Field: "Delivery Type", Data: { OLD: PurchaseRequest.DeliveryType, New: Request.DeliveryType } });
+        }
+        if (PurchaseRequest.PaymentType != Request.PaymentType) {
+            DataChangeLog.DataUpdated.push({ Field: "Payment Type", Data: { OLD: PurchaseRequest.PaymentType, New: Request.PaymentType } });
+        } if (PurchaseRequest.RequestType != Request.RequestType) {
+            DataChangeLog.DataUpdated.push({ Field: "Request Type", Data: { OLD: PurchaseRequest.RequestType, New: Request.RequestType } });
+        }
+        if (moment(PurchaseRequest.RequestSignDate).format("DD/MM/YYYY") != Request.RequestSignDate) {
+            DataChangeLog.DataUpdated.push({ Field: "RequestSignDate", Data: { OLD: PurchaseRequest.RequestSignDate, New: Request.RequestRequestSignDateDate } });
         }
 
-        if (MaterialRequest.RequestType != Request.RequestType) {
-            DataChangeLog.DataUpdated.push({ Field: "Request Type", Data: { OLD: MaterialRequest.RequestType, New: textOf("ddRequestType") } });
+        if (PurchaseRequest.RequestedBy != Request.RequestedBy) {
+            DataChangeLog.DataUpdated.push({ Field: "Requested By", Data: { OLD: PurchaseRequest.RequestedBy, New: textOf("ddEmployeeCode") } });
         }
+        
 
 
-        $.each(MaterialRequestItems, function (i, itm) {
+        $.each(PurchaseRequestItems, function (i, itm) {
             if (RequestItems.find(x => x.ID == itm.ID) == null) {
                 DataChangeLog.DataUpdated.push({ Field: "Item Removed", Data: { OLD: itm.ItemName, New: "" } });
             }
         });
         $.each(RequestItems, function (i, itm) {
-            var oldITem = MaterialRequestItems.find(x => x.ID == itm.ID);
+            var oldITem = PurchaseRequestItems.find(x => x.ID == itm.ID);
             if (oldITem == null)
                 DataChangeLog.DataUpdated.push({ Field: "New Request Item", Data: { OLD: "", New: itm.ItemName } });
             else {
@@ -408,28 +472,30 @@ function SaveMaterialRequest() {
                     DataChangeLog.DataUpdated.push({ Field: itm.ItemName + " Unit ", Data: { OLD: oldITem.Unit, New: itm.Unit } });
                 if (itm.Quantity != oldITem.Quantity)
                     DataChangeLog.DataUpdated.push({ Field: itm.ItemName + " Quantity ", Data: { OLD: oldITem.Quantity, New: itm.Quantity } });
+                if (itm.PartNumber != oldITem.PartNumber)
+                    DataChangeLog.DataUpdated.push({ Field: itm.ItemName + " Part Number ", Data: { OLD: oldITem.PartNumber, New: itm.PartNumber } });
                 if (itm.Notes != oldITem.Notes)
-                    DataChangeLog.DataUpdated.push({ Field: itm.ItemName + " Quantity ", Data: { OLD: oldITem.Quantity, New: itm.Quantity } });
+                    DataChangeLog.DataUpdated.push({ Field: itm.ItemName + " Notes ", Data: { OLD: oldITem.Quantity, New: itm.Quantity } });
             }
         })
 
     }
 
 
-    var fileUpload = $('#MaterialRequestFile').get(0);
+    var fileUpload = $('#PurchaseRequestFile').get(0);
     var files = fileUpload.files;
     if (files.length > 0) {
         Request.FileName = files[0].FileName;
     }
 
-    Post("/ProcurementAPI/AddMaterialRequest", { request: Request, Items: RequestItems }).done(function (resp) {
+    Post("/PurchaseAPI/AddPurchaseRequest", { request: Request, Items: RequestItems }).done(function (resp) {
         SaveLog(resp);
         if (resp > 0) {
 
 
             if (files.length > 0) {
 
-                UploadFile("/ProcurementAPI/UpdateMaterialRequestFile", files[0], { ID: resp }, function (Status, Response) {
+                UploadFile("/PurchaseAPI/UpdatePurchaseRequestFile", files[0], { ID: resp }, function (Status, Response) {
 
 
                     if (Status == 1) {
@@ -437,7 +503,7 @@ function SaveMaterialRequest() {
                             swal("New Request added", { icon: "success" });
                         else
                             swal("Request updated", { icon: "success" });
-                        BindMaterialRequestList();
+                        BindPurchaseRequestList();
                         ResetNav()
 
                     } else {
@@ -452,7 +518,7 @@ function SaveMaterialRequest() {
                     swal("New Request added", { icon: "success" });
                 else
                     swal("Request updated", { icon: "success" });
-                BindMaterialRequestList();
+                BindPurchaseRequestList();
                 ResetNav();
             }
 

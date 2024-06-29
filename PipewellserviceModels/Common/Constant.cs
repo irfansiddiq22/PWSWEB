@@ -198,7 +198,8 @@ namespace PipewellserviceModels.Common
         EmployeeShortLeave = 14,
         Leaves = 15,
         StoreItems=16,
-        MaterialRequest=17
+        MaterialRequest=17,
+        PurchaseRequest = 18
     }
 
     public enum DocTemplates
