@@ -199,6 +199,7 @@
     <Compile Include="Areas\API\Controllers\EmployeeAPIController.cs" />
     <Compile Include="Areas\API\Controllers\JobController.cs" />
     <Compile Include="Areas\API\Controllers\ProcurementAPIController.cs" />
+    <Compile Include="Areas\API\Controllers\OrderPurchaseAPIController.cs" />
     <Compile Include="Areas\API\Controllers\PurchaseAPIController.cs" />
     <Compile Include="Areas\API\Controllers\SettingAPIController.cs" />
     <Compile Include="Controllers\AuthController.cs" />

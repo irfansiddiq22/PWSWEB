@@ -1,221 +1,341 @@
-﻿
-<div class="container mt-5">
-    <div class="border">
-        <div class="blue p-1"><h6>Purchase Order Management</h6></div>
-        <div class="p-4">
-            <form id="purchaseOrderForm">
-                <div class="row mb-3">
-                    <div class="col-md-auto">
-                        <label for="date" class="form-label">Date</label>
-                        <input type="text" class="form-control form-control-sm datepicker" id="date">
-                    </div>
-                    <div class="col-md-1">
-                        <label for="iprNo" class="form-label">IPR No.</label>
-                        <input type="text" class="form-control form-control-sm" id="iprNo">
-                    </div>
-                    <div class="col-md-1">
-                        <label for="poNo" class="form-label">P.O.#</label>
-                        <input type="text" class="form-control form-control-sm" id="poNo">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="attn" class="form-label">Attn.</label>
-                        <input type="text" class="form-control form-control-sm" id="attn">
-                    </div>
-                    <div class="col-md-2">
-                        <label for="requiredDate" class="form-label">Required Date</label>
-                        <input type="text" class="form-control form-control-sm datepicker" id="requiredDate">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="partyName" class="form-label">Party Name</label>
-                        <select class="form-select form-select-sm" id="ddSuppliers"></select>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="contractPeriodFrom" class="form-label">Contract Period From</label>
-                        <input type="text" class="form-control form-control-sm datepicker" id="contractPeriodFrom">
-                    </div>
-                    <div class="col-md-2">
-                        <label for="contractPeriodTo" class="form-label">Contract Period To</label>
-                        <input type="text" class="form-control form-control-sm datepicker" id="contractPeriodTo">
-                    </div>
-                </div>
-                <div class="row mb-3">
+﻿<div class="border p-2">
+    <div id="dvRequestList">
+        <div class="p-3 border my-2">
 
-                    <div class="col-md">
-                        <label for="note" class="form-label">Note</label>
-                        <input type="text" class="form-control form-control-sm" id="note">
+            <div class="row">
+
+
+                <div class="form-group col-md-2 row">
+                    <label class="col-md-auto col-form-label p-0"> Date Range:</label>
+                    <div class="col position-relative">
+                        <input type="text" name="ddlDataRange" id="ddRequestDataRange" class="form-control form-control-sm daterangepicker" autocomplete="off">
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-md-12">
-                        <label for="partyName" class="form-label">Party Name</label>
-                        <input type="text" class="form-control form-control-sm" id="partyName">
+                <div class="form-group col-md-3 row">
+                    <label class="col-md-auto col-form-label p-0"> Supplier:</label>
+                    <div class="col position-relative">
+                        <select class="form-select form-select-sm" id="ddSuppliers1"></select>
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                        <label for="itemName" class="form-label">Item Name</label>
-                        <input type="text" class="form-control form-control-sm" id="itemName">
+
+                <div class="form-group col-md-2 row">
+                    <label class="col-md-auto col-form-label p-0"> PO #:</label>
+                    <div class="col position-relative">
+                        <input class="form-control form-control-sm" id="txtPurchaseOrderNumber" />
                     </div>
-                    <div class="col-md-2">
-                        <label for="code" class="form-label">Code</label>
-                        <input type="text" class="form-control form-control-sm" id="code">
-                    </div>
-                    <div class="col-md-1">
-                        <label for="unit" class="form-label">Unit</label>
-                        <input type="text" class="form-control form-control-sm" id="unit">
-                    </div>
-                    <div class="col-md-1">
-                        <label for="qty" class="form-label">Qty</label>
-                        <input type="number" class="form-control form-control-sm" id="qty">
-                    </div>
-                    <div class="col-md-2">
-                        <label for="unitCost" class="form-label">Unit Cost</label>
-                        <input type="text" class="form-control form-control-sm" id="unitCost">
-                    </div>
-                    <div class="col-md-2">
-                        <label for="amount" class="form-label">Amount</label>
-                        <input type="text" class="form-control form-control-sm" id="amount">
-                    </div>
-                    <div class="col-md-1 d-flex align-items-center">
-                        <input type="checkbox" class="form-check-input" id="msds">
-                        <label for="msds" class="form-label ms-2">MSDS</label>
-                    </div>
-                    <div class="col-md-1 d-flex align-items-center">
-                        <button type="button" class="btn btn-secondary" id="addItem">Add</button>
+                </div><div class="form-group col-md-3 row">
+                    <label class="col-md-auto col-form-label p-0"> Requested By:</label>
+                    <div class="col position-relative">
+                        <select class="form-select form-select-sm" id="ddEmployeeCode1"></select>
                     </div>
                 </div>
-                <div class="border mb-3">
-                    <table class="table table-striped">
+
+                <div class="form-group col-md-2">
+                    <button class="btn btn-sm btn-primary" onclick="BindOrderManagmentList()">Search </button>
+                    <button class="btn btn-sm btn-success" onclick="NewOrderManagment()">Add Request </button>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+                <thead class="blue">
+                    <tr>
+                        <th>ID</th>
+                        <th>Date Requested </th>
+                        <th>IPO</th>
+                        <th>Supplier</th>
+                        <th>Attn</th>
+                        <th>Requested By</th>
+                        <th>Prepared By</th>
+
+                        <th>Approved By</th>
+                        <th>Approved</th>
+                        <th>Remarks</th>
+                        <th>IPID</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tblOrderManagementList"></tbody>
+            </table>
+            <div id="dvOrderManagementPaging"></div>
+        </div>
+    </div>
+    <div class="container mt-5 writecontainer" id="dvEditRequest">
+        <div class="border">
+            <div class="blue p-1"><h6>Purchase Order Management</h6></div>
+            <div class="p-4">
+                <form id="purchaseOrderForm">
+                    <div class="row mb-3">
+                        <div class="col-md-auto">
+                            <label for="date" class="form-label">Date</label>
+                            <input type="text" class="form-control form-control-sm datepicker" id="txtRecordDate">
+                        </div>
+                        <div class="col-md-1">
+                            <label for="iprNo" class="form-label">IPR No.</label>
+                            <input type="text" class="form-control form-control-sm" id="txtInternalPurchaseOrderNumber">
+                        </div>
+                        <div class="col-md-1 d-none">
+                            <label for="poNo" class="form-label">P.O.#</label>
+                            <input type="text" class="form-control form-control-sm" id="OrderManagementNumber">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="attn" class="form-label">Attn.</label>
+                            <input type="text" class="form-control form-control-sm" id="txtAttn">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="requiredDate" class="form-label">Required Date</label>
+                            <input type="text" class="form-control form-control-sm datepicker" id="txtRequiredDate">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="partyName" class="form-label">Party Name</label>
+                            <select class="form-select form-select-sm" id="ddSuppliers"></select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="contractPeriodFrom" class="form-label">Contract Period From</label>
+                            <input type="text" class="form-control form-control-sm datepicker" id="txtContractPeriodFrom">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="contractPeriodTo" class="form-label">Contract Period To</label>
+                            <input type="text" class="form-control form-control-sm datepicker" id="txtContractPeriodTo">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-2">
+                            <label for="itemName" class="form-label">Item Name</label>
+                            <input type="text" class="form-control form-control-sm" id="txtRequestItemCode">
+                        </div>
+
+                        <div class="col-md-1">
+                            <label for="unit" class="form-label">Unit</label>
+                            <input type="text" class="form-control form-control-sm" id="txtRequestItemUnit" readonly>
+                        </div>
+                        <div class="col-md-1">
+                            <label for="qty" class="form-label">Qty</label>
+                            <input type="number" class="form-control form-control-sm" id="txtRequestItemQuantity">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="unitCost" class="form-label">Unit Cost</label>
+
+                            <div class="input-group mb-3">
+
+                                <input type="text" class="form-control form-control-sm" id="txtRequestItemUnitCost">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" onclick="FindPastSupplierRate()"><i class="fa fa-history"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <label for="amount" class="form-label">Amount</label>
+                            <input type="text" class="form-control form-control-sm" id="txtRequestItemAmount" readonly>
+
+
+
+                        </div>
+                        <div class="col-md-2">
+                            <label for="amount" class="form-label">Part Number</label>
+                            <input type="text" class="form-control form-control-sm" id="txtRequestItemPartNo">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="amount" class="form-label">Notes</label>
+                            <input type="text" class="form-control form-control-sm" id="txtRequestItemNotes">
+                        </div>
+
+                        <div class="col-md-1 align-items-center">
+                            <input type="checkbox" class="form-check-input" id="txtRequestItemMSDS">
+                            <label for="msds" class="form-label ms-2">MSDS</label><br />
+                            <button type="button" class="btn btn-secondary" id="addItem" onclick="AddItem()">Add</button>
+                        </div>
+                    </div>
+                    <div class="border mb-3">
+                        <table class="table table-striped">
+                            <thead class="blue">
+                                <tr>
+                                    <th></th>
+                                    <th>Item</th>
+                                    <th>Description</th>
+                                    <th>Unit</th>
+                                    <th>Qty</th>
+
+                                    <th>Unit Cost</th>
+                                    <th>Amount</th>
+                                    <th>Part #</th>
+                                    <th>Note</th>
+                                    <th>MSDS</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="itemsTable"></tbody>
+                        </table>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="paymentType" class="form-label">Payment Type</label>
+                                    <select class="form-select  form-select-sm" id="ddRequestPaymentType">
+                                        <option value="0">Select Payment Type</option>
+                                        <option value="1">Cash</option>
+                                        <option value="2">Credit</option>
+                                        <option value="3">Check</option>
+                                        <option value="4">AFT</option>
+                                    </select>
+
+                                    <label for="deliveryType" class="form-label">Delivery Type</label>
+                                    <select class="form-select form-select-sm" id="ddRequestDeliveryType">
+                                        <option value="0">Select Delivery Type</option>
+                                        <option value="1">Emergency</option>
+                                        <option value="2">Urgent</option>
+                                        <option value="3">Normal</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="warrantyPeriod" class="form-label">Warranty Period</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtWarrantyPeriod">
+                                    <input type="checkbox" class="form-check-input" id="chklongTermContract">
+                                    <label for="longTermContract" class="form-label ms-2">is Long Term Contract</label>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="calibrationNeeded" class="form-label">Calibration Needed</label><br />
+                                    <div class="form-check form-check-inline ms-3 ">
+                                        <input type="radio" class="form-check-input" name="calibrationNeeded" id="rdcalibrationNeededYes" value="Yes">
+                                        <label for="calibrationNeededYes" class="form-check-label">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" class="form-check-input" name="calibrationNeeded" id="rdcalibrationNeededNo" value="No">
+                                        <label for="calibrationNeededNo" class="form-check-label">No</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+
+                                    <label for="certificationNeeded" class="form-label">Certification Needed</label><br />
+                                    <div class="form-check  form-check-inline ms-3">
+                                        <input type="radio" class="form-check-input" name="certificationNeeded" id="rdcertificationNeededYes" value="Yes">
+                                        <label for="certificationNeededYes" class="form-check-label">Yes</label>
+                                    </div>
+                                    <div class="form-check  form-check-inline">
+                                        <input type="radio" class="form-check-input" name="certificationNeeded" id="rdcertificationNeededNo" value="No">
+                                        <label for="certificationNeededNo" class="form-check-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="remarks" class="form-label">Remarks</label>
+                                    <textarea class="form-control form-control-sm" id="txtRequestRemarks" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <label for="currency" class="form-label">Currency</label>
+                            <select class="form-select form-select-sm" id="ddCurrency">
+                                <option selected value="SR">Saudi Riyals</option>
+                                <option value="AED">UAE Dirhams</option>
+                                <option value="USD">US Dollar</option>
+                                <option value="USD">Bahraini Dinars</option>
+                                <option value="EUR">EURO</option>
+                                <option value="GBP">British Pound</option>
+                            </select>
+                            <label for="freight" class="form-label">Freight</label>
+                            <input type="text" class="form-control form-control-sm" id="txtFreight" onchange="CalculateTotal()">
+                            <label for="discount" class="form-label">Discount</label>
+                            <input type="text" class="form-control form-control-sm" id="txtDiscount" onchange="CalculateTotal()">
+
+                            <label for="vat" class="form-label">VAT</label>
+                            <input type="text" class="form-control form-control-sm" id="txtVat" onchange="CalculateTotal()">
+
+                            <label for="total" class="form-label">Total</label>
+                            <input type="text" class="form-control form-control-sm" id="txtTotal">
+
+                            <input type="checkbox" class="form-check-input" id="chkShowVatOnInvoice">
+                            <label for="showVatOnInvoice" class="form-label ms-2">Show VAT On Invoice</label>
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-3">
+
+                        <div class="col-md-3">
+                            <label for="preparedBy" class="form-label">Prepared By</label>
+                            <input type="text" class="form-control form-control-sm" id="txtPreparedBy" value="" readonly>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="preparedDate" class="form-label">Date</label>
+                            <input type="text" class="form-control form-control-sm datepicker" id="txtRequestPrepDate">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="requestedBy" class="form-label">Requested By</label>
+                            <select class="form-select form-select-sm" id="ddEmployeeCode"></select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="requestedDate" class="form-label">Date</label>
+                            <input type="text" class="form-control form-control-sm datepicker" id="txtRequestDate" value="2024-06-27">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="department" class="form-label">Department</label>
+                            <select class="form-select form-select-sm" id="ddDepartment"></select>
+                        </div>
+
+                    </div>
+                    <div class="my-3 row">
+
+                        <div class="col-md-auto">
+                            <button type="button" class="btn btn-primary" onclick="SaveOrderManagement()"> Save</button>
+                        </div><div class="col-md-auto">
+                            <button class="btn btn-danger" type="button" onclick="ResetNav()">Cancel</button>
+                        </div> <div class="col-md-auto">
+                            <button class="btn btn-danger" type="reset">Clear</button>
+                        </div>
+
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="dlgSuppierRate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="dlgSuppierRate" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header d-none">
+                    <h5 class="modal-title">Sup</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    <table class="table table-sm table-striped table-hover-warning table-bordered">
                         <thead class="blue">
                             <tr>
-                                <th>Item</th>
-                                <th>Description</th>
-                                <th>Part #</th>
-                                <th>Note</th>
-                                <th>Qty</th>
-                                <th>Unit</th>
-                                <th>Unit Cost</th>
-                                <th>Amount</th>
-                                <th>MSDS</th>
+                                <th>Item Name</th>
+                                <th>Cost</th>
+
+                                <th>Date</th>
+
+
                             </tr>
                         </thead>
-                        <tbody id="itemsTable"></tbody>
+                        <tbody id="tblSuppierRate"></tbody>
                     </table>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-md-9">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <label for="paymentType" class="form-label">Payment Type</label>
-                                <select class="form-select" id="paymentType">
-                                    <option selected>Select...</option>
-                                    <option value="cash">Cash</option>
-                                    <option value="credit">Credit</option>
-                                </select>
-
-                                <label for="deliveryType" class="form-label">Delivery Type</label>
-                                <input type="text" class="form-control form-control-sm" id="deliveryType">
-
-                            </div>
-                            <div class="col-md-3">
-                                <label for="warrantyPeriod" class="form-label">Warranty Period</label>
-                                <input type="text" class="form-control form-control-sm" id="warrantyPeriod">
-                                <input type="checkbox" class="form-check-input" id="longTermContract">
-                                <label for="longTermContract" class="form-label ms-2">is Long Term Contract</label>
-
-                            </div>
-                            <div class="col-md-3">
-                                <label for="calibrationNeeded" class="form-label">Calibration Needed</label><br />
-                                <div class="form-check form-check-inline ms-3 ">
-                                    <input type="radio" class="form-check-input" name="calibrationNeeded" id="calibrationNeededYes" value="Yes">
-                                    <label for="calibrationNeededYes" class="form-check-label">Yes</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input type="radio" class="form-check-input" name="calibrationNeeded" id="calibrationNeededNo" value="No">
-                                    <label for="calibrationNeededNo" class="form-check-label">No</label>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-
-                                <label for="certificationNeeded" class="form-label">Certification Needed</label><br />
-                                <div class="form-check  form-check-inline ms-3">
-                                    <input type="radio" class="form-check-input" name="certificationNeeded" id="certificationNeededYes" value="Yes">
-                                    <label for="certificationNeededYes" class="form-check-label">Yes</label>
-                                </div>
-                                <div class="form-check  form-check-inline">
-                                    <input type="radio" class="form-check-input" name="certificationNeeded" id="certificationNeededNo" value="No">
-                                    <label for="certificationNeededNo" class="form-check-label">No</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="remarks" class="form-label">Remarks</label>
-                                <textarea class="form-control form-control-sm" id="remarks" rows="5"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-
-                        <label for="currency" class="form-label">Currency</label>
-                        <select class="form-select" id="currency">
-                            <option selected>Saudi Riyals</option>
-                            <option value="usd">USD</option>
-                            <option value="eur">EUR</option>
-                        </select>
-                        <label for="freight" class="form-label">Freight</label>
-                        <input type="text" class="form-control form-control-sm" id="freight">
-                        <label for="discount" class="form-label">Discount</label>
-                        <input type="text" class="form-control form-control-sm" id="discount">
-
-                        <label for="vat" class="form-label">VAT</label>
-                        <input type="text" class="form-control form-control-sm" id="vat">
-
-                        <label for="total" class="form-label">Total</label>
-                        <input type="text" class="form-control form-control-sm" id="total">
-
-                        <input type="checkbox" class="form-check-input" id="showVatOnInvoice">
-                        <label for="showVatOnInvoice" class="form-label ms-2">Show VAT On Invoice</label>
-                    </div>
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Save</button>
                 </div>
-
-                <div class="row mb-3">
-
-                    <div class="col-md-3">
-                        <label for="preparedBy" class="form-label">Prepared By</label>
-                        <input type="text" class="form-control form-control-sm" id="preparedBy" value="Mohannad Bin Barakat Alazmi" readonly>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="preparedDate" class="form-label">Date</label>
-                        <input type="text" class="form-control form-control-sm datepicker" id="preparedDate">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-3">
-                        <label for="requestedBy" class="form-label">Requested By</label>
-                        <input type="text" class="form-control form-control-sm" id="requestedBy">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="requestedDate" class="form-label">Date</label>
-                        <input type="text" class="form-control form-control-sm datepicker" id="requestedDate">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-3">
-                        <label for="department" class="form-label">Department</label>
-                        <input type="text" class="form-control form-control-sm" id="department">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="departmentCode" class="form-label">Code</label>
-                        <input type="text" class="form-control form-control-sm" id="departmentCode">
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            </div>
         </div>
     </div>
 </div>
@@ -225,6 +345,6 @@
     @Scripts.Render("~/bundles/pagination")
     @Scripts.Render("~/bundles/typeahead")
     s
-    @Scripts.Render("~/lib/purchase/internalpurchase")
+    @Scripts.Render("~/lib/purchase/purchaseordermanagement")
     @Styles.Render("~/bundles/paginationcss")
 }

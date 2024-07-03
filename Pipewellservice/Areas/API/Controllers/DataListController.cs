@@ -100,11 +100,27 @@ namespace Pipewellservice.Areas.API.Controllers
         }
         public async Task<JsonResult> SupplierList()
         {
-            return new JsonResult
+
+            if (Session["Suppliers"] != null)
             {
-                Data = await json.SupplierList(),
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            };
+                return new JsonResult
+                {
+                    Data = Session["Suppliers"],
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+            else
+            {
+                var result = await json.SupplierList();
+                Session["Suppliers"] = result;
+                return new JsonResult
+                {
+                    Data = result,
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+
+            
         }
 
 

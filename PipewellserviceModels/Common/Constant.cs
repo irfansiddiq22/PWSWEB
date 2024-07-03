@@ -175,7 +175,8 @@ namespace PipewellserviceModels.Common
         AttendenceReport = 27,
         ProcurementStoreItemManagement=28,
         ProcurementMaterialRequest=29,
-        InternalPurchaseRequest=30
+        InternalPurchaseRequest=30,
+        OrderPurchaseManagment=31
 
 
     }

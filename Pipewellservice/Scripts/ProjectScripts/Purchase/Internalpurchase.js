@@ -62,9 +62,7 @@ function BindUsers() {
             width: "100%"
         })
 
-
-
-        BindPurchaseRequestList();
+        
     })
     /* $.post("/EmployeeAPI/Supervisors", {}).done(function (Response) {
          var data = []
@@ -449,7 +447,7 @@ function SavePurchaseRequest() {
             DataChangeLog.DataUpdated.push({ Field: "Request Type", Data: { OLD: PurchaseRequest.RequestType, New: Request.RequestType } });
         }
         if (moment(PurchaseRequest.RequestSignDate).format("DD/MM/YYYY") != Request.RequestSignDate) {
-            DataChangeLog.DataUpdated.push({ Field: "RequestSignDate", Data: { OLD: PurchaseRequest.RequestSignDate, New: Request.RequestRequestSignDateDate } });
+            DataChangeLog.DataUpdated.push({ Field: "RequestSignDate", Data: { OLD: PurchaseRequest.RequestSignDate, New: Request.RequestSignDate } });
         }
 
         if (PurchaseRequest.RequestedBy != Request.RequestedBy) {

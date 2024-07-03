@@ -54,6 +54,7 @@
     <Compile Include="Parse.cs" />
     <Compile Include="Procurement\ProcurementJson.cs" />
     <Compile Include="Procurement\Purchase\PurchaseJson.cs" />
+    <Compile Include="Procurement\Purchase\PurchaseOrderManagmenetJson.cs" />
     <Compile Include="Procurement\Store\StoreItemJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

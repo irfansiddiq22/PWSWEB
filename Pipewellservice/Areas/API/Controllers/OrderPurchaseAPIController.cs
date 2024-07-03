@@ -14,34 +14,35 @@ using System.Web.Mvc;
 
 namespace Pipewellservice.Areas.API.Controllers
 {
-    public class PurchaseAPIController : BaseController
+    public class OrderPurchaseAPIController : BaseController
     {
-        private PurchaseJson json = new PurchaseJson();
-
-        public async Task<JsonResult> GetPurchaseRequestList(DateParam date, PagingDTO paging, int RequestType)
+        private OrderPurchaseManagmentJson json = new OrderPurchaseManagmentJson();
+        [Authorization(Pages.OrderPurchaseManagment)]
+        public async Task<JsonResult> GetOrderPurchaseRequestList(DateParam date, PagingDTO paging, PurchaseOrderParam param)
         {
-            var result = await json.GetPurchaseRequestList(date, paging, RequestType);
+            var result = await json.GetOrderPurchaseRequestList(date, paging,param);
             return new JsonResult
             {
-                Data = new { Data = result, TotalRecord = result.Count > 0 ? result[0].Total : 0 },
+                Data = new { Data = result, TotalRecord = result.Count > 0 ? result[0].TotalRecord : 0 },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        public async Task<JsonResult> GetPurchaseRequestDetail(int ID)
+        [Authorization(Pages.OrderPurchaseManagment)]
+        public async Task<JsonResult> GetOrderPurchaseRequestDetail(int ID)
         {
-            var result = await json.GetPurchaseRequestDetail(ID);
+            var result = await json.GetOrderPurchaseRequestDetail(ID);
             return new JsonResult
             {
                 Data = result,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.InternalPurchaseRequest, 1, 2)]
-        public async Task<JsonResult> AddPurchaseRequest(InternalPurchaseRequest request, List<InternalPurchaseRequestItem> Items)
+        [Authorization(Pages.OrderPurchaseManagment, 1, 2)]
+        public async Task<JsonResult> AddOrderPurchaseManagmentData(OrderPurchaseManagement request, List<OrderPurchaseManagementItem> Items)
         {
             request.RecordCreatedBy = SessionHelper.UserID();
 
-            var result = await json.AddPurchaseRequest(request, Items);
+            var result = await json.AddOrderPurchaseManagmentData(request, Items);
             if (result.ApprovalID > 0)
             {
                 ApprovalRequestResult model = new ApprovalRequestResult();
@@ -49,7 +50,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 model = await (new EmployeeJson()).ApproveRequest(0, new PendingApproval() { ID = result.ApprovalID, Remarks = "", Status = ApprovalStatus.Temp });
                 if (model.Result)
                 {
-                    await helper.ProcessRequest(ApprovalTypes.InternalPurchaseRequest, model, true);
+                    await helper.ProcessRequest(ApprovalTypes.OrderPurchaseManagement, model, true);
                 }
             }
             return new JsonResult
@@ -59,6 +60,28 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
+        public async Task<JsonResult> GetInterPurchaseOrderNumber(string IPO)
+        {
+
+            var result = await json.GetInterPurchaseOrderNumber(IPO);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        [Authorization(Pages.OrderPurchaseManagment)]
+        public async Task<JsonResult> GetSupplierItemRate(int ID,int ItemID)
+        {
+
+            var result = await json.GetSupplierItemRate(ID,ItemID);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        /*
         [Authorization(Pages.InternalPurchaseRequest, 1, 2)]
         public async Task<JsonResult> UpdatePurchaseRequestFile(int ID)
         {
@@ -90,7 +113,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
 
         }
-
+        */
 
     }
 }

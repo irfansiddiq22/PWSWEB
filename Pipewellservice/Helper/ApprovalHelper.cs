@@ -171,6 +171,58 @@ namespace Pipewellservice.Helper
                 ProcessMail = true;
 
             }
+            else if (type == ApprovalTypes.OrderPurchaseManagement)
+            {
+                ProcessMail = true;
+                List<OrderPurchaseManagementMailDetail> record = new List<OrderPurchaseManagementMailDetail>();
+                try
+                {
+                    foreach (object js in result.Request)
+                    {
+                        record.Add(JsonConvert.DeserializeObject<OrderPurchaseManagementMailDetail>(js.ToString()));
+                    }
+                }
+                catch (Exception e)
+                {
+                    string g = e.Message;
+                }
+                field.Add(new MergeField("REQUEST_DATE", record[0].RequestDate == null ? DateTime.Now.ToString("dd/MM/yyyy hh:mm tt") : DateTime.Now.ToString("dd/MM/yyyy hh:mm tt")));
+                field.Add(new MergeField("REMARKS", record[0].Remarks));
+                field.Add(new MergeField("IPO", record[0].InternalPurchaseOrderNumber.ToString()));
+
+                field.Add(new MergeField("SUPPLIER_NAME", record[0].SupplierName));
+                field.Add(new MergeField("WARRANTY", record[0].WarrantyPeriod));
+                field.Add(new MergeField("Currency", record[0].Currency));
+                field.Add(new MergeField("Freight", record[0].Freight.ToString()));
+                field.Add(new MergeField("Discount", record[0].Discount.ToString()));
+                field.Add(new MergeField("VAT", record[0].VAT.ToString()));
+                field.Add(new MergeField("TOTAL", record[0].Total.ToString()));
+
+
+                field.Add(new MergeField("DELIVERY_TYPE", record[0].DeliveryTypeName));
+                field.Add(new MergeField("PAYMENT_TYPE", record[0].PaymentTypeName));
+
+                Attachment = "";
+
+                RecordID = record[0].ID;
+
+                string items = "";//$"<table style='width:900px;border-style:solid;'><tr><td><b> Allowance</b></td><td><b> Carried Over</b></td><td><b> Available</b></td><td><b> Used</b></td><td><b> Balance</b></td><td><b> Unit</b></td></tr><tr><td><b> {LeaveStat.Allowance}</b></td><td><b> {LeaveStat.CarriedOver}</b></td><td><b> {LeaveStat.Available}</b></td><td><b> {LeaveStat.LeavesTaken}</b></td><td><b> {LeaveStat.Balance}</b></td><td><b> Days</b></td></tr></table>";
+                foreach (OrderPurchaseManagementMailDetail detail in record)
+                {
+                    /*<tr>
+                                <td style="font-weight: bold; font-size: 12px; background-color: #f2f2f2">Name</td>
+                                <td style="font-weight: bold; font-size: 12px; background-color: #f2f2f2">Unit</td>
+                                <td style="font-weight: bold; font-size: 12px; background-color: #f2f2f2">Quantity</td>
+                                <td style="font-weight: bold; font-size: 12px; background-color: #f2f2f2">Notes</td>
+                            </tr>*/
+                    items += $"<tr><td>{detail.ItemName}</td><td>{detail.Unit}</td><td>{detail.Quantity}</td><td>{detail.UnitCost}</td><td>{detail.Amount}</td><td>{detail.PartNumber}</td><td>{detail.Notes}</td></tr>";
+
+                }
+                field.Add(new MergeField("ITEMS", items));
+
+                ProcessMail = true;
+
+            }
             if (ProcessMail)
             {
                 string Row = "";

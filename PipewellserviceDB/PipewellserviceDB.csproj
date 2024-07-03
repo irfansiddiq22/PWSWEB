@@ -59,6 +59,7 @@
     <Compile Include="HR\JobService.cs" />
     <Compile Include="HR\Setting\SettingService.cs" />
     <Compile Include="Procurement\ProcurementService.cs" />
+    <Compile Include="Procurement\Purchase\OrderManagementService.cs" />
     <Compile Include="Procurement\Purchase\PurchaseService.cs" />
     <Compile Include="Procurement\Store\StoreItemService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
