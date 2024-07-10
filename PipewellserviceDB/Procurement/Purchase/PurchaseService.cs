@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PipewellserviceDB.Procurement.Purchase
 {
-  public  class PurchaseService: DataServices
+    public class PurchaseService : DataServices
     {
         public async Task<DataTable> GetPurchaseRequestList(DateParam date, PagingDTO paging, int RequestType)
         {
@@ -53,6 +53,23 @@ namespace PipewellserviceDB.Procurement.Purchase
             }
 
         }
+        public async Task<InternalPurchaseRequestDB> GetPurchaseRequestItems(int ID)
+        {
+            try
+            {
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetInternalPurchaseRequestItems", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                InternalPurchaseRequestDB Data = new InternalPurchaseRequestDB();
+                Data.InternalPurchaseRequestItem.Load(result);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
         public async Task<InternalPurchaseRequestResult> AddPurchaseRequest(InternalPurchaseRequest request, List<InternalPurchaseRequestItem> Items)
         {
             InternalPurchaseRequestResult requestResult = new InternalPurchaseRequestResult();
@@ -74,15 +91,15 @@ namespace PipewellserviceDB.Procurement.Purchase
                 collSP[5] = new SqlParameter { ParameterName = "@PaymentType", Value = request.PaymentType };
                 collSP[6] = new SqlParameter { ParameterName = "@RequestedBy", Value = request.RequestedBy };
                 collSP[7] = new SqlParameter { ParameterName = "@RequestDate", Value = request.RequestDate };
-                    collSP[8] = new SqlParameter { ParameterName = "@RequestSignDate", Value = request.RequestSignDate  };
+                collSP[8] = new SqlParameter { ParameterName = "@RequestSignDate", Value = request.RequestSignDate };
                 collSP[9] = new SqlParameter { ParameterName = "@MaintRequestNumber", Value = request.MaintRequestNumber };
 
                 collSP[10] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = request.RecordCreatedBy };
 
-                
+
                 collSP[11] = new SqlParameter { ParameterName = "@FileName", Value = request.FileName };
                 collSP[12] = new SqlParameter { ParameterName = "@RequestItems", Value = xml.ToString() };
-                collSP[13] = new SqlParameter { ParameterName = "@SupplierID", Value = request .SupplierID};
+                collSP[13] = new SqlParameter { ParameterName = "@SupplierID", Value = request.SupplierID };
                 collSP[14] = new SqlParameter { ParameterName = "@RecordDate", Value = request.RecordDate };
 
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcAddUpdateInternalPurchaseRequest", CommandType.StoredProcedure, collSP);
@@ -101,6 +118,6 @@ namespace PipewellserviceDB.Procurement.Purchase
             }
 
         }
-    
+
     }
 }

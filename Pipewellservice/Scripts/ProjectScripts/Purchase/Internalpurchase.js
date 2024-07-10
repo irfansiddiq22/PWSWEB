@@ -111,7 +111,7 @@ function BindPurchaseRequestList(PageNumber = 1) {
             return 'Data';
         },
         totalNumberLocator: function (response) {
-            return response.TotalRecords;
+            return response.TotalRecord;
         },
 
         ajax: {
@@ -173,8 +173,8 @@ function BindPurchaseRequestList(PageNumber = 1) {
 
 function DeletePurchaseRequest(ID) {
     swal("{To DO}", { icon: "error" });
-} function PrintPurchaseRequests(ID) {
-    swal("{To DO}", { icon: "error" });
+} function PrintPurchaseRequest(ID) {
+    window.open("/Procurement/PrintInternalPurchaseRequest?ID=" + ID, "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
 }
 function EditPurchaseRequest(ID) {
 
@@ -195,9 +195,9 @@ function EditPurchaseRequest(ID) {
             tr.append($('<td>').text(itm.ItemName));
             tr.append($('<td>').text(itm.Unit));
             tr.append($('<td>').append($('<input type="number" min="1" class="form-control form-control-sm">').val(itm.Quantity)));
-            tr.append($('<td>').append($('<input type="text"  class="form-control form-control-sm">').val(newItem.PartNumber)));
+            tr.append($('<td>').append($('<input type="text"  class="form-control form-control-sm">').val(itm.PartNumber)));
             tr.append($('<td>').append($('<input type="text"  class="form-control form-control-sm">').val(itm.Notes)));
-            tr.append($('<td>').append($('<input type="checkbox"  class="">').prop("checked", newItem.MSDS)));
+            tr.append($('<td>').append($('<input type="checkbox"  class="">').prop("checked", itm.MSDS)));
 
             var a = $('<a>').attr("href", "javascript:void(0)")
             $(a).click(function () {

@@ -36,6 +36,17 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        public async Task<JsonResult> GetPurchaseRequestItems(int ID)
+        {
+            var result = await json.GetPurchaseRequestItems(ID);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        
         [Authorization(Pages.InternalPurchaseRequest, 1, 2)]
         public async Task<JsonResult> AddPurchaseRequest(InternalPurchaseRequest request, List<InternalPurchaseRequestItem> Items)
         {

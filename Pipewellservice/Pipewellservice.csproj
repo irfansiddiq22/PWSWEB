@@ -241,6 +241,18 @@
     <Compile Include="Reports\rpEmployeeWarning.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\rpInternalPurchase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rpInternalPurchase.Designer.cs">
+      <DependentUpon>rpInternalPurchase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rpPurchaseOrderMgt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rpPurchaseOrderMgt.Designer.cs">
+      <DependentUpon>rpPurchaseOrderMgt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Template.aspx.cs">
       <DependentUpon>Template.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -704,6 +716,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rpEmployeeWarning.resx">
       <DependentUpon>rpEmployeeWarning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rpInternalPurchase.resx">
+      <DependentUpon>rpInternalPurchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rpPurchaseOrderMgt.resx">
+      <DependentUpon>rpPurchaseOrderMgt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

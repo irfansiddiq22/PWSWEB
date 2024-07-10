@@ -1,9 +1,17 @@
-﻿using Newtonsoft.Json;
+﻿using GrapeCity.ActiveReports.SectionReportModel;
+using Newtonsoft.Json;
 using Pipewellservice.Helper;
+using Pipewellservice.Reports;
+using PipewellserviceDB.Procurement.Purchase;
+using PipewellserviceJson;
+using PipewellserviceJson.Procurement.Purchase;
 using PipewellserviceModels.Common;
+using PipewellserviceModels.Procurement.Purchase;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -40,7 +48,7 @@ namespace Pipewellservice.Controllers
             return View();
         }
         [Authorization(Pages.ProcurementMaterialRequest)]
-        
+
         public ActionResult MaterialRequest()
         {
             ViewBag.Title = "Material Request ";
@@ -59,12 +67,37 @@ namespace Pipewellservice.Controllers
 
 
         [Authorization(Pages.InternalPurchaseRequest)]
-        
+
         public ActionResult PurchaseOrderManagment()
         {
             ViewBag.Title = "Purchase Order Management";
             ViewBag.Parent = Parent;
             return View("PurchaseOrderManagement");
+        }
+
+        public async Task<ActionResult> PrintInternalPurchaseRequest(int ID)
+        {
+                        rpInternalPurchase report = null;
+           var  data2 = await ( new PurchaseService()).GetPurchaseRequestDetail(ID);
+            report = new rpInternalPurchase { DataSource = data2.InternalPurchaseRequestItem, Document = { }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
+            report.UserData = (await JsonHelper.Convert<List<InternalPurchaseRequest>, DataTable>(data2.InternalPurchase)).FirstOrDefault();
+            ViewBag.ReportName = "Internal Purchase Request";
+            
+
+            ViewBag.Report = report;
+            return PartialView("~/Views/Employee/WebViewer.ascx");
+        }
+        public async Task<ActionResult> PrintPurchaseOrderRequest(int ID)
+        {
+            rpPurchaseOrderMgt report = null;
+            var data2 = await (new OrderPurchaseManagementService()).GetOrderPurchaseDetail(ID);
+            report = new rpPurchaseOrderMgt { DataSource = data2.OrderPurchaseItem, Document = { }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
+            report.UserData = (await JsonHelper.Convert<List<OrderPurchaseManagement>, DataTable>(data2.OrderPurchase)).FirstOrDefault();
+            ViewBag.ReportName = "Purchase Order Management";
+
+
+            ViewBag.Report = report;
+            return PartialView("~/Views/Employee/WebViewer.ascx");
         }
 
 

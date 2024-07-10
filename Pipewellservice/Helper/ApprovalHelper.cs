@@ -325,7 +325,7 @@ namespace Pipewellservice.Helper
                     else if ((RequestStatus == ApprovalStatus.Approved) && template.Type == 3)
                         EmployeeEmailTemplate = template;
                     else if (NewRequest && template.Type == 1)
-                        EmployeeEmailTemplate = template; 
+                        EmployeeEmailTemplate = template;
                     if ((RequestStatus == ApprovalStatus.Pending || RequestStatus == ApprovalStatus.Ready || RequestStatus == ApprovalStatus.New) && template.Type == 2)
                         SupervisorEmailTemplate = template;
                 }
@@ -338,7 +338,7 @@ namespace Pipewellservice.Helper
                     status = await email.SendEmail(new EmailDTO() { To = employee.EmailAddress, From = "no-reply@pipewellservices.com", Subject = EmployeeEmailTemplate.Subject, Body = EmployeeEmailTemplate.Body }, field);
                     await json.UpdateRequestStatus(RecordID, type, RequestStatus);
                 }
-                if (RequestStatus == ApprovalStatus.Pending && Supervisor.ID > 0 && Supervisor.EmailAddress != "")
+                if ((NewRequest ||  RequestStatus == ApprovalStatus.Pending )&& Supervisor.ID > 0 && Supervisor.EmailAddress != "")
                 {
 
                     field.Add(new MergeField("APPROVE_NAME", Supervisor.Name));

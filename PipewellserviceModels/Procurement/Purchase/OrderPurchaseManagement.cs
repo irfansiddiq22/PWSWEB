@@ -33,6 +33,10 @@ namespace PipewellserviceModels.Procurement.Purchase
         public int ID { get; set; }
         public int SupplierID { get; set; }
         public string SupplierName { get; set; }
+        public string QuotationNumber { get; set; }
+        public string SupplierAddress { get; set; }
+        public string SupplierCode { get; set; }
+        public string SupplierVAT { get; set; }
         public string Attn { get; set; }
         public DateTime RecordDate { get; set; }
         public int InternalPurchaseOrderNumber { get; set; }

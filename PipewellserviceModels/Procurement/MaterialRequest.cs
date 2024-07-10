@@ -77,6 +77,11 @@ namespace PipewellserviceModels.Procurement
         public string Unit { get; set; }
         public int Quantity { get; set; }
         public string Notes { get; set; }
+        public float? UnitCost { get; set; }
+        public float? Amount { get {
+                if (UnitCost == null) return 0;
+                return Quantity * UnitCost;
+            } }
 
     }
     public class MaterialRequestResult

@@ -32,7 +32,7 @@
 
                 <div class="form-group col-md-2">
                     <button class="btn btn-sm btn-primary" onclick="BindOrderManagmentList()">Search </button>
-                    <button class="btn btn-sm btn-success" onclick="NewOrderManagment()">Add Request </button>
+                    <button class="btn btn-sm btn-success" onclick="NewOrderManagment()">Add New PO </button>
                 </div>
             </div>
 
@@ -238,6 +238,7 @@
 
                             <label for="currency" class="form-label">Currency</label>
                             <select class="form-select form-select-sm" id="ddCurrency">
+                                <option value="0">Select Currency</option>
                                 <option selected value="SR">Saudi Riyals</option>
                                 <option value="AED">UAE Dirhams</option>
                                 <option value="USD">US Dollar</option>
@@ -333,7 +334,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

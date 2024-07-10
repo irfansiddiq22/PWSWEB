@@ -17,17 +17,13 @@ function _Init() {
         BindUsers();
         BindItemSearch();
         BindSuppliers();
-        
         Post("/SettingAPI/DivisionList", {}).done(function (Response) {
             FillList("ddDepartment", Response, "Name", "ID", "Select Division")
         });
         // })
 
-
     });
-
-
-
+    
 
 }
 function BindSuppliers() {
@@ -182,7 +178,7 @@ function BindOrderManagmentList(PageNumber = 1) {
 function DeleteOrderManagement(ID) {
     swal("{To DO}", { icon: "error" });
 } function PrintOrderManagement(ID) {
-    swal("{To DO}", { icon: "error" });
+    window.open("/Procurement/PrintPurchaseOrderRequest?ID=" + ID, "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
 }
 function EditOrderManagement(ID) {
 
@@ -194,31 +190,7 @@ function EditOrderManagement(ID) {
 
         OrderManagement = resp.Order;
         PurchaseRequestItems = resp.Items;
-        $.each(PurchaseRequestItems, function (i, itm) {
-            var tr = $('<tr>')
-
-            tr.attr("data-id", itm == null ? 0 : itm.ItemID);
-            tr.append($('<td>').text($("#itemsTable tr").length + 1));
-            tr.append($('<td>').text(itm.ItemCode));
-            tr.append($('<td>').text(itm.ItemName));
-            tr.append($('<td>').text(itm.Unit));
-            tr.append($('<td>').append($('<input type="number" min="1" class="form-control form-control-sm" onblur="CalculateAmount(this)" onchange="CalculateAmount(this)">').val(itm.Quantity)));
-            tr.append($('<td>').append($('<input type="number" min="1" class="form-control form-control-sm" onblur="CalculateAmount(this)" onchange="CalculateAmount(this)">').val(itm.UnitCost)));
-            tr.append($('<td>').append($('<input type="number" min="1" class="form-control form-control-sm" readonly>').val(itm.Amount)));
-
-            tr.append($('<td>').append($('<input type="text"  class="form-control form-control-sm">').val(itm.PartNumber)));
-            tr.append($('<td>').append($('<input type="text"  class="form-control form-control-sm">').val(itm.Notes)));
-            tr.append($('<td>').append($('<input type="checkbox"  class="">').prop("checked", itm.MSDS)));
-
-            var a = $('<a>').attr("href", "javascript:void(0)")
-            $(a).click(function () {
-                $(this).closest('tr').remove()
-            })
-            $(a).append($('<i class="fa fa-trash text-danger"></i>'))
-            tr.append($('<td>').append($(a)));
-            $("#itemsTable").append(tr);
-
-        })
+        FillItems(PurchaseRequestItems);
 
         SetvalOf("txtRecordDate", moment(OrderManagement.RecordDate).format("DD/MM/YYYY"))
         SetvalOf("txtInternalPurchaseOrderNumber", OrderManagement.InternalPurchaseOrderNumber)
@@ -257,6 +229,34 @@ function EditOrderManagement(ID) {
     ResetDatePicker();
 
 }
+function FillItems(PurchaseRequestItems) {
+    $("#itemsTable").empty();
+    $.each(PurchaseRequestItems, function (i, itm) {
+        var tr = $('<tr>')
+
+        tr.attr("data-id", itm == null ? 0 : itm.ItemID);
+        tr.append($('<td>').text($("#itemsTable tr").length + 1));
+        tr.append($('<td>').text(itm.ItemCode));
+        tr.append($('<td>').text(itm.ItemName));
+        tr.append($('<td>').text(itm.Unit));
+        tr.append($('<td>').append($('<input type="number" min="1" class="form-control form-control-sm" onblur="CalculateAmount(this)" onchange="CalculateAmount(this)">').val(itm.Quantity)));
+        tr.append($('<td>').append($('<input type="number" min="1" class="form-control form-control-sm" onblur="CalculateAmount(this)" onchange="CalculateAmount(this)">').val(itm.UnitCost)));
+        tr.append($('<td>').append($('<input type="number" min="1" class="form-control form-control-sm" readonly>').val(itm.Amount)));
+
+        tr.append($('<td>').append($('<input type="text"  class="form-control form-control-sm">').val(itm.PartNumber)));
+        tr.append($('<td>').append($('<input type="text"  class="form-control form-control-sm">').val(itm.Notes)));
+        tr.append($('<td>').append($('<input type="checkbox"  class="">').prop("checked", itm.MSDS)));
+
+        var a = $('<a>').attr("href", "javascript:void(0)")
+        $(a).click(function () {
+            $(this).closest('tr').remove()
+        })
+        $(a).append($('<i class="fa fa-trash text-danger"></i>'))
+        tr.append($('<td>').append($(a)));
+        $("#itemsTable").append(tr);
+
+    })
+}
 
 function ResetNav() {
 
@@ -278,7 +278,7 @@ function ResetNav() {
     SetChecked("rdcalibrationNeededNo", true);
     SetChecked("rdcertificationNeededNo", true);
     SetvalOf("txtRequestRemarks", '');
-    SetvalOf("ddCurrency", 'SAR')
+    SetvalOf("ddCurrency", 'SR')
     SetvalOf("txtFreight", "");
     SetvalOf("txtDiscount", "")
     SetvalOf("txtVat", "")
@@ -365,6 +365,19 @@ function BindItemSearch() {
         }
     })
 }
+$('#txtInternalPurchaseOrderNumber').blur(function () {
+    if (OrderManagement.ID == 0 && $('#txtInternalPurchaseOrderNumber').val() != "") {
+        ShowSpinner();
+        $.post("/PurchaseAPI/GetPurchaseRequestDetail", { ID: $('#txtInternalPurchaseOrderNumber').val() }, function (resp) {
+            HideSpinner();
+            if (resp.Request != null) {
+                $("#ddSuppliers").val(resp.Request.SupplierID).trigger("change")
+                FillItems(resp.Items);
+                CalculateTotal();
+            }
+        })
+    }
+})
 $("#txtRequestItemQuantity,#txtRequestItemUnitCost").blur(function () {
     SetvalOf("txtRequestItemAmount", parseFloat(valOf("txtRequestItemUnitCost")) * parseInt(valOf("txtRequestItemQuantity")))
 })
@@ -651,7 +664,9 @@ function CalculateTotal() {
     }));
     var TotalAmount = items.reduce((s, a) => s + a.amount, 0);
     var Freight = (isNaN(valOf("txtFreight")) || valOf("txtFreight") == "" ? 0 : parseFloat(valOf("txtFreight")))
-    var Vat = (isNaN(valOf("txtVat")) || valOf("txtVat") == "" ? 0 : parseFloat(valOf("txtVat")))
+
+    var Vat = parseFloat(TotalAmount * 15 / 100).toFixed(2);// (isNaN(valOf("txtVat")) || valOf("txtVat") == "" ? 0 : parseFloat(valOf("txtVat")))
+    SetvalOf("txtVat",Vat)
     var Discount = (isNaN(valOf("txtDiscount")) || valOf("txtDiscount") == "" ? 0 : parseFloat(valOf("txtDiscount")))
     TotalAmount += Freight + Vat - Discount;
     SetvalOf("txtTotal", parseFloat(TotalAmount).toFixed(2))    

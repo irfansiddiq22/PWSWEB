@@ -28,6 +28,13 @@ namespace PipewellserviceJson.Procurement.Purchase
 
             return model;
         }
+        public async Task<List<InternalPurchaseRequestItem>> GetPurchaseRequestItems(int ID)
+        {
+            InternalPurchaseRequestDB dB = await service.GetPurchaseRequestDetail(ID);
+            return await JsonHelper.Convert<List<InternalPurchaseRequestItem>, DataTable>(dB.InternalPurchaseRequestItem);
+        }
+
+        
 
         public async Task<InternalPurchaseRequestResult> AddPurchaseRequest(InternalPurchaseRequest request, List<InternalPurchaseRequestItem> Items)
         {
