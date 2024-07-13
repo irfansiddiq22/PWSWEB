@@ -274,7 +274,8 @@ function ToggleIqamaData() {
 }
 
 function ShowJobLeft() {
-    if (valOf("ddEmployeeStatus") == 2)
+    var staus=[2,4,7,8]
+    if (staus.includes(parseInt( valOf("ddEmployeeStatus"))))
         $(".jobleftdate").show();
     else
         $(".jobleftdate").hide();
