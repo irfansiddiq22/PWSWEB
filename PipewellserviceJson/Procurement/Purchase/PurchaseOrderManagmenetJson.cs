@@ -1,5 +1,6 @@
 ﻿using PipewellserviceDB.Procurement.Purchase;
 using PipewellserviceModels.Common;
+using PipewellserviceModels.HR.Employee;
 using PipewellserviceModels.Procurement.Purchase;
 using System;
 using System.Collections.Generic;
@@ -24,13 +25,14 @@ namespace PipewellserviceJson.Procurement.Purchase
             OrderPurchaseManagementDetail model = new OrderPurchaseManagementDetail();
             model.Order = (await JsonHelper.Convert<List<OrderPurchaseManagement>, DataTable>(dB.OrderPurchase)).FirstOrDefault();
             model.Items = await JsonHelper.Convert<List<OrderPurchaseManagementItem>, DataTable>(dB.OrderPurchaseItem);
+            model.Approvals = await JsonHelper.Convert<List<EmployeeApproval>, DataTable>(dB.Approvals);
 
             return model;
         }
 
-        public async Task<OrderPurchaseManagementResult> AddOrderPurchaseManagmentData(OrderPurchaseManagement request, List<OrderPurchaseManagementItem> Items)
+        public async Task<OrderPurchaseManagementResult> AddOrderPurchaseManagmentData(OrderPurchaseManagement request, List<EmployeeApproval> approvals, List<OrderPurchaseManagementItem> Items)
         {
-            return await service.AddOrderPurchaseManagmentData(request, Items);
+            return await service.AddOrderPurchaseManagmentData(request,approvals, Items);
         }
         public async Task<List<InterPurchaseOrderNumber>> GetInterPurchaseOrderNumber(string IPO)
         {

@@ -13,6 +13,7 @@ function ResetForm() {
 function _Init() {
     SetPagePermission(PAGES.Division, function () { BindDivision(); });
     SetPagePermission(PAGES.Position, function () { BindPositions(); });
+    LoadSponsor();
     FillWorkTimeSchedule();
     for (i = 0; i <= 24; i++) {
         $("#ddScheduleHourStart,#ddScheduleHourEnd").append(AppendListItem(i,i))
@@ -38,17 +39,28 @@ function BindDivision() {
 
         FillList("ddlParentDivisionID",Response,"Name","ID","Select ")
     });
-    Post("/DataList/SupervisorList", {}).done(function (Response) {
+    Post("/DataList/Supervisors", {}).done(function (Response) {
         FillList("ddlSupervisorID", Response, "Name", "ID", "Select Supervisor")
     });
 
+}
+function FillSponsorList() {
+    $("#tblSponsorList").empty();
+    $.each(SponsorData, function (i, s) {
+        var tr = $('<tr>')
+        tr.append($('<td>').text(s.Name))
+        tr.append($('<td>').text(s.CRNumber))
+        tr.append($('<td>').append($('<a class="btn btn-sm btn-primary" onclick="EditSponsor('+ s.ID +')">').append($('<i class="fa fa-edit">'))));
+
+        $("#tblSponsorList").append(tr)
+    })
 }
 function FillDivisionList(Response) {
     $("#tblDivisionList").empty();
     Settings.Division = Response;
     $.each(Response, function (i, r) {
         var tr = $('<tr>');
-        tr.append($('<td class="text-center">').text(i + 1))
+        tr.append($('<td class="text-center">').text(r.ID))
         tr.append($('<td>').text(r.Name))
         tr.append($('<td>').text(r.ParentDivisionName))
         tr.append($('<td>').text(r.SupervisorName))

@@ -199,8 +199,8 @@
     <Compile Include="Areas\API\Controllers\EmployeeAPIController.cs" />
     <Compile Include="Areas\API\Controllers\JobController.cs" />
     <Compile Include="Areas\API\Controllers\ProcurementAPIController.cs" />
-    <Compile Include="Areas\API\Controllers\OrderPurchaseAPIController.cs" />
-    <Compile Include="Areas\API\Controllers\PurchaseAPIController.cs" />
+    <Compile Include="Areas\API\Controllers\PurchaseOrderAPIController.cs" />
+    <Compile Include="Areas\API\Controllers\InternalPurchaseAPIController.cs" />
     <Compile Include="Areas\API\Controllers\SettingAPIController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -558,6 +558,7 @@
     <Content Include="Scripts\libraries\typeahead\typeahead.bundle.min.js" />
     <Content Include="Scripts\libraries\typeahead\typeahead.jquery.js" />
     <Content Include="Scripts\libraries\typeahead\typeahead.jquery.min.js" />
+    <Content Include="Scripts\ProjectScripts\HR\Settings\Sponsor.js" />
     <Content Include="Scripts\ProjectScripts\Procurement\MaterialRequest.js" />
     <Content Include="Scripts\ProjectScripts\Procurement\Store\ItemManagement.js" />
     <Content Include="Scripts\ProjectScripts\Purchase\Internalpurchase.js" />
@@ -616,7 +617,7 @@
     <Content Include="Views\Employee\_PartialJobContract.cshtml" />
     <Content Include="Views\Employee\_PartialJobOffer.cshtml" />
     <Content Include="Views\Home\AccessDenied.cshtml" />
-    <Content Include="Views\Employee\_PartialSponsor.cshtml" />
+    <Content Include="Views\Employee\_PartialVendor.cshtml" />
     <Content Include="Scripts\ProjectScripts\HR\Settings\Vendor.js" />
     <Content Include="Views\Employee\_PartialEmployeeLeaves.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeLeavesHr.cshtml" />
@@ -631,6 +632,7 @@
     <Content Include="Views\Procurement\MaterialRequest.cshtml" />
     <Content Include="Views\Procurement\InternalPurchaseRequest.cshtml" />
     <Content Include="Views\Procurement\PurchaseOrderManagement.cshtml" />
+    <Content Include="Views\Employee\_PartialSponsor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

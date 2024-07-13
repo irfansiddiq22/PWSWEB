@@ -8,7 +8,7 @@
             <br />
             <div style="font-weight: bold; font-size: 14px;">REQUEST Details:</div>
             
-            <table style="width: 900px" width="900px;border:1px solid #000000">
+            <table style="width: 900px;border:1px solid #000000">
                             <tr>
                                 <td style="font-weight: bold; font-size: 12px; background-color: #f2f2f2">Request Date</td>
                                 <td style="font-weight: bold; font-size: 12px; background-color: #f2f2f2">Supplier</td>

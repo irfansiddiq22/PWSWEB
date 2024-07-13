@@ -42,6 +42,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        /*
 
         /// <summary>
         /// With/With out dision
@@ -55,6 +56,8 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        */
+
         public async Task<JsonResult> SponsorList()
         {
             return new JsonResult

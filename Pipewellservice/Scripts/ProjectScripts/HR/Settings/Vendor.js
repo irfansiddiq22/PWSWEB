@@ -94,7 +94,7 @@ function EditVendor(ID) {
 function SaveVendor() {
 
 	
-	if ($("#frmEmployeeData").valid()) {
+    if ($("#frmVendor").valid()) {
 
 
 		ResetChangeLog(PAGES.Vendor);

@@ -262,46 +262,57 @@
                         </div>
 
                     </div>
+                    <div class="row ">
+                        <div class="col-md-6">
+                            <div class="row mb-3">
 
-                    <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="preparedBy" class="form-label">Prepared By</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtPreparedBy" value="" readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="preparedDate" class="form-label">Date</label>
+                                    <input type="text" class="form-control form-control-sm datepicker" id="txtRequestPrepDate">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="requestedBy" class="form-label">Requested By</label>
+                                    <select class="form-select form-select-sm" id="ddEmployeeCode"></select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="requestedDate" class="form-label">Date</label>
+                                    <input type="text" class="form-control form-control-sm datepicker" id="txtRequestDate" value="2024-06-27">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="department" class="form-label">Department</label>
+                                    <select class="form-select form-select-sm" id="ddDepartment"></select>
+                                </div>
 
-                        <div class="col-md-3">
-                            <label for="preparedBy" class="form-label">Prepared By</label>
-                            <input type="text" class="form-control form-control-sm" id="txtPreparedBy" value="" readonly>
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <label for="preparedDate" class="form-label">Date</label>
-                            <input type="text" class="form-control form-control-sm datepicker" id="txtRequestPrepDate">
+                        <div class="col-md-6">
+                            <div class="border">
+                                <div class="blue p-2"><b>Approvals</b> <div class="pull-right"><button type="button" onclick="AddApproval(0,0)" class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i></button></div><div class="clearfix"></div></div>
+                                <div id="ApprovalList" class="p-3">
+
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-md-3">
-                            <label for="requestedBy" class="form-label">Requested By</label>
-                            <select class="form-select form-select-sm" id="ddEmployeeCode"></select>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="requestedDate" class="form-label">Date</label>
-                            <input type="text" class="form-control form-control-sm datepicker" id="txtRequestDate" value="2024-06-27">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-3">
-                            <label for="department" class="form-label">Department</label>
-                            <select class="form-select form-select-sm" id="ddDepartment"></select>
-                        </div>
+                        <div class="my-3 row">
 
-                    </div>
-                    <div class="my-3 row">
+                            <div class="col-md-auto">
+                                <button type="button" class="btn btn-primary" onclick="SaveOrderManagement()"> Save</button>
+                            </div><div class="col-md-auto">
+                                <button class="btn btn-danger" type="button" onclick="ResetNav()">Cancel</button>
+                            </div> <div class="col-md-auto">
+                                <button class="btn btn-danger" type="reset">Clear</button>
+                            </div>
 
-                        <div class="col-md-auto">
-                            <button type="button" class="btn btn-primary" onclick="SaveOrderManagement()"> Save</button>
-                        </div><div class="col-md-auto">
-                            <button class="btn btn-danger" type="button" onclick="ResetNav()">Cancel</button>
-                        </div> <div class="col-md-auto">
-                            <button class="btn btn-danger" type="reset">Clear</button>
                         </div>
-
-                    </div>
 
 
                 </form>
@@ -345,7 +356,7 @@
 @section Scripts{
     @Scripts.Render("~/bundles/pagination")
     @Scripts.Render("~/bundles/typeahead")
-    s
+    
     @Scripts.Render("~/lib/purchase/purchaseordermanagement")
     @Styles.Render("~/bundles/paginationcss")
 }

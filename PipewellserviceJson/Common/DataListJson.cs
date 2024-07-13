@@ -36,10 +36,10 @@ namespace PipewellserviceJson.Common
         {
             return await JsonHelper.Convert<List<Supervisor>, DataTable>(await service.Supervisors());
         }
-        public async Task<List<Supervisor>> SupervisorList()
+       /* public async Task<List<Supervisor>> SupervisorList()
         {
             return await JsonHelper.Convert<List<Supervisor>, DataTable>(await service.SupervisorList());
-        }
+        }*/
         public async Task<List<EmailTemplate>> EmplyeeRequestTemplates()
         {
             return await JsonHelper.Convert<List<EmailTemplate>, DataTable>(await service.EmployeeRequestEmailTemplates());

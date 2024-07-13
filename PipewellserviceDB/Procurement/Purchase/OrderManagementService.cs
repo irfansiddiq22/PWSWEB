@@ -1,4 +1,5 @@
 ﻿using PipewellserviceModels.Common;
+using PipewellserviceModels.HR.Employee;
 using PipewellserviceModels.Procurement.Purchase;
 using SQLHelper;
 using System;
@@ -48,6 +49,7 @@ namespace PipewellserviceDB.Procurement.Purchase
                 OrderPurchaseManagementDB Data = new OrderPurchaseManagementDB();
                 Data.OrderPurchase.Load(result);
                 Data.OrderPurchaseItem.Load(result);
+                Data.Approvals.Load(result);
                 result.Close();
                 return Data;
             }
@@ -57,7 +59,7 @@ namespace PipewellserviceDB.Procurement.Purchase
             }
 
         }
-        public async Task<OrderPurchaseManagementResult> AddOrderPurchaseManagmentData(OrderPurchaseManagement request, List<OrderPurchaseManagementItem> Items)
+        public async Task<OrderPurchaseManagementResult> AddOrderPurchaseManagmentData(OrderPurchaseManagement request, List<EmployeeApproval> approvals, List<OrderPurchaseManagementItem> Items)
         {
             OrderPurchaseManagementResult requestResult = new OrderPurchaseManagementResult();
             try
@@ -69,7 +71,16 @@ namespace PipewellserviceDB.Procurement.Purchase
                     xml.Append($"<Table1><ID>{item.ID}</ID><Name>{item.ItemName}</Name><UnitCost>{item.UnitCost}</UnitCost><Unit>{item.Unit}</Unit><Quantity>{item.Quantity}</Quantity><Notes>{item.Notes}</Notes><MSDS>{item.MSDS}</MSDS><PartNumber>{item.PartNumber}</PartNumber></Table1>");
                 }
                 xml.Append("</NewDataSet>");
-                SqlParameter[] collSP = new SqlParameter[27];
+
+                StringBuilder xmlApprovals = new StringBuilder();
+                xmlApprovals.Append("<NewDataSet>");
+                foreach (EmployeeApproval item in approvals)
+                {
+                    xmlApprovals.Append($"<Table1><ID>{item.ID}</ID><DivisionID>{item.DivisionID}</DivisionID><SupervisorID>{item.SupervisorID}</SupervisorID></Table1>");
+                }
+                xmlApprovals.Append("</NewDataSet>");
+
+                SqlParameter[] collSP = new SqlParameter[28];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = request.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@SupplierID", Value = request.SupplierID };
                 collSP[2] = new SqlParameter { ParameterName = "@Attn", Value = request.Attn };
@@ -87,7 +98,6 @@ namespace PipewellserviceDB.Procurement.Purchase
                 collSP[14] = new SqlParameter { ParameterName = "@VAT", Value = request.VAT };
                 collSP[15] = new SqlParameter { ParameterName = "@Discount", Value = request.Discount };
                 collSP[16] = new SqlParameter { ParameterName = "@ShowVatOnInvoice", Value = request.ShowVatOnInvoice };
-                
                 collSP[17] = new SqlParameter { ParameterName = "@DeliveryType", Value = request.DeliveryType };
                 collSP[18] = new SqlParameter { ParameterName = "@PaymentType", Value = request.PaymentType };
                 collSP[19] = new SqlParameter { ParameterName = "@RequestedBy", Value = request.RequestedBy };
@@ -98,6 +108,8 @@ namespace PipewellserviceDB.Procurement.Purchase
                 collSP[24] = new SqlParameter { ParameterName = "@OrderItems", Value = xml.ToString() };
                 collSP[25] = new SqlParameter { ParameterName = "@RecordDate", Value = request.RecordDate };
                 collSP[26] = new SqlParameter { ParameterName = "@Total", Value = request.Total };
+
+                collSP[27] = new SqlParameter { ParameterName = "@Approvals", Value = xmlApprovals.ToString() };
 
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcAddUpdateOrderPurchaseManagementDetail", CommandType.StoredProcedure, collSP);
 

@@ -61,6 +61,7 @@ namespace PipewellserviceDB.Common
             }
 
         }
+        /*
         public async Task<DataTable> SupervisorList()
         {
             try
@@ -77,7 +78,7 @@ namespace PipewellserviceDB.Common
             }
 
         }
-
+        */
         public async Task<DataTable> LeaveTypes()
         {
             try

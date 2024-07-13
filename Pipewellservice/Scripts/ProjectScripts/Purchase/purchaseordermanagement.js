@@ -1,7 +1,8 @@
 ﻿var Items = [];
 var OrderManagement = { ID: 0 };
 var PurchaseRequestItems = [];
-
+var Supervisors = [];
+var Approvals = [];
 
 function _Init() {
     HideSpinner();
@@ -14,6 +15,14 @@ function _Init() {
         $("#ddRequestDataRange").val(moment().subtract(3, 'month').startOf('month').format("DD/MM/YYYY") + ' - ' + moment().endOf('month').format("DD/MM/YYYY"))
         //FillList("ddRequestType", resp, "Name", "Value", "Select Type")
         //  FillList("ddFilterRequestType", resp, "Name", "Value", "Select Type")
+        $.post("/DataList/Supervisors", {}).done(function (Response) {
+            Supervisors = []
+            Supervisors.push({ id: 0, text: 'Select Supervisor' });
+            $.each(Response, function (i, emp) {
+                Supervisors.push({ id: emp.ID, text: emp.Name, DivisionID:emp.DivisionID });
+            })
+        });
+
         BindUsers();
         BindItemSearch();
         BindSuppliers();
@@ -104,7 +113,7 @@ function BindOrderManagmentList(PageNumber = 1) {
     ResetChangeLog(PAGES.InternalPurchaseRequest);
 
     $('#dvOrderManagementPaging').pagination({
-        dataSource: "/OrderPurchaseAPI/GetOrderPurchaseRequestList",
+        dataSource: "/PurchaseOrderAPI/GetOrderPurchaseRequestList",
         pageSize: pageSize,
         pageNumber: pageNumber,
         showGoInput: true,
@@ -183,15 +192,22 @@ function DeleteOrderManagement(ID) {
 function EditOrderManagement(ID) {
 
 
-    Post("/OrderPurchaseAPI/GetOrderPurchaseRequestDetail", { ID: ID }).done(function (resp) {
+    Post("/PurchaseOrderAPI/GetOrderPurchaseRequestDetail", { ID: ID }).done(function (resp) {
         $("#dvEditRequest").removeClass("d-none");
         $("#dvRequestList").addClass("d-none");
 
 
         OrderManagement = resp.Order;
         PurchaseRequestItems = resp.Items;
+        Approvals = resp.Approvals;
         FillItems(PurchaseRequestItems);
+        $("#ApprovalList").empty();
+        $.each(Approvals, function (i, ap) {
+            if (i > 0) {
+                AddApproval(ap.DivisionID, ap.ID)
+            }
 
+        })
         SetvalOf("txtRecordDate", moment(OrderManagement.RecordDate).format("DD/MM/YYYY"))
         SetvalOf("txtInternalPurchaseOrderNumber", OrderManagement.InternalPurchaseOrderNumber)
         SetvalOf("txtAttn", OrderManagement.Attn);
@@ -308,6 +324,7 @@ function NewOrderManagment() {
     $("#dvEditRequest").removeClass("d-none")
     $("#dvRequestList").addClass("d-none")
     $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
+    $("#ApprovalList").empty();
 }
 
 
@@ -334,7 +351,7 @@ function BindItemSearch() {
         minLength: 1,
         source: function (query, result) {
             $.ajax({
-                url: "/OrderPurchaseAPI/GetInterPurchaseOrderNumber",
+                url: "/PurchaseOrderAPI/GetInterPurchaseOrderNumber",
                 data: 'IPO=' + query,
                 dataType: "json",
                 type: "POST",
@@ -368,7 +385,7 @@ function BindItemSearch() {
 $('#txtInternalPurchaseOrderNumber').blur(function () {
     if (OrderManagement.ID == 0 && $('#txtInternalPurchaseOrderNumber').val() != "") {
         ShowSpinner();
-        $.post("/PurchaseAPI/GetPurchaseRequestDetail", { ID: $('#txtInternalPurchaseOrderNumber').val() }, function (resp) {
+        $.post("/InternalPurchaseAPI/GetPurchaseRequestDetail", { ID: $('#txtInternalPurchaseOrderNumber').val() }, function (resp) {
             HideSpinner();
             if (resp.Request != null) {
                 $("#ddSuppliers").val(resp.Request.SupplierID).trigger("change")
@@ -486,6 +503,7 @@ function SaveOrderManagement() {
         //ApprovedBy: valOf("ddSupervisor"),
     }
     var RequestItems = [];
+    var Approvals = [];
     if (Request.InternalPurchaseOrderNumber == "") {
         swal("Please enter IPO number", { icon: "error" });
         return false;
@@ -529,8 +547,14 @@ function SaveOrderManagement() {
         swal("Please select department", { icon: "error" });
         return false;
     }
+    Approvals = $('.supervisor').map(function () {
+        return {
+            DivisionID: parseInt($(this).val()),
+            SupervisorID: parseInt($(this).find('option:selected').attr("dataid")),
+            ID: parseInt($(this).find('option:selected').attr("approvalid")), 
+        };
+    }).get();
     
-
     RequestItems = Array.from(document.getElementById('itemsTable').rows).map(row => ({
         ID: parseInt($(row).attr("data-id")),
         ItemName: $(row.cells[2]).text(),
@@ -637,7 +661,7 @@ function SaveOrderManagement() {
 
      
 
-    Post("/OrderPurchaseAPI/AddOrderPurchaseManagmentData", { request: Request, Items: RequestItems }).done(function (resp) {
+    Post("/PurchaseOrderAPI/AddOrderPurchaseManagmentData", { request: Request, Items: RequestItems, Approvals: Approvals }).done(function (resp) {
         SaveLog(resp);
         if (resp > 0) {
 
@@ -679,7 +703,7 @@ function FindPastSupplierRate() {
     var itm = Items.find(x => x.ItemNameCode == valOf("txtRequestItemCode"));
     if (itm != null) {
 
-        $.post("/OrderPurchaseAPI/GetSupplierItemRate", {
+        $.post("/PurchaseOrderAPI/GetSupplierItemRate", {
             ID: valOf("ddSuppliers"), ItemID: itm.ID
         }).done(function (resp) {
             $("#tblSuppierRate").empty();
@@ -693,6 +717,37 @@ function FindPastSupplierRate() {
             $("#dlgSuppierRate").modal("show")
         });
     }
+}
+function AddApproval(DivisionID,ID) {
+    if ($("#ApprovalList .supervisor").length == 5) {
+        swal("Maximum 5 approval are required.", { icon: "warning" });
+        return false;
+    }
+
+    var ap = $('<div>').addClass("form-group")
+    ap.append($('<label>').text("Approval from"));
+    var select = $('<select>').addClass("form-select supervisor");
+    $.each(Supervisors, function (i, d) {
+        $(select).append($('<option>', {
+            text: d.text,
+            value: d.DivisionID,
+            dataid: d.id,
+            approvalid:ID
+        }))
+    })
+    $(select).val(DivisionID == 0 ? -1 : DivisionID)
+
+
+    $(ap).append($(select));
+    $("#ApprovalList").append($(ap));
+
+    $(select).select2({
+        tags: "true",
+        placeholder: "Select Supervisor",
+        allowClear: true,
+        width: "100%"
+    })
+
 }
 /*
 document.getElementById('addItem').addEventListener('click', function () {

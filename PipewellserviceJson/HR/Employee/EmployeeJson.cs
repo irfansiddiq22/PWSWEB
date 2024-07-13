@@ -289,6 +289,12 @@ namespace PipewellserviceJson.HR.Employee
             int result=await service.UpdateVendor(dto);
             return await VendorList();
         }
+        public async Task<List<SponsorCompany>> UpdateSponsor(SponsorCompany dto)
+        {
+            var result = await service.UpdateSponsor(dto);
+            return await JsonHelper.Convert<List<SponsorCompany>, DataTable>(result);
+        }
+        
 
         /////////////////////
         public async Task<EmployeeJoiningListView> EmployeeJoining(DateParam param)

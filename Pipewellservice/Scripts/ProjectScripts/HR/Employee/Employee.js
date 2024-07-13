@@ -9,6 +9,7 @@ function _Init() {
         BindUsers();
         FillEmployeeDataList()
         LoadVendor();
+        LoadSponsor();
         BindPermission();
         $.post("/DataList/JobStatus", {}, function (Response) {
             FillList("ddEmployeeStatus", Response, "Name", "Value", " ")
@@ -69,11 +70,18 @@ function FillEmployeeDataList() {
 
         FillList("ddEmployeeDivision", Divisions, "Name", "ID", "Select Division")
         FillList("ddEmployeePosition", Positions, "Name", "ID", "Select Position")
-        FillList("ddEmployeeSponsor", Sponsors, "Name", "ID", "Select Sponsor")
+        FillList("ddEmployeeSponsor", Sponsors, "CRNumber", "ID", "Select Sponsor")
         FillList("ddEmployeeWorkInOutTime", Worktime, "Time", "ID", "")
         FillList("ddEmployeeNationality", Response.nationalities, "Name", "ID", "Select Nationality")
     });
 }
+function FillSponsorList() {
+
+    FillList("ddEmployeeSponsor", SponsorData, "CRNumber", "ID", "Select Sponsor")
+    $("#ddEmployeeSponsor").val(Employee.SponsorID)
+    $("#dlgSponsorList").modal("hide");
+}
+
 function BindUsers() {
     $.post("/EmployeeAPI/CodeName", {}).done(function (Response) {
 
@@ -301,6 +309,7 @@ function EditEmployee(ID) {
     Post("/EmployeeAPI/EmployeeDetail", { EmployeeID: ID }).done(function (Response) {
         Employee = Response[0];
         ResetChangeLog(PAGES.EmployeeDetail);
+        if (Employee.PermissionGroupID == "0") Employee.PermissionGroupID = 4;
 
         $.each($("input[data-id],select[data-id]"), function (i, c) {
             if ($(this).attr("data-type") == "date")
@@ -308,6 +317,7 @@ function EditEmployee(ID) {
             else
                 $(this).val(Employee[$(this).attr("data-id")]);
         })
+        
         $("#imgEmployeePicture").attr("src", "/EmployeeAPI/EmployeePicture?EmployeeID=" + Employee.ID + "&FileID=" + Employee.FileID + "&FileName=" + Employee.FileName)
         $("#ddEmployeeHiringSource").trigger("change")
         $("#ddEmployeeStatus").trigger("change")
@@ -323,7 +333,16 @@ function EditEmployee(ID) {
 
 function UpdateEmployee() {
     if ($("#frmEmployeeData").valid()) {
-
+        if (valOf("txtEmployeeIqama") != "") {
+            if (valOf("txtEmployeeIssueDate") == "") {
+                swal("Enter Iqama Issue date", { icon: "error" });
+                return false;
+            }
+            if (valOf("txtIqmaExpiryDate") == "") {
+                swal("Enter Iqama Expiry date", { icon: "error" });
+                return false;
+            }
+        }
         var employeeToUpdate = {};
         $.each($("input[data-id],select[data-id]"), function (i, c) {
             employeeToUpdate[$(this).attr("data-id")] = $(this).val();

@@ -1,4 +1,5 @@
 ﻿using PipewellserviceModels.Common;
+using PipewellserviceModels.HR.Employee;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,16 +15,19 @@ namespace PipewellserviceModels.Procurement.Purchase
     {
         public DataTable OrderPurchase { get; set; }
         public DataTable OrderPurchaseItem { get; set; }
+        public DataTable Approvals { get; set; }
         public OrderPurchaseManagementDB()
         {
             OrderPurchaseItem = new DataTable();
             OrderPurchase = new DataTable();
+            Approvals = new DataTable();
         }
     }
     public class OrderPurchaseManagementDetail
     {
         public OrderPurchaseManagement Order { get; set; }
         public List<OrderPurchaseManagementItem> Items { get; set; }
+        public List<EmployeeApproval> Approvals { get; set; }
 
     }
 
@@ -79,7 +83,7 @@ namespace PipewellserviceModels.Procurement.Purchase
             get
             {
                 string Status = "";
-                switch (ApprovalStatus1)
+                switch (ApprovalStatus)
                 {
                     case Common.ApprovalStatus.Approved:
                         Status = "Approved";

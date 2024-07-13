@@ -81,8 +81,12 @@ namespace Pipewellservice
             bundles.Add(new Bundle("~/lib/setting/setting").Include(
                       "~/Scripts/ProjectScripts/Setting/Setting.js"));
             bundles.Add(new Bundle("~/lib/hr/setting").Include(
+                "~/Scripts/ProjectScripts/HR/Settings/Sponsor.js",
                       "~/Scripts/ProjectScripts/HR/Settings/Setting.js"));
+            bundles.Add(new Bundle("~/lib/hr/sponsor").Include(
+                      "~/Scripts/ProjectScripts/HR/Settings/Sponsor.js"));
 
+            
             bundles.Add(new Bundle("~/lib/hr/certificate").Include(
                       "~/Scripts/ProjectScripts/HR/Employee/Certificate.js"));
 
@@ -102,7 +106,7 @@ namespace Pipewellservice
 
 
             bundles.Add(new Bundle("~/lib/hr/employee").Include(
-                                  "~/Scripts/ProjectScripts/HR/Employee/Employee.js", "~/Scripts/ProjectScripts/HR/Settings/Vendor.js"));
+                                  "~/Scripts/ProjectScripts/HR/Employee/Employee.js", "~/Scripts/ProjectScripts/HR/Settings/Sponsor.js","~/Scripts/ProjectScripts/HR/Settings/Vendor.js"));
             bundles.Add(new Bundle("~/lib/hr/employeewarning").Include(
                                   "~/Scripts/ProjectScripts/HR/Employee/EmployeeWarning.js"));
             bundles.Add(new Bundle("~/lib/hr/employeeclearance").Include(

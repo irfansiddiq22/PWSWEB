@@ -102,7 +102,7 @@ function BindPurchaseRequestList(PageNumber = 1) {
     ResetChangeLog(PAGES.InternalPurchaseRequest);
 
     $('#dvPurchaseRequestPaging').pagination({
-        dataSource: "/PurchaseAPI/GetPurchaseRequestList",
+        dataSource: "/InternalPurchaseAPI/GetPurchaseRequestList",
         pageSize: pageSize,
         pageNumber: pageNumber,
         showGoInput: true,
@@ -179,7 +179,7 @@ function DeletePurchaseRequest(ID) {
 function EditPurchaseRequest(ID) {
 
 
-    Post("/PurchaseAPI/GetPurchaseRequestDetail", { ID: ID }).done(function (resp) {
+    Post("/InternalPurchaseAPI/GetPurchaseRequestDetail", { ID: ID }).done(function (resp) {
         $("#dvEditRequest").removeClass("d-none");
         $("#dvRequestList").addClass("d-none");
 
@@ -486,14 +486,14 @@ function SavePurchaseRequest() {
         Request.FileName = files[0].FileName;
     }
 
-    Post("/PurchaseAPI/AddPurchaseRequest", { request: Request, Items: RequestItems }).done(function (resp) {
+    Post("/InternalPurchaseAPI/AddPurchaseRequest", { request: Request, Items: RequestItems }).done(function (resp) {
         SaveLog(resp);
         if (resp > 0) {
 
 
             if (files.length > 0) {
 
-                UploadFile("/PurchaseAPI/UpdatePurchaseRequestFile", files[0], { ID: resp }, function (Status, Response) {
+                UploadFile("/InternalPurchaseAPI/UpdatePurchaseRequestFile", files[0], { ID: resp }, function (Status, Response) {
 
 
                     if (Status == 1) {

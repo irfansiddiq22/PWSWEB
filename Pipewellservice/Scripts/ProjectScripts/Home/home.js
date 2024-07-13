@@ -9,7 +9,7 @@ function _Init() {
     }
     SetPagePermissions([0, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 20, 21, 22]);
     SetGroupPermissions([1, 2]);
-    if (User.ApprovalRequests)  GetPendingRequests();
+    if (User.ApprovalRequests) GetPendingRequests();
 
 }
 function GetPendingRequests() {
@@ -25,7 +25,7 @@ function ShowApprovalList() {
     $.each(PendingApprovalList, function (i, d) {
         var tr = $('<tr data-id="' + d.ID + '" data-type="' + d.RecordType + '">')
         $(tr).append($('<td>').text(d.ApprovalForm))
-        $(tr).append($('<td>').append($('<a>').attr("href", "javascript:void(0)").attr("onclick", "Print(" + d.ID + "," + d.PageID + ")").text(d.ID)))
+        $(tr).append($('<td>').append($('<a>').attr("href", "javascript:void(0)").attr("onclick", "Print(" + d.ID + "," + d.PageID + "," + d.RecordID +")").text(d.RecordID)))
         $(tr).append($('<td>').text(moment(d.RecordDate).format("DD/MM/YYYY hh:mm A")));
         $(tr).append($('<td>').text(d.PreparedBy))
         var Remarks = $('<textarea id="txtApprovalRemarks' + d.ID + '" class="form-control form-control-sm" rows="4">')
@@ -36,7 +36,7 @@ function ShowApprovalList() {
         btng += '  <label class="btn btn-sm btn-outline-danger " for="btnReject' + d.ID + '">Reject</label>'
         btng += '  <input name="approvals' + d.ID + '" type="radio" class="btn-check"  id="btnDeclined' + d.ID + '" autocomplete="off">'
         //btng += '  <label class="btn btn-sm btn-outline-warning" for="btnDeclined' + d.ID + '">Decline</label>'
-       // btng += '  <input name="approvals' + d.ID + '" type="radio" class="btn-check"  id="btnNoAction' + d.ID + '" autocomplete="off">'
+        // btng += '  <input name="approvals' + d.ID + '" type="radio" class="btn-check"  id="btnNoAction' + d.ID + '" autocomplete="off">'
         btng += '  <label class="btn btn-sm btn-outline-primary" for="btnNoAction' + d.ID + '">Forward to higher Level</label>'
         btng += '  </div></div>'
         $(tr).append($('<td>').append($(Remarks)).append(btng))
@@ -110,6 +110,11 @@ function DownloadFile(EmployeeID, FileName, FileID, Type) {
     else if (Type == 7)
         DownloadFile("/EmployeeAPI/DownloadLeaveFile?EmployeeID=" + String(EmployeeID) + "&FileName=" + FileName + "&FileID=" + FileID);
 }
-function Print(ID, Page) {
-    window.open("/Employee/PrintReport?ID=" + ID + "&ReportID=" + Page, "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
+function Print(ID, Page, RecordID) {
+    if (Page == 30)
+        window.open("/Procurement/PrintInternalPurchaseRequest?ID=" + RecordID, "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
+    else if (Page == 31)
+        window.open("/Procurement/PrintPurchaseOrderRequest?ID=" + RecordID, "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
+    else
+        window.open("/Employee/PrintReport?ID=" + ID + "&ReportID=" + Page, "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
 }

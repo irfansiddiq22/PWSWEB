@@ -1,0 +1,141 @@
+﻿<div class="border p-2">
+    <div class="my-2 container">
+        <div class="my-2 p-2">
+            <div class="row">
+                <div class="col-auto col-form-label">Vendors</div>
+                <div class="col-3"><select id="ddVendorList" class="form-select form-select-sm ddVendors" onchange="EditVendor(this.value)"></select></div>
+            </div>
+        </div>
+        <form id="frmVendor">
+            <div class="blue"><h6>Vendor Registration</h6></div>
+            <div class="border p-2">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="txtVendorName" class="col-form-label">Vendor Name:</label>
+                            <input type="text" class="form-control form-control-sm" id="txtVendorName" name="txtVendorName" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="txtVendorCR" class="col-form-label">Vendor CR:</label>
+                            <input type="text" class="form-control form-control-sm" id="txtVendorCSR" name="txtVendorCSR" required />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="txtVendorContact" class="col-form-label">Vendor Contact Details:</label>
+                            <input type="text" class="form-control form-control-sm" id="txtVendorContact" name="txtVendorContact" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="txtVendorEmergencyContact" class="col-form-label">Vendor Emergency Contact Details:</label>
+                            <input type="text" class="form-control form-control-sm" id="txtVendorEmergencyContact" name="txtVendorEmergencyContact" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="txtVendorEmergencyContact" class="col-form-label">Vendor Address:</label>
+                            <input type="text" class="form-control form-control-sm" id="txtVendorAddress" name="txtVendorAddress" required />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="txtVendorEmergencyContact " class="col-form-label">Vendor Email Address:</label>
+                            <input type="text" class="form-control form-control-sm" id="txtVendorEmailAddress" name="txtVendorEmailAddress" required />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="txtVendorSOW" class="col-form-label">Scope of work:</label>
+                            <input type="text" class="form-control form-control-sm" id="txtVendorSOW" name="txtVendorSOW" required />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="txtVendorHourlyPrice" class="col-form-label">Hourly Price:</label>
+                            <input type="text" class="form-control form-control-sm" id="txtVendorHourlyPrice" name="txtVendorHourlyPrice" required />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="txtVendorWorkHours" class="col-form-label">Agreed Working Hour:</label>
+                            <input type="text" class="form-control form-control-sm" id="txtVendorWorkHours" name="txtVendorWorkHours" required />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="txtVendorOverTimeHourPrice" class="col-form-label">Overtime Hourly Price:</label>
+                            <input type="text" class="form-control form-control-sm" id="txtVendorOverTimeHourPrice" name="txtVendorOverTimeHourPrice" required />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="txtVendorWorkHours" class="col-form-label">Minimum Workinging Hour:</label>
+                            <input type="text" class="form-control form-control-sm" id="txtVendorWorkMinHours" name="txtVendorWorkMinHours" required />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ddVendorAccommodation" class="col-form-label">Accommodation:</label>
+                            <select class="form-select form-select-sm" id="ddVendorAccommodation" name="ddVendorAccommodation"><option value="1">Yes</option><option value="0">No</option></select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ddVendorFood" class="col-form-label">Food:</label>
+                            <select class="form-select form-select-sm" id="ddVendorFood" name="ddVendorFood"><option value="1">Yes</option><option value="0">No</option></select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ddVendorTransport" class="col-form-label">Transport:</label>
+                            <select class="form-select form-select-sm" id="ddVendorTransport" name="ddVendorTransport"><option value="1">Yes</option><option value="0">No</option></select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="ddVendorAjeerProvided" class="col-form-label">Ajeer Provided ?:</label>
+                            <select class="form-select form-select-sm" id="ddVendorAjeerProvided" name="ddVendorAjeerProvided"><option value="1">Yes</option><option value="0">No</option></select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="ddVendorAjeerType" class="col-form-label">Type of Ajeer:</label>
+                            <select class="form-select form-select-sm" id="ddVendorAjeerType" name="ddVendorAjeerType"><option value="1">Yes</option><option value="0">No</option></select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="ddVendorAjeerType" class="col-form-label">Ajeer Saudization:</label>
+                            <select class="form-select form-select-sm" id="ddAjeerSaudization" name="ddAjeerSaudization"><option value="1">PWS</option><option value="0">Vendor</option></select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="ddVendorPWSCR" class="col-form-label">PWS CR:</label>
+                            <select class="form-select form-select-sm" id="ddVendorPWSCR" name="ddVendorPWSCR"><option value="1">PWS</option><option value="0">Vendor</option></select>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="ddVendorRemarks" class="col-form-label">Remarks:</label>
+                            <textarea class="form-select form-select-sm" id="txtVendorRemarks" name="txtVendorRemarks" rows="10"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+        <div class="my-2"><button class="btn btn-primary" type="button" onclick="SaveVendor()">Save</button> <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button></div>
+    </div>
+    @section Scripts{
+        @Scripts.Render("~/lib/hr/vendor")
+    }
+</div>

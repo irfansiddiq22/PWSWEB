@@ -489,7 +489,7 @@ namespace PipewellserviceDB.HR.Employee
 
             try
             {
-                SqlParameter[] collSP = new SqlParameter[41];
+                SqlParameter[] collSP = new SqlParameter[49];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = employee.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@Name", Value = employee.Name };
                 collSP[2] = new SqlParameter { ParameterName = "@ArabicName", Value = employee.ArabicName };
@@ -532,7 +532,18 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[37] = new SqlParameter { ParameterName = "@AnnualTicket", Value = employee.AnnualTicket };
                 collSP[38] = new SqlParameter { ParameterName = "@JobLeftDate", Value = employee.JobLeftDate };
                 collSP[39] = new SqlParameter { ParameterName = "@VendorID", Value = employee.VendorID };
-                collSP[40] = new SqlParameter { ParameterName = "@PermissionGroupID", Value = employee.PermissionGroupID };
+
+                collSP[40] = new SqlParameter { ParameterName = "@IqamaNumber", Value = employee.Iqama };
+                collSP[41] = new SqlParameter { ParameterName = "@IqamaIssueDate", Value = employee.IqamaIssueDate   };
+                collSP[42] = new SqlParameter { ParameterName = "@IqamaExpiryDate", Value = employee.IqmaExpiryDate };
+
+                collSP[43] = new SqlParameter { ParameterName = "@QiwaContract", Value = employee.QiwaContract };
+                collSP[44] = new SqlParameter { ParameterName = "@IqamaProfession", Value = employee.IqamaProfession };
+                collSP[45] = new SqlParameter { ParameterName = "@EmergencyContactNumber", Value = employee.EmergencyContactNumber };
+                collSP[46] = new SqlParameter { ParameterName = "@EmergencyContactRelation", Value = employee.EmergencyContactRelation   };
+                collSP[47] = new SqlParameter { ParameterName = "@AccommodationRequired", Value = employee.AccommodationRequired   };
+                collSP[48] = new SqlParameter { ParameterName = "@IBAN", Value = employee.IBAN };
+
 
                 var Result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployee", CommandType.StoredProcedure, collSP);
                 return new ResultDTO() { ID = Convert.ToInt32(Result), Status = true, Message = "Record Added" };
@@ -1090,6 +1101,26 @@ namespace PipewellserviceDB.HR.Employee
                 return 0;
             }
         }
+        public async Task<DataTable> UpdateSponsor(SponsorCompany dTO)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[3];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = dTO.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@Name", Value = dTO.Name };
+                collSP[2] = new SqlParameter { ParameterName = "@CRNumber", Value = dTO.CRNumber };
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcUpdateSponsorList", CommandType.StoredProcedure,collSP);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+            }
         /////////////////////////////////////////////////////////////////
 
         public async Task<EmployeeJoiningDB> EmployeeJoining(DateParam param)

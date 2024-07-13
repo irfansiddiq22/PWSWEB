@@ -825,6 +825,16 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        
+        public async Task<JsonResult> UpdateSponsor(SponsorCompany sponsor)
+        {
+            
+            return new JsonResult
+            {
+                Data = await json.UpdateSponsor(sponsor),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
         /// <summary>
         /// //////////////////////////////////
 
