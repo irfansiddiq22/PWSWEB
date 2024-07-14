@@ -230,20 +230,18 @@
                             <label class="switch"><input type="radio" id="chkQiwaContractNo" name="QiwaContract" data-id="QiwaContractNo"><div class="slider round"></div></label> No
                         </div>
 
+                        <div class="col-4"><label>Source Of Hiring</label></div>
+                        <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeeHiringSource" data-id="HiringSource" required data-msg="Please select hiring source"><option value="1">Direct</option>  <option value="3">Vendor</option><option value=""></option></select></div>
 
 
-                        <div class="col-4"><label>PWS CR #</label></div>
-                        <div class="col-8">
+                        <div class="col-4 emppwscr"><label>PWS CR #</label></div>
+                        <div class="col-8 emppwscr">
                             <div class="row">
                                 <div class="col"><select type="text" class="form-select form-select-sm" id="ddEmployeeSponsor" data-id="SponsorID" required data-msg="Please select PWS CR"></select></div>
                                 <div class="col-auto"><a href="javascript:void(0)" onclick="EditSponsorData();" class="ms-2 text-primary"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)" onclick="AddSponsorData()" class="ms-2 text-success"><i class="fa fa-plus-circle"></i></a> </div>
                             </div>
 
                         </div>
-
-
-                        <div class="col-4"><label>Source Of Hiring</label></div>
-                        <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeeHiringSource" data-id="HiringSource" required data-msg="Please select hiring source"><option value="1">Direct</option>  <option value="3">Vendor</option><option value=""></option></select></div>
 
                         <div class="col-4 vendor"><label>Vendor</label><a href="javascript:void(0)" onclick="ShowVendorList()" class="ms-2 text-success"><i class="fa fa-plus-circle"></i></a></div>
                         <div class="col-8 vendor">
@@ -288,26 +286,26 @@
                         <div class="col-4"><label>Working Hour</label></div>
                         <div class="col-8"><select type="text" class="form-select form-select-sm" id="ddEmployeeWorkInOutTime" data-id="JobTimingID"></select></div>
                         <div class="col-4"></div>
-                            <div class="col-8 text-start">
-                                deduct salary(late came/early out)
-                                <label class="switch"><input type="checkbox" checked="checked" id="chkEmployeeDeductSalary" data-id="DeductSalary"><div class="slider round"></div></label>
-
-                            </div>
-
-                            <div class="col-4"><label>IBAN #</label></div>
-                            <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeIBAN" data-id="IBAN"  /></div>
-
-
-
-                            <select type="text" class="form-select form-select-sm d-none" id="ddEmployeeWorkPortalPermission" data-id="PermissionGroupID"></select>
-
-                            <div class="col text-center">
-                                <button class="btn btn-primary btn-lg" onclick="UpdateEmployee()" type="button">Save</button>
-                                <button class="btn btn-danger btn-lg" onclick="ResetNav()" type="button">Cancel</button>
-                            </div>
-
+                        <div class="col-8 text-start">
+                            deduct salary(late came/early out)
+                            <label class="switch"><input type="checkbox" checked="checked" id="chkEmployeeDeductSalary" data-id="DeductSalary"><div class="slider round"></div></label>
 
                         </div>
+
+                        <div class="col-4"><label>IBAN #</label></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeIBAN" data-id="IBAN" /></div>
+
+
+
+                        <select type="text" class="form-select form-select-sm d-none" id="ddEmployeeWorkPortalPermission" data-id="PermissionGroupID"></select>
+
+                        <div class="col text-center">
+                            <button class="btn btn-primary btn-lg" onclick="UpdateEmployee()" type="button">Save</button>
+                            <button class="btn btn-danger btn-lg" onclick="ResetNav()" type="button">Cancel</button>
+                        </div>
+
+
+                    </div>
                     </div>
 
                 <div class="col-lg-2 d-none d-md-block">

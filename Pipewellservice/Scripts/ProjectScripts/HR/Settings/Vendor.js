@@ -90,7 +90,7 @@ function EditVendor(ID) {
     SetvalOf("ddVendorAjeerType", Vendor.AjeerType).trigger("change");
 	SetvalOf("ddAjeerSaudization", Vendor.AjeerSaudization);
 	SetvalOf("ddVendorPWSCR", Vendor.PWSCR);
-    SetvalOf("ddVendorRemarks", Vendor.Remarks);
+    SetvalOf("txtVendorRemarks", Vendor.Remarks);
 
     SetvalOf("ddVendorAjeerType", Vendor.AjeerType).trigger("change");
 }

@@ -71,8 +71,8 @@ function FillEmployeeDataList() {
 
         FillList("ddEmployeeDivision", Divisions, "Name", "ID", "Select Division")
         FillList("ddEmployeePosition", Positions, "Name", "ID", "Select Position")
-        FillList("ddEmployeeSponsor", Sponsors, "CRNumber", "ID", "Select PWS CR")
-        FillList("ddVendorPWSCR", Sponsors, "CRNumber", "CRNumber", "#")
+        FillList("ddEmployeeSponsor", Sponsors, "Display", "ID", "Select PWS CR")
+        FillList("ddVendorPWSCR", Sponsors, "Display", "CRNumber", "#")
         
         
         FillList("ddEmployeeWorkInOutTime", Worktime, "Time", "ID", "")
@@ -81,7 +81,7 @@ function FillEmployeeDataList() {
 }
 function FillSponsorList() {
 
-    FillList("ddEmployeeSponsor", SponsorData, "CRNumber", "ID", "Select Sponsor")
+    FillList("ddEmployeeSponsor", SponsorData, "Display", "ID", "Select PWS CR")
     $("#ddEmployeeSponsor").val(Employee.SponsorID)
     $("#dlgSponsorList").modal("hide");
 }
@@ -89,7 +89,7 @@ function FillSponsorList() {
 function FillLocationList() {
 
     FillList("ddEmployeeLocation", LocationData, "Name", "ID", "Select Location")
-    $("#ddEmployeeSponsor").val(Employee.Location)
+    $("#ddEmployeeLocation").val(Employee.Location)
     $("#dlgLocationList").modal("hide");
 }
 
@@ -450,10 +450,12 @@ $("#ddEmployeeHiringSource").change(function () {
     if ($(this).val() == 1) {
         $("#txtEmployeeHiringCost").attr("readonly", "readonly")
         $(".vendor").hide();
+        $(".emppwscr").show();
     }
     else {
         $("#txtEmployeeHiringCost").removeAttr("readonly")
         $(".vendor").show();
+        $(".emppwscr").hide()
     }
 })
 $("#ddEmployeeNationality").change(function () {

@@ -56,6 +56,13 @@ namespace PipewellserviceModels.HR.Settings
         public string Name { get; set; }
         public DataChangeLog log { get; set; }
         public int CRNumber { get; set; }
+        public string Display
+        {
+            get
+            {
+                return $"{Name} ({ CRNumber})";
+            }
+        }
     }
     public class WorkInOutTime
     {
