@@ -27,6 +27,12 @@ namespace PipewellserviceJson.Common
             DataTable result = await service.SponsorList();
             return await JsonHelper.Convert<List<SponsorCompany>, DataTable>(result);
         }
+        public async Task<List<Location>> LocationList()
+        {
+            DataTable result = await service.LocationList();
+            return await JsonHelper.Convert<List<Location>, DataTable>(result);
+        }
+        
         public async Task<List<LeaveType>> LeaveTypes()
         {
             DataTable result = await service.LeaveTypes();

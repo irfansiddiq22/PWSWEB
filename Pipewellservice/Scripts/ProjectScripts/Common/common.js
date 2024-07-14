@@ -30,7 +30,8 @@
     ProcurementMaterial: 29,
     InternalPurchaseRequest: 30,
     OrderPurchaseManagement: 31,
-    Sponsor:32
+    Sponsor: 32,
+    Location:33
 
 }
 var REPORTS = {

@@ -294,7 +294,12 @@ namespace PipewellserviceJson.HR.Employee
             var result = await service.UpdateSponsor(dto);
             return await JsonHelper.Convert<List<SponsorCompany>, DataTable>(result);
         }
-        
+        public async Task<bool> UpdateLocation(Location dto)
+        {
+            return await service.UpdateLocation(dto);
+            
+        }
+
 
         /////////////////////
         public async Task<EmployeeJoiningListView> EmployeeJoining(DateParam param)

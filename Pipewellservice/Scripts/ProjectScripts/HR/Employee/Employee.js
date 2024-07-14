@@ -10,6 +10,7 @@ function _Init() {
         FillEmployeeDataList()
         LoadVendor();
         LoadSponsor();
+        LoadLocations();
         BindPermission();
         $.post("/DataList/JobStatus", {}, function (Response) {
             FillList("ddEmployeeStatus", Response, "Name", "Value", " ")
@@ -70,7 +71,10 @@ function FillEmployeeDataList() {
 
         FillList("ddEmployeeDivision", Divisions, "Name", "ID", "Select Division")
         FillList("ddEmployeePosition", Positions, "Name", "ID", "Select Position")
-        FillList("ddEmployeeSponsor", Sponsors, "CRNumber", "ID", "Select Sponsor")
+        FillList("ddEmployeeSponsor", Sponsors, "CRNumber", "ID", "Select PWS CR")
+        FillList("ddVendorPWSCR", Sponsors, "CRNumber", "CRNumber", "#")
+        
+        
         FillList("ddEmployeeWorkInOutTime", Worktime, "Time", "ID", "")
         FillList("ddEmployeeNationality", Response.nationalities, "Name", "ID", "Select Nationality")
     });
@@ -80,6 +84,13 @@ function FillSponsorList() {
     FillList("ddEmployeeSponsor", SponsorData, "CRNumber", "ID", "Select Sponsor")
     $("#ddEmployeeSponsor").val(Employee.SponsorID)
     $("#dlgSponsorList").modal("hide");
+}
+
+function FillLocationList() {
+
+    FillList("ddEmployeeLocation", LocationData, "Name", "ID", "Select Location")
+    $("#ddEmployeeSponsor").val(Employee.Location)
+    $("#dlgLocationList").modal("hide");
 }
 
 function BindUsers() {

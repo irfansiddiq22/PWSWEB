@@ -73,7 +73,8 @@ function EditVendor(ID) {
 	Vendor =VendorData.find(x=>x.ID == ID);
 	SetvalOf("txtVendorName", Vendor.Name);
 	SetvalOf("txtVendorCSR", Vendor.CSR);
-	SetvalOf("txtVendorContact", Vendor.Contact);
+    SetvalOf("txtVendorContact", Vendor.Contact);
+    SetvalOf("ddVendorContractNumber", Vendor.ContractNumber)
 	SetvalOf("txtVendorEmergencyContact", Vendor.EmergencyContact);
 	SetvalOf("txtVendorAddress", Vendor.Address);
 	SetvalOf("txtVendorEmailAddress", Vendor.EmailAddress);
@@ -85,11 +86,33 @@ function EditVendor(ID) {
 	SetvalOf("ddVendorAccommodation", Vendor.Accommodation);
 	SetvalOf("ddVendorFood", Vendor.Food);
 	SetvalOf("ddVendorTransport", Vendor.Transport);
-	SetvalOf("ddVendorAjeerProvided", Vendor.AjeerProvided);
-	SetvalOf("ddVendorAjeerType", Vendor.AjeerType);
+    SetvalOf("ddVendorAjeerProvided", Vendor.AjeerProvided);
+    SetvalOf("ddVendorAjeerType", Vendor.AjeerType).trigger("change");
 	SetvalOf("ddAjeerSaudization", Vendor.AjeerSaudization);
 	SetvalOf("ddVendorPWSCR", Vendor.PWSCR);
-	SetvalOf("ddVendorRemarks", Vendor.Remarks);
+    SetvalOf("ddVendorRemarks", Vendor.Remarks);
+
+    SetvalOf("ddVendorAjeerType", Vendor.AjeerType).trigger("change");
+}
+function ShowAjeerSaudization() {
+    if (parseInt(valOf("ddVendorAjeerType")) == 1) {
+        SetvalOf("ddAjeerSaudization", 0)
+        $(".pwscr").hide();
+    } else {
+        SetvalOf("ddAjeerSaudization", 1)
+        $(".pwscr").show();
+    }
+    
+}
+function ResetAjeerType() {
+    if (valOf("ddAjeerSaudization") == 0) {
+        SetvalOf("ddVendorAjeerType", 1)
+        $(".pwscr").hide();
+
+    } else {
+        SetvalOf("ddVendorAjeerType", 2)
+        $(".pwscr").show();
+    }
 }
 function SaveVendor() {
 
@@ -101,7 +124,8 @@ function SaveVendor() {
 		var NewData = {
 			ID: Vendor.ID,
 			Name: valOf("txtVendorName"),
-			CSR: valOf("txtVendorCSR"),
+            CSR: valOf("txtVendorCSR"),
+            ContractNumber: valOf("ddVendorContractNumber"),
 			Contact: valOf("txtVendorContact"),
 			EmergencyContact: valOf("txtVendorEmergencyContact"),
 			Address: valOf("txtVendorAddress"),

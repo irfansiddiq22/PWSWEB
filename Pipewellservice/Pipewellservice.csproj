@@ -558,6 +558,7 @@
     <Content Include="Scripts\libraries\typeahead\typeahead.bundle.min.js" />
     <Content Include="Scripts\libraries\typeahead\typeahead.jquery.js" />
     <Content Include="Scripts\libraries\typeahead\typeahead.jquery.min.js" />
+    <Content Include="Scripts\ProjectScripts\HR\Settings\Location.js" />
     <Content Include="Scripts\ProjectScripts\HR\Settings\Sponsor.js" />
     <Content Include="Scripts\ProjectScripts\Procurement\MaterialRequest.js" />
     <Content Include="Scripts\ProjectScripts\Procurement\Store\ItemManagement.js" />
@@ -633,6 +634,7 @@
     <Content Include="Views\Procurement\InternalPurchaseRequest.cshtml" />
     <Content Include="Views\Procurement\PurchaseOrderManagement.cshtml" />
     <Content Include="Views\Employee\_PartialSponsor.cshtml" />
+    <Content Include="Views\Employee\_PartialLocations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

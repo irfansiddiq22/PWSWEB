@@ -176,7 +176,9 @@ namespace PipewellserviceModels.Common
         ProcurementStoreItemManagement=28,
         ProcurementMaterialRequest=29,
         InternalPurchaseRequest=30,
-        OrderPurchaseManagment=31
+        OrderPurchaseManagment=31,
+        Sponosor=32,
+        Location=33 
 
 
     }

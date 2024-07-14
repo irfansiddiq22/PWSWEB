@@ -14,6 +14,7 @@ function _Init() {
     SetPagePermission(PAGES.Division, function () { BindDivision(); });
     SetPagePermission(PAGES.Position, function () { BindPositions(); });
     LoadSponsor();
+    LoadLocations();
     FillWorkTimeSchedule();
     for (i = 0; i <= 24; i++) {
         $("#ddScheduleHourStart,#ddScheduleHourEnd").append(AppendListItem(i,i))
@@ -53,6 +54,20 @@ function FillSponsorList() {
         tr.append($('<td>').append($('<a class="btn btn-sm btn-primary" onclick="EditSponsor('+ s.ID +')">').append($('<i class="fa fa-edit">'))));
 
         $("#tblSponsorList").append(tr)
+    })
+}
+
+function FillLocationList() {
+    
+
+    $("#tblLocationList").empty();
+    $.each(LocationData, function (i, s) {
+        var tr = $('<tr>')
+        tr.append($('<td>').text(s.Name))
+        
+        tr.append($('<td>').append($('<a class="btn btn-sm btn-primary" onclick="EditLocation(' + s.ID + ')">').append($('<i class="fa fa-edit">'))));
+
+        $("#tblLocationList").append(tr)
     })
 }
 function FillDivisionList(Response) {

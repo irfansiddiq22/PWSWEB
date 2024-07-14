@@ -17,10 +17,26 @@
                             <input type="text" class="form-control form-control-sm" id="txtVendorName" name="txtVendorName" required />
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="txtVendorCR" class="col-form-label">Vendor CR:</label>
                             <input type="text" class="form-control form-control-sm" id="txtVendorCSR" name="txtVendorCSR" required />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="ddVendorContractNumber" class="col-form-label">Vendor Contract Number:</label>
+                            <select class="form-select form-select-sm" id="ddVendorContractNumber">
+                                <option value="1">L1</option>
+                                <option value="2">L2</option>
+                                <option value="3">L3</option>
+                                <option value="4">C1</option>
+                                <option value="5">C2</option>
+                                <option value="6">C3</option>
+                                <option value="7">N1</option>
+                                <option value="8">N2</option>
+                                <option value="9">N3</option>
+                            </select>
                         </div>
                     </div>
 
@@ -107,16 +123,20 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="ddVendorAjeerType" class="col-form-label">Type of Ajeer:</label>
-                            <select class="form-select form-select-sm" id="ddVendorAjeerType" name="ddVendorAjeerType"><option value="1">Yes</option><option value="0">No</option></select>
+                            <select class="form-select form-select-sm" id="ddVendorAjeerType" name="ddVendorAjeerType" onchange="ShowAjeerSaudization()">
+                                <option value="0">Select </option>
+                                <option value="1">Contractual Permit – تصريح تعاقد </option>
+                                <option value="2"> Loan Permit – تصريح اعارة</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="ddVendorAjeerType" class="col-form-label">Ajeer Saudization:</label>
-                            <select class="form-select form-select-sm" id="ddAjeerSaudization" name="ddAjeerSaudization"><option value="1">PWS</option><option value="0">Vendor</option></select>
+                            <select class="form-select form-select-sm" id="ddAjeerSaudization" name="ddAjeerSaudization" onchange="ResetAjeerType()"><option value="1">PWS</option><option value="0">Vendor</option></select>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 pwscr">
                         <div class="form-group">
                             <label for="ddVendorPWSCR" class="col-form-label">PWS CR:</label>
                             <select class="form-select form-select-sm" id="ddVendorPWSCR" name="ddVendorPWSCR"><option value="1">PWS</option><option value="0">Vendor</option></select>

@@ -26,6 +26,7 @@ namespace PipewellserviceModels.HR.Employee
         public int Transport { get; set; }
         public int AjeerProvided { get; set; }
         public int AjeerType { get; set; }
+        public int ContractNumber { get; set; }
         public int AjeerSaudization { get; set; }
         public string PWSCR { get; set; }
         public string Remarks { get; set; }

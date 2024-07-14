@@ -43,8 +43,24 @@ namespace PipewellserviceDB.Common
             }
 
         }
+        public async Task<DataTable> LocationList()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcLocationList", CommandType.StoredProcedure);
+                DataTable model = new DataTable();
+                model.Load(result);
+                return model;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
         
-        
+
+
         public async Task<DataTable> Supervisors()
         {
             try

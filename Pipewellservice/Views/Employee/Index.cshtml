@@ -137,7 +137,7 @@
                         <div class="col-8 col-md-2"><select class="form-select form-select-sm" id="ddEmployeeAnnualTicket" data-id="AnnualTicket"><option value="1">Yes</option><option value="0">No</option></select></div>
 
                         <div class="col-4"><label>Iqama Issue Date</label></div>
-                        <div class="col-3"><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeIssueDate"  data-type="date" data-id="IqamaIssueDate" /></div>
+                        <div class="col-3"><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeIssueDate" data-type="date" data-id="IqamaIssueDate" /></div>
                         <div class="col-2"><label>Iqama Exp Date</label></div>
                         <div class="col-3"><input type="text" class="form-control form-control-sm datepicker" id="txtIqmaExpiryDate" data-type="date" data-id="IqmaExpiryDate" /></div>
 
@@ -156,53 +156,60 @@
 
                         <div class="col-4"><label>Physical Location</label></div>
                         <div class="col-8">
-                            <select class="form-select form-select-sm" id="txtEmployeeLocation" data-id="Location" required data-min="0" data-msg="Please select location"><option value="Dammam">Dammam</option><option value="Jubail">Jubail</option><option value="-"></option></select>
+                            <div class="row">
+                                <div class="col"><select type="text" class="form-select form-select-sm" id="ddEmployeeLocation" data-id="Location" required data-min="0" data-msg="Please select location"></select></div>
+                                <div class="col-auto"><a href="javascript:void(0)" onclick="EditLocationData();" class="ms-2 text-primary"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)" onclick="AddLocationData()" class="ms-2 text-success"><i class="fa fa-plus-circle"></i></a> </div>
+                            </div>
                         </div>
 
-                        <div class="col-4"><label>Division</label></div>
-                        <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeeDivision" data-id="DivisionID" required data-msg="Please select division"></select></div>
-                        <div class="col-4"><label>Position</label></div>
-                        <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeePosition" data-id="PositionID" required data-msg="Please select position"></select></div>
-                        <div class="col-4"><label>Grade</label></div>
-                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeGrade" data-id="Grade" /></div>
+                            <div class="col-4"><label>Division</label></div>
+                            <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeeDivision" data-id="DivisionID" required data-msg="Please select division"></select></div>
+                            <div class="col-4"><label>Position</label></div>
+                            <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeePosition" data-id="PositionID" required data-msg="Please select position"></select></div>
+                            <div class="col-4"><label>Grade</label></div>
+                            <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeGrade" data-id="Grade" /></div>
 
-                        <div class="col-4"><label>Report To</label></div>
-                        <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeeSupervisor" data-id="SupervisorID"></select></div>
+                            <div class="col-4"><label>Report To</label></div>
 
-
-                        <div class="col-4"><label>Status</label></div>
-                        <div class="col-8"><select class="form-select form-select-sm" id="ddEmployeeStatus" onchange="ShowJobLeft()" data-id="JobStatus">
-                            <option value="1">On the Job</option><option value="2">Left the Job</option><option value="0"> </option></select></div>
-
-                        <div class="col-4 jobleftdate"><label>Last Working Date</label></div>
-                        <div class="col-8 jobleftdate"><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeJobLeftDate" data-id="JobLeftDate" data-type="date" /></div>
-
-                        <div class="col-4"><label>Personal Email</label></div>
-                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeAddress" data-id="EmailAddress" required data-msg="Please enter email address" /></div>
-
-                        <div class="col-4"><label>Iqama Profession</label></div>
-                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeIqamaProfession" data-id="IqamaProfession" /></div>
-
-                        <div class="col-4"><label>Emergency Contact Number</label></div>
-                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeEmergencyContact" data-id="EmergencyContactNumber" /></div>
+                            <div class="col-8">
+                                <div style="text-align:start!important"><select class="form-select form-select-sm" id="ddEmployeeSupervisor" data-id="SupervisorID"></select></div>
+                            </div>
 
 
-                        <div class="col-4"><label>Emergency Contact Relation</label></div>
-                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeEmergencyRelation" data-id="EmergencyContactRelation" /></div>
-                        <div class="col-4"><label>Accommodation Required</label></div>
-                        <div class="col-8">
-                            <select class="form-select form-select-sm" id="ddAccommodationRequired" name="ddAccommodationRequired" data-id="AccommodationRequired">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
-                                <option value="2" selected>Select</option>
-                            </select>
+                            <div class="col-4"><label>Status</label></div>
+                            <div class="col-8">
+                                <select class="form-select form-select-sm" id="ddEmployeeStatus" onchange="ShowJobLeft()" data-id="JobStatus">
+                                    <option value="1">On the Job</option>
+                                    <option value="2">Left the Job</option>
+                                    <option value="0"> </option>
+                                </select>
+                            </div>
+
+                            <div class="col-4 jobleftdate"><label>Last Working Date</label></div>
+                            <div class="col-8 jobleftdate"><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeJobLeftDate" data-id="JobLeftDate" data-type="date" /></div>
+
+                            <div class="col-4"><label>Personal Email</label></div>
+                            <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeAddress" data-id="EmailAddress" required data-msg="Please enter email address" /></div>
+
+                            <div class="col-4"><label>Iqama Profession</label></div>
+                            <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeIqamaProfession" data-id="IqamaProfession" /></div>
+
+                            <div class="col-4"><label>Emergency Contact Number</label></div>
+                            <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeEmergencyContact" data-id="EmergencyContactNumber" /></div>
+
+
+                            <div class="col-4"><label>Emergency Contact Relation</label></div>
+                            <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeEmergencyRelation" data-id="EmergencyContactRelation" /></div>
+                            <div class="col-4"><label>Accommodation Required</label></div>
+                            <div class="col-8">
+                                <label class="switch"><input type="checkbox" checked="checked" id="chkAccommodationRequired" data-id="AccommodationRequired"><div class="slider round"></div></label>
+                            </div>
+
+                            <div class="col-4"><label>Remarks</label></div>
+                            <div class="col-8"><textarea cols="5" rows="4" class="form-control form-control-sm" id="txtEmployeeRemark" data-id="Remarks"></textarea></div>
                         </div>
 
-                        <div class="col-4"><label>Remarks</label></div>
-                        <div class="col-8"><textarea cols="5" rows="4" class="form-control form-control-sm" id="txtEmployeeRemark" data-id="Remarks"></textarea></div>
                     </div>
-
-                </div>
                 <div class="col-lg-5 col-md-12">
 
                     <div class="row form">
@@ -218,21 +225,20 @@
                         <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeLabourCode" data-id="LabourCode" /></div>
                         <div class="col-4"><label>Qiwa  Authenticated contract</label></div>
                         <div class="col-8">
-                            <input type="text" class="form-control form-control-sm" id="txtQiwaContract" data-id="QiwaContract" />
-                        </div>
-                            @*<select class="form-select form-select-sm" id="ddQiwaContract" name="ddQiwaContract" data-id="QiwaContract">
+
+                            <select class="form-select form-select-sm" id="ddQiwaContract" name="ddQiwaContract" data-id="QiwaContract">
                                 <option value="1">Yes</option>
                                 <option value="0">No</option>
                                 <option value="2" selected>Select</option>
                             </select>
-                        </div>*@
+                        </div>
 
 
 
                         <div class="col-4"><label>CR Number</label></div>
                         <div class="col-8">
                             <div class="row">
-                                <div class="col"><select type="text" class="form-select form-select-sm" id="ddEmployeeSponsor" data-id="SponsorID" required data-msg="Please select sponsor"></select></div>
+                                <div class="col"><select type="text" class="form-select form-select-sm" id="ddEmployeeSponsor" data-id="SponsorID" required data-msg="Please select PWS CR"></select></div>
                                 <div class="col-auto"><a href="javascript:void(0)" onclick="EditSponsorData();" class="ms-2 text-primary"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)" onclick="AddSponsorData()" class="ms-2 text-success"><i class="fa fa-plus-circle"></i></a> </div>
                             </div>
 
@@ -351,6 +357,23 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" onclick="SaveSponsor()">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="dlgLocationList" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="dlgLocationList" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Location</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @Html.Partial("_PartialLocations")
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="SaveLocation()">Save</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>

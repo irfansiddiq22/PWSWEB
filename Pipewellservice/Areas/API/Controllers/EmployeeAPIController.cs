@@ -835,6 +835,15 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        public async Task<JsonResult> UpdateLocation(Location location)
+        {
+
+            return new JsonResult
+            {
+                Data = await json.UpdateLocation(location),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
         /// <summary>
         /// //////////////////////////////////
 

@@ -102,11 +102,11 @@ namespace PipewellserviceModels.HR.Employee
         public string Iqama { get; set; }
         public int PermissionGroupID { get; set; }
 
-        public string QiwaContract { get; set; }
+        public int QiwaContract { get; set; }
         public string IqamaProfession { get; set; }
         public string EmergencyContactNumber { get; set; }
         public string EmergencyContactRelation { get; set; }
-        public string AccommodationRequired { get; set; }
+        public bool AccommodationRequired { get; set; }
         public string IBAN { get; set; }
     }
     public class EmployeeContract
