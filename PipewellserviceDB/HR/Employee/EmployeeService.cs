@@ -535,7 +535,7 @@ namespace PipewellserviceDB.HR.Employee
 
                 collSP[40] = new SqlParameter { ParameterName = "@IqamaNumber", Value = employee.Iqama };
                 collSP[41] = new SqlParameter { ParameterName = "@IqamaIssueDate", Value = employee.IqamaIssueDate };
-                collSP[42] = new SqlParameter { ParameterName = "@IqamaExpiryDate", Value = employee.IqmaExpiryDate };
+                collSP[42] = new SqlParameter { ParameterName = "@IqamaExpiryDate", Value = employee.IqamaExpiryDate };
 
                 collSP[43] = new SqlParameter { ParameterName = "@QiwaContract", Value = employee.QiwaContract };
                 collSP[44] = new SqlParameter { ParameterName = "@IqamaProfession", Value = employee.IqamaProfession };

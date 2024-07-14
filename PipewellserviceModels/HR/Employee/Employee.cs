@@ -17,7 +17,7 @@ namespace PipewellserviceModels.HR.Employee
         public int? DivisionID { get; set; }
 
         public int? VacationRotation { get; set; }
-        public DateTime? IqmaExpiryDate { get; set; }
+        public DateTime? IqamaExpiryDate { get; set; }
         public DateTime? IqamaIssueDate { get; set; }
         
     }
@@ -102,7 +102,12 @@ namespace PipewellserviceModels.HR.Employee
         public string Iqama { get; set; }
         public int PermissionGroupID { get; set; }
 
-        public int QiwaContract { get; set; }
+        public bool QiwaContract { get; set; }
+        public bool QiwaContractNo { get
+            {
+                return !QiwaContract;
+            }
+        }
         public string IqamaProfession { get; set; }
         public string EmergencyContactNumber { get; set; }
         public string EmergencyContactRelation { get; set; }

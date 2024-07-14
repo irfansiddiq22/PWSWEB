@@ -323,9 +323,11 @@ function EditEmployee(ID) {
         ResetChangeLog(PAGES.EmployeeDetail);
         if (Employee.PermissionGroupID == "0") Employee.PermissionGroupID = 4;
 
-        $.each($("input[data-id],select[data-id]"), function (i, c) {
+        $.each($("input[data-id],select[data-id],textarea[data-id]"), function (i, c) {
             if ($(this).attr("data-type") == "date")
                 $(this).val(Employee[$(this).attr("data-id")] == null ? "" : moment(Employee[$(this).attr("data-id")]).format("DD/MM/YYYY"));
+            else if ($(this).is(':checkbox') || $(this).is(':radio'))
+                  $(this).prop("checked", Employee[$(this).attr("data-id")]);
             else
                 $(this).val(Employee[$(this).attr("data-id")]);
         })
@@ -356,11 +358,14 @@ function UpdateEmployee() {
             }
         }
         var employeeToUpdate = {};
-        $.each($("input[data-id],select[data-id]"), function (i, c) {
+        $.each($("input[data-id],select[data-id],:checkbox[data-id],:radio[data-id],textarea[data-id]"), function (i, c) {
+            if ($(this).is(':checkbox') || $(this).is(':radio'))
+                employeeToUpdate[$(this).attr("data-id")] = $(this).prop("checked");
+            else
             employeeToUpdate[$(this).attr("data-id")] = $(this).val();
         })
 
-        $.each($("input[data-id]"), function (i, c) {
+        $.each($("input[data-id],textarea[data-id]"), function (i, c) {
             if ($(this).attr("data-type") == "date") {
                 Employee[$(this).attr("data-id")] = moment(Employee[$(this).attr("data-id")]).format("DD/MM/YYYY");
                 if (Employee[$(this).attr("data-id")] == "Invalid date")

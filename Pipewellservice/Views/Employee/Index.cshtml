@@ -139,7 +139,7 @@
                         <div class="col-4"><label>Iqama Issue Date</label></div>
                         <div class="col-3"><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeIssueDate" data-type="date" data-id="IqamaIssueDate" /></div>
                         <div class="col-2"><label>Iqama Exp Date</label></div>
-                        <div class="col-3"><input type="text" class="form-control form-control-sm datepicker" id="txtIqmaExpiryDate" data-type="date" data-id="IqmaExpiryDate" /></div>
+                        <div class="col-3"><input type="text" class="form-control form-control-sm datepicker" id="txtIqmaExpiryDate" data-type="date" data-id="IqamaExpiryDate" /></div>
 
 
 
@@ -201,7 +201,7 @@
                             <div class="col-4"><label>Emergency Contact Relation</label></div>
                             <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeEmergencyRelation" data-id="EmergencyContactRelation" /></div>
                             <div class="col-4"><label>Accommodation Required</label></div>
-                            <div class="col-8">
+                            <div class="col-8" style="text-align:left">
                                 <label class="switch"><input type="checkbox" checked="checked" id="chkAccommodationRequired" data-id="AccommodationRequired"><div class="slider round"></div></label>
                             </div>
 
@@ -224,13 +224,10 @@
                         <div class="col-4"><label>Labour Code#</label></div>
                         <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeLabourCode" data-id="LabourCode" /></div>
                         <div class="col-4"><label>Qiwa  Authenticated contract</label></div>
-                        <div class="col-8">
+                        <div class="col-8 text-start">
 
-                            <select class="form-select form-select-sm" id="ddQiwaContract" name="ddQiwaContract" data-id="QiwaContract">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
-                                <option value="2" selected>Select</option>
-                            </select>
+                            <label class="switch"><input type="radio" checked="checked" id="chkQiwaContractYes" name="QiwaContract" data-id="QiwaContract"><div class="slider round"></div></label>Yes
+                            <label class="switch"><input type="radio" id="chkQiwaContractNo" name="QiwaContract" data-id="QiwaContractNo"><div class="slider round"></div></label> No
                         </div>
 
 
@@ -290,27 +287,28 @@
 
                         <div class="col-4"><label>Working Hour</label></div>
                         <div class="col-8"><select type="text" class="form-select form-select-sm" id="ddEmployeeWorkInOutTime" data-id="JobTimingID"></select></div>
-                        <div class="col-12">
-                            deduct salary(late came/early out)
-                            <label class="switch"><input type="checkbox" checked="checked" id="chkEmployeeDeductSalary" data-id="DeductSalary"><div class="slider round"></div></label>
+                        <div class="col-4"></div>
+                            <div class="col-8 text-start">
+                                deduct salary(late came/early out)
+                                <label class="switch"><input type="checkbox" checked="checked" id="chkEmployeeDeductSalary" data-id="DeductSalary"><div class="slider round"></div></label>
+
+                            </div>
+
+                            <div class="col-4"><label>IBAN #</label></div>
+                            <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeIBAN" data-id="IBAN"  /></div>
+
+
+
+                            <select type="text" class="form-select form-select-sm d-none" id="ddEmployeeWorkPortalPermission" data-id="PermissionGroupID"></select>
+
+                            <div class="col text-center">
+                                <button class="btn btn-primary btn-lg" onclick="UpdateEmployee()" type="button">Save</button>
+                                <button class="btn btn-danger btn-lg" onclick="ResetNav()" type="button">Cancel</button>
+                            </div>
+
 
                         </div>
-
-                        <div class="col-4"><label>IBAN #</label></div>
-                        <div class="col-8"><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeIBAN" data-id="IBAN" data-type="date" /></div>
-
-
-
-                        <select type="text" class="form-select form-select-sm d-none" id="ddEmployeeWorkPortalPermission" data-id="PermissionGroupID"></select>
-
-                        <div class="col text-center">
-                            <button class="btn btn-primary btn-lg" onclick="UpdateEmployee()" type="button">Save</button>
-                            <button class="btn btn-danger btn-lg" onclick="ResetNav()" type="button">Cancel</button>
-                        </div>
-
-
                     </div>
-                </div>
 
                 <div class="col-lg-2 d-none d-md-block">
                     <img id="imgEmployeePicture" src="" class="img-thumbnail h-25" />
