@@ -65,8 +65,12 @@
     </Reference>
     <Reference Include="GrapeCity.ActiveReports.Chart.v8, Version=8.3.634.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL" />
     <Reference Include="GrapeCity.ActiveReports.Design.Win.v8, Version=8.3.634.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL" />
+    <Reference Include="GrapeCity.ActiveReports.Diagnostics.v8, Version=8.3.634.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
     <Reference Include="GrapeCity.ActiveReports.Document.v8, Version=8.3.634.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="GrapeCity.ActiveReports.Export.Html.v8, Version=8.3.634.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL" />
     <Reference Include="GrapeCity.ActiveReports.Export.Pdf.v8, Version=8.3.634.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="GrapeCity.ActiveReports.Export.Rdf.v8, Version=8.3.634.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="GrapeCity.ActiveReports.Extensibility.v8, Version=8.3.634.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
     <Reference Include="GrapeCity.ActiveReports.v8, Version=8.3.634.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
     <Reference Include="GrapeCity.ActiveReports.Viewer.Common, Version=17.2.0.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
       <HintPath>..\packages\GrapeCity.ActiveReports.Viewer.Common.17.2.0\lib\net462\GrapeCity.ActiveReports.Viewer.Common.dll</HintPath>
@@ -226,6 +230,12 @@
     <Compile Include="Helper\SessionHelper.cs" />
     <Compile Include="Helper\StringHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\rpApprovals.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rpApprovals.Designer.cs">
+      <DependentUpon>rpApprovals.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\rpEmployeeAttendenceSummary.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -465,6 +475,7 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\ProjectScripts\Auth\Login.js" />
+    <Content Include="Scripts\ProjectScripts\Home\EmployeeDetail.js" />
     <Content Include="Scripts\ProjectScripts\Home\home.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Accommodation.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Asset.js" />
@@ -635,6 +646,8 @@
     <Content Include="Views\Procurement\PurchaseOrderManagement.cshtml" />
     <Content Include="Views\Employee\_PartialSponsor.cshtml" />
     <Content Include="Views\Employee\_PartialLocations.cshtml" />
+    <Content Include="Views\Home\vmEmployeePersonDetail.cshtml" />
+    <Content Include="Views\Home\PersonalDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -706,6 +719,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="licenses.licx" />
+    <EmbeddedResource Include="Reports\rpApprovals.resx">
+      <DependentUpon>rpApprovals.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rpEmployeeAttendenceSummary.resx">
       <DependentUpon>rpEmployeeAttendenceSummary.cs</DependentUpon>
     </EmbeddedResource>

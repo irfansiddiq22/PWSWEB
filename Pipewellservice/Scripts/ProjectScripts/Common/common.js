@@ -29,7 +29,7 @@
     ProcurementStoreItem: 28,
     ProcurementMaterial: 29,
     InternalPurchaseRequest: 30,
-    OrderPurchaseManagement: 31,
+    PurchaseOrderManagement: 31,
     Sponsor: 32,
     Location:33
 

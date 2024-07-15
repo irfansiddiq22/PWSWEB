@@ -48,39 +48,17 @@ namespace Pipewellservice.Reports
             this.txtHeaderCompany = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.ReportInfo1 = new GrapeCity.ActiveReports.SectionReportModel.ReportInfo();
             this.Picture = new GrapeCity.ActiveReports.SectionReportModel.Picture();
+            this.txtHeaderArabic = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.PageFooter = new GrapeCity.ActiveReports.SectionReportModel.PageFooter();
             this.GroupHeader2 = new GrapeCity.ActiveReports.SectionReportModel.GroupHeader();
             this.GroupFooter2 = new GrapeCity.ActiveReports.SectionReportModel.GroupFooter();
-            this.Label16 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.Label14 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.Label10 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.Label24 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.Picture3 = new GrapeCity.ActiveReports.SectionReportModel.Picture();
-            this.Picture2 = new GrapeCity.ActiveReports.SectionReportModel.Picture();
-            this.Picture1 = new GrapeCity.ActiveReports.SectionReportModel.Picture();
-            this.RequestedDate = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.TextBox15 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.RequestedByName = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.TextBox9 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.Label25 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.TextBox12 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.TextBox11 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.TextBox10 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.TextBox7 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.TextBox6 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.Approval1 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.Shape4 = new GrapeCity.ActiveReports.SectionReportModel.Shape();
             this.txtFooter3 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.txtFooter1 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.Picture6 = new GrapeCity.ActiveReports.SectionReportModel.Picture();
             this.Label35 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Picture5 = new GrapeCity.ActiveReports.SectionReportModel.Picture();
             this.TextBox22 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.TextBox24 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.Label34 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.Picture4 = new GrapeCity.ActiveReports.SectionReportModel.Picture();
-            this.TextBox25 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.TextBox23 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.GroupHeader1 = new GrapeCity.ActiveReports.SectionReportModel.GroupHeader();
             this.Shape7 = new GrapeCity.ActiveReports.SectionReportModel.Shape();
             this.Shape9 = new GrapeCity.ActiveReports.SectionReportModel.Shape();
@@ -162,19 +140,9 @@ namespace Pipewellservice.Reports
             this.Discount = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.Label29 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.lblCurrency = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.txtRemarks1 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.txtRemarks2 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.txtRemarks3 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.txtR3 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.txtR2 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.txtR1 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.lblPrint = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Shape1 = new GrapeCity.ActiveReports.SectionReportModel.Shape();
             this.Label32 = new GrapeCity.ActiveReports.SectionReportModel.Label();
-            this.txtRemarks5 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.txtR5 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.txtR4 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.txtRemarks4 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.Label33 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Label36 = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.VAT = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
@@ -182,7 +150,8 @@ namespace Pipewellservice.Reports
             this.Total = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.TextBox26 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.WarrantyPeriod = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.txtHeaderArabic = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
+            this.pdfExport1 = new GrapeCity.ActiveReports.Export.Pdf.Section.PdfExport();
+            this.rptSingatures = new GrapeCity.ActiveReports.SectionReportModel.SubReport();
             ((System.ComponentModel.ISupportInitialize)(this.lblSr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRate)).BeginInit();
@@ -197,35 +166,13 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.txtHeaderCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReportInfo1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Label16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Label14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Label10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Label24)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Picture3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Picture2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Picture1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RequestedDate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RequestedByName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Label25)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Approval1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderArabic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Picture6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label35)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox24)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Label34)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Picture4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox25)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbl2)).BeginInit();
@@ -280,18 +227,8 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.Discount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCurrency)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtR3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtR2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtR1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPrint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label32)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtR5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtR4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label33)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label36)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VAT)).BeginInit();
@@ -299,7 +236,6 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.Total)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WarrantyPeriod)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderArabic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -531,6 +467,17 @@ namespace Pipewellservice.Reports
             this.Picture.Top = 0.04583353F;
             this.Picture.Width = 1.0625F;
             // 
+            // txtHeaderArabic
+            // 
+            this.txtHeaderArabic.Height = 0.375F;
+            this.txtHeaderArabic.Left = 4.385F;
+            this.txtHeaderArabic.Name = "txtHeaderArabic";
+            this.txtHeaderArabic.Style = "color: Black; font-family: Arabic Typesetting; font-size: 21.75pt; font-weight: b" +
+    "old; text-align: center; ddo-char-set: 0";
+            this.txtHeaderArabic.Text = null;
+            this.txtHeaderArabic.Top = 0.312F;
+            this.txtHeaderArabic.Width = 3.375F;
+            // 
             // PageFooter
             // 
             this.PageFooter.Height = 0F;
@@ -545,267 +492,16 @@ namespace Pipewellservice.Reports
             // 
             this.GroupFooter2.CanShrink = true;
             this.GroupFooter2.Controls.AddRange(new GrapeCity.ActiveReports.SectionReportModel.ARControl[] {
-            this.Label16,
-            this.Label14,
-            this.Label10,
-            this.Label24,
-            this.Picture3,
-            this.Picture2,
-            this.Picture1,
-            this.RequestedDate,
-            this.TextBox15,
-            this.RequestedByName,
-            this.TextBox9,
-            this.Label25,
-            this.TextBox12,
-            this.TextBox11,
-            this.TextBox10,
-            this.TextBox7,
-            this.TextBox6,
-            this.Approval1,
             this.Shape4,
             this.txtFooter3,
             this.txtFooter1,
-            this.Picture6,
             this.Label35,
             this.Picture5,
             this.TextBox22,
-            this.TextBox24,
-            this.Label34,
-            this.Picture4,
-            this.TextBox25,
-            this.TextBox23});
-            this.GroupFooter2.Height = 2.71875F;
+            this.TextBox24});
+            this.GroupFooter2.Height = 1.166667F;
             this.GroupFooter2.Name = "GroupFooter2";
             this.GroupFooter2.PrintAtBottom = true;
-            // 
-            // Label16
-            // 
-            this.Label16.Height = 0.2F;
-            this.Label16.HyperLink = null;
-            this.Label16.Left = 2.812F;
-            this.Label16.Name = "Label16";
-            this.Label16.Style = "color: Black; font-family: Book Antiqua; font-size: 8.25pt; font-weight: bold; te" +
-    "xt-align: right; ddo-char-set: 0";
-            this.Label16.Text = "-Operations Manager";
-            this.Label16.Top = 0F;
-            this.Label16.Width = 1.188F;
-            // 
-            // Label14
-            // 
-            this.Label14.Height = 0.2F;
-            this.Label14.HyperLink = null;
-            this.Label14.Left = 4.046F;
-            this.Label14.Name = "Label14";
-            this.Label14.Style = "color: Black; font-family: Book Antiqua; font-size: 8.25pt; font-weight: bold; te" +
-    "xt-align: right; ddo-char-set: 0";
-            this.Label14.Text = "-Operations Manager";
-            this.Label14.Top = 0F;
-            this.Label14.Width = 1.188F;
-            // 
-            // Label10
-            // 
-            this.Label10.Height = 0.2F;
-            this.Label10.HyperLink = null;
-            this.Label10.Left = 5.235F;
-            this.Label10.Name = "Label10";
-            this.Label10.Style = "color: Black; font-family: Book Antiqua; font-size: 8.25pt; font-weight: bold; te" +
-    "xt-align: right; ddo-char-set: 0";
-            this.Label10.Text = "-Operations Manager";
-            this.Label10.Top = 0F;
-            this.Label10.Width = 1.202F;
-            // 
-            // Label24
-            // 
-            this.Label24.Height = 0.2F;
-            this.Label24.HyperLink = null;
-            this.Label24.Left = 1.315F;
-            this.Label24.Name = "Label24";
-            this.Label24.ShrinkToFit = true;
-            this.Label24.Style = "color: Black; font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; te" +
-    "xt-align: center; ddo-char-set: 1; ddo-shrink-to-fit: true";
-            this.Label24.Text = "Requested By";
-            this.Label24.Top = 0F;
-            this.Label24.Width = 1.229167F;
-            // 
-            // Picture3
-            // 
-            this.Picture3.Height = 0.5F;
-            this.Picture3.ImageData = null;
-            this.Picture3.Left = 5.186F;
-            this.Picture3.LineColor = System.Drawing.Color.Black;
-            this.Picture3.Name = "Picture3";
-            this.Picture3.Top = 0.186F;
-            this.Picture3.Width = 1.28175F;
-            // 
-            // Picture2
-            // 
-            this.Picture2.Height = 0.5F;
-            this.Picture2.ImageData = null;
-            this.Picture2.Left = 4F;
-            this.Picture2.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Picture2.Name = "Picture2";
-            this.Picture2.Top = 0.186F;
-            this.Picture2.Width = 1.28175F;
-            // 
-            // Picture1
-            // 
-            this.Picture1.Height = 0.5F;
-            this.Picture1.ImageData = null;
-            this.Picture1.Left = 2.718F;
-            this.Picture1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Picture1.Name = "Picture1";
-            this.Picture1.Top = 0.186F;
-            this.Picture1.Width = 1.28175F;
-            // 
-            // RequestedDate
-            // 
-            this.RequestedDate.DataField = "";
-            this.RequestedDate.DistinctField = "";
-            this.RequestedDate.Height = 0.1875F;
-            this.RequestedDate.Left = 1.3775F;
-            this.RequestedDate.MultiLine = false;
-            this.RequestedDate.Name = "RequestedDate";
-            this.RequestedDate.ShrinkToFit = true;
-            this.RequestedDate.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: normal; tex" +
-    "t-align: center; ddo-shrink-to-fit: true";
-            this.RequestedDate.SummaryGroup = "";
-            this.RequestedDate.Text = null;
-            this.RequestedDate.Top = 0.9375F;
-            this.RequestedDate.Visible = false;
-            this.RequestedDate.Width = 1.1875F;
-            // 
-            // TextBox15
-            // 
-            this.TextBox15.Height = 0.1875F;
-            this.TextBox15.Left = 0.063F;
-            this.TextBox15.Name = "TextBox15";
-            this.TextBox15.ShrinkToFit = true;
-            this.TextBox15.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: normal; tex" +
-    "t-align: center; ddo-shrink-to-fit: true";
-            this.TextBox15.Text = null;
-            this.TextBox15.Top = 0.937F;
-            this.TextBox15.Visible = false;
-            this.TextBox15.Width = 1.293F;
-            // 
-            // RequestedByName
-            // 
-            this.RequestedByName.DataField = "";
-            this.RequestedByName.DistinctField = "";
-            this.RequestedByName.Height = 0.297F;
-            this.RequestedByName.Left = 1.315F;
-            this.RequestedByName.Name = "RequestedByName";
-            this.RequestedByName.ShrinkToFit = true;
-            this.RequestedByName.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: normal; tex" +
-    "t-align: center; ddo-shrink-to-fit: true";
-            this.RequestedByName.SummaryGroup = "";
-            this.RequestedByName.Text = null;
-            this.RequestedByName.Top = 0.671875F;
-            this.RequestedByName.Width = 1.356F;
-            // 
-            // TextBox9
-            // 
-            this.TextBox9.Height = 0.297F;
-            this.TextBox9.Left = 0.047F;
-            this.TextBox9.Name = "TextBox9";
-            this.TextBox9.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: normal; tex" +
-    "t-align: center";
-            this.TextBox9.Text = null;
-            this.TextBox9.Top = 0.6720001F;
-            this.TextBox9.Width = 1.246F;
-            // 
-            // Label25
-            // 
-            this.Label25.Height = 0.2F;
-            this.Label25.HyperLink = null;
-            this.Label25.Left = 0.041F;
-            this.Label25.Name = "Label25";
-            this.Label25.Style = "color: Black; font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; te" +
-    "xt-align: center; ddo-char-set: 0";
-            this.Label25.Text = "Prepared By";
-            this.Label25.Top = 0F;
-            this.Label25.Width = 1.0625F;
-            // 
-            // TextBox12
-            // 
-            this.TextBox12.Height = 0.1875F;
-            this.TextBox12.Left = 5.26625F;
-            this.TextBox12.MultiLine = false;
-            this.TextBox12.Name = "TextBox12";
-            this.TextBox12.ShrinkToFit = true;
-            this.TextBox12.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: normal; tex" +
-    "t-align: center; ddo-shrink-to-fit: true";
-            this.TextBox12.Text = null;
-            this.TextBox12.Top = 0.9375F;
-            this.TextBox12.Visible = false;
-            this.TextBox12.Width = 1.1395F;
-            // 
-            // TextBox11
-            // 
-            this.TextBox11.Height = 0.1875F;
-            this.TextBox11.Left = 4.17125F;
-            this.TextBox11.MultiLine = false;
-            this.TextBox11.Name = "TextBox11";
-            this.TextBox11.ShrinkToFit = true;
-            this.TextBox11.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: normal; tex" +
-    "t-align: center; ddo-shrink-to-fit: true";
-            this.TextBox11.Text = null;
-            this.TextBox11.Top = 0.9375F;
-            this.TextBox11.Visible = false;
-            this.TextBox11.Width = 1.032F;
-            // 
-            // TextBox10
-            // 
-            this.TextBox10.Height = 0.1875F;
-            this.TextBox10.Left = 2.84325F;
-            this.TextBox10.MultiLine = false;
-            this.TextBox10.Name = "TextBox10";
-            this.TextBox10.ShrinkToFit = true;
-            this.TextBox10.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: normal; tex" +
-    "t-align: center; ddo-shrink-to-fit: true";
-            this.TextBox10.Text = null;
-            this.TextBox10.Top = 0.9375F;
-            this.TextBox10.Visible = false;
-            this.TextBox10.Width = 1.188F;
-            // 
-            // TextBox7
-            // 
-            this.TextBox7.Height = 0.297F;
-            this.TextBox7.Left = 5.235F;
-            this.TextBox7.Name = "TextBox7";
-            this.TextBox7.ShrinkToFit = true;
-            this.TextBox7.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: normal; tex" +
-    "t-align: center; ddo-shrink-to-fit: true";
-            this.TextBox7.Text = null;
-            this.TextBox7.Top = 0.6720001F;
-            this.TextBox7.Width = 1.2345F;
-            // 
-            // TextBox6
-            // 
-            this.TextBox6.Height = 0.297F;
-            this.TextBox6.Left = 3.993F;
-            this.TextBox6.Name = "TextBox6";
-            this.TextBox6.ShrinkToFit = true;
-            this.TextBox6.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: normal; tex" +
-    "t-align: center; ddo-shrink-to-fit: true";
-            this.TextBox6.Text = null;
-            this.TextBox6.Top = 0.6720001F;
-            this.TextBox6.Width = 1.242F;
-            // 
-            // Approval1
-            // 
-            this.Approval1.DataField = "";
-            this.Approval1.DistinctField = "";
-            this.Approval1.Height = 0.297F;
-            this.Approval1.Left = 2.671F;
-            this.Approval1.Name = "Approval1";
-            this.Approval1.ShrinkToFit = true;
-            this.Approval1.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: normal; tex" +
-    "t-align: center; ddo-shrink-to-fit: true";
-            this.Approval1.SummaryGroup = "";
-            this.Approval1.Text = null;
-            this.Approval1.Top = 0.6720001F;
-            this.Approval1.Width = 1.3285F;
             // 
             // Shape4
             // 
@@ -815,17 +511,17 @@ namespace Pipewellservice.Reports
             this.Shape4.Name = "Shape4";
             this.Shape4.RoundingRadius = 9.999999F;
             this.Shape4.Style = GrapeCity.ActiveReports.SectionReportModel.ShapeType.RoundRect;
-            this.Shape4.Top = 1.163F;
+            this.Shape4.Top = 0F;
             this.Shape4.Width = 7.6875F;
             // 
             // txtFooter3
             // 
             this.txtFooter3.Height = 0.1875F;
-            this.txtFooter3.Left = 0F;
+            this.txtFooter3.Left = 3.72529E-09F;
             this.txtFooter3.Name = "txtFooter3";
             this.txtFooter3.Style = "color: Black; font-family: Book Antiqua; font-size: 8.25pt; text-align: center";
             this.txtFooter3.Text = "www.pwsinspection.com        E-mail: info@pipewellservices.com";
-            this.txtFooter3.Top = 1.358F;
+            this.txtFooter3.Top = 0.1950001F;
             this.txtFooter3.Width = 7.6875F;
             // 
             // txtFooter1
@@ -838,18 +534,8 @@ namespace Pipewellservice.Reports
     "do-shrink-to-fit: true";
             this.txtFooter1.Text = "C.R. 2050022534 - P.O. Box 2010 Dammam 31451 – Saudi Arabia – Telex: 803 505 QAHB" +
     "RO SJ. – Fax: 8593772 – Tel: 8592286/8594716";
-            this.txtFooter1.Top = 1.222583F;
+            this.txtFooter1.Top = 0.05958307F;
             this.txtFooter1.Width = 7.6875F;
-            // 
-            // Picture6
-            // 
-            this.Picture6.Height = 0.5000001F;
-            this.Picture6.ImageData = null;
-            this.Picture6.Left = 0.031F;
-            this.Picture6.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Picture6.Name = "Picture6";
-            this.Picture6.Top = 0.176F;
-            this.Picture6.Width = 1.418F;
             // 
             // Label35
             // 
@@ -860,7 +546,7 @@ namespace Pipewellservice.Reports
             this.Label35.Style = "font-size: 8.25pt; font-style: italic; font-weight: bold; text-align: center; ddo" +
     "-char-set: 1";
             this.Label35.Text = "-Operations Manager";
-            this.Label35.Top = 1.1875F;
+            this.Label35.Top = 0.02450001F;
             this.Label35.Visible = false;
             this.Label35.Width = 1.375F;
             // 
@@ -871,7 +557,7 @@ namespace Pipewellservice.Reports
             this.Picture5.Left = 6.34375F;
             this.Picture5.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.Picture5.Name = "Picture5";
-            this.Picture5.Top = 1.373125F;
+            this.Picture5.Top = 0.210125F;
             this.Picture5.Visible = false;
             this.Picture5.Width = 1.3125F;
             // 
@@ -883,7 +569,7 @@ namespace Pipewellservice.Reports
             this.TextBox22.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: normal; tex" +
     "t-align: center";
             this.TextBox22.Text = null;
-            this.TextBox22.Top = 2.125F;
+            this.TextBox22.Top = 0.962F;
             this.TextBox22.Visible = false;
             this.TextBox22.Width = 1.3125F;
             // 
@@ -896,57 +582,9 @@ namespace Pipewellservice.Reports
             this.TextBox24.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: normal; tex" +
     "t-align: center; ddo-shrink-to-fit: true";
             this.TextBox24.Text = "TextBox24";
-            this.TextBox24.Top = 1.859375F;
+            this.TextBox24.Top = 0.696375F;
             this.TextBox24.Visible = false;
             this.TextBox24.Width = 1.328F;
-            // 
-            // Label34
-            // 
-            this.Label34.Height = 0.2F;
-            this.Label34.HyperLink = null;
-            this.Label34.Left = 6.437F;
-            this.Label34.Name = "Label34";
-            this.Label34.Style = "color: Black; font-family: Book Antiqua; font-size: 8.25pt; font-weight: bold; te" +
-    "xt-align: right; ddo-char-set: 0";
-            this.Label34.Text = "-Operations Manager";
-            this.Label34.Top = 0F;
-            this.Label34.Width = 1.375F;
-            // 
-            // Picture4
-            // 
-            this.Picture4.Height = 0.5F;
-            this.Picture4.ImageData = null;
-            this.Picture4.Left = 6.421F;
-            this.Picture4.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Picture4.Name = "Picture4";
-            this.Picture4.Top = 0.186F;
-            this.Picture4.Width = 1.28175F;
-            // 
-            // TextBox25
-            // 
-            this.TextBox25.Height = 0.297F;
-            this.TextBox25.Left = 6.504F;
-            this.TextBox25.Name = "TextBox25";
-            this.TextBox25.ShrinkToFit = true;
-            this.TextBox25.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: normal; tex" +
-    "t-align: center; ddo-shrink-to-fit: true";
-            this.TextBox25.Text = null;
-            this.TextBox25.Top = 0.6720001F;
-            this.TextBox25.Width = 1.245501F;
-            // 
-            // TextBox23
-            // 
-            this.TextBox23.Height = 0.1875F;
-            this.TextBox23.Left = 6.46825F;
-            this.TextBox23.MultiLine = false;
-            this.TextBox23.Name = "TextBox23";
-            this.TextBox23.ShrinkToFit = true;
-            this.TextBox23.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: normal; tex" +
-    "t-align: center; ddo-shrink-to-fit: true";
-            this.TextBox23.Text = null;
-            this.TextBox23.Top = 0.9375F;
-            this.TextBox23.Visible = false;
-            this.TextBox23.Width = 1.25F;
             // 
             // GroupHeader1
             // 
@@ -1717,27 +1355,18 @@ namespace Pipewellservice.Reports
             this.Discount,
             this.Label29,
             this.lblCurrency,
-            this.txtRemarks1,
-            this.txtRemarks2,
-            this.txtRemarks3,
-            this.txtR3,
-            this.txtR2,
-            this.txtR1,
             this.lblPrint,
             this.Shape1,
             this.Label32,
-            this.txtRemarks5,
-            this.txtR5,
-            this.txtR4,
-            this.txtRemarks4,
             this.Label33,
             this.Label36,
             this.VAT,
             this.Label31,
             this.Total,
             this.TextBox26,
-            this.WarrantyPeriod});
-            this.GroupFooter1.Height = 3.364583F;
+            this.WarrantyPeriod,
+            this.rptSingatures});
+            this.GroupFooter1.Height = 3.15625F;
             this.GroupFooter1.Name = "GroupFooter1";
             // 
             // Remarks
@@ -2039,78 +1668,6 @@ namespace Pipewellservice.Reports
             this.lblCurrency.Visible = false;
             this.lblCurrency.Width = 0.640625F;
             // 
-            // txtRemarks1
-            // 
-            this.txtRemarks1.DataField = "ApprovedRemarks1";
-            this.txtRemarks1.Height = 0.296875F;
-            this.txtRemarks1.Left = 1.125F;
-            this.txtRemarks1.Name = "txtRemarks1";
-            this.txtRemarks1.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-style: italic; font" +
-    "-weight: normal; text-align: left; ddo-char-set: 1";
-            this.txtRemarks1.Text = null;
-            this.txtRemarks1.Top = 1.86F;
-            this.txtRemarks1.Width = 6.625F;
-            // 
-            // txtRemarks2
-            // 
-            this.txtRemarks2.DataField = "ApprovedRemarks2";
-            this.txtRemarks2.Height = 0.296875F;
-            this.txtRemarks2.Left = 1.125F;
-            this.txtRemarks2.Name = "txtRemarks2";
-            this.txtRemarks2.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-style: italic; font" +
-    "-weight: normal; text-align: left; ddo-char-set: 1";
-            this.txtRemarks2.Text = null;
-            this.txtRemarks2.Top = 2.156875F;
-            this.txtRemarks2.Width = 6.625F;
-            // 
-            // txtRemarks3
-            // 
-            this.txtRemarks3.DataField = "ApprovedRemarks3";
-            this.txtRemarks3.Height = 0.296875F;
-            this.txtRemarks3.Left = 1.125F;
-            this.txtRemarks3.Name = "txtRemarks3";
-            this.txtRemarks3.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-style: italic; font" +
-    "-weight: normal; text-align: left; ddo-char-set: 1";
-            this.txtRemarks3.Text = null;
-            this.txtRemarks3.Top = 2.45375F;
-            this.txtRemarks3.Width = 6.625F;
-            // 
-            // txtR3
-            // 
-            this.txtR3.DataField = "approvedby3";
-            this.txtR3.Height = 0.296875F;
-            this.txtR3.Left = 0F;
-            this.txtR3.Name = "txtR3";
-            this.txtR3.Style = "color: Black; font-family: Book Antiqua; font-size: 8pt; font-style: italic; font" +
-    "-weight: bold; text-align: right; text-decoration: underline; ddo-char-set: 1";
-            this.txtR3.Text = null;
-            this.txtR3.Top = 2.45375F;
-            this.txtR3.Width = 1.125F;
-            // 
-            // txtR2
-            // 
-            this.txtR2.DataField = "approvedby2";
-            this.txtR2.Height = 0.296875F;
-            this.txtR2.Left = 0F;
-            this.txtR2.Name = "txtR2";
-            this.txtR2.Style = "color: Black; font-family: Book Antiqua; font-size: 8pt; font-style: italic; font" +
-    "-weight: bold; text-align: right; text-decoration: underline; ddo-char-set: 1";
-            this.txtR2.Text = null;
-            this.txtR2.Top = 2.156875F;
-            this.txtR2.Width = 1.125F;
-            // 
-            // txtR1
-            // 
-            this.txtR1.DataField = "approvedby1";
-            this.txtR1.Height = 0.296875F;
-            this.txtR1.Left = 0F;
-            this.txtR1.Name = "txtR1";
-            this.txtR1.Style = "color: Black; font-family: Book Antiqua; font-size: 8pt; font-style: italic; font" +
-    "-weight: bold; text-align: right; text-decoration: underline; ddo-char-set: 1";
-            this.txtR1.Text = null;
-            this.txtR1.Top = 1.86F;
-            this.txtR1.Width = 1.125F;
-            // 
             // lblPrint
             // 
             this.lblPrint.DataField = "isPrint";
@@ -2147,54 +1704,6 @@ namespace Pipewellservice.Reports
     "S VAT # will not be acceptable.";
             this.Label32.Top = 1.627F;
             this.Label32.Width = 7.083F;
-            // 
-            // txtRemarks5
-            // 
-            this.txtRemarks5.DataField = "ApprovedRemarks5";
-            this.txtRemarks5.Height = 0.296875F;
-            this.txtRemarks5.Left = 1.125F;
-            this.txtRemarks5.Name = "txtRemarks5";
-            this.txtRemarks5.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-style: italic; font" +
-    "-weight: normal; text-align: left; ddo-char-set: 1";
-            this.txtRemarks5.Text = null;
-            this.txtRemarks5.Top = 3.031875F;
-            this.txtRemarks5.Width = 6.625F;
-            // 
-            // txtR5
-            // 
-            this.txtR5.DataField = "approvedby5";
-            this.txtR5.Height = 0.296875F;
-            this.txtR5.Left = 0F;
-            this.txtR5.Name = "txtR5";
-            this.txtR5.Style = "color: Black; font-family: Book Antiqua; font-size: 8pt; font-style: italic; font" +
-    "-weight: bold; text-align: right; text-decoration: underline; ddo-char-set: 1";
-            this.txtR5.Text = null;
-            this.txtR5.Top = 3.031875F;
-            this.txtR5.Width = 1.125F;
-            // 
-            // txtR4
-            // 
-            this.txtR4.DataField = "approvedby4";
-            this.txtR4.Height = 0.296875F;
-            this.txtR4.Left = 0F;
-            this.txtR4.Name = "txtR4";
-            this.txtR4.Style = "color: Black; font-family: Book Antiqua; font-size: 8pt; font-style: italic; font" +
-    "-weight: bold; text-align: right; text-decoration: underline; ddo-char-set: 1";
-            this.txtR4.Text = null;
-            this.txtR4.Top = 2.735F;
-            this.txtR4.Width = 1.125F;
-            // 
-            // txtRemarks4
-            // 
-            this.txtRemarks4.DataField = "ApprovedRemarks4";
-            this.txtRemarks4.Height = 0.296875F;
-            this.txtRemarks4.Left = 1.125F;
-            this.txtRemarks4.Name = "txtRemarks4";
-            this.txtRemarks4.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-style: italic; font" +
-    "-weight: normal; text-align: left; ddo-char-set: 1";
-            this.txtRemarks4.Text = null;
-            this.txtRemarks4.Top = 2.735F;
-            this.txtRemarks4.Width = 6.625F;
             // 
             // Label33
             // 
@@ -2286,16 +1795,20 @@ namespace Pipewellservice.Reports
             this.WarrantyPeriod.Top = 1.09F;
             this.WarrantyPeriod.Width = 0.8069999F;
             // 
-            // txtHeaderArabic
+            // pdfExport1
             // 
-            this.txtHeaderArabic.Height = 0.375F;
-            this.txtHeaderArabic.Left = 4.385F;
-            this.txtHeaderArabic.Name = "txtHeaderArabic";
-            this.txtHeaderArabic.Style = "color: Black; font-family: Arabic Typesetting; font-size: 21.75pt; font-weight: b" +
-    "old; text-align: center; ddo-char-set: 0";
-            this.txtHeaderArabic.Text = null;
-            this.txtHeaderArabic.Top = 0.312F;
-            this.txtHeaderArabic.Width = 3.375F;
+            this.pdfExport1.Pagination = true;
+            // 
+            // rptSingatures
+            // 
+            this.rptSingatures.CloseBorder = false;
+            this.rptSingatures.Height = 1F;
+            this.rptSingatures.Left = 0.016F;
+            this.rptSingatures.Name = "rptSingatures";
+            this.rptSingatures.Report = null;
+            this.rptSingatures.ReportName = "rptSingatures";
+            this.rptSingatures.Top = 1.974F;
+            this.rptSingatures.Width = 7.729F;
             // 
             // rpPurchaseOrderMgt
             // 
@@ -2342,35 +1855,13 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.txtHeaderCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReportInfo1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Label16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Label14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Label10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Label24)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Picture3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Picture2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Picture1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RequestedDate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RequestedByName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Label25)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Approval1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderArabic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Picture6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label35)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox24)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Label34)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Picture4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox25)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SupplierAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbl2)).EndInit();
@@ -2425,18 +1916,8 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.Discount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCurrency)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtR3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtR2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtR1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPrint)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label32)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtR5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtR4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label33)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label36)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.VAT)).EndInit();
@@ -2444,7 +1925,6 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.Total)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.WarrantyPeriod)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderArabic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -2469,28 +1949,9 @@ namespace Pipewellservice.Reports
         private GrapeCity.ActiveReports.SectionReportModel.PageFooter PageFooter;
         private GrapeCity.ActiveReports.SectionReportModel.GroupHeader GroupHeader2;
         private GrapeCity.ActiveReports.SectionReportModel.GroupFooter GroupFooter2;
-        private GrapeCity.ActiveReports.SectionReportModel.Label Label16;
-        private GrapeCity.ActiveReports.SectionReportModel.Label Label14;
-        private GrapeCity.ActiveReports.SectionReportModel.Label Label10;
-        private GrapeCity.ActiveReports.SectionReportModel.Label Label24;
-        private GrapeCity.ActiveReports.SectionReportModel.Picture Picture3;
-        private GrapeCity.ActiveReports.SectionReportModel.Picture Picture2;
-        private GrapeCity.ActiveReports.SectionReportModel.Picture Picture1;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox RequestedDate;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox15;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox RequestedByName;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox9;
-        private GrapeCity.ActiveReports.SectionReportModel.Label Label25;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox12;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox11;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox10;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox7;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox6;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox Approval1;
         private GrapeCity.ActiveReports.SectionReportModel.Shape Shape4;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox txtFooter3;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox txtFooter1;
-        private GrapeCity.ActiveReports.SectionReportModel.Picture Picture6;
         private GrapeCity.ActiveReports.SectionReportModel.Label Label35;
         private GrapeCity.ActiveReports.SectionReportModel.Picture Picture5;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox22;
@@ -2522,19 +1983,9 @@ namespace Pipewellservice.Reports
         private GrapeCity.ActiveReports.SectionReportModel.TextBox Discount;
         private GrapeCity.ActiveReports.SectionReportModel.Label Label29;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox lblCurrency;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox txtRemarks1;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox txtRemarks2;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox txtRemarks3;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox txtR3;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox txtR2;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox txtR1;
         private GrapeCity.ActiveReports.SectionReportModel.Label lblPrint;
         private GrapeCity.ActiveReports.SectionReportModel.Shape Shape1;
         private GrapeCity.ActiveReports.SectionReportModel.Label Label32;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox txtRemarks5;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox txtR5;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox txtR4;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox txtRemarks4;
         private GrapeCity.ActiveReports.SectionReportModel.Shape Shape9;
         private GrapeCity.ActiveReports.SectionReportModel.Shape Shape7;
         private GrapeCity.ActiveReports.SectionReportModel.Shape Shape10;
@@ -2593,10 +2044,6 @@ namespace Pipewellservice.Reports
         private GrapeCity.ActiveReports.SectionReportModel.TextBox Total;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox26;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox WarrantyPeriod;
-        private GrapeCity.ActiveReports.SectionReportModel.Label Label34;
-        private GrapeCity.ActiveReports.SectionReportModel.Picture Picture4;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox25;
-        private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox23;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox Attn;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox SupplierName;
         private GrapeCity.ActiveReports.SectionReportModel.Label Label37;
@@ -2606,5 +2053,7 @@ namespace Pipewellservice.Reports
 
         private GrapeCity.ActiveReports.SectionReportModel.Picture Picture;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox txtHeaderArabic;
+        private GrapeCity.ActiveReports.Export.Pdf.Section.PdfExport pdfExport1;
+        private GrapeCity.ActiveReports.SectionReportModel.SubReport rptSingatures;
     }
 }

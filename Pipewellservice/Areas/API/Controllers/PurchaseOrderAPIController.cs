@@ -16,33 +16,33 @@ namespace Pipewellservice.Areas.API.Controllers
 {
     public class PurchaseOrderAPIController : BaseController
     {
-        private OrderPurchaseManagmentJson json = new OrderPurchaseManagmentJson();
-        [Authorization(Pages.OrderPurchaseManagment)]
-        public async Task<JsonResult> GetOrderPurchaseRequestList(DateParam date, PagingDTO paging, PurchaseOrderParam param)
+        private PurchaseOrderManagmentJson json = new PurchaseOrderManagmentJson();
+        [Authorization(Pages.PurchaseOrderManagment)]
+        public async Task<JsonResult> GetPurchaseOrderRequestList(DateParam date, PagingDTO paging, PurchaseOrderParam param)
         {
-            var result = await json.GetOrderPurchaseRequestList(date, paging,param);
+            var result = await json.GetPurchaseOrderRequestList(date, paging,param);
             return new JsonResult
             {
                 Data = new { Data = result, TotalRecord = result.Count > 0 ? result[0].TotalRecord : 0 },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.OrderPurchaseManagment)]
-        public async Task<JsonResult> GetOrderPurchaseRequestDetail(int ID)
+        [Authorization(Pages.PurchaseOrderManagment)]
+        public async Task<JsonResult> GetPurchaseOrderRequestDetail(int ID)
         {
-            var result = await json.GetOrderPurchaseRequestDetail(ID);
+            var result = await json.GetPurchaseOrderRequestDetail(ID);
             return new JsonResult
             {
                 Data = result,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.OrderPurchaseManagment, 1, 2)]
-        public async Task<JsonResult> AddOrderPurchaseManagmentData(OrderPurchaseManagement request, List<EmployeeApproval> approvals, List<OrderPurchaseManagementItem> Items)
+        [Authorization(Pages.PurchaseOrderManagment, 1, 2)]
+        public async Task<JsonResult> AddPurchaseOrderManagmentData(PurchaseOrderManagement request, List<EmployeeApproval> approvals, List<PurchaseOrderManagementItem> Items)
         {
             request.RecordCreatedBy = SessionHelper.UserID();
 
-            var result = await json.AddOrderPurchaseManagmentData(request, approvals, Items);
+            var result = await json.AddPurchaseOrderManagmentData(request, approvals, Items);
             if (result.ApprovalID > 0)
             {
                 ApprovalRequestResult model = new ApprovalRequestResult();
@@ -50,7 +50,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 model = await (new EmployeeJson()).ApproveRequest(0, new PendingApproval() { ID = result.ApprovalID, Remarks = "", Status = ApprovalStatus.Temp });
                 if (model.Result)
                 {
-                    await helper.ProcessRequest(ApprovalTypes.OrderPurchaseManagement, model, true);
+                    await helper.ProcessRequest(ApprovalTypes.PurchaseOrderManagement, model, true);
                 }
             }
             return new JsonResult
@@ -70,7 +70,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.OrderPurchaseManagment)]
+        [Authorization(Pages.PurchaseOrderManagment)]
         public async Task<JsonResult> GetSupplierItemRate(int ID,int ItemID)
         {
 

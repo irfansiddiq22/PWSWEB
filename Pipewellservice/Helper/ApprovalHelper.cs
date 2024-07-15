@@ -171,15 +171,15 @@ namespace Pipewellservice.Helper
                 ProcessMail = true;
 
             }
-            else if (type == ApprovalTypes.OrderPurchaseManagement)
+            else if (type == ApprovalTypes.PurchaseOrderManagement)
             {
                 ProcessMail = true;
-                List<OrderPurchaseManagementMailDetail> record = new List<OrderPurchaseManagementMailDetail>();
+                List<PurchaseOrderManagementMailDetail> record = new List<PurchaseOrderManagementMailDetail>();
                 try
                 {
                     foreach (object js in result.Request)
                     {
-                        record.Add(JsonConvert.DeserializeObject<OrderPurchaseManagementMailDetail>(js.ToString()));
+                        record.Add(JsonConvert.DeserializeObject<PurchaseOrderManagementMailDetail>(js.ToString()));
                     }
                 }
                 catch (Exception e)
@@ -207,7 +207,7 @@ namespace Pipewellservice.Helper
                 RecordID = record[0].ID;
 
                 string items = "";//$"<table style='width:900px;border-style:solid;'><tr><td><b> Allowance</b></td><td><b> Carried Over</b></td><td><b> Available</b></td><td><b> Used</b></td><td><b> Balance</b></td><td><b> Unit</b></td></tr><tr><td><b> {LeaveStat.Allowance}</b></td><td><b> {LeaveStat.CarriedOver}</b></td><td><b> {LeaveStat.Available}</b></td><td><b> {LeaveStat.LeavesTaken}</b></td><td><b> {LeaveStat.Balance}</b></td><td><b> Days</b></td></tr></table>";
-                foreach (OrderPurchaseManagementMailDetail detail in record)
+                foreach (PurchaseOrderManagementMailDetail detail in record)
                 {
                     /*<tr>
                                 <td style="font-weight: bold; font-size: 12px; background-color: #f2f2f2">Name</td>

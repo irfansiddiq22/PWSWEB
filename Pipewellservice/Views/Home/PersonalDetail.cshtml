@@ -1,0 +1,106 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Personal Detail</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body class="position-relative container">
+
+    <div class="m-2  w-100">
+        <div class="pull-left"><h2>PIPE & WELL SERVICES </h2></div>
+        <a class="navbar-brand pull-right" href="javascript:void(0)">
+            <img src="~/Content/images/logo.jpg" alt="">
+        </a>
+        <div class="clearfix"></div>
+    </div>
+
+
+    <div class="container body-content w-75">
+        <div class="m-2">
+            <div class="border rounded">
+
+                <div class="blue menu rounded-top">
+                    <h4>Employee Personal Detail</h4>
+                </div>
+                <div class="p-2">
+                    <table class="table  table-sm table-striped">
+                        <tr><td>Name:</td><td><input type="text" class="form-control form-control-sm" id="txtEmployeeName" data-id="EmpName" required /></td></tr>
+                        <tr><td>Emp.No:</td><td><input type="text" class="form-control form-control-sm" id="txtEmployeeNumber" data-id="EmpNumber" required /></td></tr>
+                        <tr><td>Passport No:</td><td><input type="text" class="form-control form-control-sm" id="txtEmployeePassportNumber" data-id="EmpPassportNumber" /></td></tr>
+                        <tr><td>Aramco ID No:</td><td><input type="text" class="form-control form-control-sm" id="txtEmployeeAramcoIDNumber" data-id="EmpAramcoIDNumber" /></td></tr>
+                        <tr><td>Date Of Birth:</td><td><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeDOB" data-id="EmpDOB" /></td></tr>
+                        <tr><td>Nationality</td><td><select class="form-select form-select-sm " id="ddEmpNationality" data-id="EmpNationality"></select></td></tr>
+                        <tr><td>Education Qualification:</td><td><input type="text" class="form-control form-control-sm" id="txtEmployeeEducationQualification" data-id="EmpEducationQualification" /></td></tr>
+                        <tr><td>Language Know:</td><td><input type="text" class="form-control form-control-sm" id="txtEmployeeLanguages" data-id="EmpLanguages" /></td></tr>
+                        <tr><td>Professional Qualification:</td><td><input type="text" class="form-control form-control-sm" id="txtEmployeeProfessionalQualification" data-id="EmpProfessionalQualification" /></td></tr>
+                        <tr><td>Other Training:</td><td><input type="text" class="form-control form-control-sm" id="txtEmployeeOtherTraining" data-id="EmpOtherTraining" /></td></tr>
+                        <tr><td>Other Courses:</td><td><input type="text" class="form-control form-control-sm" id="txtEmployeeOtherCourses" data-id="EmpOtherCourses" /></td></tr>
+                        <tr><td>Safety Training Courses:</td><td><input type="text" class="form-control form-control-sm" id="txtEmployeeSafetyCourses" data-id="EmpSafetyCourses" /></td></tr>
+                    </table>
+                    <div class="mt-2">
+
+                        <div class=" menu rounded-top">
+                            <div class="blue">  <h4>Word Experience</h4></div>
+                            <table class="table table-sm table-striped" id="tblEmployeeWorkExp">
+                                <tr>
+                                    <td>Company Name:</td>
+                                    <td><input type="text" class="form-control form-control-sm" id="txtEmployeeExpCompnanyName" data-id="EmpExpCompanyName" /></td>
+                                    <td>Duration From:</td>
+                                    <td><input type="text" class="form-control form-control-sm daterangepicker" id="txtEmployeeExpDuration" data-id="EmpExpDuration" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Designation</td>
+                                    <td colspan="3"><input type="text" class="form-control form-control-sm" id="txtEmployeeExpDesignation" data-id="EmpExpDesignation" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Nature of Job</td>
+                                    <td colspan="3"><input type="text" class="form-control form-control-sm" id="txtEmployeeExpJobNature" data-id="EmpExpJobNature" /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        <textarea class="form-control form-control-sm" rows="4"></textarea>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <div id="dvMoreWordExp"></div>
+
+                            <div><button class="btn btn-sm btn-primary" onclick="AddMoreExperience()">Add Experience</button></div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <hr />
+        <footer>
+            <p>PWS &copy; @DateTime.Now.Year</p>
+        </footer>
+    </div>
+    <div id="leftmenu">
+
+    </div>
+
+    <div id="spinner"></div>
+    <script type="text/javascript">
+
+    </script>
+
+    @Styles.Render("~/bundles/sweetalertcss")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/sweetalert")
+    @Scripts.Render("~/empdetail")
+
+</body>
+</html>

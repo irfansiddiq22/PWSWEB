@@ -11,7 +11,7 @@ function _Init() {
     $("#dvEditRequest").addClass("d-none");
     $("#dvRequestList").removeClass("d-none");
     ResetNav();
-    SetPagePermission(PAGES.InternalPurchaseRequest, function () {
+    SetPagePermission(PAGES.PurchaseOrderManagement, function () {
         $("#ddRequestDataRange").val(moment().subtract(3, 'month').startOf('month').format("DD/MM/YYYY") + ' - ' + moment().endOf('month').format("DD/MM/YYYY"))
         //FillList("ddRequestType", resp, "Name", "Value", "Select Type")
         //  FillList("ddFilterRequestType", resp, "Name", "Value", "Select Type")
@@ -110,10 +110,10 @@ function BindOrderManagmentList(PageNumber = 1) {
 
     OrderManagement = { ID: 0 };
     PurchaseRequestItems = [];
-    ResetChangeLog(PAGES.InternalPurchaseRequest);
+    ResetChangeLog(PAGES.PurchaseOrderManagement);
 
     $('#dvOrderManagementPaging').pagination({
-        dataSource: "/PurchaseOrderAPI/GetOrderPurchaseRequestList",
+        dataSource: "/PurchaseOrderAPI/GetPurchaseOrderRequestList",
         pageSize: pageSize,
         pageNumber: pageNumber,
         showGoInput: true,
@@ -192,7 +192,7 @@ function DeleteOrderManagement(ID) {
 function EditOrderManagement(ID) {
 
 
-    Post("/PurchaseOrderAPI/GetOrderPurchaseRequestDetail", { ID: ID }).done(function (resp) {
+    Post("/PurchaseOrderAPI/GetPurchaseOrderRequestDetail", { ID: ID }).done(function (resp) {
         $("#dvEditRequest").removeClass("d-none");
         $("#dvRequestList").addClass("d-none");
 
@@ -661,7 +661,7 @@ function SaveOrderManagement() {
 
      
 
-    Post("/PurchaseOrderAPI/AddOrderPurchaseManagmentData", { request: Request, Items: RequestItems, Approvals: Approvals }).done(function (resp) {
+    Post("/PurchaseOrderAPI/AddPurchaseOrderManagmentData", { request: Request, Items: RequestItems, Approvals: Approvals }).done(function (resp) {
         SaveLog(resp);
         if (resp > 0) {
 

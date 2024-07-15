@@ -90,9 +90,9 @@ namespace Pipewellservice.Controllers
         public async Task<ActionResult> PrintPurchaseOrderRequest(int ID)
         {
             rpPurchaseOrderMgt report = null;
-            var data2 = await (new OrderPurchaseManagementService()).GetOrderPurchaseDetail(ID);
-            report = new rpPurchaseOrderMgt { DataSource = data2.OrderPurchaseItem, Document = { }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
-            report.UserData = (await JsonHelper.Convert<List<OrderPurchaseManagement>, DataTable>(data2.OrderPurchase)).FirstOrDefault();
+            var data2 = await (new PurchaseOrderManagementService()).GetPurchaseOrderDetail(ID);
+            report = new rpPurchaseOrderMgt { DataSource = data2.OrderItem, Document = { }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
+            report.UserData = data2;//s (await JsonHelper.Convert<List<PurchaseOrderManagement>, DataTable>(data2.PurchaseOrder)).FirstOrDefault();
             ViewBag.ReportName = "Purchase Order Management";
 
 

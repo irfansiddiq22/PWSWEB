@@ -118,7 +118,7 @@ namespace PipewellserviceModels.Common
         Leaves = 7,
         MaterialRequest=29,///SAME AS PAGE ID
         InternalPurchaseRequest=30,
-        OrderPurchaseManagement=31
+        PurchaseOrderManagement = 31
 
 
     }
@@ -176,7 +176,7 @@ namespace PipewellserviceModels.Common
         ProcurementStoreItemManagement=28,
         ProcurementMaterialRequest=29,
         InternalPurchaseRequest=30,
-        OrderPurchaseManagment=31,
+        PurchaseOrderManagment = 31,
         Sponosor=32,
         Location=33 
 

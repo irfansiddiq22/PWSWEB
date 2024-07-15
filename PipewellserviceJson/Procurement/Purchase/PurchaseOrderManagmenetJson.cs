@@ -11,28 +11,28 @@ using System.Threading.Tasks;
 
 namespace PipewellserviceJson.Procurement.Purchase
 {
-    public class OrderPurchaseManagmentJson
+    public class PurchaseOrderManagmentJson
     {
 
-        private OrderPurchaseManagementService service = new OrderPurchaseManagementService();
-        public async Task<List<OrderPurchaseManagement>> GetOrderPurchaseRequestList(DateParam date, PagingDTO paging, PurchaseOrderParam param)
+        private PurchaseOrderManagementService service = new PurchaseOrderManagementService();
+        public async Task<List<PurchaseOrderManagement>> GetPurchaseOrderRequestList(DateParam date, PagingDTO paging, PurchaseOrderParam param)
         {
-            return await JsonHelper.Convert<List<OrderPurchaseManagement>, DataTable>(await service.GetOrderPurchaseRequestList(date, paging, param));
+            return await JsonHelper.Convert<List<PurchaseOrderManagement>, DataTable>(await service.GetPurchaseOrderRequestList(date, paging, param));
         }
-        public async Task<OrderPurchaseManagementDetail> GetOrderPurchaseRequestDetail(int ID)
+        public async Task<PurchaseOrderManagementDetail> GetPurchaseOrderRequestDetail(int ID)
         {
-            OrderPurchaseManagementDB dB = await service.GetOrderPurchaseDetail(ID);
-            OrderPurchaseManagementDetail model = new OrderPurchaseManagementDetail();
-            model.Order = (await JsonHelper.Convert<List<OrderPurchaseManagement>, DataTable>(dB.OrderPurchase)).FirstOrDefault();
-            model.Items = await JsonHelper.Convert<List<OrderPurchaseManagementItem>, DataTable>(dB.OrderPurchaseItem);
+            PurchaseOrderManagementDB dB = await service.GetPurchaseOrderDetail(ID);
+            PurchaseOrderManagementDetail model = new PurchaseOrderManagementDetail();
+            model.Order = (await JsonHelper.Convert<List<PurchaseOrderManagement>, DataTable>(dB.PurchaseOrder)).FirstOrDefault();
+            model.Items = await JsonHelper.Convert<List<PurchaseOrderManagementItem>, DataTable>(dB.OrderItem);
             model.Approvals = await JsonHelper.Convert<List<EmployeeApproval>, DataTable>(dB.Approvals);
 
             return model;
         }
 
-        public async Task<OrderPurchaseManagementResult> AddOrderPurchaseManagmentData(OrderPurchaseManagement request, List<EmployeeApproval> approvals, List<OrderPurchaseManagementItem> Items)
+        public async Task<PurchaseOrderManagementResult> AddPurchaseOrderManagmentData(PurchaseOrderManagement request, List<EmployeeApproval> approvals, List<PurchaseOrderManagementItem> Items)
         {
-            return await service.AddOrderPurchaseManagmentData(request,approvals, Items);
+            return await service.AddPurchaseOrderManagmentData(request,approvals, Items);
         }
         public async Task<List<InterPurchaseOrderNumber>> GetInterPurchaseOrderNumber(string IPO)
         {

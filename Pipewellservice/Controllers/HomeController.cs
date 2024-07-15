@@ -16,7 +16,14 @@ namespace Pipewellservice.Controllers
             ViewBag.Parent = null;
             return View();
         }
-         
+
+        public ActionResult PersonalDetail()
+        {
+            ViewBag.Title = "";
+            ViewBag.Parent = null;
+            return View();
+        }
+
         public ActionResult AccessDenied()
         {
 

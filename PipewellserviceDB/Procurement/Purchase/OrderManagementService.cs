@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace PipewellserviceDB.Procurement.Purchase
 {
-    public class OrderPurchaseManagementService : DataServices
+    public class PurchaseOrderManagementService : DataServices
     {
-        public async Task<DataTable> GetOrderPurchaseRequestList(DateParam date, PagingDTO paging, PurchaseOrderParam param)
+        public async Task<DataTable> GetPurchaseOrderRequestList(DateParam date, PagingDTO paging, PurchaseOrderParam param)
         {
             try
             {
@@ -40,15 +40,15 @@ namespace PipewellserviceDB.Procurement.Purchase
             }
 
         }
-        public async Task<OrderPurchaseManagementDB> GetOrderPurchaseDetail(int ID)
+        public async Task<PurchaseOrderManagementDB> GetPurchaseOrderDetail(int ID)
         {
             try
             {
 
-                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetOrderPurchaseManagementDetail", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
-                OrderPurchaseManagementDB Data = new OrderPurchaseManagementDB();
-                Data.OrderPurchase.Load(result);
-                Data.OrderPurchaseItem.Load(result);
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetPurchaseOrderManagementDetail", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                PurchaseOrderManagementDB Data = new PurchaseOrderManagementDB();
+                Data.PurchaseOrder.Load(result);
+                Data.OrderItem.Load(result);
                 Data.Approvals.Load(result);
                 result.Close();
                 return Data;
@@ -59,14 +59,32 @@ namespace PipewellserviceDB.Procurement.Purchase
             }
 
         }
-        public async Task<OrderPurchaseManagementResult> AddOrderPurchaseManagmentData(OrderPurchaseManagement request, List<EmployeeApproval> approvals, List<OrderPurchaseManagementItem> Items)
+        public async Task<DataTable> GetPurchaseOrderApprovals(int ID)
         {
-            OrderPurchaseManagementResult requestResult = new OrderPurchaseManagementResult();
+            try
+            {
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetPurchasOrderApprovals", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                DataTable Data = new DataTable();
+                
+                Data.Load(result);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        public async Task<PurchaseOrderManagementResult> AddPurchaseOrderManagmentData(PurchaseOrderManagement request, List<EmployeeApproval> approvals, List<PurchaseOrderManagementItem> Items)
+        {
+            PurchaseOrderManagementResult requestResult = new PurchaseOrderManagementResult();
             try
             {
                 StringBuilder xml = new StringBuilder();
                 xml.Append("<NewDataSet>");
-                foreach (OrderPurchaseManagementItem item in Items)
+                foreach (PurchaseOrderManagementItem item in Items)
                 {
                     xml.Append($"<Table1><ID>{item.ID}</ID><Name>{item.ItemName}</Name><UnitCost>{item.UnitCost}</UnitCost><Unit>{item.Unit}</Unit><Quantity>{item.Quantity}</Quantity><Notes>{item.Notes}</Notes><MSDS>{item.MSDS}</MSDS><PartNumber>{item.PartNumber}</PartNumber></Table1>");
                 }
@@ -111,7 +129,7 @@ namespace PipewellserviceDB.Procurement.Purchase
 
                 collSP[27] = new SqlParameter { ParameterName = "@Approvals", Value = xmlApprovals.ToString() };
 
-                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcAddUpdateOrderPurchaseManagementDetail", CommandType.StoredProcedure, collSP);
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcAddUpdatePurchaseOrderManagementDetail", CommandType.StoredProcedure, collSP);
 
                 if (result.HasRows)
                 {

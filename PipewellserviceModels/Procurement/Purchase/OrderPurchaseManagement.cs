@@ -11,28 +11,28 @@ namespace PipewellserviceModels.Procurement.Purchase
 {
 
 
-    public class OrderPurchaseManagementDB
+    public class PurchaseOrderManagementDB
     {
-        public DataTable OrderPurchase { get; set; }
-        public DataTable OrderPurchaseItem { get; set; }
+        public DataTable PurchaseOrder { get; set; }
+        public DataTable OrderItem { get; set; }
         public DataTable Approvals { get; set; }
-        public OrderPurchaseManagementDB()
+        public PurchaseOrderManagementDB()
         {
-            OrderPurchaseItem = new DataTable();
-            OrderPurchase = new DataTable();
+            OrderItem = new DataTable();
+            PurchaseOrder = new DataTable();
             Approvals = new DataTable();
         }
     }
-    public class OrderPurchaseManagementDetail
+    public class PurchaseOrderManagementDetail
     {
-        public OrderPurchaseManagement Order { get; set; }
-        public List<OrderPurchaseManagementItem> Items { get; set; }
+        public PurchaseOrderManagement Order { get; set; }
+        public List<PurchaseOrderManagementItem> Items { get; set; }
         public List<EmployeeApproval> Approvals { get; set; }
 
     }
 
 
-    public class OrderPurchaseManagement
+    public class PurchaseOrderManagement
     {
         public int ID { get; set; }
         public int SupplierID { get; set; }
@@ -101,16 +101,16 @@ namespace PipewellserviceModels.Procurement.Purchase
         public int TotalRecord { get; set; }
     }
     
-public class OrderPurchaseManagementItem: InternalPurchaseRequestItem
+public class PurchaseOrderManagementItem : InternalPurchaseRequestItem
     {
         
         public int OrderID { get; set; }
         public int SerialNumber { get; set; }
-        public float UnitCost { get; set; }
-        public float Amount { get
-            {
-                return UnitCost * Quantity;
-            } }
+        //public float UnitCost { get; set; }
+        //public float Amount { get
+        //    {
+        //        return UnitCost * Quantity;
+        //    } }
     }
     public class PurchaseOrderParam
     {
@@ -118,10 +118,10 @@ public class OrderPurchaseManagementItem: InternalPurchaseRequestItem
         public string ID { get; set; }
         public string RequestedBy { get; set; }
     }
-    public class OrderPurchaseManagementResult:InternalPurchaseRequestResult
+    public class PurchaseOrderManagementResult : InternalPurchaseRequestResult
     {
     }
-    public class OrderPurchaseManagementMailDetail :InternalPurchaseMailDetail
+    public class PurchaseOrderManagementMailDetail : InternalPurchaseMailDetail
     {
         public int OrderID { get; set; }
         public float UnitCost { get; set; }
