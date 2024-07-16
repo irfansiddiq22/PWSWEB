@@ -16,7 +16,7 @@ namespace Pipewellservice
 
             routes.MapRoute(
                 name: "PersonalDetails",
-                url: "PersonalDetail",
+                url: "EmployeeDetail",
                 defaults: new { controller = "Home", action = "PersonalDetail", id = UrlParameter.Optional }
             );
             routes.MapRoute(
