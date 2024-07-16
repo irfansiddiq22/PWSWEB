@@ -34,7 +34,7 @@ namespace Pipewellservice.Controllers
         public async Task<JsonResult> SavePersonalDetails(PersonalDetail PersonalDetail, List<PersonalWorkExperience> WorkExperience)
         {
             bool result = await (new HomeJson()).SavePersonalDetails(PersonalDetail, WorkExperience);
-            string EmailBody = $"Dear {PersonalDetail.Name}, <br> Thank you for using self service to update CV data with our systemm. <br><br>Best regards!";
+            string EmailBody = $"Dear {PersonalDetail.Name}, <br> Thank you for using self service to update CV data with our systemm. <br><br>Best regards!<br><br>Pipe & Well O. & M. Services Co.";
             if (result)
 
             {
