@@ -44,6 +44,16 @@ namespace Pipewellservice.Helper
                 return value.ToString();
             }
         }
+
+        public static string ReplaceXmlChar(string input)
+        {
+            input = input.Replace("&", "&amp");
+            input = input.Replace("<", "&lt;");
+            input = input.Replace(">", "&gt;");
+            input = input.Replace("\"", "&quot;");
+            input = input.Replace("'", "&apos;");
+            return input;
+        }
     }
     
 }

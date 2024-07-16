@@ -19,6 +19,16 @@ namespace PipewellserviceDB.Common
                 return value.ToString();
             }
         }
+        public static string ReplaceXmlChar(object input)
+        {
+            string input2 = NullToString(input);
+            input = input2.Replace("&", "&amp");
+            input2 = input2.Replace("<", "&lt;");
+            input2 = input2.Replace(">", "&gt;");
+            input2 = input2.Replace("\"", "&quot;");
+            input2 = input2.Replace("'", "&apos;");
+            return input2;
+        }
     }
 
 }

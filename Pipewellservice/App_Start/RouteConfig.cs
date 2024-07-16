@@ -15,10 +15,16 @@ namespace Pipewellservice
             routes.IgnoreRoute("{*allActiveReport}", new { allActiveReport = @".*\.ar8(/.*)?" });
 
             routes.MapRoute(
+                name: "PersonalDetails",
+                url: "PersonalDetail",
+                defaults: new { controller = "Home", action = "PersonalDetail", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "ProcurementStore",
                 url: "{controller}/Store/{action}/{id}",
                 defaults: new { controller = "Procurement", action = "Index", id = UrlParameter.Optional }
             );
+
 
 
             routes.MapRoute(

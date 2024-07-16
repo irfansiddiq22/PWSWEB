@@ -54,6 +54,7 @@
     <Compile Include="Common\DataListService.cs" />
     <Compile Include="Common\StringHelper.cs" />
     <Compile Include="DataServices.cs" />
+    <Compile Include="Home\HomeService.cs" />
     <Compile Include="HR\Employee\AccommodationService.cs" />
     <Compile Include="HR\Employee\EmployeeService.cs" />
     <Compile Include="HR\JobService.cs" />

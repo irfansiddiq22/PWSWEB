@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Auth\AuthUserJson.cs" />
     <Compile Include="Common\DataListJson.cs" />
+    <Compile Include="Home\homejson.cs" />
     <Compile Include="HR\Employee\AccommodationJson.cs" />
     <Compile Include="HR\Employee\EmployeeJson.cs" />
     <Compile Include="HR\Job\JobJson.cs" />
