@@ -12,6 +12,7 @@ using System.Web.Mvc;
 using System.IO;
 using PipewellserviceJson.Common;
 using PipewellserviceModels.HR.Settings;
+using PipewellserviceModels.Home;
 
 namespace Pipewellservice.Areas.API.Controllers
 {
@@ -1225,5 +1226,83 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
+
+        public async Task<JsonResult> EmployeeCVData(EmployeeCVParam param)
+        {
+            return new JsonResult
+            {
+                Data = await json.EmployeeCVData(param),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public async Task<FileResult> DownloadCV(int ID)
+        {
+
+            string TemplatePath = await FileHelper.GetTemplateFile(DirectoryNames.Templates, DocTemplates.CV);
+
+
+            string SavePath = await FileHelper.GetPath(DirectoryNames.EmployeeJobOffer);
+            string Extenstion = Path.GetExtension(TemplatePath);
+
+            Extenstion = ".docx";
+
+            EmployeeCV Empdata = await json.EmployeeCVData(ID);
+
+            List<MergeField> mergeFields = new List<MergeField>();
+            
+            mergeFields.Add(new MergeField("NAME", Empdata.Detail.Name));
+            mergeFields.Add(new MergeField("EMPNO", Empdata.Detail.EmployeeNumber));
+            mergeFields.Add(new MergeField("PASSPORTNO", Empdata.Detail.PassportNumber));
+            mergeFields.Add(new MergeField("ARAMCOID", Empdata.Detail.AramcoID));
+            mergeFields.Add(new MergeField("DOB", Empdata.Detail.DateOfBirth.ToString("dd/MM/yyyy")));
+            mergeFields.Add(new MergeField("NATIONALITY", Empdata.Detail.Nationality));
+            mergeFields.Add(new MergeField("QUALIFICATION", Empdata.Detail.EducationQualification));
+            mergeFields.Add(new MergeField("LANGUAGE", Empdata.Detail.Languages));
+            mergeFields.Add(new MergeField("PROQUALIFICATION", Empdata.Detail.PersonalQualification));
+            mergeFields.Add(new MergeField("TRAINING", Empdata.Detail.OtherTraining));
+            mergeFields.Add(new MergeField("COURSES", Empdata.Detail.OtherCourses));
+            mergeFields.Add(new MergeField("SAFETY", Empdata.Detail.SafetyTrainingCourses));
+            List<LoopMergeFieldData> loopData = new List<LoopMergeFieldData>();
+            int RowID = 0;
+            foreach(PersonalWorkExperience exp in Empdata.WorkExperience)
+            {
+                LoopMergeFieldData Row = new LoopMergeFieldData();
+                RowID++;
+                Row.RowID = RowID;
+
+                Row.data = new LoopMergeData();
+                Row.data.mergeFields = new List<MergeField>();
+
+                Row.data.mergeFields.Add(new MergeField("COMP", exp.CompanyName));
+                Row.data.mergeFields.Add(new MergeField("DURATION", $"{exp.StartDate.ToString("dd/MM/yyyy")} - {exp.EndDate.ToString("dd/MM/yyyy")}" ));
+                Row.data.mergeFields.Add(new MergeField("DESIGN", exp.Designation));
+                Row.data.mergeFields.Add(new MergeField("NATURE", exp.JobNature));
+                Row.data.mergeFields.Add(new MergeField("NOTES", exp.Notes));
+                loopData.Add(Row);
+
+            }
+            //&lt;
+            DocHelper DocHelper = new DocHelper();
+
+             
+            try
+            {
+                await DocHelper.ConvertDocument(TemplatePath, $"{SavePath}\\{ID}{Extenstion}", mergeFields, loopData);
+                byte[] fileBytes = System.IO.File.ReadAllBytes($"{SavePath}\\{ID}{Extenstion}");
+                string fileName = $"{Empdata.Detail.Name}_CV{Extenstion}";
+                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+
+            }
+            catch (Exception e)
+            {
+                EmailHelper email = new EmailHelper();
+               await email.SendEmail(new EmailDTO() { To = "irfanullah.it@pipewellservices.com", From = "notifications.pws@gmail.com", Subject = "ERROR PWS WEB", Body = e.Message });
+            }
+            return null;
+        }
+
+        
+        
     }
 }

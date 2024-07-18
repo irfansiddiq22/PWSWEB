@@ -48,33 +48,6 @@ namespace Pipewellservice.Helper
         public async Task<bool> ConvertDocument(string FilePath, string SaveFilePath, List<MergeField> mergefields)
         {
 
-            //Microsoft.Office.Interop.Word.Application WordApp = new Microsoft.Office.Interop.Word.Application();
-
-            //Microsoft.Office.Interop.Word.Document Doc;
-
-
-            //WordApp.Visible = true;
-
-
-            //WordApp.Documents.Open(FilePath);
-            //Doc = WordApp.ActiveDocument;
-            //try
-            //{
-            //    foreach (MergeField field in mergefields)
-            //    {
-            //        Doc.Content.Find.Execute(FindText: field.Field, MatchCase: false, Forward: false, ReplaceWith: field.Value, Replace: Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll);
-            //    }
-
-            //    WordApp.ActiveDocument.SaveAs2(SaveFilePath);
-            //    Doc.Close();
-            //    return true;
-            //}
-            //catch (Exception e)
-            //{
-            //    return false;
-            //}
-
-            // System.IO.File.Copy(@"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\Template\CONTRACT TEMPLATE.docx", @"K:\IrfanUllah\Pipewellservice\Pipewellservice\Resources\Employee\Template\CONTRACT TEMPLATE2.docx", true);
 
             System.IO.File.Copy(@FilePath, SaveFilePath, true);
 
@@ -83,46 +56,93 @@ namespace Pipewellservice.Helper
             using (WordprocessingDocument doc =
                   WordprocessingDocument.Open(SaveFilePath, true))
             {
-                //var body = doc.MainDocumentPart.Document.Body;
-                //var paras = body.Elements<Paragraph>();
-
-                //foreach (var para in paras)
-                //{
-                //    foreach (var run in para.Elements<Run>())
-                //    {
-                //        foreach (var text in run.Elements<Text>())
-                //        {
-                //            var field = mergefields.Find(x => x.Field.ToLower() == text.Text.ToLower());
-                //            if (field != null)
-                //            {
-                //                text.Text = text.Text.Replace(text.Text, field.Value);
-                //            }
-                //        }
-                //    }
-                //}
-                //foreach (var text in doc.MainDocumentPart.Document.Descendants<Text>()){ // <<< Here
-                //    var field = mergefields.Find(x => x.Field.ToLower() == text.Text.ToLower());
-                //    if (field != null)
-                //    {
-                //        text.Text = text.Text.Replace(text.Text, field.Value);
-                //    }
-                //}
-
-                string docText = null;
-                using (StreamReader sr = new StreamReader(doc.MainDocumentPart.GetStream()))
-                    docText = sr.ReadToEnd();
-
-                foreach (var t in mergefields)
+                try
                 {
-                    
-                    docText = new Regex($"#{t.Field}#" , RegexOptions.IgnoreCase).Replace(docText,( t.Value==null ? "": t.Value));
+
+                    string docText = null;
+                    using (StreamReader sr = new StreamReader(doc.MainDocumentPart.GetStream()))
+                        docText = sr.ReadToEnd();
+
+                    foreach (var t in mergefields)
+                    {
+
+                        docText = new Regex($"#{t.Field}#", RegexOptions.IgnoreCase).Replace(docText, (t.Value == null ? "" : t.Value));
+                    }
+                    using (StreamWriter sw = new StreamWriter(doc.MainDocumentPart.GetStream(FileMode.Create)))
+                        sw.Write(docText);
+
+                    doc.Save();
+                }catch (Exception e)
+                {
+
                 }
-                using (StreamWriter sw = new StreamWriter(doc.MainDocumentPart.GetStream(FileMode.Create)))
-                    sw.Write(docText);
-                
-                doc.Save();
                 doc.Dispose();
-                
+
+            }
+            return true;
+        }
+
+        public async Task<bool> ConvertDocument(string FilePath, string SaveFilePath, List<MergeField> mergefields, List<LoopMergeFieldData> loopData)
+        {
+
+
+            System.IO.File.Copy(@FilePath, SaveFilePath, true);
+
+
+            
+            using (WordprocessingDocument doc =
+                  WordprocessingDocument.Open(SaveFilePath, true))
+            {
+                try
+                {
+
+                    string docText = null;
+                    using (StreamReader sr = new StreamReader(doc.MainDocumentPart.GetStream()))
+                        docText = sr.ReadToEnd();
+
+                    foreach (var t in mergefields)
+                    {
+
+                        docText = new Regex($"#{t.Field}#", RegexOptions.IgnoreCase).Replace(docText, (t.Value == null ? "" : t.Value));
+                    }
+                    string Experience = Regex.Match(docText, @"#LOOP#(.+)#ENDLOOP#", RegexOptions.Singleline).Groups[1].Value;
+                    Experience = Experience.Substring(Experience.IndexOf("<w:tr"));
+                    Experience = Experience.Substring(0, Experience.LastIndexOf("<w:tr "));
+
+
+                    int LastReplace = Experience.Length;
+                    List<string> WorkExp = new List<string>();
+
+                    foreach (LoopMergeFieldData lmd in loopData)
+                    {
+                        string NewExperienceData = Experience;
+                        foreach (var t in lmd.data.mergeFields)
+                        {
+                            NewExperienceData = new Regex($"#{t.Field}#", RegexOptions.IgnoreCase).Replace(NewExperienceData, (t.Value == null ? "" : t.Value));
+
+                        }
+                        WorkExp.Add(NewExperienceData);
+
+                    }
+                    //docText.Replace(Experience, string.Join("", WorkExp));
+
+                    int LoopStart = docText.IndexOf("#LOOP#") + 37;
+
+                    docText = docText.Remove(LoopStart, LastReplace).Insert(LoopStart + 1, string.Join("", WorkExp));
+                    docText = docText.Replace("#LOOP#", "");
+                    docText = docText.Replace("#ENDLOOP#", "");
+
+
+                    using (StreamWriter sw = new StreamWriter(doc.MainDocumentPart.GetStream(FileMode.Create)))
+                        sw.Write(docText);
+
+                    doc.Save();
+                }catch(Exception e)
+                {
+
+                }
+                doc.Dispose();
+
             }
             return true;
         }

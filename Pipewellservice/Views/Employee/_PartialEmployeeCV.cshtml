@@ -1,0 +1,83 @@
+﻿<div class="border p-2">
+    <div id="dvEmployeeCVList">
+        <div class="my-2 p-2">
+            <div class="w-100 m-auto">
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="txtEmployeeCVName" placeholder="Name">
+                            <label for="floatingInput">Name:</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="txtEmployeeCVID" placeholder="ID">
+                            <label for="floatingInput">Employee ID:</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="txtEmployeeCVPassport" placeholder="Passport number">
+                            <label for="floatingInput">Passport #:</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="txtEmployeeCVAramcoID" placeholder="Aramco ID">
+                            <label for="floatingInput">Aramco ID:</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="formfloating">
+                            <label for="ddEmployeeCVNationality">Nationality:</label>
+                            <select class="form-select form-select-sm" id="ddEmployeeCVNationality"></select>
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-danger wrn-btn" onclick="FillEmployeeCV();">Search</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover-warning table-bordered">
+                <thead class="blue">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Nationality</th>
+                        <th>Passport Number</th>
+                        <th>Aramco ID</th>
+                        <th>Age</th>
+
+                        <th>Education Qalification</th>
+                        <th>Languages</th>
+                        <th>Personal Qalification</th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody id="tblEmployeeCV"></tbody>
+            </table>
+        </div>
+        <div id="dvPaging"></div>
+    </div>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/pagination")
+    @Scripts.Render("~/lib/hr/employeecv")
+    @Styles.Render("~/bundles/paginationcss")
+}

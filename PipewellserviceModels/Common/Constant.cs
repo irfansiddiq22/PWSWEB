@@ -178,7 +178,8 @@ namespace PipewellserviceModels.Common
         InternalPurchaseRequest=30,
         PurchaseOrderManagment = 31,
         Sponosor=32,
-        Location=33 
+        Location=33 ,
+        EmployeeCV=34
 
 
     }
@@ -210,7 +211,8 @@ namespace PipewellserviceModels.Common
     public enum DocTemplates
     {
         JobOffer = 1,
-        Contract = 2
+        Contract = 2,
+        CV=3
     }
     public enum SupervisorTypes
     {

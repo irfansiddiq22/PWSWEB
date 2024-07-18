@@ -1,5 +1,6 @@
 ﻿using PipewellserviceDB.HR.Employee;
 using PipewellserviceModels.Common;
+using PipewellserviceModels.Home;
 using PipewellserviceModels.HR.Employee;
 using PipewellserviceModels.HR.Settings;
 using PipewellserviceModels.Setting;
@@ -404,7 +405,24 @@ namespace PipewellserviceJson.HR.Employee
 
             return await JsonHelper.Convert<List<ExpiringID>, DataTable>(data);
         }
+        public async Task<List<PersonalDetail>> EmployeeCVData(EmployeeCVParam param)
+        {
+            var data = await service.EmployeeCVData(param);
 
-        
+            return await JsonHelper.Convert<List<PersonalDetail>, DataTable>(data);
+        }
+
+        public async Task<EmployeeCV> EmployeeCVData(int ID)
+        {
+            var data = await service.EmployeeCVData(ID);
+            EmployeeCV cv = new EmployeeCV();
+            cv.Detail= (await JsonHelper.Convert<List<PersonalDetail>, DataTable>(data.Detail)).FirstOrDefault();
+            cv.WorkExperience = (await JsonHelper.Convert<List<PersonalWorkExperience>, DataTable>(data.WorkExperience));
+            return cv;
+        }
+
+
+
+
     }
 }

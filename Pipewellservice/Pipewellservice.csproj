@@ -482,6 +482,7 @@
     <Content Include="Scripts\ProjectScripts\HR\Employee\AttendenceReport.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Employee.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeClearance.js" />
+    <Content Include="Scripts\ProjectScripts\HR\Employee\employeecv.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeFamily.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeFamilyID.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\EmployeeID.js" />
@@ -648,6 +649,7 @@
     <Content Include="Views\Employee\_PartialLocations.cshtml" />
     <Content Include="Views\Home\vmEmployeePersonDetail.cshtml" />
     <Content Include="Views\Home\PersonalDetail.cshtml" />
+    <Content Include="Views\Employee\_PartialEmployeeCV.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,4 +18,13 @@ namespace PipewellserviceModels.Common
             Value = value;
         }
     }
+    public class LoopMergeFieldData
+    {
+      public int RowID { get; set; }
+        public LoopMergeData data { get; set; }
+    }
+    public class LoopMergeData {
+
+        public List<MergeField> mergeFields = new List<MergeField>();
+    }
 }

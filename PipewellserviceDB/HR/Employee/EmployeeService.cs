@@ -1,5 +1,6 @@
 ﻿using PipewellserviceDB.Common;
 using PipewellserviceModels.Common;
+using PipewellserviceModels.Home;
 using PipewellserviceModels.HR.Employee;
 using PipewellserviceModels.HR.Settings;
 using SQLHelper;
@@ -1520,6 +1521,48 @@ namespace PipewellserviceDB.HR.Employee
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeAttendenceReportSummary", CommandType.StoredProcedure, collSP);
                 DataTable dt = new DataTable();
                 dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public async Task<DataTable> EmployeeCVData(EmployeeCVParam param)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[7];
+                collSP[0] = new SqlParameter { ParameterName = "@Name", Value = param.Name };
+                collSP[1] = new SqlParameter { ParameterName = "@EmployeeNumber", Value = param.EmployeeNumber };
+                collSP[2] = new SqlParameter { ParameterName = "@PassportNumber", Value = param.PassportNumber };
+                collSP[3] = new SqlParameter { ParameterName = "@AramcoID", Value = param.EmployeeNumber };
+                collSP[4] = new SqlParameter { ParameterName = "@Nationality", Value = param.Nationality };
+                collSP[5] = new SqlParameter { ParameterName = "@PageNumber", Value = param.PageNumber };
+                collSP[6] = new SqlParameter { ParameterName = "@PageSize", Value = param.pageSize };
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcListEmployeePersonalData", CommandType.StoredProcedure, collSP);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public async Task<PersonalDataSQL> EmployeeCVData(int ID)
+        {
+            try
+            {
+                
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetEmployeePersonalData", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                PersonalDataSQL dt = new PersonalDataSQL();
+                dt.Detail.Load(result);
+                dt.WorkExperience.Load(result);
                 result.Close();
                 return dt;
             }

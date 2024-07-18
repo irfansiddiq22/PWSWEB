@@ -99,6 +99,16 @@ namespace Pipewellservice.Controllers
             return View("_PartialJobContract");
         }
 
+
+        [Authorization(Pages.EmployeeCV)]
+        public ActionResult EmployeeCV()
+        {
+            ViewBag.Title = "Job CV Data Capture";
+            ViewBag.Parent = Parent;
+            return View("_PartialEmployeeCV");
+        }
+
+
         [Authorization(Pages.EmployeeWarning)]
         public ActionResult Warning()
         {
