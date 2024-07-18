@@ -34,7 +34,7 @@ namespace Pipewellservice.Controllers
         public async Task<JsonResult> SavePersonalDetails(PersonalDetail PersonalDetail, List<PersonalWorkExperience> WorkExperience)
         {
             bool result = await (new HomeJson()).SavePersonalDetails(PersonalDetail, WorkExperience);
-            string EmailBody = $"Dear {PersonalDetail.Name}, <br> Thank you for using self service to update CV data with our systemm. <br><br>Best regards!<br><br>Pipe & Well O. & M. Services Co.";
+            string EmailBody = $"Dear {PersonalDetail.Name}, <br> Thank you for using self service to update CV data with our system. <br><br>Best regards!<br><br>Pipe & Well O. & M. Services Co.";
             if (result)
 
             {
@@ -50,6 +50,15 @@ namespace Pipewellservice.Controllers
             };
         }
 
+        public async Task<ActionResult> SupplierAssesment()
+        {
+            ViewBag.Title = "";
+            ViewBag.Parent = null;
+            ViewBag.RECAPTCHA = ConfigurationManager.AppSettings["RECAPTCHA"];
+            ViewBag.Countries = await (new DataListJson()).CountryList();
+            return View("_SupplierAssesment");
+        }
+        
 
 
         public ActionResult AccessDenied()

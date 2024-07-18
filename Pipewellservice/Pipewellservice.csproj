@@ -650,6 +650,7 @@
     <Content Include="Views\Home\vmEmployeePersonDetail.cshtml" />
     <Content Include="Views\Home\PersonalDetail.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeCV.cshtml" />
+    <Content Include="Views\Home\_SupplierAssesment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
