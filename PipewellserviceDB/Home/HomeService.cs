@@ -110,7 +110,7 @@ namespace PipewellserviceDB.Home
                 qualtycontrol.AppendLine("</NewDataSet>");
 
 
-                SqlParameter[] parameters = new SqlParameter[59];
+                SqlParameter[] parameters = new SqlParameter[60];
                 parameters[0] = new SqlParameter { ParameterName = "@ID", Value = assesment.ID };
                 parameters[1] = new SqlParameter { ParameterName = "@Assessment", Value = assesment.Assessment };
                 parameters[2] = new SqlParameter { ParameterName = "@RecordDate", Value = assesment.RecordDate };
@@ -170,7 +170,8 @@ namespace PipewellserviceDB.Home
                 parameters[56] = new SqlParameter { ParameterName = "@IndirectEmployees", Value = StringHelper.NullToString( assesment.IndirectEmployees )};
                 parameters[57] = new SqlParameter { ParameterName = "@TechnicalEmployees", Value = StringHelper.NullToString( assesment.TechnicalEmployees )};
                 parameters[58] = new SqlParameter { ParameterName = "@OtherEmployees", Value = StringHelper.NullToString( assesment.OtherEmployees )};
-              int ID=Convert.ToInt32(  SqlHelper.ExecuteScalar(ConnectionString, "ProcAddOrUpdateSupplierAssesment", CommandType.StoredProcedure, parameters));
+                parameters[59] = new SqlParameter { ParameterName = "@NationalAddress", Value = StringHelper.NullToString(assesment.NationalAddress) };
+                int ID=Convert.ToInt32(  SqlHelper.ExecuteScalar(ConnectionString, "ProcAddOrUpdateSupplierAssesment", CommandType.StoredProcedure, parameters));
                 try
                 {
                     parameters = new SqlParameter[5];
@@ -194,7 +195,7 @@ namespace PipewellserviceDB.Home
 
             try
             {
-                SqlParameter[] parameters = new SqlParameter[15];
+                SqlParameter[] parameters = new SqlParameter[17];
                 parameters[0] = new SqlParameter { ParameterName = "@ID", Value = ID };
                 parameters[1] = new SqlParameter { ParameterName = "@CRFile", Value = assesmentFile.CRFile };
                 parameters[2] = new SqlParameter { ParameterName = "@CRFileID", Value = assesmentFile.CRFileID };
@@ -212,6 +213,9 @@ namespace PipewellserviceDB.Home
 
                 parameters[13] = new SqlParameter { ParameterName = "@QualityControlFile", Value = StringHelper.NullToString(assesmentFile.QualityControlFile) };
                 parameters[14] = new SqlParameter { ParameterName = "@QualityControlFileID", Value = StringHelper.NullToString(assesmentFile.QualityControlFileID) };
+
+                parameters[15] = new SqlParameter { ParameterName = "@NationalAddressFile", Value = StringHelper.NullToString(assesmentFile.NationalAddressFile) };
+                parameters[16] = new SqlParameter { ParameterName = "@NationalAddressFileID", Value = StringHelper.NullToString(assesmentFile.NationalAddressFileID) };
                 SqlHelper.ExecuteScalar(ConnectionString, "ProcAddOrUpdateSupplierAssessmentFiles", CommandType.StoredProcedure, parameters);
                 return true;
             }

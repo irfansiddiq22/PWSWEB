@@ -77,7 +77,7 @@ namespace Pipewellservice.Controllers
 
         public async Task<JsonResult> UploadSupplierAssessmentFiles(int ID)
         {
-            HttpPostedFileBase CRFile, ZakatFile, ChamberMemberShipFile, QualityManagementCertificateFile, MajorCustomerFile, ProductionFile, QualityControlFile;
+            HttpPostedFileBase CRFile, ZakatFile, ChamberMemberShipFile, QualityManagementCertificateFile, MajorCustomerFile, ProductionFile, QualityControlFile, NationalAddressFile;
             CRFile = Request.Files["CRFile"];
             ZakatFile = Request.Files["ZakatFile"];
             ChamberMemberShipFile = Request.Files["ChamberMemberShipFile"];
@@ -85,6 +85,7 @@ namespace Pipewellservice.Controllers
             MajorCustomerFile = Request.Files["MajorCustomerFile"];
             ProductionFile = Request.Files["ProductionFile"];
             QualityControlFile = Request.Files["QualityControlFile"];
+            NationalAddressFile= Request.Files["NationalAddressFile"];
 
             AssessmentFile file = new AssessmentFile();
             if (CRFile != null)
@@ -142,6 +143,14 @@ namespace Pipewellservice.Controllers
                 file.QualityControlFileID = Path.GetExtension(QualityControlFile.FileName);
                 file.QualityControlFileID = $"Quality-Control-Facilities{file.QualityControlFile}";
                 await FileHelper.SaveFile(QualityControlFile, file.QualityControlFileID, ID, DirectoryNames.SupplierAssesment);
+            }
+
+            if (NationalAddressFile != null)
+            {
+                file.NationalAddressFile = NationalAddressFile.FileName;
+                file.NationalAddressFileID = Path.GetExtension(NationalAddressFile.FileName);
+                file.NationalAddressFileID = $"Nation-Address-File{file.NationalAddressFileID}";
+                await FileHelper.SaveFile(QualityControlFile, file.NationalAddressFileID, ID, DirectoryNames.SupplierAssesment);
             }
 
             bool result = await (new HomeJson()).SaveSupplierAssesmentFiles(ID,file);

@@ -20,6 +20,7 @@ namespace PipewellserviceModels.Home
         public string Region { get; set; }
         public string Country { get; set; }
         public string Website { get; set; }
+        public string NationalAddress { get; set; }
         public string GeneralEmailAddress { get; set; }
         public string PhoneNumber { get; set; }
         public string FaxNumber { get; set; }
@@ -81,6 +82,8 @@ namespace PipewellserviceModels.Home
         public string ProductionFileID { get; set; }
         public string QualityControlFile { get; set; }
         public string QualityControlFileID { get; set; }
+        public string NationalAddressFile { get; set; }
+        public string NationalAddressFileID { get; set; }
         public List<SupplierItem> SupplierItems { get; set; }
         public List<SupplierCustomer> SupplierCustomers { get; set; }
         public List<SupplierProductionFacility> SupplierProductionFacilities { get; set; }
@@ -105,6 +108,8 @@ namespace PipewellserviceModels.Home
         public string ProductionFileID { get; set; }
         public string QualityControlFile { get; set; }
         public string QualityControlFileID { get; set; }
+        public string NationalAddressFile { get; set; }
+        public string NationalAddressFileID { get; set; }
 
     }
     public class SupplierItem

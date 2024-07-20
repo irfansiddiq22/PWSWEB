@@ -145,6 +145,12 @@ function SaveAssesment() {
                 if (files.length > 0)
                     fileData.append("QualityControlFile", files[0]);
 
+                fileUpload = $('#flNationAddressFile').get(0);
+                files = fileUpload.files;
+                if (files.length > 0)
+                    fileData.append("NationalAddressFile", files[0]);
+
+                
                 $("#spinner").show();
                 $.ajax({
                     url: '/Home/UploadSupplierAssessmentFiles',

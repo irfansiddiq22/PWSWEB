@@ -83,6 +83,17 @@
                             </div>
                         </div>
                         <div class="row mb-3 pb-1 border-bottom">
+
+                            <div class="col">
+                                <label for="NationalAddress" class="form-label me-3">
+                                    National Address</label><label>
+                                    <input type="file" id="flNationAddressFile" />
+                                    <i class="fa fa-cloud-upload text-success" role="button"></i> <small class="form-text text-muted">*attach-copy of Nation Address</small>
+                                </label>
+                                <input type="text" class="form-control form-control-sm" id="NationalAddress" data-id="NationalAddress" maxlength="50" required name="NationalAddress" data-msg="Please entry national address ">
+                            </div>
+                        </div>
+                        <div class="row mb-3 pb-1 border-bottom">
                             <div class="col">
                                 <label for="webSite" class="form-label">Web Site</label>
                                 <input type="url" class="form-control form-control-sm" maxlength="350" id="webSite" data-id="Website" name="website">
@@ -107,7 +118,7 @@
                                 <input type="text" class="form-control form-control-sm" id="crNumber" maxlength="50" data-id="CRNumber" name="CRNumber" required data-msg="Please enter Cr number">
                                 <label class="">
                                     <input type="file" id="flCRFile" />
-                                    <i class="fa fa-cloud-upload text-success" role="button"></i> <small class="form-text text-muted">*attach-copy of C.R. Copy</small>
+                                    <i class="fa fa-cloud-upload text-success" role="button"></i> <small class="form-text text-muted">*attach-copy of C.R.</small>
                                 </label>
                             </div>
                             <div class="col">
@@ -121,7 +132,7 @@
 
                                 <label class="">
                                     <input type="file" id="flZakatFile" />
-                                    <i class="fa fa-cloud-upload text-success" role="button"></i> <small class="form-text text-muted">*attach-copy of Zakat Copy</small>
+                                    <i class="fa fa-cloud-upload text-success" role="button"></i> <small class="form-text text-muted">*attach-copy of Zakat</small>
                                 </label>
                             </div>
                             <div class="col">
@@ -502,8 +513,8 @@
                                 <tfoot>
                                     <tr>
                                         <td colspan="4">
-                                        <button type="button" class="btn btn-sm btn-success" onclick="AddNewOption('tblCustomers')"><i class="fa fa-plus-circle"></i> Add Customer</button>
-                                        <button type="button" class="btn btn-sm btn-success" onclick="UploadDataFile('customers')"> <i class="fa fa-plus-circle"></i>Upload File<small>csv,xls,xlsx</small></button>
+                                            <button type="button" class="btn btn-sm btn-success" onclick="AddNewOption('tblCustomers')"><i class="fa fa-plus-circle"></i> Add Customer</button>
+                                            <button type="button" class="btn btn-sm btn-success" onclick="UploadDataFile('customers')"> <i class="fa fa-plus-circle"></i>Upload File<small>csv,xls,xlsx</small></button>
                                         </td>
                                     </tr>
                                 </tfoot>
@@ -555,8 +566,8 @@
                                 <tfoot>
                                     <tr>
                                         <td colspan="4">
-                                        <button type="button" onclick="AddNewOption('tblProductions')" class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i> Add Facility</button>
-                                        <button type="button" class="btn btn-sm btn-success" onclick="UploadDataFile('production')"> <i class="fa fa-plus-circle"></i>Upload File<small>csv,xls,xlsx</small></button>
+                                            <button type="button" onclick="AddNewOption('tblProductions')" class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i> Add Facility</button>
+                                            <button type="button" class="btn btn-sm btn-success" onclick="UploadDataFile('production')"> <i class="fa fa-plus-circle"></i>Upload File<small>csv,xls,xlsx</small></button>
                                         </td>
                                     </tr>
                                 </tfoot>
@@ -606,8 +617,9 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="4"><button type="button" onclick="AddNewOption('tblEquipments')" class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i> Add Facility</button>
-                                                        <button type="button" class="btn btn-sm btn-success" onclick="UploadDataFile('equipments')"> <i class="fa fa-plus-circle"></i>Upload File<small>csv,xls,xlsx</small></button>
+                                        <td colspan="4">
+                                            <button type="button" onclick="AddNewOption('tblEquipments')" class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i> Add Facility</button>
+                                            <button type="button" class="btn btn-sm btn-success" onclick="UploadDataFile('equipments')"> <i class="fa fa-plus-circle"></i>Upload File<small>csv,xls,xlsx</small></button>
                                         </td>
                                     </tr>
                                 </tfoot>
@@ -717,20 +729,20 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" >Upload File</h5>
+                    <h5 class="modal-title">Upload File</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row mb-4">
-                        
-                        <div class="col-3"><input type="File" style="display:block;" id="flSupplierFile"/></div>
+
+                        <div class="col-3"><input type="File" style="display:block;" id="flSupplierFile" /></div>
                         <div class="col-3"><button class="btn btn-sm btn-primary" onclick="UploadSupplierFile()">Upload</button></div>
 
                     </div>
 
                     <div class="bg-warning p-2">*Map data fields to import file</div>
                     <table class="table table-sm table-striped table-hover-warning table-bordered">
-                        
+
                         <tbody id="tblFileFields"></tbody>
                     </table>
                 </div>
