@@ -13,6 +13,7 @@ using System.IO;
 using PipewellserviceJson.Common;
 using PipewellserviceModels.HR.Settings;
 using PipewellserviceModels.Home;
+using Pipewellservice.App_Start;
 
 namespace Pipewellservice.Areas.API.Controllers
 {
@@ -1250,7 +1251,8 @@ namespace Pipewellservice.Areas.API.Controllers
             EmployeeCV Empdata = await json.EmployeeCVData(ID);
 
             List<MergeField> mergeFields = new List<MergeField>();
-            
+
+            mergeFields.Add(new MergeField("PWSCOMPANY",await AppData.CompanyName() ));
             mergeFields.Add(new MergeField("NAME", Empdata.Detail.Name));
             mergeFields.Add(new MergeField("EMPNO", Empdata.Detail.EmployeeNumber));
             mergeFields.Add(new MergeField("PASSPORTNO", Empdata.Detail.PassportNumber));
@@ -1270,7 +1272,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 LoopMergeFieldData Row = new LoopMergeFieldData();
                 RowID++;
                 Row.RowID = RowID;
-
+                
                 Row.data = new LoopMergeData();
                 Row.data.mergeFields = new List<MergeField>();
 

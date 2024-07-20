@@ -34,8 +34,18 @@ namespace Pipewellservice
                 "~/Scripts/libraries/daterangepicker/daterangepicker.js",
                 "~/Scripts/moment-with-locales.min.js",
                 "~/Scripts/ProjectScripts/Home/EmployeeDetail.js"
+                
+                ));
+            bundles.Add(new ScriptBundle("~/supplierassesment").Include(
+                "~/Scripts/moment.min.js",
+                "~/Scripts/bootstrap-datepicker.min.js",
+                "~/Scripts/libraries/daterangepicker/daterangepicker.js",
+                "~/Scripts/moment-with-locales.min.js",
+                "~/Scripts/ProjectScripts/Home/SupplierAssesment.js"
 
                 ));
+
+            
 
 
 

@@ -19,15 +19,22 @@ namespace Pipewellservice.App_Start
         }
         public async static Task<List<Constant>> List(ParentEnums parent)
         {
-            return Constants.FindAll (x => x.ParentID == (int)parent);
+            return Constants.FindAll(x => x.ParentID == (int)parent);
         }
-        public async static Task<Constant> Get(ParentEnums parent,int Enum)
-        {
-            return Constants.Find(x => x.ParentID ==(int) parent && x.Value == Enum);
-        }
-        public  static Constant Get1(ParentEnums parent, int Enum)
+        public async static Task<Constant> Get(ParentEnums parent, int Enum)
         {
             return Constants.Find(x => x.ParentID == (int)parent && x.Value == Enum);
+        }
+        public static Constant Get1(ParentEnums parent, int Enum)
+        {
+            return Constants.Find(x => x.ParentID == (int)parent && x.Value == Enum);
+        }
+        public async static Task<string> CompanyName()
+        {
+
+            List<Constant> cont = AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.REPORTHEADER);
+            
+            return cont.Find(x => x.Value == 4).Name;
         }
 
 

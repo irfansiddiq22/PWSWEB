@@ -226,6 +226,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\EmailHelper.cs" />
+    <Compile Include="Helper\ExcelHelper.cs" />
     <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="Helper\SessionHelper.cs" />
     <Compile Include="Helper\StringHelper.cs" />
@@ -477,6 +478,7 @@
     <Content Include="Scripts\ProjectScripts\Auth\Login.js" />
     <Content Include="Scripts\ProjectScripts\Home\EmployeeDetail.js" />
     <Content Include="Scripts\ProjectScripts\Home\home.js" />
+    <Content Include="Scripts\ProjectScripts\Home\SupplierAssesment.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Accommodation.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Asset.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\AttendenceReport.js" />
@@ -647,10 +649,10 @@
     <Content Include="Views\Procurement\PurchaseOrderManagement.cshtml" />
     <Content Include="Views\Employee\_PartialSponsor.cshtml" />
     <Content Include="Views\Employee\_PartialLocations.cshtml" />
-    <Content Include="Views\Home\vmEmployeePersonDetail.cshtml" />
     <Content Include="Views\Home\PersonalDetail.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeCV.cshtml" />
     <Content Include="Views\Home\_SupplierAssesment.cshtml" />
+    <Content Include="Views\Home\_SupplierAssesment2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

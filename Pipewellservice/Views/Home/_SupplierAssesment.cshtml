@@ -1,467 +1,758 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supplier Assessment / Re Assessment Form</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
-    <div class="container mt-4">
-        <div class="blue">
-            <h4 class="text-center">Supplier Assessment / Re Assessment Form</h4>
-        </div>
-        <form>
-            <div class="border mb-2" >
-                <div class="p-3">
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="date" class="form-label">Date</label>
-                            <input type="date" class="form-control" id="date">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="companyName" class="form-label">Company Name</label>
-                            <input type="text" class="form-control" id="companyName">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="poBox" class="form-label">PO Box</label>
-                            <input type="text" class="form-control" id="poBox">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="postalCode" class="form-label">Postal Code</label>
-                            <input type="text" class="form-control" id="postalCode">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="streetCity" class="form-label">Street City</label>
-                            <input type="text" class="form-control" id="streetCity">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="regionCountry" class="form-label">Region/Country</label>
-                            <input type="text" class="form-control" id="regionCountry">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="website" class="form-label">Website</label>
-                            <input type="url" class="form-control" id="website">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="generalEmail" class="form-label">General Email</label>
-                            <input type="email" class="form-control" id="generalEmail">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="phone" class="form-label">Phone</label>
-                            <input type="tel" class="form-control" id="phone">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="fax" class="form-label">Fax</label>
-                            <input type="tel" class="form-control" id="fax">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="crNumber" class="form-label">CR Number</label>
-                            <input type="text" class="form-control" id="crNumber">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="crExpiryDate" class="form-label">CR Expiry Date</label>
-                            <input type="date" class="form-control" id="crExpiryDate">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="zakatNo" class="form-label">Zakat No.</label>
-                            <input type="text" class="form-control" id="zakatNo">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="zakatExpiryDate" class="form-label">Zakat Expiry Date</label>
-                            <input type="date" class="form-control" id="zakatExpiryDate">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="vatRegNo" class="form-label">VAT Registration No.</label>
-                            <input type="text" class="form-control" id="vatRegNo">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="chamberOfCommerce" class="form-label">Membership in Chamber of Commerce</label>
-                            <input type="text" class="form-control" id="chamberOfCommerce">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="localForeign" class="form-label">Local/Foreign</label>
-                            <select class="form-select" id="localForeign">
-                                <option value="local">Local</option>
-                                <option value="representativeOffice">Representative Office</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="dateOfEstablishment" class="form-label">Date of Establishment</label>
-                            <input type="date" class="form-control" id="dateOfEstablishment">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="typeOfCompany" class="form-label">Type of Company</label>
-                            <select class="form-select" id="typeOfCompany">
-                                <option value="supplierDealerTrader">Supplier / Dealer / Trader</option>
-                                <option value="contractorServiceProvider">Contractor / Service Provider</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="scopeOfServices" class="form-label">Scope of Services</label>
-                            <input type="text" class="form-control" id="scopeOfServices">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="scopeOfProducts" class="form-label">Scope of Products</label>
-                            <input type="text" class="form-control" id="scopeOfProducts">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="typeOfOwnership" class="form-label">Type of Ownership</label>
-                            <select class="form-select" id="typeOfOwnership">
-                                <option value="individualCompany">Individual Company</option>
-                                <option value="shareholdingCompany">Shareholding Company</option>
-                                <option value="limitedLiabilityCompany">Limited Liability Company</option>
-                                <option value="partnershipCompany">Partnership Company</option>
-                            </select>
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="w-75 m-auto">
+            <div class="m-2">
+                <div class=" m-auto">
+                    <div class="pull-left"><h2>@ViewBag.Name</h2></div>
+                    <a class="navbar-brand pull-right" href="javascript:void(0)">
+                        <img src="~/Content/images/logo.jpg" alt="">
+                    </a>
+                    <div class="clearfix"></div>
                 </div>
             </div>
-            <div class="border mb-2">
-                <div class="blue"><h4>Bank Details (for payment)</h4></div>
-                <div class="p-3">
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="bankAccountNo" class="form-label">Bank Account No</label>
-                            <input type="text" class="form-control" id="bankAccountNo">
+
+            <form id="frmSupplierAssessment" name="frmSupplierAssessment">
+                <div class="border">
+                    <div class="blue">
+                        <h4>Supplier Assessment / Re Assessment Form</h4>
+                    </div>
+                    <div class="row  bg-secondary-subtle p-3 m-0">
+                        <div class="col-3">
+                            <label class="form-check-label me-3" for="initialAssessment">Initial Assessment </label> <label class="switch"><input type="radio" name="assesment" id="initialAssessment" data-id="Assessment"><div class="slider round"></div></label>
                         </div>
-                        <div class="col-md-6">
-                            <label for="bankName" class="form-label">Bank Name</label>
-                            <input type="text" class="form-control" id="bankName">
+                        <div class="col-3">
+                            <label class="form-check-label me-3" for="reAssessment">Re Assessment </label> <label class="switch"><input type="radio" name="assesment" id="reAssessment"><div class="slider round"></div></label>
+                        </div>
+                    </div>
+                    <div class="mb-3 pb-1 borderbottom p-3">
+
+                        <div class="row mb-3 pb-1 border-bottom">
+                            <div class="col-3">
+                                <label for="date" class="form-label">Date</label>
+                                <input type="text" class="form-control form-control-sm datepicker" id="RecordDate" data-id="RecordDate" name="RecordDate" required data-msg="Please enter record date">
+                            </div>
+                            <div class="col">
+                                <label for="companyName" class="form-label">Company Name</label>
+                                <input type="text" class="form-control form-control-sm" id="CompanyName" name="CompanyName" maxlength="150" required data-msg="Please enter your company name" data-id="CompanyName">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="poBox" class="form-label">PO Box</label>
+                                <input type="text" class="form-control form-control-sm" id="PoBox" data-id="PoBox" maxlength="10" required name="PoBox" data-msg="Please enter PO BOX number">
+                            </div>
+                            <div class="col">
+                                <label for="postalCode" class="form-label">Postal Code</label>
+                                <input type="text" class="form-control form-control-sm" id="postalCode" data-id="PostalCode" maxlength="15" name="PostalCode" required data-msg="Please enter postal code">
+                            </div>
+
+                            <div class="col">
+                                <label for="street" class="form-label">Street</label>
+                                <input type="text" class="form-control form-control-sm" id="street" data-id="Street" name="Street" maxlength="100" required data-msg="Please enter stree address">
+                            </div>
+                            <div class="col">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" class="form-control form-control-sm" id="city" data-id="City" name="City" maxlength="100" required data-msg="Please enter city name">
+                            </div>
+                        </div>
+                        <div class="row mb-3 pb-1 border-bottom">
+                            <div class="col">
+                                <label for="region" class="form-label">Region</label>
+                                <input type="text" class="form-control form-control-sm" id="region" data-id="Region" maxlength="100" required name="region" data-msg="Please enter region">
+                            </div>
+                            <div class="col">
+                                <label for="country" class="form-label">Country</label>
+                                <input type="text" class="form-control form-control-sm" id="country" data-id="Country" maxlength="50" required name="country" data-msg="Please entry country name">
+                            </div>
+                        </div>
+                        <div class="row mb-3 pb-1 border-bottom">
+                            <div class="col">
+                                <label for="webSite" class="form-label">Web Site</label>
+                                <input type="url" class="form-control form-control-sm" maxlength="350" id="webSite" data-id="Website" name="website">
+                            </div>
+                            <div class="col">
+                                <label for="generalEmail" class="form-label">General Email</label>
+                                <input type="email" class="form-control form-control-sm" id="generalEmail" maxlength="250" data-id="GeneralEmailAddress" name="GeneralEmailAddress">
+                            </div>
+
+                            <div class="col">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="text" class="form-control form-control-sm" maxlength="50" id="phone" data-id="PhoneNumber" name="PhoneNumber">
+                            </div>
+                            <div class="col">
+                                <label for="fax" class="form-label">Fax</label>
+                                <input type="text" class="form-control form-control-sm" maxlength="50" id="fax" data-id="FaxNumber" name="FaxNumber">
+                            </div>
+                        </div>
+                        <div class="row mb-3 pb-1 border-bottom">
+                            <div class="col">
+                                <label for="crNumber" class="form-label">CR Number</label>
+                                <input type="text" class="form-control form-control-sm" id="crNumber" maxlength="50" data-id="CRNumber" name="CRNumber" required data-msg="Please enter Cr number">
+                                <label class="">
+                                    <input type="file" id="flCRFile" />
+                                    <i class="fa fa-cloud-upload text-success" role="button"></i> <small class="form-text text-muted">*attach-copy of C.R. Copy</small>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label for="crExpiryDate" class="form-label">CR Expiry Date</label>
+                                <input type="text" class="form-control form-control-sm datepicker" id="crExpiryDate" data-id="CRExpiryDate" name="CRExpiryDate" required data-msg="Please enter CR Expiry date">
+                            </div>
+
+                            <div class="col">
+                                <label for="zakatNo" class="form-label">Zakat No.</label>
+                                <input type="text" class="form-control form-control-sm" id="ZakatNumber" maxlength="50" name="ZakatNumber" data-id="ZakatNumber" data-msg="Please entert zakat number " required>
+
+                                <label class="">
+                                    <input type="file" id="flZakatFile" />
+                                    <i class="fa fa-cloud-upload text-success" role="button"></i> <small class="form-text text-muted">*attach-copy of Zakat Copy</small>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label for="zakatExpiryDate" class="form-label">Zakat Expiry Date</label>
+                                <input type="text" class="form-control form-control-sm datepicker" id="zakatExpiryDate" data-id="ZakatExpiryDate" name="ZakatExpiryDate" required data-msg="Please enter zakat expiry date">
+                            </div>
+                        </div>
+                        <div class="row mb-3 pb-1 border-bottom">
+                            <div class="col">
+                                <label for="vatRegistrationNo" class="form-label">VAT Registration No.</label>
+                                <input type="text" class="form-control form-control-sm" maxlength="50" id="VATRegNumber" data-id="VATRegNumber" name="VATRegNumber" required data-msg="Please enter VAT registeration number">
+                            </div>
+                            <div class="col">
+                                <label for="chamberOfCommerce" class="form-label">Membership in Chamber of Commerce</label>
+                                <input type="text" class="form-control form-control-sm" maxlength="50" id="ChamberMemberShip" data-id="ChamberMemberShip" required name="ChamberMemberShip" data-msg="Please enter membership on chamber of commerce">
+
+                                <label class="">
+                                    <input type="file" id="flChamberMemberShipFile" />
+                                    <i class="fa fa-cloud-upload text-success" role="button"></i> <small class="form-text text-muted">*attach-copy of Chamber of Commerce</small>
+                                </label>
+                            </div>
+                            <div class="col-2">
+                                <label for="dateOfEstablished" class="form-label">Date of established</label>
+                                <input type="text" class="form-control form-control-sm datepicker" id="dateOfEstablished" data-id="MemberShipDate" required data-msg="Please enter establishment date" name="MemberShipDate">
+                            </div>
+                            <div class="col-3">
+                                <div class="row">
+                                    <div class="col-7"><label class="form-check-label me-3" for="local">Local </label></div>
+                                    <div class="col"><label class="switch"><input type="radio" name="local" id="local" data-id="Local"><div class="slider round"></div></label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-7"><label class="form-check-label me-3" for="local">Representative office </label></div>
+                                    <div class="col"><label class="switch"><input type="radio" name="local" id="local"><div class="slider round"></div></label></div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="row mb-3 pb-1 border-bottom">
+                            <div class="col">
+                                <label class="form-check-label" for="CompanyType">Type of Company</label>
+                                <select class="form-select form-select-s" data-id="CompanyType">
+                                    <option>Supplier</option>
+                                    <option>Dealer</option>
+                                    <option>Trader</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label class="form-check-label" for="contractor">Contractor / service provider</label>
+                                <input class="form-check-input d-block" type="checkbox" id="ContractServiceProvider " data-id="ContractServiceProvider">
+                            </div>
+                        </div>
+                        <div class="row mb-3 pb-1 border-bottom">
+                            <div class="col-2">
+                                <label class="form-check-label" for="scopeOfServices">Scope of services</label>
+                                @*<input class="form-check-input" type="checkbox" id="scopeOfServices" >*@
+                            </div>
+                            <div class="col"><input type="text" class="form-control form-control-sm" data-id="ScopeOfServices" /></div>
+                            <div class="col-2">
+                                <label class="form-check-label" for="scopeOfProducts">Scope of Products</label>
+                                @*<input class="form-check-input" type="checkbox" id="scopeOfProducts" data-id="ScopeOfProducts">*@
+                            </div>
+                            <div class="col"><input type="text" class="form-control form-control-sm" data-id="ScopeOfServices" /></div>
+                        </div>
+                        <div class="row mb-3 pb-1 border-bottom">
+                            <div class="col">
+                                <label class="form-check-label" for="individualCompany">Individual company</label>
+                                <input class="form-check-input" type="radio" name="BusinessEntity" id="individualCompany" data-id="CompanyBusinessEntityTypeInd">
+                            </div>
+                            <div class="col">
+                                <label class="form-check-label" for="shareholdingCompany">Shareholding company</label>
+                                <input class="form-check-input" type="radio" name="BusinessEntity" id="shareholdingCompany" data-id="CompanyBusinessEntityTypeShare">
+                            </div>
+                            <div class="col">
+                                <label class="form-check-label" for="limitedLiabilityCompany">Limited Liability Company</label>
+                                <input class="form-check-input" type="radio" name="BusinessEntity" id="limitedLiabilityCompany" data-id="CompanyBusinessEntityTypeLLC">
+                            </div>
+                            <div class="col">
+                                <label class="form-check-label" for="partnershipCompany">Partnership Company</label>
+                                <input class="form-check-input" type="radio" name="BusinessEntity" id="partnershipCompany" data-id="CompanyBusinessEntityTypePartner">
+                            </div>
                         </div>
                     </div>
 
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="beneficiaryBankAddress" class="form-label">Beneficiary Bank Address (for Overseas)</label>
-                            <input type="text" class="form-control" id="beneficiaryBankAddress">
+                    <div class="blue">
+                        <h4>Bank Details (for payment)</h4>
+                    </div>
+
+                    <div class="mb-3 pb-1 border-bottom p-3">
+                        <div class="row mb-3 pb-1 border-bottom">
+                            <div class="col">
+                                <label for="bankAccountNo1" class="form-label">1. Bank Account No</label>
+                                <input type="text" class="form-control form-control-sm" id="BankAcctNumber" data-id="BankAcctNumber" maxlength="50">
+                            </div>
+                            <div class="col">
+                                <label for="bankName1" class="form-label">2. Bank Name</label>
+                                <input type="text" class="form-control form-control-sm" id="BankName" data-id="BankName" maxlength="250">
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="swiftCode" class="form-label">Swift Code</label>
-                            <input type="text" class="form-control" id="swiftCode">
+                        <div class="row mb-3 pb-1 border-bottom">
+                            <div class="col">
+                                <label for="beneficiaryBankAddress" class="form-label">3. Beneficiary Bank Address (for Overseas)</label>
+                                <input type="text" class="form-control form-control-sm" id="BeneficiaryBankAddress" data-id="BeneficiaryBankAddress" maxlength="500">
+                            </div>
+                            <div class="col">
+                                <label for="swiftCode" class="form-label">4. Swift Code</label>
+                                <input type="text" class="form-control form-control-sm" id="swiftCode" data-id="SwiftCode" maxlength="50">
+                            </div>
+                        </div>
+                        <div class="row mb-3 pb-1 border-bottom">
+                            <div class="col">
+                                <label for="sortCode" class="form-label">5. Sort Code (applicable)</label>
+                                <input type="text" class="form-control form-control-sm" id="sortCode" data-id="BankSortcode" maxlength="10">
+                            </div>
+                            <div class="col">
+                                <label for="iban" class="form-label">6. IBAN</label>
+                                <input type="text" class="form-control form-control-sm" id="iban" data-id="IBAN" maxlength="50">
+                            </div>
+                        </div>
+                        <div class="row mb-3 pb-1 border-ottom">
+                            <div class="col-12 ">
+                                <h4>
+                                    Accounts Contact:
+                                </h4>
+                            </div>
+                            <div class="col">
+                                <label for="accountsContact" class="form-label">Tel/Mobile</label>
+                                <input type="text" class="form-control form-control-sm" id="BankContactMobileNumber" data-id="BankContactMobileNumber" maxlength="50">
+                            </div>
+                            <div class="col">
+                                <label for="emailAddress" class="form-label">E-mail Address</label>
+                                <input type="email" class="form-control form-control-sm" id="BankContactEmailAddress" data-id="BankContactEmailAddress" maxlength="250">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blue">
+                        <h4>Company Representatives</h4>
+                    </div>
+                    <div class="bg-secondary-subtle p-2">Manager</div>
+                    <div class="mb-3 p-3">
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="managerName" class="form-label">Name</label>
+                                <input type="text" class="form-control form-control-sm" id="ComanyManagerName" data-id="ComanyManagerName" maxlength="100">
+                            </div>
+                            <div class="col">
+                                <label for="managerTitle" class="form-label">Title</label>
+                                <input type="text" class="form-control form-control-sm" id="managerTitle" data-id="ManagerTitle" maxlength="10">
+                            </div>
+                            <div class="col">
+                                <label for="managerTelephone" class="form-label">Telephone</label>
+                                <input type="text" class="form-control form-control-sm" id="ManagerMobileNumber" data-id="ManagerMobileNumber" maxlength="50">
+                            </div>
+                            <div class="col">
+                                <label for="managerFax" class="form-label">Fax</label>
+                                <input type="text" class="form-control form-control-sm" id="ManagerFaxNumber" data-id="ManagerFaxNumber" maxlength="50">
+                            </div>
+                            <div class="col">
+                                <label for="managerEmail" class="form-label">E-mail</label>
+                                <input type="email" class="form-control form-control-sm" id="ManagerEmailAddress" data-id="ManagerEmailAddress" maxlength="150">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-secondary-subtle p-2">Quality Representative</div>
+                    <div class="mb-3 p-3">
+                        <div class="row ">
+                            <div class="col">
+                                <label for="qualityRepName" class="form-label"> Name</label>
+                                <input type="text" class="form-control form-control-sm" id="CompanyQRName" data-id="CompanyQRName" maxlength="100">
+                            </div>
+                            <div class="col">
+                                <label for="qualityRepTitle" class="form-label">Title</label>
+                                <input type="text" class="form-control form-control-sm" id="QRTitle" data-id="QRTitle" maxlength="10">
+                            </div>
+                            <div class="col">
+                                <label for="qualityRepTelephone" class="form-label">Telephone</label>
+                                <input type="text" class="form-control form-control-sm" id="QRMobileNumber" data-id="QRMobileNumber" maxlength="50">
+                            </div>
+                            <div class="col">
+                                <label for="qualityRepFax" class="form-label">Fax</label>
+                                <input type="text" class="form-control form-control-sm" id="qualityRepFax" data-id="QRFaxNumber" maxlength="50">
+                            </div>
+                            <div class="col">
+                                <label for="qualityRepEmail" class="form-label">E-mail</label>
+                                <input type="email" class="form-control form-control-sm" id="qualityRepEmail" data-id="QREmailAddress" maxlength="150">
+                            </div>
                         </div>
                     </div>
 
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="sortCode" class="form-label">Sort Code (if applicable)</label>
-                            <input type="text" class="form-control" id="sortCode">
+                    <div class="border  mb-2">
+                        <div class="blue">
+                            <h4 class="pull-left me-2">Quality Management System</h4><label class="text-white">
+                                <input type="file" id="flQRFile" />
+                                <i class="fa fa-cloud-upload" role="button"></i> <small>*attach-copy of Certificate</small>
+                            </label>
+                            <div class="clearfix"></div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="iban" class="form-label">IBAN</label>
-                            <input type="text" class="form-control" id="iban">
-                        </div>
-                    </div>
+                        <div class="p-3">
+                            <div class="mb-3 pb-1 border-bottom">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="iso9001" class="form-label">ISO 9001 certification</label>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="iso9001" id="iso9001Yes" value="yes" data-id="ISO9001Certificate">
+                                            <label class="form-check-label" for="iso9001Yes">Yes</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="iso9001" id="iso9001No" value="no">
+                                            <label class="form-check-label" for="iso9001No">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label for="apiSpecQ1" class="form-label">API Spec Q1 certification</label>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="apiSpecQ1" id="apiSpecQ1Yes" value="yes" data-id="APISpecQ1Certificate">
+                                            <label class="form-check-label" for="apiSpecQ1Yes">Yes</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="apiSpecQ1" id="apiSpecQ1No" value="no">
+                                            <label class="form-check-label" for="apiSpecQ1No">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label for="apiSpecQ2" class="form-label">API Spec Q2 certification</label>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="apiSpecQ2" id="apiSpecQ2Yes" value="yes" data-id="APISpecQ2Certificate">
+                                            <label class="form-check-label" for="apiSpecQ2Yes">Yes</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="apiSpecQ2" id="apiSpecQ2No" value="no">
+                                            <label class="form-check-label" for="apiSpecQ2No">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="accountsContact" class="form-label">Accounts Contact</label>
-                            <input type="text" class="form-control" id="accountsContact">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="accountsContactTel" class="form-label">Tel/Mobile</label>
-                            <input type="tel" class="form-control" id="accountsContactTel">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="accountsContactEmail" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="accountsContactEmail">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="border mb-2">
-                <div class="blue">
-                    <h4>Company Representatives</h4>
-                </div>
-                <div class="p-3">
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="managerName" class="form-label">Manager Name</label>
-                            <input type="text" class="form-control" id="managerName">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="managerTitle" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="managerTitle">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="managerTelephone" class="form-label">Telephone</label>
-                            <input type="tel" class="form-control" id="managerTelephone">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="managerFax" class="form-label">Fax</label>
-                            <input type="tel" class="form-control" id="managerFax">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="managerEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="managerEmail">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="border  mb-2">
 
-                <div class="blue">   <h4>Quality Representative</h4></div>
-                <div class="p-3">
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="qualityRepName" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="qualityRepName">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="qualityRepTitle" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="qualityRepTitle">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="qualityRepTelephone" class="form-label">Telephone</label>
-                            <input type="tel" class="form-control" id="qualityRepTelephone">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="qualityRepFax" class="form-label">Fax</label>
-                            <input type="tel" class="form-control" id="qualityRepFax">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="qualityRepEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="qualityRepEmail">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="border  mb-2">
-                <div class="blue">
-                    <h4>Quality Management System</h4>
-                </div>
-                <div class="p-3">
-                    <div class="mb-3">
-                        <label for="iso9001" class="form-label">ISO 9001 certification</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="iso9001" id="iso9001Yes" value="yes">
-                            <label class="form-check-label" for="iso9001Yes">Yes</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="iso9001" id="iso9001No" value="no">
-                            <label class="form-check-label" for="iso9001No">No</label>
-                        </div>
-                    </div>
+                            <div class="mb-3 pb-1 border-bottom">
+                                <label for="otherQms" class="form-label">Any other QMS certification</label>
+                                <input type="text" class="form-control form-control-sm" id="QMSCertificate" data-id="QMSCertificate" maxlength="250">
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="apiSpecQ1" class="form-label">API Spec Q1 certification</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="apiSpecQ1" id="apiSpecQ1Yes" value="yes">
-                            <label class="form-check-label" for="apiSpecQ1Yes">Yes</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="apiSpecQ1" id="apiSpecQ1No" value="no">
-                            <label class="form-check-label" for="apiSpecQ1No">No</label>
+                            <div>
+                                <label for="documentedQms" class="form-label">In case of no QMS certification, do you have any documented/established QMS? If yes, describe in brief:</label>
+                                <textarea class="form-control form-control-sm" id="QMSCertificateNotes" rows="3" data-id="QMSCertificateNotes" maxlength="500"></textarea>
+                            </div>
                         </div>
                     </div>
+                    <div class="border  mb-2">
 
-                    <div class="mb-3">
-                        <label for="apiSpecQ2" class="form-label">API Spec Q2 certification</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="apiSpecQ2" id="apiSpecQ2Yes" value="yes">
-                            <label class="form-check-label" for="apiSpecQ2Yes">Yes</label>
+                        <div class="blue">
+                            <h4>Capacity & Capability Assessment</h4>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="apiSpecQ2" id="apiSpecQ2No" value="no">
-                            <label class="form-check-label" for="apiSpecQ2No">No</label>
-                        </div>
-                    </div>
 
-                    <div class="mb-3">
-                        <label for="otherQms" class="form-label">Any other QMS certification</label>
-                        <input type="text" class="form-control" id="otherQms">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="documentedQms" class="form-label">In case of no QMS certification, do you have any documented/established QMS? If yes, describe in brief:</label>
-                        <textarea class="form-control" id="documentedQms" rows="3"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="border  mb-2">
-                <div class="blue">
-                    <h4>Capacity & Capability Assessment</h4>
-                </div>
-                <div class="p-3">
-                    <div class="row mb-3">
-                        <div class="col-md-6">
+                        <div class="mb-3 pb-1 border-bottom p-3">
                             <label for="presentTurnOver" class="form-label">Present Turn Over</label>
-                            <input type="text" class="form-control" id="presentTurnOver">
+                            <input type="text" class="form-control form-control-sm" id="CurrentTurnOver" data-id="CurrentTurnOver" maxlength="50">
                         </div>
-                        <div class="col-md-6">
-                            <label for="purchaseType" class="form-label">Purchase Type</label>
-                            <select class="form-select" id="purchaseType">
-                                <option value="critical">Critical</option>
-                                <option value="nonCritical">Non-critical</option>
-                            </select>
+                        <div class="mb-3 pb-1 border-bottom p-3">
+                            <label class="form-label me-3">Purchase Type:</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="purchaseType" id="critical" value="Critical" data-id="PurchaseTypeCritical">
+                                <label class="form-check-label" for="critical">Critical</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="purchaseType" id="nonCritical" value="Non-critical">
+                                <label class="form-check-label" for="nonCritical">Non-critical</label>
+                            </div>
+                        </div>
+                        <div class=" ">
+                            <div class="bg-secondary-subtle p-2">Item Manufactured/services supplied:</div>
+                        </div>
+                        <div class="mb-3 pb-1 border-bottom p-3">
+                            <label class="form-label">Items/Services</label>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" width="10px">SN</th>
+                                        <th scope="col">Items/Services</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tblItemsServices">
+                                    <tr>
+                                        <td>1.</td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.</td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3.</td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4.</td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2">
+                                            <button type="button" class="btn btn-sm btn-success" onclick="AddItems()"> <i class="fa fa-plus-circle"></i> Add Item/Service</button>
+                                            <button type="button" class="btn btn-sm btn-success" onclick="UploadDataFile('items')"> <i class="fa fa-plus-circle"></i>Upload File<small>csv,xls,xlsx</small></button>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="bg-secondary-subtle p-2">Total No. of Employees:</div>
+                        <div class="mb-3 pb-1 border-bottom p-3">
+
+                            <div class="row">
+                                <div class="col">
+                                    <label for="directEmployees" class="form-label">Direct</label>
+                                    <input type="number" class="form-control form-control-sm" min="0" id="directEmployees" data-id="DirectEmployees">
+                                </div>
+                                <div class="col">
+                                    <label for="indirectEmployees" class="form-label">Indirect</label>
+                                    <input type="number" class="form-control form-control-sm" min="0" id="IndirectEmployees" data-id="IndirectEmployees">
+                                </div>
+                                <div class="col">
+                                    <label for="technicalEmployees" class="form-label">Technical</label>
+                                    <input type="text" class="form-control form-control-sm" min="0" id="TechnicalEmployees" data-id="TechnicalEmployees">
+                                </div>
+                                <div class="col">
+                                    <label for="otherEmployees" class="form-label">Others</label>
+                                    <input type="text" class="form-control form-control-sm" min="0" id="otherEmployees" data-id="OtherEmployees">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-secondary-subtle p-2">
+                            <label class="form-label">Major Customers:</label><label class="form-text">
+                                <input type="file" id="flCustomerFile" />
+                                <i class="fa fa-cloud-upload text-success" role="button"></i> <small class="form-text">*attach seperate sheet if needed</small>
+                            </label>
+                        </div>
+                        <div class="mb-3 pb-1 border-bottom p-3">
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" width="10px">SN</th>
+                                        <th scope="col">Customer Name</th>
+                                        <th scope="col">Items/Services</th>
+                                        <th scope="col">Approx. Turnover</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tblCustomers">
+                                    <tr>
+                                        <td>1.</td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.</td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3.</td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4.</td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4">
+                                        <button type="button" class="btn btn-sm btn-success" onclick="AddNewOption('tblCustomers')"><i class="fa fa-plus-circle"></i> Add Customer</button>
+                                        <button type="button" class="btn btn-sm btn-success" onclick="UploadDataFile('customers')"> <i class="fa fa-plus-circle"></i>Upload File<small>csv,xls,xlsx</small></button>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="bg-secondary-subtle p-2">
+                            <label class="form-label">Production Facilities:</label><label class="form-text">
+                                <input type="file" id="flProductionFile" />
+                                <i class="fa fa-cloud-upload text-success" role="button"></i> <small class="form-text">*attach seperate sheet if needed</small>
+                            </label>
+                        </div>
+                        <div class="mb-3 pb-1 border-bottom p-3">
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" width="10px">SN</th>
+                                        <th scope="col">Machine/Facility Name & Specification</th>
+                                        <th scope="col">Make & Model</th>
+                                        <th scope="col">No. of machines</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tblProductions">
+                                    <tr>
+                                        <td>1.</td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="number" class="form-control form-control-sm"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.</td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="number" class="form-control form-control-sm"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3.</td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="number" class="form-control form-control-sm"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4.</td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="number" class="form-control form-control-sm"></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4">
+                                        <button type="button" onclick="AddNewOption('tblProductions')" class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i> Add Facility</button>
+                                        <button type="button" class="btn btn-sm btn-success" onclick="UploadDataFile('production')"> <i class="fa fa-plus-circle"></i>Upload File<small>csv,xls,xlsx</small></button>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="bg-secondary-subtle p-2">
+                            <label class="form-label">Quality Control Facilities:</label><label class="form-text">
+                                <input type="file" id="flEquippmentFile" />
+                                <i class="fa fa-cloud-upload text-success" role="button"></i> <small class="form-text">*attach seperate sheet if needed</small>
+                            </label>
+                        </div>
+                        <div class="mb-3 pb-1 bord p-3">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" width="10px">SN</th>
+                                        <th scope="col">Equipment Description</th>
+                                        <th scope="col">Range</th>
+                                        <th scope="col">Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tblEquipments">
+                                    <tr>
+                                        <td>1.</td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="number" class="form-control form-control-sm"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.</td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="number" class="form-control form-control-sm"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3.</td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="number" class="form-control form-control-sm"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4.</td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm"></td>
+                                        <td><input type="number" class="form-control form-control-sm"></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4"><button type="button" onclick="AddNewOption('tblEquipments')" class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i> Add Facility</button>
+                                                        <button type="button" class="btn btn-sm btn-success" onclick="UploadDataFile('equipments')"> <i class="fa fa-plus-circle"></i>Upload File<small>csv,xls,xlsx</small></button>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
+                    <div class="border  mb-2 d-none">
+                        <div class="blue">    <h4>For PWS Office Internal Use</h4></div>
+                        <div class="p-3">
+                            <div class="mb-3 pb-1 border-bottom">
+                                <label for="specificRequirement" class="form-label">Specific Requirement for Supplier/service provider, if required</label>
+                                <textarea class="form-control form-control-sm" id="specificRequirement" rows="3"></textarea>
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="itemsManufactured" class="form-label">Items Manufactured / Services Supplied</label>
-                        <textarea class="form-control" id="itemsManufactured" rows="3"></textarea>
-                    </div>
+                            <div class="mb-3 pb-1 border-bottom">
+                                <label for="requirementDoc" class="form-label">Requirement Doc. Attached</label>
+                                <textarea class="form-control form-control-sm" id="requirementDoc" rows="3"></textarea>
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="totalEmployees" class="form-label">Total No. of Employees</label>
-                        <input type="text" class="form-control" id="totalEmployees">
-                    </div>
+                            <div class="mb-3 pb-1 border-bottom">
+                                <label for="certificationRequired" class="form-label">Certification Required (Mention standard name)</label>
+                                <textarea class="form-control form-control-sm" id="certificationRequired" rows="3"></textarea>
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="majorCustomers" class="form-label">Major Customers (Attach separate sheet if needed)</label>
-                        <textarea class="form-control" id="majorCustomers" rows="3"></textarea>
-                    </div>
+                            <div class="mb-3 pb-1 border-bottom">
+                                <label for="personnelQualification" class="form-label">Personnel Qualification</label>
+                                <textarea class="form-control form-control-sm" id="personnelQualification" rows="3"></textarea>
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="productionFacilities" class="form-label">Production Facilities (Attach separate sheet if needed)</label>
-                        <textarea class="form-control" id="productionFacilities" rows="3"></textarea>
-                    </div>
+                            <div class="mb-3 pb-1 border-bottom">
+                                <label for="assessmentCriteria" class="form-label">Assessment Criteria</label>
+                                <textarea class="form-control form-control-sm" id="assessmentCriteria" rows="3"></textarea>
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="qualityControlFacilities" class="form-label">Quality Control Facilities (Attach separate sheet if needed)</label>
-                        <textarea class="form-control" id="qualityControlFacilities" rows="3"></textarea>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-4">
-                            <label for="assessmentName" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="assessmentName">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="assessmentTitle" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="assessmentTitle">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="assessmentDate" class="form-label">Date</label>
-                            <input type="date" class="form-control" id="assessmentDate">
+                            <div class="mb-3 pb-1 border-bottom">
+                                <label for="otherFactors" class="form-label">Any other factors (Attach sheet if needed)</label>
+                                <textarea class="form-control form-control-sm" id="otherFactors" rows="3"></textarea>
+                            </div>
                         </div>
                     </div>
+                    <div class="border  mb-2 d-none">
+                        <div class="blue">
+                            <h4>Summary of Evaluation</h4>
+                        </div>
+                        <div class="p-3">
+                            <div class="row mb-3 pb-1 border-bottom">
+                                <div class="col-md-4">
+                                    <label for="summaryName" class="form-label">Name</label>
+                                    <input type="text" class="form-control form-control-sm" id="summaryName">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="summaryTitle" class="form-label">Title</label>
+                                    <input type="text" class="form-control form-control-sm" id="summaryTitle">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="summaryDate" class="form-label">Date</label>
+                                    <input type="text" class="form-control form-control-sm" id="summaryDate">
+                                </div>
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="assessmentSignature" class="form-label">Signature</label>
-                        <input type="text" class="form-control" id="assessmentSignature">
+                            <div class="mb-3 pb-1 border-bottom">
+                                <label for="summarySignature" class="form-label">Signature</label>
+                                <input type="text" class="form-control form-control-sm" id="summarySignature">
+                            </div>
+
+                            <div class="mb-3 pb-1 border-bottom">
+                                <label for="decision" class="form-label">Decision</label>
+                                <textarea class="form-control form-control-sm" id="decision" rows="3"></textarea>
+                            </div>
+
+                            <div class="row mb-3 pb-1 border-bottom">
+                                <div class="col-md-4">
+                                    <label for="decisionName" class="form-label">Name</label>
+                                    <input type="text" class="form-control form-control-sm" id="decisionName">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="decisionTitle" class="form-label">Title</label>
+                                    <input type="text" class="form-control form-control-sm" id="decisionTitle">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="decisionDate" class="form-label">Date</label>
+                                    <input type="date" class="form-control form-control-sm" id="decisionDate">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 pb-1 border-bottom">
+                                <label for="decisionSignature" class="form-label">Signature</label>
+                                <input type="text" class="form-control form-control-sm" id="decisionSignature">
+                            </div>
+                        </div>
                     </div>
+                    <div class="my-2 mx-2">
+                        <button type="button" onclick="SaveAssesment()" class="btn btn-primary">Submit</button>                     <button type="reset" class="btn btn-danger pull-right">Clear</button>
+                    </div>
+
                 </div>
-            </div>
-            <div class="border  mb-2">
-                <div class="blue">    <h4>For PWS Office Internal Use</h4></div>
-                <div class="p-3">
-                    <div class="mb-3">
-                        <label for="specificRequirement" class="form-label">Specific Requirement for Supplier/service provider, if required</label>
-                        <textarea class="form-control" id="specificRequirement" rows="3"></textarea>
-                    </div>
+            </form>
 
-                    <div class="mb-3">
-                        <label for="requirementDoc" class="form-label">Requirement Doc. Attached</label>
-                        <textarea class="form-control" id="requirementDoc" rows="3"></textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="certificationRequired" class="form-label">Certification Required (Mention standard name)</label>
-                        <textarea class="form-control" id="certificationRequired" rows="3"></textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="personnelQualification" class="form-label">Personnel Qualification</label>
-                        <textarea class="form-control" id="personnelQualification" rows="3"></textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="assessmentCriteria" class="form-label">Assessment Criteria</label>
-                        <textarea class="form-control" id="assessmentCriteria" rows="3"></textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="otherFactors" class="form-label">Any other factors (Attach sheet if needed)</label>
-                        <textarea class="form-control" id="otherFactors" rows="3"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="border  mb-2">
-                <div class="blue">
-                    <h4>Summary of Evaluation</h4>
-                </div>
-                <div class="p-3">
-                    <div class="row mb-3">
-                        <div class="col-md-4">
-                            <label for="summaryName" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="summaryName">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="summaryTitle" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="summaryTitle">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="summaryDate" class="form-label">Date</label>
-                            <input type="date" class="form-control" id="summaryDate">
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="summarySignature" class="form-label">Signature</label>
-                        <input type="text" class="form-control" id="summarySignature">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="decision" class="form-label">Decision</label>
-                        <textarea class="form-control" id="decision" rows="3"></textarea>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-4">
-                            <label for="decisionName" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="decisionName">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="decisionTitle" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="decisionTitle">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="decisionDate" class="form-label">Date</label>
-                            <input type="date" class="form-control" id="decisionDate">
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="decisionSignature" class="form-label">Signature</label>
-                        <input type="text" class="form-control" id="decisionSignature">
-                    </div>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+            <hr />
+            <footer>
+                <p>PWS &copy; @DateTime.Now.Year</p>
+            </footer>
+        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="modal fade" id="dlgSupplierFile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="dlgSupplierFile" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" >Upload File</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-4">
+                        
+                        <div class="col-3"><input type="File" style="display:block;" id="flSupplierFile"/></div>
+                        <div class="col-3"><button class="btn btn-sm btn-primary" onclick="UploadSupplierFile()">Upload</button></div>
+
+                    </div>
+
+                    <div class="bg-warning p-2">*Map data fields to import file</div>
+                    <table class="table table-sm table-striped table-hover-warning table-bordered">
+                        
+                        <tbody id="tblFileFields"></tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="ShowFileData()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="spinner"></div>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
+
+
+
+    @Styles.Render("~/bundles/sweetalertcss")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/sweetalert")
+    @Scripts.Render("~/supplierassesment")
+
 </body>
 </html>

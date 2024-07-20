@@ -55,12 +55,14 @@
     <Compile Include="Common\DateParam.cs" />
     <Compile Include="Common\DeleteDTO.cs" />
     <Compile Include="Common\EmailDTO.cs" />
+    <Compile Include="Common\FileData.cs" />
     <Compile Include="Common\MergeField.cs" />
     <Compile Include="Common\PagingDTO.cs" />
     <Compile Include="Common\PriorityLevel.cs" />
     <Compile Include="Common\RecordLog.cs" />
     <Compile Include="Common\ResultDTO.cs" />
     <Compile Include="Home\PersonalDetail.cs" />
+    <Compile Include="Home\SupplierAssesment.cs" />
     <Compile Include="HR\Employee\Accommodation.cs" />
     <Compile Include="HR\Employee\Asset.cs" />
     <Compile Include="HR\Employee\Certificate.cs" />

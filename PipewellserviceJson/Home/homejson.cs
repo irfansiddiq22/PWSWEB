@@ -16,5 +16,16 @@ namespace PipewellserviceJson.Home
             return await service.SavePersonalDetails(PersonalDetail, WorkExperience);
 
         }
+        public async Task<int> SaveSupplierAssesment(SupplierAssesment assesment)
+        {
+            return await service.SaveSupplierAssesment(assesment);
+
+        }
+        public async Task<bool> SaveSupplierAssesmentFiles(int ID,AssessmentFile assesmentFile)
+        {
+            return await service.SaveSupplierAssesmentFiles(ID,assesmentFile);
+
+        }
+        
     }
 }

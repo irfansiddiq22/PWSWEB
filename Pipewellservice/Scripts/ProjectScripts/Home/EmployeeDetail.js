@@ -13,7 +13,8 @@ function ResetDateRangePicker() {
 
         $(dp).daterangepicker({
             open: 'left',
-            showDropdowns:true, 
+            showDropdowns: true,
+            minDate:'01/01/1980'
 
         })
         if ($(dp).val() == "")

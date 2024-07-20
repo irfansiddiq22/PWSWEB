@@ -206,6 +206,7 @@ namespace PipewellserviceModels.Common
         MaterialRequest=17,
         PurchaseRequest = 18,
         InternalPurchaseRequest=19,
+        SupplierAssesment=20,
     }
 
     public enum DocTemplates

@@ -44,6 +44,38 @@ namespace Pipewellservice.Helper
                 return false;
             }
         }
+        public async static Task<bool> SaveFile(HttpPostedFileBase file, string FileName, int ID, DirectoryNames Dir, string Name = "")
+        {
+            
+            Constant DirectoryToSave = await AppData.Get(ParentEnums.RESOURCES, (int)Dir);
+            string Resouces = DirectoryToSave.Name.Replace("{ID}", (ID > 0 ? ID.ToString() : ""));
+
+            if (Name != "")
+            {
+                Name = Name.Replace("\\", "").Replace("/", "").Replace(":", "").Replace("*", "").Replace("?", "").Replace("<", "").Replace(">", "").Replace("|", "").Replace("|", "");
+                Resouces = Resouces.Replace("{Name}", Name);
+            }
+            DirectoryInfo Directory = new DirectoryInfo($"{Config.ResourcesDirectory}\\{Resouces}");
+            string FileSavePath = $"{Config.ResourcesDirectory}\\{Resouces}\\{FileName}";
+
+            if (!Directory.Exists)
+            {
+                Directory.Create();
+            }
+            try
+            {
+
+                if (System.IO.File.Exists(FileSavePath))
+                    System.IO.File.Delete(FileSavePath);
+
+                file.SaveAs(FileSavePath);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
 
         public async static Task<string> GetFile(string FileID, int ID, DirectoryNames Dir, string Name = "")
         {
