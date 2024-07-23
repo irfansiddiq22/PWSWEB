@@ -6535,10 +6535,10 @@
     <value>dd/MM/yyyy </value>
   </data>
   <data name="textBox31.OutputFormat" xml:space="preserve">
-    <value>DD/mm/YYYY</value>
+    <value>dd/MM/yyyy </value>
   </data>
   <data name="textBox36.OutputFormat" xml:space="preserve">
-    <value>DD/mm/YYYY</value>
+    <value>dd/MM/yyyy </value>
   </data>
   <data name="textBox46.OutputFormat" xml:space="preserve">
     <value>dd/MM/yyyy </value>

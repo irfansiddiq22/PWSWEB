@@ -19,6 +19,12 @@ namespace Pipewellservice
                 url: "EmployeeDetail",
                 defaults: new { controller = "Home", action = "PersonalDetail", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "SupplierAssesment",
+                url: "supplier/registeration",
+                defaults: new { controller = "Home", action = "SupplierAssesment", id = UrlParameter.Optional }
+            );
             routes.MapRoute(
                 name: "ProcurementStore",
                 url: "{controller}/Store/{action}/{id}",

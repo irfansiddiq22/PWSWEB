@@ -229,7 +229,6 @@ namespace Pipewellservice.Reports
             this.textBox110 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.textBox111 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.textBox112 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.line57 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.line58 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.line59 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.textBox113 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
@@ -296,6 +295,7 @@ namespace Pipewellservice.Reports
             this.pageFooter = new GrapeCity.ActiveReports.SectionReportModel.PageFooter();
             this.ReportInfo1 = new GrapeCity.ActiveReports.SectionReportModel.ReportInfo();
             this.TextBox1 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
+            this.line83 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             ((System.ComponentModel.ISupportInitialize)(this.Picture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeaderCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBox2)).BeginInit();
@@ -510,6 +510,7 @@ namespace Pipewellservice.Reports
             // detail
             // 
             this.detail.Controls.AddRange(new GrapeCity.ActiveReports.SectionReportModel.ARControl[] {
+            this.shape15,
             this.shape4,
             this.shape9,
             this.textBox100,
@@ -517,7 +518,6 @@ namespace Pipewellservice.Reports
             this.shape11,
             this.textBox105,
             this.shape17,
-            this.shape15,
             this.textBox116,
             this.shape2,
             this.textBox59,
@@ -705,7 +705,6 @@ namespace Pipewellservice.Reports
             this.textBox110,
             this.textBox111,
             this.textBox112,
-            this.line57,
             this.line58,
             this.line59,
             this.textBox113,
@@ -713,7 +712,6 @@ namespace Pipewellservice.Reports
             this.textBox114,
             this.line62,
             this.line63,
-            this.textBox115,
             this.line64,
             this.textBox117,
             this.line65,
@@ -768,7 +766,9 @@ namespace Pipewellservice.Reports
             this.line85,
             this.line86,
             this.line41,
-            this.textBox136});
+            this.textBox136,
+            this.line83,
+            this.textBox115});
             this.detail.Height = 18.64194F;
             this.detail.Name = "detail";
             this.detail.Format += new System.EventHandler(this.detail_Format);
@@ -2942,13 +2942,13 @@ namespace Pipewellservice.Reports
             // SupplierItems
             // 
             this.SupplierItems.CloseBorder = false;
-            this.SupplierItems.Height = 0.4890004F;
+            this.SupplierItems.Height = 0.2140008F;
             this.SupplierItems.Left = 0F;
             this.SupplierItems.Name = "SupplierItems";
             this.SupplierItems.Report = null;
             this.SupplierItems.ReportName = "SupplierItems";
             this.SupplierItems.Tag = "";
-            this.SupplierItems.Top = 12.786F;
+            this.SupplierItems.Top = 12.806F;
             this.SupplierItems.Width = 8F;
             // 
             // shape14
@@ -2994,19 +2994,6 @@ namespace Pipewellservice.Reports
             this.textBox112.Text = "Indirect";
             this.textBox112.Top = 13.525F;
             this.textBox112.Width = 0.604F;
-            // 
-            // line57
-            // 
-            this.line57.Height = 0.2779999F;
-            this.line57.Left = 4.792F;
-            this.line57.LineWeight = 1F;
-            this.line57.Name = "line57";
-            this.line57.Top = 13.509F;
-            this.line57.Width = 0F;
-            this.line57.X1 = 4.792F;
-            this.line57.X2 = 4.792F;
-            this.line57.Y1 = 13.787F;
-            this.line57.Y2 = 13.509F;
             // 
             // line58
             // 
@@ -3247,14 +3234,14 @@ namespace Pipewellservice.Reports
             // 
             // textBox122
             // 
-            this.textBox122.Height = 0.2499999F;
+            this.textBox122.Height = 0.2310008F;
             this.textBox122.Left = 0.042F;
             this.textBox122.Name = "textBox122";
             this.textBox122.Style = "color: Black; font-family: Segoe UI; font-size: 8.75pt; font-weight: bold; text-a" +
     "lign: left; ddo-char-set: 1";
             this.textBox122.Text = "Name:";
-            this.textBox122.Top = 15.879F;
-            this.textBox122.Width = 0.8125F;
+            this.textBox122.Top = 15.889F;
+            this.textBox122.Width = 0.802F;
             // 
             // line67
             // 
@@ -3275,12 +3262,12 @@ namespace Pipewellservice.Reports
             this.line68.Left = 0F;
             this.line68.LineWeight = 1F;
             this.line68.Name = "line68";
-            this.line68.Top = 15.868F;
+            this.line68.Top = 15.878F;
             this.line68.Width = 8F;
             this.line68.X1 = 0F;
             this.line68.X2 = 8F;
-            this.line68.Y1 = 15.868F;
-            this.line68.Y2 = 15.868F;
+            this.line68.Y1 = 15.878F;
+            this.line68.Y2 = 15.878F;
             // 
             // line69
             // 
@@ -3297,14 +3284,14 @@ namespace Pipewellservice.Reports
             // 
             // textBox124
             // 
-            this.textBox124.Height = 0.2499999F;
+            this.textBox124.Height = 0.2310008F;
             this.textBox124.Left = 0.032F;
             this.textBox124.Name = "textBox124";
             this.textBox124.Style = "color: Black; font-family: Segoe UI; font-size: 8.75pt; font-weight: bold; text-a" +
     "lign: left; ddo-char-set: 1";
             this.textBox124.Text = "Title:";
-            this.textBox124.Top = 16.193F;
-            this.textBox124.Width = 0.8125F;
+            this.textBox124.Top = 16.183F;
+            this.textBox124.Width = 0.802F;
             // 
             // line70
             // 
@@ -3321,13 +3308,13 @@ namespace Pipewellservice.Reports
             // 
             // textBox127
             // 
-            this.textBox127.Height = 0.2499999F;
+            this.textBox127.Height = 0.2299994F;
             this.textBox127.Left = 0.032F;
             this.textBox127.Name = "textBox127";
             this.textBox127.Style = "color: Black; font-family: Segoe UI; font-size: 8.75pt; font-weight: bold; text-a" +
     "lign: left; ddo-char-set: 1";
             this.textBox127.Text = "Date:";
-            this.textBox127.Top = 16.475F;
+            this.textBox127.Top = 16.485F;
             this.textBox127.Width = 0.8125F;
             // 
             // line71
@@ -3345,13 +3332,13 @@ namespace Pipewellservice.Reports
             // 
             // textBox129
             // 
-            this.textBox129.Height = 0.2499999F;
+            this.textBox129.Height = 0.2299994F;
             this.textBox129.Left = 0.032F;
             this.textBox129.Name = "textBox129";
             this.textBox129.Style = "color: Black; font-family: Segoe UI; font-size: 8.75pt; font-weight: bold; text-a" +
     "lign: left; ddo-char-set: 1";
             this.textBox129.Text = "Signature:";
-            this.textBox129.Top = 16.775F;
+            this.textBox129.Top = 16.785F;
             this.textBox129.Width = 0.8125F;
             // 
             // line72
@@ -3617,7 +3604,7 @@ namespace Pipewellservice.Reports
             this.textBox123.Style = "color: Black; font-family: Book Antiqua; font-size: 8.75pt; font-weight: bold; te" +
     "xt-align: left; ddo-char-set: 1";
             this.textBox123.Text = "SN";
-            this.textBox123.Top = 12.556F;
+            this.textBox123.Top = 12.576F;
             this.textBox123.Width = 0.9F;
             // 
             // textBox125
@@ -3628,7 +3615,7 @@ namespace Pipewellservice.Reports
             this.textBox125.Style = "color: Black; font-family: Book Antiqua; font-size: 8.75pt; font-weight: bold; te" +
     "xt-align: left; ddo-char-set: 1";
             this.textBox125.Text = "Items/Services";
-            this.textBox125.Top = 12.556F;
+            this.textBox125.Top = 12.576F;
             this.textBox125.Width = 0.9F;
             // 
             // textBox126
@@ -3639,7 +3626,7 @@ namespace Pipewellservice.Reports
             this.textBox126.Style = "color: Black; font-family: Book Antiqua; font-size: 8.75pt; font-weight: bold; te" +
     "xt-align: left; ddo-char-set: 1";
             this.textBox126.Text = "SN";
-            this.textBox126.Top = 12.556F;
+            this.textBox126.Top = 12.576F;
             this.textBox126.Width = 0.8700007F;
             // 
             // textBox128
@@ -3650,7 +3637,7 @@ namespace Pipewellservice.Reports
             this.textBox128.Style = "color: Black; font-family: Book Antiqua; font-size: 8.75pt; font-weight: bold; te" +
     "xt-align: left; ddo-char-set: 1";
             this.textBox128.Text = "Items/Services";
-            this.textBox128.Top = 12.556F;
+            this.textBox128.Top = 12.576F;
             this.textBox128.Width = 0.9F;
             // 
             // line80
@@ -3659,12 +3646,12 @@ namespace Pipewellservice.Reports
             this.line80.Left = 0F;
             this.line80.LineWeight = 1F;
             this.line80.Name = "line80";
-            this.line80.Top = 12.806F;
+            this.line80.Top = 12.816F;
             this.line80.Width = 8F;
             this.line80.X1 = 0F;
             this.line80.X2 = 8F;
-            this.line80.Y1 = 12.806F;
-            this.line80.Y2 = 12.806F;
+            this.line80.Y1 = 12.816F;
+            this.line80.Y2 = 12.816F;
             // 
             // line81
             // 
@@ -3796,6 +3783,19 @@ namespace Pipewellservice.Reports
             this.TextBox1.Top = 0.025F;
             this.TextBox1.Visible = false;
             this.TextBox1.Width = 1.3125F;
+            // 
+            // line83
+            // 
+            this.line83.Height = 0F;
+            this.line83.Left = 0F;
+            this.line83.LineWeight = 1F;
+            this.line83.Name = "line83";
+            this.line83.Top = 12.578F;
+            this.line83.Width = 8F;
+            this.line83.X1 = 0F;
+            this.line83.X2 = 8F;
+            this.line83.Y1 = 12.578F;
+            this.line83.Y2 = 12.578F;
             // 
             // rpSupplierAssessment
             // 
@@ -4183,7 +4183,6 @@ namespace Pipewellservice.Reports
         private GrapeCity.ActiveReports.SectionReportModel.TextBox textBox110;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox textBox111;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox textBox112;
-        private GrapeCity.ActiveReports.SectionReportModel.Line line57;
         private GrapeCity.ActiveReports.SectionReportModel.Line line58;
         private GrapeCity.ActiveReports.SectionReportModel.Line line59;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox textBox113;
@@ -4244,5 +4243,6 @@ namespace Pipewellservice.Reports
         private GrapeCity.ActiveReports.SectionReportModel.Line line85;
         private GrapeCity.ActiveReports.SectionReportModel.Line line86;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox textBox136;
+        private GrapeCity.ActiveReports.SectionReportModel.Line line83;
     }
 }
