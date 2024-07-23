@@ -109,16 +109,6 @@ namespace Pipewellservice.Controllers
             return View("_PartialEmployeeCV");
         }
 
-        [Authorization(Pages.SupplierAssessment)]
-        public ActionResult SupplierAssessment()
-        {
-            ViewBag.Title = "Supplier Assessment";
-            ViewBag.Parent = Parent;
-            return View("_PartilSupplierAssessment");
-        }
-
-
-
         [Authorization(Pages.EmployeeWarning)]
         public ActionResult Warning()
         {
@@ -350,19 +340,6 @@ namespace Pipewellservice.Controllers
             return PartialView("WebViewer");
         }
         
-        public async Task<ActionResult> PrintSupplierAssessmentReport(int ID)
-        {
-
-            SupplierAssementDTO data = await (new EmployeeJson()).SupplierAssessment(ID);
-
-
-            rpSupplierAssessment report = new rpSupplierAssessment { DataSource = data.assessment, Document = { }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
-            report.UserData = data;
-            ViewBag.ReportName = "Supplier Assessment Report";
-
-            ViewBag.Report = report;
-            return PartialView("WebViewer");
-        }
-
+        
     }
 }

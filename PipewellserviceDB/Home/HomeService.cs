@@ -224,6 +224,50 @@ namespace PipewellserviceDB.Home
                 return false;
             }
         }
+        public async Task<DataTable> SupplierAssessment(SupplierAssessmentParam param)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[5];
+                collSP[0] = new SqlParameter { ParameterName = "@CompanyName", Value = param.Name };
+                collSP[1] = new SqlParameter { ParameterName = "@City", Value = param.City };
+                collSP[2] = new SqlParameter { ParameterName = "@Country", Value = param.Country };
+                collSP[3] = new SqlParameter { ParameterName = "@PageNumber", Value = param.PageNumber };
+                collSP[4] = new SqlParameter { ParameterName = "@PageSize", Value = param.pageSize };
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcListSupplierAssesssmentData", CommandType.StoredProcedure, collSP);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public async Task<SupplierAssementDTOSQL> SupplierAssessment(int ID)
+        {
+            try
+            {
+
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetSupplierAssesssmentData", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                SupplierAssementDTOSQL dt = new SupplierAssementDTOSQL();
+                dt.assessment.Load(result);
+                dt.supplierItems.Load(result);
+                dt.supplierCustomers.Load(result);
+                dt.supplierProductions.Load(result);
+                dt.supplierQualityControls.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
     }
-    
+
 }

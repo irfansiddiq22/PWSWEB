@@ -1,8 +1,10 @@
 ﻿using Pipewellservice.Helper;
+using PipewellserviceJson.Home;
 using PipewellserviceJson.HR.Employee;
 using PipewellserviceJson.Procurement;
 using PipewellserviceJson.Procurement.Store;
 using PipewellserviceModels.Common;
+using PipewellserviceModels.Home;
 using PipewellserviceModels.HR.Employee;
 using PipewellserviceModels.Procurement;
 using PipewellserviceModels.Procurement.Store;
@@ -164,6 +166,15 @@ namespace Pipewellservice.Areas.API.Controllers
         }
 
 
+
+        public async Task<JsonResult> SupplierAssessment(SupplierAssessmentParam param)
+        {
+            return new JsonResult
+            {
+                Data = await (new HomeJson()).SupplierAssessment(param),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
 
     }
 }

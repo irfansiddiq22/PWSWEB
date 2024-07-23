@@ -169,7 +169,8 @@ function SaveAssesment() {
                 });
 
 
-
+                
+                document.getElementById("frmSupplierAssessment").reset();
             } else {
                 swal("Sorry! Failed to submit data for assessment", { icon: "danger" });
                 return false;

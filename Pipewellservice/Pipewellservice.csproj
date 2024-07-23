@@ -539,7 +539,7 @@
     <Content Include="Scripts\ProjectScripts\HR\Employee\ExpiringID.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\JobContract.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\JobOffer.js" />
-    <Content Include="Scripts\ProjectScripts\HR\Employee\SupplierAssessment.js" />
+    <Content Include="Scripts\ProjectScripts\Procurement\SupplierAssessment.js" />
     <Content Include="Scripts\ProjectScripts\HR\Settings\Setting.js" />
     <Content Include="Scripts\libraries\sweetalert\bootstrap-sweetalert.png" />
     <Content Include="Scripts\libraries\sweetalert\docs.css" />
@@ -690,7 +690,7 @@
     <Content Include="Views\Employee\_PartialEmployeeCV.cshtml" />
     <Content Include="Views\Home\_SupplierAssesment.cshtml" />
     <Content Include="Views\Home\_SupplierAssesment2.cshtml" />
-    <Content Include="Views\Employee\_PartilSupplierAssessment.cshtml" />
+    <Content Include="Views\Procurement\_PartilSupplierAssessment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
