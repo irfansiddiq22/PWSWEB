@@ -264,6 +264,42 @@
     <Compile Include="Reports\rpPurchaseOrderMgt.Designer.cs">
       <DependentUpon>rpPurchaseOrderMgt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rpPWSSupplierAssessmentInternal.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rpPWSSupplierAssessmentInternal.Designer.cs">
+      <DependentUpon>rpPWSSupplierAssessmentInternal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rpSupplierAssessment.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rpSupplierAssessment.Designer.cs">
+      <DependentUpon>rpSupplierAssessment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptSupplierCustomers.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptSupplierCustomers.Designer.cs">
+      <DependentUpon>rptSupplierCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptSupplierItems.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptSupplierItems.Designer.cs">
+      <DependentUpon>rptSupplierItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptSupplierProduction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptSupplierProduction.Designer.cs">
+      <DependentUpon>rptSupplierProduction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptSupplierQualityControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rptSupplierQualityControl.Designer.cs">
+      <DependentUpon>rptSupplierQualityControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Template.aspx.cs">
       <DependentUpon>Template.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -503,6 +539,7 @@
     <Content Include="Scripts\ProjectScripts\HR\Employee\ExpiringID.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\JobContract.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\JobOffer.js" />
+    <Content Include="Scripts\ProjectScripts\HR\Employee\SupplierAssessment.js" />
     <Content Include="Scripts\ProjectScripts\HR\Settings\Setting.js" />
     <Content Include="Scripts\libraries\sweetalert\bootstrap-sweetalert.png" />
     <Content Include="Scripts\libraries\sweetalert\docs.css" />
@@ -653,6 +690,7 @@
     <Content Include="Views\Employee\_PartialEmployeeCV.cshtml" />
     <Content Include="Views\Home\_SupplierAssesment.cshtml" />
     <Content Include="Views\Home\_SupplierAssesment2.cshtml" />
+    <Content Include="Views\Employee\_PartilSupplierAssessment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -747,6 +785,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rpPurchaseOrderMgt.resx">
       <DependentUpon>rpPurchaseOrderMgt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rpPWSSupplierAssessmentInternal.resx">
+      <DependentUpon>rpPWSSupplierAssessmentInternal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rpSupplierAssessment.resx">
+      <DependentUpon>rpSupplierAssessment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptSupplierCustomers.resx">
+      <DependentUpon>rptSupplierCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptSupplierItems.resx">
+      <DependentUpon>rptSupplierItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptSupplierProduction.resx">
+      <DependentUpon>rptSupplierProduction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptSupplierQualityControl.resx">
+      <DependentUpon>rptSupplierQualityControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

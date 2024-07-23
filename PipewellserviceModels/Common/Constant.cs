@@ -179,7 +179,8 @@ namespace PipewellserviceModels.Common
         PurchaseOrderManagment = 31,
         Sponosor=32,
         Location=33 ,
-        EmployeeCV=34
+        EmployeeCV=34,
+        SupplierAssessment=35
 
 
     }
@@ -224,5 +225,12 @@ namespace PipewellserviceModels.Common
     {
         Hour = 1,
         Day = 2
+    }
+    public enum CompanyBusinessEntityTypes
+    {
+        Individual=1,
+        ShareHolder=2,
+        LLC=3,
+        Partnership=4
     }
 }

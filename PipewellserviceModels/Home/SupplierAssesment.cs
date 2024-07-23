@@ -1,5 +1,7 @@
-﻿using System;
+﻿using PipewellserviceModels.Common;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,11 +41,69 @@ namespace PipewellserviceModels.Home
         public string ChamberMemberShipFileID { get; set; }
         public DateTime MemberShipDate { get; set; }
         public bool Local { get; set; }
-        public byte CompanyType { get; set; }
+        public int CompanyType { get; set; }
+        public string CompanyTypeName {
+            get {
+                if (CompanyType == 1) return "Supplier";
+                if (CompanyType == 2) return "Dealer";
+                if (CompanyType == 3) return "Trade";
+                return "";
+            }
+        }
         public bool ContractServiceProvider { get; set; }
         public string ScopeOfServices { get; set; }
         public string ScopeOfProducts { get; set; }
-        public byte CompanyBusinessEntityType { get; set; }
+        public int CompanyBusinessEntityType { get; set; }
+        public bool CompanyBusinessEntityTypeInd {
+            get {
+                return (CompanyBusinessEntityType == (int)CompanyBusinessEntityTypes.Individual);
+            }
+            set
+            {
+                if (value)
+                    CompanyBusinessEntityType = (int)CompanyBusinessEntityTypes.Individual;
+
+            }
+        }
+        public bool CompanyBusinessEntityTypeShare
+        {
+            get
+            {
+                return (CompanyBusinessEntityType == (int)CompanyBusinessEntityTypes.ShareHolder);
+            }
+            set
+            {
+                if (value)
+                    CompanyBusinessEntityType = (int)CompanyBusinessEntityTypes.ShareHolder;
+
+            }
+        }
+        public bool CompanyBusinessEntityTypeLLC
+        {
+            get
+            {
+                return (CompanyBusinessEntityType == (int)CompanyBusinessEntityTypes.LLC);
+            }
+            set
+            {
+                if (value)
+                    CompanyBusinessEntityType = (int)CompanyBusinessEntityTypes.LLC;
+
+            }
+        }
+        public bool CompanyBusinessEntityTypePartner
+        {
+            get
+            {
+                return (CompanyBusinessEntityType == (int)CompanyBusinessEntityTypes.Partnership);
+            }
+            set
+            {
+                if (value)
+                    CompanyBusinessEntityType = (int)CompanyBusinessEntityTypes.Partnership;
+
+            }
+        }
         public string BankAcctNumber { get; set; }
         public string BankName { get; set; }
         public string BeneficiaryBankAddress { get; set; }
@@ -114,24 +174,64 @@ namespace PipewellserviceModels.Home
     }
     public class SupplierItem
     {
+        public int RowNumber { get; set; }
         public string ItemServiceName { get; set; }
     }
     public class SupplierCustomer
     {
+        public int RowNumber { get; set; }
         public string CustomerName { get; set; }
         public string ItemServiceName { get; set; }
         public string TurnOver { get; set; }
     }
     public class SupplierProductionFacility
     {
+        public int RowNumber { get; set; }
         public string MachineName { get; set; }
         public string Model { get; set; }
         public string NoOfMachines { get; set; }
     }
     public class SupplierQualityControlFacility
     {
+        public int RowNumber { get; set; }
         public string EquipmentDescription { get; set; }
         public string Range { get; set; }
         public string Quantity { get; set; }
+    }
+
+    public class SupplierAssessmentParam
+    {
+        
+        public string Name { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+
+        public int PageNumber { get; set; }
+        public int pageSize { get; set; }
+    }
+    public class SupplierAssementDTOSQL{
+        public DataTable assessment { get; set; }
+        public DataTable supplierItems { get; set; }
+        public DataTable supplierProductions { get; set; }
+        public DataTable supplierCustomers { get; set; }
+        public DataTable supplierQualityControls { get; set; }
+        public SupplierAssementDTOSQL()
+        {
+            assessment = new DataTable();
+            supplierItems = new DataTable();
+            supplierProductions = new DataTable();
+            supplierCustomers = new DataTable();
+            supplierQualityControls = new DataTable();
+        }
+    }
+    public class SupplierAssementDTO
+    {
+        public List<SupplierAssesment> assessment { get; set; }
+        public List<SupplierItem> supplierItems { get; set; }
+
+        public List<SupplierProductionFacility> supplierProductions { get; set; }
+        public List<SupplierCustomer> supplierCustomers { get; set; }
+        public List<SupplierQualityControlFacility> supplierQualityControls { get; set; }
+
     }
 }

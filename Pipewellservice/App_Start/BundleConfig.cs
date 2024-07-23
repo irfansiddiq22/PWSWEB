@@ -113,8 +113,12 @@ namespace Pipewellservice
                       "~/Scripts/ProjectScripts/HR/Employee/Certificate.js"));
             bundles.Add(new Bundle("~/lib/hr/employeecv").Include(
                       "~/Scripts/ProjectScripts/HR/Employee/employeecv.js"));
+            bundles.Add(new Bundle("~/lib/hr/supplierassessment").Include(
+                      "~/Scripts/ProjectScripts/HR/Employee/SupplierAssessment.js"));
 
             
+
+
             bundles.Add(new Bundle("~/lib/hr/asset").Include(
                       "~/Scripts/ProjectScripts/HR/Employee/Asset.js"));
             bundles.Add(new Bundle("~/lib/hr/contract").Include(

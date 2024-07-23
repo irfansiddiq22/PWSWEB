@@ -32,7 +32,8 @@
     PurchaseOrderManagement: 31,
     Sponsor: 32,
     Location: 33,
-    EmployeeCVData:34
+    EmployeeCVData: 34,
+    SupplierAssessment:35
 
 }
 var REPORTS = {

@@ -2,7 +2,7 @@
 
     HideSpinner();
 
-    SetPagePermission(PAGES.EmployeeInquiry, function () {
+    SetPagePermission(PAGES.EmployeeCVData, function () {
         Post("/DataList/CountryList", {}).done(function (Response) {
 
             var data = []
@@ -22,7 +22,7 @@
             FillEmployeeCV();
         });
 
-        txtEmployeeCVID
+        
 
     });
     

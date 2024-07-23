@@ -6,6 +6,7 @@ using PipewellserviceDB.HR.Employee;
 using PipewellserviceJson;
 using PipewellserviceJson.HR.Employee;
 using PipewellserviceModels.Common;
+using PipewellserviceModels.Home;
 using PipewellserviceModels.HR.Employee;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace Pipewellservice.Controllers
         private string Parent = JsonConvert.SerializeObject(new { URL = "/Employee/home", Title = "Human Resources" });
         public EmployeeController()
         {
-            if(SessionHelper.UserGroup()== (int)UserGroups.Employee)
+            if (SessionHelper.UserGroup() == (int)UserGroups.Employee)
             {
                 Parent = "";
             }
@@ -108,6 +109,15 @@ namespace Pipewellservice.Controllers
             return View("_PartialEmployeeCV");
         }
 
+        [Authorization(Pages.SupplierAssessment)]
+        public ActionResult SupplierAssessment()
+        {
+            ViewBag.Title = "Supplier Assessment";
+            ViewBag.Parent = Parent;
+            return View("_PartilSupplierAssessment");
+        }
+
+
 
         [Authorization(Pages.EmployeeWarning)]
         public ActionResult Warning()
@@ -116,14 +126,14 @@ namespace Pipewellservice.Controllers
             ViewBag.Parent = Parent;
             return View("_PartialEmployeeWarning");
         }
-        [Authorization(Pages.EmployeeClearance )]
+        [Authorization(Pages.EmployeeClearance)]
         public ActionResult Clearance()
         {
             ViewBag.Title = "Employee Warning Notices";
             ViewBag.Parent = Parent;
             return View("_PartialEmployeeClearance");
         }
-        [Authorization(Pages.EmployeeVacation )]
+        [Authorization(Pages.EmployeeVacation)]
         public ActionResult Vacation()
         {
             ViewBag.Title = "Employee Vactions";
@@ -172,7 +182,7 @@ namespace Pipewellservice.Controllers
         [Authorization(Pages.LeaveRequest)]
         public ActionResult LeaveRequest()
         {
-            
+
             ViewBag.Title = "Employee Leave Request";
             ViewBag.Parent = Parent;
             if (SessionHelper.UserGroup() == 2)
@@ -181,7 +191,7 @@ namespace Pipewellservice.Controllers
                 return View("_PartialEmployeeLeavesHr");
 
         }
-        [Authorization(Pages.EmployeeInquiry )]
+        [Authorization(Pages.EmployeeInquiry)]
         public ActionResult Inquiry()
         {
             ViewBag.Title = "Employee Request Form";
@@ -197,9 +207,9 @@ namespace Pipewellservice.Controllers
         {
             ViewBag.Title = "Employee Work Schedule";
             ViewBag.Parent = Parent;
-                return View("_PartialWorkSchedule");
+            return View("_PartialWorkSchedule");
         }
-        
+
         public ActionResult Passport()
         {
             ViewBag.Title = "Employee Passport";
@@ -247,7 +257,8 @@ namespace Pipewellservice.Controllers
             ViewBag.Title = "Settings";
             ViewBag.Parent = Parent;
             return View("_PartialEmployeeSetting");
-        }[Authorization(Pages.AttendenceReport)]
+        }
+        [Authorization(Pages.AttendenceReport)]
         public ActionResult AttendenceReport()
         {
             ViewBag.Title = "Attendence Report";
@@ -255,7 +266,7 @@ namespace Pipewellservice.Controllers
             return View("_PartialEmployeeAttendenceReport");
         }
 
-        
+
 
         public ActionResult Sponsors()
         {
@@ -278,14 +289,14 @@ namespace Pipewellservice.Controllers
                     break;
 
                 case ReportTypes.EmployeeInquiry:
-                    data = await JsonHelper.Convert<List<EmployeeInquiryReport>, DataTable>(await service.EmployeeInquiryReportDetail (ID));
+                    data = await JsonHelper.Convert<List<EmployeeInquiryReport>, DataTable>(await service.EmployeeInquiryReportDetail(ID));
 
-                    report = new rpEmployeeInquiry { DataSource = data, Document = { CacheToDisk = true }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind=System.Drawing.Printing.PaperKind.A4 } };
+                    report = new rpEmployeeInquiry { DataSource = data, Document = { CacheToDisk = true }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
                     ViewBag.ReportName = "Employee Request";
 
                     break;
 
-                    
+
 
 
 
@@ -303,7 +314,7 @@ namespace Pipewellservice.Controllers
             object data = null;
             switch (ReportID)
             {
-                
+
 
 
                 case ReportTypes.EmployeeAttendenceInOut:
@@ -322,9 +333,9 @@ namespace Pipewellservice.Controllers
                     break;
 
                 case ReportTypes.EmployeeAttendenceSummary:
-                    
+
                     data = await service.EmployeeAttendenceSummary(new DateParam() { EmployeeID = ID, StartDate = StartDate, EndDate = EndDate });
-                    report = new rpEmployeeAttendenceSummary {  DataSource = data, Document = { }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
+                    report = new rpEmployeeAttendenceSummary { DataSource = data, Document = { }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
                     ((rpEmployeeAttendenceSummary)report).Parameters.Add(new Parameter() { Key = "DateRange", Value = $"{StartDate.ToString("dd/MM/yyyy")}-{EndDate.ToString("dd/MM/yyyy")}" });
                     ViewBag.ReportName = "Employee Attendence Summary";
 
@@ -332,8 +343,22 @@ namespace Pipewellservice.Controllers
 
 
 
-            }       
+            }
 
+
+            ViewBag.Report = report;
+            return PartialView("WebViewer");
+        }
+        
+        public async Task<ActionResult> PrintSupplierAssessmentReport(int ID)
+        {
+
+            SupplierAssementDTO data = await (new EmployeeJson()).SupplierAssessment(ID);
+
+
+            rpSupplierAssessment report = new rpSupplierAssessment { DataSource = data.assessment, Document = { }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
+            report.UserData = data;
+            ViewBag.ReportName = "Supplier Assessment Report";
 
             ViewBag.Report = report;
             return PartialView("WebViewer");

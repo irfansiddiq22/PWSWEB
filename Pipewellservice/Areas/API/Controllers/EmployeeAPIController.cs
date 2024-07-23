@@ -1304,7 +1304,17 @@ namespace Pipewellservice.Areas.API.Controllers
             return null;
         }
 
+
+        public async Task<JsonResult> SupplierAssessment(SupplierAssessmentParam param)
+        {
+            return new JsonResult
+            {
+                Data = await json.SupplierAssessment(param),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
         
-        
+
     }
 }
