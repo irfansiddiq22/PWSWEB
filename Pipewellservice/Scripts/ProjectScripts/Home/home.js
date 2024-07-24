@@ -2,13 +2,13 @@
 function _Init() {
     $("#spinner").hide();
     SetUserGroupPermissions();
-    SetGroupPermissions([1, 3]);
+    SetGroupPermissions([1,2,4, 3]);
     if (!User.ApprovalRequests) {
         $("#dvApprovals").remove();
         $("#dlgPendingApprovals").remove();
     }
     SetPagePermissions([0, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 20, 21, 22]);
-    SetGroupPermissions([1, 2]);
+    SetGroupPermissions([1, 2,3,4]);
     if (User.ApprovalRequests) GetPendingRequests();
 
 }

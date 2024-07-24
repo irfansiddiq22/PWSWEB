@@ -22,7 +22,7 @@ namespace Pipewellservice
 
             routes.MapRoute(
                 name: "SupplierAssesment",
-                url: "supplier/registeration",
+                url: "supplier/registration",
                 defaults: new { controller = "Home", action = "SupplierAssesment", id = UrlParameter.Optional }
             );
             routes.MapRoute(
