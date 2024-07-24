@@ -1,0 +1,40 @@
+﻿<div class="container">
+
+
+    <div class="w-50 m-auto">
+        <div class="blue"><h4>My Profile</h4></div>
+        <div class="border">
+            <table class="table table-sm">
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" class="form-control form-control-sm" id="txtName" /></td>
+                </tr>
+                <tr>
+                    <td>Email Address</td>
+                    <td><input type="text" class="form-control form-control-sm" id="txtEmailAddress" /></td>
+                </tr>
+                <tr>
+                    <td>User Name</td>
+                    <td><input type="text" class="form-control form-control-sm" id="txtUserName" /></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="text" class="form-control form-control-sm" id="txtPassword" /></td>
+                </tr>
+                <tr>
+                    <td align="center"> <button class="btn btn-sm btn-success" onclick="SaveProfile()">Update</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/lib/home/profile")
+}
+
+
+
+
+

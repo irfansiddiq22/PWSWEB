@@ -1,10 +1,12 @@
-﻿using PipewellserviceModels.Common;
+﻿using PipewellserviceJson.Auth;
+using PipewellserviceModels.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
 
 namespace Pipewellservice.Helper
 {
@@ -35,6 +37,12 @@ namespace Pipewellservice.Helper
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             bool authorize = false;
+            new CookieHelper().CheckCookie();
+
+
+
+
+
             if (HttpContext.Current.Session["User"] != null)
             {
                 authorize = true;
@@ -61,10 +69,12 @@ namespace Pipewellservice.Helper
             }
             return authorize;
         }
+       
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
             //filterContext.Result = new HttpUnauthorizedResult();
-
+            new CookieHelper(). CheckCookie();
+           
             if (HttpContext.Current.Session["User"] != null)
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "home", action = "AccessDenied" }));

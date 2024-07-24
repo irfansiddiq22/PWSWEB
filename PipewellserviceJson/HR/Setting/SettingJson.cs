@@ -79,6 +79,11 @@ namespace PipewellserviceJson.HR.Setting
         {
             return await JsonHelper.Convert<List<User>, DataTable>(await service.UpdateUser(user));
         }
+        public async Task<bool> UpdateProfile(User user)
+        {
+            return  await service.UpdateProfile(user);
+        }
+        
         public async Task<bool> RemoveUser(int ID)
         {
             return await service.RemoveUser(ID);

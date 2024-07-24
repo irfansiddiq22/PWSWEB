@@ -245,6 +245,27 @@ namespace PipewellserviceDB.HR.Setting
             }
 
         }
+        public async Task<bool> UpdateProfile(User user)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[5];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = user.ID };
+                collSP[1] = new SqlParameter { ParameterName = "@Name", Value = user.Name };
+                collSP[2] = new SqlParameter { ParameterName = "@UserName", Value = user.UserName };
+                collSP[3] = new SqlParameter { ParameterName = "@Password", Value = user.Password };
+                collSP[4] = new SqlParameter { ParameterName = "@EmailAddress", Value = user.EmailAddress };
+
+                var result = await SqlHelper.ExecuteNonQueryAsync(this.ConnectionString, "ProcUpdateUserProfile", CommandType.StoredProcedure, collSP);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
+        
         public async Task<bool> RemoveUser(int ID)
         {
             try

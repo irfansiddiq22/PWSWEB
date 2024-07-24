@@ -1,9 +1,12 @@
-﻿using Pipewellservice.App_Start;
+﻿using Newtonsoft.Json;
+using Pipewellservice.App_Start;
 using Pipewellservice.Helper;
 using PipewellserviceJson.Common;
 using PipewellserviceJson.Home;
+using PipewellserviceJson.HR.Setting;
 using PipewellserviceModels.Common;
 using PipewellserviceModels.Home;
+using PipewellserviceModels.User;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -18,11 +21,27 @@ namespace Pipewellservice.Controllers
     public class HomeController : Controller
     {
         [Authorization]
+
         public ActionResult Index()
         {
             ViewBag.Title = "";
             ViewBag.Parent = null;
             return View();
+        }
+        public ActionResult Profile()
+        {
+            ViewBag.Title = "My Profile";
+            ViewBag.Parent = null;// JsonConvert.SerializeObject(new { URL = "/home", Title = "Home" }); ;
+            return View();
+        }
+        public async Task <JsonResult> UpdateProfile(User user)
+        {
+            user.ID = new SessionHelper().UserID();
+            return new JsonResult
+            {
+                Data = await (new SettingJson()).UpdateProfile(user),
+                JsonRequestBehavior = JsonRequestBehavior.DenyGet
+            };
         }
 
         public async Task<ActionResult> PersonalDetail()

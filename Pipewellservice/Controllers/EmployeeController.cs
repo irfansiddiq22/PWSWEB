@@ -32,6 +32,7 @@ namespace Pipewellservice.Controllers
         [Authorization]
         public ActionResult Home()
         {
+            
             ViewBag.Title = "Human Resources";
             ViewBag.Parent = null;
             return View();

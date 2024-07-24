@@ -36,6 +36,30 @@ namespace PipewellserviceDB.Auth
             }
 
         }
+        public UserAuthSQL ProcessLoginAsync(UserAuth user)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@UserName", Value = user.UserName };
+                collSP[1] = new SqlParameter { ParameterName = "@Password", Value = user.Password };
+
+                var result =  SqlHelper.ExecuteReaderNonSync(this.ConnectionString, "ProcProcessLogin", CommandType.StoredProcedure, collSP);
+                UserAuthSQL model = new UserAuthSQL();
+                model.User.Load(result);
+                model.Permissions.Load(result);
+                model.Supervisor.Load(result);
+                result.Close();
+
+
+                return model;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
         public async Task<UserAuthSQL> VerifyOTP(OTP otp)
         {
             try

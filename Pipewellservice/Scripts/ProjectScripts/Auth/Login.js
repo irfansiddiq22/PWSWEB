@@ -50,7 +50,8 @@ function Login() {
         $("#spinner").show()
         $.post('/Auth/ProcessLogin', {
             UserName: $("#txtUserName").val(),
-            Password: $("#txtPassword").val()
+            Password: $("#txtPassword").val(),
+            RememberMe: $("#chkRememberME").prop("checked")
         }, function (resp) {
             if (resp)
                 window.location = "/home";

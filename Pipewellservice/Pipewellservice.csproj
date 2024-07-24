@@ -225,7 +225,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CookieHelper.cs" />
     <Compile Include="Helper\EmailHelper.cs" />
+    <Compile Include="Helper\EncryptionHelper.cs" />
     <Compile Include="Helper\ExcelHelper.cs" />
     <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="Helper\SessionHelper.cs" />
@@ -514,6 +516,7 @@
     <Content Include="Scripts\ProjectScripts\Auth\Login.js" />
     <Content Include="Scripts\ProjectScripts\Home\EmployeeDetail.js" />
     <Content Include="Scripts\ProjectScripts\Home\home.js" />
+    <Content Include="Scripts\ProjectScripts\Home\Profile.js" />
     <Content Include="Scripts\ProjectScripts\Home\SupplierAssesment.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Accommodation.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Asset.js" />
@@ -691,6 +694,7 @@
     <Content Include="Views\Home\_SupplierAssesment.cshtml" />
     <Content Include="Views\Home\_SupplierAssesment2.cshtml" />
     <Content Include="Views\Procurement\_PartilSupplierAssessment.cshtml" />
+    <Content Include="Views\Home\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

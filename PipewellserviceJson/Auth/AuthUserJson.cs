@@ -28,6 +28,19 @@ namespace PipewellserviceJson.Auth
             }
             return model;
         }
+        public User ProcessLoginASync(UserAuth user)
+        {
+            UserAuthSQL result =  service.ProcessLoginAsync(user);
+            User model = new User { ID = 0 };
+            if (result != null)
+                model = (JsonHelper.ConvertASync<List<User>, DataTable>(result.User)).FirstOrDefault();
+            if (model.ID > 0)
+            {
+                model.Permissions =  JsonHelper.ConvertASync<List<PagePermisson>, DataTable>(result.Permissions);
+                model.Supervisors =  JsonHelper.ConvertASync<List<EmployeeSupervisor>, DataTable>(result.Supervisor);
+            }
+            return model;
+        }
         public async Task<User>  VerifyOTP(OTP otp)
         {
 

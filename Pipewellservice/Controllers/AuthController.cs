@@ -1,4 +1,6 @@
-﻿using Pipewellservice.Helper;
+﻿using Newtonsoft.Json;
+using Pipewellservice.Helper;
+using PipewellserviceJson;
 using PipewellserviceJson.Auth;
 using PipewellserviceModels.Common;
 using System;
@@ -7,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Pipewellservice.Controllers
 {
@@ -16,16 +19,23 @@ namespace Pipewellservice.Controllers
         // GET: Auth
         public async Task<ActionResult> Index()
         {
-            return View();
+            if(!new CookieHelper().CheckCookie())
+                return View();
+            return RedirectToAction("Index", "Home", new { area = "" });
+
+
         }
 
         public async Task<JsonResult> ProcessLogin(UserAuth user)
         {
-            Session["EmployeeCode"] = null; 
+            Session["EmployeeCode"] = null;
             var result = await json.ProcessLogin(user);
             if (result.ID > 0)
             {
+                FormsAuthentication.SetAuthCookie(new EncryptionHelper().Encrypt(user.UserName + "`" + user.Password), user.RememberMe);
+                
                 SessionHelper.SetUserSession(result);
+
             }
             return new JsonResult
             {
@@ -52,7 +62,7 @@ namespace Pipewellservice.Controllers
         {
 
             EmailHelper email = new EmailHelper();
-          var status=  await email.SendEmail(new EmailDTO() { To = EmailAddress, From = "no-reply@pipewellservices.com", Subject = "PWS WEB TEST", Body = "TEST email server" });
+            var status = await email.SendEmail(new EmailDTO() { To = EmailAddress, From = "no-reply@pipewellservices.com", Subject = "PWS WEB TEST", Body = "TEST email server" });
             return new JsonResult
             {
                 Data = status,
@@ -88,8 +98,11 @@ namespace Pipewellservice.Controllers
         }
         public async Task<ActionResult> Logout()
         {
+            FormsAuthentication.SignOut();
+
             SessionHelper h = new SessionHelper();
             h.LogOut();
+            
             return RedirectToAction("Index");
         }
     }

@@ -37,7 +37,7 @@ namespace Pipewellservice.Reports
             PurchaseOrderManagementDB data = (PurchaseOrderManagementDB)this.UserData;
 
             PurchaseOrderManagement request = new PurchaseOrderManagement();
-            List<PurchaseOrderManagement> requestdata = JsonHelper.Convert2<List<PurchaseOrderManagement>, DataTable>(data.PurchaseOrder);
+            List<PurchaseOrderManagement> requestdata = JsonHelper.ConvertASync<List<PurchaseOrderManagement>, DataTable>(data.PurchaseOrder);
             if (requestdata.Count > 0)
                 request = requestdata[0];
 
