@@ -1,6 +1,5 @@
 ﻿@{
-    Layout = null;
-
+                Layout = null;
 }
 
 <!DOCTYPE html>
@@ -86,7 +85,8 @@
 
                             <div class="col">
                                 <label for="NationalAddress" class="form-label me-3">
-                                    National Address</label><label>
+                                    National Address
+                                </label><label>
                                     <input type="file" id="flNationAddressFile" />
                                     <i class="fa fa-cloud-upload text-success" role="button"></i> <small class="form-text text-muted">*attach-copy of Nation Address</small>
                                 </label>
@@ -279,7 +279,7 @@
                         <div class="row">
                             <div class="col">
                                 <label for="managerName" class="form-label">Name</label>
-                                <input type="text" class="form-control form-control-sm" id="CompanyManagerName" data-id="CompanyManagerName" maxlength="100">
+                                <input type="text" class="form-control form-control-sm" id="ComanyManagerName" data-id="ComanyManagerName" maxlength="100">
                             </div>
                             <div class="col">
                                 <label for="managerTitle" class="form-label">Title</label>
@@ -712,7 +712,7 @@
                         </div>
                     </div>
                     <div class="my-2 mx-2">
-                        <button type="button" onclick="SaveAssesment()" class="btn btn-primary">Submit</button>                     <button type="reset" class="btn btn-danger pull-right">Clear</button>
+                        <button type="button" onclick="SaveRegistration()" class="btn btn-primary">Submit</button>                     <button type="reset" class="btn btn-danger pull-right">Clear</button>
                     </div>
 
                 </div>
@@ -764,7 +764,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/sweetalert")
-    @Scripts.Render("~/supplierassesment")
+    @Scripts.Render("~/supplier/supplierregistration")
 
 </body>
 </html>

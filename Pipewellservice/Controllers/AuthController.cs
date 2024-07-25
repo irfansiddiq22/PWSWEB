@@ -21,7 +21,7 @@ namespace Pipewellservice.Controllers
         {
             if(!new CookieHelper().CheckCookie())
                 return View();
-            return RedirectToAction("Index", "Home", new { area = "" });
+            return RedirectToAction("Index", "Home");
 
 
         }

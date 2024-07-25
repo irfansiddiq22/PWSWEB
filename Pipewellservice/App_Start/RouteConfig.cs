@@ -19,33 +19,27 @@ namespace Pipewellservice
                 url: "EmployeeDetail",
                 defaults: new { controller = "Home", action = "PersonalDetail", id = UrlParameter.Optional }
             );
-
             routes.MapRoute(
-                name: "SupplierAssesment",
-                url: "supplier/registration",
-                defaults: new { controller = "Home", action = "SupplierAssesment", id = UrlParameter.Optional }
+                name: "Index",
+                url: "{controller}/Index/{action}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
-            routes.MapRoute(
-                name: "ProcurementStore",
-                url: "{controller}/Store/{action}/{id}",
-                defaults: new { controller = "Procurement", action = "Index", id = UrlParameter.Optional }
-            );
-
-
-
             routes.MapRoute(
                 name: "ProcurementPurchase",
                 url: "{controller}/Purchase/{action}/{id}",
                 defaults: new { controller = "Procurement", action = "Index", id = UrlParameter.Optional }
             );
-
-
-
+            routes.MapRoute(
+                name: "ProcurementStore",
+                url: "Procurement/Store/{action}/{id}",
+                defaults: new { controller = "Procurement", action = "Index", id = UrlParameter.Optional }
+            );
             routes.MapRoute(
                name: "LoginID",
                url: "",
                defaults: new { controller = "Auth", action = "Index", id = UrlParameter.Optional }
            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

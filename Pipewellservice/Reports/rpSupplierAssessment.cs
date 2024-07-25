@@ -1,10 +1,7 @@
 using System;
-using System.Drawing;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
+
 using GrapeCity.ActiveReports.SectionReportModel;
-using PipewellserviceModels.Home;
+using PipewellserviceModels.Supplier;
 
 namespace Pipewellservice.Reports
 {

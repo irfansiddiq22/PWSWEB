@@ -36,16 +36,27 @@ namespace Pipewellservice
                 "~/Scripts/ProjectScripts/Home/EmployeeDetail.js"
                 
                 ));
-            bundles.Add(new ScriptBundle("~/supplierassesment").Include(
+            bundles.Add(new ScriptBundle("~/supplier/supplierregistration").Include(
                 "~/Scripts/moment.min.js",
                 "~/Scripts/bootstrap-datepicker.min.js",
                 "~/Scripts/libraries/daterangepicker/daterangepicker.js",
                 "~/Scripts/moment-with-locales.min.js",
-                "~/Scripts/ProjectScripts/Home/SupplierAssesment.js"
+                "~/Scripts/ProjectScripts/supplier/Registration.js"
+
+                ));
+            bundles.Add(new ScriptBundle("~/customer/customerregistration").Include(
+                "~/Scripts/moment.min.js",
+                "~/Scripts/bootstrap-datepicker.min.js",
+                "~/Scripts/libraries/daterangepicker/daterangepicker.js",
+                "~/Scripts/moment-with-locales.min.js",
+                "~/Scripts/ProjectScripts/customer/registration.js"
 
                 ));
 
             
+
+
+
 
 
 
@@ -116,7 +127,7 @@ namespace Pipewellservice
             bundles.Add(new Bundle("~/lib/hr/employeecv").Include(
                       "~/Scripts/ProjectScripts/HR/Employee/employeecv.js"));
             bundles.Add(new Bundle("~/lib/supplier/supplierassessment").Include(
-                      "~/Scripts/ProjectScripts/Procurement/SupplierAssessment.js"));
+                      "~/Scripts/ProjectScripts/Supplier/AssessmentData.js"));
 
             
 

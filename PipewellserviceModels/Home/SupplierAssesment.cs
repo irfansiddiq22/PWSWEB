@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PipewellserviceModels.Home
+namespace PipewellserviceModels.Supplier
 {
     public class SupplierAssesment
     {
@@ -112,7 +112,7 @@ namespace PipewellserviceModels.Home
         public string IBAN { get; set; }
         public string BankContactMobileNumber { get; set; }
         public string BankContactEmailAddress { get; set; }
-        public string ComanyManagerName { get; set; }
+        public string CompanyManagerName { get; set; }
         public string ManagerTitle { get; set; }
         public string ManagerMobileNumber { get; set; }
         public string ManagerFaxNumber { get; set; }
@@ -149,7 +149,16 @@ namespace PipewellserviceModels.Home
         public List<SupplierProductionFacility> SupplierProductionFacilities { get; set; }
         public List<SupplierQualityControlFacility> SupplierQualityControlFacilities { get; set; }
     }
-    public class AssessmentFile
+    public class AssessmentListView
+    {
+        public int ID { get; set; }
+        public string CompanyName { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+        
+        public int TotalRecords { get; set; }
+    }
+    public class RegistrationFile
     {
 
         public string CRFile { get; set; }

@@ -60,7 +60,7 @@ function AddNewOption(tblName) {
     var SR = $(tb).find("tr").length + 1;
     $(tb).append(`<tr><td>${SR}</td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="${tblName == "tblCustomers" ? "text" : "number"}" class="form-control form-control-sm"></td></tr>`)
 }
-function SaveAssesment() {
+function SaveRegistration() {
     if ($("#frmSupplierAssessment").valid()) {
         var assessment = {};
         $.each($("input[data-id],select[data-id],:checkbox[data-id],:radio[data-id],textarea[data-id]"), function (i, c) {
@@ -100,7 +100,7 @@ function SaveAssesment() {
         assessment.SupplierQualityControlFacilities = SupplierQualityControlFacilities;
         
         $("#spinner").show();
-        $.post("/Home/SaveSupplierAssesment", { assesment: assessment }, function (resp) {
+        $.post("/Supplier/SaveRegistration", { assesment: assessment }, function (resp) {
             $("#spinner").hide();
             if (resp > 0) {
                 swal("Thank you for submitting data for assessment", { icon: "success" });
@@ -153,7 +153,7 @@ function SaveAssesment() {
                 
                 $("#spinner").show();
                 $.ajax({
-                    url: '/Home/UploadSupplierAssessmentFiles',
+                    url: '/Supplier/UploadSupplierAssessmentFiles',
                     type: "POST",
                     contentType: false,
                     processData: false,
@@ -207,7 +207,7 @@ function UploadSupplierFile() {
         fileData.append(files[0].name, files[0]);
 
     $.ajax({
-        url: '/Home/UploadSupplierDataFile',
+        url: '/Supplier/ReadFileData',
         type: "POST",
         contentType: false,
         processData: false,

@@ -102,29 +102,9 @@ namespace Pipewellservice.Controllers
             return PartialView("~/Views/Employee/WebViewer.ascx");
         }
 
-        [Authorization(Pages.SupplierAssessment)]
-        public ActionResult SupplierAssessment()
-        {
-            ViewBag.Title = "Supplier Assessment";
-            ViewBag.Parent = Parent;
-            return View("_PartilSupplierAssessment");
-        }
 
 
-
-        public async Task<ActionResult> PrintSupplierAssessmentReport(int ID)
-        {
-
-            SupplierAssementDTO data = await (new HomeJson()).SupplierAssessment(ID);
-
-
-            rpSupplierAssessment report = new rpSupplierAssessment { DataSource = data.assessment, Document = { }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
-            report.UserData = data;
-            ViewBag.ReportName = "Supplier Assessment Report";
-
-            ViewBag.Report = report;
-            return PartialView("~/Views/Employee/WebViewer.ascx");
-        }
+        
 
 
 

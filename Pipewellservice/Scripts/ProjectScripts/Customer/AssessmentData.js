@@ -21,7 +21,7 @@ function FillSupplierData() {
 
     ShowSpinner();
     $('#dvPaging').pagination({
-        dataSource: "/ProcurementAPI/SupplierAssessment",
+        dataSource: "/Supplier/ListAssessment",
         pageSize: pageSize,
         showGoInput: true,
         locator: function (response) {
@@ -46,7 +46,7 @@ function FillSupplierData() {
         },
         callback: function (data, pagination) {
             HideSpinner();
-            $("#tblEmployeeCV").empty();
+            $("#tblSupplierAssessmentData").empty();
             $.each(data, function (i, e) {
                 var tr = $('<tr data-id=' + e.ID + '> ');
                 tr.append($('<td>').html(e.ID));
@@ -55,7 +55,7 @@ function FillSupplierData() {
                 tr.append($('<td>').html(e.Country));
 
 
-                var link = $('<a class="btn btn-sm btn-success">').attr("target", "_blank").attr("href", "/Procurement/PrintSupplierAssessmentReport?ID=" + e.ID).append('<i class="fa fa-download"></i>');
+                var link = $('<a class="btn btn-sm btn-success">').attr("target", "_blank").attr("href", "/Supplier/PrintAssessmentReport?ID=" + e.ID).append('<i class="fa fa-download"></i>');
 
                 tr.append($('<td>').append(link));
 

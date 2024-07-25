@@ -207,8 +207,10 @@
     <Compile Include="Areas\API\Controllers\InternalPurchaseAPIController.cs" />
     <Compile Include="Areas\API\Controllers\SettingAPIController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ProcurementController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="EmailTemplateHTML.aspx.cs">
       <DependentUpon>EmailTemplateHTML.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -517,7 +519,9 @@
     <Content Include="Scripts\ProjectScripts\Home\EmployeeDetail.js" />
     <Content Include="Scripts\ProjectScripts\Home\home.js" />
     <Content Include="Scripts\ProjectScripts\Home\Profile.js" />
-    <Content Include="Scripts\ProjectScripts\Home\SupplierAssesment.js" />
+    <Content Include="Scripts\ProjectScripts\Customer\Registration.js" />
+    <Content Include="Scripts\ProjectScripts\Customer\AssessmentData.js" />
+    <Content Include="Scripts\ProjectScripts\Supplier\Registration.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Accommodation.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Asset.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\AttendenceReport.js" />
@@ -542,7 +546,7 @@
     <Content Include="Scripts\ProjectScripts\HR\Employee\ExpiringID.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\JobContract.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\JobOffer.js" />
-    <Content Include="Scripts\ProjectScripts\Procurement\SupplierAssessment.js" />
+    <Content Include="Scripts\ProjectScripts\Supplier\AssessmentData.js" />
     <Content Include="Scripts\ProjectScripts\HR\Settings\Setting.js" />
     <Content Include="Scripts\libraries\sweetalert\bootstrap-sweetalert.png" />
     <Content Include="Scripts\libraries\sweetalert\docs.css" />
@@ -693,8 +697,10 @@
     <Content Include="Views\Employee\_PartialEmployeeCV.cshtml" />
     <Content Include="Views\Home\_SupplierAssesment.cshtml" />
     <Content Include="Views\Home\_SupplierAssesment2.cshtml" />
-    <Content Include="Views\Procurement\_PartilSupplierAssessment.cshtml" />
+    <Content Include="Views\Supplier\_PartilSupplierAssessment.cshtml" />
     <Content Include="Views\Home\Profile.cshtml" />
+    <Content Include="Views\Supplier\registration.cshtml" />
+    <Content Include="Views\Customer\registration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2384,11 +2384,11 @@ namespace Pipewellservice.Reports
             // 
             // textBox80
             // 
-            this.textBox80.DataField = "ComanyManagerName";
+            this.textBox80.DataField = "CompanyManagerName";
             this.textBox80.Height = 0.2200012F;
             this.textBox80.Left = 1.0625F;
             this.textBox80.Name = "textBox80";
-            this.textBox80.Text = "ComanyManagerName";
+            this.textBox80.Text = "CompanyManagerName";
             this.textBox80.Top = 8.157F;
             this.textBox80.Width = 2.135F;
             // 

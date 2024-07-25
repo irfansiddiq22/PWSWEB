@@ -1,0 +1,324 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Registration</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="container">
+        <div class="w-75 m-auto">
+
+            <div class="m-2">
+                <div class=" m-auto">
+                    <div class="pull-left"><h2>@ViewBag.Name</h2></div>
+                    <a class="navbar-brand pull-right" href="javascript:void(0)">
+                        <img src="~/Content/images/logo.jpg" alt="">
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <form id="frmCustomerRegistration" name="frmCustomerRegistration">
+                <div class="border">
+                    <div class="blue mb-3">
+                        <h4>Contact Information</h4>
+                    </div>
+                    <div class="mb-3 p-3">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="companyName" class="form-label">Company Name</label>
+                                <input type="text" class="form-control" id="companyName" name="companyName" required data-id="CompanyName">
+                            </div>
+                            <div class="col-3">
+                                <label for="dateBusinessCommenced" class="form-label">Date Business Commenced</label>
+                                <input type="text" class="form-control datepicker" id="dateBusinessCommenced" name="dateBusinessCommenced" required data-id="BusinessDate">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="firstRepName" class="form-label">First Representative Name</label>
+                                <input type="text" class="form-control" id="firstRepName" name="firstRepName" required data-id="RepresentativeName1">
+                            </div>
+                            <div class="col">
+                                <label for="firstRepTitle" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="firstRepTitle" name="firstRepTitle" required data-id="RepresentativeTitle1">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="secondRepName" class="form-label">Second Representative Name</label>
+                                <input type="text" class="form-control" id="secondRepName">
+                            </div>
+                            <div class="col">
+                                <label for="secondRepTitle" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="secondRepTitle">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="phonesFax" class="form-label">Phone</label>
+                                <input type="text" class="form-control" id="RepresentativePhone1" name="RepresentativePhone1" required data-id="PhoneNumber">
+                            </div>
+                            <div class="col">
+                                <label for="phonesFax" class="form-label">Fax</label>
+                                <input type="text" class="form-control" id="phonesFax" data-id="FaxNumber">
+                            </div>
+                            <div class="col">
+                                <label for="RepresentativeEmail" class="form-label">E-mail Address</label>
+                                <input type="email" class="form-control" id="RepresentativeEmail" name="RepresentativeEmail" required data-id="EmailAddress">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+
+                            <div class="col-3">
+                                <label for="crNumber" class="form-label">C.R Number</label>
+                                <input type="text" class="form-control" id="crNumber" name="crNumber" required data-id="CRNumber">
+                                <label class="">
+                                    <input type="file" id="flCRFile" />
+                                    <i class="fa fa-cloud-upload text-success" role="button"></i> <small class="form-text text-muted">*attach-copy of C.R.</small>
+                                </label>
+                            </div>
+                            <div class="col-3">
+                                <label for="crExpiryDate" class="form-label">CR Expiry Date</label>
+                                <input type="text" class="form-control form-control-sm datepicker" id="crExpiryDate" data-id="CRExpiryDate" name="CRExpiryDate" required data-msg="Please enter CR Expiry date">
+                            </div>
+
+                            <div class="col-3">
+                                <label for="zakatNo" class="form-label">Zakat No.</label>
+                                <input type="text" class="form-control form-control-sm" id="ZakatNumber" maxlength="50" name="ZakatNumber" data-id="ZakatNumber" data-msg="Please entert zakat number " required>
+
+                                <label class="">
+                                    <input type="file" id="flZakatFile" />
+                                    <i class="fa fa-cloud-upload text-success" role="button"></i> <small class="form-text text-muted">*attach-copy of Zakat</small>
+                                </label>
+                            </div>
+                            <div class="col-3">
+                                <label for="zakatExpiryDate" class="form-label">Zakat Expiry Date</label>
+                                <input type="text" class="form-control form-control-sm datepicker" id="zakatExpiryDate" data-id="ZakatExpiryDate" name="ZakatExpiryDate" required data-msg="Please enter zakat expiry date">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-3">
+                                <label for="crNumber" class="form-label">VAT Number</label>
+                                <input type="text" class="form-control" id="vatNumber" name="vatNumber" required data-id="VATNumber" data-msg="Please enter VAT Number">
+                                <label class="">
+                                    <input type="file" id="flVATFile" />
+                                    <i class="fa fa-cloud-upload text-success" role="button"></i> <small class="form-text text-muted">*attach-copy of VAT</small>
+                                </label>
+                            </div>
+                            <div class="col-3">
+                                <label for="crExpiryDate" class="form-label">VAT Expiry Date</label>
+                                <input type="text" class="form-control form-control-sm datepicker" id="vatExpiryDate" data-id="VATExpiryDate" name="VATExpiryDate" required data-msg="Please enter VAT Expiry date">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="companyAddress" class="form-label">Company Address</label>
+                                <input type="text" class="form-control" id="companyAddress" name="CompanyAddress" required data-id="CompanyAddress">
+                            </div>
+                            <div class="col">
+                                <label for="cityPOBox" class="form-label">City</label>
+                                <input type="text" class="form-control" id="city" name="City" required data-id="City">
+                            </div>
+                            <div class="col-2">
+                                <label for="cityPOBox" class="form-label">P.O Box</label>
+                                <input type="text" class="form-control" id="cityPOBox" name="PoBox" required data-id="PoBox">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label for="howLongCurrentAddress" class="form-label">How long at current address?</label>
+                                <input type="text" class="form-control" id="howLongCurrentAddress" data-id="ResidencyDuration">
+
+                            </div>
+
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="expectedMonthlyVolume" class="form-label">Expected Monthly Business Volume With Us</label>
+                                <input type="text" class="form-control" id="expectedMonthlyVolume" data-id="MonthlyBusiness">
+                            </div>
+                            <div class="col">
+                                <label for="paidUpCapital" class="form-label">Paid Up Capital</label>
+                                <input type="text" class="form-control" id="paidUpCapital" data-id="PaidUpCapital">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="blue mb-3">
+                        <h4>Bank References</h4>
+                    </div>
+                    <div class="mb-3 p-3">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="bankName" class="form-label">Bank Name</label>
+                                <input type="text" class="form-control" id="bankName" data-id="BankName">
+                            </div>
+                            <div class="col">
+                                <label for="accountNumber" class="form-label">Account Number</label>
+                                <input type="text" class="form-control" id="accountNumber" data-id="BankAcctNumber">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="bankAddress" class="form-label">Bank Address</label>
+                                <input type="text" class="form-control" id="bankAddress" data-id="BankAddress">
+                            </div>
+                            <div class="col">
+                                <label for="cityPOBoxBank" class="form-label">City</label>
+                                <input type="text" class="form-control" id="Bankcity" data-id="BankCity ">
+                            </div>
+
+                            <div class="col">
+                                <label for="cityPOBoxBank" class="form-label">P.O Box</label>
+                                <input type="text" class="form-control" id="POBoxBank" data-id="BankPoBox">
+                            </div>
+
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="phonesFaxBank" class="form-label">Phones</label>
+                                <input type="text" class="form-control" id="phonesBank" data-id="BankPhoneNumber">
+                            </div>
+                            <div class="col">
+                                <label for="phonesFaxBank" class="form-label">Fax</label>
+                                <input type="text" class="form-control" id="FaxBank" data-id="BankFaxNumber">
+                            </div>
+                            <div class="col">
+                                <label for="emailBank" class="form-label">E-mail</label>
+                                <input type="email" class="form-control" id="emailBank" data-id="BankFaxNumber">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blue mb-3">
+                        <h4>Trade References</h4>
+                    </div>
+                    <div class="mb-3 p-3">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="tradeCompanyName1" class="form-label">Company Name</label>
+                                <input type="text" class="form-control" id="tradeCompanyName1" data-id="TradeCompanyName1">
+                            </div>
+                            <div class="col">
+                                <label for="tradeAddress1" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="tradeAddress1" data-id="TradeAddress1">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="tradeContactPerson1" class="form-label">Contact Person</label>
+                                <input type="text" class="form-control" id="tradeContactPerson1" data-id="TradeContactPerson1">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="tradePhone1" class="form-label">Phone</label>
+                                <input type="text" class="form-control" id="tradePhone1" data-id="TradePhoneNumber1">
+                            </div>
+                            <div class="col">
+                                <label for="tradeFax1" class="form-label">Fax</label>
+                                <input type="text" class="form-control" id="tradeFax1" data-id="TradeFaxNumber1">
+                            </div>
+                            <div class="col">
+                                <label for="tradeEmail1" class="form-label">E-mail</label>
+                                <input type="email" class="form-control" id="tradeEmail1" data-id="TradeEmailAddress1">
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="tradeCompanyName2" class="form-label">Company Name</label>
+                                <input type="text" class="form-control" id="tradeCompanyName2" data-id="TradeCompanyName2">
+                            </div>
+                            <div class="col">
+                                <label for="tradeAddress2" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="tradeAddress2" data-id="TradeAddress2">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="tradeContactPerson2" class="form-label">Contact Person</label>
+                                <input type="text" class="form-control" id="tradeContactPerson2" data-id="TradeContactPerson2">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="tradePhone2" class="form-label">Phone</label>
+                                <input type="text" class="form-control" id="tradePhone2" data-id="TradePhoneNumber2">
+                            </div>
+                            <div class="col">
+                                <label for="tradeFax2" class="form-label">Fax</label>
+                                <input type="text" class="form-control" id="tradeFax2" data-id="TradeFaxNumber2">
+                            </div>
+                            <div class="col">
+                                <label for="tradeEmail2" class="form-label">E-mail</label>
+                                <input type="email" class="form-control" id="tradeEmail2" data-id="TradeEmailAddress2">
+                            </div>
+                        </div>
+
+
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="tradeCompanyName3" class="form-label">Company Name</label>
+                                <input type="text" class="form-control" id="tradeCompanyName3" data-id="TradeCompanyName3">
+                            </div>
+                            <div class="col">
+                                <label for="tradeAddress3" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="tradeAddress3" data-id="TradeAddress3">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="tradeContactPerson3" class="form-label">Contact Person</label>
+                                <input type="text" class="form-control" id="tradeContactPerson3" data-id="TradeContactPerson3">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="tradePhone3" class="form-label">Phone</label>
+                                <input type="phone" class="form-control" id="tradePhone3" data-id="TradePhoneNumber3">
+                            </div>
+                            <div class="col">
+                                <label for="tradeFax3" class="form-label">Fax</label>
+                                <input type="phone" class="form-control" id="tradeFax3" data-id="TradeFaxNumber3">
+                            </div>
+                            <div class="col">
+                                <label for="tradeEmail3" class="form-label">E-mail</label>
+                                <input type="email" class="form-control" id="tradeEmail3" data-id="TradeEmailAddress3">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="my-2 mx-2">
+                        <button type="button" onclick="SaveRegistration()" class="btn btn-primary">Submit</button>                     <button type="reset" class="btn btn-danger pull-right">Clear</button>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+        <div id="spinner"></div>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
+        @Styles.Render("~/bundles/sweetalertcss")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/sweetalert")
+        @Scripts.Render("~/customer/customerregistration")
+
+</body>
+
+</html>

@@ -53,6 +53,7 @@
     <Compile Include="Auth\AuthService.cs" />
     <Compile Include="Common\DataListService.cs" />
     <Compile Include="Common\StringHelper.cs" />
+    <Compile Include="Customer\CustomerService.cs" />
     <Compile Include="DataServices.cs" />
     <Compile Include="Home\HomeService.cs" />
     <Compile Include="HR\Employee\AccommodationService.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Procurement\Purchase\PurchaseService.cs" />
     <Compile Include="Procurement\Store\StoreItemService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Supplier\SupplierService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PipewellserviceModels\PipewellserviceModels.csproj">
