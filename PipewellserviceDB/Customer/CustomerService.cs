@@ -102,5 +102,27 @@ namespace PipewellserviceDB.Customer
                 return false;
             }
         }
+
+        public async Task<DataTable> CustomerList(CustomerViewParam param)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[4];
+                collSP[0] = new SqlParameter { ParameterName = "@CompanyName", Value = param.Name };
+                collSP[1] = new SqlParameter { ParameterName = "@City", Value = param.City };
+                collSP[2] = new SqlParameter { ParameterName = "@PageNumber", Value = param.PageNumber };
+                collSP[3] = new SqlParameter { ParameterName = "@PageSize", Value = param.pageSize };
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcListCustomerRegistrationData", CommandType.StoredProcedure, collSP);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }

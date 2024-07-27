@@ -33,7 +33,8 @@
     Sponsor: 32,
     Location: 33,
     EmployeeCVData: 34,
-    SupplierAssessment:35
+    SupplierAssessment: 35,
+    Customers:36
 
 }
 var REPORTS = {

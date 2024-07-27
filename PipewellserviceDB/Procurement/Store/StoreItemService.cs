@@ -68,7 +68,7 @@ namespace PipewellserviceDB.Procurement.Store
         {
             try
             {
-                SqlParameter[] collSP = new SqlParameter[15];
+                SqlParameter[] collSP = new SqlParameter[16];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = item.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@ItemCode", Value = item.ItemCode };
                 collSP[2] = new SqlParameter { ParameterName = "@Name", Value = item.Name };
@@ -84,6 +84,7 @@ namespace PipewellserviceDB.Procurement.Store
                 collSP[12] = new SqlParameter { ParameterName = "@Tengible", Value = item.Tengible };
                 collSP[13] = new SqlParameter { ParameterName = "@RecordUpdatedBy", Value = UserID };
                 collSP[14] = new SqlParameter { ParameterName = "@Image", Value = item.Image };
+                collSP[15] = new SqlParameter { ParameterName = "@StockQuantity", Value = item.StockQuantity };
                 SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcAddStoreItem", CommandType.StoredProcedure, collSP);
 
                 return true;

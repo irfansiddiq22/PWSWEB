@@ -106,10 +106,11 @@ function EditItem(Index) {
     SetvalOf("txtItemPart", Item.PartNumber)
     SetvalOf("txtItemLocation", Item.Location)
     SetvalOf("txtItemUnit", Item.Unit);
-    SetvalOf("txtItemStockQty", Item.OpeningStock)
+    SetvalOf("txtOpeningStock", Item.OpeningStock)
+    SetvalOf("txtItemStockQuantity", item.StockQuantity)
     SetvalOf("txtItemReOrderLimit", Item.ReOrderLimit);
     SetvalOf("txtItemPacking", Item.Packing);
-    SetvalOf("ddItemType", Item.Tengible ? 1 : 2);
+    SetvalOf("ddItemType", Item.Tengible ? 1 : 0);
     SetChecked("ChkStockItem", Item.StockItem);
     SetChecked("ChkCriticalItem", Item.CreticalItem);
     SetChecked("ChkActiveItem", Item.Active);
@@ -150,7 +151,8 @@ function SaveItem() {
                 ItemCode: valOf("ddItemCodeAbv") + valOf("txtItemCode"),
                 Name: valOf("txtItemName"),
                 Unit: valOf("txtItemUnit"),
-                OpeningStock: valOf("txtItemStockQty"),
+                OpeningStock: valOf("txtOpeningStock"),
+                StockQuantity: valOf("txtItemStockQuantity"),
                 ReOrderLimit: valOf("txtItemReOrderLimit"),
                 Packing: valOf("txtItemPacking"),
                 Location: valOf("txtItemLocation"),
@@ -158,7 +160,7 @@ function SaveItem() {
                 StockItem: GetChecked("ChkStockItem"),
                 CreticalItem: GetChecked("ChkCriticalItem"),
                 Active: GetChecked("ChkActiveItem"),
-                Tengible: valOf("ddItemType"),
+                Tengible: valOf("ddItemType")==1,
                 Image: ''
             };
 

@@ -32,6 +32,7 @@ namespace PipewellserviceModels.Procurement.Store
 
         public int Total { get; set; }
         public int NextCode { get; set; }
+        public int StockQuantity { get; set; }
     }
 
 }

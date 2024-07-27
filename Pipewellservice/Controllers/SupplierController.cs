@@ -218,7 +218,7 @@ namespace Pipewellservice.Controllers
 
 
         [Authorization(Pages.SupplierAssessment)]
-        public ActionResult Assessment()
+        public ActionResult List()
         {
             ViewBag.Title = "Supplier Assessment";
             ViewBag.Parent = Parent;

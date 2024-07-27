@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,5 +22,9 @@ namespace PipewellserviceJson.Customer
 
         }
 
+        public async Task<List<CustomerList>> CustomerList(CustomerViewParam param)
+        {
+            return  await JsonHelper.Convert<List<CustomerList>,DataTable>(await service.CustomerList(param));
+        }
     }
 }

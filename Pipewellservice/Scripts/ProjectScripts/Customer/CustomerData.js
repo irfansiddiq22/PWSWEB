@@ -2,15 +2,15 @@
 
     HideSpinner();
 
-    SetPagePermission(PAGES.SupplierAssessment, function () {
-        FillSupplierData()
+    SetPagePermission(PAGES.Customers, function () {
+        FillCustomerData()
         
 
     });
 
 
 }
-function FillSupplierData() {
+function FillCustomerData() {
 
 
     var pageSize = localStorage.getItem("PageLength");
@@ -21,7 +21,7 @@ function FillSupplierData() {
 
     ShowSpinner();
     $('#dvPaging').pagination({
-        dataSource: "/Supplier/ListAssessment",
+        dataSource: "/Customer/ListData",
         pageSize: pageSize,
         showGoInput: true,
         locator: function (response) {
@@ -38,7 +38,6 @@ function FillSupplierData() {
             data: {
                 Name: valOf("txtCompanyName"),
                 City: valOf("txtCityName"),
-                Country: valOf("txtCountryName")
             },
             beforeSend: function () {
                 ShowSpinner();
@@ -46,20 +45,18 @@ function FillSupplierData() {
         },
         callback: function (data, pagination) {
             HideSpinner();
-            $("#tblSupplierAssessmentData").empty();
+            $("#tblCustomerData").empty();
             $.each(data, function (i, e) {
                 var tr = $('<tr data-id=' + e.ID + '> ');
                 tr.append($('<td>').html(e.ID));
                 tr.append($('<td>').html(e.CompanyName));
                 tr.append($('<td>').html(e.City));
-                tr.append($('<td>').html(e.Country));
 
-
-                var link = $('<a class="btn btn-sm btn-success">').attr("target", "_blank").attr("href", "/Supplier/PrintAssessmentReport?ID=" + e.ID).append('<i class="fa fa-download"></i>');
+                var link = $('<a class="btn btn-sm btn-success">').attr("target", "_blank").attr("href", "?ID=" + e.ID).append('<i class="fa fa-download"></i>');
 
                 tr.append($('<td>').append(link));
 
-                $("#tblSupplierAssessmentData").append(tr);
+                $("#tblCustomerData").append(tr);
             })
 
 

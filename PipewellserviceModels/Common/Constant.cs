@@ -180,7 +180,8 @@ namespace PipewellserviceModels.Common
         Sponosor=32,
         Location=33 ,
         EmployeeCV=34,
-        SupplierAssessment=35
+        SupplierAssessment=35,
+        CustomerRegisteration=36
 
 
     }

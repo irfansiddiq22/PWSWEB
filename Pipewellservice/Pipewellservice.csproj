@@ -520,7 +520,7 @@
     <Content Include="Scripts\ProjectScripts\Home\home.js" />
     <Content Include="Scripts\ProjectScripts\Home\Profile.js" />
     <Content Include="Scripts\ProjectScripts\Customer\Registration.js" />
-    <Content Include="Scripts\ProjectScripts\Customer\AssessmentData.js" />
+    <Content Include="Scripts\ProjectScripts\Customer\CustomerData.js" />
     <Content Include="Scripts\ProjectScripts\Supplier\Registration.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Accommodation.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Asset.js" />
@@ -696,11 +696,11 @@
     <Content Include="Views\Home\PersonalDetail.cshtml" />
     <Content Include="Views\Employee\_PartialEmployeeCV.cshtml" />
     <Content Include="Views\Home\_SupplierAssesment.cshtml" />
-    <Content Include="Views\Home\_SupplierAssesment2.cshtml" />
     <Content Include="Views\Supplier\_PartilSupplierAssessment.cshtml" />
     <Content Include="Views\Home\Profile.cshtml" />
     <Content Include="Views\Supplier\registration.cshtml" />
     <Content Include="Views\Customer\registration.cshtml" />
+    <Content Include="Views\Customer\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

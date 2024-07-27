@@ -52,9 +52,11 @@ namespace Pipewellservice
                 "~/Scripts/ProjectScripts/customer/registration.js"
 
                 ));
+            bundles.Add(new Bundle("~/lib/customer/customers").Include(
+                      "~/Scripts/ProjectScripts/Customer/CustomerData.js"));
+
 
             
-
 
 
 

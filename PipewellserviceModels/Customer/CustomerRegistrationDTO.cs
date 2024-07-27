@@ -36,6 +36,7 @@ namespace PipewellserviceModels.Customer
         public string CompanyAddress { get; set; }
         public string City { get; set; }
         public string PoBox { get; set; }
+        public string NationAddress { get; set; }
         public string ResidencyDuration { get; set; }
         public string MonthlyBusiness { get; set; }
         public string PaidUpCapital { get; set; }
@@ -78,5 +79,21 @@ namespace PipewellserviceModels.Customer
         public string ZakatFileID { get; set; }
         public string VATFile { get; set; }
         public string VATFileID { get; set; }
+    }
+    public class CustomerViewParam
+    {
+        public string Name { get; set; }
+        public string City { get; set; }
+        public int PageNumber { get; set; }
+        public int pageSize { get; set; }
+
+
+    }
+    public class CustomerList
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string City { get; set; }
+        public int TotalRecords { get; set; }
     }
 }

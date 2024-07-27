@@ -17,9 +17,9 @@ using System.Web.Mvc;
 namespace Pipewellservice.Controllers
 {
     public class CustomerController : Controller
-{
+    {
         private string Parent = JsonConvert.SerializeObject(new { URL = "/Procurement/home", Title = "Procurement" });
-       public CustomerJson json = new CustomerJson();
+        public CustomerJson json = new CustomerJson();
         public async Task<ActionResult> registration()
         {
             ViewBag.Title = "";
@@ -31,7 +31,7 @@ namespace Pipewellservice.Controllers
         }
         public async Task<JsonResult> SaveRegistration(CustomerRegistrationDTO dto)
         {
-            int result = await json.SaveRegistration(dto );
+            int result = await json.SaveRegistration(dto);
             return new JsonResult
             {
                 Data = result,
@@ -71,7 +71,7 @@ namespace Pipewellservice.Controllers
                 await FileHelper.SaveFile(VATFile, file.VATFileID, ID, DirectoryNames.CustomerRegistration);
             }
 
-            
+
 
             bool result = await json.SaveRegistrationFiles(ID, file);
 
@@ -83,6 +83,24 @@ namespace Pipewellservice.Controllers
             };
 
 
+        }
+        [Authorization(Pages.CustomerRegisteration)]
+        public async Task<ViewResult> List(CustomerRegistrationDTO dto)
+        {
+            ViewBag.Title = "Customer List";
+            ViewBag.Parent = Parent;
+            return View();
+
+        }
+        [Authorization(Pages.CustomerRegisteration)]
+        public async Task<JsonResult> ListData(CustomerViewParam dto)
+        {
+            
+            return new JsonResult
+            {
+                Data = await json.CustomerList(dto),
+                JsonRequestBehavior = JsonRequestBehavior.DenyGet
+            };
         }
     }
 }

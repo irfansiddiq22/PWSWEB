@@ -126,7 +126,7 @@ namespace PipewellserviceDB.Supplier
                 parameters[57] = new SqlParameter { ParameterName = "@TechnicalEmployees", Value = StringHelper.NullToString(assesment.TechnicalEmployees) };
                 parameters[58] = new SqlParameter { ParameterName = "@OtherEmployees", Value = StringHelper.NullToString(assesment.OtherEmployees) };
                 parameters[59] = new SqlParameter { ParameterName = "@NationalAddress", Value = StringHelper.NullToString(assesment.NationalAddress) };
-                int ID = Convert.ToInt32(SqlHelper.ExecuteScalar(ConnectionString, "ProcAddOrUpdateSupplierAssesment", CommandType.StoredProcedure, parameters));
+                int ID = Convert.ToInt32(SqlHelper.ExecuteScalar(ConnectionString, "ProcAddOrUpdateSupplierAssessment", CommandType.StoredProcedure, parameters));
                 try
                 {
                     parameters = new SqlParameter[5];
@@ -136,7 +136,7 @@ namespace PipewellserviceDB.Supplier
                     parameters[3] = new SqlParameter { ParameterName = "@production", Value = productions.ToString() };
                     parameters[4] = new SqlParameter { ParameterName = "@qualitycontrol", Value = qualtycontrol.ToString() };
 
-                    SqlHelper.ExecuteNonQuery(ConnectionString, "ProcAddOrUpdateSupplierAssesmentData", CommandType.StoredProcedure, parameters);
+                    SqlHelper.ExecuteNonQuery(ConnectionString, "ProcAddOrUpdateSupplierAssessmentData", CommandType.StoredProcedure, parameters);
                 }
                 catch (Exception e) { }
                 return ID;
@@ -192,7 +192,7 @@ namespace PipewellserviceDB.Supplier
                 collSP[3] = new SqlParameter { ParameterName = "@PageNumber", Value = param.PageNumber };
                 collSP[4] = new SqlParameter { ParameterName = "@PageSize", Value = param.pageSize };
 
-                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcListSupplierAssesssmentData", CommandType.StoredProcedure, collSP);
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcListSupplierAssessmentData", CommandType.StoredProcedure, collSP);
                 DataTable dt = new DataTable();
                 dt.Load(result);
                 result.Close();
@@ -209,7 +209,7 @@ namespace PipewellserviceDB.Supplier
             {
 
 
-                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetSupplierAssesssmentData", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetSupplierAssessmentData", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
                 SupplierAssementDTOSQL dt = new SupplierAssementDTOSQL();
                 dt.assessment.Load(result);
                 dt.supplierItems.Load(result);
