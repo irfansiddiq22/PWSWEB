@@ -16,9 +16,12 @@ namespace PipewellserviceJson.Procurement
         public async Task<List<MaterialRequest>> GetMatrialRequestList(DateParam date, PagingDTO paging, int RequestType)
         {
             return await JsonHelper.Convert<List<MaterialRequest>, DataTable>(await service.GetMatrialRequestList(date, paging, RequestType));
-
-
         }
+        public async Task<List<MaterialRequest>> GetOutofStockMatrialRequest(PagingDTO paging)
+        {
+            return await JsonHelper.Convert<List<MaterialRequest>, DataTable>(await service.GetOutofStockMatrialRequest( paging));
+        }
+        
         public async Task<MaterialRequestDetail> GetMatrialRequestDetail(int ID)
         {
             MaterialRequestDB dB= await service.GetMatrialRequestDetail(ID);
@@ -28,7 +31,15 @@ namespace PipewellserviceJson.Procurement
 
             return model;
         }
-        
+        public async Task<List<MaterialRequestItem>> GetMatrialRequestItems(int ID)
+        {
+            MaterialRequestDB dB = await service.GetMatrialRequestItems(ID);
+            
+            return await JsonHelper.Convert<List<MaterialRequestItem>, DataTable>(dB.MaterialRequestItem);
+
+            
+        }
+
         public async Task<MaterialRequestResult> AddMaterialRequest(MaterialRequest request, List<MaterialRequestItem> Items) {
             return await service.AddMaterialRequest(request,Items);
         }

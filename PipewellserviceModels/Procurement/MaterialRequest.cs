@@ -83,6 +83,7 @@ namespace PipewellserviceModels.Procurement
                 return Quantity * UnitCost;
             } }
 
+        public int StockQuantity { get; set; }
     }
     public class MaterialRequestResult
     {
@@ -94,11 +95,12 @@ namespace PipewellserviceModels.Procurement
         public DateTime RequestDate { get; set; }
         public string Remarks { get; set; }
         public string RequestType { get; set; }
-        public string Quantity { get; set; }
+        public int Quantity { get; set; }
         public string Unit { get; set; }
         public string ItemName { get; set; }
         public string ItemCode { get; set; }
         public int ID { get; set; }
         public string Notes { get; set; }
+        public int StockQuantity { get; set; }
     }
 }

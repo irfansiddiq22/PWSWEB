@@ -70,6 +70,7 @@ namespace PipewellserviceDB.Procurement.Purchase
             }
 
         }
+
         public async Task<InternalPurchaseRequestResult> AddPurchaseRequest(InternalPurchaseRequest request, List<InternalPurchaseRequestItem> Items)
         {
             InternalPurchaseRequestResult requestResult = new InternalPurchaseRequestResult();
@@ -82,7 +83,7 @@ namespace PipewellserviceDB.Procurement.Purchase
                     xml.Append($"<Table1><ID>{item.ID}</ID><Name>{item.ItemName}</Name><Unit>{item.Unit}</Unit><Quantity>{item.Quantity}</Quantity><Notes>{item.Notes}</Notes><MSDS>{item.MSDS}</MSDS><PartNumber>{item.PartNumber}</PartNumber></Table1>");
                 }
                 xml.Append("</NewDataSet>");
-                SqlParameter[] collSP = new SqlParameter[15];
+                SqlParameter[] collSP = new SqlParameter[16];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = request.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@Remarks", Value = request.Remarks };
                 collSP[2] = new SqlParameter { ParameterName = "@RequestType", Value = request.RequestType };
@@ -100,7 +101,9 @@ namespace PipewellserviceDB.Procurement.Purchase
                 collSP[11] = new SqlParameter { ParameterName = "@FileName", Value = request.FileName };
                 collSP[12] = new SqlParameter { ParameterName = "@RequestItems", Value = xml.ToString() };
                 collSP[13] = new SqlParameter { ParameterName = "@SupplierID", Value = request.SupplierID };
-                collSP[14] = new SqlParameter { ParameterName = "@RecordDate", Value = request.RecordDate };
+                collSP[14] = new SqlParameter { ParameterName = "@MaterialRequestID", Value = request.MaterialRequestID };
+                collSP[15] = new SqlParameter { ParameterName = "@RecordDate", Value = request.RecordDate };
+                
 
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcAddUpdateInternalPurchaseRequest", CommandType.StoredProcedure, collSP);
 
@@ -116,6 +119,12 @@ namespace PipewellserviceDB.Procurement.Purchase
             {
                 return requestResult;
             }
+
+        }
+        public  int OutOfStockMaterialRequests()
+        {
+            return Convert.ToInt32(SqlHelper.ExecuteScalar(this.ConnectionString, "ProcOutOfStockMaterialRequest", CommandType.StoredProcedure));
+
 
         }
 

@@ -27,6 +27,7 @@ namespace PipewellserviceModels.Procurement.Purchase
     public class InternalPurchaseRequest
     {
         public int ID { get; set; }
+        public int MaterialRequestID { get; set; }
         public int SupplierID { get; set; }
         public string SupplierName { get; set; }
         public string SupplierAddress { get; set; }

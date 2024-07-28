@@ -117,7 +117,13 @@ namespace Pipewellservice.Helper
                                 <td style="font-weight: bold; font-size: 12px; background-color: #f2f2f2">Quantity</td>
                                 <td style="font-weight: bold; font-size: 12px; background-color: #f2f2f2">Notes</td>
                             </tr>*/
-                    items += $"<tr><td>{detail.ItemName}</td><td>{detail.Unit}</td><td>{detail.Quantity}</td><td>{detail.Notes}</td></tr>";
+                    string StockAlert = "";
+
+                    if (detail.Quantity > detail.StockQuantity)
+                    {
+                        StockAlert = $"<div style='background-color:#dc3545;color:#fff;font-size:11px'>Currently {detail.StockQuantity} items are in store for remaining {(detail.Quantity -  detail.StockQuantity) } Internal purchase request will be generated Upon Approval";
+                    }
+                    items += $"<tr><td>{detail.ItemName}</td><td>{detail.Unit}</td><td>{detail.Quantity}{StockAlert }</td><td>{detail.Notes}</td></tr>";
 
                 }
                 field.Add(new MergeField("ITEMS", items));

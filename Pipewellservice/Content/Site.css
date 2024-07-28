@@ -611,3 +611,13 @@ legend {
     padding: 0.25rem !important;
     border-radius: var(--bs-border-radius) !important
 }
+
+.sp-alert{
+    position:relative;
+}
+    .sp-alert span {
+        position: absolute;
+        top: -15px;
+        right: -15px;
+        display: block;
+    }

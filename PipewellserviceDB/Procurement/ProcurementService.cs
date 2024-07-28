@@ -36,6 +36,27 @@ namespace PipewellserviceDB.Procurement
             }
 
         }
+
+        public async Task<DataTable> GetOutofStockMatrialRequest(PagingDTO paging)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@PageNo", Value = paging.pageNumber };
+                collSP[1] = new SqlParameter { ParameterName = "@PageSize", Value = paging.pageSize };
+                
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "GetOutOfStockProcurementMaterialList", CommandType.StoredProcedure, collSP);
+                DataTable Data = new DataTable();
+                Data.Load(result);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
         public async Task<MaterialRequestDB> GetMatrialRequestDetail(int ID)
         {
             try
@@ -54,6 +75,25 @@ namespace PipewellserviceDB.Procurement
             }
 
         }
+        public async Task<MaterialRequestDB> GetMatrialRequestItems(int ID)
+        {
+            try
+            {
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetMaterialRequestItems", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                MaterialRequestDB Data = new MaterialRequestDB();
+                
+                Data.MaterialRequestItem.Load(result);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+        
         public async Task<MaterialRequestResult> AddMaterialRequest(MaterialRequest request, List<MaterialRequestItem> Items)
         {
             MaterialRequestResult requestResult = new MaterialRequestResult();

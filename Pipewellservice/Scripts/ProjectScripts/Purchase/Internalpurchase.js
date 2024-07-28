@@ -87,6 +87,8 @@ function BindUsers() {
 }
 
 function BindPurchaseRequestList(PageNumber = 1) {
+    $("#tblIPR").removeClass("d-none")
+    $("#tblMPR").addClass("d-none")
 
     pageNumber = PageNumber;
     $("#tblPurchaseRequestList").empty();
@@ -209,7 +211,7 @@ function EditPurchaseRequest(ID) {
 
         })
 
-
+        SetvalOf("txtMaterialRequestID", PurchaseRequest.MaterialRequestID)
         SetvalOf("txtRecordDate", moment(PurchaseRequest.RecordDate).format("DD/MM/YYYY"))
         SetvalOf("txtRequestQuotationNumber", PurchaseRequest.QuotationNumber);
         SetvalOf("ddSuppliers", PurchaseRequest.SupplierID).trigger("change");
@@ -228,7 +230,38 @@ function EditPurchaseRequest(ID) {
     ResetDatePicker();
 
 }
+function FillMaterialItems() {
+    if (parseInt(valOf("txtMaterialRequestID")) > 0) {
+        if ($("#tblPurchaseRequestItems tr").length == 0 && PurchaseRequest.ID == 0) {
+            Post("/ProcurementAPI/GetMatrialRequestItems", { ID: valOf("txtMaterialRequestID") }).done(function (resp) {
+                $.each(resp, function (i, itm) {
+                    var tr = $('<tr>')
 
+                    tr.attr("data-id", itm == null ? 0 : itm.ItemID);
+                    tr.append($('<td>').text($("#tblPurchaseRequestItems tr").length + 1));
+                    tr.append($('<td>').text(itm.ItemCode));
+                    tr.append($('<td>').text(itm.ItemName));
+                    tr.append($('<td>').text(itm.Unit));
+                    tr.append($('<td>').append($('<input type="number" min="1" class="form-control form-control-sm">').val(itm.Quantity)));
+                    tr.append($('<td>').append($('<input type="text"  class="form-control form-control-sm">').val(itm.PartNumber)));
+                    tr.append($('<td>').append($('<input type="text"  class="form-control form-control-sm">').val(itm.Notes)));
+                    tr.append($('<td>').append($('<input type="checkbox"  class="">').prop("checked", itm.MSDS)));
+
+                    var a = $('<a>').attr("href", "javascript:void(0)")
+                    $(a).click(function () {
+                        $(this).closest('tr').remove()
+                    })
+                    $(a).append($('<i class="fa fa-trash text-danger"></i>'))
+                    tr.append($('<td>').append($(a)));
+                    $("#tblPurchaseRequestItems").append(tr);
+
+                })
+
+            })
+        }
+    }
+
+}
 function ResetNav() {
 
 
@@ -524,4 +557,80 @@ function SavePurchaseRequest() {
 
         }
     })
+}
+function ShowPendingMaterialRequest() {
+    $("#tblIPR").addClass("d-none")
+    $("#tblMPR").removeClass("d-none")
+
+
+
+    $('#dvMaterialRequestPaging').pagination({
+        dataSource: "/ProcurementAPI/GetOutofStockMatrialRequest",
+        pageSize: pageSize,
+        pageNumber: pageNumber,
+        showGoInput: true,
+        showGoButton: true,
+        locator: function (response) {
+            return 'Data';
+        },
+        totalNumberLocator: function (response) {
+            return response.TotalRecord;
+        },
+
+        ajax: {
+            type: "POST",
+            dataType: "json",
+            data: {
+                
+            },
+            beforeSend: function () {
+                ShowSpinner();
+            }
+        },
+        callback: function (data, pagination) {
+            HideSpinner();
+
+            $("#tblMaterialRequestList").empty();
+            $.each(data, function (i, r) {
+                var tr = $('<tr>')
+                tr.append($('<td>').text(r.ID))
+                tr.append($('<td>').append(moment(r.RequestDate).format("DD/MM/YYYY")))
+
+                tr.append($('<td>').append(r.RequestedByName))
+                tr.append($('<td>').append(r.RecordCreatedByName))
+                tr.append($('<td>').append(r.ApprovedByName))
+
+
+                tr.append($('<td>').append(r.ApprovalStatusName))
+                tr.append($('<td>').append(r.Remarks))
+                
+
+
+
+
+
+
+                var Icons = $('<div class="icons">');
+                $(Icons).append($('<a href="javascript:void(0)" class="writeble" onclick="CreateIPR(' + r.ID + ')"><i class="fa fa-edit"></i></a>'));
+                
+                tr.append($('<td>').append($(Icons)));
+
+                $("#tblMaterialRequestList").append(tr);
+
+            });
+
+
+        }
+    })
+
+}
+function CreateIPR(ID) {
+    NewPurchaseRequest();
+    $("#txtMaterialRequestID").val(ID).trigger("blur");
+ 
+}
+function ClosePendingMaterialRequests() {
+    $("#tblIPR").removeClass ("d-none")
+    $("#tblMPR").addClass("d-none")
+
 }

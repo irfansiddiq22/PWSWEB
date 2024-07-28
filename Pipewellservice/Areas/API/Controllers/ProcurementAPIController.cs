@@ -102,6 +102,15 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        public async Task<JsonResult> GetOutofStockMatrialRequest(PagingDTO paging)
+        {
+            var result = await json.GetOutofStockMatrialRequest(paging);
+            return new JsonResult
+            {
+                Data = new { Data = result, TotalRecord = result.Count > 0 ? result[0].Total : 0 },
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
         public async Task<JsonResult> GetMatrialRequestDetail(int ID)
         {
             var result = await json.GetMatrialRequestDetail(ID);
@@ -111,6 +120,17 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        public async Task<JsonResult> GetMatrialRequestItems(int ID)
+        {
+            var result = await json.GetMatrialRequestItems(ID);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        
         public async Task<JsonResult> AddMaterialRequest(MaterialRequest request,List<MaterialRequestItem> Items)
         {
             request.RecordCreatedBy = SessionHelper.UserID();

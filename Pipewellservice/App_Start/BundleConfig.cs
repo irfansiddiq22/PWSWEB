@@ -9,7 +9,8 @@ namespace Pipewellservice
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -56,14 +57,11 @@ namespace Pipewellservice
                       "~/Scripts/ProjectScripts/Customer/CustomerData.js"));
 
 
-            
-
-
-
-
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap.bundle.min.js"
+                      ));
             bundles.Add(new Bundle("~/lib/sidemenu").Include(
                       "~/Content/libraries/slidemenu/bootsidemenu.js"));
 

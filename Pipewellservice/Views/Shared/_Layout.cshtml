@@ -206,7 +206,8 @@
             var d = null
             if('@Html.Raw(ViewBag.Parent)'!='')d=$.parseJSON('@Html.Raw(ViewBag.Parent)');
 
-            LoadBreadCrumb(d,'@ViewBag.Title');
+            LoadBreadCrumb(d, '@ViewBag.Title');
+            $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
 </body>

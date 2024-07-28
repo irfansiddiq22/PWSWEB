@@ -50,7 +50,6 @@ function BindUsers() {
         $.each(Response, function (i, emp) {
             data.push({ id: emp.DivisionID, text: emp.Name });
         })
-
         $(".supervisor").select2({
             placeholder: "Select Supervisor",
             data: data,
@@ -58,10 +57,10 @@ function BindUsers() {
         })
     });
 
-   /* $('#ddEmployeeCode').on('select2:select', function (e) {
-        var data = e.params.data;
-       // $("#ddSupervisor").val(data.DivisionID).trigger("change")
-    });*/
+    /* $('#ddEmployeeCode').on('select2:select', function (e) {
+         var data = e.params.data;
+        // $("#ddSupervisor").val(data.DivisionID).trigger("change")
+     });*/
     $('#ddEmployeeCode').val(User.ID).trigger("change")
 
 }
@@ -75,7 +74,6 @@ function BindMaterialRequestList(PageNumber = 1) {
         StartDate = $.trim(valOf("ddlMaterialDataRange").split("-")[0]);
         EndDate = $.trim(valOf("ddlMaterialDataRange").split("-")[1]);
     }
-
     MaterialRequest = { ID: 0 };
     MaterialRequestItems = [];
     ResetChangeLog(PAGES.ProcurementMaterial);
@@ -90,7 +88,7 @@ function BindMaterialRequestList(PageNumber = 1) {
             return 'Data';
         },
         totalNumberLocator: function (response) {
-            return response.TotalRecords;
+            return response.TotalRecord;
         },
 
         ajax: {
@@ -146,7 +144,7 @@ function BindMaterialRequestList(PageNumber = 1) {
 
 }
 function DeleteMaterialRequest(ID) {
-    swal("{To DP}", { icon: "error" });
+    swal("{To DO}", { icon: "error" });
 }
 function EditMaterialRequest(ID) {
 
@@ -253,8 +251,11 @@ function BindItemSearch() {
     })
     $("#txtRequestItemCode").blur(function () {
         var itm = Items.find(x => x.ItemNameCode == valOf("txtRequestItemCode"));
-        if (itm != null)
+        if (itm != null) {
             SetvalOf("txtRequestItemUnit", itm.Unit)
+            $("#txtRequestItemQuantity").attr("StockQuantity", itm.StockQuantity);
+            $("#spStockQuantity").html(`<span class="badge bg-primary">${itm.StockQuantity}</span> items in store`);
+        }
     })
 }
 function AddItem() {
@@ -262,7 +263,8 @@ function AddItem() {
         Name: valOf("txtRequestItemCode"),
         Unit: valOf("txtRequestItemUnit"),
         Quantity: valOf("txtRequestItemQuantity"),
-        Notes: valOf("txtRequestItemNotes")
+        Notes: valOf("txtRequestItemNotes"),
+        StockQuantity:$("#txtRequestItemQuantity").attr("StockQuantity")
 
     }
     if (newItem.Name == "") {
@@ -283,7 +285,13 @@ function AddItem() {
     tr.append($('<td>').text(itm == null ? "0" : itm.ItemCode));
     tr.append($('<td>').text(itm == null ? newItem.Name : itm.Name));
     tr.append($('<td>').text(newItem.Unit));
-    tr.append($('<td>').append($('<input type="number" min="1" class="form-control form-control-sm">').val(newItem.Quantity)));
+    var qtyTd = $('<td>');
+
+    $(qtyTd).append( $('<input type="number" min="1" class="form-control form-control-sm">').val(newItem.Quantity));
+    if (parseInt(newItem.StockQuantity) < parseInt(newItem.Quantity))
+        $(qtyTd).append(`<span class="badge bg-danger mt-1">${parseInt(newItem.StockQuantity)} items are in Store, IPS will be genereted for rest of items`)
+        tr.append($(qtyTd));
+
     tr.append($('<td>').append($('<input type="text"  class="form-control form-control-sm">').val(newItem.Notes)));
     var a = $('<a>').attr("href", "javascript:void(0)")
     $(a).click(function () {
@@ -307,7 +315,7 @@ function SaveMaterialRequest() {
         RequestedBy: valOf("ddEmployeeCode"),
         //ApprovedBy: valOf("ddSupervisor"),
         Remarks: valOf("txtRequestRemarks"),
-        FileName:''
+        FileName: ''
     }
     var RequestItems = [];
     if (Request.RequestType == 0) {
@@ -359,7 +367,7 @@ function SaveMaterialRequest() {
 
         $.each(MaterialRequestItems, function (i, itm) {
             if (RequestItems.find(x => x.ID == itm.ID) == null) {
-                DataChangeLog.DataUpdated.push({ Field: "Item Removed", Data: { OLD: itm.ItemName , New: ""} });
+                DataChangeLog.DataUpdated.push({ Field: "Item Removed", Data: { OLD: itm.ItemName, New: "" } });
             }
         });
         $.each(RequestItems, function (i, itm) {
@@ -373,12 +381,12 @@ function SaveMaterialRequest() {
                     DataChangeLog.DataUpdated.push({ Field: itm.ItemName + " Quantity ", Data: { OLD: oldITem.Quantity, New: itm.Quantity } });
                 if (itm.Notes != oldITem.Notes)
                     DataChangeLog.DataUpdated.push({ Field: itm.ItemName + " Notes ", Data: { OLD: oldITem.Notes, New: itm.Notes } });
-                    DataChangeLog.DataUpdated.push({ Field: itm.ItemName + " Notes ", Data: { OLD: oldITem.Notes, New: itm.Notes } });
+                DataChangeLog.DataUpdated.push({ Field: itm.ItemName + " Notes ", Data: { OLD: oldITem.Notes, New: itm.Notes } });
             }
         })
 
     }
-    
+
 
     var fileUpload = $('#MaterialRequestFile').get(0);
     var files = fileUpload.files;
@@ -420,8 +428,8 @@ function SaveMaterialRequest() {
                 ResetNav();
             }
 
-            
-            
+
+
         }
     })
 }

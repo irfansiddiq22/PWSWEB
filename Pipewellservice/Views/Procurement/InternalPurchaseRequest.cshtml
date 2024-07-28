@@ -23,13 +23,23 @@
                     <button class="btn btn-sm btn-primary" onclick="BindPurchaseRequestList()">Search </button>
                     <button class="btn btn-sm btn-success" onclick="NewPurchaseRequest()">Add Request </button>
                 </div>
+                <div class="col-md">
+                    @if (@ViewBag.OutOfStockMaterialRequests > 0)
+                    {
+                        <div class="bg-warning p-2 round">
+
+                            <a href="javascript:void(0)" onclick="ShowPendingMaterialRequest()" class="p-1 rounded text-bg-danger me-1">@ViewBag.OutOfStockMaterialRequests </a> Material Request(s) waiting to complete IPR
+
+                        </div>
+                    }
+                </div>
             </div>
 
 
 
 
         </div>
-        <div class="table-responsive">
+        <div class="table-responsive" id="tblIPR">
             <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
                 <thead class="blue">
                     <tr>
@@ -52,6 +62,27 @@
             </table>
             <div id="dvPurchaseRequestPaging"></div>
         </div>
+        <div class="table-responsive d-none" id="tblMPR">
+            <div class="bg-danger p-2 rounded text-white">Pending Material Requests<div class="pull-right"><button type="button" class="btn-close" onclick="ClosePendingMaterialRequests()" data-bs-dismiss="modal" aria-label="Close"></button></div></div>
+            <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+                <thead class="blue">
+                    <tr>
+                        <th>ID</th>
+                        <th>Date Requested </th>
+                        <th>Requested By</th>
+                        <th>Prepared By</th>
+
+                        <th>Approved By</th>
+                        <th>Approved</th>
+                        <th>Remarks</th>
+                        
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tblMaterialRequestList"></tbody>
+            </table>
+            <div id="dvMaterialRequestPaging"></div>
+        </div>
     </div>
 
     <div class="container mt-5 writecontainer" id="dvEditRequest">
@@ -63,6 +94,10 @@
                         <div class="col-md-3">
                             <label for="date" class="form-label">Date</label>
                             <input type="text" class="form-control form-control-sm datepicker" id="txtRecordDate" value="2024-06-27">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="MRID" class="form-label">Material Request ID.</label>
+                            <input type="text" class="form-control form-control-sm" id="txtMaterialRequestID" onblur="FillMaterialItems()">
                         </div>
 
                         <div class="col-md-3">
@@ -87,7 +122,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="partyName" class="form-label">Maint. Request No</label>
-                            <input type="text" class="form-control form-control-sm" id="txtMaintRequestNumber">
+                            <input type="number" class="form-control form-control-sm" id="txtMaintRequestNumber" name="MaintRequestNumber">
                         </div>
                     </div>
                     <div class="row mb-3">

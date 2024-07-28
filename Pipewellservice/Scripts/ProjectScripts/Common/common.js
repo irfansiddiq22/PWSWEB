@@ -58,6 +58,8 @@ var DataChangeLog = {
     RecordID: 0,
     DataUpdated: []
 }
+
+
 function SetPagePermission(Form, CallBack) {
     var Page = User.Permissions.find(x => x.PageID == Form);
     if (!Page.CanDelete) {

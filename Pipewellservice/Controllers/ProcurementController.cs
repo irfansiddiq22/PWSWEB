@@ -36,6 +36,7 @@ namespace Pipewellservice.Controllers
         public ActionResult Home()
         {
             ViewBag.Title = "Procurement";
+            ViewBag.OutOfStockMaterialRequests = (new PurchaseService()).OutOfStockMaterialRequests();
             ViewBag.Parent = null;
             return View();
         }
@@ -63,6 +64,7 @@ namespace Pipewellservice.Controllers
         public ActionResult PurchaseRequest()
         {
             ViewBag.Title = "Internal Purchase Request";
+            ViewBag.OutOfStockMaterialRequests = (new PurchaseService()).OutOfStockMaterialRequests();
             ViewBag.Parent = Parent;
             return View("InternalPurchaseRequest");
         }
@@ -79,7 +81,7 @@ namespace Pipewellservice.Controllers
 
         public async Task<ActionResult> PrintInternalPurchaseRequest(int ID)
         {
-                        rpInternalPurchase report = null;
+            rpInternalPurchase report = null;
            var  data2 = await ( new PurchaseService()).GetPurchaseRequestDetail(ID);
             report = new rpInternalPurchase { DataSource = data2.InternalPurchaseRequestItem, Document = { }, PageSettings = { Margins = { Bottom = 0.175F, Left = 0.175F, Right = 0.175F, Top = 0.175F }, Orientation = GrapeCity.ActiveReports.Document.Section.PageOrientation.Portrait, PaperKind = System.Drawing.Printing.PaperKind.A4 } };
             report.UserData = (await JsonHelper.Convert<List<InternalPurchaseRequest>, DataTable>(data2.InternalPurchase)).FirstOrDefault();
