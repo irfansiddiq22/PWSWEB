@@ -171,7 +171,7 @@ function FillItems(PurchaseRequestItems) {
         tr.append($('<td>').append($('<input type="text" readonly  class="form-control form-control-sm">').val(itm.Unit)));
         tr.append($('<td>').append($('<input type="number" min="1" class="form-control form-control-sm">').val(itm.Quantity)));
         tr.append($('<td>').append($('<textarea rows="4"  class="form-control form-control-sm">').val(itm.Notes)));
-        tr.append($('<td>').append($('<input type="number"  class="form-control form-control-sm">').val(itm.ReceivingQuantity)));
+        tr.append($('<td>').append($('<input type="number"  class="form-control form-control-sm">').val(itm.Quantity)));
         tr.append($('<td>').append($('<input type="text"  class="form-control form-control-sm datepicker">').val(itm.ExpiryDate == undefined ? moment().format("DD/MM/YYYY") : moment(itm.ExpiryDate).format("DD/MM/YYYY"))));
         
         $("#itemsTable").append(tr);
@@ -193,6 +193,7 @@ $('form').on('reset', function (e) {
     SetvalOf("txtPreparedBy", User.Name);
 });
 function NewStoreReceiving() {
+    $("#itemsTable").empty();
     document.getElementById("frmData").reset();
     $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
     $("#dvAddReceiving").removeClass ("d-none");
@@ -227,7 +228,7 @@ function SaveOrderReceiving() {
 
         Notes: $(row.cells[6]).find("textarea").val(),
         ReceivingQuantity: parseInt($(row.cells[7]).find(":input").val()) == null ? 0 : parseInt($(row.cells[7]).find(":input").val()),
-        ExpiryDate: moment($(row.cells[8]).find(":input").val(), "DD/MM/YYYY").format("MM/DD/YYYY"),
+        ExpiryDate: $(row.cells[8]).find(":input").val(),
 
     }));
     var valid = true;
@@ -243,20 +244,21 @@ function SaveOrderReceiving() {
         }
     });
     
-    if (!valid) return false;
+    if (!valid)
+        return false;
+
     var Receiving = {
         ID: 0,
         PurchaseOrderID: parseInt(valOf("txtPurchaseOrderNumber")),
         ReceivingNumber: parseInt(valOf("txtReceivingRecordNumber")),
         IPRID: parseInt(valOf("txtInernalPurchaseOrderNumber")),
-        RecordDate: moment(valOf("txtRecordDate"),"DD/MM/YYYY").format("MM/DD/YYYY"),
+        RecordDate:valOf("txtRecordDate"),
         Remarks: valOf("txtRemarks"),
         VendorInvoice: valOf("txtVendorInvoice"),
-        InvoiceDate: moment(valOf("txtInvoiceDate"), "DD/MM/YYYY").format("MM/DD/YYYY"),
+        InvoiceDate: valOf("txtInvoiceDate"),
         Notes: valOf("txtDeliveryNotes"),
-        NoteDate: moment(valOf("txtDeliveryDate"), "DD/MM/YYYY").format("MM/DD/YYYY") ,
-        
-        ReceiveDate: moment(valOf("txtReceiveDate"), "DD/MM/YYYY").format("MM/DD/YYYY")
+        NoteDate: valOf("txtDeliveryDate"),
+        ReceiveDate: valOf("txtReceiveDate")
     }
     
     //var fileData = new FormData();
@@ -264,7 +266,18 @@ function SaveOrderReceiving() {
     //    fileData.append("QuoteFile", QuoteFile.files[0]);
     //if (InvoiceFile.files.length>0)
     //    fileData.append("InvoiceFile", InvoiceFile.files[0]);
-    fileData.append("dto", JSON.stringify( Receiving));
+    Post("/ProcurementAPI/AddStoreReceiving", { dto: Receiving, Items: Items }).done(function (Response) {
+        if (Response > 0) {
+            swal("Date saved successfully", { icon: "success" });
+            BindStoreReceiving();
+            document.getElementById("frmData").reset();
+        } else {
+            swal({ text: "Failed to save data , please try again.", icon: "error" });
+        }
+        $("#spinner").hide();
+    })
+    /*
+    fileData.append("dto", JSON.stringify(Receiving));
     fileData.append("items", JSON.stringify(Items));
     $.ajax({
         url: '/ProcurementAPI/AddStoreReceiving',
@@ -289,7 +302,7 @@ function SaveOrderReceiving() {
         }
     });
 
-
+*/
 
     
 }

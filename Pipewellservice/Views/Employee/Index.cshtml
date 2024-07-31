@@ -68,27 +68,27 @@
                 <thead class="blue">
                     <tr>
                         <th onclick="SortData(this,'id')">Emp #</th>
-                        <th onclick="SortData(this,'Name')">Emp Name</th>
-                        <th onclick="SortData(this,'ArabicName')">Name/Arabic</th>
-                        <th onclick="SortData(this,'Nationality')">Nationality</th>
+                        <th onclick="SortData(this,'Name')" >Emp Name</th>
+                        <th onclick="SortData(this,'ArabicName')"> Name/Arabic</th>
+                        <th onclick="SortData(this,'Nationality')" >Nationality</th>
                         <th onclick="SortData(this,'Iqama')">Iqama</th>
-                        <th onclick="SortData(this,'Iqama')" class="iqamadata">Iqama Profession</th>
+                        <th onclick="SortData(this,'Iqama')">Iqama Profession</th>
                         <th class="iqamadata" onclick="SortData(this,'Iqama')">Expiry Date</th>
 
                         <th class="iqamadata" onclick="SortData(this,'Passport')">Passport</th>
                         <th class="iqamadata" onclick="SortData(this,'Passport')">Expiry Date</th>
 
                         <th onclick="SortData(this,'LocationName')">Location</th>
-                        <th onclick="SortData(this,'PhoneNumber')">Phone Number</th>
+                        <th onclick="SortData(this,'PhoneNumber')" >Phone Number</th>
                         <th onclick="SortData(this,'DataOfBirth')">Age</th>
-                        <th onclick="SortData(this,'Company')">Company</th>
-                        <th onclick="SortData(this,'Division')">Division</th>
+                        <th onclick="SortData(this,'Company')" >Company</th>
+                        <th onclick="SortData(this,'Division')" >Division</th>
                         <th onclick="SortData(this,'Position')">Position</th>
-                        <th onclick="SortData(this,'Supervisor')">Supervisor</th>
-                        <th onclick="SortData(this,'CRNumber')" class="iqamadata">CR Number</th>
-                        <th onclick="SortData(this,'ContractTypeName')" class="iqamadata">Contract Type</th>
-                        <th onclick="SortData(this,'HiringSourceName')" class="iqamadata">Source Of Hiring</th>
-                        <th onclick="SortData(this,'AccommodationRequired')" class="iqamadata">Accommodation Required</th>
+                        <th onclick="SortData(this,'Supervisor')" >Supervisor</th>
+                        
+                        <th onclick="SortData(this,'ContractTypeName')">Contract Type</th>
+                        <th onclick="SortData(this,'HiringSourceName')" >Source Of Hiring</th>
+                        <th onclick="SortData(this,'AccommodationRequired')"  >Accommodation Required</th>
 
                         <th onclick="SortData(this,'QiwaContract')">Qiwa</th>
                         <th onclick="SortData(this,'HiringDate')">Hiring Date</th>
@@ -391,3 +391,15 @@
     @Scripts.Render("~/lib/hr/employee")
     @Styles.Render("~/bundles/paginationcss")
 }
+
+<style>
+    #tblEmployeeListTable {
+        table-layout: auto;
+        width: 100%;
+    }
+        #tblEmployeeListTable td, #tblEmployeeListTable th {
+            width: 1px;
+            white-space: nowrap;
+        }
+
+</style>

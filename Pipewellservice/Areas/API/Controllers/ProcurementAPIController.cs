@@ -187,10 +187,10 @@ namespace Pipewellservice.Areas.API.Controllers
         }
 
         [Authorization(Pages.StoreReceiving, 1, 2)]
-        public async Task<JsonResult> AddStoreReceiving()
+        public async Task<JsonResult> AddStoreReceiving(StoreReceiving dto, List<ReceivingItem> items)
         {
-            StoreReceiving dto = JsonConvert.DeserializeObject<StoreReceiving>(Request["dto"]);
-            List<ReceivingItem> items = JsonConvert.DeserializeObject<List<ReceivingItem>>(Request["items"]);
+           // StoreReceiving dto = JsonConvert.DeserializeObject<StoreReceiving>(Request["dto"]);
+            //List<ReceivingItem> items = JsonConvert.DeserializeObject<List<ReceivingItem>>(Request["items"]);
             
 
             dto.RecordCreatedBy = SessionHelper.UserID();
