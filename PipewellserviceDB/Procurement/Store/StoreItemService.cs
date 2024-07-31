@@ -1,4 +1,5 @@
-﻿using PipewellserviceModels.Common;
+﻿using PipewellserviceDB.Common;
+using PipewellserviceModels.Common;
 using PipewellserviceModels.Procurement.Store;
 using SQLHelper;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PipewellserviceDB.Procurement.Store
 {
-    public class StoreItemService:DataServices
+    public class StoreItemService : DataServices
     {
         public async Task<DataTable> GetStoreItemUnit()
         {
@@ -29,7 +30,7 @@ namespace PipewellserviceDB.Procurement.Store
                 return null;
             }
         }
-        public async Task<DataTable> GetStoreItemList(PagingDTO paging,string Name)
+        public async Task<DataTable> GetStoreItemList(PagingDTO paging, string Name)
         {
 
             try
@@ -64,7 +65,7 @@ namespace PipewellserviceDB.Procurement.Store
                 return null;
             }
         }
-        public async Task<bool> AddStoreItem(Item item,int UserID)
+        public async Task<bool> AddStoreItem(Item item, int UserID)
         {
             try
             {
@@ -88,12 +89,89 @@ namespace PipewellserviceDB.Procurement.Store
                 SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcAddStoreItem", CommandType.StoredProcedure, collSP);
 
                 return true;
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 return false;
             }
         }
 
-      
+
+
+
+        public async Task<int> AddStoreReceiving(StoreReceiving dto, List<ReceivingItem> items)
+        {
+            try
+            {
+                StringBuilder xml = new StringBuilder();
+                xml.Append("<DataSet>");
+                foreach (ReceivingItem item in items)
+                {
+                    xml.Append($"<Data><ItemID>{item.ID}</ItemID><Quantity>{item.Quantity}</Quantity><Notes>{ StringHelper.ReplaceXmlChar(item.Notes)}</Notes><UnitCost>{ item.UnitCost }</UnitCost><ExpiryDate>{ item.ExpiryDate }</ExpiryDate><PartNumber>{item.PartNumber}</PartNumber><ReceivingQuantity>{item.ReceivingQuantity}</ReceivingQuantity></Data>");
+                }
+                xml.Append("</DataSet>");
+                var parameters = new SqlParameter[]
+                {
+                    new SqlParameter { ParameterName = "@ID", Value = dto.ID },
+                    new SqlParameter { ParameterName = "@PurchaseOrderID", Value = dto.PurchaseOrderID },
+                    new SqlParameter { ParameterName = "@ReceivingNumber", Value = dto.ReceivingNumber },
+                    new SqlParameter { ParameterName = "@IPRID", Value = dto.IPRID },
+                    new SqlParameter { ParameterName = "@RecordDate", Value = dto.RecordDate },
+                    new SqlParameter { ParameterName = "@Remarks", Value = StringHelper.NullToString(dto.Remarks) },
+                    new SqlParameter { ParameterName = "@VendorInvoice", Value = StringHelper.NullToString(dto.VendorInvoice) },
+                    new SqlParameter { ParameterName = "@InvoiceDate", Value = dto.InvoiceDate },
+                    new SqlParameter { ParameterName = "@Notes", Value = StringHelper.NullToString(dto.Notes) },
+                    new SqlParameter { ParameterName = "@NoteDate", Value = dto.NoteDate },
+                    new SqlParameter { ParameterName = "@NonC", Value = dto.NonC },
+                    
+                    new SqlParameter { ParameterName = "@ReceivedDate", Value = dto.ReceiveDate},
+                    new SqlParameter { ParameterName = "@InvoiceFileName"  , Value =StringHelper.NullToString(dto.InvoiceFileName)},
+                    new SqlParameter { ParameterName = "@InvoiceFileID"  , Value =StringHelper.NullToString(dto.InvoiceFileID)},
+
+                    new SqlParameter { ParameterName = "@FileName", Value =StringHelper.NullToString(dto.FileName)},
+                    new SqlParameter { ParameterName = "@FileID", Value =StringHelper.NullToString(dto.FileID)},
+                    new SqlParameter { ParameterName = "@RecordCreatedBy", Value =StringHelper.NullToString(dto.RecordCreatedBy)},
+                    new SqlParameter { ParameterName = "@Items", Value = xml.ToString()},
+
+
+                };
+
+
+                return Convert.ToInt32( SqlHelper.ExecuteScalar(this.ConnectionString, "ProcAddOrUpdateStoreOrderReceiving", CommandType.StoredProcedure, parameters));
+
+                    
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+        public async Task<StoreReceivingViewSQL> StoreReceivingList(StoreReceivingParam param)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[8];
+                collSP[0] = new SqlParameter { ParameterName = "@PageNumber", Value = param.pageNumber };
+                collSP[1] = new SqlParameter { ParameterName = "@PageSize", Value = param.pageSize };
+                collSP[2] = new SqlParameter { ParameterName = "@SupplierID", Value = param.SupplierID };
+                collSP[3] = new SqlParameter { ParameterName = "@ReceivingNumber", Value = param.ReceivingNumber };
+                collSP[4] = new SqlParameter { ParameterName = "@PurchaseOrderNumber", Value = param.PurchaseOrderNumber };
+                collSP[5] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate.ToShortDateString() };
+                collSP[6] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate.ToShortDateString() };
+                collSP[7] = new SqlParameter { ParameterName = "@NextID", Value = 0,Direction=ParameterDirection.Output };
+
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetStoreReceiving", CommandType.StoredProcedure, collSP);
+                StoreReceivingViewSQL Data = new StoreReceivingViewSQL();
+                Data.Receivings.Load(result);
+                Data.ID = Convert.ToInt32(collSP[7].Value);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }

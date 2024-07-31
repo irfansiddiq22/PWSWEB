@@ -21,18 +21,37 @@ function _Init() {
 
         $.each($("select[data-msg]"), function (i, c) {
             $(this).attr("name", $(this).attr("id"));
-
+            /*
             $(this).rules("add", {
                 required: true,
                 messages: {
                     required: $(this).attr("msg")
-
                 }
 
-            });
+            });*/
+
+            if (!$(this).attr("data-min")) {
+                $(this).rules("add", {
+                    required: true,
+                    min: 1,
+                    messages: {
+                        required: $(this).attr("msg"),
+                        min: $(this).attr("msg")
+                    }
+
+                });
+            } else {
+                $(this).rules("add", {
+                    required: true,
+                    messages: {
+                        required: $(this).attr("msg"),
+                    }
+
+                });
+            }
 
         });
-        $.each($("select[data-msg]"), function (i, c) {
+        $.each($("email[data-msg],:text[data-msg]"), function (i, c) {
             $(this).attr("name", $(this).attr("id"));
             if (!$(this).attr("data-min")) {
                 $(this).rules("add", {
@@ -91,6 +110,21 @@ function FillLocationList() {
     FillList("ddEmployeeLocation", LocationData, "Name", "ID", "Select Location")
     $("#ddEmployeeLocation").val(Employee.Location)
     $("#dlgLocationList").modal("hide");
+
+        
+    $("#ddEmployeeLocation").rules("add", {
+                required: true,
+                min: 1,
+                messages: {
+                    required: $(this).attr("msg"),
+                    min: $(this).attr("msg")
+                }
+
+            });
+         
+
+    
+
 }
 
 function BindUsers() {
@@ -221,6 +255,8 @@ function FillEmployeeTable() {
 
                 tr.append($('<td>').append((e.Iqama == null || e.Iqama == "" ? "" : link)));
 
+                tr.append($('<td class="iqamadata">').append((e.IqamaProfession == null || e.IqamaProfession == "" ? "" : e.IqamaProfession)));
+
                 tr.append($('<td class="iqamadata">').html(e.IqamaExpiryDate == null ? "" : moment(e.IqamaExpiryDate).format("DD/MM/YYYY")))
                 link = $('<a>').attr("href", "javascript:void(0)").attr("onclick", "DownloadIDFile(" + e.ID + ",'" + e.FileName + "','" + e.FileID + "','Passport')").text(e.Passport)
 
@@ -228,7 +264,7 @@ function FillEmployeeTable() {
 
                 
                 tr.append($('<td class="iqamadata">').html(e.PassportExpiryDate == null ? "" : moment(e.PassportExpiryDate).format("DD/MM/YYYY")))
-
+                tr.append($('<td>').append((e.LocationName == null || e.LocationName == "" ? "" : e.LocationName  )));
                 tr.append($('<td>').html(e.PhoneNumber));
                 tr.append($('<td>').html(e.DataOfBirth == null ? "" : moment().diff(e.DataOfBirth, "years")));
                 tr.append($('<td>').html(e.SponsorCompany));
@@ -236,9 +272,20 @@ function FillEmployeeTable() {
                 tr.append($('<td>').html(e.Position));
 
                 tr.append($('<td>').html(e.Supervisor));
+                tr.append($('<td class="iqamadata">').append((e.SponsorCompany == null || e.SponsorCompany == "" ? "" : e.SponsorCompany)));
+                tr.append($('<td class="iqamadata">').append((e.ContractTypeName == null || e.ContractTypeName == "" ? "" : e.ContractTypeName)));
+                tr.append($('<td class="iqamadata">').append((e.HiringSourceName == null || e.HiringSourceName == "" ? "" : e.HiringSourceName)));
+                tr.append($('<td class="iqamadata">').append((e.AccommodationRequired ?"Yes":"No")));
+                tr.append($('<td>').append((e.QiwaContract ?"Yes":"No")));
+
+                
+                
+                
 
 
                 tr.append($('<td>').html(e.HiringDate == null ? "" : moment(e.HiringDate).format("DD/MM/YYYY")));
+                tr.append($('<td>').html(e.VacationRotation +' Month'));
+                tr.append($('<td class="jobstatus">  ').html(e.LastJoinDate == null ? "" : moment(e.LastJoinDate).format("DD/MM/YYYY")));
                 tr.append($('<td class="jobstatus">').html(e.CurrentJobStatus));
                 tr.append($('<td class="jobstatus">').html(e.JobLeftDate == null ? "" : moment(e.JobLeftDate).format("DD/MM/YYYY")));
                 /*tr.append($('<td>').html(e.JobLeftDate == null ? "" : moment(e.JobLeftDate).format("DD/MM/YYYY")));

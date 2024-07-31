@@ -10,6 +10,7 @@ function _Init() {
     $("#dvEditRequest").addClass("d-none");
     $("#dvRequestList").removeClass("d-none");
     ResetNav();
+    $("#ddlPurchaseRequestDataRange").val(moment().subtract(3, 'month').startOf('month').format("DD/MM/YYYY") + ' - ' + moment().endOf('month').format("DD/MM/YYYY"))   
     SetPagePermission(PAGES.InternalPurchaseRequest, function () {
         $.post("/DataList/ProcurementRequestType", {}, function (resp) {
             FillList("ddRequestType", resp, "Name", "Value", "Select Type")
@@ -22,7 +23,7 @@ function _Init() {
 
 
     });
-    $("#ddlPurchaseRequestDataRange").val(moment().subtract(3, 'month').startOf('month').format("DD/MM/YYYY") + ' - ' + moment().endOf('month').format("DD/MM/YYYY"))
+    
 
 
 }

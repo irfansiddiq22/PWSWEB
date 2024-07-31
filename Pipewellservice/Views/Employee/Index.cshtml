@@ -75,27 +75,35 @@
                         <th onclick="SortData(this,'ArabicName')">Name/Arabic</th>
                         <th onclick="SortData(this,'Nationality')">Nationality</th>
                         <th onclick="SortData(this,'Iqama')">Iqama</th>
+                        <th onclick="SortData(this,'Iqama')" class="iqamadata">Iqama Profession</th>
                         <th class="iqamadata" onclick="SortData(this,'Iqama')">Expiry Date</th>
 
                         <th class="iqamadata" onclick="SortData(this,'Passport')">Passport</th>
                         <th class="iqamadata" onclick="SortData(this,'Passport')">Expiry Date</th>
 
-
+                        <th onclick="SortData(this,'LocationName')">Location</th>
                         <th onclick="SortData(this,'PhoneNumber')">Phone Number</th>
                         <th onclick="SortData(this,'DataOfBirth')">Age</th>
                         <th onclick="SortData(this,'Company')">Company</th>
                         <th onclick="SortData(this,'Division')">Division</th>
                         <th onclick="SortData(this,'Position')">Position</th>
                         <th onclick="SortData(this,'Supervisor')">Supervisor</th>
+                        <th onclick="SortData(this,'CRNumber')" class="iqamadata">CR Number</th>
+                        <th onclick="SortData(this,'ContractTypeName')" class="iqamadata">Contract Type</th>
+                        <th onclick="SortData(this,'HiringSourceName')" class="iqamadata">Source Of Hiring</th>
+                        <th onclick="SortData(this,'AccommodationRequired')" class="iqamadata">Accommodation Required</th>
 
+                        <th onclick="SortData(this,'QiwaContract')">Qiwa</th>
                         <th onclick="SortData(this,'HiringDate')">Hiring Date</th>
+                        <th onclick="SortData(this,'VacationRotation')">Vacation Rotation</th>
+                        <th class="jobstatus" onclick="SortData(this,'LastJoinDate')">Last Working Date</th>
                         <th class="jobstatus" onclick="SortData(this,'Status')">Status</th>
                         <th class="jobstatus" onclick="SortData(this,'JobLeftDate')">Job Left Date</th>
 
                         <!--
-                        <th onclick="SortData(this,'JobLeftDate')">Job Left Date</th>
-                        <th onclick="SortData(this,'ShowInAttendence')" class="employeedata">Sow in Attendence</th>
-                        <th onclick="SortData(this,'DeductSalary')" class="employeedata">Is Deduct Salary</th>-->
+    <th onclick="SortData(this,'JobLeftDate')">Job Left Date</th>
+    <th onclick="SortData(this,'ShowInAttendence')" class="employeedata">Sow in Attendence</th>
+    <th onclick="SortData(this,'DeductSalary')" class="employeedata">Is Deduct Salary</th>-->
                         <th></th>
                     </tr>
                 </thead>
@@ -118,7 +126,7 @@
 
 
                         <div class="col-4"><label>Name</label></div>
-                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeName" data-id="Name" data-required="true" required data-msg="Please enter name" /></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeName" name="employeename" data-id="Name" data-required="true" required data-msg="Please enter name" /></div>
                         <div class="col-4"><label>الاسم</label></div>
                         <div class="col-8"><input type="text" lang="ar" dir="rtl" class="form-control form-control-sm" id="txtEmployeeArabicName" name="ArabicName" data-id="ArabicName" data-required="true" required data-msg="Please enter name in arabic" /></div>
                         <div class="col-4"><label>Nationality</label></div>
@@ -152,12 +160,12 @@
                         <div class="col-4"><label>Home Country Phone #</label></div>
                         <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeHomeCountryPhoneNumber" data-id="HomePhoneNumber" /></div>
                         <div class="col-4"><label>National Address</label></div>
-                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeAddress" data-id="Address" /></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeAddress" data-id="Address" name="Addresss" required data-msg="Please enter national address" /></div>
 
                         <div class="col-4"><label>Physical Location</label></div>
                         <div class="col-8">
                             <div class="row">
-                                <div class="col"><select type="text" class="form-select form-select-sm" id="ddEmployeeLocation" data-id="Location" required data-min="0" data-msg="Please select location"></select></div>
+                                <div class="col"><select  class="form-select form-select-sm" id="ddEmployeeLocation" name="ddEmployeeLocation" data-id="Location" required data-min="1" data-msg="Please select location"></select></div>
                                 <div class="col-auto"><a href="javascript:void(0)" onclick="EditLocationData();" class="ms-2 text-primary"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)" onclick="AddLocationData()" class="ms-2 text-success"><i class="fa fa-plus-circle"></i></a> </div>
                             </div>
                         </div>
@@ -178,7 +186,7 @@
 
                             <div class="col-4"><label>Status</label></div>
                             <div class="col-8">
-                                <select class="form-select form-select-sm" id="ddEmployeeStatus" onchange="ShowJobLeft()" data-id="JobStatus">
+                                <select class="form-select form-select-sm" id="ddEmployeeStatus" onchange="ShowJobLeft()" data-id="JobStatus" name="JobStatus" required data-msg="Please select status">
                                     <option value="1">On the Job</option>
                                     <option value="2">Left the Job</option>
                                     <option value="0"> </option>
@@ -186,23 +194,27 @@
                             </div>
 
                             <div class="col-4 jobleftdate"><label>Last Working Date</label></div>
-                            <div class="col-8 jobleftdate"><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeJobLeftDate" data-id="JobLeftDate" data-type="date" /></div>
+                            <div class="col-8 jobleftdate"><input type="text" class="form-control form-control-sm datepicker"  id="txtEmployeeJobLeftDate" data-id="JobLeftDate" data-type="date" /></div>
 
                             <div class="col-4"><label>Personal Email</label></div>
-                            <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeAddress" data-id="EmailAddress" required data-msg="Please enter email address" /></div>
+                            <div class="col-8"><input type="email" class="form-control form-control-sm" id="txtEmployeeAddress" name="personalemailaddress" data-id="EmailAddress" required data-msg="Please enter email address" /></div>
 
                             <div class="col-4"><label>Iqama Profession</label></div>
-                            <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeIqamaProfession" data-id="IqamaProfession" /></div>
+                            <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeIqamaProfession" name="iqamaprofression" data-id="IqamaProfession" required data-msg="Please enter iqama profession"/></div>
 
                             <div class="col-4"><label>Emergency Contact Number</label></div>
-                            <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeEmergencyContact" data-id="EmergencyContactNumber" /></div>
+                            <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeEmergencyContact" name="EmergencyContactNumber" data-id="EmergencyContactNumber" required data-msg="Please enter emergency contact number" /></div>
 
 
                             <div class="col-4"><label>Emergency Contact Relation</label></div>
-                            <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeEmergencyRelation" data-id="EmergencyContactRelation" /></div>
+                            <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeEmergencyRelation" name="EmergencyContactRelation" data-id="EmergencyContactRelation" required data-msg="Please enter emergency contact relation"/></div>
                             <div class="col-4"><label>Accommodation Required</label></div>
                             <div class="col-8" style="text-align:left">
-                                <label class="switch"><input type="checkbox" checked="checked" id="chkAccommodationRequired" data-id="AccommodationRequired"><div class="slider round"></div></label>
+                                <select class="form-select form-select-sm-sm" data-id="AccommodationRequired">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                                
                             </div>
 
                             <div class="col-4"><label>Remarks</label></div>
@@ -293,7 +305,7 @@
                         </div>
 
                         <div class="col-4"><label>IBAN #</label></div>
-                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeIBAN" data-id="IBAN" /></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeIBAN" data-id="IBAN" name="IBAN" required data-msg="Please enter IBAN number" /></div>
 
 
 

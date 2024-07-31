@@ -1,4 +1,5 @@
-﻿using Pipewellservice.Helper;
+﻿using Newtonsoft.Json;
+using Pipewellservice.Helper;
 using PipewellserviceJson.Home;
 using PipewellserviceJson.HR.Employee;
 using PipewellserviceJson.Procurement;
@@ -37,7 +38,7 @@ namespace Pipewellservice.Areas.API.Controllers
             var result = await itemJson.GetStoreItemList(paging, Name);
             return new JsonResult
             {
-                Data = new { Data = result, TotalRecord = result.Count > 0 ? result[0].Total : 0, NextCode= result.Count > 0 ? result[0].NextCode : 0 },
+                Data = new { Data = result, TotalRecord = result.Count > 0 ? result[0].Total : 0, NextCode = result.Count > 0 ? result[0].NextCode : 0 },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -52,7 +53,7 @@ namespace Pipewellservice.Areas.API.Controllers
         }
         public async Task<JsonResult> AddStoreItem(Item item)
         {
-            var result = await itemJson.AddStoreItem(item,SessionHelper.UserID());
+            var result = await itemJson.AddStoreItem(item, SessionHelper.UserID());
             return new JsonResult
             {
                 Data = result,
@@ -95,10 +96,10 @@ namespace Pipewellservice.Areas.API.Controllers
 
         public async Task<JsonResult> GetMatrialRequestList(DateParam date, PagingDTO paging, int RequestType)
         {
-            var result = await json.GetMatrialRequestList(date,paging, RequestType);
+            var result = await json.GetMatrialRequestList(date, paging, RequestType);
             return new JsonResult
             {
-                Data = new { Data = result, TotalRecord = result.Count > 0 ? result[0].Total : 0},
+                Data = new { Data = result, TotalRecord = result.Count > 0 ? result[0].Total : 0 },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -130,25 +131,25 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
-        
-        public async Task<JsonResult> AddMaterialRequest(MaterialRequest request,List<MaterialRequestItem> Items)
+
+        public async Task<JsonResult> AddMaterialRequest(MaterialRequest request, List<MaterialRequestItem> Items)
         {
             request.RecordCreatedBy = SessionHelper.UserID();
 
             var result = await json.AddMaterialRequest(request, Items);
-            if ( result.ApprovalID>0)
+            if (result.ApprovalID > 0)
             {
                 ApprovalRequestResult model = new ApprovalRequestResult();
                 ApprovalHelper helper = new ApprovalHelper();
-                model = await (new  EmployeeJson()).ApproveRequest(0, new PendingApproval() {ID=result.ApprovalID, Remarks="", Status= ApprovalStatus.Temp });
-                if (model.Result )
+                model = await (new EmployeeJson()).ApproveRequest(0, new PendingApproval() { ID = result.ApprovalID, Remarks = "", Status = ApprovalStatus.Temp });
+                if (model.Result)
                 {
-                    await helper.ProcessRequest(ApprovalTypes.MaterialRequest, model,true);
+                    await helper.ProcessRequest(ApprovalTypes.MaterialRequest, model, true);
                 }
             }
             return new JsonResult
             {
-                Data =result.ID,
+                Data = result.ID,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -185,8 +186,38 @@ namespace Pipewellservice.Areas.API.Controllers
 
         }
 
+        [Authorization(Pages.StoreReceiving, 1, 2)]
+        public async Task<JsonResult> AddStoreReceiving()
+        {
+            StoreReceiving dto = JsonConvert.DeserializeObject<StoreReceiving>(Request["dto"]);
+            List<ReceivingItem> items = JsonConvert.DeserializeObject<List<ReceivingItem>>(Request["items"]);
+            
 
+            dto.RecordCreatedBy = SessionHelper.UserID();
+            var result = await itemJson.AddStoreReceiving(dto, items);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        [Authorization(Pages.StoreReceiving)]
+        public async Task<JsonResult> StoreReceivingList(StoreReceivingParam param)
+        {
+            
+            var result = await itemJson.StoreReceivingList(param);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
 
         
+
+
+
+
     }
 }

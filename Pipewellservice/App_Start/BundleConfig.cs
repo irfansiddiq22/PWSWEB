@@ -194,6 +194,9 @@ namespace Pipewellservice
             bundles.Add(new Bundle("~/lib/procurement/store/item").Include(
                                               "~/Scripts/ProjectScripts/Procurement/Store/ItemManagement.js"));
 
+            bundles.Add(new Bundle("~/lib/procurement/store/receiving").Include(
+                                              "~/Scripts/ProjectScripts/Procurement/Store/OrderReceiving.js"));
+
             bundles.Add(new Bundle("~/lib/procurement/MaterialRequest").Include(
                                               "~/Scripts/ProjectScripts/Procurement/MaterialRequest.js"));
             bundles.Add(new Bundle("~/lib/purchase/internalpurchase").Include(

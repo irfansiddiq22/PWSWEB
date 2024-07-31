@@ -32,7 +32,23 @@ namespace PipewellserviceJson.Procurement.Store
         {
             return await itemService.AddStoreItem(item,UserID);
         }
-        
+        public async Task<int> AddStoreReceiving(StoreReceiving dto, List<ReceivingItem> items)
+        {
+            return await itemService.AddStoreReceiving(dto, items);
+        }
+
+
+        public async Task<StoreReceivingView> StoreReceivingList(StoreReceivingParam param)
+        {
+            StoreReceivingViewSQL data = await itemService.StoreReceivingList(param);
+            StoreReceivingView model = new StoreReceivingView();
+            model.Receivings= await JsonHelper.Convert<List<StoreReceiving>, DataTable>(data.Receivings);
+            model.ID = data.ID;
+            model.TotalRecords = model.Receivings.Count==0 ? 0 : model.Receivings[0].TotalRecords;
+            
+            return model;
+        }
+
 
 
     }

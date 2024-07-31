@@ -181,7 +181,10 @@ namespace PipewellserviceModels.Common
         Location=33 ,
         EmployeeCV=34,
         SupplierAssessment=35,
-        CustomerRegisteration=36
+        CustomerRegisteration=36,
+        StoreReceiving=37,
+        StoreDelivery = 38,
+
 
 
     }
@@ -209,7 +212,9 @@ namespace PipewellserviceModels.Common
         PurchaseRequest = 18,
         InternalPurchaseRequest=19,
         SupplierAssesment=20,
-        CustomerRegistration = 21
+        CustomerRegistration = 21,
+        Receiving=22,
+        
     }
 
     public enum DocTemplates

@@ -34,7 +34,9 @@
     Location: 33,
     EmployeeCVData: 34,
     SupplierAssessment: 35,
-    Customers:36
+    Customers: 36,
+    StoreReceiving: 37,
+    StoreDelivery:38
 
 }
 var REPORTS = {

@@ -91,6 +91,7 @@
     <Compile Include="Procurement\Purchase\InternalPurchase.cs" />
     <Compile Include="Procurement\Purchase\OrderPurchaseManagement.cs" />
     <Compile Include="Procurement\Store\Item.cs" />
+    <Compile Include="Procurement\Store\Receiving.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setting\EmailTemplate.cs" />
     <Compile Include="User\Permissions.cs" />

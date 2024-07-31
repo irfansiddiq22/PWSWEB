@@ -50,6 +50,28 @@ namespace Pipewellservice.Controllers
             ViewBag.Parent = Parent;
             return View();
         }
+
+        [Authorization(Pages.StoreReceiving)]
+        [Route("Procurement/Store/Receiving")]
+        public ActionResult Receiving()
+        {
+            ViewBag.Title = "Store Receiving";
+            ViewBag.Parent = Parent;
+            return View();
+        }
+        [Authorization(Pages.StoreDelivery)]
+        [Route("Procurement/Store/Delivery")]
+        public ActionResult Delivery()
+        {
+            ViewBag.Title = "Store Delivery";
+            ViewBag.Parent = Parent;
+            return View();
+        }
+
+
+
+
+
         [Authorization(Pages.ProcurementMaterialRequest)]
 
         public ActionResult MaterialRequest()

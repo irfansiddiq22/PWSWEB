@@ -210,6 +210,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ProcurementController.cs" />
+    <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="EmailTemplateHTML.aspx.cs">
       <DependentUpon>EmailTemplateHTML.aspx</DependentUpon>
@@ -521,6 +522,7 @@
     <Content Include="Scripts\ProjectScripts\Home\Profile.js" />
     <Content Include="Scripts\ProjectScripts\Customer\Registration.js" />
     <Content Include="Scripts\ProjectScripts\Customer\CustomerData.js" />
+    <Content Include="Scripts\ProjectScripts\Procurement\Store\OrderReceiving.js" />
     <Content Include="Scripts\ProjectScripts\Supplier\Registration.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Accommodation.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Asset.js" />
@@ -701,6 +703,8 @@
     <Content Include="Views\Supplier\registration.cshtml" />
     <Content Include="Views\Customer\registration.cshtml" />
     <Content Include="Views\Customer\List.cshtml" />
+    <Content Include="Views\Sales\Home.cshtml" />
+    <Content Include="Views\Procurement\Receiving.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -716,7 +720,6 @@
     <Folder Include="Models\" />
     <Folder Include="Resources\Employee\1\" />
     <Folder Include="Resources\Employee\2\" />
-    <Folder Include="Views\Base\" />
     <Folder Include="Views\Purchase\" />
   </ItemGroup>
   <ItemGroup>

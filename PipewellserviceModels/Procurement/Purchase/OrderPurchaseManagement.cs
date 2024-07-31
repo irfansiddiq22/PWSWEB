@@ -100,7 +100,11 @@ namespace PipewellserviceModels.Procurement.Purchase
         }
         public int TotalRecord { get; set; }
     }
-    
+
+    public class PurchaseOrderNumber
+    {
+        public int ID { get; set; }
+    }
 public class PurchaseOrderManagementItem : InternalPurchaseRequestItem
     {
         

@@ -81,6 +81,29 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
+        [Authorization(Pages.PurchaseOrderManagment)]
+        public async Task<JsonResult> FindPurchaseOrder(int OrderID)
+        {
+
+            var result = await json.FindPurchaseOrder(OrderID);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        [Authorization(Pages.PurchaseOrderManagment)]
+        public async Task<JsonResult> GetPurchaseOrderRequestItems(int ID)
+        {
+            var result = await json.GetPurchaseOrderRequestItems(ID);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
         /*
         [Authorization(Pages.InternalPurchaseRequest, 1, 2)]
         public async Task<JsonResult> UpdatePurchaseRequestFile(int ID)

@@ -58,6 +58,36 @@ namespace PipewellserviceModels.HR.Employee
                     return "";
             }
         }
+        public string ContractTypeName
+        {
+            get
+            {
+                if (ContractType == ContractType.None)
+                    return "";
+                else if (ContractType == ContractType.Single)
+                    return "Single";
+                else if (ContractType == ContractType.Family)
+                    return "Family";
+                else
+                    return "";
+            }
+        }
+        public string HiringSourceName
+        {
+            get
+            {
+                if (HiringSource ==Common.HiringSource.None)
+                    return "";
+                else if (HiringSource ==Common.HiringSource.Agency)
+                    return $"Vendor - {VendorName}";
+                else if (HiringSource == Common.HiringSource.Direct)
+                    return "Direct";
+                else
+                    return "";
+            }
+        }
+        public string VendorName { get; set; }
+        public string LocationName { get; set; }
     }
     public class EmployeeData : EmployeeReferenceData
     {

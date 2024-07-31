@@ -18,7 +18,7 @@ namespace Pipewellservice.Controllers
 {
     public class SupplierController : Controller
     {
-        private string Parent = JsonConvert.SerializeObject(new { URL = "/Procurement/home", Title = "Procurement" });
+        private string Parent = JsonConvert.SerializeObject(new { URL = "/Sales/home", Title = "Sales" });
         public SupplierJson json = new SupplierJson();
         public async Task<ActionResult> registration()
         {

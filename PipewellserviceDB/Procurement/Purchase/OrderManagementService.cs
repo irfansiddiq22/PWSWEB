@@ -178,5 +178,32 @@ namespace PipewellserviceDB.Procurement.Purchase
                 return null;
             }   
         }
+        public async Task<DataTable> FindPurchaseOrder(int OrderID)
+        {
+            var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcFindPurchaseOrderNumber", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@OrderID", Value = OrderID });
+            DataTable Data = new DataTable();
+            Data.Load(result);
+            result.Close();
+            return Data;
+        }
+        public async Task<PurchaseOrderManagementDB> GetPurchaseOrderItems(int ID)
+        {
+            try
+            {
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetPurchaseOrderItems", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                PurchaseOrderManagementDB Data = new PurchaseOrderManagementDB();
+                Data.PurchaseOrder.Load(result);
+                Data.OrderItem.Load(result);
+                
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
     }
 }

@@ -42,6 +42,21 @@ namespace PipewellserviceJson.Procurement.Purchase
         {
             return await JsonHelper.Convert<List<SupplierItemRate>, DataTable>(await service.GetSupplierItemRate(SupplierID,ItemID));
         }
-        
+        public async Task<List<PurchaseOrderNumber>> FindPurchaseOrder(int OrderID)
+        {
+            return await JsonHelper.Convert<List<PurchaseOrderNumber>, DataTable>(await service.FindPurchaseOrder(OrderID));
+        }
+        public async Task<PurchaseOrderManagementDetail> GetPurchaseOrderRequestItems(int ID)
+        {
+            PurchaseOrderManagementDB dB = await service.GetPurchaseOrderItems(ID);
+            PurchaseOrderManagementDetail model = new PurchaseOrderManagementDetail();
+            model.Order = (await JsonHelper.Convert<List<PurchaseOrderManagement>, DataTable>(dB.PurchaseOrder)).FirstOrDefault();
+            model.Items = await JsonHelper.Convert<List<PurchaseOrderManagementItem>, DataTable>(dB.OrderItem);
+            
+
+            return model;
+        }
+
+
     }
 }
