@@ -285,7 +285,7 @@ function FillEmployeeTable() {
 
                 tr.append($('<td>').html(e.HiringDate == null ? "" : moment(e.HiringDate).format("DD/MM/YYYY")));
                 tr.append($('<td>').html(e.VacationRotation +' Month'));
-                tr.append($('<td class="jobstatus">  ').html(e.LastJoinDate == null ? "" : moment(e.LastJoinDate).format("DD/MM/YYYY")));
+                tr.append($('<td>').html(e.LastJoinDate == null ? "" : moment(e.LastJoinDate).format("DD/MM/YYYY")));
                 tr.append($('<td class="jobstatus">').html(e.CurrentJobStatus));
                 tr.append($('<td class="jobstatus">').html(e.JobLeftDate == null ? "" : moment(e.JobLeftDate).format("DD/MM/YYYY")));
                 /*tr.append($('<td>').html(e.JobLeftDate == null ? "" : moment(e.JobLeftDate).format("DD/MM/YYYY")));
