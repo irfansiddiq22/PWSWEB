@@ -90,6 +90,7 @@
     <Compile Include="Procurement\MaterialRequest.cs" />
     <Compile Include="Procurement\Purchase\InternalPurchase.cs" />
     <Compile Include="Procurement\Purchase\OrderPurchaseManagement.cs" />
+    <Compile Include="Procurement\Store\Delivery.cs" />
     <Compile Include="Procurement\Store\Item.cs" />
     <Compile Include="Procurement\Store\Receiving.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

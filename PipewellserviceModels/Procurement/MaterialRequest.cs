@@ -1,4 +1,5 @@
 ﻿using PipewellserviceModels.Common;
+using PipewellserviceModels.Procurement.Purchase;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -89,6 +90,11 @@ namespace PipewellserviceModels.Procurement
     {
         public int ID { get; set; }
         public int ApprovalID { get; set; }
+    }
+
+    public class MaterialRequestNumber:PurchaseOrderNumber
+    {
+        
     }
     public class MaterialRequestMailDetail
     {

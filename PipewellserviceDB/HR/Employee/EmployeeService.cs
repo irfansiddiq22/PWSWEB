@@ -1091,7 +1091,7 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[15] = new SqlParameter { ParameterName = "@AjeerProvided", Value = dTO.AjeerProvided };
                 collSP[16] = new SqlParameter { ParameterName = "@AjeerType", Value = dTO.AjeerType };
                 collSP[17] = new SqlParameter { ParameterName = "@AjeerSaudization", Value = dTO.AjeerSaudization };
-                collSP[18] = new SqlParameter { ParameterName = "@PWSCR", Value = dTO.PWSCR };
+                collSP[18] = new SqlParameter { ParameterName = "@PWSCR", Value =   dTO.PWSCR };
                 collSP[19] = new SqlParameter { ParameterName = "@Remarks", Value = dTO.Remarks };
                 collSP[20] = new SqlParameter { ParameterName = "@RecordAddedBy", Value = dTO.RecordAddedBy };
                 collSP[21] = new SqlParameter { ParameterName = "@ContractNumber", Value = dTO.ContractNumber };

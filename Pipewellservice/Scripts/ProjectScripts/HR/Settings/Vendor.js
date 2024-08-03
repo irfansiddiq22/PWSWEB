@@ -3,8 +3,21 @@ var Vendor = {};
 function LoadVendor() {
 	Post("/EmployeeAPI/VendorList", {}).done(function (resp) {
 		VendorData = resp;
-		FillList("ddVendorList", VendorData, "Name", "ID", "Select Vendor");
-		FillList("ddEmployeeHiringVendor", VendorData, "Name", "ID", "Select Vendor");
+        FillList("ddVendorList", VendorData, "Name", "ID", "Select Vendor");
+        if ($("#ddEmployeeHiringVendor").length > 0)
+            FillList("ddEmployeeHiringVendor", VendorData, "Name", "ID", "Select Vendor");
+
+        $("#tblVendorData").empty()
+        $.each(resp, function (i, v) {
+            var tr = $('<tr>')
+            tr.append($('<td>').text(v.Name))
+            tr.append($('<td>').text(v.CSR))
+            tr.append($('<td>').text(v.Contact))
+            tr.append($('<td>').text(v.EmergencyContact))
+            tr.append($('<td>').text(v.EmailAddress))
+            tr.append($('<td>').append(`<a href="javascript:void(0)" onclick="EditVendor('${v.ID}')"><i class="fa fa-edit"></i></a>`));
+            $("#tblVendorData").append(tr);
+        })
 
 	})
 	$("#frmVendor").validate({
@@ -162,4 +175,8 @@ function SaveVendor() {
 
 		})
 	}
+}
+function ResetVendorForm() {
+    Vendor = { ID: 0 };
+       document.getElementById("frmVendor").reset();
 }

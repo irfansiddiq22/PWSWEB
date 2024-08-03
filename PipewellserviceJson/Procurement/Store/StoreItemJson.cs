@@ -49,6 +49,23 @@ namespace PipewellserviceJson.Procurement.Store
             return model;
         }
 
+        public async Task<int> AddStoreDelivery(StoreDelivery dto, List<DeliveryItem> items)
+        {
+            return await itemService.AddStoreDelivery(dto, items);
+        }
+
+
+        public async Task<StoreDeliveryView> StoreDeliveryList(StoreDeliveryParam param)
+        {
+            StoreDeliveryViewSQL data = await itemService.StoreDeliveryList(param);
+            StoreDeliveryView model = new StoreDeliveryView();
+            model.Delivery = await JsonHelper.Convert<List<StoreDelivery>, DataTable>(data.Delivery);
+            model.ID = data.ID;
+            model.TotalRecords = model.Delivery.Count == 0 ? 0 : model.Delivery[0].TotalRecords;
+
+            return model;
+        }
+
 
 
     }

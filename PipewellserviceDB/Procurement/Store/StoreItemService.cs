@@ -123,7 +123,7 @@ namespace PipewellserviceDB.Procurement.Store
                     new SqlParameter { ParameterName = "@Notes", Value = StringHelper.NullToString(dto.Notes) },
                     new SqlParameter { ParameterName = "@NoteDate", Value = dto.NoteDate },
                     new SqlParameter { ParameterName = "@NonC", Value = dto.NonC },
-                    
+
                     new SqlParameter { ParameterName = "@ReceivedDate", Value = dto.ReceiveDate},
                     new SqlParameter { ParameterName = "@InvoiceFileName"  , Value =StringHelper.NullToString(dto.InvoiceFileName)},
                     new SqlParameter { ParameterName = "@InvoiceFileID"  , Value =StringHelper.NullToString(dto.InvoiceFileID)},
@@ -137,9 +137,9 @@ namespace PipewellserviceDB.Procurement.Store
                 };
 
 
-                return Convert.ToInt32( SqlHelper.ExecuteScalar(this.ConnectionString, "ProcAddOrUpdateStoreOrderReceiving", CommandType.StoredProcedure, parameters));
+                return Convert.ToInt32(SqlHelper.ExecuteScalar(this.ConnectionString, "ProcAddOrUpdateStoreOrderReceiving", CommandType.StoredProcedure, parameters));
 
-                    
+
             }
             catch (Exception e)
             {
@@ -158,13 +158,13 @@ namespace PipewellserviceDB.Procurement.Store
                 collSP[4] = new SqlParameter { ParameterName = "@PurchaseOrderNumber", Value = param.PurchaseOrderNumber };
                 collSP[5] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate.ToShortDateString() };
                 collSP[6] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate.ToShortDateString() };
-                collSP[7] = new SqlParameter { ParameterName = "@NextID", Value = 0,Direction=ParameterDirection.Output };
+                collSP[7] = new SqlParameter { ParameterName = "@NextID", Value = 0, Direction = ParameterDirection.Output };
 
 
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetStoreReceiving", CommandType.StoredProcedure, collSP);
                 StoreReceivingViewSQL Data = new StoreReceivingViewSQL();
                 Data.Receivings.Load(result);
-                Data.ID = Convert.ToInt32(collSP[7].Value);
+                Data.ID = Convert.ToInt32(collSP[7].Value ?? (object)collSP[7].Value);
                 result.Close();
                 return Data;
             }
@@ -173,5 +173,73 @@ namespace PipewellserviceDB.Procurement.Store
                 return null;
             }
         }
+
+
+        public async Task<int> AddStoreDelivery(StoreDelivery dto, List<DeliveryItem> items)
+        {
+            try
+            {
+                StringBuilder xml = new StringBuilder();
+                xml.Append("<DataSet>");
+                foreach (DeliveryItem item in items)
+                {
+                    xml.Append($"<Data><ItemID>{item.ID}</ItemID><Quantity>{item.Quantity}</Quantity><Notes>{ StringHelper.ReplaceXmlChar(item.Notes)}</Notes><UnitCost>{ item.UnitCost }</UnitCost></Data>");
+                }
+                xml.Append("</DataSet>");
+                var parameters = new SqlParameter[]
+                {
+                    new SqlParameter { ParameterName = "@ID", Value = dto.ID },
+                    new SqlParameter { ParameterName = "@MRID", Value = dto.MRID },
+                    new SqlParameter { ParameterName = "@DeliveryNumber", Value = dto.DeliveryNumber },
+                    new SqlParameter { ParameterName = "@DeliveryDate", Value = dto.DeliveryDate },
+                    new SqlParameter { ParameterName = "@WorkOrderID", Value = dto.WorkOrderID ?? (object)DBNull.Value },
+                    new SqlParameter { ParameterName = "@Customer", Value = dto.Customer ?? (object)DBNull.Value },
+                    new SqlParameter { ParameterName = "@ReceivedBy", Value = dto.ReceivedBy },
+                    new SqlParameter { ParameterName = "@Remarks", Value = dto.Remarks ?? (object)DBNull.Value },
+                    new SqlParameter { ParameterName = "@RecordCreatedBy", Value =StringHelper.NullToString(dto.RecordCreatedBy)},
+                    new SqlParameter { ParameterName = "@Items", Value = xml.ToString()},
+
+
+                };
+
+
+                return Convert.ToInt32(SqlHelper.ExecuteScalar(this.ConnectionString, "ProcAddOrUpdateStoreOrderDelivery", CommandType.StoredProcedure, parameters));
+
+
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+        public async Task<StoreDeliveryViewSQL> StoreDeliveryList(StoreDeliveryParam  param)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[8];
+                collSP[0] = new SqlParameter { ParameterName = "@PageNumber", Value = param.pageNumber };
+                collSP[1] = new SqlParameter { ParameterName = "@PageSize", Value = param.pageSize };
+                collSP[2] = new SqlParameter { ParameterName = "@ReceivedBy", Value = param.ReceivedBy };
+                collSP[3] = new SqlParameter { ParameterName = "@WorkOrderID", Value = param.WorkOrderNumber ?? (object)DBNull.Value };
+                collSP[4] = new SqlParameter { ParameterName = "@DeliveryNumber", Value = param.DeliveryNumber };
+                collSP[5] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate.ToShortDateString() };
+                collSP[6] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate.ToShortDateString() };
+                collSP[7] = new SqlParameter { ParameterName = "@NextID", Value = 0, Direction = ParameterDirection.Output };
+
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetStoreDelivery", CommandType.StoredProcedure, collSP);
+                StoreDeliveryViewSQL Data = new StoreDeliveryViewSQL();
+                Data.Delivery.Load(result);
+                Data.ID = Convert.ToInt32(collSP[7].Value ?? (object)collSP[7].Value);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+
     }
 }

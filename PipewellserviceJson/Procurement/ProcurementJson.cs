@@ -39,10 +39,25 @@ namespace PipewellserviceJson.Procurement
 
             
         }
+        public async Task<List<MaterialRequestItem>> GetMatrialRequestDeliveryItems(int ID)
+        {
+            MaterialRequestDB dB = await service.GetMatrialRequestDeliveryItems(ID);
 
+            return await JsonHelper.Convert<List<MaterialRequestItem>, DataTable>(dB.MaterialRequestItem);
+
+
+        }
+
+        
         public async Task<MaterialRequestResult> AddMaterialRequest(MaterialRequest request, List<MaterialRequestItem> Items) {
             return await service.AddMaterialRequest(request,Items);
         }
+        
+           public async Task<List<MaterialRequestNumber>> FindMatrialRequestNumber(string ID)
+        {
+            return await JsonHelper.Convert<List<MaterialRequestNumber>, DataTable>(await service.FindMatrialRequestNumber(ID));
+        }
+
 
     }
 }

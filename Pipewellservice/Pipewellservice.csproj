@@ -522,6 +522,7 @@
     <Content Include="Scripts\ProjectScripts\Home\Profile.js" />
     <Content Include="Scripts\ProjectScripts\Customer\Registration.js" />
     <Content Include="Scripts\ProjectScripts\Customer\CustomerData.js" />
+    <Content Include="Scripts\ProjectScripts\Procurement\Store\OrderDelivery.js" />
     <Content Include="Scripts\ProjectScripts\Procurement\Store\OrderReceiving.js" />
     <Content Include="Scripts\ProjectScripts\Supplier\Registration.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Accommodation.js" />
@@ -705,6 +706,7 @@
     <Content Include="Views\Customer\List.cshtml" />
     <Content Include="Views\Sales\Home.cshtml" />
     <Content Include="Views\Procurement\Receiving.cshtml" />
+    <Content Include="Views\Procurement\Delivery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

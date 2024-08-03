@@ -51,6 +51,8 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        
+        
         public async Task<JsonResult> AddStoreItem(Item item)
         {
             var result = await itemJson.AddStoreItem(item, SessionHelper.UserID());
@@ -131,6 +133,29 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
+        public async Task<JsonResult> GetMatrialRequestDeliveryItems(int ID)
+        {
+            var result = await json.GetMatrialRequestDeliveryItems(ID);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        
+
+        public async Task<JsonResult> FindMatrialRequestNumber(string ID)
+        {
+            var result = await json.FindMatrialRequestNumber(ID);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        
 
         public async Task<JsonResult> AddMaterialRequest(MaterialRequest request, List<MaterialRequestItem> Items)
         {
@@ -214,7 +239,37 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
-        
+
+
+        [Authorization(Pages.StoreDelivery , 1, 2)]
+        public async Task<JsonResult> AddStoreDelivery(StoreDelivery dto, List<DeliveryItem> items)
+        {
+            // StoreReceiving dto = JsonConvert.DeserializeObject<StoreReceiving>(Request["dto"]);
+            //List<ReceivingItem> items = JsonConvert.DeserializeObject<List<ReceivingItem>>(Request["items"]);
+
+
+            dto.RecordCreatedBy = SessionHelper.UserID();
+            var result = await itemJson.AddStoreDelivery(dto, items);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        [Authorization(Pages.StoreReceiving)]
+        public async Task<JsonResult> StoreDeliveryList(StoreDeliveryParam param)
+        {
+
+            var result = await itemJson.StoreDeliveryList(param);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+
 
 
 

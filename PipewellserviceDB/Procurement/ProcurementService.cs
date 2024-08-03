@@ -93,7 +93,27 @@ namespace PipewellserviceDB.Procurement
             }
 
         }
+        public async Task<MaterialRequestDB> GetMatrialRequestDeliveryItems(int ID)
+        {
+            try
+            {
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "GetMatrialRequestDeliveryItems", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                MaterialRequestDB Data = new MaterialRequestDB();
+
+                Data.MaterialRequestItem.Load(result);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+
         
+
         public async Task<MaterialRequestResult> AddMaterialRequest(MaterialRequest request, List<MaterialRequestItem> Items)
         {
             MaterialRequestResult requestResult = new MaterialRequestResult();
@@ -130,6 +150,22 @@ namespace PipewellserviceDB.Procurement
                 return requestResult;
             }
 
+        }
+
+        public async Task<DataTable> FindMatrialRequestNumber(string ID)
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "FindMatrialRequestNumber", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                DataTable Data = new DataTable();
+                Data.Load(result);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
     }
 }

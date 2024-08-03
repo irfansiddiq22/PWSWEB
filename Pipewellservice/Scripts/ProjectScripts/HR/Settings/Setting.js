@@ -15,6 +15,9 @@ function _Init() {
     SetPagePermission(PAGES.Position, function () { BindPositions(); });
     LoadSponsor();
     LoadLocations();
+    LoadVendor();
+    $("#dvVendeddList,#btnVendorClose").addClass("d-none")
+    $("#dvVendorTable,#btnVendorReset").removeClass("d-none");
     FillWorkTimeSchedule();
     for (i = 0; i <= 24; i++) {
         $("#ddScheduleHourStart,#ddScheduleHourEnd").append(AppendListItem(i,i))

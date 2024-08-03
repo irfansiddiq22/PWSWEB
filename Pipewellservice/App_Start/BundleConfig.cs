@@ -114,8 +114,8 @@ namespace Pipewellservice
             bundles.Add(new Bundle("~/lib/hr/setting").Include(
                 "~/Scripts/ProjectScripts/HR/Settings/Sponsor.js",
                 "~/Scripts/ProjectScripts/HR/Settings/Location.js",
-                
-                      "~/Scripts/ProjectScripts/HR/Settings/Setting.js"));
+                "~/Scripts/ProjectScripts/HR/Settings/Vendor.js",
+                  "~/Scripts/ProjectScripts/HR/Settings/Setting.js"));
             bundles.Add(new Bundle("~/lib/hr/sponsor").Include(
                       "~/Scripts/ProjectScripts/HR/Settings/Sponsor.js"));
             bundles.Add(new Bundle("~/lib/hr/location").Include(
@@ -196,6 +196,8 @@ namespace Pipewellservice
 
             bundles.Add(new Bundle("~/lib/procurement/store/receiving").Include(
                                               "~/Scripts/ProjectScripts/Procurement/Store/OrderReceiving.js"));
+            bundles.Add(new Bundle("~/lib/procurement/store/delivery").Include(
+                                              "~/Scripts/ProjectScripts/Procurement/Store/OrderDelivery.js"));
 
             bundles.Add(new Bundle("~/lib/procurement/MaterialRequest").Include(
                                               "~/Scripts/ProjectScripts/Procurement/MaterialRequest.js"));
