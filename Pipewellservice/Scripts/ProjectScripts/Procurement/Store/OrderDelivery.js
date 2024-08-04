@@ -339,7 +339,7 @@ function SaveOrderDelivery() {
         swal("Please check item quantity in stock before processing the delivery", { icon: "error" });
         return false;
     }
-    return false;
+    
     var Delivery = {
         ID: 0,
         DeliveryNumber: parseInt(valOf("txtDeliveryNumber")),
