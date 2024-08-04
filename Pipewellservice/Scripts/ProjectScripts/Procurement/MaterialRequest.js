@@ -26,7 +26,7 @@ function _Init() {
 }
 function BindUsers() {
     $.post("/EmployeeAPI/CodeName", {}).done(function (Response) {
-
+        
         var data = []
         if (Response.length > 1) data.push({ id: 0, text: 'Select an employee' });
         $.each(Response, function (i, emp) {

@@ -110,6 +110,7 @@ public class PurchaseOrderManagementItem : InternalPurchaseRequestItem
         
         public int OrderID { get; set; }
         public int SerialNumber { get; set; }
+        public float ItemAvgUnitCost { get; set; }
         //public float UnitCost { get; set; }
         //public float Amount { get
         //    {

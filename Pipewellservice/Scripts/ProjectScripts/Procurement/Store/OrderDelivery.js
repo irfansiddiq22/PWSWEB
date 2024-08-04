@@ -214,7 +214,7 @@ function AddItem() {
     tr.append($('<td>').text(itm.ItemCode));
     tr.append($('<td>').text(itm.Name));
     tr.append($('<td>').text(itm.Unit));
-    tr.append($('<td>').append($('<input type="number" min="1" class="form-control form-control-sm">').val(newItem.Quantity)));
+    tr.append($('<td>').append($(`<input type="number" min="1" class="form-control form-control-sm" onblur="ValidateMaxQty(this)" max='${ itm.StockQuantity }'>`).val(newItem.Quantity)).append(`<span class="badge bg-primary">${itm.StockQuantity}</span> items in store`));
 
 
     tr.append($('<td>').append($('<textarea rows="4"  class="form-control form-control-sm">').val(newItem.Notes)));
@@ -240,6 +240,18 @@ function FindMaterialRequestDetail() {
         });
     }
 }
+function ValidateMaxQty(sender) {
+    var val = $(sender).val();
+    if (!isNaN(val)) {
+        var stock = parseInt($(sender).attr(max));
+        val = parseInt(val);
+        if (stock < val) {
+            swal(`You cannot deliver ${val} items, as there are currently only ${stock} items in stock.`)
+            $(sender).val(stock);
+            return false;
+        }
+
+    }
 function FillItems(MaterialRequestItems) {
     $("#itemsTable").empty();
     $.each(MaterialRequestItems, function (i, itm) {
@@ -251,7 +263,7 @@ function FillItems(MaterialRequestItems) {
         tr.append($('<td>').text(itm.ItemCode));
         tr.append($('<td>').text(itm.ItemName));
         tr.append($('<td>').text(itm.Unit));
-        tr.append($('<td>').append($('<input type="number" min="1" class="form-control form-control-sm">').val(itm.Quantity)));
+        tr.append($('<td>').append($(`<input type="number" min="1" class="form-control form-control-sm" onblur="ValidateMaxQty(this)" max='${itm.StockQuantity }'>`).val(itm.Quantity)).append(`<span class="badge bg-primary">${itm.StockQuantity}</span> items in store`));
 
         
         tr.append($('<td>').append($('<textarea rows="4"  class="form-control form-control-sm">').val(itm.Notes)));

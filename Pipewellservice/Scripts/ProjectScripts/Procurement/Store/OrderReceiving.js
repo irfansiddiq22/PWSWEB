@@ -164,6 +164,7 @@ function FillItems(PurchaseRequestItems) {
 
         tr.attr("data-id", itm == null ? 0 : itm.ItemID);
         tr.attr("data-cost", itm == null ? 0 : itm.UnitCost);
+        tr.attr("avg-cost", itm == null ? 0 : itm.ItemAvgUnitCost);
         tr.append($('<td>').text($("#itemsTable tr").length + 1));
         tr.append($('<td>').text(itm.ItemCode));
         tr.append($('<td>').text(itm.ItemName));
@@ -221,7 +222,8 @@ function SaveOrderReceiving() {
 
     Items = Array.from(document.getElementById('itemsTable').rows).map(row => ({
         ID: parseInt($(row).attr("data-id")),
-        UnitCost:parseFloat($(row).attr("data-cost")),
+        UnitCost: parseFloat($(row).attr("data-cost")),
+        ItemAvgUnitCost: parseFloat($(row).attr("avg-cost")),
         PartNumber: $(row.cells[3]).find(":input").val(),
         Unit: $(row.cells[4]).find(":input").val(),
         Quantity: parseInt($(row.cells[5]).find(":input").val()),

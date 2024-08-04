@@ -107,7 +107,7 @@ namespace PipewellserviceDB.Procurement.Store
                 xml.Append("<DataSet>");
                 foreach (ReceivingItem item in items)
                 {
-                    xml.Append($"<Data><ItemID>{item.ID}</ItemID><Quantity>{item.Quantity}</Quantity><Notes>{ StringHelper.ReplaceXmlChar(item.Notes)}</Notes><UnitCost>{ item.UnitCost }</UnitCost><ExpiryDate>{ item.ExpiryDate }</ExpiryDate><PartNumber>{item.PartNumber}</PartNumber><ReceivingQuantity>{item.ReceivingQuantity}</ReceivingQuantity></Data>");
+                    xml.Append($"<Data><ItemID>{item.ID}</ItemID><Quantity>{item.Quantity}</Quantity><Notes>{ StringHelper.ReplaceXmlChar(item.Notes)}</Notes><UnitCost>{ item.UnitCost }</UnitCost><ItemAvgUnitCost>{ item.ItemAvgUnitCost }</ItemAvgUnitCost><ExpiryDate>{ item.ExpiryDate }</ExpiryDate><PartNumber>{item.PartNumber}</PartNumber><ReceivingQuantity>{item.ReceivingQuantity}</ReceivingQuantity></Data>");
                 }
                 xml.Append("</DataSet>");
                 var parameters = new SqlParameter[]
