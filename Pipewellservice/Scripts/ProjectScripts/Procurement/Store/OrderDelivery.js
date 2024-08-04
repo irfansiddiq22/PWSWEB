@@ -252,6 +252,7 @@ function ValidateMaxQty(sender) {
         }
 
     }
+}
 function FillItems(MaterialRequestItems) {
     $("#itemsTable").empty();
     $.each(MaterialRequestItems, function (i, itm) {
