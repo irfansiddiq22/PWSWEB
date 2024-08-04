@@ -8,7 +8,8 @@ function _Init() {
     SetvalOf("txtPreparedBy", User.Name);
 
     SetPagePermission(PAGES.StoreDelivery, function () {
-        
+        $("#ddlRecordDataRange").val(moment().subtract(30, 'days').format("DD/MM/YYYY") + ' - ' + moment().format("DD/MM/YYYY"))
+        $('.datepicker').val(moment().format("DD/MM/YYYY"));
         BindMaterialRequestSearch();
 
         SetvalOf("txtDeliveryNumber", (MaxID + 1));
@@ -30,8 +31,7 @@ function _Init() {
 
         BindStoreDelivery();
     });
-    $("#ddlRecordDataRange").val(moment().subtract(30, 'days').format("DD/MM/YYYY") + ' - ' + moment().format("DD/MM/YYYY"))
-    $('.datepicker').val(moment().format("DD/MM/YYYY"));
+    
 }
 
 function BindStoreDelivery() {

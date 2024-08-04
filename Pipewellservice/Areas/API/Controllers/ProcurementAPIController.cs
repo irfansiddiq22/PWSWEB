@@ -257,7 +257,7 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
-        [Authorization(Pages.StoreReceiving)]
+        [Authorization(Pages.StoreDelivery)]
         public async Task<JsonResult> StoreDeliveryList(StoreDeliveryParam param)
         {
 
