@@ -243,12 +243,15 @@ function FindMaterialRequestDetail() {
 function ValidateMaxQty(sender) {
     var val = $(sender).val();
     if (!isNaN(val)) {
-        var stock = parseInt($(sender).attr(max));
+        var stock = parseInt($(sender).attr("max"));
         val = parseInt(val);
         if (stock < val) {
-            swal(`You cannot deliver ${val} items, as there are currently only ${stock} items in stock.`)
+
+            swal(`You cannot deliver ${val} items, as there are currently only ${stock} items in stock.`, { icon: "error" });
             $(sender).val(stock);
             return false;
+        } else {
+            $(sender).removeClass("bg-danger").removeClass("text-white")
         }
 
     }
@@ -309,19 +312,38 @@ function SaveOrderDelivery() {
     //    QuoteFileName = files[0].FileName;
     //}
     var Items = [];
-
+    var valid = true;
     Items = Array.from(document.getElementById('itemsTable').rows).map(row => ({
         ID: parseInt($(row).attr("data-id")),
         Quantity: parseInt($(row.cells[4]).find(":input").val()),
         UnitCost: parseFloat($(row).attr("data-cost")),
         Notes: $(row.cells[5]).find("textarea").val(),
+        Max: parseInt($(row.cells[4]).find(":input").attr("max")),
     }));
+    $.each($("#itemsTable tr"), function (i, tr) {
+        var qty = parseInt($(tr.cells[4]).find(":input").val());
+        var max= parseInt($(tr.cells[4]).find(":input").attr("max"));
+        if (qty > max) {
+            $(tr.cells[4]).find(":input").addClass("bg-danger").addClass("text-white")
+        } else
+            $(tr.cells[4]).find(":input").removeClass("bg-danger").removeClass("text-white");
+    })
     
+    $.each(Items, function (i, itm) {
+        if (itm.Quantity > itm.Max) {
+            valid = false;
+        }
+    });
+    
+    if (!valid) {
+        swal("Please check item quantity in stock before processing the delivery", { icon: "error" });
+        return false;
+    }
+    return false;
     var Delivery = {
         ID: 0,
         DeliveryNumber: parseInt(valOf("txtDeliveryNumber")),
         MRID: parseInt(valOf("txtMatrialRequestNumber")),
-        
         DeliveryDate: valOf("txtRecordDate"),
         WorkOrderID: valOf("txtWordOrderNumber"),
         Customer: valOf("txtCustomer"),
