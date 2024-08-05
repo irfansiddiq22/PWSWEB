@@ -419,7 +419,7 @@ namespace Pipewellservice.Reports
             this.txtFooter1.Text = "C.R. 2050022534 - P.O. Box 2010 Dammam 31451 – Saudi Arabia – Telex: 803 505 QAHB" +
     "RO SJ. – Fax: 8593772 – Tel: 8592286/8594716";
             this.txtFooter1.Top = 1.224F;
-            this.txtFooter1.Width = 7.673F;
+            this.txtFooter1.Width = 7.703001F;
             // 
             // txtFooter3
             // 
