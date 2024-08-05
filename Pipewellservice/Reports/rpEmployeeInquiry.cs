@@ -96,9 +96,9 @@ namespace Pipewellservice.Reports
             this.TextBox18 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.Picture6 = new GrapeCity.ActiveReports.SectionReportModel.Picture();
             this.TextBox19 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.Line11 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.Line2 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.Line10 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.Line11 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.line4 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.line5 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox7)).BeginInit();
@@ -221,7 +221,8 @@ namespace Pipewellservice.Reports
             this.txtHeaderCompany.Height = 0.3125F;
             this.txtHeaderCompany.Left = 2.384186E-07F;
             this.txtHeaderCompany.Name = "txtHeaderCompany";
-            this.txtHeaderCompany.Style = "color: Black; font-family: Book Antiqua; font-size: 14.25pt; font-weight: bold; text-align: left; ddo-char-set: 0";
+            this.txtHeaderCompany.Style = "color: Black; font-family: Book Antiqua; font-size: 14.25pt; font-weight: bold; t" +
+    "ext-align: left; ddo-char-set: 0";
             this.txtHeaderCompany.Text = null;
             this.txtHeaderCompany.Top = 0.3125F;
             this.txtHeaderCompany.Width = 3.375F;
@@ -243,7 +244,8 @@ namespace Pipewellservice.Reports
             this.txtHeaderArabic.Height = 0.375F;
             this.txtHeaderArabic.Left = 4.21875F;
             this.txtHeaderArabic.Name = "txtHeaderArabic";
-            this.txtHeaderArabic.Style = "color: Black; font-family: Arabic Typesetting; font-size: 21.75pt; font-weight: bold; text-align: center; ddo-char-set: 0";
+            this.txtHeaderArabic.Style = "color: Black; font-family: Arabic Typesetting; font-size: 21.75pt; font-weight: b" +
+    "old; text-align: center; ddo-char-set: 0";
             this.txtHeaderArabic.Text = null;
             this.txtHeaderArabic.Top = 0.3125F;
             this.txtHeaderArabic.Width = 3.375F;
@@ -387,7 +389,8 @@ namespace Pipewellservice.Reports
             this.Label5.HyperLink = null;
             this.Label5.Left = 0.06200024F;
             this.Label5.Name = "Label5";
-            this.Label5.Style = "background-color: Black; color: White; font-size: 9.75pt; font-weight: bold; text-align: center";
+            this.Label5.Style = "background-color: Black; color: White; font-size: 9.75pt; font-weight: bold; text" +
+    "-align: center";
             this.Label5.Text = "Employee Information";
             this.Label5.Top = 1.265625F;
             this.Label5.Width = 7.5005F;
@@ -398,7 +401,8 @@ namespace Pipewellservice.Reports
             this.Label9.HyperLink = null;
             this.Label9.Left = 0.06200024F;
             this.Label9.Name = "Label9";
-            this.Label9.Style = "background-color: Black; color: White; font-size: 9.75pt; font-weight: bold; text-align: center";
+            this.Label9.Style = "background-color: Black; color: White; font-size: 9.75pt; font-weight: bold; text" +
+    "-align: center";
             this.Label9.Text = "Request Details";
             this.Label9.Top = 2.953125F;
             this.Label9.Width = 7.5005F;
@@ -409,7 +413,8 @@ namespace Pipewellservice.Reports
             this.Label1.HyperLink = null;
             this.Label1.Left = 2F;
             this.Label1.Name = "Label1";
-            this.Label1.Style = "color: Black; font-family: Book Antiqua; font-size: 12pt; font-weight: bold; text-align: center; text-decoration: underline; ddo-char-set: 1";
+            this.Label1.Style = "color: Black; font-family: Book Antiqua; font-size: 12pt; font-weight: bold; text" +
+    "-align: center; text-decoration: underline; ddo-char-set: 1";
             this.Label1.Text = "E M P L O Y E E   R E Q U E S T   F O R M ";
             this.Label1.Top = 1F;
             this.Label1.Width = 3.625F;
@@ -550,7 +555,8 @@ namespace Pipewellservice.Reports
             this.Label10.HyperLink = null;
             this.Label10.Left = 6.189126F;
             this.Label10.Name = "Label10";
-            this.Label10.Style = "color: Black; font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; text-align: center; ddo-char-set: 0";
+            this.Label10.Style = "color: Black; font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; te" +
+    "xt-align: center; ddo-char-set: 0";
             this.Label10.Text = "Prepared By";
             this.Label10.Top = 1.589875F;
             this.Label10.Width = 1.374F;
@@ -561,7 +567,8 @@ namespace Pipewellservice.Reports
             this.TextBox13.Height = 0.4375F;
             this.TextBox13.Left = 0.48125F;
             this.TextBox13.Name = "TextBox13";
-            this.TextBox13.Style = "color: Black; font-family: Book Antiqua; font-size: 12pt; font-style: italic; font-weight: bold; ddo-char-set: 1";
+            this.TextBox13.Style = "color: Black; font-family: Book Antiqua; font-size: 12pt; font-style: italic; fon" +
+    "t-weight: bold; ddo-char-set: 1";
             this.TextBox13.Text = null;
             this.TextBox13.Top = 0F;
             this.TextBox13.Visible = false;
@@ -573,7 +580,8 @@ namespace Pipewellservice.Reports
             this.TextBox14.Height = 0.4375F;
             this.TextBox14.Left = 0.48125F;
             this.TextBox14.Name = "TextBox14";
-            this.TextBox14.Style = "color: Black; font-family: Book Antiqua; font-size: 12pt; font-style: italic; font-weight: bold; ddo-char-set: 1";
+            this.TextBox14.Style = "color: Black; font-family: Book Antiqua; font-size: 12pt; font-style: italic; fon" +
+    "t-weight: bold; ddo-char-set: 1";
             this.TextBox14.Text = null;
             this.TextBox14.Top = 0.421875F;
             this.TextBox14.Visible = false;
@@ -585,7 +593,8 @@ namespace Pipewellservice.Reports
             this.TextBox15.Height = 0.4375F;
             this.TextBox15.Left = 0.48125F;
             this.TextBox15.Name = "TextBox15";
-            this.TextBox15.Style = "color: Black; font-family: Book Antiqua; font-size: 12pt; font-style: italic; font-weight: bold; ddo-char-set: 1";
+            this.TextBox15.Style = "color: Black; font-family: Book Antiqua; font-size: 12pt; font-style: italic; fon" +
+    "t-weight: bold; ddo-char-set: 1";
             this.TextBox15.Text = null;
             this.TextBox15.Top = 0.890625F;
             this.TextBox15.Visible = false;
@@ -597,7 +606,8 @@ namespace Pipewellservice.Reports
             this.Label16.HyperLink = null;
             this.Label16.Left = 0.10625F;
             this.Label16.Name = "Label16";
-            this.Label16.Style = "color: Black; font-family: Book Antiqua; font-size: 7pt; font-weight: bold; text-align: left; ddo-char-set: 1";
+            this.Label16.Style = "color: Black; font-family: Book Antiqua; font-size: 7pt; font-weight: bold; text-" +
+    "align: left; ddo-char-set: 1";
             this.Label16.Text = "* Note2";
             this.Label16.Top = 0.484375F;
             this.Label16.Visible = false;
@@ -609,7 +619,8 @@ namespace Pipewellservice.Reports
             this.Label17.HyperLink = null;
             this.Label17.Left = 0.10625F;
             this.Label17.Name = "Label17";
-            this.Label17.Style = "color: Black; font-family: Book Antiqua; font-size: 7pt; font-weight: bold; text-align: left; ddo-char-set: 1";
+            this.Label17.Style = "color: Black; font-family: Book Antiqua; font-size: 7pt; font-weight: bold; text-" +
+    "align: left; ddo-char-set: 1";
             this.Label17.Text = "* Note3";
             this.Label17.Top = 0.921875F;
             this.Label17.Visible = false;
@@ -621,7 +632,8 @@ namespace Pipewellservice.Reports
             this.Label14.HyperLink = null;
             this.Label14.Left = 0.10625F;
             this.Label14.Name = "Label14";
-            this.Label14.Style = "color: Black; font-family: Book Antiqua; font-size: 7pt; font-weight: bold; text-align: left; ddo-char-set: 1";
+            this.Label14.Style = "color: Black; font-family: Book Antiqua; font-size: 7pt; font-weight: bold; text-" +
+    "align: left; ddo-char-set: 1";
             this.Label14.Text = "* Note1";
             this.Label14.Top = 0.03020833F;
             this.Label14.Visible = false;
@@ -633,7 +645,8 @@ namespace Pipewellservice.Reports
             this.Label15.HyperLink = null;
             this.Label15.Left = 0.07912571F;
             this.Label15.Name = "Label15";
-            this.Label15.Style = "background-color: Black; color: White; font-size: 9.75pt; font-weight: bold; text-align: center";
+            this.Label15.Style = "background-color: Black; color: White; font-size: 9.75pt; font-weight: bold; text" +
+    "-align: center";
             this.Label15.Text = "For Human Resource Use Only";
             this.Label15.Top = 1.328F;
             this.Label15.Width = 7.515F;
@@ -652,12 +665,14 @@ namespace Pipewellservice.Reports
             // txtFooter1
             // 
             this.txtFooter1.Height = 0.1875F;
-            this.txtFooter1.Left = 0.09412571F;
+            this.txtFooter1.Left = 0.063F;
             this.txtFooter1.Name = "txtFooter1";
-            this.txtFooter1.Style = "color: Black; font-family: Book Antiqua; font-size: 8.25pt; text-align: center; ddo-char-set: 1";
-            this.txtFooter1.Text = "C.R. 2050022534 - P.O. Box 2010 Dammam 31451 – Saudi Arabia – Telex: 803 505 QAHB RO SJ. – Fax: 8593772 – Tel: 8592286/8594716";
-            this.txtFooter1.Top = 3.606875F;
-            this.txtFooter1.Width = 7.469F;
+            this.txtFooter1.Style = "color: Black; font-family: Book Antiqua; font-size: 8.25pt; text-align: center; d" +
+    "do-char-set: 1";
+            this.txtFooter1.Text = "C.R. 2050022534 - P.O. Box 2010 Dammam 31451 – Saudi Arabia – Telex: 803 505 QAHB" +
+    " RO SJ. – Fax: 8593772 – Tel: 8592286/8594716";
+            this.txtFooter1.Top = 3.555F;
+            this.txtFooter1.Width = 7.537F;
             // 
             // txtFooter3
             // 
@@ -677,7 +692,8 @@ namespace Pipewellservice.Reports
             this.Label11.Left = 3.048126F;
             this.Label11.Name = "Label11";
             this.Label11.ShrinkToFit = true;
-            this.Label11.Style = "color: Black; font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; text-align: center; ddo-char-set: 0; ddo-shrink-to-fit: true";
+            this.Label11.Style = "color: Black; font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; te" +
+    "xt-align: center; ddo-char-set: 0; ddo-shrink-to-fit: true";
             this.Label11.Text = "Approved";
             this.Label11.Top = 1.589875F;
             this.Label11.Width = 1.469F;
@@ -690,7 +706,8 @@ namespace Pipewellservice.Reports
             this.Label12.Left = 1.594126F;
             this.Label12.Name = "Label12";
             this.Label12.ShrinkToFit = true;
-            this.Label12.Style = "color: Black; font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; text-align: center; ddo-char-set: 0; ddo-shrink-to-fit: true";
+            this.Label12.Style = "color: Black; font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; te" +
+    "xt-align: center; ddo-char-set: 0; ddo-shrink-to-fit: true";
             this.Label12.Text = "Approved";
             this.Label12.Top = 1.589875F;
             this.Label12.Width = 1.469F;
@@ -813,7 +830,8 @@ namespace Pipewellservice.Reports
             this.Label13.Left = 0.1101257F;
             this.Label13.Name = "Label13";
             this.Label13.ShrinkToFit = true;
-            this.Label13.Style = "color: Black; font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; text-align: center; ddo-char-set: 0; ddo-shrink-to-fit: true";
+            this.Label13.Style = "color: Black; font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; te" +
+    "xt-align: center; ddo-char-set: 0; ddo-shrink-to-fit: true";
             this.Label13.Text = "Approved ";
             this.Label13.Top = 1.589875F;
             this.Label13.Width = 1.469F;
@@ -872,7 +890,8 @@ namespace Pipewellservice.Reports
             this.Label18.HyperLink = null;
             this.Label18.Left = 1.16F;
             this.Label18.Name = "Label18";
-            this.Label18.Style = "font-family: Book Antiqua; font-size: 6.75pt; font-weight: bold; text-align: left; ddo-char-set: 0";
+            this.Label18.Style = "font-family: Book Antiqua; font-size: 6.75pt; font-weight: bold; text-align: left" +
+    "; ddo-char-set: 0";
             this.Label18.Text = "* Note1";
             this.Label18.Top = 1.732F;
             this.Label18.Width = 0.375F;
@@ -883,7 +902,8 @@ namespace Pipewellservice.Reports
             this.Label19.HyperLink = null;
             this.Label19.Left = 2.704126F;
             this.Label19.Name = "Label19";
-            this.Label19.Style = "font-family: Book Antiqua; font-size: 6.75pt; font-weight: bold; text-align: left; ddo-char-set: 0";
+            this.Label19.Style = "font-family: Book Antiqua; font-size: 6.75pt; font-weight: bold; text-align: left" +
+    "; ddo-char-set: 0";
             this.Label19.Text = "* Note2";
             this.Label19.Top = 1.731875F;
             this.Label19.Width = 0.375F;
@@ -894,7 +914,8 @@ namespace Pipewellservice.Reports
             this.Label20.HyperLink = null;
             this.Label20.Left = 4.157125F;
             this.Label20.Name = "Label20";
-            this.Label20.Style = "font-family: Book Antiqua; font-size: 6.75pt; font-weight: bold; text-align: left; ddo-char-set: 0";
+            this.Label20.Style = "font-family: Book Antiqua; font-size: 6.75pt; font-weight: bold; text-align: left" +
+    "; ddo-char-set: 0";
             this.Label20.Text = "* Note3";
             this.Label20.Top = 1.731875F;
             this.Label20.Width = 0.375F;
@@ -907,7 +928,8 @@ namespace Pipewellservice.Reports
             this.Label21.Left = 4.602125F;
             this.Label21.Name = "Label21";
             this.Label21.ShrinkToFit = true;
-            this.Label21.Style = "color: Black; font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; text-align: center; ddo-char-set: 0; ddo-shrink-to-fit: true";
+            this.Label21.Style = "color: Black; font-family: Book Antiqua; font-size: 9.75pt; font-weight: bold; te" +
+    "xt-align: center; ddo-char-set: 0; ddo-shrink-to-fit: true";
             this.Label21.Text = "Approved";
             this.Label21.Top = 1.589875F;
             this.Label21.Width = 1.469F;
@@ -948,19 +970,6 @@ namespace Pipewellservice.Reports
             this.TextBox19.Top = 3.107F;
             this.TextBox19.Width = 1.25F;
             // 
-            // Line11
-            // 
-            this.Line11.Height = 0F;
-            this.Line11.Left = 0.07912571F;
-            this.Line11.LineWeight = 1F;
-            this.Line11.Name = "Line11";
-            this.Line11.Top = 1.856875F;
-            this.Line11.Width = 7.5155F;
-            this.Line11.X1 = 0.07912571F;
-            this.Line11.X2 = 7.594626F;
-            this.Line11.Y1 = 1.856875F;
-            this.Line11.Y2 = 1.856875F;
-            // 
             // Line2
             // 
             this.Line2.Height = 1.787F;
@@ -986,6 +995,19 @@ namespace Pipewellservice.Reports
             this.Line10.X2 = 6.111126F;
             this.Line10.Y1 = 1.569875F;
             this.Line10.Y2 = 3.356875F;
+            // 
+            // Line11
+            // 
+            this.Line11.Height = 0F;
+            this.Line11.Left = 0.07912571F;
+            this.Line11.LineWeight = 1F;
+            this.Line11.Name = "Line11";
+            this.Line11.Top = 1.856875F;
+            this.Line11.Width = 7.5155F;
+            this.Line11.X1 = 0.07912571F;
+            this.Line11.X2 = 7.594626F;
+            this.Line11.Y1 = 1.856875F;
+            this.Line11.Y2 = 1.856875F;
             // 
             // line4
             // 
@@ -1023,9 +1045,15 @@ namespace Pipewellservice.Reports
             this.Sections.Add(this.Detail);
             this.Sections.Add(this.PageFooter);
             this.StyleSheet.Add(new DDCssLib.StyleSheetRule("", "Normal"));
-            this.StyleSheet.Add(new DDCssLib.StyleSheetRule("font-family: inherit; color: Black; font-style: inherit; font-variant: inherit; font-weight: bold; font-size: 16pt; font-size-adjust: inherit; font-stretch: inherit", "Heading1", "Normal"));
-            this.StyleSheet.Add(new DDCssLib.StyleSheetRule("font-family: Times New Roman; font-style: italic; font-variant: inherit; font-weight: bold; font-size: 14pt; font-size-adjust: inherit; font-stretch: inherit; color: Black", "Heading2", "Normal"));
-            this.StyleSheet.Add(new DDCssLib.StyleSheetRule("font-family: inherit; font-style: inherit; font-variant: inherit; font-weight: bold; font-size: 13pt; font-size-adjust: inherit; font-stretch: inherit; color: Black", "Heading3", "Normal"));
+            this.StyleSheet.Add(new DDCssLib.StyleSheetRule("font-family: inherit; color: Black; font-style: inherit; font-variant: inherit; f" +
+            "ont-weight: bold; font-size: 16pt; font-size-adjust: inherit; font-stretch: inhe" +
+            "rit", "Heading1", "Normal"));
+            this.StyleSheet.Add(new DDCssLib.StyleSheetRule("font-family: Times New Roman; font-style: italic; font-variant: inherit; font-wei" +
+            "ght: bold; font-size: 14pt; font-size-adjust: inherit; font-stretch: inherit; co" +
+            "lor: Black", "Heading2", "Normal"));
+            this.StyleSheet.Add(new DDCssLib.StyleSheetRule("font-family: inherit; font-style: inherit; font-variant: inherit; font-weight: bo" +
+            "ld; font-size: 13pt; font-size-adjust: inherit; font-stretch: inherit; color: Bl" +
+            "ack", "Heading3", "Normal"));
             this.Watermark = ((System.Drawing.Image)(resources.GetObject("$this.Watermark")));
             this.WatermarkSizeMode = GrapeCity.ActiveReports.SectionReportModel.SizeModes.Zoom;
             this.ReportStart += new System.EventHandler(this.rpEmployeeInquiry_ReportStart);
@@ -1164,6 +1192,8 @@ namespace Pipewellservice.Reports
             List<Constant> cont = AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.REPORTHEADER);
             txtHeaderArabic.Text = cont.Find(x => x.Value == 5).Name;
             txtHeaderCompany.Text = cont.Find(x => x.Value == 4).Name;
+            txtFooter1.Text = cont.Find(x => x.Value == 1).Name;
+            txtFooter3.Text = cont.Find(x => x.Value == 3).Name;
             TextBox1.Text = System.DateTime.Now.ToString();
             //this.Document.CacheToDisk = true;
             List<EmployeeInquiryReport> data = (List<EmployeeInquiryReport>)this.DataSource;

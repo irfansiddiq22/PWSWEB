@@ -75,14 +75,14 @@ namespace PipewellserviceDB.Procurement
             }
 
         }
-        public async Task<MaterialRequestDB> GetMatrialRequestItems(int ID)
+        public async Task<MaterialRequestDB> GetIPRMatrialRequestItems(int ID)
         {
             try
             {
 
-                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetMaterialRequestItems", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetIPRMaterialRequestItems", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
                 MaterialRequestDB Data = new MaterialRequestDB();
-                
+                Data.MaterialRequest.Load(result);
                 Data.MaterialRequestItem.Load(result);
                 result.Close();
                 return Data;

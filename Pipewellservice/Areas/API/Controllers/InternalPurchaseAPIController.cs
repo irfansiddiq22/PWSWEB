@@ -1,4 +1,5 @@
 ﻿using Pipewellservice.Helper;
+using PipewellserviceDB.Procurement.Purchase;
 using PipewellserviceJson.HR.Employee;
 using PipewellserviceJson.Procurement.Purchase;
 using PipewellserviceModels.Common;
@@ -63,9 +64,11 @@ namespace Pipewellservice.Areas.API.Controllers
                     await helper.ProcessRequest(ApprovalTypes.InternalPurchaseRequest, model, true);
                 }
             }
+             
             return new JsonResult
             {
-                Data = result.ID,
+                Data =new { ID = result.ID, PendingStockIPR = (new PurchaseService()).OutOfStockMaterialRequests() },
+
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }

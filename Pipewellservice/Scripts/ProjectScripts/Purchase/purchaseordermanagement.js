@@ -122,7 +122,7 @@ function BindOrderManagmentList(PageNumber = 1) {
             return 'Data';
         },
         totalNumberLocator: function (response) {
-            return response.TotalRecords;
+            return response.TotalRecord;
         },
 
         ajax: {

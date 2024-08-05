@@ -32,6 +32,8 @@ namespace Pipewellservice.Reports
             List<Constant> cont = AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.REPORTHEADER);
             txtHeaderArabic.Text = cont.Find(x => x.Value == 5).Name;
             txtHeaderCompany.Text = cont.Find(x => x.Value == 4).Name;
+            txtFooter1.Text= cont.Find(x => x.Value == 1).Name;
+            txtFooter3.Text = cont.Find(x => x.Value == 3).Name;
             TextBox1.Text = System.DateTime.Now.ToString();
             
             InternalPurchaseRequest request = (InternalPurchaseRequest)this.UserData;
@@ -79,6 +81,11 @@ namespace Pipewellservice.Reports
                 }
                 catch (Exception ex) { }
             }*/
+        }
+
+        private void Detail_Format(object sender, EventArgs e)
+        {
+
         }
     }
 }

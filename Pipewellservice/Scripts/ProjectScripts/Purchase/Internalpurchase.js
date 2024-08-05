@@ -231,11 +231,18 @@ function EditPurchaseRequest(ID) {
     ResetDatePicker();
 
 }
-function FillMaterialItems() {
+function FillMaterialItems(IPO) {
     if (parseInt(valOf("txtMaterialRequestID")) > 0) {
         if ($("#tblPurchaseRequestItems tr").length == 0 && PurchaseRequest.ID == 0) {
-            Post("/ProcurementAPI/GetMatrialRequestItems", { ID: valOf("txtMaterialRequestID") }).done(function (resp) {
-                $.each(resp, function (i, itm) {
+            Post(IPO == 1 ? "/ProcurementAPI/GetIPRMatrialRequestItems" : "/ProcurementAPI/GetMatrialRequestItems", { ID: valOf("txtMaterialRequestID") }).done(function (resp) {
+                var items = resp;
+                if (IPO == 1) {
+                    items = resp.Items;
+                    SetvalOf("ddEmployeeCode", resp.Request.RequestedBy).trigger("change");
+                    SetvalOf("ddRequestType", resp.Request.RequestType);
+                }
+                $("#ddEmployeeCode").val()
+                $.each(items, function (i, itm) {
                     var tr = $('<tr>')
 
                     tr.attr("data-id", itm == null ? 0 : itm.ItemID);
@@ -392,6 +399,7 @@ function SavePurchaseRequest() {
     var Request = {
         ID: PurchaseRequest.ID,
         RecordDate: valOf("txtRecordDate"),
+        MaterialRequestID: valOf("txtMaterialRequestID"),
         QuotationNumber: valOf("txtRequestQuotationNumber"),
         SupplierID: valOf("ddSuppliers"),
         MaintRequestNumber: valOf("txtMaintRequestNumber"),
@@ -408,18 +416,12 @@ function SavePurchaseRequest() {
 
     
     var RequestItems = [];
-    if (Request.QuotationNumber == "") {
-        swal("Please enter quotation number", { icon: "error" });
-        return false;
-    }
+    
     if (Request.SupplierID == 0) {
         swal("Please select supplier", { icon: "error" });
         return false;
     }
-    if (Request.MaintRequestNumber == "") {
-        swal("Please enter maint. request no", { icon: "error" });
-        return false;
-    }
+    
     if (Request.DeliveryType == 0) {
         swal("Please select delivery type", { icon: "error" });
         return false;
@@ -520,14 +522,16 @@ function SavePurchaseRequest() {
         Request.FileName = files[0].FileName;
     }
 
-    Post("/InternalPurchaseAPI/AddPurchaseRequest", { request: Request, Items: RequestItems }).done(function (resp) {
-        SaveLog(resp);
-        if (resp > 0) {
-
-
+    Post("/InternalPurchaseAPI/AddPurchaseRequest", { request: Request, Items: RequestItems }).done(function (PurchaseResponse) {
+        SaveLog(PurchaseResponse.ID);
+        if (PurchaseResponse.ID > 0) {
+            if (PurchaseResponse.PendingStockIPR == 0)
+                $("#dvOutofStockRequest").hide();
+            else
+                $("#lnkOutofStockRequest").text(PurchaseResponse.PendingStockIPR);
             if (files.length > 0) {
 
-                UploadFile("/InternalPurchaseAPI/UpdatePurchaseRequestFile", files[0], { ID: resp }, function (Status, Response) {
+                UploadFile("/InternalPurchaseAPI/UpdatePurchaseRequestFile", files[0], { ID: PurchaseResponse.ID }, function (Status, Response) {
 
 
                     if (Status == 1) {
@@ -627,7 +631,8 @@ function ShowPendingMaterialRequest() {
 }
 function CreateIPR(ID) {
     NewPurchaseRequest();
-    $("#txtMaterialRequestID").val(ID).trigger("blur");
+    $("#txtMaterialRequestID").val(ID);//.trigger("blur");
+    FillMaterialItems(1);
  
 }
 function ClosePendingMaterialRequests() {

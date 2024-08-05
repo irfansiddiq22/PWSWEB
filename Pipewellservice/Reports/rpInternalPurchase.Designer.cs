@@ -26,12 +26,20 @@ namespace Pipewellservice.Reports
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rpInternalPurchase));
             this.Detail = new GrapeCity.ActiveReports.SectionReportModel.Detail();
+            this.lblSr = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
+            this.lblName = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
+            this.lblRate = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
+            this.TextBox2 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
+            this.TextBox = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
+            this.lblNote = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
+            this.TextBox9 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.PageHeader = new GrapeCity.ActiveReports.SectionReportModel.PageHeader();
             this.Shape = new GrapeCity.ActiveReports.SectionReportModel.Shape();
             this.TextBox1 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.Label = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.txtHeaderCompany = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.Picture = new GrapeCity.ActiveReports.SectionReportModel.Picture();
+            this.txtHeaderArabic = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.PageFooter = new GrapeCity.ActiveReports.SectionReportModel.PageFooter();
             this.txtFooter1 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.txtFooter3 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
@@ -116,18 +124,18 @@ namespace Pipewellservice.Reports
             this.txtRemarks4 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             this.lblPrint = new GrapeCity.ActiveReports.SectionReportModel.Label();
             this.Shape4 = new GrapeCity.ActiveReports.SectionReportModel.Shape();
-            this.txtHeaderArabic = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.lblSr = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.TextBox2 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.lblName = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.TextBox9 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.lblNote = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.lblRate = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
-            this.TextBox = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.lblSr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblRate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblNote)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeaderCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderArabic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox5)).BeginInit();
@@ -191,14 +199,6 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.txtR4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemarks4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPrint)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderArabic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblSr)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblNote)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblRate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -213,6 +213,92 @@ namespace Pipewellservice.Reports
             this.TextBox9});
             this.Detail.Height = 0.1875F;
             this.Detail.Name = "Detail";
+            this.Detail.Format += new System.EventHandler(this.Detail_Format);
+            // 
+            // lblSr
+            // 
+            this.lblSr.DataField = "SerialNumber";
+            this.lblSr.Height = 0.1875F;
+            this.lblSr.Left = 0.046875F;
+            this.lblSr.Name = "lblSr";
+            this.lblSr.Style = "color: Black; font-size: 8pt; text-align: left; vertical-align: middle; ddo-char-" +
+    "set: 1";
+            this.lblSr.Tag = "";
+            this.lblSr.Text = "0";
+            this.lblSr.Top = 0F;
+            this.lblSr.Width = 0.3125F;
+            // 
+            // lblName
+            // 
+            this.lblName.DataField = "ItemName";
+            this.lblName.Height = 0.1875F;
+            this.lblName.Left = 0.953125F;
+            this.lblName.Name = "lblName";
+            this.lblName.Style = "color: Black; font-size: 8pt; font-weight: normal; vertical-align: middle; ddo-ch" +
+    "ar-set: 1";
+            this.lblName.Text = null;
+            this.lblName.Top = 0F;
+            this.lblName.Width = 3.421875F;
+            // 
+            // lblRate
+            // 
+            this.lblRate.DataField = "Quantity";
+            this.lblRate.Height = 0.1875F;
+            this.lblRate.Left = 6.765625F;
+            this.lblRate.Name = "lblRate";
+            this.lblRate.Style = "color: Black; font-size: 8pt; font-weight: normal; text-align: center; vertical-a" +
+    "lign: middle; ddo-char-set: 1";
+            this.lblRate.Text = "0";
+            this.lblRate.Top = 0F;
+            this.lblRate.Width = 0.40625F;
+            // 
+            // TextBox2
+            // 
+            this.TextBox2.DataField = "ItemCode";
+            this.TextBox2.Height = 0.1875F;
+            this.TextBox2.Left = 0.390625F;
+            this.TextBox2.Name = "TextBox2";
+            this.TextBox2.Style = "color: Black; font-size: 8pt; font-weight: normal; text-align: left; vertical-ali" +
+    "gn: middle; ddo-char-set: 1";
+            this.TextBox2.Text = "0";
+            this.TextBox2.Top = 0F;
+            this.TextBox2.Width = 0.578125F;
+            // 
+            // TextBox
+            // 
+            this.TextBox.DataField = "Unit";
+            this.TextBox.Height = 0.1875F;
+            this.TextBox.Left = 7.203125F;
+            this.TextBox.Name = "TextBox";
+            this.TextBox.Style = "color: Black; font-size: 8pt; font-weight: normal; text-align: left; vertical-ali" +
+    "gn: middle; ddo-char-set: 1";
+            this.TextBox.Text = null;
+            this.TextBox.Top = 0F;
+            this.TextBox.Width = 0.5625F;
+            // 
+            // lblNote
+            // 
+            this.lblNote.DataField = "Notes";
+            this.lblNote.Height = 0.2F;
+            this.lblNote.Left = 5.629F;
+            this.lblNote.Name = "lblNote";
+            this.lblNote.Style = "color: Black; font-family: Book Antiqua; font-size: 8pt; font-weight: normal; tex" +
+    "t-align: left; vertical-align: bottom; ddo-char-set: 1";
+            this.lblNote.Text = null;
+            this.lblNote.Top = 0.004F;
+            this.lblNote.Width = 1.09F;
+            // 
+            // TextBox9
+            // 
+            this.TextBox9.DataField = "PartNumber";
+            this.TextBox9.Height = 0.2F;
+            this.TextBox9.Left = 4.41F;
+            this.TextBox9.Name = "TextBox9";
+            this.TextBox9.Style = "color: Black; font-family: Book Antiqua; font-size: 8pt; font-weight: normal; tex" +
+    "t-align: center; vertical-align: bottom; ddo-char-set: 1";
+            this.TextBox9.Text = null;
+            this.TextBox9.Top = 0.004F;
+            this.TextBox9.Width = 1.219F;
             // 
             // PageHeader
             // 
@@ -284,6 +370,17 @@ namespace Pipewellservice.Reports
             this.Picture.Top = 0.051736F;
             this.Picture.Width = 1.0625F;
             // 
+            // txtHeaderArabic
+            // 
+            this.txtHeaderArabic.Height = 0.375F;
+            this.txtHeaderArabic.Left = 4.391F;
+            this.txtHeaderArabic.Name = "txtHeaderArabic";
+            this.txtHeaderArabic.Style = "color: Black; font-family: Arabic Typesetting; font-size: 21.75pt; font-weight: b" +
+    "old; text-align: center; ddo-char-set: 0";
+            this.txtHeaderArabic.Text = null;
+            this.txtHeaderArabic.Top = 0.312F;
+            this.txtHeaderArabic.Width = 3.375F;
+            // 
             // PageFooter
             // 
             this.PageFooter.Controls.AddRange(new GrapeCity.ActiveReports.SectionReportModel.ARControl[] {
@@ -315,13 +412,14 @@ namespace Pipewellservice.Reports
             // txtFooter1
             // 
             this.txtFooter1.Height = 0.1875F;
-            this.txtFooter1.Left = 0F;
+            this.txtFooter1.Left = 0.027F;
             this.txtFooter1.Name = "txtFooter1";
-            this.txtFooter1.Style = "color: Black; font-family: Book Antiqua; font-size: 8.25pt; text-align: center";
+            this.txtFooter1.Style = "color: Black; font-family: Book Antiqua; font-size: 8.25pt; text-align: center; w" +
+    "hite-space: nowrap; ddo-wrap-mode: nowrap";
             this.txtFooter1.Text = "C.R. 2050022534 - P.O. Box 2010 Dammam 31451 – Saudi Arabia – Telex: 803 505 QAHB" +
     "RO SJ. – Fax: 8593772 – Tel: 8592286/8594716";
-            this.txtFooter1.Top = 1.223958F;
-            this.txtFooter1.Width = 7.5625F;
+            this.txtFooter1.Top = 1.224F;
+            this.txtFooter1.Width = 7.673F;
             // 
             // txtFooter3
             // 
@@ -1316,102 +1414,6 @@ namespace Pipewellservice.Reports
             this.Shape4.Top = 0F;
             this.Shape4.Width = 7.6875F;
             // 
-            // txtHeaderArabic
-            // 
-            this.txtHeaderArabic.Height = 0.375F;
-            this.txtHeaderArabic.Left = 4.391F;
-            this.txtHeaderArabic.Name = "txtHeaderArabic";
-            this.txtHeaderArabic.Style = "color: Black; font-family: Arabic Typesetting; font-size: 21.75pt; font-weight: b" +
-    "old; text-align: center; ddo-char-set: 0";
-            this.txtHeaderArabic.Text = null;
-            this.txtHeaderArabic.Top = 0.312F;
-            this.txtHeaderArabic.Width = 3.375F;
-            // 
-            // lblSr
-            // 
-            this.lblSr.DataField = "SerialNumber";
-            this.lblSr.Height = 0.1875F;
-            this.lblSr.Left = 0.046875F;
-            this.lblSr.Name = "lblSr";
-            this.lblSr.Style = "color: Black; font-size: 8pt; text-align: left; vertical-align: middle; ddo-char-" +
-    "set: 1";
-            this.lblSr.Tag = "";
-            this.lblSr.Text = "0";
-            this.lblSr.Top = 0F;
-            this.lblSr.Width = 0.3125F;
-            // 
-            // TextBox2
-            // 
-            this.TextBox2.DataField = "ItemCode";
-            this.TextBox2.Height = 0.1875F;
-            this.TextBox2.Left = 0.390625F;
-            this.TextBox2.Name = "TextBox2";
-            this.TextBox2.Style = "color: Black; font-size: 8pt; font-weight: normal; text-align: left; vertical-ali" +
-    "gn: middle; ddo-char-set: 1";
-            this.TextBox2.Text = "0";
-            this.TextBox2.Top = 0F;
-            this.TextBox2.Width = 0.578125F;
-            // 
-            // lblName
-            // 
-            this.lblName.DataField = "ItemName";
-            this.lblName.Height = 0.1875F;
-            this.lblName.Left = 0.953125F;
-            this.lblName.Name = "lblName";
-            this.lblName.Style = "color: Black; font-size: 8pt; font-weight: normal; vertical-align: middle; ddo-ch" +
-    "ar-set: 1";
-            this.lblName.Text = null;
-            this.lblName.Top = 0F;
-            this.lblName.Width = 3.421875F;
-            // 
-            // TextBox9
-            // 
-            this.TextBox9.DataField = "PartNumber";
-            this.TextBox9.Height = 0.2F;
-            this.TextBox9.Left = 4.41F;
-            this.TextBox9.Name = "TextBox9";
-            this.TextBox9.Style = "color: Black; font-family: Book Antiqua; font-size: 8pt; font-weight: normal; tex" +
-    "t-align: center; vertical-align: bottom; ddo-char-set: 1";
-            this.TextBox9.Text = null;
-            this.TextBox9.Top = 0.004F;
-            this.TextBox9.Width = 1.219F;
-            // 
-            // lblNote
-            // 
-            this.lblNote.DataField = "Notes";
-            this.lblNote.Height = 0.2F;
-            this.lblNote.Left = 5.629F;
-            this.lblNote.Name = "lblNote";
-            this.lblNote.Style = "color: Black; font-family: Book Antiqua; font-size: 8pt; font-weight: normal; tex" +
-    "t-align: left; vertical-align: bottom; ddo-char-set: 1";
-            this.lblNote.Text = null;
-            this.lblNote.Top = 0.004F;
-            this.lblNote.Width = 1.09F;
-            // 
-            // lblRate
-            // 
-            this.lblRate.DataField = "Quantity";
-            this.lblRate.Height = 0.1875F;
-            this.lblRate.Left = 6.765625F;
-            this.lblRate.Name = "lblRate";
-            this.lblRate.Style = "color: Black; font-size: 8pt; font-weight: normal; text-align: center; vertical-a" +
-    "lign: middle; ddo-char-set: 1";
-            this.lblRate.Text = "0";
-            this.lblRate.Top = 0F;
-            this.lblRate.Width = 0.40625F;
-            // 
-            // TextBox
-            // 
-            this.TextBox.DataField = "Unit";
-            this.TextBox.Height = 0.1875F;
-            this.TextBox.Left = 7.203125F;
-            this.TextBox.Name = "TextBox";
-            this.TextBox.Style = "color: Black; font-size: 8pt; font-weight: normal; text-align: left; vertical-ali" +
-    "gn: middle; ddo-char-set: 1";
-            this.TextBox.Text = null;
-            this.TextBox.Top = 0F;
-            this.TextBox.Width = 0.5625F;
-            // 
             // rpInternalPurchase
             // 
             this.MasterReport = false;
@@ -1431,11 +1433,20 @@ namespace Pipewellservice.Reports
             this.StyleSheet.Add(new DDCssLib.StyleSheetRule("font-family: inherit; font-style: inherit; font-variant: inherit; font-weight: bo" +
             "ld; font-size: 13pt; font-size-adjust: inherit; font-stretch: inherit", "Heading3", "Normal"));
             this.Watermark = ((System.Drawing.Image)(resources.GetObject("$this.Watermark")));
+            this.WatermarkSizeMode = GrapeCity.ActiveReports.SectionReportModel.SizeModes.Zoom;
             this.ReportStart += new System.EventHandler(this.rpInternalPurchase_ReportStart);
+            ((System.ComponentModel.ISupportInitialize)(this.lblSr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblRate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblNote)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TextBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeaderCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderArabic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFooter3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox5)).EndInit();
@@ -1499,14 +1510,6 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.txtR4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemarks4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPrint)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHeaderArabic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblSr)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblNote)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblRate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }

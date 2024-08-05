@@ -289,7 +289,7 @@ function AddItem() {
 
     $(qtyTd).append( $('<input type="number" min="1" class="form-control form-control-sm">').val(newItem.Quantity));
     if (parseInt(newItem.StockQuantity) < parseInt(newItem.Quantity))
-        $(qtyTd).append(`<span class="badge bg-danger mt-1">${parseInt(newItem.StockQuantity)} items are in Store, IPS will be genereted for rest of items`)
+        $(qtyTd).append(`<span class="badge bg-danger mt-1">${parseInt(newItem.StockQuantity)} items are in Store, IPR will be genereted for rest of items`)
         tr.append($(qtyTd));
 
     tr.append($('<td>').append($('<input type="text"  class="form-control form-control-sm">').val(newItem.Notes)));

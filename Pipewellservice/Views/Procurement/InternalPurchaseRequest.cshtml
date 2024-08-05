@@ -26,9 +26,9 @@
                 <div class="col-md">
                     @if (@ViewBag.OutOfStockMaterialRequests > 0)
                     {
-                        <div class="bg-warning p-2 round">
+                        <div class="bg-warning p-2 round" id="dvOutofStockRequest" >
 
-                            <a href="javascript:void(0)" onclick="ShowPendingMaterialRequest()" class="p-1 rounded text-bg-danger me-1">@ViewBag.OutOfStockMaterialRequests </a> Material Request(s) waiting to complete IPR
+                            <a href="javascript:void(0)" id="lnkOutofStockRequest" onclick="ShowPendingMaterialRequest()" class="p-1 rounded text-bg-danger me-1">@ViewBag.OutOfStockMaterialRequests </a> Material Request(s) waiting to complete IPR
 
                         </div>
                     }
@@ -97,7 +97,7 @@
                         </div>
                         <div class="col-md-3">
                             <label for="MRID" class="form-label">Material Request ID.</label>
-                            <input type="text" class="form-control form-control-sm" id="txtMaterialRequestID" onblur="FillMaterialItems()">
+                            <input type="text" class="form-control form-control-sm" id="txtMaterialRequestID" onblur="FillMaterialItems(0)">
                         </div>
 
                         <div class="col-md-3">

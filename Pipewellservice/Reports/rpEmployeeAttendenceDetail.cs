@@ -2737,6 +2737,7 @@ public partial class rptAttendanceDetail : GrapeCity.ActiveReports.SectionReport
         List<Constant> cont=  AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.REPORTHEADER);
         txtHeaderArabic.Text = cont.Find(x => x.Value == 5).Name;
         txtHeaderCompany.Text = cont.Find(x => x.Value == 4).Name ;
+        
         DataTable data = (DataTable)this.DataSource;
         if (data.Rows.Count > 0)
         {

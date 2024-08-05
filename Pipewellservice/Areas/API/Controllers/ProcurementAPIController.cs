@@ -123,9 +123,9 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        public async Task<JsonResult> GetMatrialRequestItems(int ID)
+        public async Task<JsonResult> GetIPRMatrialRequestItems(int ID)
         {
-            var result = await json.GetMatrialRequestItems(ID);
+            var result = await json.GetIPRMatrialRequestItems(ID);
             return new JsonResult
             {
                 Data = result,
