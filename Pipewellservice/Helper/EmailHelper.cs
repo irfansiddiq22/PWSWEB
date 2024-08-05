@@ -12,7 +12,7 @@ namespace Pipewellservice.Helper
 {
   public  class EmailHelper
     {
-        public async Task<bool> SendEmail(EmailDTO email)
+        public async Task<bool> SendEmailPWS(EmailDTO email)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             //MailMessage mail = new MailMessage("service.eng2@pipewellservices.com", email.To, email.Subject, email.Body);
@@ -42,11 +42,11 @@ namespace Pipewellservice.Helper
 
         }
  
-public async Task<bool> SendEmailGmails(EmailDTO email)
+public async Task<bool> SendEmail(EmailDTO email)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             //MailMessage mail = new MailMessage("service.eng2@pipewellservices.com", email.To, email.Subject, email.Body);
-            MailMessage mail = new MailMessage("notifications.pws@gmail.com", email.To, email.Subject, email.Body);
+            MailMessage mail = new MailMessage("PWS ERP Notifications<notifications.pws@gmail.com>", email.To, email.Subject, email.Body);
             mail.IsBodyHtml = true;
             mail.Bcc.Add("Irfanullah.it@pipewellservices.com");
             SmtpClient smtpServer = new SmtpClient("smtp.gmail.com", 587);
