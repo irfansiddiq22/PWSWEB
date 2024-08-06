@@ -206,9 +206,12 @@
     <Compile Include="Areas\API\Controllers\PurchaseOrderAPIController.cs" />
     <Compile Include="Areas\API\Controllers\InternalPurchaseAPIController.cs" />
     <Compile Include="Areas\API\Controllers\SettingAPIController.cs" />
+    <Compile Include="Areas\EquipmentsAPI\Controllers\SpacePartItemAPIController.cs" />
+    <Compile Include="Areas\EquipmentsAPI\EquipmentsAPIAreaRegistration.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\EquipmentsController.cs" />
     <Compile Include="Controllers\ProcurementController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
@@ -517,6 +520,7 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\ProjectScripts\Auth\Login.js" />
+    <Content Include="Scripts\ProjectScripts\Equipments\SpareParts\SpareParts.js" />
     <Content Include="Scripts\ProjectScripts\Home\EmployeeDetail.js" />
     <Content Include="Scripts\ProjectScripts\Home\home.js" />
     <Content Include="Scripts\ProjectScripts\Home\Profile.js" />
@@ -604,6 +608,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\EquipmentsAPI\Views\web.config" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -707,6 +712,8 @@
     <Content Include="Views\Sales\Home.cshtml" />
     <Content Include="Views\Procurement\Receiving.cshtml" />
     <Content Include="Views\Procurement\Delivery.cshtml" />
+    <Content Include="Views\Equipments\_PartialSpareParts.cshtml" />
+    <Content Include="Views\Equipments\home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -719,6 +726,9 @@
     <Folder Include="Areas\API\Views\PurchaseAPI\" />
     <Folder Include="Areas\API\Views\SettingAPI\" />
     <Folder Include="Areas\API\Views\Shared\" />
+    <Folder Include="Areas\EquipmentsAPI\Models\" />
+    <Folder Include="Areas\EquipmentsAPI\Views\Shared\" />
+    <Folder Include="Areas\EquipmentsAPI\Views\SpacePartItemAPI\" />
     <Folder Include="Models\" />
     <Folder Include="Resources\Employee\1\" />
     <Folder Include="Resources\Employee\2\" />

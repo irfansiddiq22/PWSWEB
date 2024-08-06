@@ -36,7 +36,8 @@
     SupplierAssessment: 35,
     Customers: 36,
     StoreReceiving: 37,
-    StoreDelivery:38
+    StoreDelivery: 38,
+    SparePartItems:39
 
 }
 var REPORTS = {

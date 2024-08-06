@@ -184,7 +184,7 @@ namespace PipewellserviceModels.Common
         CustomerRegisteration=36,
         StoreReceiving=37,
         StoreDelivery = 38,
-
+        SpareParts=39
 
 
     }

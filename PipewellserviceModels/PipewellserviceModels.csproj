@@ -62,6 +62,7 @@
     <Compile Include="Common\RecordLog.cs" />
     <Compile Include="Common\ResultDTO.cs" />
     <Compile Include="Customer\CustomerRegistrationDTO.cs" />
+    <Compile Include="Equipment\SparePart\SparePartItem.cs" />
     <Compile Include="Home\PersonalDetail.cs" />
     <Compile Include="Home\SupplierAssesment.cs" />
     <Compile Include="HR\Employee\Accommodation.cs" />

@@ -37,7 +37,7 @@ function FillStoreItems() {
     ResetChangeLog(PAGES.ProcurementStoreItem);
 
     $('#dvStoreItemPaging').pagination({
-        dataSource: "/ProcurementAPI/GetStoreItemList",
+        dataSource: "/ProcurementAPI/GetSto reItemList",
         pageSize: pageSize,
         pageNumber: 1,
         showGoInput: true,

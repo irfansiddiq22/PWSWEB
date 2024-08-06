@@ -1,0 +1,151 @@
+﻿
+
+<div class="border p-2">
+    <div id="dvsparepartslist">
+        <div class="p-3 border my-2">
+
+            <div class="row">
+
+                <div class="form-group col-md-3 row">
+                    <label class="col-md-2 col-form-label p-0"> Part Number:</label>
+                    <div class="col">
+                        <input type="text" class="form-control form-control-sm" id="txtSearchPartNumber"/>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-2 row">
+                    <label class="col-md-auto col-form-label p-0"> Date Range:</label>
+                    <div class="col position-relative">
+                        <input type="text" name="ddlDataRange" id="ddlPurchaseRequestDataRange" class="form-control form-control-sm daterangepicker" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <button class="btn btn-sm btn-primary" onclick="BindPurchaseRequestList()">Search </button>
+                    <button class="btn btn-sm btn-success" onclick="NewPurchaseRequest()">Add Request </button>
+                </div>
+                <div class="col-md">
+                    
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="table-responsive" id="tblIPR">
+            <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+                <thead class="blue">
+                    <tr>
+                        <th>ID</th>
+                        <th>Date Requested </th>
+                        <th>Quotation</th>
+                        <th>Supplier</th>
+                        <th>Maint.Request Number</th>
+                        <th>Requested By</th>
+                        <th>Prepared By</th>
+
+                        <th>Approved By</th>
+                        <th>Approved</th>
+                        <th>Remarks</th>
+                        <th>Attachments</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tblPurchaseRequestList"></tbody>
+            </table>
+            <div id="dvSparepartItemPaging"></div>
+        </div>
+        
+    </div>
+
+    <div class="container mt-5 writecontainer" id="dvEdit">
+        <div class="border">
+            <div class="blue p-1"><h6>Spare Part Item</h6></div>
+            <div class="p-4">
+                <form id="frmSpartPartItems" name="frmSpartPartItems">
+                    <table class="table table-striped table-sm border" >
+                        <tbody>
+                            <tr>
+                                <td width="10%"><label for="txtSparePartNumber" class="form-label">Part Number</label></td>
+                                <td><input type="text" class="form-control form-control-sm" id="txtSparePartNumber" name="PartNumber" required data-id="PartNumber" data-msg="Please enter part number."></td>
+                            </tr>
+
+                            <tr>
+                                <td><label for="txtSparePartName" class="form-label">Part Name</label></td>
+                                <td><input type="text" class="form-control form-control-sm" id="txtSparePartName" name="PartName" required data-id="PartName" data-msg="Please enter part name."></td>
+                            </tr>
+                            <tr>
+                                <td><label for="txtSparePartApplication" class="form-label">Application</label></td>
+                                <td><input type="text" class="form-control form-control-sm" id="txtSparePartApplication" name="Application" required data-id="Application" data-msg="Please enter part applications."></td>
+                            </tr>
+                            <tr>
+                                <td><label for="txtSparePartAlternative" class="form-label">Alternative</label></td>
+                                <td><input type="text" class="form-control form-control-sm" id="txtSparePartAlternative" name="Alternatives" required data-id="Alternatives" data-msg="Please enter part alternatives."></td>
+                            </tr>
+                            <tr>
+                                <td><label for="txtSparePartAlternative" class="form-label">Location</label></td>
+                                <td><input type="text" class="form-control form-control-sm" id="txtSparePartLocation" name="Location" required data-id="Location" data-msg="Please enter part location."></td>
+                            </tr>
+                            <tr>
+                                <td><label for="txtSparePartPurchasePrice" class="form-label">Purchase Price</label></td>
+                                <td><input type="number" class="form-control form-control-sm" id="txtSparePartPurchasePrice" name="PurchasePrice" data-min="0" required data-id="PurchasePrice" data-msg="Please enter part purchase price."></td>
+                            </tr>
+                            <tr>
+                                <td><label for="txtSparePartSalesPrice" class="form-label">Sales Price</label></td>
+                                <td>
+
+                                    <input type="number" class="form-control form-control-sm" id="txtSparePartSalesPrice" name="SalesPrice" required data-id="SalesPrice" data-msg="Please enter part sales price.">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="partyName" class="form-label">Re-Order Limit</label>
+
+                                </td>
+                                <td> <input type="number" class="form-control form-control-sm" id="txtSparePartReOrderLimit" min="0" name="ReOrderLimit" required data-id="ReOrderLimit" data-msg="Please enter part re order limit."></td>
+                            </tr>
+                            <tr>
+                                <td><label for="date" class="form-label">Part Group</label></td>
+                                <td>
+
+                                    <input type="text" class="form-control form-control-sm" id="txtSparePartPurchasePartGroup" name="PartGroup" required data-id="PartGroup" data-msg="Please enter part group.">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Inventory Part</td>
+                                <td>
+                                    <label class="switch"><input type="checkbox" checked="checked" id="chkInventoryPart" data-id="InventoryPart"><div class="slider round"></div></label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Notes:</td>
+                                <td><textarea class="form-control form-control-sm" id="txtNotes"  data-id="notes"></textarea></td>
+                            </tr>
+                            <tr>
+                                
+                                <td colspan="2">
+                                    <button class="btn btn-primary me-1" type="button" onclick="return SaveItem()">Save</button>
+                                    <button class="btn btn-danger me-1" type="button" onclick="ResetNav()">Cancel</button>
+                                    <button class="btn btn-danger" type="reset">Clear</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/pagination")
+    @Scripts.Render("~/bundles/typeahead")
+
+    @Scripts.Render("~/lib/equipments/spareparts/spartpart")
+    @Styles.Render("~/bundles/paginationcss")
+}
+
+s

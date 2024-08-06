@@ -6,6 +6,7 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    
 </head>
 
 <body class="position-relative">
@@ -161,20 +162,18 @@
         
     </script>
     @Styles.Render("~/bundles/sweetalertcss")
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
-
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/sweetalert")
     @Scripts.Render("~/common")
     @Scripts.Render("~/lib/sidemenu")
     @Scripts.Render("~/bundles/datatable")
     @Scripts.Render("~/bundles/datatablecss")
-
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
 //        moment.locale('ar-SA');
+        
 
         $(function () {
             $(".fim-dropdown > label").click(function () {
@@ -195,13 +194,15 @@
                 todayHighlight: false,
                 format: 'dd/mm/yyyy'
             })
+
             $.post("/Auth/Identity", {}, function (resp) {
                 User = resp;
                 $(".UserName").text(User.Name);
                 _Init();
             }).fail(function () {
                 HideSpinner();
-            })
+                })
+
             
             var d = null
             if('@Html.Raw(ViewBag.Parent)'!='')d=$.parseJSON('@Html.Raw(ViewBag.Parent)');

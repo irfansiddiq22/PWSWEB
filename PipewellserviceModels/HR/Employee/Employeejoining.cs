@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace PipewellserviceModels.HR.Employee
 {
+    
+
    public class EmployeeJoining
     {
         public int ID { get; set; }
@@ -40,7 +42,6 @@ namespace PipewellserviceModels.HR.Employee
     {
         public DataTable Joining { get; set; }
         public DataTable Approvals { get; set; }
-
         public EmployeeJoiningDB()
         {
             Joining = new DataTable();

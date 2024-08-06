@@ -96,7 +96,7 @@ function BindJoining() {
 
     var StartDate, EndDate = ''
     Warning = { ID: 0 };
-    ResetChangeLog(PAGES.EmployeeVacation);
+    ResetChangeLog(PAGES.EmployeeJoining);
     StartDate = $.trim($("#ddlDataRange").val().split("-")[0])
     EndDate = $.trim($("#ddlDataRange").val().split("-")[1]);
 
@@ -123,8 +123,7 @@ function BindJoining() {
             tr.append($('<td>').text(r.Division))
             tr.append($('<td>').text(r.Position))
             tr.append($('<td>').text(r.Nationality))
-
-
+            
 
             var Icons = $('<div class="icons">');
             $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary writeble me-2" onclick="EditJoining(' + i + ')"><i class="fa fa-edit"></i></a>'));
