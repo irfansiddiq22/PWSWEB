@@ -45,6 +45,8 @@ namespace PipewellserviceModels.Procurement.Purchase
         public string FileID { get; set; }
         public string MaintRequestNumber { get; set; }
         public DateTime RecordDate { get; set; }
+        public DateTime ApprovalDate { get; set; }
+        
 
         public ApprovalStatus ApprovalStatus { get; set; }
         public int RecordCreatedBy { get; set; }

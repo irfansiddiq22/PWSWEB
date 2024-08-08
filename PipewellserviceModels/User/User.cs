@@ -24,5 +24,6 @@ namespace PipewellserviceModels.User
         public string Position { get; set; }
         public List<PagePermisson> Permissions { get; set; }
         public List<EmployeeSupervisor> Supervisors { get; set; }
+        public bool SelfService { get; set; }
     }
 }

@@ -24,6 +24,7 @@ namespace Pipewellservice.Areas.API.Controllers
             };
 
         }
+
         public async Task<JsonResult> UpdateDivision(Division division)
         {
             return new JsonResult

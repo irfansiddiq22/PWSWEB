@@ -205,6 +205,8 @@ namespace Pipewellservice
                                               "~/Scripts/ProjectScripts/Purchase/Internalpurchase.js"));
             bundles.Add(new Bundle("~/lib/purchase/purchaseordermanagement").Include(
                                               "~/Scripts/ProjectScripts/Purchase/purchaseordermanagement.js"));
+            bundles.Add(new Bundle("~/lib/purchase/rfq").Include(
+                                              "~/Scripts/ProjectScripts/Purchase/RequestForQuote.js"));
 
             bundles.Add(new Bundle("~/lib/equipments/spareparts/spartpart").Include(
                                               "~/Scripts/ProjectScripts/Equipments/SpareParts/SpareParts.js"));

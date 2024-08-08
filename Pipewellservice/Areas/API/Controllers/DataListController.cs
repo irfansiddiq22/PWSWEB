@@ -106,7 +106,7 @@ namespace Pipewellservice.Areas.API.Controllers
         {
             return new JsonResult
             {
-                Data = AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.MATERIAL_REQUEST_TYPES),
+                Data = AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.MATERIAL_REQUEST_TYPES).OrderBy(x=>x.DisplayOrder).ToList(),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }

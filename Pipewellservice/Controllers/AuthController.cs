@@ -32,6 +32,7 @@ namespace Pipewellservice.Controllers
             var result = await json.ProcessLogin(user);
             if (result.ID > 0)
             {
+                result.SelfService = true;
                 FormsAuthentication.SetAuthCookie(new EncryptionHelper().Encrypt(user.UserName + "`" + user.Password), user.RememberMe);
                 
                 SessionHelper.SetUserSession(result);
@@ -49,6 +50,7 @@ namespace Pipewellservice.Controllers
             var result = await json.VerifyOTP(otp);
             if (result.ID > 0)
             {
+                result.SelfService = true;
                 Session["EmployeeCode"] = null;
                 SessionHelper.SetUserSession(result);
             }

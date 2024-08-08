@@ -167,5 +167,22 @@ namespace PipewellserviceDB.Procurement
                 return null;
             }
         }
+
+        public async Task<DataTable> GetProcurementSuperVisior()
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetProcurementSuperVisior", CommandType.StoredProcedure);
+                DataTable dt = new DataTable();
+                dt.Load(result);
+                result.Close();
+                return dt;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
     }
 }

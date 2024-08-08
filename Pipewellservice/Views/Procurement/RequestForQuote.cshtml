@@ -1,0 +1,117 @@
+﻿<div class="border p-2">
+    <div id="DvPendingRFQList">
+        
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+                <thead class="blue">
+                    <tr>
+                        <th>ID</th>
+                        <th>Date Requested </th>
+                        <th>Quotation</th>
+                        <th>Supplier</th>
+                        <th>Maint.Request Number</th>
+                        <th>Requested By</th>
+                        <th>Prepared By</th>
+
+                        <th>Approved By</th>
+                        <th>Approval Date</th>
+
+                        <th>Remarks</th>
+                        <th>Attachments</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tblPendingIPO"></tbody>
+            </table>
+            <div id="dvPendingIPOPaging"></div>
+        </div>
+    </div>
+    <div class="container mt-5 writecontainer" id="dvEditRequest">
+        <div class="border">
+            <div class="blue p-1"><h6>Request for Quote</h6></div>
+            <div class="p-4">
+                
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="date" class="form-label">Date</label>
+                            <input type="text" class="form-control form-control-sm datepicker" id="txtRequestDate" value="2024-06-27">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="MRID" class="form-label">Material Request ID.</label>
+                            <input type="text" class="form-control form-control-sm" id="txtMaterialRequestID" onblur="FillMaterialItems(0)">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="quotationNo" class="form-label">Quotation NO.</label>
+                            <input type="text" class="form-control form-control-sm" id="txtRequestQuotationNumber">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="partyName" class="form-label">Maint. Request No</label>
+                            <input type="number" class="form-control form-control-sm" id="txtMaintRequestNumber" name="MaintRequestNumber">
+                        </div>
+
+                    </div>
+
+
+                    <div class="mb-3">
+                        <table class="table tablebordered table-striped border">
+                            <thead class="blue">
+                                <tr>
+                                    <th></th>
+                                    <th>Item</th>
+                                    <th>Description</th>
+                                    <th>Unit</th>
+                                    <th>Qty</th>
+                                    <th>Part</th>
+                                    <th>Note</th>
+                                    <th>MSDS</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tblPurchaseRequestItems"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row mb-2">
+                            <div class="col-auto">Supplier</div>
+                            <div class="col-4"><select class="form-select form-select-sm" id="ddSuppliers"></select></div>
+                            <div class="col-2"><button class="btn btn-sm btn-primary" onclick="AddSupplier()">Add Supplier</button></div>
+                        </div>
+                        <table class="table tablebordered table-striped border">
+                            <thead class="blue">
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tblSuppliers"></tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="my-3 row">
+
+                        <div class="col-md-auto">
+                            <button class="btn btn-primary" type="button" onclick="Save()">Save</button>
+                        </div><div class="col-md-auto">
+                            <button class="btn btn-danger" type="button" onclick="ResetNav()">Cancel</button>
+                        </div>
+
+                    </div>
+
+                
+            </div>
+        </div>
+    </div> 
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/pagination")
+    @Scripts.Render("~/bundles/typeahead")
+    s
+    @Scripts.Render("~/lib/purchase/rfq")
+    @Styles.Render("~/bundles/paginationcss")
+}

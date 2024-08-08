@@ -47,6 +47,8 @@ namespace PipewellserviceDB.HR.Setting
             }
 
         }
+       
+        
         public async Task<DataTable> UpdateDivision(Division division)
         {
             try
@@ -341,6 +343,26 @@ namespace PipewellserviceDB.HR.Setting
                 return null;
             }
 
+        }
+        public async Task<DataTable> GetEmailTemplate(int TypeID, ApprovalTypes approvalType)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@Type", Value = TypeID };
+                collSP[1] = new SqlParameter { ParameterName = "@ApprovalType", Value = (int)approvalType };
+                
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetEmailTemplate", CommandType.StoredProcedure, collSP);
+                DataTable model = new DataTable();
+                model.Load(result);
+                result.Close();
+                return model;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
         public async Task<bool> UpdateWorkTime(WorkInOutTime workInOutTime)
         {

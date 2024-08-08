@@ -37,6 +37,7 @@ namespace Pipewellservice.Controllers
         {
             ViewBag.Title = "Procurement";
             ViewBag.OutOfStockMaterialRequests = (new PurchaseService()).OutOfStockMaterialRequests();
+            ViewBag.PedingIPORequstforQuote = (new PurchaseService()).PendingIPORequestForQuote();
             ViewBag.Parent = null;
             return View();
         }
@@ -72,6 +73,8 @@ namespace Pipewellservice.Controllers
 
 
 
+
+
         [Authorization(Pages.ProcurementMaterialRequest)]
 
         public ActionResult MaterialRequest()
@@ -92,13 +95,21 @@ namespace Pipewellservice.Controllers
         }
 
 
-        [Authorization(Pages.InternalPurchaseRequest)]
+        [Authorization(Pages.PurchaseOrderManagment)]
 
         public ActionResult PurchaseOrderManagment()
         {
             ViewBag.Title = "Purchase Order Management";
             ViewBag.Parent = Parent;
             return View("PurchaseOrderManagement");
+        }
+        [Authorization(Pages.RequestforQuote)]
+
+        public ActionResult RequestForQuote()
+        {
+            ViewBag.Title = "Request for Quote";
+            ViewBag.Parent = Parent;
+            return View("RequestForQuote");
         }
 
         public async Task<ActionResult> PrintInternalPurchaseRequest(int ID)

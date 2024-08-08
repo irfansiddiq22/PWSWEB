@@ -10,6 +10,7 @@ namespace PipewellserviceModels.Common
     {
         public string Name { get; set; }
         public int Value { get; set; }
+        public int DisplayOrder { get; set; }
         public int ParentID { get; set; }
         public int SubParentID { get; set; }
     }
@@ -118,7 +119,8 @@ namespace PipewellserviceModels.Common
         Leaves = 7,
         MaterialRequest=29,///SAME AS PAGE ID
         InternalPurchaseRequest=30,
-        PurchaseOrderManagement = 31
+        PurchaseOrderManagement = 31,
+        RFQ=40
 
 
     }
@@ -184,7 +186,8 @@ namespace PipewellserviceModels.Common
         CustomerRegisteration=36,
         StoreReceiving=37,
         StoreDelivery = 38,
-        SpareParts=39
+        SpareParts=39,
+        RequestforQuote=40
 
 
     }

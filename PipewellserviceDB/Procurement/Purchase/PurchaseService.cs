@@ -35,6 +35,27 @@ namespace PipewellserviceDB.Procurement.Purchase
             }
 
         }
+        public async Task<DataTable> GetPedingRequestList( PagingDTO paging)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@PageNo", Value = paging.pageNumber };
+                collSP[1] = new SqlParameter { ParameterName = "@PageSize", Value = paging.pageSize };
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetPendingFRQInternalPurchaseList", CommandType.StoredProcedure, collSP);
+                DataTable Data = new DataTable();
+                Data.Load(result);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+
+        
         public async Task<InternalPurchaseRequestDB> GetPurchaseRequestDetail(int ID)
         {
             try
@@ -124,9 +145,32 @@ namespace PipewellserviceDB.Procurement.Purchase
         public  int OutOfStockMaterialRequests()
         {
             return Convert.ToInt32(SqlHelper.ExecuteScalar(this.ConnectionString, "ProcOutOfStockMaterialRequest", CommandType.StoredProcedure));
-
-
+        }
+        public int PendingIPORequestForQuote()
+        {
+            return Convert.ToInt32(SqlHelper.ExecuteScalar(this.ConnectionString, "ProcPendingIPORequestForQuote", CommandType.StoredProcedure));
         }
 
+
+        public async Task<DataTable> SaveRequestForQuote(int IPO,int RecordCreatedBy, string Suppliers)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[3];
+                collSP[0] = new SqlParameter { ParameterName = "@IPO", Value = IPO };
+                collSP[1] = new SqlParameter { ParameterName = "@Suppliers", Value = Suppliers };
+                collSP[2] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = RecordCreatedBy };
+                
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcSaveIPORequestForQuote", CommandType.StoredProcedure, collSP);
+                DataTable Data = new DataTable();
+                Data.Load(result);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }

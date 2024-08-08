@@ -1,10 +1,13 @@
 ﻿using Newtonsoft.Json;
 using PipewellserviceJson.HR.Employee;
+using PipewellserviceJson.HR.Setting;
+using PipewellserviceJson.Procurement;
 using PipewellserviceModels.Common;
 using PipewellserviceModels.HR.Employee;
 using PipewellserviceModels.Procurement;
 using PipewellserviceModels.Procurement.Purchase;
 using PipewellserviceModels.Setting;
+using PipewellserviceModels.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -149,6 +152,7 @@ namespace Pipewellservice.Helper
                 field.Add(new MergeField("REQUEST_DATE", record[0].RequestDate == null ? DateTime.Now.ToString("dd/MM/yyyy hh:mm tt") : DateTime.Now.ToString("dd/MM/yyyy hh:mm tt")));
                 field.Add(new MergeField("REMARKS", record[0].Remarks));
                 field.Add(new MergeField("REQUEST_TYPE", record[0].RequestType));
+                field.Add(new MergeField("IPO_ID", record[0].ID.ToString()));
 
                 field.Add(new MergeField("SUPPLIER_NAME", record[0].SupplierName));
                 field.Add(new MergeField("QUOTATION", record[0].QuotationNumber));
@@ -351,10 +355,25 @@ namespace Pipewellservice.Helper
                     field.Add(new MergeField("PORTAL_LINK", ""));
                     status = await email.SendEmail(new EmailDTO() { To = Supervisor.EmailAddress, From = "no-reply@pipewellservices.com", Subject = SupervisorEmailTemplate.Subject, Body = SupervisorEmailTemplate.Body, Attachment = Attachment }, field);
                 }
+                if(RequestStatus== ApprovalStatus.Approved && type == ApprovalTypes.InternalPurchaseRequest)
+                {
+                    await SentIPORequestToProcurementDivision(field);
+
+                }
                 return status;
             }
 
             return true;
+        }
+
+        public async Task<bool> SentIPORequestToProcurementDivision( List<MergeField> field)
+        {
+            User ProcurmentSupervisor = await (new ProcurementJson()).GetProcurementSuperVisior();
+            var EmailTemplate = new EmailTemplate();
+            EmailTemplate= await (new SettingJson()).GetEmailTemplate(1,ApprovalTypes.RFQ);
+            
+            EmailHelper email = new EmailHelper();
+            return await email.SendEmail(new EmailDTO() { To = ProcurmentSupervisor.EmailAddress, From = "no-reply@pipewellservices.com", Subject = EmailTemplate.Subject, Body = EmailTemplate.Body }, field);
         }
     }
 }

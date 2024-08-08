@@ -528,6 +528,7 @@
     <Content Include="Scripts\ProjectScripts\Customer\CustomerData.js" />
     <Content Include="Scripts\ProjectScripts\Procurement\Store\OrderDelivery.js" />
     <Content Include="Scripts\ProjectScripts\Procurement\Store\OrderReceiving.js" />
+    <Content Include="Scripts\ProjectScripts\Purchase\RequestForQuote.js" />
     <Content Include="Scripts\ProjectScripts\Supplier\Registration.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Accommodation.js" />
     <Content Include="Scripts\ProjectScripts\HR\Employee\Asset.js" />
@@ -714,6 +715,7 @@
     <Content Include="Views\Procurement\Delivery.cshtml" />
     <Content Include="Views\Equipments\_PartialSpareParts.cshtml" />
     <Content Include="Views\Equipments\home.cshtml" />
+    <Content Include="Views\Procurement\RequestForQuote.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

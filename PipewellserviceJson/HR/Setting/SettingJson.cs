@@ -1,6 +1,7 @@
 ﻿using PipewellserviceDB.HR.Setting;
 using PipewellserviceModels.Common;
 using PipewellserviceModels.HR.Settings;
+using PipewellserviceModels.Setting;
 using PipewellserviceModels.User;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,8 @@ namespace PipewellserviceJson.HR.Setting
         {
             return await JsonHelper.Convert<List<Division>, DataTable>(await service.DivisionList());
         }
+
+        
         public async Task<List<Division>> UpdateDivision(Division division)
         {
             return await JsonHelper.Convert<List<Division>, DataTable>(await service.UpdateDivision(division));
@@ -117,6 +120,11 @@ namespace PipewellserviceJson.HR.Setting
         {
             return await service.UpdateWorkTime(time);
         }
+        public async Task<EmailTemplate> GetEmailTemplate(int TypeID,ApprovalTypes approvalType)
+        {
+            return (await JsonHelper.Convert<List<EmailTemplate>, DataTable>(await service.GetEmailTemplate(TypeID, approvalType))).FirstOrDefault();
+        }
+
 
         
 

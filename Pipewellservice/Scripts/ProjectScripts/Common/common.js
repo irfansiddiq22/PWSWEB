@@ -37,7 +37,8 @@
     Customers: 36,
     StoreReceiving: 37,
     StoreDelivery: 38,
-    SparePartItems:39
+    SparePartItems: 39,
+    RequestforQuote:40
 
 }
 var REPORTS = {

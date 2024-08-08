@@ -20,6 +20,7 @@ function _Init() {
 
 
     });
+    
     $("#ddlMaterialDataRange").val(moment().subtract(3, 'month').startOf('month').format("DD/MM/YYYY") + ' - ' + moment().endOf('month').format("DD/MM/YYYY"))
 
 
@@ -30,6 +31,7 @@ function BindUsers() {
         var data = []
         if (Response.length > 1) data.push({ id: 0, text: 'Select an employee' });
         $.each(Response, function (i, emp) {
+            
             data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name, DivisionID: emp.DivisionID });
         })
         $("#ddEmployeeCode").select2({
@@ -41,6 +43,10 @@ function BindUsers() {
         })
 
 
+        if (User.SelfService) {
+            $("#ddEmployeeCode").val(User.EmployeeID).trigger("change")
+            $("#ddEmployeeCode").attr("disabled", "disabled")
+        }
 
         BindMaterialRequestList();
     })

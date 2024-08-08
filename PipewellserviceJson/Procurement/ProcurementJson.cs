@@ -1,6 +1,7 @@
 ﻿using PipewellserviceDB.Procurement;
 using PipewellserviceModels.Common;
 using PipewellserviceModels.Procurement;
+using PipewellserviceModels.User;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -58,7 +59,10 @@ namespace PipewellserviceJson.Procurement
         {
             return await JsonHelper.Convert<List<MaterialRequestNumber>, DataTable>(await service.FindMatrialRequestNumber(ID));
         }
-
-
+        public async Task<User> GetProcurementSuperVisior()
+        {
+            return (await JsonHelper.Convert<List<User>, DataTable>(await service.GetProcurementSuperVisior())).FirstOrDefault();
+        }
+        
     }
 }
