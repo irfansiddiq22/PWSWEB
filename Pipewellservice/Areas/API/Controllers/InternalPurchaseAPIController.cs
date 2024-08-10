@@ -137,7 +137,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 foreach (SuplierContact suplier in suppliers)
                 {
                     string EmailBody = EmailTemplate.Body;
-                    
+                    field = new List<MergeField>();
                     field.Add(new MergeField("SUPPLIER_NAME", suplier.ContactPerson));
                     field.Add(new MergeField("ID", suplier.RequestID));
                     field.Add(new MergeField("ITEMS", items));
