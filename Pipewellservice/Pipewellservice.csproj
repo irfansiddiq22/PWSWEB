@@ -632,6 +632,7 @@
     <Content Include="Scripts\ProjectScripts\Purchase\Internalpurchase.js" />
     <Content Include="Scripts\ProjectScripts\Purchase\purchaseordermanagement.js" />
     <Content Include="Scripts\ProjectScripts\Setting\Setting.js" />
+    <Content Include="Scripts\ProjectScripts\Supplier\SupplierQuote.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\underscore.js" />
@@ -716,6 +717,9 @@
     <Content Include="Views\Equipments\_PartialSpareParts.cshtml" />
     <Content Include="Views\Equipments\home.cshtml" />
     <Content Include="Views\Procurement\RequestForQuote.cshtml" />
+    <Content Include="Views\Supplier\SubmitQuote.cshtml" />
+    <Content Include="Views\Shared\_GenericLayout.cshtml" />
+    <Content Include="Views\Supplier\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

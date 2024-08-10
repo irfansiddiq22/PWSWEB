@@ -216,7 +216,7 @@ namespace PipewellserviceModels.Common
         InternalPurchaseRequest=19,
         SupplierAssesment=20,
         CustomerRegistration = 21,
-        Receiving=22,
+        SupplierQuote=22
         
     }
 

@@ -88,8 +88,8 @@ function BindUsers() {
 }
 
 function BindPurchaseRequestList(PageNumber = 1) {
-    $("#tblIPR").removeClass("d-none")
-    $("#tblMPR").addClass("d-none")
+   
+    
 
     pageNumber = PageNumber;
     $("#tblPurchaseRequestList").empty();
@@ -564,8 +564,8 @@ function SavePurchaseRequest() {
     })
 }
 function ShowPendingMaterialRequest() {
-    $("#tblIPR").addClass("d-none")
-    $("#tblMPR").removeClass("d-none")
+    
+    
 
 
 
@@ -636,7 +636,7 @@ function CreateIPR(ID) {
  
 }
 function ClosePendingMaterialRequests() {
-    $("#tblIPR").removeClass ("d-none")
-    $("#tblMPR").addClass("d-none")
+    
+   
 
 }

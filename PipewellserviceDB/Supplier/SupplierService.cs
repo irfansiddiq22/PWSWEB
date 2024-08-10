@@ -1,4 +1,5 @@
 ﻿using PipewellserviceDB.Common;
+using PipewellserviceModels.Account;
 using PipewellserviceModels.Supplier;
 using SQLHelper;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PipewellserviceDB.Supplier
 {
-    public class SupplierService: DataServices
+    public class SupplierService : DataServices
     {
 
 
@@ -225,5 +226,70 @@ namespace PipewellserviceDB.Supplier
             }
         }
 
+        public async Task<QuoteRequestSQL> QuoteRequest(string ID)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[3];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = ID };
+                collSP[1] = new SqlParameter { ParameterName = "@Status", DbType = DbType.Boolean, Direction = ParameterDirection.Output };
+                collSP[2] = new SqlParameter { ParameterName = "@IPO", DbType = DbType.Int32, Direction = ParameterDirection.Output };
+
+
+                var reader = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetQuoteDetailByRequestID", CommandType.StoredProcedure, collSP);
+
+                QuoteRequestSQL model = new QuoteRequestSQL();
+
+
+
+                if (reader.HasRows)
+                {
+                    model.Supplier.Load(reader);
+                    model.QuoteItems.Load(reader);
+                    model.PastQuotes.Load(reader);
+                    model.PastQuoteItems.Load(reader);
+
+                }
+                reader.Close();
+                model.Status = Convert.ToBoolean(collSP[1].Value);
+                model.IPOID = Convert.ToInt32(collSP[2].Value);
+                return model;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public async Task<int> SubmitQuote(string ID, Quote quote)
+        {
+            try
+            {
+                StringBuilder xml = new StringBuilder();
+                xml.Append("<Data>");
+                if (quote.Items != null)
+                {
+                    foreach (QuoteItem itm in quote.Items)
+                    {
+                        xml.Append($"<Item><ItemID>{itm.ItemID}</ItemID><Quantity>{itm.Quantity}</Quantity><Price>{itm.Price}</Price><Notes>{StringHelper.ReplaceXmlChar(itm.Notes)}</Notes></Item>");
+                    }
+                }
+                xml.Append("</Data>");
+                SqlParameter[] collSP = new SqlParameter[4];
+                collSP[0] = new SqlParameter { ParameterName = "@ID", Value = ID };
+
+                collSP[1] = new SqlParameter { ParameterName = "@Remarks", Value = StringHelper.NullToString(quote.Remarks) };
+                collSP[2] = new SqlParameter { ParameterName = "@Items", Value = xml.ToString() };
+                collSP[3] = new SqlParameter { ParameterName = "@FileName", Value = StringHelper.NullToString(quote.FileName) };
+
+                int QuoteID = Convert.ToInt32(SqlHelper.ExecuteScalar(ConnectionString, "ProcSubmitSupplierQuoteData", CommandType.StoredProcedure, collSP));
+                return QuoteID;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+
+        }
     }
 }

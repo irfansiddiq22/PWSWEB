@@ -139,6 +139,7 @@ namespace Pipewellservice.Areas.API.Controllers
                     string EmailBody = EmailTemplate.Body;
                     
                     field.Add(new MergeField("SUPPLIER_NAME", suplier.ContactPerson));
+                    field.Add(new MergeField("ID", suplier.RequestID));
                     field.Add(new MergeField("ITEMS", items));
 
                     EmailHelper email = new EmailHelper();

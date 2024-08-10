@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Submit Quote";
+    Layout = "~/Views/Shared/_GenericLayout.cshtml";
+
+}
+<div class="border rounded">
+    <div class="blue"><h4>Submit Quote</h4></div>
+    <div class="p-2">
+        <div>Dear @ViewBag.Supplier you are requested to submit quote for the following required products</div>
+        <div class="mt-3">
+            <div class="blue fw-bold">Products</div>
+            <table class="table table-sm table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Notes</th>
+
+                    </tr>
+                </thead>
+                <tbody id="tblProducts"></tbody>
+                <tfoot id="tblProductsTotal"></tfoot>
+            </table>
+        </div>
+        <div class="my-3">
+            <div class="fw-bold">Remarks:</div>
+            <textarea class="form-control form-control-sm" id="txtRemarks"></textarea>
+        </div>
+        <div class="my-2">
+            <button class="btn btn-sm btn-primary" onclick="SubmitQuote()">Submit Quote</button> <label>
+                <input type="file" id="flQuoteFiles" />
+                <button class="btn btn-sm btn-primary ">Attach file(s) <i class="fa fa-cloud-upload" role="button"></i></button> <small class="form-text text-muted">*attach supporting files</small>
+            </label>
+        </div>
+
+        <div class="mt-3" id="dvQuoteHistory">
+            <div class="blue"><h5>Recent Quote(s)</h5></div>
+            <div>Below the list of quote(s) you have recently submitted for these products</div>
+
+            <div id="dvQuoteHistoryList"></div>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts{
+    @Scripts.Render("~/supplier/quote")
+    <script type="text/javascript">
+        var QuoteData = @Html.Raw(ViewBag.Detail);
+        var ID='@ViewBag.ID';
+    $(function () {
+
+        _Init();
+        });
+    </script>
+}

@@ -3,6 +3,7 @@ using Pipewellservice.App_Start;
 using Pipewellservice.Helper;
 using Pipewellservice.Reports;
 using PipewellserviceJson.SupplierJson;
+using PipewellserviceModels.Account;
 using PipewellserviceModels.Common;
 using PipewellserviceModels.Supplier;
 using System;
@@ -248,5 +249,54 @@ namespace Pipewellservice.Controllers
             return PartialView("~/Views/Employee/WebViewer.ascx");
         }
 
+
+        [HttpGet]
+        public async Task<ActionResult> SubmitQuote(string ID)
+        {
+            ViewBag.Name = await AppData.CompanyName();
+            ViewBag.Message = "Sorry! you have no rights to access";
+            ViewBag.Detail = null;
+            ViewBag.ID = ID;
+            if (ID == null || ID.Length != 36)
+            {
+
+                return View("Error");
+            }
+            else
+            {
+
+                QuoteRequest detil = await json.QuoteRequest(ID);
+                if (!detil.Status)
+                {
+                    ViewBag.Message = "Sorry! you have provide a wrong url, please contact PWS for correct url to submit quote.";
+                    return View("Error");
+                }
+                else
+                {
+                    ViewBag.Supplier = detil.Supplier.Name;
+                    ViewBag.Detail = JsonConvert.SerializeObject(detil);
+                }
+            }
+
+            return View();
+        }
+        [HttpPost]
+        public async Task<JsonResult> SubmitQuote(string ID, int IPO)
+        {
+            Quote quote = JsonConvert.DeserializeObject<Quote>(Request["quote"]);
+
+            int QuoteID = await json.SubmitQuote(ID, quote);
+
+            if (Request.Files.Count > 0 && QuoteID > 0)
+            {
+                HttpPostedFileBase file = Request.Files[0];
+                bool result = await FileHelper.SaveFile(Request.Files[0], IPO, IPO, DirectoryNames.SupplierQuote);
+            }
+            return new JsonResult
+            {
+                Data = QuoteID > 0,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
     }
 }

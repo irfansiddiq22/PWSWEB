@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex" />
+    <meta name="robots" content="nofollow" />
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="container">
+        <div class="w-75 m-auto">
+            <div class="m-2">
+                <div class=" m-auto">
+                    <div class="pull-left"><h2>@ViewBag.Name</h2></div>
+                    <a class="navbar-brand pull-right" href="javascript:void(0)">
+                        <img src="~/Content/images/logo.jpg" alt="">
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            @RenderBody()
+
+
+            <hr />
+            <footer>
+                <p>PWS &copy; @DateTime.Now.Year</p>
+            </footer>
+        </div>
+    </div>
+
+
+
+    <div id="spinner"></div>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
+
+
+
+    @Styles.Render("~/bundles/sweetalertcss")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/sweetalert")
+    @RenderSection("scripts", required: false)
+    
+
+</body>
+</html>

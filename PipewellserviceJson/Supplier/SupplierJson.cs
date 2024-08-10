@@ -1,4 +1,5 @@
 ﻿using PipewellserviceDB.Supplier;
+using PipewellserviceModels.Account;
 using PipewellserviceModels.Supplier;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,25 @@ namespace PipewellserviceJson.SupplierJson
             return model;
         }
 
+        public async Task<QuoteRequest> QuoteRequest (string ID)
+        {
+            QuoteRequestSQL data = await service.QuoteRequest(ID);
+            QuoteRequest model = new QuoteRequest();
+            model.Status = data.Status;
+            model.IPO = data.IPOID;
+            if (data.Status)
+            {
+                model.Supplier =( await JsonHelper.Convert<List<Supplier>, DataTable>(data.Supplier)).FirstOrDefault();
+                model.QuoteItems = await JsonHelper.Convert<List<QuoteItem>, DataTable>(data.QuoteItems);
 
+                model.PastQuotes = await JsonHelper.Convert<List<Quote>, DataTable>(data.PastQuotes);
+                model.PastQuoteItems = await JsonHelper.Convert<List<QuoteItem>, DataTable>(data.PastQuoteItems);
+            }
+            return model;
+        }
+        public async Task<int> SubmitQuote(string ID,Quote quote)
+        {
+            return await service.SubmitQuote(ID, quote);
+        }
     }
 }
