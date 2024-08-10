@@ -44,7 +44,7 @@ namespace Pipewellservice.Helper
 
                     if (LeaveStat == null || LeaveStat.Allowance == 0)
                     {
-                        LeaveStat = new LeaveStats() { Allowance = 30, CarriedOver=0, LeavesTaken=0,Balance=30 };
+                        LeaveStat = new LeaveStats() { Allowance = 30, CarriedOver = 0, LeavesTaken = 0, Balance = 30 };
                     }
 
                     string table = $"<table style='width:900px;border-style:solid;'><tr><td><b> Allowance</b></td><td><b> Carried Over</b></td><td><b> Available</b></td><td><b> Used</b></td><td><b> Balance</b></td><td><b> Unit</b></td></tr><tr><td><b> {LeaveStat.Allowance}</b></td><td><b> {LeaveStat.CarriedOver}</b></td><td><b> {LeaveStat.Available}</b></td><td><b> {LeaveStat.LeavesTaken}</b></td><td><b> {LeaveStat.Balance}</b></td><td><b> Days</b></td></tr></table>";
@@ -96,23 +96,24 @@ namespace Pipewellservice.Helper
                 List<MaterialRequestMailDetail> record = new List<MaterialRequestMailDetail>();
                 try
                 {
-                    foreach (object  js in result.Request)
+                    foreach (object js in result.Request)
                     {
                         record.Add(JsonConvert.DeserializeObject<MaterialRequestMailDetail>(js.ToString()));
                     }
-                }catch(Exception e)
+                }
+                catch (Exception e)
                 {
                     string g = e.Message;
                 }
-                field.Add(new MergeField("REQUEST_DATE", record[0].RequestDate == null ? DateTime.Now.ToString("dd/MM/yyyy hh:mm tt") :DateTime.Now.ToString("dd/MM/yyyy hh:mm tt")));
+                field.Add(new MergeField("REQUEST_DATE", record[0].RequestDate == null ? DateTime.Now.ToString("dd/MM/yyyy hh:mm tt") : DateTime.Now.ToString("dd/MM/yyyy hh:mm tt")));
                 field.Add(new MergeField("REMARKS", record[0].Remarks));
                 field.Add(new MergeField("REQUEST_TYPE", record[0].RequestType));
                 Attachment = "";
-                
+
                 RecordID = record[0].ID;
 
                 string items = "";//$"<table style='width:900px;border-style:solid;'><tr><td><b> Allowance</b></td><td><b> Carried Over</b></td><td><b> Available</b></td><td><b> Used</b></td><td><b> Balance</b></td><td><b> Unit</b></td></tr><tr><td><b> {LeaveStat.Allowance}</b></td><td><b> {LeaveStat.CarriedOver}</b></td><td><b> {LeaveStat.Available}</b></td><td><b> {LeaveStat.LeavesTaken}</b></td><td><b> {LeaveStat.Balance}</b></td><td><b> Days</b></td></tr></table>";
-                foreach(MaterialRequestMailDetail detail in record)
+                foreach (MaterialRequestMailDetail detail in record)
                 {
                     /*<tr>
                                 <td style="font-weight: bold; font-size: 12px; background-color: #f2f2f2">Name</td>
@@ -124,7 +125,7 @@ namespace Pipewellservice.Helper
 
                     if (detail.Quantity > detail.StockQuantity)
                     {
-                        StockAlert = $"<div style='background-color:#dc3545;color:#fff;font-size:11px'>Currently {detail.StockQuantity} items are in store for remaining {(detail.Quantity -  detail.StockQuantity) } Internal purchase request will be generated Upon Approval";
+                        StockAlert = $"<div style='background-color:#dc3545;color:#fff;font-size:11px'>Currently {detail.StockQuantity} items are in store for remaining {(detail.Quantity - detail.StockQuantity) } Internal purchase request will be generated Upon Approval";
                     }
                     items += $"<tr><td>{detail.ItemName}</td><td>{detail.Unit}</td><td>{detail.Quantity}{StockAlert }</td><td>{detail.Notes}</td></tr>";
 
@@ -348,14 +349,14 @@ namespace Pipewellservice.Helper
                     status = await email.SendEmail(new EmailDTO() { To = employee.EmailAddress, From = "no-reply@pipewellservices.com", Subject = EmployeeEmailTemplate.Subject, Body = EmployeeEmailTemplate.Body }, field);
                     await json.UpdateRequestStatus(RecordID, type, RequestStatus);
                 }
-                if ((NewRequest ||  RequestStatus == ApprovalStatus.Pending )&& Supervisor.ID > 0 && Supervisor.EmailAddress != "")
+                if ((NewRequest || RequestStatus == ApprovalStatus.Pending) && Supervisor.ID > 0 && Supervisor.EmailAddress != "")
                 {
 
                     field.Add(new MergeField("APPROVE_NAME", Supervisor.Name));
                     field.Add(new MergeField("PORTAL_LINK", ""));
                     status = await email.SendEmail(new EmailDTO() { To = Supervisor.EmailAddress, From = "no-reply@pipewellservices.com", Subject = SupervisorEmailTemplate.Subject, Body = SupervisorEmailTemplate.Body, Attachment = Attachment }, field);
                 }
-                if(RequestStatus== ApprovalStatus.Approved && type == ApprovalTypes.InternalPurchaseRequest)
+                if (RequestStatus == ApprovalStatus.Approved && type == ApprovalTypes.InternalPurchaseRequest)
                 {
                     await SentIPORequestToProcurementDivision(field);
 
@@ -366,12 +367,16 @@ namespace Pipewellservice.Helper
             return true;
         }
 
-        public async Task<bool> SentIPORequestToProcurementDivision( List<MergeField> field)
+        public async Task<bool> SentIPORequestToProcurementDivision(List<MergeField> field)
         {
             User ProcurmentSupervisor = await (new ProcurementJson()).GetProcurementSuperVisior();
             var EmailTemplate = new EmailTemplate();
-            EmailTemplate= await (new SettingJson()).GetEmailTemplate(1,ApprovalTypes.RFQ);
-            
+            EmailTemplate = await (new SettingJson()).GetEmailTemplate(1, ApprovalTypes.RFQ);
+            if (field.Find(x => x.Field == "EMP_NAME") != null)
+                field.Find(x => x.Field == "EMP_NAME").Value = ProcurmentSupervisor.Name;
+            else
+                field.Add(new MergeField("EMP_NAME", ProcurmentSupervisor.Name));
+
             EmailHelper email = new EmailHelper();
             return await email.SendEmail(new EmailDTO() { To = ProcurmentSupervisor.EmailAddress, From = "no-reply@pipewellservices.com", Subject = EmailTemplate.Subject, Body = EmailTemplate.Body }, field);
         }

@@ -125,6 +125,11 @@ namespace Pipewellservice.Areas.API.Controllers
             if (suppliers != null)
             {
                 string items = "";
+                foreach (InternalPurchaseRequestItem detail in Items)
+                {
+                    items += $"<tr><td>{detail.ItemName}</td><td>{detail.Quantity}</td></tr>";
+
+                }
                 List<MergeField> field = new List<MergeField>();
 
                 var EmailTemplate = new EmailTemplate();
@@ -132,14 +137,8 @@ namespace Pipewellservice.Areas.API.Controllers
                 foreach (SuplierContact suplier in suppliers)
                 {
                     string EmailBody = EmailTemplate.Body;
-                    items = "";
+                    
                     field.Add(new MergeField("SUPPLIER_NAME", suplier.ContactPerson));
-                    foreach (InternalPurchaseRequestItem detail in Items)
-                    {
-                        items += $"<tr><td>{detail.ItemName}</td><td>{detail.Quantity}</td></tr>";
-
-                    }
-
                     field.Add(new MergeField("ITEMS", items));
 
                     EmailHelper email = new EmailHelper();

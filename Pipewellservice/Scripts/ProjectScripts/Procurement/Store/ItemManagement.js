@@ -37,7 +37,7 @@ function FillStoreItems() {
     ResetChangeLog(PAGES.ProcurementStoreItem);
 
     $('#dvStoreItemPaging').pagination({
-        dataSource: "/ProcurementAPI/GetSto reItemList",
+        dataSource: "/ProcurementAPI/GetStoreItemList",
         pageSize: pageSize,
         pageNumber: 1,
         showGoInput: true,
@@ -107,7 +107,7 @@ function EditItem(Index) {
     SetvalOf("txtItemLocation", Item.Location)
     SetvalOf("txtItemUnit", Item.Unit);
     SetvalOf("txtOpeningStock", Item.OpeningStock)
-    SetvalOf("txtItemStockQuantity", item.StockQuantity)
+    SetvalOf("txtItemStockQuantity",Item.StockQuantity)
     SetvalOf("txtItemReOrderLimit", Item.ReOrderLimit);
     SetvalOf("txtItemPacking", Item.Packing);
     SetvalOf("ddItemType", Item.Tengible ? 1 : 0);
