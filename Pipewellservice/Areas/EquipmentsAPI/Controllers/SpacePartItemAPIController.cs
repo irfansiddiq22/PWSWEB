@@ -17,7 +17,7 @@ namespace Pipewellservice.Areas.EquipmentsAPI.Controllers
         [Authorization(PipewellserviceModels.Common.Pages.SpareParts,1,2)]
         public async Task<JsonResult> SaveItem(SparePartItem item)
         {
-            item.RecordCreatdBy = SessionHelper.UserID();
+            item.RecordCreatdBy = SessionHelper.UserID;
             return new JsonResult()
                 { Data= new {
                     ID = await json.SaveItem(item) },JsonRequestBehavior=JsonRequestBehavior.DenyGet };

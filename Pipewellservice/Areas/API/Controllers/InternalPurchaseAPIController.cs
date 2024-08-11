@@ -54,7 +54,7 @@ namespace Pipewellservice.Areas.API.Controllers
         [Authorization(Pages.InternalPurchaseRequest, 1, 2)]
         public async Task<JsonResult> AddPurchaseRequest(InternalPurchaseRequest request, List<InternalPurchaseRequestItem> Items)
         {
-            request.RecordCreatedBy = SessionHelper.UserID();
+            request.RecordCreatedBy = SessionHelper.UserID;
 
             var result = await json.AddPurchaseRequest(request, Items);
             if (result.ApprovalID > 0)
@@ -121,7 +121,7 @@ namespace Pipewellservice.Areas.API.Controllers
         }
         public async Task<JsonResult> SaveRequestForQuote(int IPO,string Suppliers, List<InternalPurchaseRequestItem> Items)
         {
-            List<SuplierContact> suppliers = await json.SaveRequestForQuote(IPO, SessionHelper.UserID(), Suppliers);
+            List<SuplierContact> suppliers = await json.SaveRequestForQuote(IPO, SessionHelper.UserID, Suppliers);
             if (suppliers != null)
             {
                 string items = "";

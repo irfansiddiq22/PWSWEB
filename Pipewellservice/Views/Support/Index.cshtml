@@ -1,0 +1,48 @@
+﻿
+@{
+    Layout = null;
+}
+
+<link href="~/Content/app/app.css" rel="stylesheet" />
+<div class="w-100">
+    <form>
+        <div class="border">
+            <div class="blue">Support</div>
+            <div class="p-2">
+                <div>Report the issue you faced.</div>
+                <div class="m-2">
+
+                    <div class="form-goup">
+                        <label class="col-form-label">Name.</label>
+                        <input type="text" class="form-control form-control-sm" required name="ReportingName" id="txtReportingName" />
+                    </div>
+                    <div class="form-goup">
+                        <label class="col-form-label">Please describe the issue.</label>
+                        <textarea class="form-control form-control-sm" rows="10" required name="ReportingIssue" id="txtReportingIssue"></textarea>
+                    </div>
+
+                    <div class="form-goup mt-2" >
+                        <div class="row">
+                            <div class="col text-center"><button type="button" class="btn btn-sm btn-primary w-100" onclick="PWSSupportApp.SendResponse()">Submit</button></div>
+                            <div class="col pws-text-right">
+
+                                <label class="custom-file-upload  btn btn-primary">
+                                    <input type="file" id="flReportingFile" onchange="document.getElementById('lblFileName').innerHTML=(this.files.length>0? this.files[0].name:'')" />
+                                    <i class="fa fa-cloud-upload text-white me-1" role="button"></i>Attach file/image
+                                </label>
+                                <label id="lblFileName" class="p-2 bg-success text-white"></label>
+
+
+                            </div>
+
+                        </div>
+                        </div>
+
+                    
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+

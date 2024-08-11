@@ -36,7 +36,7 @@ namespace Pipewellservice.Controllers
         }
         public async Task <JsonResult> UpdateProfile(User user)
         {
-            user.ID = new SessionHelper().UserID();
+            user.ID = new SessionHelper().UserID;
             return new JsonResult
             {
                 Data = await (new SettingJson()).UpdateProfile(user),

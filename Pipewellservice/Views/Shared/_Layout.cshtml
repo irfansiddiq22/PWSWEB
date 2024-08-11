@@ -3,10 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex" />
+    <meta name="robots" content="nofollow" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    
+
 </head>
 
 <body class="position-relative">
@@ -26,7 +28,7 @@
                         <div class="inner" style="z-index:1000;right:-22px">
                             <div class="row">
                                 <div class="col-4">User Name:</div>
-                                <div class="col text-start UserName" >Demo</div>
+                                <div class="col text-start UserName">Demo</div>
                             </div>
                             <div class="row my-2">
                                 <div class="col-3">Last Login :</div>
@@ -40,7 +42,7 @@
 
                                 <div class="col"><a class="btn btn-danger text-white btn-sm w-100" href="/Auth/Logout">Log out</a></div>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -158,8 +160,8 @@
     </div>
 
     <div id="spinner"></div>
-   <script type="text/javascript">
-        
+    <script type="text/javascript">
+
     </script>
     @Styles.Render("~/bundles/sweetalertcss")
     @Scripts.Render("~/bundles/jquery")
@@ -173,7 +175,7 @@
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
 //        moment.locale('ar-SA');
-        
+
 
         $(function () {
             $(".fim-dropdown > label").click(function () {
@@ -203,7 +205,7 @@
                 HideSpinner();
                 })
 
-            
+
             var d = null
             if('@Html.Raw(ViewBag.Parent)'!='')d=$.parseJSON('@Html.Raw(ViewBag.Parent)');
 
@@ -211,5 +213,14 @@
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
+    <!-- Copy this code into the Bottom of your HTML document -->
+    <script type="text/javascript">
+        (function (w, d, s, o, f, i, js, fjs) {
+            w['dataid'] = i; w[o] = w[o] || function () { (w[o].q = w[o].q || []).push(arguments) };
+            js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
+            js.id = o; js.src = f; js.async = 1; fjs.parentNode.insertBefore(js, fjs);
+        }(window, document, 'script', 'pwsssupport', 'http://dev.pws.com/SupportApp.js', 'BPV6QVJX'));</script>
+
 </body>
 </html><!--irfanpk/123-->
+

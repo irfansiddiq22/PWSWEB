@@ -26,26 +26,35 @@ namespace Pipewellservice.Helper
         {
             return (User)HttpContext.Current.Session["User"];
         }
-        public int UserGroup()
+        public int UserGroup
         {
-            if (HttpContext.Current.Session["User"] != null)
+            get
             {
-                return ((User)HttpContext.Current.Session["User"]).GroupID;
-            }
-            else
-            {
-                return 0;
+                if (HttpContext.Current.Session["User"] != null)
+                {
+                    return ((User)HttpContext.Current.Session["User"]).GroupID;
+                }
+                else
+                {
+                    return 0;
+                }
             }
         }
 
-        public int EmployeeID()
+        public int EmployeeID
         {
-            return ((User)HttpContext.Current.Session["User"]).EmployeeID;
+            get{
+                return ((User)HttpContext.Current.Session["User"]).EmployeeID;
+            }
         }
-        public int UserID()
-        {
-            return ((User)HttpContext.Current.Session["User"]).ID;
+        public int UserID {
+            get
+            {
+                return ((User)HttpContext.Current.Session["User"]).ID;
+            }
         }
+        public string UserName {
+            get { return ((User)HttpContext.Current.Session["User"]).Name; } }
         public PagePermisson PageSession(Pages Page)
         {
             User user = UserSession();

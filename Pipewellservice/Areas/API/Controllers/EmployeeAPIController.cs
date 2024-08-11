@@ -35,7 +35,7 @@ namespace Pipewellservice.Areas.API.Controllers
             }
             else
             {
-                var result = await json.CodeName(SessionHelper.UserGroup() == (int)UserGroups.Employee ? SessionHelper.EmployeeID() : 0);
+                var result = await json.CodeName(SessionHelper.UserGroup == (int)UserGroups.Employee ? SessionHelper.EmployeeID : 0);
                 Session["EmployeeCode"] = result;
                 return new JsonResult
                 {
@@ -46,7 +46,7 @@ namespace Pipewellservice.Areas.API.Controllers
         }
         public async Task<JsonResult> FamilyCodeName()
         {
-            var result = await json.FamilyCodeName(SessionHelper.UserGroup() == (int)UserGroups.Employee ? SessionHelper.EmployeeID() : 0);
+            var result = await json.FamilyCodeName(SessionHelper.UserGroup == (int)UserGroups.Employee ? SessionHelper.EmployeeID : 0);
             return new JsonResult
             {
                 Data = result,
@@ -554,7 +554,7 @@ namespace Pipewellservice.Areas.API.Controllers
         [Authorization(Pages.EmployeeVacation, 1, 2)]
         public async Task<JsonResult> UpdateEmployeeVacation(EmployeeVacation vacation)
         {
-            vacation.RecordCreatedBy = SessionHelper.UserID();
+            vacation.RecordCreatedBy = SessionHelper.UserID;
             int ID = await json.UpdateEmployeeVacation(vacation);
             return new JsonResult
             {
@@ -566,7 +566,7 @@ namespace Pipewellservice.Areas.API.Controllers
         [Authorization(Pages.EmployeeVacation, 1, 1)]
         public async Task<JsonResult> DeleteEmployeeVacation(int ID)
         {
-            int UserID = SessionHelper.UserID();
+            int UserID = SessionHelper.UserID;
             bool result = await json.DeleteEmployeeVacation(ID, UserID);
             return new JsonResult
             {
@@ -760,7 +760,7 @@ namespace Pipewellservice.Areas.API.Controllers
         {
             return new JsonResult
             {
-                Data = await json.ApprovalList(SessionHelper.EmployeeID(), Declined),
+                Data = await json.ApprovalList(SessionHelper.EmployeeID, Declined),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -771,7 +771,7 @@ namespace Pipewellservice.Areas.API.Controllers
             ApprovalHelper helper = new ApprovalHelper();
             foreach (PendingApproval approval in approvals)
             {
-                model = await json.ApproveRequest(SessionHelper.EmployeeID(), approval);
+                model = await json.ApproveRequest(SessionHelper.EmployeeID, approval);
                 if (model.Result && (approval.Status == ApprovalStatus.Approved || approval.Status == ApprovalStatus.NoAction || approval.Status == ApprovalStatus.NotApproved))
                 {
                     await helper.ProcessRequest(approval.RecordType, model);

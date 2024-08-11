@@ -40,7 +40,7 @@ namespace Pipewellservice.Areas.API.Controllers
         [Authorization(Pages.PurchaseOrderManagment, 1, 2)]
         public async Task<JsonResult> AddPurchaseOrderManagmentData(PurchaseOrderManagement request, List<EmployeeApproval> approvals, List<PurchaseOrderManagementItem> Items)
         {
-            request.RecordCreatedBy = SessionHelper.UserID();
+            request.RecordCreatedBy = SessionHelper.UserID;
 
             var result = await json.AddPurchaseOrderManagmentData(request, approvals, Items);
             if (result.ApprovalID > 0)

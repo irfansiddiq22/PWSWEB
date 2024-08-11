@@ -24,7 +24,7 @@ namespace Pipewellservice.Controllers
         private string Parent = JsonConvert.SerializeObject(new { URL = "/Employee/home", Title = "Human Resources" });
         public EmployeeController()
         {
-            if (SessionHelper.UserGroup() == (int)UserGroups.Employee)
+            if (SessionHelper.UserGroup == (int)UserGroups.Employee)
             {
                 Parent = "";
             }
@@ -176,7 +176,7 @@ namespace Pipewellservice.Controllers
 
             ViewBag.Title = "Employee Leave Request";
             ViewBag.Parent = Parent;
-            if (SessionHelper.UserGroup() == 2)
+            if (SessionHelper.UserGroup == 2)
                 return View("_PartialEmployeeLeaves");
             else
                 return View("_PartialEmployeeLeavesHr");
@@ -187,7 +187,7 @@ namespace Pipewellservice.Controllers
         {
             ViewBag.Title = "Employee Request Form";
             ViewBag.Parent = Parent;
-            if (SessionHelper.UserGroup() == 2)
+            if (SessionHelper.UserGroup == 2)
                 return View("_PartialEmployeeInquiry");
             else
                 return View("_PartialEmployeeInquiryHr");
@@ -217,7 +217,7 @@ namespace Pipewellservice.Controllers
         {
             ViewBag.Title = "Employee Short Leave";
             ViewBag.Parent = Parent;
-            if (SessionHelper.UserGroup() == 2)
+            if (SessionHelper.UserGroup == 2)
                 return View("_PartialEmployeeShortLeave");
             else
                 return View("_PartialEmployeeShortLeaveHR");

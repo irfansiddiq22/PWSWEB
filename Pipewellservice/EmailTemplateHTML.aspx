@@ -1,7 +1,7 @@
 ﻿<table style="width: 900px">
     <tr>
         <td style="width: 900px" width="900px;">
-            <p>Dear #SUPPLIER_NAME#</p>
+            <p>Greatings, #SUPPLIER_NAME#</p>
             <br />
             <p>You are requested to provide a quotation for the following items.</p>
             <br />

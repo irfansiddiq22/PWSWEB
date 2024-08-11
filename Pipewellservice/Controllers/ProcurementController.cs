@@ -25,7 +25,7 @@ namespace Pipewellservice.Controllers
         private string Parent = JsonConvert.SerializeObject(new { URL = "/Procurement/home", Title = "Procurement" });
         public ProcurementController()
         {
-            if (SessionHelper.UserGroup() == (int)UserGroups.Employee)
+            if (SessionHelper.UserGroup == (int)UserGroups.Employee)
             {
                 Parent = "";
             }

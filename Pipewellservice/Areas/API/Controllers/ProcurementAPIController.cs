@@ -55,7 +55,7 @@ namespace Pipewellservice.Areas.API.Controllers
         
         public async Task<JsonResult> AddStoreItem(Item item)
         {
-            var result = await itemJson.AddStoreItem(item, SessionHelper.UserID());
+            var result = await itemJson.AddStoreItem(item, SessionHelper.UserID);
             return new JsonResult
             {
                 Data = result,
@@ -159,7 +159,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
         public async Task<JsonResult> AddMaterialRequest(MaterialRequest request, List<MaterialRequestItem> Items)
         {
-            request.RecordCreatedBy = SessionHelper.UserID();
+            request.RecordCreatedBy = SessionHelper.UserID;
 
             var result = await json.AddMaterialRequest(request, Items);
             if (result.ApprovalID > 0)
@@ -214,11 +214,11 @@ namespace Pipewellservice.Areas.API.Controllers
         [Authorization(Pages.StoreReceiving, 1, 2)]
         public async Task<JsonResult> AddStoreReceiving(StoreReceiving dto, List<ReceivingItem> items)
         {
-           // StoreReceiving dto = JsonConvert.DeserializeObject<StoreReceiving>(Request["dto"]);
+            // StoreReceiving dto = JsonConvert.DeserializeObject<StoreReceiving>(Request["dto"]);
             //List<ReceivingItem> items = JsonConvert.DeserializeObject<List<ReceivingItem>>(Request["items"]);
-            
 
-            dto.RecordCreatedBy = SessionHelper.UserID();
+
+            dto.RecordCreatedBy = SessionHelper.UserID;
             var result = await itemJson.AddStoreReceiving(dto, items);
             return new JsonResult
             {
@@ -248,7 +248,7 @@ namespace Pipewellservice.Areas.API.Controllers
             //List<ReceivingItem> items = JsonConvert.DeserializeObject<List<ReceivingItem>>(Request["items"]);
 
 
-            dto.RecordCreatedBy = SessionHelper.UserID();
+            dto.RecordCreatedBy = SessionHelper.UserID;
             var result = await itemJson.AddStoreDelivery(dto, items);
             return new JsonResult
             {

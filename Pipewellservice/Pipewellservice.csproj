@@ -215,6 +215,7 @@
     <Compile Include="Controllers\ProcurementController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\SupportController.cs" />
     <Compile Include="EmailTemplateHTML.aspx.cs">
       <DependentUpon>EmailTemplateHTML.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -318,6 +319,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ActiveReports.ReportService.asmx" />
+    <Content Include="Content\app\app.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
@@ -637,6 +639,7 @@
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
+    <Content Include="SupportApp.js" />
     <Content Include="Template.aspx" />
     <Content Include="Views\Employee\WebViewer.ascx" />
     <Content Include="Web.config" />
@@ -720,6 +723,7 @@
     <Content Include="Views\Supplier\SubmitQuote.cshtml" />
     <Content Include="Views\Shared\_GenericLayout.cshtml" />
     <Content Include="Views\Supplier\Error.cshtml" />
+    <Content Include="Views\Support\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

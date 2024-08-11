@@ -17,7 +17,8 @@ function _Init() {
     $("#tblProductsTotal").append(CreateRow({ ItemID: 0, Name: "", Quantity: TotalQuantity, Price: 0, Notes: "" }, true, ""))
 
 
-
+    if (QuoteData.PastQuotes.length==0)
+        $("#dvQuoteHistory").hide()
     $.each(QuoteData.PastQuotes, function (i, qt) {
 
         var PrevQuote = $('<div class="border">')
