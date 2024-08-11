@@ -2,7 +2,7 @@
     function () {
         var jquery, _wid, _did;
         var w;
-        const base = 'http://localhost:65199/'
+        const base = location.protocol + '//' + location.host;
        
         
 
@@ -135,7 +135,9 @@
                 var Report = {
                     Name: jquery("#txtReportingName").val(),
                     Problem: jquery("#txtReportingIssue").val(),
-                    FileName:""
+                    FileName: "",
+                    Url: jquery(location).attr('href')
+
                 }
                 var fileData = new FormData();
                 var Supportfile = $('#flReportingFile').get(0);
@@ -157,7 +159,7 @@
                 fileData.append("report", JSON.stringify(Report));
 
                 jquery.ajax({
-                    url: '/Support/Submit',
+                    url: base+'/Support/Submit',
                     type: "POST",
                     contentType: false,
                     processData: false,
@@ -182,7 +184,7 @@
             }
             , DataSuccess: function (rid) {
                 this.toogleChat();
-                swal("Thank you for your support, we will contact you soon with update", { icon: "success" });
+                swal("Thank you for your contacting support, we will contact you soon with update.", { icon: "success" });
                 jquery(".spinner").hide();
                 
             },

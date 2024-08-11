@@ -22,7 +22,7 @@ namespace Pipewellservice.Controllers
         public async Task<JsonResult> Submit()
         {
             SupportTicket ticket = JsonConvert.DeserializeObject<SupportTicket>(Request["report"]);
-            string Body = $"Please review the following request ticket submitted by the user { SessionHelper.UserName } <br> Name:${ticket.Name} <br>Problem:{ticket.Problem}<br><br>";
+            string Body = $"Please review the following request ticket submitted by the user { SessionHelper.UserName } <br> Name:${ticket.Name} <br>Problem:{ticket.Problem} <br>Problem URL:{ticket.Url}<br><br>";
             HttpPostedFileBase file=null;
             if (Request.Files.Count>0 )
             {
