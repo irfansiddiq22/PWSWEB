@@ -1,6 +1,7 @@
 ﻿var EmployeeList = [];
 var Employee = {ID:0}
 function _Init() {
+    SetPagePermissions([32,33])
     SetPagePermission(PAGES.EmployeeDetail, function () {
 
         FillEmployee();
@@ -51,15 +52,16 @@ function _Init() {
             }
 
         });
-        $.each($("email[data-msg],:text[data-msg]"), function (i, c) {
+        $.each($("email[data-msg],input[data-msg]"), function (i, c) {
+            //if (!$(this).attr("name"))
             $(this).attr("name", $(this).attr("id"));
-            if (!$(this).attr("data-min")) {
+            if ($(this).attr("data-min")) {
                 $(this).rules("add", {
                     required: true,
                     min: 1,
                     messages: {
                         required: $(this).attr("msg"),
-                        min: $(this).attr("msg")
+                        min:$(this).attr("msg")
                     }
 
                 });
@@ -69,7 +71,6 @@ function _Init() {
                     messages: {
                         required: $(this).attr("msg"),
                     }
-
                 });
             }
 
@@ -279,7 +280,8 @@ function FillEmployeeTable() {
                 tr.append($('<td>').append((e.QiwaContract ?"Yes":"No")));
 
                 tr.append($('<td>').html(e.HiringDate == null ? "" : moment(e.HiringDate).format("DD/MM/YYYY")));
-                tr.append($('<td>').html(e.VacationRotation +' Month'));
+                tr.append($('<td>').html(e.VacationRotation + ' Month'));
+                tr.append($('<td>').html(e.VacationDestination == null ? "" : e.VacationDestination));
                 tr.append($('<td>').html(e.LastJoinDate == null ? "" : moment(e.LastJoinDate).format("DD/MM/YYYY")));
                 tr.append($('<td class="jobstatus">').html(e.CurrentJobStatus));
                 tr.append($('<td class="jobstatus">').html(e.JobLeftDate == null ? "" : moment(e.JobLeftDate).format("DD/MM/YYYY")));
@@ -592,12 +594,14 @@ function ExportEmployeeData() {
     tr.append($('<td>').text("Nationality"));
 
     tr.append($('<td>').text("Iqama"));
+    tr.append($('<td>').text("Iqama Profession"));
     if ($("#chkEmployeeIqamainfo").prop("checked")) {
         tr.append($('<td>').text("Expiry Date"))
 
         tr.append($('<td>').text("Passport"));
         tr.append($('<td>').text("Expiry Date"));
     }
+    tr.append($('<td>').text("Location"));
     tr.append($('<td>').text("Phone Number"));
     tr.append($('<td>').text("Age"));
     tr.append($('<td>').text("Company"));
@@ -605,13 +609,22 @@ function ExportEmployeeData() {
     tr.append($('<td>').text("Position"));
 
     tr.append($('<td>').text("Supervisor"));
+    tr.append($('<td>').text("Contract Type"));
+    tr.append($('<td>').text("Source Of Hiring"));
+    tr.append($('<td>').text("Accommodation Required"));
+    tr.append($('<td>').text("Qiwa"));
+    
 
-
+    
     tr.append($('<td>').text("Hiring Date"));
+    tr.append($('<td>').text("Vacation Rotation"));
+    tr.append($('<td>').text("Destination"));
     if (!GetChecked("chkEmployeeOnJobEmployee")) {
         tr.append($('<td>').text("Job Status"));
         tr.append($('<td>').text("Job Left Date"));
     }
+    tr.append($('<td>').text("Last Working Date"));
+    
     $(table).append(tr);
 
     $.each(FilteredData, function (i, e) {
@@ -623,12 +636,14 @@ function ExportEmployeeData() {
         tr.append($('<td>').html(e.Nationality));
         
         tr.append($('<td>').append((e.Iqama == null || e.Iqama == "" ? "" : e.Iqama)));
+        tr.append($('<td>').append((e.IqamaProfession == null || e.IqamaProfession == "" ? "" : e.IqamaProfession)));
         if ($("#chkEmployeeIqamainfo").prop("checked")) {
         tr.append($('<td class="iqamadata">').html(e.IqamaExpiryDate == null ? "" : moment(e.IqamaExpiryDate).format("DD/MM/YYYY")))
         
             tr.append($('<td class="iqamadata">').append((e.Passport == null || e.Passport == "" ? "" : e.Passport)));
             tr.append($('<td class="iqamadata">').html(e.PassportExpiryDate == null ? "" : moment(e.PassportExpiryDate).format("DD/MM/YYYY")))
         }
+        tr.append($('<td>').append((e.LocationName == null || e.LocationName == "" ? "" : e.LocationName)));
         tr.append($('<td>').html(e.PhoneNumber));
         tr.append($('<td>').html(e.DataOfBirth == null ? "" : moment().diff(e.DataOfBirth, "years")));
         tr.append($('<td>').html(e.SponsorCompany));
@@ -637,12 +652,23 @@ function ExportEmployeeData() {
 
         tr.append($('<td>').html(e.Supervisor));
 
+        tr.append($('<td>').append((e.ContractTypeName == null || e.ContractTypeName == "" ? "" : e.ContractTypeName)));
+        tr.append($('<td>').append((e.HiringSourceName == null || e.HiringSourceName == "" ? "" : e.HiringSourceName)));
+        tr.append($('<td>').append((e.AccommodationRequired ? "Yes" : "No")));
+        tr.append($('<td>').append((e.QiwaContract ? "Yes" : "No")));
 
         tr.append($('<td>').html(e.HiringDate == null ? "" : moment(e.HiringDate).format("DD/MM/YYYY")));
+        tr.append($('<td>').html(e.VacationRotation + ' Month'));
+        tr.append($('<td>').html(e.VacationDestination == null ? "" : e.VacationDestination));
+        
+       
+
+        
         if (!GetChecked("chkEmployeeOnJobEmployee")) {
             tr.append($('<td>').html(e.CurrentJobStatus));
             tr.append($('<td>').html(e.JobLeftDate == null ? "" : moment(e.JobLeftDate).format("DD/MM/YYYY")));
         }
+        tr.append($('<td>').html(e.LastJoinDate == null ? "" : moment(e.LastJoinDate).format("DD/MM/YYYY")));
 
         $(table).append(tr);
     })

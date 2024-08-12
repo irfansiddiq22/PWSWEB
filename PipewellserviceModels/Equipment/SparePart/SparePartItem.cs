@@ -28,8 +28,8 @@ namespace PipewellserviceModels.Equipment.SparePart
     }
     public class SparePartItemParam
     {
-        public string SearchTerm { get; set; }
+        public string PartNumber { get; set; }
         public string Application { get; set; }
-        public string Part { get; set; }
+        public string PartName { get; set; }
     }
 }

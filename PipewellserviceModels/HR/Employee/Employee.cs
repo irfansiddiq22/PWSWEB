@@ -19,7 +19,9 @@ namespace PipewellserviceModels.HR.Employee
         public int? VacationRotation { get; set; }
         public DateTime? IqamaExpiryDate { get; set; }
         public DateTime? IqamaIssueDate { get; set; }
-        
+        public string VacationDestination { get; set; }
+
+
     }
     public class Supervisor
     {
@@ -121,6 +123,7 @@ namespace PipewellserviceModels.HR.Employee
         public DateTime? LastJoinDate { get; set; }
         public DateTime? LastVacation { get; set; }
         public DateTime? NextVacation { get; set; }
+        
         public DateTime? DataOfBirth { get; set; }
         public DateTime? JobLeftDate { get; set; }
         public int? JobTimingID { get; set; }

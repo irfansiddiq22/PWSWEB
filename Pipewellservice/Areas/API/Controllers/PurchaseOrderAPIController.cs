@@ -37,7 +37,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.PurchaseOrderManagment, 1, 2)]
+        [Authorization(Pages.PurchaseOrderManagment, 1, CanDelete.Ignore)]
         public async Task<JsonResult> AddPurchaseOrderManagmentData(PurchaseOrderManagement request, List<EmployeeApproval> approvals, List<PurchaseOrderManagementItem> Items)
         {
             request.RecordCreatedBy = SessionHelper.UserID;

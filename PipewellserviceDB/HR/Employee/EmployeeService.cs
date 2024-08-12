@@ -490,7 +490,7 @@ namespace PipewellserviceDB.HR.Employee
 
             try
             {
-                SqlParameter[] collSP = new SqlParameter[49];
+                SqlParameter[] collSP = new SqlParameter[50];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = employee.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@Name", Value = employee.Name };
                 collSP[2] = new SqlParameter { ParameterName = "@ArabicName", Value = employee.ArabicName };
@@ -544,7 +544,9 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[46] = new SqlParameter { ParameterName = "@EmergencyContactRelation", Value = employee.EmergencyContactRelation };
                 collSP[47] = new SqlParameter { ParameterName = "@AccommodationRequired", Value = employee.AccommodationRequired };
                 collSP[48] = new SqlParameter { ParameterName = "@IBAN", Value = employee.IBAN };
+                collSP[49] = new SqlParameter { ParameterName = "@VacationDestination", Value = employee.VacationDestination ?? (object)DBNull.Value };
 
+                
 
                 var Result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployee", CommandType.StoredProcedure, collSP);
                 return new ResultDTO() { ID = Convert.ToInt32(Result), Status = true, Message = "Record Added" };
@@ -902,12 +904,13 @@ namespace PipewellserviceDB.HR.Employee
                 {
                     foreach (EmployeeApproval a in dTO.Approvals)
                     {
+                        
                         Approvals.AppendLine($"<Table1><DivisionID>{a.DivisionID}</DivisionID></Table1>");
                     }
                 }
                 Approvals.AppendLine("</NewDataSet>");
 
-                SqlParameter[] collSP = new SqlParameter[12];
+                SqlParameter[] collSP = new SqlParameter[16];
                 collSP[0] = new SqlParameter { ParameterName = "@ID", Value = dTO.ID };
                 collSP[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = dTO.EmployeeID };
                 collSP[2] = new SqlParameter { ParameterName = "@InquiryDate", Value = dTO.InquiryDate };
@@ -920,6 +923,11 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[9] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = dTO.RecordCreatedBy };
                 collSP[10] = new SqlParameter { ParameterName = "@PriorityLevelID", Value = dTO.PriorityLevelID };
                 collSP[11] = new SqlParameter { ParameterName = "@Approvals", Value = Approvals.ToString() };
+
+                collSP[12] = new SqlParameter { ParameterName = "@Resignation", Value = dTO.Resignation };
+                collSP[13] = new SqlParameter { ParameterName = "@SalaryCertificate", Value = dTO.SalaryCertificate };
+                collSP[14] = new SqlParameter { ParameterName = "@MissPunch", Value = dTO.MissPunch };
+                collSP[15] = new SqlParameter { ParameterName = "@LastWorkingDate", Value = dTO.LastWorkingDate };
 
                 var result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcUpdateEmployeeInquiry", CommandType.StoredProcedure, collSP);
                 return Convert.ToInt32(result);
@@ -1349,7 +1357,7 @@ namespace PipewellserviceDB.HR.Employee
         {
 
 
-            SqlParameter[] parameters = new SqlParameter[9];
+            SqlParameter[] parameters = new SqlParameter[10];
             parameters[0] = new SqlParameter { ParameterName = "@ID", Value = 0, Direction = ParameterDirection.InputOutput };
             parameters[1] = new SqlParameter { ParameterName = "@EmployeeID", Value = record.EmployeeID };
             parameters[2] = new SqlParameter { ParameterName = "@StartDate", Value = record.StartDate };
@@ -1359,6 +1367,7 @@ namespace PipewellserviceDB.HR.Employee
             parameters[6] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = record.RecordCreatedBy };
             parameters[7] = new SqlParameter { ParameterName = "@Status", Value = 0, Direction = ParameterDirection.InputOutput };
             parameters[8] = new SqlParameter { ParameterName = "@PriorityLevelID", Value = record.PriorityLevelID };
+            parameters[9] = new SqlParameter { ParameterName = "@NeedTicket", Value = record.NeedTicket };
 
 
 

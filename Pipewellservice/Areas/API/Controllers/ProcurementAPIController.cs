@@ -62,7 +62,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.ProcurementStoreItemManagement, 1, 2)]
+        [Authorization(Pages.ProcurementStoreItemManagement, 1, CanDelete.Ignore)]
         public async Task<JsonResult> UpdateItemFile(int ID)
         {
 
@@ -179,7 +179,7 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
-        [Authorization(Pages.ProcurementMaterialRequest, 1, 2)]
+        [Authorization(Pages.ProcurementMaterialRequest, 1, CanDelete.Ignore)]
         public async Task<JsonResult> UpdateMaterialRequestFile(int ID)
         {
 
@@ -211,7 +211,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
         }
 
-        [Authorization(Pages.StoreReceiving, 1, 2)]
+        [Authorization(Pages.StoreReceiving, 1, CanDelete.Ignore)]
         public async Task<JsonResult> AddStoreReceiving(StoreReceiving dto, List<ReceivingItem> items)
         {
             // StoreReceiving dto = JsonConvert.DeserializeObject<StoreReceiving>(Request["dto"]);
@@ -241,7 +241,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
 
 
-        [Authorization(Pages.StoreDelivery , 1, 2)]
+        [Authorization(Pages.StoreDelivery , 1, CanDelete.Ignore)]
         public async Task<JsonResult> AddStoreDelivery(StoreDelivery dto, List<DeliveryItem> items)
         {
             // StoreReceiving dto = JsonConvert.DeserializeObject<StoreReceiving>(Request["dto"]);

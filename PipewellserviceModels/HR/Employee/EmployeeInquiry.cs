@@ -143,6 +143,11 @@ namespace PipewellserviceModels.HR.Employee
         public bool PersonalInquiry { get; set; }
         public bool GeneralInquiry { get; set; }
         public bool LoanInquiry { get; set; }
+
+        public bool Resignation { get; set; }
+        public bool SalaryCertificate { get; set; }
+        public bool MissPunch { get; set; }
+        public DateTime LastWorkingDate { get; set; }
         public string FileID { get; set; }
         public string FileName { get; set; }
         public ApprovalStatus Status { get; set; }

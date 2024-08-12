@@ -26,6 +26,7 @@ namespace PipewellserviceModels.HR.Employee
         public int PriorityLevelID { get; set; }
         public string PriorityLevelName { get; set; }
         public string ColorCode { get; set; }
+        public bool NeedTicket { get; set; }
         public int Status { get; set; }
     }
     public class LeaveStats

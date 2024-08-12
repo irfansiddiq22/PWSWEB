@@ -243,4 +243,11 @@ namespace PipewellserviceModels.Common
         LLC=3,
         Partnership=4
     }
+    public enum CanDelete
+    {
+        Yes=1,
+        No=0,
+        Ignore=2
+      
+    }
 }

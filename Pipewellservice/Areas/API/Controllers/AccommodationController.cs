@@ -15,7 +15,7 @@ namespace Pipewellservice.Areas.API.Controllers
     public class AccommodationController : BaseController
     {
         private AccommodationJson json = new AccommodationJson();
-        [Authorization(Pages.Accommodation, 1, 2)]
+        [Authorization(Pages.Accommodation, 1, CanDelete.Ignore)]
         public async Task<JsonResult> ListBuilding()
         {
             return new JsonResult
@@ -24,7 +24,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.Accommodation, 1, 2)]
+        [Authorization(Pages.Accommodation, 1, CanDelete.Ignore)]
         public async Task<JsonResult> AddBuilding(Building building)
         {
 
@@ -36,7 +36,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.Accommodation, 1, 2)]
+        [Authorization(Pages.Accommodation, 1, CanDelete.Ignore)]
         public async Task<JsonResult> AddFloor(int ID)
         {
             return new JsonResult
@@ -46,7 +46,7 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
-        [Authorization(Pages.Accommodation, 1, 2)]
+        [Authorization(Pages.Accommodation, 1, CanDelete.Ignore)]
         public async Task<JsonResult> AddAppartment(Appartment appt)
         {
             return new JsonResult
@@ -57,7 +57,7 @@ namespace Pipewellservice.Areas.API.Controllers
         }
 
 
-        [Authorization(Pages.Accommodation, 1, 2)]
+        [Authorization(Pages.Accommodation, 1, CanDelete.Ignore)]
         public async Task<JsonResult> AssignRoomBeds(List<RoomBed> beds, bool AramcoRoom)
         {
             return new JsonResult
@@ -67,7 +67,7 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
-        [Authorization(Pages.Accommodation, 1, 2)]
+        [Authorization(Pages.Accommodation, 1, CanDelete.Ignore)]
         public async Task<JsonResult> AssignAppartmentPlan(Appartment appertment,List<RoomBed> beds)
         {
             return new JsonResult
@@ -76,7 +76,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.Accommodation, 1, 2)]
+        [Authorization(Pages.Accommodation, 1, CanDelete.Ignore)]
         public async Task<JsonResult> LeaveRoom(int EmployeeID)
         {
             return new JsonResult
@@ -86,7 +86,7 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
-        [Authorization(Pages.Accommodation, 1, 2)]
+        [Authorization(Pages.Accommodation, 1, CanDelete.Ignore)]
         public async Task<JsonResult> SwapRoom(int EmployeeID,int EmployeeID2)
         {
             return new JsonResult

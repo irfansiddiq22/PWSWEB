@@ -79,7 +79,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.Certificates, 1, 2)]
+        [Authorization(Pages.Certificates, 1, CanDelete.Ignore)]
         public async Task<JsonResult> UpdateCertificate(EmployeeCertificate certificate)
         {
             if (Request.Files.Count > 0)
@@ -105,7 +105,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.Certificates, 2, 1)]
+        [Authorization(Pages.Certificates, 2, CanDelete.Yes)]
         public async Task<JsonResult> RemoveCertificate(DeleteDTO delete)
         {
             return new JsonResult
@@ -129,7 +129,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.Assets, 1, 2)]
+        [Authorization(Pages.Assets, 1, CanDelete.Ignore)]
         public async Task<JsonResult> UpdateAsset(EmployeeAsset asset)
         {
             if (Request.Files.Count > 0)
@@ -157,7 +157,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.Assets, 2, 1)]
+        [Authorization(Pages.Assets, 2, CanDelete.Yes)]
         public async Task<JsonResult> RemoveAsset(DeleteDTO delete)
         {
             return new JsonResult
@@ -227,7 +227,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.EmployeeID, 1, 2)]
+        [Authorization(Pages.EmployeeID, 1, CanDelete.Ignore)]
         public async Task<JsonResult> UpdateEmployeeIDFile(EmployeeIDFile Idfile)
         {
 
@@ -254,7 +254,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.EmployeeID, 2, 1)]
+        [Authorization(Pages.EmployeeID, 2, CanDelete.Ignore)]
         public async Task<JsonResult> RemoveEmployeeIDFile(DeleteDTO delete)
         {
             return new JsonResult
@@ -279,7 +279,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.FamilyID, 1, 2)]
+        [Authorization(Pages.FamilyID, 1, CanDelete.Ignore)]
         public async Task<JsonResult> UpdateEmployeeFamilyIDFile(EmployeeFamilyIDFile Idfile)
         {
 
@@ -309,7 +309,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
 
         }
-        [Authorization(Pages.FamilyID, 2, 1)]
+        [Authorization(Pages.FamilyID, 2, CanDelete.Yes)]
         public async Task<JsonResult> RemoveEmployeeFamilyIDFile(DeleteDTO delete)
         {
             return new JsonResult
@@ -340,7 +340,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.Family, 1, 2)]
+        [Authorization(Pages.Family, 1, CanDelete.Ignore)]
 
         public async Task<JsonResult> UpdateEmployeeFamily(EmployeeFamily family)
         {
@@ -370,7 +370,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
 
         }
-        [Authorization(Pages.Family, 2, 1)]
+        [Authorization(Pages.Family, 2, CanDelete.Yes)]
         public async Task<JsonResult> RemoveEmployeeFamily(DeleteDTO delete)
         {
             return new JsonResult
@@ -418,7 +418,7 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
-        [Authorization(Pages.EmployeeDetail, 1, 2)]
+        [Authorization(Pages.EmployeeDetail, 1, CanDelete.Ignore)]
         public async Task<JsonResult> UpdateEmployee(EmployeeData employee)
         {
             return new JsonResult
@@ -427,7 +427,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.EmployeeDetail, 1, 2)]
+        [Authorization(Pages.EmployeeDetail, 1, CanDelete.Ignore)]
         public async Task<FileResult> EmployeePicture(int EmployeeID, string FileID, string FileName)
         {
             string FilePath = await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.EmployeePictures); ;
@@ -436,7 +436,7 @@ namespace Pipewellservice.Areas.API.Controllers
             else
                 return null;
         }
-        [Authorization(Pages.EmployeeDetail, 1, 2)]
+        [Authorization(Pages.EmployeeDetail, 1, CanDelete.Ignore)]
         public async Task<JsonResult> UpdateEmployeePicture(int EmployeeID)
         {
 
@@ -480,7 +480,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.EmployeeWarning, 1, 2)]
+        [Authorization(Pages.EmployeeWarning, 1, CanDelete.Ignore)]
         public async Task<JsonResult> UpdateEmployeeWarning(EmployeeWarning warning)
         {
 
@@ -530,7 +530,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.EmployeeClearance, 1, 2)]
+        [Authorization(Pages.EmployeeClearance, 1, CanDelete.Ignore)]
         public async Task<JsonResult> UpdateEmployeeClearance(EmployeeClearance clearance)
         {
 
@@ -551,7 +551,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.EmployeeVacation, 1, 2)]
+        [Authorization(Pages.EmployeeVacation, 1, CanDelete.Ignore)]
         public async Task<JsonResult> UpdateEmployeeVacation(EmployeeVacation vacation)
         {
             vacation.RecordCreatedBy = SessionHelper.UserID;
@@ -563,7 +563,7 @@ namespace Pipewellservice.Areas.API.Controllers
             };
 
         }
-        [Authorization(Pages.EmployeeVacation, 1, 1)]
+        [Authorization(Pages.EmployeeVacation, 1, CanDelete.Yes)]
         public async Task<JsonResult> DeleteEmployeeVacation(int ID)
         {
             int UserID = SessionHelper.UserID;
@@ -598,7 +598,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.EmployeeInquiry, 1, 2)]
+        [Authorization(Pages.EmployeeInquiry, 1, CanDelete.Ignore)]
         public async Task<JsonResult> UpdateEmployeeInquiry(EmployeeInquiry inquiry)
         {
             int ID = await json.UpdateEmployeeInquiry(inquiry);
@@ -608,7 +608,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.EmployeeInquiry, 1, 2)]
+        [Authorization(Pages.EmployeeInquiry, 1, CanDelete.Ignore)]
         public async Task<JsonResult> AddEmployeeInquiry(EmployeeInquiry inquiry,PriorityLevel priorityLevel)
         {
 
@@ -621,7 +621,7 @@ namespace Pipewellservice.Areas.API.Controllers
         }
 
 
-        [Authorization(Pages.EmployeeInquiry, 1, 2)]
+        [Authorization(Pages.EmployeeInquiry, 1, CanDelete.Ignore)]
         public async Task<JsonResult> UpdateEmployeeInquiryFile(int EmployeeID, int ID)
         {
 
@@ -690,10 +690,13 @@ namespace Pipewellservice.Areas.API.Controllers
                         Supervisor = requestApprover;
                     }
 
-                    else if (requestApprover.SupervisorType == SupervisorTypes.HRManager)
+                    else if (  requestApprover.SupervisorType == SupervisorTypes.HRManager)
                         Status = "Pending Approval";
-
-                    Row = Row + $"<tr><td>{ requestApprover.Name }</td><td>{ requestApprover.Position }</td><td>{Status}</td></tr>";
+                    if (record.MissPunch) {
+                        if (requestApprover.SupervisorType == SupervisorTypes.Supervisor)
+                         Row = Row + $"<tr><td>{ requestApprover.Name }</td><td>{ requestApprover.Position }</td><td>{Status}</td></tr>";
+                    }else
+                        Row = Row + $"<tr><td>{ requestApprover.Name }</td><td>{ requestApprover.Position }</td><td>{Status}</td></tr>";
                 }
 
                 field.Add(new MergeField("APPROVALS", Row));
@@ -764,7 +767,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.Approvals, 1, 2)]
+        [Authorization(Pages.Approvals, 1, CanDelete.Ignore)]
         public async Task<JsonResult> ApproveRequests(List<PendingApproval> approvals)
         {
             ApprovalRequestResult model = new ApprovalRequestResult();
@@ -816,7 +819,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.Vendor, 1, 1)]
+        [Authorization(Pages.Vendor, 1, CanDelete.Yes)]
         public async Task<JsonResult> UpdateVendor(Vendor Vendor)
         {
             Vendor.RecordAddedBy = SessionHelper.UserSession().ID;
@@ -858,7 +861,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.Joining, 1, 1)]
+        [Authorization(Pages.Joining, 1, CanDelete.Yes)]
         public async Task<JsonResult> UpdateEmployeeJoining(EmployeeJoining record)
         {
             record.RecordCreatedBy = SessionHelper.UserSession().ID;
@@ -870,7 +873,7 @@ namespace Pipewellservice.Areas.API.Controllers
             };
 
         }
-        [Authorization(Pages.Joining, 1, 2)]
+        [Authorization(Pages.Joining, 1, CanDelete.Ignore)]
         public async Task<JsonResult> UpdateJoiningSheet(int EmployeeID, int ID)
         {
             if (Request.Files.Count > 0)
@@ -898,7 +901,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.Joining, 1, 1)]
+        [Authorization(Pages.Joining, 1, CanDelete.Yes)]
         public async Task<JsonResult> DeleteEmployeeJoining(int ID)
         {
 
@@ -928,7 +931,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.ShortLeave, 1, 2)]
+        [Authorization(Pages.ShortLeave, 1, CanDelete.Ignore)]
         public async Task<JsonResult> UpdateEmployeeShortLeave(EmployeeShortLeave record)
         {
             record.RecordCreatedBy = SessionHelper.UserSession().ID;
@@ -940,7 +943,7 @@ namespace Pipewellservice.Areas.API.Controllers
             };
 
         }
-        [Authorization(Pages.ShortLeave, 1, 2)]
+        [Authorization(Pages.ShortLeave, 1, CanDelete.Ignore)]
         public async Task<JsonResult> UpdateShortLeaveSheet(int EmployeeID, int ID)
         {
             if (Request.Files.Count > 0)
@@ -1050,7 +1053,7 @@ namespace Pipewellservice.Areas.API.Controllers
             };
 
         }
-        [Authorization(Pages.ShortLeave, 1, 1)]
+        [Authorization(Pages.ShortLeave, 1, CanDelete.Yes)]
         public async Task<JsonResult> DeleteEmployeeShortLeave(int ID)
         {
 
@@ -1068,7 +1071,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
 
         ////
-        [Authorization(Pages.LeaveRequest, 2, 2)]
+        [Authorization(Pages.LeaveRequest, 2, CanDelete.Ignore)]
         public async Task<JsonResult> EmployeeLeaveRequest(DateParam param)
         {
             var result = await json.EmployeeLeaveRequest(param);
@@ -1087,7 +1090,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [Authorization(Pages.LeaveRequest, 1, 2)]
+        [Authorization(Pages.LeaveRequest, 1, CanDelete.Ignore)]
         public async Task<JsonResult> NewLeaveRequest(EmployeeLeave record, PriorityLevel PriorityLevel, LeaveStats LeaveStat)
         {
             record.RecordCreatedBy = SessionHelper.UserSession().ID;
@@ -1102,6 +1105,7 @@ namespace Pipewellservice.Areas.API.Controllers
                 field.Add(new MergeField("DAYS", (record.EndDate - record.StartDate).Days.ToString()));
                 field.Add(new MergeField("PRIORITYLEVEL", PriorityLevel.Name));
                 field.Add(new MergeField("PRIORITYLEVELCOLOR", PriorityLevel.ColorCode));
+                field.Add(new MergeField("TICKET", record.NeedTicket ? "Need a ticket: YES": ""));
                 if (record.LeaveType == 1)
                 {
                     string table = $"<table style='width:900px;border-style:solid;'><tr><td><b> Allowance</b></td><td><b> Carried Over</b></td><td><b> Available</b></td><td><b> Used</b></td><td><b> Balance</b></td><td><b> Unit</b></td></tr><tr><td><b> {LeaveStat.Allowance}</b></td><td><b> {LeaveStat.CarriedOver}</b></td><td><b> {LeaveStat.Available}</b></td><td><b> {LeaveStat.LeavesTaken}</b></td><td><b> {LeaveStat.Balance}</b></td><td><b> Days</b></td></tr></table>";

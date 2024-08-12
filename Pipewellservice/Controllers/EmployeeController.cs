@@ -120,14 +120,14 @@ namespace Pipewellservice.Controllers
         [Authorization(Pages.EmployeeClearance)]
         public ActionResult Clearance()
         {
-            ViewBag.Title = "Employee Warning Notices";
+            ViewBag.Title = "Employee Clearance";
             ViewBag.Parent = Parent;
             return View("_PartialEmployeeClearance");
         }
         [Authorization(Pages.EmployeeVacation)]
         public ActionResult Vacation()
         {
-            ViewBag.Title = "Employee Vactions";
+            ViewBag.Title = "Employee Clearance";
             ViewBag.Parent = Parent;
             return View("_PartialEmployeeVacation");
         }

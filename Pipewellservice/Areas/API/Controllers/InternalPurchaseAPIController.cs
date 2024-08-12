@@ -51,7 +51,7 @@ namespace Pipewellservice.Areas.API.Controllers
         }
 
         
-        [Authorization(Pages.InternalPurchaseRequest, 1, 2)]
+        [Authorization(Pages.InternalPurchaseRequest, 1, CanDelete.Ignore)]
         public async Task<JsonResult> AddPurchaseRequest(InternalPurchaseRequest request, List<InternalPurchaseRequestItem> Items)
         {
             request.RecordCreatedBy = SessionHelper.UserID;
@@ -76,7 +76,7 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
-        [Authorization(Pages.InternalPurchaseRequest, 1, 2)]
+        [Authorization(Pages.InternalPurchaseRequest, 1, CanDelete.Ignore)]
         public async Task<JsonResult> UpdatePurchaseRequestFile(int ID)
         {
 

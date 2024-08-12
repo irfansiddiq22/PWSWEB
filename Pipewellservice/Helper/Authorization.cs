@@ -23,7 +23,7 @@ namespace Pipewellservice.Helper
         {
             this.Page = Page;
         }
-        public Authorization(Pages Page, int Write, int Delete) : base()
+        public Authorization(Pages Page, int Write, CanDelete Delete) : base()
         {
             this.Page = Page;
             this.Write = null;
@@ -31,8 +31,8 @@ namespace Pipewellservice.Helper
 
             if (Write < 2)
                 this.Write = Write == 1;
-            if (Delete < 2)
-                this.Delete = Delete == 1;
+            if (Delete !=CanDelete.Ignore)
+                this.Delete = Delete == CanDelete.Yes;
         }
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {

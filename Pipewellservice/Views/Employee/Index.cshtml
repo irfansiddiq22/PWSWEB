@@ -68,9 +68,9 @@
                 <thead class="blue">
                     <tr>
                         <th onclick="SortData(this,'id')">Emp #</th>
-                        <th onclick="SortData(this,'Name')" >Emp Name</th>
+                        <th onclick="SortData(this,'Name')">Emp Name</th>
                         <th onclick="SortData(this,'ArabicName')"> Name/Arabic</th>
-                        <th onclick="SortData(this,'Nationality')" >Nationality</th>
+                        <th onclick="SortData(this,'Nationality')">Nationality</th>
                         <th onclick="SortData(this,'Iqama')">Iqama</th>
                         <th onclick="SortData(this,'Iqama')">Iqama Profession</th>
                         <th class="iqamadata" onclick="SortData(this,'Iqama')">Expiry Date</th>
@@ -79,21 +79,22 @@
                         <th class="iqamadata" onclick="SortData(this,'Passport')">Expiry Date</th>
 
                         <th onclick="SortData(this,'LocationName')">Location</th>
-                        <th onclick="SortData(this,'PhoneNumber')" >Phone Number</th>
+                        <th onclick="SortData(this,'PhoneNumber')">Phone Number</th>
                         <th onclick="SortData(this,'DataOfBirth')">Age</th>
-                        <th onclick="SortData(this,'Company')" >Company</th>
-                        <th onclick="SortData(this,'Division')" >Division</th>
+                        <th onclick="SortData(this,'Company')">Company</th>
+                        <th onclick="SortData(this,'Division')">Division</th>
                         <th onclick="SortData(this,'Position')">Position</th>
-                        <th onclick="SortData(this,'Supervisor')" >Supervisor</th>
-                        
+                        <th onclick="SortData(this,'Supervisor')">Supervisor</th>
+
                         <th onclick="SortData(this,'ContractTypeName')">Contract Type</th>
-                        <th onclick="SortData(this,'HiringSourceName')" >Source Of Hiring</th>
-                        <th onclick="SortData(this,'AccommodationRequired')"  >Accommodation Required</th>
+                        <th onclick="SortData(this,'HiringSourceName')">Source Of Hiring</th>
+                        <th onclick="SortData(this,'AccommodationRequired')">Accommodation Required</th>
 
                         <th onclick="SortData(this,'QiwaContract')">Qiwa</th>
                         <th onclick="SortData(this,'HiringDate')">Hiring Date</th>
                         <th onclick="SortData(this,'VacationRotation')">Vacation Rotation</th>
-                        <th  onclick="SortData(this,'LastJoinDate')">Last Working Date</th>
+                        <th onclick="SortData(this,'VacationDestination')">Destination</th>
+                        <th onclick="SortData(this,'LastJoinDate')">Last Working Date</th>
                         <th class="jobstatus" onclick="SortData(this,'Status')">Status</th>
                         <th class="jobstatus" onclick="SortData(this,'JobLeftDate')">Job Left Date</th>
 
@@ -163,7 +164,7 @@
                         <div class="col-8">
                             <div class="row">
                                 <div class="col"><select  class="form-select form-select-sm" id="ddEmployeeLocation" name="ddEmployeeLocation" data-id="Location" required data-min="1" data-msg="Please select location"></select></div>
-                                <div class="col-auto"><a href="javascript:void(0)" onclick="EditLocationData();" class="ms-2 text-primary"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)" onclick="AddLocationData()" class="ms-2 text-success"><i class="fa fa-plus-circle"></i></a> </div>
+                                <div class="col-auto page-33"><a href="javascript:void(0)" onclick="EditLocationData();" class="ms-2 text-primary"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)" onclick="AddLocationData()" class="ms-2 text-success"><i class="fa fa-plus-circle"></i></a> </div>
                             </div>
                         </div>
 
@@ -194,7 +195,7 @@
                             <div class="col-8 jobleftdate"><input type="text" class="form-control form-control-sm datepicker"  id="txtEmployeeJobLeftDate" data-id="JobLeftDate" data-type="date" /></div>
 
                             <div class="col-4"><label>Personal Email</label></div>
-                            <div class="col-8"><input type="email" class="form-control form-control-sm" id="txtEmployeeAddress" name="personalemailaddress" data-id="EmailAddress" required data-msg="Please enter email address" /></div>
+                            <div class="col-8"><input type="email" class="form-control form-control-sm" id="txtEmployeeEmailAddress" name="personalemailaddress" data-id="EmailAddress" required data-msg="Please enter email address" /></div>
 
                             <div class="col-4"><label>Iqama Profession</label></div>
                             <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeIqamaProfession" name="iqamaprofression" data-id="IqamaProfession" required data-msg="Please enter iqama profession"/></div>
@@ -247,7 +248,7 @@
                         <div class="col-8 emppwscr">
                             <div class="row">
                                 <div class="col"><select type="text" class="form-select form-select-sm" id="ddEmployeeSponsor" data-id="SponsorID" required data-msg="Please select PWS CR"></select></div>
-                                <div class="col-auto"><a href="javascript:void(0)" onclick="EditSponsorData();" class="ms-2 text-primary"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)" onclick="AddSponsorData()" class="ms-2 text-success"><i class="fa fa-plus-circle"></i></a> </div>
+                                <div class="col-auto  page-32"><a href="javascript:void(0)" onclick="EditSponsorData();" class="ms-2 text-primary"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)" onclick="AddSponsorData()" class="ms-2 text-success"><i class="fa fa-plus-circle"></i></a> </div>
                             </div>
 
                         </div>
@@ -291,7 +292,10 @@
                         <div class="col-8"><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeLastVacation" data-id="LastVacation" data-type="date" /></div>
                         <div class="col-4"><label>Next Vacation Date</label></div>
                         <div class="col-8"><input type="text" class="form-control form-control-sm datepicker" id="txtEmployeeNextVacation" data-id="NextVacation" data-type="date" /></div>
+                        <div class="col-4"><label>Destination</label></div>
+                        <div class="col-8"><input type="text" class="form-control form-control-sm" id="txtEmployeeDestination" data-id="VacationDestination"  /></div>
 
+                        
                         <div class="col-4"><label>Working Hour</label></div>
                         <div class="col-8"><select type="text" class="form-select form-select-sm" id="ddEmployeeWorkInOutTime" data-id="JobTimingID"></select></div>
                         <div class="col-4"></div>

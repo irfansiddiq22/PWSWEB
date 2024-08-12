@@ -63,7 +63,7 @@ function ListItems() {
     ResetChangeLog(PAGES.ProcurementStoreItem);
 
     $('#dvSparepartItemPaging').pagination({
-        dataSource: "/.....",
+        dataSource: "/EquipmentsAPI/SpacePartItem/List",
         pageSize: pageSize,
         pageNumber: 1,
         showGoInput: true,
@@ -79,7 +79,9 @@ function ListItems() {
             type: "POST",
             dataType: "json",
             data: {
-                Name: $("#txtFindStoreItem").val()
+                PartNumber: valOf("txtSearchPartNumber"),
+                Application: valOf("txtSearchPartApplication"),
+                PartName: valOf("txtSearchPartName")
             },
             beforeSend: function () {
                 ShowSpinner();
@@ -141,9 +143,9 @@ function SaveItem() {
             PartGroup: valOf("txtSparePartPurchasePartGroup"),
             Location: valOf("txtSparePartLocation"),
         };
-        console.log(SparePartItem);
+        
 
-        Post("/EquipmentsAPI/SpacePartItemAPI/SaveItem", { item: SparePartItem }).done(function (resp) {
+        Post("/EquipmentsAPI/SpacePartItem/SaveItem", { item: SparePartItem }).done(function (resp) {
             if (resp.ID > 0) {
                 document.getElementById("frmSpartPartItems").reset();
                 swal("Item added successfully", { icon: "success" });

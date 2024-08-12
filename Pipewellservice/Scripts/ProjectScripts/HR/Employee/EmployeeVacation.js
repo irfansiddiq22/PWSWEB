@@ -101,7 +101,7 @@ function BindEmployeePositionDivision() {
         $("#ddEmployeeNationality").val(Response[0].NationalityID).trigger("change")
         $("#ddEmployeeDivision").val(DivisionID).trigger("change")
         $("#ddEmployeePosition").val(PositionID).trigger("change")
-
+        SetvalOf("txtDestination", Response[0].VacationDestination);
         SetvalOf("txtIqama", moment(IqmaExpiryDate).format("DD/MM/YYYY"));
         SetvalOf("txtLeaveSchedule", VacationRotation);
 

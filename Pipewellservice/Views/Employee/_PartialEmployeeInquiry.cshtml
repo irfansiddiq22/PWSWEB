@@ -40,31 +40,52 @@
                                 <textarea class="form-control form-control-sm" rows="10" id="txtInquiryRemarks" name="InquiryRemarks"></textarea>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="chkInquiryPersonal" name="InquiryPersonal">
+                                <input class="form-check-input" type="checkbox" id="chkInquiryPersonal" onclick="ResetOtherOptions(1,this)" name="InquiryPersonal">
                                 <label class="form-check-label" for="chkInquiryPersonal">Personal</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="chkInquiryGeneral" name="InquiryGeneral">
+                                <input class="form-check-input" type="checkbox" id="chkInquiryGeneral"  onclick="ResetOtherOptions(2,this)" name="InquiryGeneral">
                                 <label class="form-check-label" for="chkInquiryGeneral">General</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="chkInquiryLoan" name="InquiryLoan">
+                                <input class="form-check-input" type="checkbox" id="chkInquiryLoan"  onclick="ResetOtherOptions(3,this)" name="InquiryLoan">
                                 <label class="form-check-label" for="chkInquiryLoan">Loan</label>
                             </div>
-                            <div class="my-3">
 
-                                <label class="custom-file-upload btn btn-primary">
-                                    <input type="file" id="InquiryFile" />
-                                    <i class="fa fa-cloud-upload"></i> Upload Scanned Sheet
-                                </label>
-                                <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeInquiry()">Save</button>
-                                
-                                <button class="btn btn-danger" type="reset">Clear</button>
-
-
-
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="chkSalaryCertificate"  onclick="ResetOtherOptions(4,this)" name="SalaryCertificate">
+                                <label class="form-check-label" for="chkInquiryLoan">Salary Certificate</label>
                             </div>
-                        </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="chkResignation"  onclick="ResetOtherOptions(5,this)" name="Resignation">
+                                <label class="form-check-label" for="chkInquiryLoan">Contract non-renewal/Resignation</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="chkMissPunch"  onclick="ResetOtherOptions(6,this)" name="MissPuch">
+                                <label class="form-check-label" for="chkInquiryLoan">Miss Puch</label>
+                            </div>
+                            <div class="my-3 d-none" id="dvLastWorkingDate">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="columnDate">Last Working Date:</label>
+                                        <input type="text" class="form-control form-control-sm datepicker" id="txtLastWorkingDate" name="LastWorkingDate">
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="my-3">
+
+                                    <label class="custom-file-upload btn btn-primary">
+                                        <input type="file" id="InquiryFile" />
+                                        <i class="fa fa-cloud-upload"></i> Upload Scanned Sheet
+                                    </label>
+                                    <button class="btn btn-primary ms-5" type="submit" onclick="SaveEmployeeInquiry()">Save</button>
+
+                                    <button class="btn btn-danger" type="reset">Clear</button>
+
+
+
+                                </div>
+                            </div>
 
                     </div>
                 </div>
@@ -77,9 +98,8 @@
                                 <th>Request Date</th>
                                 <th>Remarks</th>
                                 <th>Prepared by</th>
-                                <th>Personal</th>
-                                <th>General</th>
-                                <th>Loan</th>
+                                <th>Type</th>
+                                
 
                                 <th></th>
                             </tr>

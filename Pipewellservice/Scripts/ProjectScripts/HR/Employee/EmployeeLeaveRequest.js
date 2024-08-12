@@ -102,7 +102,7 @@ function BindUsers() {
         if (Response.length > 1)
             data.push({ id: 0, text: 'Select an employee' });
         $.each(Response, function (i, emp) {
-            data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name });
+            data.push({ id: emp.ID, text: emp.ID + " - " + emp.Name, Nationality: emp.Nationality });
         })
         $("#ddEmployeeName,#ddEmployeeCode").select2({
             tags: "true",
@@ -122,6 +122,17 @@ $("#ddEmployeeName").change(function () {
 })
 function BindLeaveStats() {
     $("#tblLeaveStats").empty()
+    $("#dvTicket").addClass("d-none");
+    $("#rdNeedTicketNo").trigger("click")
+    var type = parseInt($("#ddlLeaveTypes").val())
+    if (type == 1 || type == 4) {
+        var selected = $('#ddEmployeeName').select2('data');
+
+        if (selected.length>0 && selected[0].Nationality.toLowerCase() != 'saudi') {
+            $("#dvTicket").removeClass("d-none");
+        }
+    }
+
     if (parseInt($("#ddlLeaveTypes").val()) == 1) {
         var tr = $('<tr>')
         $(tr).append($('<td>').append('<b> Allowance'));
@@ -156,7 +167,7 @@ function FillLeaves() {
         LeaveStat = resp;
         BindLeaveStats();
     });
-
+    
     $.post("/EmployeeAPI/EmployeeLeaveRequest", { EmployeeID: $("#ddEmployeeName").val(), StartDate: '', EndDate:'' }, function (resp) {
         $("#tblEmployeeLeaves").empty();
         $.each(resp, function (i, l) {
@@ -213,7 +224,8 @@ function SaveEmployeeLeave() {
                 LeaveType: valOf("ddlLeaveTypes"),
                 LeaveTypeName: textOf("ddlLeaveTypes"),
                 Remarks: valOf("txtRemarks"),
-                PriorityLevelID: valOf("ddlPriorityLevel")
+                PriorityLevelID: valOf("ddlPriorityLevel"),
+                NeedTicket: $("#rdNeedTicketYes").prop("checked")
             };
 
             var PriorityLevel = PriorityLevels.find(x => x.ID = NewLeave.PriorityLevelID)

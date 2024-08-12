@@ -10,6 +10,8 @@ function _Init() {
         BindUsers();
     });
     SetvalOf("txtInquiryDate", moment().format("DD/MM/YYYY"));
+    SetvalOf("txtLastWorkingDate", moment().format("DD/MM/YYYY"));
+    
 }
 function BindUsers() {
     $.post("/EmployeeAPI/CodeName", {}).done(function (Response) {
@@ -93,9 +95,28 @@ function BindInquiryList(PageNumber = 1) {
                 tr.append($('<td>').append(r.Remarks))
 
                 tr.append($('<td>').append(r.Preparedby).append(r.PriorityLevelID > 0 ? '<br><span class="badge badge-primary" style="background-color:' + r.ColorCode + '">' + r.PriorityLevelName : ''));
-                tr.append($('<td>').append(CheckboxSwitch("", (r.PersonalInquiry ? "checked" : ""), "", "")))
-                tr.append($('<td>').append(CheckboxSwitch("", (r.GeneralInquiry ? "checked" : ""), "", "")))
-                tr.append($('<td>').append(CheckboxSwitch("", (r.LoanInquiry ? "checked" : ""), "", "")))
+                var p = $('<div>').append("Personal").append(CheckboxSwitch("", (r.PersonalInquiry ? "checked" : ""), "", ""))
+                if (!r.PersonalInquiry) p = ''
+
+                var g = $('<div>').append("General :").append(CheckboxSwitch("", (r.GeneralInquiry ? "checked" : ""), "", ""))
+                if (!r.GeneralInquiry) g =''
+
+                var l = $('<div>').append("Loan :").append(CheckboxSwitch("", (r.LoanInquiry ? "checked" : ""), "", ""))
+                if (!r.LoanInquiry) l = ''
+
+                var s = $('<div>').append("Salary Certificate :").append(CheckboxSwitch("", (r.SalaryCertificate ? "checked" : ""), "", ""))
+                if (!r.SalaryCertificate) s = ''
+                var m = $('<div>').append("Miss Punch :").append(CheckboxSwitch("", (r.MissPunch ? "checked" : ""), "", ""))
+                if (!r.MissPunch) m = ''
+
+                var reg = $('<div>')
+                if (reg.Resignation) {
+                    $(r).append("Resignation:").append(CheckboxSwitch("", (r.Resignation ? "checked" : ""), "", ""))
+                    $(r).append("<br>Last Working Day:" + moment(r.LastWorkingDate).format("DD/MM/YYYY") )
+                } else
+                    reg=''
+                tr.append($('<td>').append($(p)).append($(g)).append($(l)).append($(s)).append($(m)).append($(reg)))
+                
                 tr.append($('<td>').append(r.InquiryStatus))
 
 
@@ -147,8 +168,14 @@ function SaveEmployeeInquiry() {
             if (Inquiry.ID == 0) {
                 DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: "", New: textOf("ddEmployeeName") } });
             }
-            
+            SetvalOf("txtLastWorkingDate", moment().format("DD/MM/YYYY"));
 
+
+            var LastWorkingDate = moment().format("DD/MM/YYYY")
+            if (GetChecked("chkResignation")) {
+                LastWorkingDate = valOf("txtLastWorkingDate");
+                if (LastWorkingDate == "") LastWorkingDate = moment().format("DD/MM/YYYY")
+            }
             NewInquiry = {
                 ID: Inquiry.ID,
                 EmployeeID: valOf("ddEmployeeName"),
@@ -158,6 +185,10 @@ function SaveEmployeeInquiry() {
                 PersonalInquiry: GetChecked("chkInquiryPersonal"),
                 GeneralInquiry: GetChecked("chkInquiryGeneral"),
                 LoanInquiry: GetChecked("chkInquiryLoan"),
+                Resignation: GetChecked("chkResignation"),
+                MissPunch: GetChecked("chkMissPunch"),
+                SalaryCertificate: GetChecked("chkSalaryCertificate"),
+                LastWorkingDate: LastWorkingDate,
                 UserName: User.Name,
                 RecordCreatedBy: User.ID,
                 
@@ -166,7 +197,12 @@ function SaveEmployeeInquiry() {
             };
             var PriorityLevel = PriorityLevels.find(x => x.ID = NewInquiry.PriorityLevel)
             $.each(User.Supervisors, function (i, s) {
-                NewInquiry.Approvals.push({ ID: s.ID, DivisionID: s.DivisionID });
+                if (NewInquiry.MissPunch) {
+                    if (s.SupervisorType==1)
+                      NewInquiry.Approvals.push({ ID: s.ID, DivisionID: s.DivisionID });
+                } else {
+                    NewInquiry.Approvals.push({ ID: s.ID, DivisionID: s.DivisionID });
+                }
             });
 
             
@@ -234,4 +270,21 @@ function NewInquiry() {
     ResetNav();
     
     $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
+}
+
+function ResetOtherOptions(option, sender) {
+    $("#dvLastWorkingDate").addClass("d-none")
+    if ($(sender).prop("checked")) {
+        if (option == 4)
+            $("#chkResignation,#chkMissPunch,#chkInquiryLoan").prop("checked", false)
+        else if (option == 5) {
+            $("#chkSalaryCertificate,#chkMissPunch,#chkInquiryLoan").prop("checked", false)
+            $("#dvLastWorkingDate").removeClass("d-none")
+        }
+        else if (option == 6)
+            $("#chkSalaryCertificate,#chkResignation,#chkInquiryLoan").prop("checked", false)
+        else if (option == 3)
+            $("#chkSalaryCertificate,#chkResignation,#chkMissPunch").prop("checked", false)
+
+    }
 }
