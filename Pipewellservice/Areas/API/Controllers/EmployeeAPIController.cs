@@ -24,7 +24,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
         public async Task<JsonResult> CodeName()
         {
-            
+
             if (Session["EmployeeCode"] != null)
             {
                 return new JsonResult
@@ -609,7 +609,7 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
         [Authorization(Pages.EmployeeInquiry, 1, CanDelete.Ignore)]
-        public async Task<JsonResult> AddEmployeeInquiry(EmployeeInquiry inquiry,PriorityLevel priorityLevel)
+        public async Task<JsonResult> AddEmployeeInquiry(EmployeeInquiry inquiry, PriorityLevel priorityLevel)
         {
 
             int ID = await json.UpdateEmployeeInquiry(inquiry);
@@ -690,12 +690,14 @@ namespace Pipewellservice.Areas.API.Controllers
                         Supervisor = requestApprover;
                     }
 
-                    else if (  requestApprover.SupervisorType == SupervisorTypes.HRManager)
+                    else if (requestApprover.SupervisorType == SupervisorTypes.HRManager)
                         Status = "Pending Approval";
-                    if (record.MissPunch) {
+                    if (record.MissPunch)
+                    {
                         if (requestApprover.SupervisorType == SupervisorTypes.Supervisor)
-                         Row = Row + $"<tr><td>{ requestApprover.Name }</td><td>{ requestApprover.Position }</td><td>{Status}</td></tr>";
-                    }else
+                            Row = Row + $"<tr><td>{ requestApprover.Name }</td><td>{ requestApprover.Position }</td><td>{Status}</td></tr>";
+                    }
+                    else
                         Row = Row + $"<tr><td>{ requestApprover.Name }</td><td>{ requestApprover.Position }</td><td>{Status}</td></tr>";
                 }
 
@@ -800,7 +802,7 @@ namespace Pipewellservice.Areas.API.Controllers
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return new JsonResult
                 {
@@ -830,10 +832,10 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        
+
         public async Task<JsonResult> UpdateSponsor(SponsorCompany sponsor)
         {
-            
+
             return new JsonResult
             {
                 Data = await json.UpdateSponsor(sponsor),
@@ -1105,9 +1107,10 @@ namespace Pipewellservice.Areas.API.Controllers
                 field.Add(new MergeField("DAYS", (record.EndDate - record.StartDate).Days.ToString()));
                 field.Add(new MergeField("PRIORITYLEVEL", PriorityLevel.Name));
                 field.Add(new MergeField("PRIORITYLEVELCOLOR", PriorityLevel.ColorCode));
-                field.Add(new MergeField("TICKET", record.NeedTicket ? "Need a ticket: YES": ""));
+                field.Add(new MergeField("TICKET", record.NeedTicket ? "Need a ticket: YES" : ""));
                 if (record.LeaveType == 1)
                 {
+
                     string table = $"<table style='width:900px;border-style:solid;'><tr><td><b> Allowance</b></td><td><b> Carried Over</b></td><td><b> Available</b></td><td><b> Used</b></td><td><b> Balance</b></td><td><b> Unit</b></td></tr><tr><td><b> {LeaveStat.Allowance}</b></td><td><b> {LeaveStat.CarriedOver}</b></td><td><b> {LeaveStat.Available}</b></td><td><b> {LeaveStat.LeavesTaken}</b></td><td><b> {LeaveStat.Balance}</b></td><td><b> Days</b></td></tr></table>";
                     field.Add(new MergeField("LEAVESTATS", table));
                 }
@@ -1197,7 +1200,52 @@ namespace Pipewellservice.Areas.API.Controllers
         {
             return File(await FileHelper.GetFile(FileID, EmployeeID, DirectoryNames.Leaves), System.Net.Mime.MediaTypeNames.Application.Octet, FileName);
         }
+        [AllowAnonymous]
+        public async Task<JsonResult> SendLeaveNotificationToHR()
+        {
+            EmployeeLeaveNotificationData notificationData = await json.GetLeaveNotificationRequest();
+            HRManager manager = notificationData.HRManager;
+            foreach (EmployeeLeaveNotification record in notificationData.employeeLeaves)
+            {
+                List<MergeField> field = new List<MergeField>();
 
+                field.Add(new MergeField("LEAVE_TYPE", record.LeaveTypeName));
+                field.Add(new MergeField("START_DATE", record.StartDate.ToString("MM/dd/yyyy")));
+                field.Add(new MergeField("END_DATE", record.EndDate.ToString("MM/dd/yyyy")));
+                field.Add(new MergeField("DAYS", (record.EndDate - record.StartDate).Days.ToString()));
+                field.Add(new MergeField("PRIORITYLEVEL", record.PriorityLevelName));
+                field.Add(new MergeField("PRIORITYLEVELCOLOR", record.ColorCode));
+                field.Add(new MergeField("EMP_NAME", record.EmployeeName));
+                field.Add(new MergeField("EMP_ID", record.EmployeeID.ToString()));
+                field.Add(new MergeField("APPROVE_NAME", manager.Name));
+                field.Add(new MergeField("TICKET", record.NeedTicket ? "Need a ticket: YES" : ""));
+
+                if (record.LeaveType == 1)
+                {
+                    LeaveStats LeaveStat = await json.EmployeeLeaveStats(record.EmployeeID);
+                    string table = $"<table style='width:900px;border-style:solid;'><tr><td><b> Allowance</b></td><td><b> Carried Over</b></td><td><b> Available</b></td><td><b> Used</b></td><td><b> Balance</b></td><td><b> Unit</b></td></tr><tr><td><b> {LeaveStat.Allowance}</b></td><td><b> {LeaveStat.CarriedOver}</b></td><td><b> {LeaveStat.Available}</b></td><td><b> {LeaveStat.LeavesTaken}</b></td><td><b> {LeaveStat.Balance}</b></td><td><b> Days</b></td></tr></table>";
+                    field.Add(new MergeField("LEAVESTATS", table));
+                }
+                else
+                    field.Add(new MergeField("LEAVESTATS", ""));
+
+                var EmailTemplate = notificationData.EmailTemplate;
+                
+                
+                EmailHelper email = new EmailHelper();
+                var status = await email.SendEmail(new EmailDTO() { To = manager.EmailAddress, From = "no-reply@pipewellservices.com", Subject = EmailTemplate.Subject, Body = EmailTemplate.Body }, field);
+                if (status)
+                {
+                    await json.MarkLeaveNotificationRequestSent(record.ID);
+                }
+            }
+
+            return new JsonResult
+            {
+                Data =true,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
 
 
         ////////////////////////
@@ -1256,7 +1304,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
             List<MergeField> mergeFields = new List<MergeField>();
 
-            mergeFields.Add(new MergeField("PWSCOMPANY",await AppData.CompanyName() ));
+            mergeFields.Add(new MergeField("PWSCOMPANY", await AppData.CompanyName()));
             mergeFields.Add(new MergeField("NAME", Empdata.Detail.Name));
             mergeFields.Add(new MergeField("EMPNO", Empdata.Detail.EmployeeNumber));
             mergeFields.Add(new MergeField("PASSPORTNO", Empdata.Detail.PassportNumber));
@@ -1271,17 +1319,17 @@ namespace Pipewellservice.Areas.API.Controllers
             mergeFields.Add(new MergeField("SAFETY", Empdata.Detail.SafetyTrainingCourses));
             List<LoopMergeFieldData> loopData = new List<LoopMergeFieldData>();
             int RowID = 0;
-            foreach(PersonalWorkExperience exp in Empdata.WorkExperience)
+            foreach (PersonalWorkExperience exp in Empdata.WorkExperience)
             {
                 LoopMergeFieldData Row = new LoopMergeFieldData();
                 RowID++;
                 Row.RowID = RowID;
-                
+
                 Row.data = new LoopMergeData();
                 Row.data.mergeFields = new List<MergeField>();
 
                 Row.data.mergeFields.Add(new MergeField("COMP", exp.CompanyName));
-                Row.data.mergeFields.Add(new MergeField("DURATION", $"{exp.StartDate.ToString("dd/MM/yyyy")} - {exp.EndDate.ToString("dd/MM/yyyy")}" ));
+                Row.data.mergeFields.Add(new MergeField("DURATION", $"{exp.StartDate.ToString("dd/MM/yyyy")} - {exp.EndDate.ToString("dd/MM/yyyy")}"));
                 Row.data.mergeFields.Add(new MergeField("DESIGN", exp.Designation));
                 Row.data.mergeFields.Add(new MergeField("NATURE", exp.JobNature));
                 Row.data.mergeFields.Add(new MergeField("NOTES", exp.Notes));
@@ -1291,7 +1339,7 @@ namespace Pipewellservice.Areas.API.Controllers
             //&lt;
             DocHelper DocHelper = new DocHelper();
 
-             
+
             try
             {
                 await DocHelper.ConvertDocument(TemplatePath, $"{SavePath}\\{ID}{Extenstion}", mergeFields, loopData);
@@ -1303,13 +1351,13 @@ namespace Pipewellservice.Areas.API.Controllers
             catch (Exception e)
             {
                 EmailHelper email = new EmailHelper();
-               await email.SendEmail(new EmailDTO() { To = "irfanullah.it@pipewellservices.com", From = "notifications.pws@gmail.com", Subject = "ERROR PWS WEB", Body = e.Message });
+                await email.SendEmail(new EmailDTO() { To = "irfanullah.it@pipewellservices.com", From = "notifications.pws@gmail.com", Subject = "ERROR PWS WEB", Body = e.Message });
             }
             return null;
         }
 
 
-        
+
 
     }
 }

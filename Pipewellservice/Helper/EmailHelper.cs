@@ -107,6 +107,7 @@ namespace Pipewellservice.Helper
             foreach (MergeField field in mergeFields)
             {
                 email.Body = Regex.Replace(email.Body, $"#{field.Field}#", StringHelper.NullToString(field.Value), RegexOptions.IgnoreCase);
+                email.Subject = Regex.Replace(email.Subject, $"#{field.Field}#", StringHelper.NullToString(field.Value), RegexOptions.IgnoreCase);
             }
             return await SendEmail(email);
         }

@@ -1387,6 +1387,28 @@ namespace PipewellserviceDB.HR.Employee
 
             return model;
         }
+        public async Task<EmployeeLeaveNotificationSQL> GetLeaveNotificationRequest()
+        {
+
+
+            var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetEmployeeVactionNotificationData", CommandType.StoredProcedure);
+            EmployeeLeaveNotificationSQL data = new EmployeeLeaveNotificationSQL();
+            data.Leaves.Load(result);
+            data.HRManager.Load(result);
+            data.EmailTemplate.Load(result);
+            return data;
+        }
+        public async Task<bool> MarkLeaveNotificationRequestSent(int LeaveID)
+        {
+            try
+            {
+                SqlHelper.ExecuteNonQuery(this.ConnectionString, "ProcUpdateEmployeeLeaveNotificationSent", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = LeaveID });
+                return true;
+            }catch (Exception e)
+            {
+                return false;
+            }
+        }
         public async Task<ResultDTO> UpdateEmployeeLeaveSheet(int EmployeeID, string FileName, string FileID)
         {
             try

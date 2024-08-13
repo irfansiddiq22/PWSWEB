@@ -86,4 +86,29 @@ namespace PipewellserviceModels.HR.Employee
 
 
     }
+    public class EmployeeLeaveNotificationData
+    {
+        public List <EmployeeLeaveNotification> employeeLeaves { get; set; }
+        public HRManager HRManager { get; set; }
+        public EmailTemplate EmailTemplate { get; set; }
+    }
+    public class EmployeeLeaveNotification:EmployeeLeave
+    {
+        public string PositionName { get; set; }
+        public string DivisionName { get; set; }
+        public string CountryName { get; set; }
+
+    }
+    public class EmployeeLeaveNotificationSQL
+    {
+        public DataTable Leaves { get; set; }
+        public DataTable HRManager { get; set; }
+        public DataTable EmailTemplate { get; set; }
+        public EmployeeLeaveNotificationSQL()
+        {
+            Leaves = new DataTable();
+            HRManager = new DataTable();
+            EmailTemplate = new DataTable();
+        }
+    }
 }

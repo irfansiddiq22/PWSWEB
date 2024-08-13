@@ -116,5 +116,5 @@ function Print(ID, Page, RecordID) {
     else if (Page == 31)
         window.open("/Procurement/PrintPurchaseOrderRequest?ID=" + RecordID, "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
     else
-        window.open("/Employee/PrintReport?ID=" + ID + "&ReportID=" + Page, "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
+        window.open("/Employee/PrintReport?ID=" + RecordID + "&ReportID=" + Page, "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950")
 }

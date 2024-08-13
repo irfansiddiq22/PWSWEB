@@ -35,9 +35,9 @@ namespace PipewellserviceJson.HR.Employee
             return await service.SaveLog(log);
         }
 
-        public async Task<List<EmployeeCertificate>> CertificateList(int EmployeeID,string Name)
+        public async Task<List<EmployeeCertificate>> CertificateList(int EmployeeID, string Name)
         {
-            return await JsonHelper.Convert<List<EmployeeCertificate>, DataTable>(await service.CertificateList(EmployeeID,Name));
+            return await JsonHelper.Convert<List<EmployeeCertificate>, DataTable>(await service.CertificateList(EmployeeID, Name));
         }
         public async Task<int> UpdateCertificate(EmployeeCertificate certificate)
         {
@@ -79,9 +79,9 @@ namespace PipewellserviceJson.HR.Employee
         {
             return await JsonHelper.Convert<List<EmployeeIDFileType>, DataTable>(await service.EmployeeIDTypeList());
         }
-        public async Task<List<EmployeeIDFile>> EmployeeIDFileList(int EmployeeID,string Name)
+        public async Task<List<EmployeeIDFile>> EmployeeIDFileList(int EmployeeID, string Name)
         {
-            return await JsonHelper.Convert<List<EmployeeIDFile>, DataTable>(await service.EmployeeIDFileList(EmployeeID,Name));
+            return await JsonHelper.Convert<List<EmployeeIDFile>, DataTable>(await service.EmployeeIDFileList(EmployeeID, Name));
         }
         public async Task<int> UpdateEmployeeIDFile(EmployeeIDFile file)
         {
@@ -152,12 +152,12 @@ namespace PipewellserviceJson.HR.Employee
             model.nationalities = await JsonHelper.Convert<List<Nationality>, DataTable>(result.Nationality);
             return model;
         }
-        
+
         public async Task<ResultDTO> UpdateEmployee(EmployeeData employee)
         {
             return await service.UpdateEmployee(employee);
         }
-        public async Task<ResultDTO> UpdateEmployeePicture(int EmployeeID,string FileName,string FileID)
+        public async Task<ResultDTO> UpdateEmployeePicture(int EmployeeID, string FileName, string FileID)
         {
             return await service.UpdateEmployeePicture(EmployeeID, FileName, FileID);
         }
@@ -169,15 +169,15 @@ namespace PipewellserviceJson.HR.Employee
         }
         public async Task<int> UpdateEmployeeWarning(EmployeeWarning dTO)
         {
-            return  await service.UpdateEmployeeWarning(dTO);
+            return await service.UpdateEmployeeWarning(dTO);
         }
         public async Task<EmployeeClearanceListView> EmployeeClearanceList(int EmployeeID)
         {
-            var db= await service.EmployeeClearanceList(EmployeeID);
+            var db = await service.EmployeeClearanceList(EmployeeID);
             EmployeeClearanceListView model = new EmployeeClearanceListView();
             model.Clearance = await JsonHelper.Convert<List<EmployeeClearance>, DataTable>(db.Clearance);
-            model.Assets = await JsonHelper.Convert<List<ClearanceAsset>, DataTable>(db.Assets );
-            model.Approvals= await JsonHelper.Convert<List<EmployeeApproval>, DataTable>(db.Approvals);
+            model.Assets = await JsonHelper.Convert<List<ClearanceAsset>, DataTable>(db.Assets);
+            model.Approvals = await JsonHelper.Convert<List<EmployeeApproval>, DataTable>(db.Approvals);
             return model;
         }
         public async Task<int> UpdateEmployeeClearance(EmployeeClearance dTO)
@@ -198,9 +198,9 @@ namespace PipewellserviceJson.HR.Employee
         {
             return await service.UpdateEmployeeVacation(dTO);
         }
-        public async Task<bool> DeleteEmployeeVacation(int ID,int UserID)
+        public async Task<bool> DeleteEmployeeVacation(int ID, int UserID)
         {
-            return await service.DeleteEmployeeVacation(ID,UserID);
+            return await service.DeleteEmployeeVacation(ID, UserID);
         }
 
         public async Task<EmployeeInquiryListView> EmployeeInquiryList(EmployeeInquiryParam param)
@@ -218,33 +218,33 @@ namespace PipewellserviceJson.HR.Employee
             var db = await service.EmployeeInquiryDetail(ID);
 
             EmployeeInquiry inquiry = (await JsonHelper.Convert<List<EmployeeInquiry>, DataTable>(db.Inquiry)).FirstOrDefault();
-            inquiry.Approvals= await JsonHelper.Convert<List<EmployeeApproval>, DataTable>(db.Approvals);
+            inquiry.Approvals = await JsonHelper.Convert<List<EmployeeApproval>, DataTable>(db.Approvals);
             return inquiry;
         }
         public async Task<int> UpdateEmployeeInquiry(EmployeeInquiry inquiry)
         {
             return await service.UpdateEmployeeInquiry(inquiry);
         }
-        public async Task<bool> UpdateEmployeeInquiryFile(int ID,string FileName,string FileID)
+        public async Task<bool> UpdateEmployeeInquiryFile(int ID, string FileName, string FileID)
         {
-            return await service.UpdateEmployeeInquiryFile(ID,FileName,FileID);
+            return await service.UpdateEmployeeInquiryFile(ID, FileName, FileID);
         }
 
-        
+
         public async Task<List<Supervisor>> Supervisors()
         {
             return await JsonHelper.Convert<List<Supervisor>, DataTable>(await service.Supervisors());
         }
 
-        public async Task<List<PendingApproval>> ApprovalList(int ID,bool Declined)
+        public async Task<List<PendingApproval>> ApprovalList(int ID, bool Declined)
         {
             var db = await service.ApprovalList(ID, Declined);
             return await JsonHelper.Convert<List<PendingApproval>, DataTable>(db);
-            
+
         }
-        public async Task<ApprovalRequestResult> ApproveRequest( int SupervisorID, PendingApproval approval)
+        public async Task<ApprovalRequestResult> ApproveRequest(int SupervisorID, PendingApproval approval)
         {
-            ApprovalRequestResultDB db= await service.ApproveRequest(SupervisorID, approval);
+            ApprovalRequestResultDB db = await service.ApproveRequest(SupervisorID, approval);
             ApprovalRequestResult model = new ApprovalRequestResult();
             model.Result = db.Result;
             model.ID = db.ID;
@@ -274,20 +274,20 @@ namespace PipewellserviceJson.HR.Employee
 
 
         }
-        
+
         public async Task<bool> UpdateRequestStatus(int ID, ApprovalTypes type, ApprovalStatus status)
         {
-           return await service.UpdateRequestStatus(ID, type, status);
+            return await service.UpdateRequestStatus(ID, type, status);
         }
 
         ////////////////////
-        public async Task<List<Vendor>>VendorList()
+        public async Task<List<Vendor>> VendorList()
         {
             return await JsonHelper.Convert<List<Vendor>, DataTable>(await service.VendorList());
         }
         public async Task<List<Vendor>> UpdateVendor(Vendor dto)
         {
-            int result=await service.UpdateVendor(dto);
+            int result = await service.UpdateVendor(dto);
             return await VendorList();
         }
         public async Task<List<SponsorCompany>> UpdateSponsor(SponsorCompany dto)
@@ -298,7 +298,7 @@ namespace PipewellserviceJson.HR.Employee
         public async Task<bool> UpdateLocation(Location dto)
         {
             return await service.UpdateLocation(dto);
-            
+
         }
 
 
@@ -307,7 +307,7 @@ namespace PipewellserviceJson.HR.Employee
         {
             EmployeeJoiningDB db = await service.EmployeeJoining(param);
             EmployeeJoiningListView model = new EmployeeJoiningListView();
-            model.Joining= await JsonHelper.Convert<List<EmployeeJoining>, DataTable>(db.Joining);
+            model.Joining = await JsonHelper.Convert<List<EmployeeJoining>, DataTable>(db.Joining);
             model.Approvals = await JsonHelper.Convert<List<EmployeeApproval>, DataTable>(db.Approvals);
             return model;
         }
@@ -316,9 +316,9 @@ namespace PipewellserviceJson.HR.Employee
             return await service.UpdateEmployeeJoining(record);
         }
 
-        public async Task<bool> DeleteEmployeeJoining(int ID,int EmployeeID)
+        public async Task<bool> DeleteEmployeeJoining(int ID, int EmployeeID)
         {
-            return await service.DeleteEmployeeJoining(ID,EmployeeID);
+            return await service.DeleteEmployeeJoining(ID, EmployeeID);
         }
 
         public async Task<ResultDTO> UpdateEmployeeJoiningSheet(int EmployeeID, string FileName, string FileID)
@@ -330,7 +330,7 @@ namespace PipewellserviceJson.HR.Employee
         {
             EmployeeJoiningDB db = await service.EmployeeShortLeaves(param);
             EmployeeShortLeaveListView model = new EmployeeShortLeaveListView();
-            model.Leaves = await JsonHelper.Convert<List<EmployeeShortLeave >, DataTable>(db.Joining);
+            model.Leaves = await JsonHelper.Convert<List<EmployeeShortLeave>, DataTable>(db.Joining);
             model.Approvals = await JsonHelper.Convert<List<EmployeeApproval>, DataTable>(db.Approvals);
             return model;
         }
@@ -355,25 +355,40 @@ namespace PipewellserviceJson.HR.Employee
             DataTable db = await service.EmployeeLeaveRequest(param);
             return await JsonHelper.Convert<List<LeaveRequestLog>, DataTable>(db);
         }
-        public async Task<LeaveStats> EmployeeLeaveStats(int  EmployeeID)
+        public async Task<LeaveStats> EmployeeLeaveStats(int EmployeeID)
         {
             DataTable db = await service.EmployeeLeaveStats(EmployeeID);
             return (await JsonHelper.Convert<List<LeaveStats>, DataTable>(db)).FirstOrDefault();
         }
 
-        
+
         public async Task<ApprovalRequestResult> NewLeaveRequest(EmployeeLeave record)
         {
-            ApprovalRequestResultDB db= await service.NewLeaveRequest(record);
+            ApprovalRequestResultDB db = await service.NewLeaveRequest(record);
             ApprovalRequestResult model = new ApprovalRequestResult();
             model.Result = db.Result;
             model.ID = db.ID;
             if (db.Result)
             {
-                model.Employees= await JsonHelper.Convert<List<RequestApprover>, DataTable>(db.Employees);
+                model.Employees = await JsonHelper.Convert<List<RequestApprover>, DataTable>(db.Employees);
                 model.EmailTemplate = await JsonHelper.Convert<List<EmailTemplate>, DataTable>(db.EmailTemplate);
             }
             return model;
+        }
+        public async Task<EmployeeLeaveNotificationData> GetLeaveNotificationRequest()
+        {
+            EmployeeLeaveNotificationSQL db = await service.GetLeaveNotificationRequest();
+            EmployeeLeaveNotificationData model = new EmployeeLeaveNotificationData();
+
+            model.employeeLeaves = await JsonHelper.Convert<List<EmployeeLeaveNotification>, DataTable>(db.Leaves);
+            model.HRManager = (await JsonHelper.Convert<List<HRManager>, DataTable>(db.HRManager)).FirstOrDefault();
+            model.EmailTemplate = (await JsonHelper.Convert<List<EmailTemplate>, DataTable>(db.EmailTemplate)).FirstOrDefault();
+
+            return model;
+        }
+        public async Task<bool> MarkLeaveNotificationRequestSent(int LeaveID)
+        {
+            return await service.MarkLeaveNotificationRequestSent(LeaveID);
         }
         public async Task<ResultDTO> UpdateEmployeeLeaveSheet(int EmployeeID, string FileName, string FileID)
         {
@@ -383,7 +398,7 @@ namespace PipewellserviceJson.HR.Employee
 
         public async Task<HRManager> HRManager()
         {
-         var data=   await service.HRManager();
+            var data = await service.HRManager();
             return (await JsonHelper.Convert<List<HRManager>, DataTable>(data)).FirstOrDefault();
         }
 
@@ -416,12 +431,12 @@ namespace PipewellserviceJson.HR.Employee
         {
             var data = await service.EmployeeCVData(ID);
             EmployeeCV cv = new EmployeeCV();
-            cv.Detail= (await JsonHelper.Convert<List<PersonalDetail>, DataTable>(data.Detail)).FirstOrDefault();
+            cv.Detail = (await JsonHelper.Convert<List<PersonalDetail>, DataTable>(data.Detail)).FirstOrDefault();
             cv.WorkExperience = (await JsonHelper.Convert<List<PersonalWorkExperience>, DataTable>(data.WorkExperience));
             return cv;
         }
 
-        
+
 
 
 
