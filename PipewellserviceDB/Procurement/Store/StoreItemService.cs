@@ -156,8 +156,8 @@ namespace PipewellserviceDB.Procurement.Store
                 collSP[2] = new SqlParameter { ParameterName = "@SupplierID", Value = param.SupplierID };
                 collSP[3] = new SqlParameter { ParameterName = "@ReceivingNumber", Value = param.ReceivingNumber };
                 collSP[4] = new SqlParameter { ParameterName = "@PurchaseOrderNumber", Value = param.PurchaseOrderNumber };
-                collSP[5] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate.ToShortDateString() };
-                collSP[6] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate.ToShortDateString() };
+                collSP[5] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate };
+                collSP[6] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate };
                 collSP[7] = new SqlParameter { ParameterName = "@NextID", Value = 0, Direction = ParameterDirection.Output };
 
 
@@ -222,8 +222,8 @@ namespace PipewellserviceDB.Procurement.Store
                 collSP[2] = new SqlParameter { ParameterName = "@ReceivedBy", Value = param.ReceivedBy };
                 collSP[3] = new SqlParameter { ParameterName = "@WorkOrderID", Value = param.WorkOrderNumber ?? (object)DBNull.Value };
                 collSP[4] = new SqlParameter { ParameterName = "@DeliveryNumber", Value = param.DeliveryNumber };
-                collSP[5] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate.ToShortDateString() };
-                collSP[6] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate.ToShortDateString() };
+                collSP[5] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate };
+                collSP[6] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate };
                 collSP[7] = new SqlParameter { ParameterName = "@NextID", Value = 0, Direction = ParameterDirection.Output };
 
 
