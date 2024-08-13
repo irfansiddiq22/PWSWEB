@@ -10,7 +10,7 @@ function _Init() {
     $("#dvClearanceList").show();
     SetPagePermission(PAGES.EmployeeInquiry, function () {
         BindUsers();
-        
+
     });
     $("#ddlInquiryDataRange").val(moment().subtract(3, 'month').startOf('month').format("DD/MM/YYYY") + ' - ' + moment().endOf('month').format("DD/MM/YYYY"))
 
@@ -33,7 +33,7 @@ function BindUsers() {
         }).on('select2:select', function (e) {
             BindInquiryList();
         });
-        
+
 
         $("#ddEmployeeName").select2({
             tags: "true",
@@ -120,7 +120,10 @@ function BindInquiryList(PageNumber = 1) {
                 EndDate: EndDate,
                 PersonalInquiry: GetChecked("ChkInquiryPersonalFilter"),
                 GeneralInquiry: GetChecked("ChkInquiryGeneralFilter"),
-                LoanInquiry: GetChecked("ChkInquiryLoanFilter")
+                LoanInquiry: GetChecked("ChkInquiryLoanFilter"),
+                SalaryCertificate: GetChecked("ChkInquirySalaryCertificateFilter"),
+                MissPunch: GetChecked("ChkInquiryMissPuchFilter"),
+                Resignation: GetChecked("ChkInquiryResignationFilter")
             },
             beforeSend: function () {
                 ShowSpinner();
@@ -146,8 +149,33 @@ function BindInquiryList(PageNumber = 1) {
                 tr.append($('<td>').append(CheckboxSwitch("", (r.PersonalInquiry ? "checked" : ""), "", "")))
                 tr.append($('<td>').append(CheckboxSwitch("", (r.GeneralInquiry ? "checked" : ""), "", "")))
                 tr.append($('<td>').append(CheckboxSwitch("", (r.LoanInquiry ? "checked" : ""), "", "")))
+                tr.append($('<td>').append(CheckboxSwitch("", (r.SalaryCertificate ? "checked" : ""), "", "")))
+                tr.append($('<td>').append(CheckboxSwitch("", (r.MissPunch  ? "checked" : ""), "", "")))
+                tr.append($('<td>').append(CheckboxSwitch("", (r.Resignation ? "checked" : ""), "", "")))
 
-
+                /* var p = $('<div>').append("Personal").append(CheckboxSwitch("", (r.PersonalInquiry ? "checked" : ""), "", ""))
+                 if (!r.PersonalInquiry) p = ''
+ 
+                 var g = $('<div>').append("General :").append(CheckboxSwitch("", (r.GeneralInquiry ? "checked" : ""), "", ""))
+                 if (!r.GeneralInquiry) g = ''
+ 
+                 var l = $('<div>').append("Loan :").append(CheckboxSwitch("", (r.LoanInquiry ? "checked" : ""), "", ""))
+                 if (!r.LoanInquiry) l = ''
+ 
+                 var s = $('<div>').append("Salary Certificate :").append(CheckboxSwitch("", (r.SalaryCertificate ? "checked" : ""), "", ""))
+                 if (!r.SalaryCertificate) s = ''
+                 var m = $('<div>').append("Miss Punch :").append(CheckboxSwitch("", (r.MissPunch ? "checked" : ""), "", ""))
+                 if (!r.MissPunch) m = ''
+ 
+                 var reg = $('<div>')
+                 if (reg.Resignation) {
+                     $(r).append("Resignation:").append(CheckboxSwitch("", (r.Resignation ? "checked" : ""), "", ""))
+                     $(r).append("<br>Last Working Day:" + moment(r.LastWorkingDate).format("DD/MM/YYYY"))
+                 } else
+                     reg = ''
+                 tr.append($('<td>').append($(p)).append($(g)).append($(l)).append($(s)).append($(m)).append($(reg)))
+ 
+                 */
                 var Icons = $('<div class="icons">');
                 $(Icons).append($('<a href="javascript:void(0)" class="me-2 writeble" onclick="EditInquiry(' + r.ID + ')"><i class="fa fa-edit"></i></a>'));
                 $(Icons).append($('<a href="javascript:void(0)" class="deleteble" onclick="DeleteInquiry(' + r.ID + ')"><i class="fa fa-trash"></i></a>'));
@@ -178,10 +206,20 @@ function EditInquiry(ID) {
         SetvalOf("ddEmployeeName", Inquiry.EmployeeID).trigger("change");
         SetvalOf("txtInquiryDate", moment(Inquiry.InquiryDate).format("DD/MM/YYYY"))
         SetvalOf("txtInquiryPreparedBy", Inquiry.Preparedby);
+        SetvalOf("ddlPriorityLevel", Inquiry.PriorityLevelID)
         SetvalOf("txtInquiryRemarks", Inquiry.Remarks);
         SetChecked("chkInquiryPersonal", Inquiry.PersonalInquiry);
         SetChecked("chkInquiryGeneral", Inquiry.GeneralInquiry);
         SetChecked("chkInquiryLoan", Inquiry.LoanInquiry);
+
+        SetChecked("chkSalaryCertificate", Inquiry.SalaryCertificate);
+        SetChecked("chkResignation", Inquiry.Resignation);
+        SetChecked("chkMissPunch", Inquiry.MissPunch);
+        if (Inquiry.Resignation) {
+            $("#dvLastWorkingDate").removeClass("d-none")
+        } else
+            $("#dvLastWorkingDate").addClass("d-none")
+        SetvalOf("txtLastWorkingDate", moment(Inquiry.LastWorkingDate).format("DD/MM/YYYY"))
 
         $.each(Inquiry.Approvals, function (i, a) {
             SetvalOf("ddSupervisorApproval" + (i + 1), a.DivisionID).trigger("change");
@@ -207,6 +245,8 @@ function ResetNav() {
     SetvalOf("txtInquiryPreparedBy", User.Name);
     ResetDatePicker();
     SetvalOf("txtInquiryDate", moment().format("DD/MM/YYYY"));
+    SetvalOf("txtLastWorkingDate", moment().format("DD/MM/YYYY"));
+
 }
 function SaveEmployeeInquiry() {
     $("#frmInquiry").validate({
@@ -231,6 +271,12 @@ function SaveEmployeeInquiry() {
             },
         },
         submitHandler: function (form) {
+            var LastWorkingDate = moment().format("DD/MM/YYYY")
+            if (GetChecked("chkResignation")) {
+                LastWorkingDate = valOf("txtLastWorkingDate");
+                if (LastWorkingDate == "") LastWorkingDate = moment().format("DD/MM/YYYY")
+            }
+
             if (Inquiry.ID == 0) {
                 DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: "", New: textOf("ddEmployeeName") } });
             } else {
@@ -253,6 +299,20 @@ function SaveEmployeeInquiry() {
                 if (Inquiry.LoanInquiry != GetChecked("chkInquiryLoan")) {
                     DataChangeLog.DataUpdated.push({ Field: "LoanInquiry", Data: { OLD: Inquiry.LoanInquiry, New: GetChecked("chkInquiryLoan") } });
                 }
+                if (Inquiry.Resignation != GetChecked("chkResignation")) {
+                    DataChangeLog.DataUpdated.push({ Field: "Resignation", Data: { OLD: Inquiry.Resignation, New: GetChecked("chkResignation") } });
+
+                    if (moment(Inquiry.LastWorkingDate).format("DD/MM/YYYY") != LastWorkingDate) {
+                        DataChangeLog.DataUpdated.push({ Field: "LastWorkingDate", Data: { OLD: moment(Inquiry.LastWorkingDate).format("DD/MM/YYYY"), New: LastWorkingDate } });
+
+                    }
+                }
+                if (Inquiry.MissPunch != GetChecked("chkMissPunch")) {
+                    DataChangeLog.DataUpdated.push({ Field: "MissPunch", Data: { OLD: Inquiry.MissPunch, New: GetChecked("chkMissPunch") } });
+                }
+                if (Inquiry.SalaryCertificate != GetChecked("chkSalaryCertificate")) {
+                    DataChangeLog.DataUpdated.push({ Field: "SalaryCertificate", Data: { OLD: Inquiry.SalaryCertificate, New: GetChecked("chkSalaryCertificate") } });
+                }
 
 
                 for (i = 1; i <= 4; i++) {
@@ -270,6 +330,8 @@ function SaveEmployeeInquiry() {
                 }
 
             }
+            
+
             NewInquiry = {
                 ID: Inquiry.ID,
                 EmployeeID: valOf("ddEmployeeName"),
@@ -279,6 +341,10 @@ function SaveEmployeeInquiry() {
                 PersonalInquiry: GetChecked("chkInquiryPersonal"),
                 GeneralInquiry: GetChecked("chkInquiryGeneral"),
                 LoanInquiry: GetChecked("chkInquiryLoan"),
+                Resignation: GetChecked("chkResignation"),
+                MissPunch: GetChecked("chkMissPunch"),
+                SalaryCertificate: GetChecked("chkSalaryCertificate"),
+                LastWorkingDate: LastWorkingDate,
                 UserName: User.Name,
                 RecordCreatedBy: User.ID,
                 PriorityLevelID: valOf("ddlPriorityLevel"),
@@ -304,7 +370,7 @@ function SaveEmployeeInquiry() {
 
                         UploadFile("/EmployeeAPI/UpdateEmployeeInquiryFile", files[0], { EmployeeID: NewInquiry.EmployeeID, ID: ID }, function (Status, Response) {
 
-                            
+
                             if (Status == 1) {
 
                                 if (NewInquiry.ID > 0)
@@ -355,4 +421,21 @@ function NewInquiry() {
     $("#dvEditInquiry").removeClass("d-none")
     $("#dvInquiryList").addClass("d-none")
     $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
+}
+
+function ResetOtherOptions(option, sender) {
+    $("#dvLastWorkingDate").addClass("d-none")
+    if ($(sender).prop("checked")) {
+        if (option == 4)
+            $("#chkResignation,#chkMissPunch,#chkInquiryLoan").prop("checked", false)
+        else if (option == 5) {
+            $("#chkSalaryCertificate,#chkMissPunch,#chkInquiryLoan").prop("checked", false)
+            $("#dvLastWorkingDate").removeClass("d-none")
+        }
+        else if (option == 6)
+            $("#chkSalaryCertificate,#chkResignation,#chkInquiryLoan").prop("checked", false)
+        else if (option == 3)
+            $("#chkSalaryCertificate,#chkResignation,#chkMissPunch").prop("checked", false)
+
+    }
 }

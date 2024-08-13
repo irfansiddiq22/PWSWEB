@@ -75,9 +75,10 @@ function BindInquiryList(PageNumber = 1) {
                 EmployeeID: valOf("ddEmployeeName"),
                 StartDate: StartDate,
                 EndDate: EndDate,
-                PersonalInquiry: GetChecked("ChkInquiryPersonalFilter"),
-                GeneralInquiry: GetChecked("ChkInquiryGeneralFilter"),
-                LoanInquiry: GetChecked("ChkInquiryLoanFilter")
+                PersonalInquiry: false,
+                GeneralInquiry: false,
+                LoanInquiry: false,
+                
             },
             beforeSend: function () {
                 ShowSpinner();

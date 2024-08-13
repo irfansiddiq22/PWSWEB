@@ -192,6 +192,10 @@ namespace PipewellserviceModels.HR.Employee
         public bool PersonalInquiry { get; set; }
         public bool GeneralInquiry { get; set; }
         public bool LoanInquiry { get; set; }
+
+        public bool SalaryCertificate { get; set; }
+        public bool MissPunch { get; set; }
+        public bool Resignation { get; set; }
         public int PageNumber { get; set; }
         public int pageSize { get; set; }
 

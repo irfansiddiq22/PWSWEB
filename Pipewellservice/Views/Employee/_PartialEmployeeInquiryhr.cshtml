@@ -5,7 +5,7 @@
             
             <div class="row">
 
-                <div class="form-group col-md-3 row">
+                <div class="form-group col-md-2 row">
                     <label class="col-md-2 col-form-label p-0"> Employee:</label>
                     <div class="col">
                         <select class="form-select" id="ddEmployeeCode" name="EmployeeCode" data-placeholder="Type to search" data-allow-clear="true"></select>
@@ -21,7 +21,7 @@
                 <div class="form-group col-md-auto">
 
                     <label class="col-md-auto col-form-label p-0"> Personal:</label>
-                    <label class="switch"><input type="checkbox" id="ChkInquiryPersonalFilter"  class="form-check-inline"><span class="slider round"></span></label>
+                    <label class="switch"><input type="checkbox" id="ChkInquiryPersonalFilter" class="form-check-inline"><span class="slider round"></span></label>
                 </div>
                 <div class="form-group col-md-auto">
                     <label class="col-md-auto col-form-label p-0"> General:</label>
@@ -31,6 +31,21 @@
                 <div class="form-group col-md-auto">
                     <label class="col-md-auto col-form-label p-0"> Loan:</label>
                     <label class="switch"><input type="checkbox" id="ChkInquiryLoanFilter" class="form-check-inline"><span class="slider round"></span></label>
+                </div>
+
+                <div class="form-group col-md-auto">
+                    <label class="col-md-auto col-form-label p-0"> Miss Punch:</label>
+                    <label class="switch"><input type="checkbox" id="ChkInquiryMissPuchFilter" class="form-check-inline"><span class="slider round"></span></label>
+                </div>
+
+                <div class="form-group col-md-auto">
+                    <label class="col-md-auto col-form-label p-0"> Salary Certificate:</label>
+                    <label class="switch"><input type="checkbox" id="ChkInquirySalaryCertificateFilter" class="form-check-inline"><span class="slider round"></span></label>
+                </div>
+
+                <div class="form-group col-md-auto">
+                    <label class="col-md-auto col-form-label p-0"> Resignation:</label>
+                    <label class="switch"><input type="checkbox" id="ChkInquiryResignationFilter" class="form-check-inline"><span class="slider round"></span></label>
                 </div>
                 <div class="form-group col-md-2">
                     <button class="btn btn-sm btn-primary" onclick="BindInquiryList()">Search </button>
@@ -57,6 +72,12 @@
                     <th>Personal</th>
                     <th>General</th>
                     <th>Loan</th>
+                    <th>Salary Certificate </th>
+                    
+                    <th>
+                        Miss Puch
+                    </th><th>Resignation</th>
+
 
                     <th></th>
                 </tr>
@@ -119,16 +140,38 @@
                                     <textarea class="form-control form-control-sm" rows="10" id="txtInquiryRemarks" name="InquiryRemarks"></textarea>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="chkInquiryPersonal" name="InquiryPersonal">
+                                    <input class="form-check-input" type="checkbox" id="chkInquiryPersonal"onclick="ResetOtherOptions(1,this)"  name="InquiryPersonal">
                                     <label class="form-check-label" for="chkInquiryPersonal">Personal</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="chkInquiryGeneral" name="InquiryGeneral">
+                                    <input class="form-check-input" type="checkbox" id="chkInquiryGeneral"onclick="ResetOtherOptions(2,this)"  name="InquiryGeneral">
                                     <label class="form-check-label" for="chkInquiryGeneral">General</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="chkInquiryLoan" name="InquiryLoan">
+                                    <input class="form-check-input" type="checkbox" id="chkInquiryLoan" onclick="ResetOtherOptions(3,this)"  name="InquiryLoan">
                                     <label class="form-check-label" for="chkInquiryLoan">Loan</label>
+                                </div>
+
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="chkSalaryCertificate" onclick="ResetOtherOptions(4,this)" name="SalaryCertificate">
+                                    <label class="form-check-label" for="chkInquiryLoan">Salary Certificate</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="chkResignation" onclick="ResetOtherOptions(5,this)" name="Resignation">
+                                    <label class="form-check-label" for="chkInquiryLoan">Contract non-renewal/Resignation</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="chkMissPunch" onclick="ResetOtherOptions(6,this)" name="MissPuch">
+                                    <label class="form-check-label" for="chkInquiryLoan">Miss Puch</label>
+                                </div>
+                                <div class="my-3 d-none" id="dvLastWorkingDate">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="columnDate">Last Working Date:</label>
+                                            <input type="text" class="form-control form-control-sm datepicker" id="txtLastWorkingDate" name="LastWorkingDate">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
