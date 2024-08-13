@@ -150,6 +150,10 @@ namespace PipewellserviceDB.Procurement.Purchase
         {
             return Convert.ToInt32(SqlHelper.ExecuteScalar(this.ConnectionString, "ProcPendingIPORequestForQuote", CommandType.StoredProcedure));
         }
+        public int PendingMRForDelivery()
+        {
+            return Convert.ToInt32(SqlHelper.ExecuteScalar(this.ConnectionString, "ProcPendingMaterialRequestForDelivery", CommandType.StoredProcedure));
+        }
 
 
         public async Task<DataTable> SaveRequestForQuote(int IPO,int RecordCreatedBy, string Suppliers)

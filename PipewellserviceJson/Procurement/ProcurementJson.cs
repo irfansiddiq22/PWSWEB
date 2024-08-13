@@ -22,6 +22,11 @@ namespace PipewellserviceJson.Procurement
         {
             return await JsonHelper.Convert<List<MaterialRequest>, DataTable>(await service.GetOutofStockMatrialRequest( paging));
         }
+        public async Task<List<MaterialRequest>> PendingDeliveyMatrialRequest(PagingDTO paging)
+        {
+            return await JsonHelper.Convert<List<MaterialRequest>, DataTable>(await service.PendingDeliveyMatrialRequest(paging));
+        }
+
         
         public async Task<MaterialRequestDetail> GetMatrialRequestDetail(int ID)
         {

@@ -58,6 +58,28 @@ namespace PipewellserviceDB.Procurement
             }
 
         }
+        public async Task<DataTable> PendingDeliveyMatrialRequest(PagingDTO paging)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[2];
+                collSP[0] = new SqlParameter { ParameterName = "@PageNo", Value = paging.pageNumber };
+                collSP[1] = new SqlParameter { ParameterName = "@PageSize", Value = paging.pageSize };
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetPendingDeliveyMatrialRequest", CommandType.StoredProcedure, collSP);
+                DataTable Data = new DataTable();
+                Data.Load(result);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+        }
+
+        
         public async Task<MaterialRequestDB> GetMatrialRequestDetail(int ID)
         {
             try

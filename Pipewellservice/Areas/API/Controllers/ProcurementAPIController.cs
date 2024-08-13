@@ -120,6 +120,15 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        public async Task<JsonResult> PendingDeliveyMatrialRequest(PagingDTO paging)
+        {
+            var result = await json.PendingDeliveyMatrialRequest(paging);
+            return new JsonResult
+            {
+                Data = new { Data = result, TotalRecord = result.Count > 0 ? result[0].Total : 0 },
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
         public async Task<JsonResult> GetMatrialRequestDetail(int ID)
         {
             var result = await json.GetMatrialRequestDetail(ID);

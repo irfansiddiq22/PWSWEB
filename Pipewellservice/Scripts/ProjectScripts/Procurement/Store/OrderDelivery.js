@@ -28,14 +28,80 @@ function _Init() {
                 width: "100%"
             })
         });
-
+        
         BindStoreDelivery();
     });
     
 }
 
-function BindStoreDelivery() {
+function ShowPendingMaterialRequest() {
 
+
+
+
+
+    $('#dvMaterialRequestPaging').pagination({
+        dataSource: "/ProcurementAPI/PendingDeliveyMatrialRequest",
+        pageSize: pageSize,
+        pageNumber: pageNumber,
+        showGoInput: true,
+        showGoButton: true,
+        locator: function (response) {
+            return 'Data';
+        },
+        totalNumberLocator: function (response) {
+            return response.TotalRecord;
+        },
+
+        ajax: {
+            type: "POST",
+            dataType: "json",
+            data: {
+
+            },
+            beforeSend: function () {
+                ShowSpinner();
+            }
+        },
+        callback: function (data, pagination) {
+            HideSpinner();
+
+            $("#tblMaterialRequestList").empty();
+            $.each(data, function (i, r) {
+                var tr = $('<tr>')
+                tr.append($('<td>').text(r.ID))
+                tr.append($('<td>').append(moment(r.RequestDate).format("DD/MM/YYYY")))
+
+                tr.append($('<td>').append(r.RequestedByName))
+                tr.append($('<td>').append(r.RecordCreatedByName))
+                tr.append($('<td>').append(r.ApprovedByName))
+
+
+                tr.append($('<td>').append(r.ApprovalStatusName))
+                tr.append($('<td>').append(r.Remarks))
+
+
+
+
+
+
+
+                var Icons = $('<div class="icons">');
+                $(Icons).append($('<a href="javascript:void(0)" class="writeble" onclick="CreateDelivery(' + r.ID + ')"><i class="fa fa-edit"></i></a>'));
+
+                tr.append($('<td>').append($(Icons)));
+
+                $("#tblMaterialRequestList").append(tr);
+
+            });
+
+
+        }
+    })
+
+}
+function BindStoreDelivery() {
+    ShowPendingMaterialRequest();
     $("#tblDelivery").empty();
 
     var StartDate = "", EndDate = "";
@@ -295,6 +361,10 @@ function NewStoreDelivery() {
     $('.datepicker').val(moment().format("DD/MM/YYYY"));
     SetvalOf("txtPreparedBy", User.Name);
 }
+function CreateDelivery(ID) {
+    NewStoreDelivery();
+    SetvalOf("txtMatrialRequestNumber", ID).trigger("blur")
+}
 function SaveOrderDelivery() {
 
 
@@ -398,7 +468,7 @@ function SaveOrderDelivery() {
 
 }
 function ResetNav() {
-    BindStoreBindStoreDelivery();
+    BindStoreDelivery();
     document.getElementById("frmData").reset();
     $(".breadcrumb-item.active").find("a").contents().unwrap();
 

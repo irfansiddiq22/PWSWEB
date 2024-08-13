@@ -38,6 +38,7 @@ namespace Pipewellservice.Controllers
             ViewBag.Title = "Procurement";
             ViewBag.OutOfStockMaterialRequests = (new PurchaseService()).OutOfStockMaterialRequests();
             ViewBag.PedingIPORequstforQuote = (new PurchaseService()).PendingIPORequestForQuote();
+            ViewBag.PendingMaterialRequest = (new PurchaseService()).PendingMRForDelivery();
             ViewBag.Parent = null;
             return View();
         }
@@ -64,6 +65,7 @@ namespace Pipewellservice.Controllers
         [Route("Procurement/Store/Delivery")]
         public ActionResult Delivery()
         {
+            ViewBag.PendingMaterialRequest = (new PurchaseService()).PendingMRForDelivery();
             ViewBag.Title = "Store Delivery";
             ViewBag.Parent = Parent;
             return View();

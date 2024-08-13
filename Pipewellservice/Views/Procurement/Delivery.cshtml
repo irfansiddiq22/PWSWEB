@@ -43,143 +43,181 @@
 
 
         </div>
-        <div class="table-responsive" >
-            <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
-                <thead class="blue">
-                    <tr>
-                        <th>ID</th>
-                        <th>Delivery Date </th>
-
-                        <th>Del #</th>
-                        <th>Work Order</th>
-                        <th>Customer</th>
-                        <th>M.R #</th>
-
-                        <th>Remarks</th>
-
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody id="tblDelivery"></tbody>
-            </table>
-            <div id="dvDeliveryPaging"></div>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-users-tab" data-bs-toggle="tab" data-bs-target="#tblIPR" type="button" role="tab" aria-controls="tblIPR" aria-selected="true">Recent Delivery</button>
+            <button class="nav-link" id="nav-per-tab" data-bs-toggle="tab" data-bs-target="#tblMPR" type="button" role="tab" aria-controls="tblMPR" aria-selected="false">Pending Material Request </button>
         </div>
-        
-    </div>
-     
-    <div class="container mt-5 writecontainer dnone" id="dvAddDelivery">
-        <div class="border">
-            <div class="blue p-1"><h6>Delivery </h6></div>
-            <div class="p-4">
-                <form id="frmData">
-                    <div class="row mb-3">
-                        <div class="col-md-2">
-                            <label for="date" class="form-label">Date</label>
-                            <input type="text" class="form-control form-control-sm datepicker" id="txtRecordDate">
-                        </div>
-                        <div class="col-md-2">
-                            <label for="txtMatrialRequestNumber" class="form-label">M.R #</label>
-                            <input type="number" class="form-control form-control-sm" id="txtMatrialRequestNumber" required onblur="FindMaterialRequestDetail()">
-                        </div>
 
-                        <div class="col-md-2">
-                            <label for="txtDeliveryNumber" class="form-label">Delivery  #</label>
-                            <input type="number" class="form-control form-control-sm" id="txtDeliveryNumber" required>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="txtVendorInvoice" class="form-label">Word Order #</label>
-                            <input type="number" class="form-control form-control-sm" id="txtWordOrderNumber" required>
-                        </div>
+        <div class="tab-content border m2 p-3">
+            <div class="tab-pane fade active show" role="tabpanel" id="tblIPR">
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+                        <thead class="blue">
+                            <tr>
+                                <th>ID</th>
+                                <th>Delivery Date </th>
 
-                        <div class="col-md-2">
-                            <label for="quotationNo" class="form-label">Cust/Dept.</label>
-                            <input type="text" class="form-control form-control-sm" id="txtCustomer">
-                        </div>
+                                <th>Del #</th>
+                                <th>Work Order</th>
+                                <th>Customer</th>
+                                <th>M.R #</th>
 
+                                <th>Remarks</th>
 
-                    </div>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblDelivery"></tbody>
+                    </table>
+                    <div id="dvDeliveryPaging"></div>
+                </div>
+            </div>
+            <div class="tab-pane fade " role="tabpanel" id="tblMPR">
+                <div class="table-responsive">
+                    @if (@ViewBag.PendingMaterialRequest > 0)
+                    {
+                        <div class="bg-danger p-2 rounded text-white">Pending Material Requests</div>
+                    }
+                    else
+                    {
+                        <div class="bg-success p-2 rounded text-white">No Pending Material Requests</div>
+                    }
+                    <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+                        <thead class="blue">
+                            <tr>
+                                <th>ID</th>
+                                <th>Date Requested </th>
+                                <th>Requested By</th>
+                                <th>Prepared By</th>
 
-                    <div class="row mb-3">
-                        <div class="col-md-3">
-                            <label for="unit" class="form-label">Item Name</label>
-                            <input type="text" class="form-control form-control-sm" id="txtRequestItemCode">
-                        </div>
+                                <th>Approved By</th>
+                                <th>Approved</th>
+                                <th>Remarks</th>
 
-                        <div class="col-md-1">
-                            <label for="unit" class="form-label">Unit</label>
-                            <input type="text" readonly class="form-control form-control-sm" id="txtRequestItemUnit">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="qty" class="form-label">Qty</label>
-                            <input type="text" class="form-control form-control-sm" id="txtRequestItemQuantity">
-                            <span id="spStockQuantity"></span>
-                        </div>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblMaterialRequestList"></tbody>
+                    </table>
+                    <div id="dvMaterialRequestPaging"></div>
+                </div>
+            </div>
+        </div>
+        </div>
 
-                        <div class="col-md-3">
-                            <label for="note" class="form-label">Note</label>
-                            <input type="text" class="form-control form-control-sm" id="txtRequestItemNotes">
-                        </div>
-                        <div class="col-md-2 d-flex align-items-center">
-                            <button type="button" class="btn btn-secondary ms-2" onclick="AddItem()">Add</button>
-                        </div>
-                    </div>
+        <div class="container mt-5 writecontainer dnone" id="dvAddDelivery">
+            <div class="border">
+                <div class="blue p-1"><h6>Delivery </h6></div>
+                <div class="p-4">
+                    <form id="frmData">
+                        <div class="row mb-3">
+                            <div class="col-md-2">
+                                <label for="date" class="form-label">Date</label>
+                                <input type="text" class="form-control form-control-sm datepicker" id="txtRecordDate">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="txtMatrialRequestNumber" class="form-label">M.R #</label>
+                                <input type="number" class="form-control form-control-sm" id="txtMatrialRequestNumber" required onblur="FindMaterialRequestDetail()">
+                            </div>
 
-                    <div class="mb-3">
-                        <table class="table tablebordered table-striped border">
-                            <thead class="blue">
-                                <tr>
-                                    <th></th>
-                                    <th>Item</th>
-                                    <th>Description</th>
+                            <div class="col-md-2">
+                                <label for="txtDeliveryNumber" class="form-label">Delivery  #</label>
+                                <input type="number" class="form-control form-control-sm" id="txtDeliveryNumber" required>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="txtVendorInvoice" class="form-label">Word Order #</label>
+                                <input type="number" class="form-control form-control-sm" id="txtWordOrderNumber" required>
+                            </div>
 
-                                    <th>Unit</th>
-                                    <th>Qty</th>
+                            <div class="col-md-2">
+                                <label for="quotationNo" class="form-label">Cust/Dept.</label>
+                                <input type="text" class="form-control form-control-sm" id="txtCustomer">
+                            </div>
 
-                                    <th>Note</th>
-                                    <th>Unit Cost</th>
-                                </tr>
-                            </thead>
-                            <tbody id="itemsTable"></tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="row mb-3">
-
-                        <div class="col-md-12">
-                            <label for="remarks" class="form-label">Remarks</label>
-                            <input type="text" class="form-control form-control-sm" id="txtRemarks">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-3">
-                            <label for="preparedBy" class="form-label">Prepared By</label>
-                            <input type="text" class="form-control form-control-sm" id="txtPreparedBy" value="" readonly>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="requestedBy" class="form-label">Requested By</label>
-                            <select class="form-select form-select-sm" id="ddEmployeeCode"></select>
-                        </div>
-                        
-
-                    </div>
-                    <div class="my-3 row">
-
-                        <div class="col-md-auto">
-                            <button class="btn btn-primary" type="button" onclick="SaveOrderDelivery()">Save</button>
-                        </div><div class="col-md-auto">
-                            <button class="btn btn-danger" type="button" onclick="ResetNav()">Cancel</button>
-                        </div> <div class="col-md-auto">
-                            <button class="btn btn-danger" type="button" onclick="NewStoreDelivery()">Clear</button>
 
                         </div>
 
-                    </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label for="unit" class="form-label">Item Name</label>
+                                <input type="text" class="form-control form-control-sm" id="txtRequestItemCode">
+                            </div>
 
-                </form>
+                            <div class="col-md-1">
+                                <label for="unit" class="form-label">Unit</label>
+                                <input type="text" readonly class="form-control form-control-sm" id="txtRequestItemUnit">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="qty" class="form-label">Qty</label>
+                                <input type="text" class="form-control form-control-sm" id="txtRequestItemQuantity">
+                                <span id="spStockQuantity"></span>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="note" class="form-label">Note</label>
+                                <input type="text" class="form-control form-control-sm" id="txtRequestItemNotes">
+                            </div>
+                            <div class="col-md-2 d-flex align-items-center">
+                                <button type="button" class="btn btn-secondary ms-2" onclick="AddItem()">Add</button>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <table class="table tablebordered table-striped border">
+                                <thead class="blue">
+                                    <tr>
+                                        <th></th>
+                                        <th>Item</th>
+                                        <th>Description</th>
+
+                                        <th>Unit</th>
+                                        <th>Qty</th>
+
+                                        <th>Note</th>
+                                        <th>Unit Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="itemsTable"></tbody>
+                            </table>
+                        </div>
+
+                        <div class="row mb-3">
+
+                            <div class="col-md-12">
+                                <label for="remarks" class="form-label">Remarks</label>
+                                <input type="text" class="form-control form-control-sm" id="txtRemarks">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label for="preparedBy" class="form-label">Prepared By</label>
+                                <input type="text" class="form-control form-control-sm" id="txtPreparedBy" value="" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="requestedBy" class="form-label">Requested By</label>
+                                <select class="form-select form-select-sm" id="ddEmployeeCode"></select>
+                            </div>
+
+
+                        </div>
+                        <div class="my-3 row">
+
+                            <div class="col-md-auto">
+                                <button class="btn btn-primary" type="button" onclick="SaveOrderDelivery()">Save</button>
+                            </div><div class="col-md-auto">
+                                <button class="btn btn-danger" type="button" onclick="ResetNav()">Cancel</button>
+                            </div> <div class="col-md-auto">
+                                <button class="btn btn-danger" type="button" onclick="NewStoreDelivery()">Clear</button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 @section Scripts{
     @Scripts.Render("~/bundles/pagination")
     @Scripts.Render("~/bundles/typeahead")
