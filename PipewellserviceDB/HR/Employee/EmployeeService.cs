@@ -845,7 +845,7 @@ namespace PipewellserviceDB.HR.Employee
             try
             {
 
-                SqlParameter[] collSP = new SqlParameter[11];
+                SqlParameter[] collSP = new SqlParameter[12];
                 collSP[0] = new SqlParameter { ParameterName = "@EmployeeID", Value = param.EmployeeID };
                 collSP[1] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate };
                 collSP[2] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate };
@@ -858,6 +858,7 @@ namespace PipewellserviceDB.HR.Employee
                 collSP[8] = new SqlParameter { ParameterName = "@SalaryCertificate", Value = param.SalaryCertificate };
                 collSP[9] = new SqlParameter { ParameterName = "@MissPunch", Value = param.MissPunch };
                 collSP[10] = new SqlParameter { ParameterName = "@Resignation", Value = param.Resignation };
+                collSP[11] = new SqlParameter { ParameterName = "@UserID", Value = param.UserID };
 
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcEmployeeInquiryList", CommandType.StoredProcedure, collSP);
                 EmployeeInquiryDB model = new EmployeeInquiryDB();

@@ -101,6 +101,8 @@ namespace Pipewellservice.Reports
             this.Line11 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.line4 = new GrapeCity.ActiveReports.SectionReportModel.Line();
             this.line5 = new GrapeCity.ActiveReports.SectionReportModel.Line();
+            this.label22 = new GrapeCity.ActiveReports.SectionReportModel.Label();
+            this.textBox20 = new GrapeCity.ActiveReports.SectionReportModel.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Label)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeaderCompany)).BeginInit();
@@ -158,13 +160,15 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.TextBox18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.label22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textBox20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new GrapeCity.ActiveReports.SectionReportModel.ARControl[] {
             this.TextBox7});
-            this.Detail.Height = 0.1875F;
+            this.Detail.Height = 0.2499999F;
             this.Detail.Name = "Detail";
             // 
             // TextBox7
@@ -201,7 +205,9 @@ namespace Pipewellservice.Reports
             this.Label9,
             this.Label1,
             this.Picture5,
-            this.TextBox1});
+            this.TextBox1,
+            this.label22,
+            this.textBox20});
             this.PageHeader.Height = 3.177083F;
             this.PageHeader.Name = "PageHeader";
             // 
@@ -1035,6 +1041,28 @@ namespace Pipewellservice.Reports
             this.line5.Y1 = 1.59F;
             this.line5.Y2 = 3.376999F;
             // 
+            // label22
+            // 
+            this.label22.Height = 0.2F;
+            this.label22.HyperLink = null;
+            this.label22.Left = 0.7190001F;
+            this.label22.Name = "label22";
+            this.label22.Style = "color: Black; font-size: 9.75pt; font-weight: bold; text-align: right";
+            this.label22.Text = "Type:";
+            this.label22.Top = 2.753F;
+            this.label22.Width = 0.875F;
+            // 
+            // textBox20
+            // 
+            this.textBox20.DataField = "InquiryType";
+            this.textBox20.Height = 0.2F;
+            this.textBox20.Left = 1.687F;
+            this.textBox20.Name = "textBox20";
+            this.textBox20.Style = "color: Black";
+            this.textBox20.Text = null;
+            this.textBox20.Top = 2.753F;
+            this.textBox20.Width = 3.75F;
+            // 
             // rpEmployeeInquiry
             // 
             this.MasterReport = false;
@@ -1114,6 +1142,8 @@ namespace Pipewellservice.Reports
             ((System.ComponentModel.ISupportInitialize)(this.TextBox18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Picture6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.label22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textBox20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -1185,6 +1215,8 @@ namespace Pipewellservice.Reports
         private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox1;
         private GrapeCity.ActiveReports.SectionReportModel.Line line4;
         private GrapeCity.ActiveReports.SectionReportModel.Line line5;
+        private GrapeCity.ActiveReports.SectionReportModel.Label label22;
+        private GrapeCity.ActiveReports.SectionReportModel.TextBox textBox20;
         private GrapeCity.ActiveReports.SectionReportModel.TextBox TextBox19;
 
         private void rpEmployeeInquiry_ReportStart(object sender, System.EventArgs e)

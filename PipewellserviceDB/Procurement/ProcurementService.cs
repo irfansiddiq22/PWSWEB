@@ -14,16 +14,17 @@ namespace PipewellserviceDB.Procurement
 {
     public class ProcurementService : DataServices
     {
-        public async Task<DataTable> GetMatrialRequestList(DateParam date, PagingDTO paging, int RequestType)
+        public async Task<DataTable> GetMatrialRequestList(DateParam date, PagingDTO paging, int RequestType,int EmployeeID)
         {
             try
             {
-                SqlParameter[] collSP = new SqlParameter[5];
+                SqlParameter[] collSP = new SqlParameter[6];
                 collSP[0] = new SqlParameter { ParameterName = "@PageNo", Value = paging.pageNumber };
                 collSP[1] = new SqlParameter { ParameterName = "@PageSize", Value = paging.pageSize };
                 collSP[2] = new SqlParameter { ParameterName = "@StartDate", Value = date.StartDate };
                 collSP[3] = new SqlParameter { ParameterName = "@EndDate", Value = date.EndDate };
                 collSP[4] = new SqlParameter { ParameterName = "@RequestType", Value = RequestType };
+                collSP[5] = new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID };
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "GetProcurementMaterialList", CommandType.StoredProcedure, collSP);
                 DataTable Data = new DataTable();
                 Data.Load(result);

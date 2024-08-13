@@ -14,9 +14,9 @@ namespace PipewellserviceJson.Procurement
    public class ProcurementJson
     {
         private ProcurementService service = new ProcurementService();
-        public async Task<List<MaterialRequest>> GetMatrialRequestList(DateParam date, PagingDTO paging, int RequestType)
+        public async Task<List<MaterialRequest>> GetMatrialRequestList(DateParam date, PagingDTO paging, int RequestType,int EmployeeID)
         {
-            return await JsonHelper.Convert<List<MaterialRequest>, DataTable>(await service.GetMatrialRequestList(date, paging, RequestType));
+            return await JsonHelper.Convert<List<MaterialRequest>, DataTable>(await service.GetMatrialRequestList(date, paging, RequestType, EmployeeID));
         }
         public async Task<List<MaterialRequest>> GetOutofStockMatrialRequest(PagingDTO paging)
         {

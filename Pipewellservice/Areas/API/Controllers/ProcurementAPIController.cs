@@ -98,7 +98,13 @@ namespace Pipewellservice.Areas.API.Controllers
 
         public async Task<JsonResult> GetMatrialRequestList(DateParam date, PagingDTO paging, int RequestType)
         {
-            var result = await json.GetMatrialRequestList(date, paging, RequestType);
+            int EmployeeID = 0;
+            if (SessionHelper.UserSession().SelfService)
+            {
+                EmployeeID = SessionHelper.EmployeeID;
+
+            }
+            var result = await json.GetMatrialRequestList(date, paging, RequestType, EmployeeID);
             return new JsonResult
             {
                 Data = new { Data = result, TotalRecord = result.Count > 0 ? result[0].Total : 0 },

@@ -166,6 +166,27 @@ namespace PipewellserviceModels.HR.Employee
 
             }
         }
+        public string InquiryType
+        {
+            get
+            {
+                List<string> Type = new List<string>();
+                    
+                if(PersonalInquiry)
+                    Type.Add("Personal");
+                if (GeneralInquiry)
+                    Type.Add("General");
+                if (LoanInquiry)
+                    Type.Add("Loan");
+                if (SalaryCertificate)
+                    Type.Add("Salary Certificate");
+                if (MissPunch)
+                    Type.Add("Miss Punch");
+                if (Resignation)
+                    Type.Add($"Contract non-renewal/Resignation Last Working Date:{LastWorkingDate.ToString("DD/MM/YYYY")}");
+                return string.Join(", ", Type);
+            }
+        }
     }
     public class EmployeeInquiryDB
     {
@@ -198,6 +219,7 @@ namespace PipewellserviceModels.HR.Employee
         public bool Resignation { get; set; }
         public int PageNumber { get; set; }
         public int pageSize { get; set; }
+        public int UserID { get; set; }
 
     }
 }

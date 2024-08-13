@@ -584,6 +584,11 @@ namespace Pipewellservice.Areas.API.Controllers
         /// 
         public async Task<JsonResult> EmployeeInquiryList(EmployeeInquiryParam param)
         {
+            param.UserID = 0;
+            if (SessionHelper.UserSession().SelfService)
+            {
+                param.UserID = SessionHelper.UserID;
+            }
             return new JsonResult
             {
                 Data = await json.EmployeeInquiryList(param),
