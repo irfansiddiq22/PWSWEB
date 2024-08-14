@@ -50,7 +50,7 @@ namespace Pipewellservice.Helper
         public int UserID {
             get
             {
-                return ((User)HttpContext.Current.Session["User"]).ID;
+                return ((User)HttpContext.Current.Session["User"]).EmployeeID;
             }
         }
         public string UserName {

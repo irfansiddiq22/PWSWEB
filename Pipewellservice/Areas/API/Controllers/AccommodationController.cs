@@ -62,7 +62,7 @@ namespace Pipewellservice.Areas.API.Controllers
         {
             return new JsonResult
             {
-                Data = await json.AssignRoomBeds(beds, SessionHelper.UserID, AramcoRoom),
+                Data = await json.AssignRoomBeds(beds,SessionHelper.UserID, AramcoRoom),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }

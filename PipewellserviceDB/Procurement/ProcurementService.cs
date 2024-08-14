@@ -123,7 +123,7 @@ namespace PipewellserviceDB.Procurement
 
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "GetMatrialRequestDeliveryItems", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
                 MaterialRequestDB Data = new MaterialRequestDB();
-
+                Data.MaterialRequest.Load(result);
                 Data.MaterialRequestItem.Load(result);
                 result.Close();
                 return Data;

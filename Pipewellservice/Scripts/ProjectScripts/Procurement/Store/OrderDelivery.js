@@ -301,7 +301,8 @@ function FindMaterialRequestDetail() {
     if (!isNaN(MO)) {
 
         $.post("/ProcurementAPI/GetMatrialRequestDeliveryItems", { ID: MO }, function (resp) {
-                FillItems(resp);
+            FillItems(resp.Items);
+            $("#ddEmployeeCode").val(resp.Request.RecordCreatedBy).trigger("change");
             
         });
     }

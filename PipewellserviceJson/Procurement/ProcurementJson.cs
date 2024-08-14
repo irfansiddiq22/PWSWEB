@@ -43,14 +43,16 @@ namespace PipewellserviceJson.Procurement
             MaterialRequestDetail model = new MaterialRequestDetail();
             model.Request=( await JsonHelper.Convert<List<MaterialRequest>, DataTable>(dB.MaterialRequest)).FirstOrDefault();
             model.Items = await JsonHelper.Convert<List<MaterialRequestItem>, DataTable>(dB.MaterialRequestItem);
-
             return model;
         }
-        public async Task<List<MaterialRequestItem>> GetMatrialRequestDeliveryItems(int ID)
+        public async Task<MaterialRequestDetail> GetMatrialRequestDeliveryItems(int ID)
         {
             MaterialRequestDB dB = await service.GetMatrialRequestDeliveryItems(ID);
 
-            return await JsonHelper.Convert<List<MaterialRequestItem>, DataTable>(dB.MaterialRequestItem);
+            MaterialRequestDetail model = new MaterialRequestDetail();
+            model.Request = (await JsonHelper.Convert<List<MaterialRequest>, DataTable>(dB.MaterialRequest)).FirstOrDefault();
+            model.Items = await JsonHelper.Convert<List<MaterialRequestItem>, DataTable>(dB.MaterialRequestItem);
+            return model;
 
 
         }
