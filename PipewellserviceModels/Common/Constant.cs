@@ -29,7 +29,7 @@ namespace PipewellserviceModels.Common
         USERGRPOUPS = 13,
         JOB_STATUS = 14,
         EMAIL_TEMPLATE_TYPES = 15,
-        MATERIAL_REQUEST_TYPES=16
+        MATERIAL_REQUEST_TYPES = 16
     }
     public enum UserGroups
     {
@@ -104,8 +104,8 @@ namespace PipewellserviceModels.Common
         Ready = 4,
         Pending = 5,
         Requested = 6,
-        NoAction=7,
-        Temp=99
+        NoAction = 7,
+        Temp = 99
     }
     public enum ApprovalTypes
     {
@@ -117,10 +117,10 @@ namespace PipewellserviceModels.Common
         Joining = 5,
         ShortLeave = 6,
         Leaves = 7,
-        MaterialRequest=29,///SAME AS PAGE ID
-        InternalPurchaseRequest=30,
+        MaterialRequest = 29,///SAME AS PAGE ID
+        InternalPurchaseRequest = 30,
         PurchaseOrderManagement = 31,
-        RFQ=40
+        RFQ = 40
 
 
     }
@@ -129,9 +129,12 @@ namespace PipewellserviceModels.Common
         HR = 1,
         HRSetting = 2,
         Setting = 3,
-        Procurement=4,
-        ProcurementStore=5,
-        Purchase=6
+        Procurement = 4,
+        ProcurementStore = 5,
+        Purchase = 6,
+        Sales = 7,
+        Equipments = 8,
+        ProcurementCustomer = 9
 
     }
     public enum ReportTypes
@@ -143,7 +146,7 @@ namespace PipewellserviceModels.Common
         EmployeeInquiry = 16,
 
     }
-    
+
     public enum Pages
     {
         None = 0,
@@ -175,19 +178,21 @@ namespace PipewellserviceModels.Common
         WorkTime = 25,
         EmployeeWorkTiming = 26,
         AttendenceReport = 27,
-        ProcurementStoreItemManagement=28,
-        ProcurementMaterialRequest=29,
-        InternalPurchaseRequest=30,
+        ProcurementStoreItemManagement = 28,
+        ProcurementMaterialRequest = 29,
+        InternalPurchaseRequest = 30,
         PurchaseOrderManagment = 31,
-        Sponosor=32,
-        Location=33 ,
-        EmployeeCV=34,
-        SupplierAssessment=35,
-        CustomerRegisteration=36,
-        StoreReceiving=37,
+        Sponosor = 32,
+        Location = 33,
+        EmployeeCV = 34,
+        SupplierAssessment = 35,
+        CustomerRegisteration = 36,
+        StoreReceiving = 37,
         StoreDelivery = 38,
-        SpareParts=39,
-        RequestforQuote=40
+        SpareParts = 39,
+        RequestforQuote = 40,
+        StoreReceivingReturn = 41,
+        StoreDeliveryReturn = 42,
 
 
     }
@@ -210,21 +215,21 @@ namespace PipewellserviceModels.Common
         EmployeeJoining = 13,
         EmployeeShortLeave = 14,
         Leaves = 15,
-        StoreItems=16,
-        MaterialRequest=17,
+        StoreItems = 16,
+        MaterialRequest = 17,
         PurchaseRequest = 18,
-        InternalPurchaseRequest=19,
-        SupplierAssesment=20,
+        InternalPurchaseRequest = 19,
+        SupplierAssesment = 20,
         CustomerRegistration = 21,
-        SupplierQuote=22
-        
+        SupplierQuote = 22
+
     }
 
     public enum DocTemplates
     {
         JobOffer = 1,
         Contract = 2,
-        CV=3
+        CV = 3
     }
     public enum SupervisorTypes
     {
@@ -238,16 +243,16 @@ namespace PipewellserviceModels.Common
     }
     public enum CompanyBusinessEntityTypes
     {
-        Individual=1,
-        ShareHolder=2,
-        LLC=3,
-        Partnership=4
+        Individual = 1,
+        ShareHolder = 2,
+        LLC = 3,
+        Partnership = 4
     }
     public enum CanDelete
     {
-        Yes=1,
-        No=0,
-        Ignore=2
-      
+        Yes = 1,
+        No = 0,
+        Ignore = 2
+
     }
 }

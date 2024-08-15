@@ -226,6 +226,20 @@ namespace Pipewellservice.Areas.API.Controllers
 
         }
 
+
+        [Authorization(Pages.StoreReceiving)]
+        public async Task<JsonResult> FindReceivingNumber(int OrderID)
+        {
+
+            var result = await itemJson.FindReceivingNumber(OrderID);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+
         [Authorization(Pages.StoreReceiving, 1, CanDelete.Ignore)]
         public async Task<JsonResult> AddStoreReceiving(StoreReceiving dto, List<ReceivingItem> items)
         {
@@ -254,7 +268,49 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
+        [Authorization(Pages.StoreReceiving)]
+        public async Task<JsonResult> FindStoreReceivingDetail(int ReceivingNumber)
+        {
 
+            var result = await itemJson.FindStoreReceivingDetail(ReceivingNumber);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        
+
+
+        
+
+        [Authorization(Pages.StoreReceivingReturn, 1, CanDelete.Ignore)]
+        public async Task<JsonResult> AddStoreReceivingReturn(StoreReceivingReturn dto, List<ReceivingReturnItem> items)
+        {
+            dto.RecordCreatedBy = SessionHelper.UserID;
+            var result = await itemJson.AddStoreReceivingReturn(dto, items);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        [Authorization(Pages.StoreReceivingReturn)]
+        public async Task<JsonResult> StoreReceivingReturnList(StoreReceivingReturnParam param)
+        {
+
+            var result = await itemJson.StoreReceivingReturnList(param);
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+
+        ///-----------------------------------------------------
 
         [Authorization(Pages.StoreDelivery , 1, CanDelete.Ignore)]
         public async Task<JsonResult> AddStoreDelivery(StoreDelivery dto, List<DeliveryItem> items)
@@ -287,6 +343,7 @@ namespace Pipewellservice.Areas.API.Controllers
 
 
 
+        
 
 
     }

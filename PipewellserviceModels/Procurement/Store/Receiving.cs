@@ -62,4 +62,20 @@ namespace PipewellserviceModels.Procurement.Store
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }
+    public class StoreReceiveDetailSQL
+    {
+        public StoreReceiveDetailSQL()
+        {
+            Detail = new DataTable();
+            Items = new DataTable();
+        }
+        public DataTable Detail { get; set; }
+        public DataTable Items { get; set; }
+
+    }
+    public class StoreReceiveDetail
+    {
+        public  StoreReceiving Detail { get; set; }
+        public List<ReceivingItem> Items { get; set; }
+    }
 }

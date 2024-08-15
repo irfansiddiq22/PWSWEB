@@ -72,6 +72,25 @@ namespace Pipewellservice.Controllers
         }
 
 
+        [Authorization(Pages.StoreReceivingReturn)]
+        [Route("Procurement/Store/Receiving")]
+        public ActionResult ReceivingReturn()
+        {
+            ViewBag.Title = "Store Receiving - Return";
+            ViewBag.Parent = Parent;
+            return View();
+        }
+        [Authorization(Pages.StoreDeliveryReturn)]
+        [Route("Procurement/Store/DeliveryReturn")]
+        public ActionResult DeliveryReturn()
+        {
+            ViewBag.PendingMaterialRequest = 0;
+            ViewBag.Title = "Store Delivery Return";
+            ViewBag.Parent = Parent;
+            return View();
+        }
+
+
 
 
 

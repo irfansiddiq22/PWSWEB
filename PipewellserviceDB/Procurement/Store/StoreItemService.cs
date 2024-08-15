@@ -98,6 +98,15 @@ namespace PipewellserviceDB.Procurement.Store
 
 
 
+        public async Task<DataTable> FindReceivingNumber(int OrderID)
+        {
+            var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcFindReceivingNumber", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@OrderID", Value = OrderID });
+            DataTable Data = new DataTable();
+            Data.Load(result);
+            result.Close();
+            return Data;
+        }
+        
 
         public async Task<int> AddStoreReceiving(StoreReceiving dto, List<ReceivingItem> items)
         {
@@ -174,7 +183,78 @@ namespace PipewellserviceDB.Procurement.Store
             }
         }
 
+        public async Task<StoreReceiveDetailSQL> FindStoreReceivingDetail(int ReceivingNumber)
+        {
+            var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetReceivingDetail", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ReceivingNumber", Value = ReceivingNumber });
+            StoreReceiveDetailSQL Data = new StoreReceiveDetailSQL();
+            Data.Detail.Load(result);
+            Data.Items.Load(result);
+            result.Close();
+            return Data;
+        }
+        public async Task<StoreReceivingViewSQL> StoreReceivingReturnList(StoreReceivingReturnParam param)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[8];
+                collSP[0] = new SqlParameter { ParameterName = "@PageNumber", Value = param.pageNumber };
+                collSP[1] = new SqlParameter { ParameterName = "@PageSize", Value = param.pageSize };
+                collSP[2] = new SqlParameter { ParameterName = "@SupplierID", Value = param.SupplierID };
+                collSP[3] = new SqlParameter { ParameterName = "@ReceivingNumber", Value = param.ReceivingNumber };
+                collSP[4] = new SqlParameter { ParameterName = "@PurchaseOrderNumber", Value = param.PurchaseOrderNumber };
+                collSP[5] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate };
+                collSP[6] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate };
+                collSP[7] = new SqlParameter { ParameterName = "@NextID", Value = 0, Direction = ParameterDirection.Output };
 
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetStoreReceivingReturn", CommandType.StoredProcedure, collSP);
+                StoreReceivingViewSQL Data = new StoreReceivingViewSQL();
+                Data.Receivings.Load(result);
+                Data.ID = Convert.ToInt32(collSP[7].Value ?? (object)collSP[7].Value);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public async Task<int> AddStoreReceivingReturn(StoreReceivingReturn dto, List<ReceivingReturnItem> items)
+        {
+            try
+            {
+                StringBuilder xml = new StringBuilder();
+                xml.Append("<DataSet>");
+                foreach (ReceivingReturnItem item in items)
+                {
+                    xml.Append($"<Data><ItemID>{item.ID}</ItemID><Quantity>{item.Quantity}</Quantity><Notes>{ StringHelper.ReplaceXmlChar(item.Notes)}</Notes><ReturnQuantity>{ item.ReturnQuantity }</ReturnQuantity><ExpiryDate>{ item.ExpiryDate }</ExpiryDate></Data>");
+                }
+                xml.Append("</DataSet>");
+                var parameters = new SqlParameter[]
+                {
+                    new SqlParameter { ParameterName = "@ID", Value = dto.ID },
+                    new SqlParameter { ParameterName = "@ReceivingNumber", Value = dto.ReceivingNumber },
+                    new SqlParameter { ParameterName = "@RecordDate", Value = dto.RecordDate },
+                    new SqlParameter { ParameterName = "@Remarks", Value = StringHelper.NullToString(dto.Remarks) },
+                    new SqlParameter { ParameterName = "@ReturnedBy", Value = dto.ReturnedBy},
+                    new SqlParameter { ParameterName = "@ReturnDate", Value = dto.ReturnDate},
+                    new SqlParameter { ParameterName = "@RecordCreatedBy", Value =StringHelper.NullToString(dto.RecordCreatedBy)},
+                    new SqlParameter { ParameterName = "@Items", Value = xml.ToString()},
+
+
+                };
+
+
+                return Convert.ToInt32(SqlHelper.ExecuteScalar(this.ConnectionString, "ProcAddOrUpdateStoreOrderReceivingReturn", CommandType.StoredProcedure, parameters));
+
+
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+        //-------------------------------------------///
         public async Task<int> AddStoreDelivery(StoreDelivery dto, List<DeliveryItem> items)
         {
             try

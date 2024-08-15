@@ -38,7 +38,9 @@
     StoreReceiving: 37,
     StoreDelivery: 38,
     SparePartItems: 39,
-    RequestforQuote:40
+    RequestforQuote: 40,
+    StoreReceivingReturn: 41,
+    StoreDeliveryReturn: 42,
 
 }
 var REPORTS = {
@@ -53,7 +55,11 @@ var PAGEGROUPS = {
     Setting: 3,
     Procurement: 4,
     ProcurementStore: 5,
-    Purchase:6
+    Purchase: 6,
+    
+    Sales : 7,
+    Equipments : 8,
+    ProcurementCustomer : 9
 }
 var User = { Name: 'demo', ID: 0 };
 var DataChangeLog = {

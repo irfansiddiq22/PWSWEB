@@ -529,6 +529,7 @@
     <Content Include="Scripts\ProjectScripts\Customer\Registration.js" />
     <Content Include="Scripts\ProjectScripts\Customer\CustomerData.js" />
     <Content Include="Scripts\ProjectScripts\Procurement\Store\OrderDelivery.js" />
+    <Content Include="Scripts\ProjectScripts\Procurement\Store\OrderReceivingReturn.js" />
     <Content Include="Scripts\ProjectScripts\Procurement\Store\OrderReceiving.js" />
     <Content Include="Scripts\ProjectScripts\Purchase\RequestForQuote.js" />
     <Content Include="Scripts\ProjectScripts\Supplier\Registration.js" />
@@ -724,6 +725,8 @@
     <Content Include="Views\Shared\_GenericLayout.cshtml" />
     <Content Include="Views\Supplier\Error.cshtml" />
     <Content Include="Views\Support\Index.cshtml" />
+    <Content Include="Views\Procurement\ReceivingReturn.cshtml" />
+    <Content Include="Views\Procurement\DeliveryReturn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

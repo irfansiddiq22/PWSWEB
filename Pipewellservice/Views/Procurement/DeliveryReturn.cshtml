@@ -1,0 +1,190 @@
+﻿
+<div class="border p-2">
+    <div id="dvList">
+        <div class="p-3 border my-2">
+
+            <div class="row">
+
+                <div class="form-group col-md-3 row">
+                    <label class="col-md-2 col-form-label p-0"> Employee:</label>
+                    <div class="col">
+                        <select class="form-select form-select-sm" id="ddEmployeeCode1"></select>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-2 row">
+                    <label class="col-md-auto col-form-label p-0"> Del #:</label>
+                    <div class="col position-relative">
+                        <input type="number" name="txtDeliveryNumber1" id="txtDeliveryNumber1" class="form-control form-control-sm" autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group col-md-2 row">
+                    <label class="col-md-auto col-form-label p-0"> W.O #:</label>
+                    <div class="col position-relative">
+                        <input type="number" name="txtDeliverWordOrderNumber1" id="txtDeliverWordOrderNumber1" class="form-control form-control-sm" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-group col-md-2 row">
+                    <label class="col-md-auto col-form-label p-0"> Date Range:</label>
+                    <div class="col position-relative">
+                        <input type="text" name="ddlRecordDataRange" id="ddlRecordDataRange" class="form-control form-control-sm daterangepicker" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <button class="btn btn-sm btn-primary" onclick="BindStoreDelivery()">Search </button>
+                    <button class="btn btn-sm btn-success" onclick="NewStoreDelivery()">Add Request </button>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+                <thead class="blue">
+                    <tr>
+                        <th>ID</th>
+                        <th>Delivery Date </th>
+
+                        <th>Del #</th>
+                        <th>Work Order</th>
+                        <th>Customer</th>
+                        <th>M.R #</th>
+
+                        <th>Remarks</th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tblDelivery"></tbody>
+            </table>
+            <div id="dvDeliveryPaging"></div>
+        </div>
+
+        
+    </div>
+
+    <div class="container mt-5 writecontainer dnone" id="dvAddDelivery">
+        <div class="border">
+            <div class="blue p-1"><h6>Delivery Return</h6></div>
+            <div class="p-4">
+                <form id="frmData">
+                    <div class="row mb-3">
+                        <div class="col-md-2">
+                            <label for="date" class="form-label">Date</label>
+                            <input type="text" class="form-control form-control-sm datepicker" id="txtRecordDate">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="txtMatrialRequestNumber" class="form-label">M.R #</label>
+                            <input type="number" class="form-control form-control-sm" id="txtMatrialRequestNumber" required onblur="FindMaterialRequestDetail()">
+                        </div>
+
+                        <div class="col-md-2">
+                            <label for="txtDeliveryNumber" class="form-label">Delivery  #</label>
+                            <input type="number" class="form-control form-control-sm" id="txtDeliveryNumber" required>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="txtVendorInvoice" class="form-label">Word Order #</label>
+                            <input type="number" class="form-control form-control-sm" id="txtWordOrderNumber" required>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label for="quotationNo" class="form-label">Cust/Dept.</label>
+                            <input type="text" class="form-control form-control-sm" id="txtCustomer">
+                        </div>
+
+
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="unit" class="form-label">Item Name</label>
+                            <input type="text" class="form-control form-control-sm" id="txtRequestItemCode">
+                        </div>
+
+                        <div class="col-md-1">
+                            <label for="unit" class="form-label">Unit</label>
+                            <input type="text" readonly class="form-control form-control-sm" id="txtRequestItemUnit">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="qty" class="form-label">Qty</label>
+                            <input type="text" class="form-control form-control-sm" id="txtRequestItemQuantity">
+                            <span id="spStockQuantity"></span>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="note" class="form-label">Note</label>
+                            <input type="text" class="form-control form-control-sm" id="txtRequestItemNotes">
+                        </div>
+                        <div class="col-md-2 d-flex align-items-center">
+                            <button type="button" class="btn btn-secondary ms-2" onclick="AddItem()">Add</button>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <table class="table tablebordered table-striped border">
+                            <thead class="blue">
+                                <tr>
+                                    <th></th>
+                                    <th>Item</th>
+                                    <th>Description</th>
+
+                                    <th>Unit</th>
+                                    <th>Qty</th>
+
+                                    <th>Note</th>
+                                    <th>Unit Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody id="itemsTable"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="row mb-3">
+
+                        <div class="col-md-12">
+                            <label for="remarks" class="form-label">Remarks</label>
+                            <input type="text" class="form-control form-control-sm" id="txtRemarks">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="preparedBy" class="form-label">Prepared By</label>
+                            <input type="text" class="form-control form-control-sm" id="txtPreparedBy" value="" readonly>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="requestedBy" class="form-label">Requested By</label>
+                            <select class="form-select form-select-sm" id="ddEmployeeCode"></select>
+                        </div>
+
+
+                    </div>
+                    <div class="my-3 row">
+
+                        <div class="col-md-auto">
+                            <button class="btn btn-primary" type="button" onclick="SaveOrderDelivery()">Save</button>
+                        </div><div class="col-md-auto">
+                            <button class="btn btn-danger" type="button" onclick="ResetNav()">Cancel</button>
+                        </div> <div class="col-md-auto">
+                            <button class="btn btn-danger" type="button" onclick="NewStoreDelivery()">Clear</button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/bundles/pagination")
+    @Scripts.Render("~/bundles/typeahead")
+
+    @Scripts.Render("~/lib/procurement/store/delivery")
+    @Styles.Render("~/bundles/paginationcss")
+}
