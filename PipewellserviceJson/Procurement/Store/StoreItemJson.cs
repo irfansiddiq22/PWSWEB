@@ -83,6 +83,22 @@ namespace PipewellserviceJson.Procurement.Store
             return model;
         }
         //--------------------------//
+
+        
+        public async Task<List<PurchaseOrderNumber>> FindDeliveryNumber(int OrderID)
+        {
+            return await JsonHelper.Convert<List<PurchaseOrderNumber>, DataTable>(await itemService.FindDeliveryNumber(OrderID));
+        }
+        public async Task<StoreDeliveryDetail> FindStoreDeliveryDetail(int DeliveryNumber)
+        {
+            StoreDeliveryDetailSQL data = await itemService.FindStoreDeliveryDetail(DeliveryNumber);
+            StoreDeliveryDetail model = new StoreDeliveryDetail();
+            model.Detail = (await JsonHelper.Convert<List<StoreDelivery>, DataTable>(data.Detail)).FirstOrDefault();
+
+            model.Items = await JsonHelper.Convert<List<DeliveryItem>, DataTable>(data.Items);
+
+            return model;
+        }
         public async Task<int> AddStoreDelivery(StoreDelivery dto, List<DeliveryItem> items)
         {
             return await itemService.AddStoreDelivery(dto, items);
@@ -99,6 +115,25 @@ namespace PipewellserviceJson.Procurement.Store
 
             return model;
         }
+        public async Task<int> AddStoreDeliveryReturn(StoreDeliveryReturn dto, List<DeliveryReturnItem> items)
+        {
+            return await itemService.AddStoreDeliveryReturn(dto, items);
+        }
+
+
+        public async Task<StoreDeliveryReturnView> StoreDeliveryReturnList(StoreDeliveryReturnParam param)
+        {
+            StoreDeliveryViewSQL data = await itemService.StoreDeliveryReturnList(param);
+            StoreDeliveryReturnView model = new StoreDeliveryReturnView();
+            model.Delivery = await JsonHelper.Convert<List<StoreDeliveryReturn>, DataTable>(data.Delivery);
+            
+            model.TotalRecords = model.Delivery.Count == 0 ? 0 : model.Delivery[0].TotalRecords;
+
+            return model;
+        }
+
+
+        
 
 
 

@@ -255,6 +255,24 @@ namespace PipewellserviceDB.Procurement.Store
             }
         }
         //-------------------------------------------///
+        public async Task<DataTable> FindDeliveryNumber(int OrderID)
+        {
+            var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcFindDeliveryNumber", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@OrderID", Value = OrderID });
+            DataTable Data = new DataTable();
+            Data.Load(result);
+            result.Close();
+            return Data;
+        }
+
+        public async Task<StoreDeliveryDetailSQL> FindStoreDeliveryDetail(int DeliveryNumber)
+        {
+            var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetDeliveryDetail", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@DeliveryNumber", Value = DeliveryNumber });
+            StoreDeliveryDetailSQL Data = new StoreDeliveryDetailSQL();
+            Data.Detail.Load(result);
+            Data.Items.Load(result);
+            result.Close();
+            return Data;
+        }
         public async Task<int> AddStoreDelivery(StoreDelivery dto, List<DeliveryItem> items)
         {
             try
@@ -311,6 +329,70 @@ namespace PipewellserviceDB.Procurement.Store
                 StoreDeliveryViewSQL Data = new StoreDeliveryViewSQL();
                 Data.Delivery.Load(result);
                 Data.ID = Convert.ToInt32(collSP[7].Value ?? (object)collSP[7].Value);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+
+        public async Task<int> AddStoreDeliveryReturn(StoreDeliveryReturn dto, List<DeliveryReturnItem> items)
+        {
+            try
+            {
+                StringBuilder xml = new StringBuilder();
+                xml.Append("<DataSet>");
+                foreach (DeliveryReturnItem item in items)
+                {
+                    xml.Append($"<Data><ItemID>{item.ID}</ItemID><Quantity>{item.Quantity}</Quantity><Notes>{ StringHelper.ReplaceXmlChar(item.Notes)}</Notes></Data>");
+                }
+                xml.Append("</DataSet>");
+                var parameters = new SqlParameter[]
+                {
+                    new SqlParameter { ParameterName = "@ID", Value = dto.ID },
+                    
+                    new SqlParameter { ParameterName = "@DeliveryNumber", Value = dto.DeliveryNumber },
+                    new SqlParameter { ParameterName = "@ReturnDate", Value = dto.ReturnDate },
+                    new SqlParameter { ParameterName = "@ReturnedBy", Value = dto.ReturnedBy },
+                    new SqlParameter { ParameterName = "@Remarks", Value = dto.Remarks ?? (object)DBNull.Value },
+                    new SqlParameter { ParameterName = "@RecordCreatedBy", Value =StringHelper.NullToString(dto.RecordCreatedBy)},
+                    new SqlParameter { ParameterName = "@Items", Value = xml.ToString()},
+
+                    
+                };
+
+
+                return Convert.ToInt32(SqlHelper.ExecuteScalar(this.ConnectionString, "ProcAddOrUpdateStoreOrderDeliveryReturn", CommandType.StoredProcedure, parameters));
+
+
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+        public async Task<StoreDeliveryViewSQL> StoreDeliveryReturnList(StoreDeliveryReturnParam param)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[7];
+                collSP[0] = new SqlParameter { ParameterName = "@PageNumber", Value = param.pageNumber };
+                collSP[1] = new SqlParameter { ParameterName = "@PageSize", Value = param.pageSize };
+                collSP[2] = new SqlParameter { ParameterName = "@ReturnedBy", Value = param.ReturnedBy };
+                collSP[3] = new SqlParameter { ParameterName = "@WorkOrderID", Value = param.WorkOrderNumber ?? (object)DBNull.Value };
+                collSP[4] = new SqlParameter { ParameterName = "@DeliveryNumber", Value = param.DeliveryNumber };
+                collSP[5] = new SqlParameter { ParameterName = "@StartDate", Value = param.StartDate };
+                collSP[6] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate };
+                
+
+
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetStoreDeliveryReturn", CommandType.StoredProcedure, collSP);
+                StoreDeliveryViewSQL Data = new StoreDeliveryViewSQL();
+                Data.Delivery.Load(result);
+                
                 result.Close();
                 return Data;
             }

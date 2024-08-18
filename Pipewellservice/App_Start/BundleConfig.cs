@@ -210,6 +210,9 @@ namespace Pipewellservice
             bundles.Add(new Bundle("~/lib/procurement/store/delivery").Include(
                                               "~/Scripts/ProjectScripts/Procurement/Store/OrderDelivery.js"));
 
+            bundles.Add(new Bundle("~/lib/procurement/store/deliveryreturn").Include(
+                                               "~/Scripts/ProjectScripts/Procurement/Store/OrderDeliveryReturn.js"));
+
             bundles.Add(new Bundle("~/lib/procurement/MaterialRequest").Include(
                                               "~/Scripts/ProjectScripts/Procurement/MaterialRequest.js"));
             bundles.Add(new Bundle("~/lib/purchase/internalpurchase").Include(

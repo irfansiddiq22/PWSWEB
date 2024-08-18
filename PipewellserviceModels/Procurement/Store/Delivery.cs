@@ -55,5 +55,40 @@ namespace PipewellserviceModels.Procurement.Store
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }
+    public class StoreDeliveryDetailSQL: StoreReceiveDetailSQL
+    {
+        public StoreDeliveryDetailSQL():base()
+        {
+        }
+
+    }
+    public class StoreDeliveryDetail
+    {
+        public StoreDelivery Detail { get; set; }
+        public List<DeliveryItem> Items { get; set; }
+    }
+
+
+    public class StoreDeliveryReturnView
+    {
+        public List<StoreDeliveryReturn> Delivery { get; set; }
+        public int ID { get; set; }
+        public int TotalRecords { get; set; }
+    }
+
+    public class StoreDeliveryReturn : StoreDelivery
+    {
+        public DateTime ReturnDate { get; set; }
+        public int ReturnedBy { get; set; }
+        public string ReturnedByName { get; set; }
+    }
+    public class DeliveryReturnItem: DeliveryItem
+    {
+        public int DeliveredQuantity { get; set; }
+    }
+    public class StoreDeliveryReturnParam: StoreDeliveryParam
+    {
+        public int ReturnedBy { get; set; }
+    }
 }
 

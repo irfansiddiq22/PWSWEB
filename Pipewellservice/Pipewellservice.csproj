@@ -528,7 +528,9 @@
     <Content Include="Scripts\ProjectScripts\Home\Profile.js" />
     <Content Include="Scripts\ProjectScripts\Customer\Registration.js" />
     <Content Include="Scripts\ProjectScripts\Customer\CustomerData.js" />
+    <Content Include="Scripts\ProjectScripts\Procurement\Store\OrderDeliveryReturn.js" />
     <Content Include="Scripts\ProjectScripts\Procurement\Store\OrderDelivery.js" />
+    <Content Include="Scripts\ProjectScripts\Procurement\Store\OrderReceivingReturn - Copy.js" />
     <Content Include="Scripts\ProjectScripts\Procurement\Store\OrderReceivingReturn.js" />
     <Content Include="Scripts\ProjectScripts\Procurement\Store\OrderReceiving.js" />
     <Content Include="Scripts\ProjectScripts\Purchase\RequestForQuote.js" />

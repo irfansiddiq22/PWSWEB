@@ -48,12 +48,13 @@
                 <thead class="blue">
                     <tr>
                         <th>ID</th>
-                        <th>Delivery Date </th>
+                        <th>Return Date </th>
 
                         <th>Del #</th>
                         <th>Work Order</th>
                         <th>Customer</th>
                         <th>M.R #</th>
+                        <th>Returned By </th>
 
                         <th>Remarks</th>
 
@@ -78,14 +79,11 @@
                             <label for="date" class="form-label">Date</label>
                             <input type="text" class="form-control form-control-sm datepicker" id="txtRecordDate">
                         </div>
-                        <div class="col-md-2">
-                            <label for="txtMatrialRequestNumber" class="form-label">M.R #</label>
-                            <input type="number" class="form-control form-control-sm" id="txtMatrialRequestNumber" required onblur="FindMaterialRequestDetail()">
-                        </div>
+                        
 
                         <div class="col-md-2">
                             <label for="txtDeliveryNumber" class="form-label">Delivery  #</label>
-                            <input type="number" class="form-control form-control-sm" id="txtDeliveryNumber" required>
+                            <input type="number" class="form-control form-control-sm" id="txtDeliveryNumber" required  onblur="GetDeliveryItems()">
                         </div>
                         <div class="col-md-2">
                             <label for="txtVendorInvoice" class="form-label">Word Order #</label>
@@ -103,7 +101,7 @@
                     <div class="row mb-3">
                         <div class="col-md-3">
                             <label for="unit" class="form-label">Item Name</label>
-                            <input type="text" class="form-control form-control-sm" id="txtRequestItemCode">
+                            <select  class="form-select form-select-sm" id="txtRequestItemCode"></select>
                         </div>
 
                         <div class="col-md-1">
@@ -137,7 +135,7 @@
                                     <th>Qty</th>
 
                                     <th>Note</th>
-                                    <th>Unit Cost</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody id="itemsTable"></tbody>
@@ -157,7 +155,7 @@
                             <input type="text" class="form-control form-control-sm" id="txtPreparedBy" value="" readonly>
                         </div>
                         <div class="col-md-3">
-                            <label for="requestedBy" class="form-label">Requested By</label>
+                            <label for="requestedBy" class="form-label">Return By</label>
                             <select class="form-select form-select-sm" id="ddEmployeeCode"></select>
                         </div>
 
@@ -185,6 +183,6 @@
     @Scripts.Render("~/bundles/pagination")
     @Scripts.Render("~/bundles/typeahead")
 
-    @Scripts.Render("~/lib/procurement/store/delivery")
+    @Scripts.Render("~/lib/procurement/store/deliveryreturn")
     @Styles.Render("~/bundles/paginationcss")
 }
