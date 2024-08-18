@@ -23,15 +23,12 @@ namespace Pipewellservice.Areas.EquipmentsAPI.Controllers
                 { Data= new {
                     ID = await json.SaveItem(item) },JsonRequestBehavior=JsonRequestBehavior.DenyGet };
         }
-        public async Task<JsonResult> List(SparePartItem item)
+        public async Task<JsonResult> List(SparePartItemParam item)
         {
-            item.RecordCreatdBy = SessionHelper.UserID;
+            
             return new JsonResult()
             {
-                Data = new
-                {
-                    ID = await json.SaveItem(item)
-                },
+                Data = await json.List(item),
                 JsonRequestBehavior = JsonRequestBehavior.DenyGet
             };
         }

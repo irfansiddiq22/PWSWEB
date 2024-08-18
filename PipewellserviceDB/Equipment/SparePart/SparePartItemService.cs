@@ -42,5 +42,30 @@ namespace PipewellserviceDB.Equipment.SparePart
                 return 0;
             }
         }
+        public async Task<DataTable> List(SparePartItemParam item)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[5];
+                collSP[0] = new SqlParameter { ParameterName = "@PartNumber", Value = item.PartName };
+                
+                collSP[1] = new SqlParameter { ParameterName = "@PartName", Value = item.PartName };
+                collSP[2] = new SqlParameter { ParameterName = "@Application", Value = item.Application };
+                collSP[3] = new SqlParameter { ParameterName = "@PageNo", Value = item.pageNumber };
+                collSP[4] = new SqlParameter { ParameterName = "@PageSize", Value = item.pageSize };
+                
+
+
+                var result =await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetSparePartItems", CommandType.StoredProcedure, collSP);
+                DataTable Data = new DataTable();
+                Data.Load(result);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿
+﻿var Items = []
+var itemToEdit = {};
 function _Init() {
     HideSpinner();
 
@@ -57,12 +58,15 @@ function _Init() {
 
         });
         ListItems();
+        
     });
 }
 function ListItems() {
-    ResetChangeLog(PAGES.ProcurementStoreItem);
-
-    $('#dvSparepartItemPaging').pagination({
+    ResetChangeLog(PAGES.SparePartItems);
+    $("#dvEdit").hide();
+    document.getElementById("frmSpartPartItems").reset();
+    $("#dvList").show();
+    $('#dvPaging').pagination({
         dataSource: "/EquipmentsAPI/SpacePartItem/List",
         pageSize: pageSize,
         pageNumber: 1,
@@ -72,7 +76,7 @@ function ListItems() {
             return 'Data';
         },
         totalNumberLocator: function (response) {
-            return response.TotalRecord;
+            return response.length == 0 ? 0 : response[0].Total;
         },
 
         ajax: {
@@ -90,25 +94,21 @@ function ListItems() {
         callback: function (data, pagination) {
             HideSpinner();
             Items = data;
-            SetvalOf("txtItemCode", data.length > 0 ? data[0].NextCode : 0);
-            MaxID = data.length > 0 ? data[0].NextCode : 0;
-            $("#tblStoreItemList").empty();
+            
+            $("#tblList").empty();
             $.each(data, function (i, r) {
                 var tr = $('<tr>')
-                tr.append($('<td>').text(r.ItemCode))
-                tr.append($('<td>').append(r.Name))
+                tr.append($('<td>').text(r.ID))
+                tr.append($('<td>').text(r.PartNumber))
+                tr.append($('<td>').append(r.PartName))
 
-                tr.append($('<td>').append(r.Unit))
+                tr.append($('<td>').append(r.Application))
 
-                tr.append($('<td>').append(r.OpeningStock));
-                tr.append($('<td>').append(r.ReOrderLimit));
+                tr.append($('<td>').append(r.Alternatives));
+                
+                tr.append($('<td>').append(r.PartGroup))
                 tr.append($('<td>').append(r.Location))
-                tr.append($('<td>').append(r.Packing))
-                tr.append($('<td>').append(r.PartNumber))
-                tr.append($('<td>').append(r.StockItem ? "Yes" : "NO"))
-                tr.append($('<td>').append(r.CreticalItem ? "Yes" : "NO"))
-                tr.append($('<td>').append(r.Active ? "Yes" : "NO"))
-                tr.append($('<td>').append(r.Tengible ? "Yes" : "NO"))
+                
 
                 var Icons = $('<div class="icons">');
                 $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary writeble me-2" onclick="EditItem(' + i + ')"><i class="fa fa-edit"></i></a>'));
@@ -116,7 +116,7 @@ function ListItems() {
                 tr.append($('<td>').append($(Icons)));
 
 
-                $("#tblStoreItemList").append(tr);
+                $("#tblList").append(tr);
 
             });
 
@@ -129,8 +129,9 @@ function ListItems() {
 function SaveItem() {
     ResetChangeLog(PAGES.SparePartItems);
     if ($("#frmSpartPartItems").valid()) {
-        alert("valid")
+        
         var SparePartItem = {
+            ID: itemToEdit.ID,
             PartNumber: valOf("txtSparePartNumber"),
             PartName: valOf("txtSparePartName"),
             Application: valOf("txtSparePartApplication"),
@@ -141,14 +142,66 @@ function SaveItem() {
             Notes: valOf("txtNotes"),
             InventoryPart: GetChecked("chkInventoryPart"),
             PartGroup: valOf("txtSparePartPurchasePartGroup"),
-            Location: valOf("txtSparePartLocation"),
+            Location: valOf("txtSparePartLocation")
         };
-        
+
+
+        if (SparePartItem.ID == 0) {
+            DataChangeLog.DataUpdated.push({ Field: "Name", Data: { OLD: "", New: textOf("txtSparePartName") } });
+        }
+        else {
+            DataChangeLog.DataUpdated = [];
+
+            if (itemToEdit.PartNumber != SparePartItem.PartNumber) {
+                DataChangeLog.DataUpdated.push({ Field: "Part Number", Data: { OLD: itemToEdit.PartNumber, New: SparePartItem.PartNumber} });
+            }
+
+            if (itemToEdit.PartName != SparePartItem.PartName) {
+                DataChangeLog.DataUpdated.push({ Field: "Part Name", Data: { OLD: itemToEdit.PartName, New: SparePartItem.PartName } });
+            }
+
+            if (itemToEdit.Application != SparePartItem.Application) {
+                DataChangeLog.DataUpdated.push({ Field: "Application", Data: { OLD: itemToEdit.Application, New: SparePartItem.Application } });
+            }
+
+            if (itemToEdit.Alternatives != SparePartItem.Alternatives) {
+                DataChangeLog.DataUpdated.push({ Field: "Alternatives", Data: { OLD: itemToEdit.Alternatives, New: SparePartItem.Alternatives } });
+            }
+
+            if (itemToEdit.PurchasePrice != SparePartItem.PurchasePrice) {
+                DataChangeLog.DataUpdated.push({ Field: "PurchasePrice", Data: { OLD: itemToEdit.PurchasePrice, New: SparePartItem.PurchasePrice } });
+            }
+            if (itemToEdit.SalesPrice != SparePartItem.SalesPrice) {
+                DataChangeLog.DataUpdated.push({ Field: "SalesPrice", Data: { OLD: itemToEdit.SalesPrice, New: SparePartItem.SalesPrice } });
+            }
+            if (itemToEdit.ReOrderLimit != SparePartItem.ReOrderLimit) {
+                DataChangeLog.DataUpdated.push({ Field: "ReOrderLimit", Data: { OLD: itemToEdit.ReOrderLimit, New: SparePartItem.ReOrderLimit } });
+            }
+            if (itemToEdit.Notes != SparePartItem.Notes) {
+                DataChangeLog.DataUpdated.push({ Field: "Notes", Data: { OLD: itemToEdit.Notes, New: SparePartItem.Notes } });
+            }
+
+            if (itemToEdit.InventoryPart != SparePartItem.InventoryPart) {
+                DataChangeLog.DataUpdated.push({ Field: "InventoryPart", Data: { OLD: itemToEdit.InventoryPart, New: SparePartItem.InventoryPart } });
+            }
+            if (itemToEdit.PartGroup != SparePartItem.PartGroup) {
+                DataChangeLog.DataUpdated.push({ Field: "PartGroup", Data: { OLD: itemToEdit.PartGroup, New: SparePartItem.PartGroup } });
+            }
+            if (itemToEdit.Notes != SparePartItem.Location) {
+                DataChangeLog.DataUpdated.push({ Field: "Location", Data: { OLD: itemToEdit.Location, New: SparePartItem.Location } });
+            }
+
+            
+        }
+
+
 
         Post("/EquipmentsAPI/SpacePartItem/SaveItem", { item: SparePartItem }).done(function (resp) {
             if (resp.ID > 0) {
                 document.getElementById("frmSpartPartItems").reset();
+                SaveLog(resp.ID);
                 swal("Item added successfully", { icon: "success" });
+                NewItem();
             } else {
                 swal("failed to add Item ", { icon: "error" });
             }
@@ -312,4 +365,34 @@ function SaveItem() {
         }
     });
     */
+}
+
+function EditItem(i) {
+    NewItem();  
+    itemToEdit = Items[i]
+
+
+    SetvalOf("txtSparePartNumber", itemToEdit.PartNumber);
+    SetvalOf("txtSparePartName", itemToEdit.PartName);
+    SetvalOf("txtSparePartApplication", itemToEdit.Application);
+    SetvalOf("txtSparePartAlternative", itemToEdit.Alternatives);
+    SetvalOf("txtSparePartPurchasePrice", itemToEdit.PurchasePrice);
+    SetvalOf("txtSparePartSalesPrice", itemToEdit.SalesPrice);
+    SetvalOf("txtSparePartReOrderLimit", itemToEdit.ReOrderLimit);
+    SetvalOf("txtNotes", itemToEdit.Notes);
+    SetChecked("chkInventoryPart", itemToEdit.InventoryPart);
+    SetvalOf("txtSparePartPurchasePartGroup", itemToEdit.PartGroup);
+    SetvalOf("txtSparePartLocation", itemToEdit.Location);
+}
+function NewItem() {
+    itemToEdit = { ID: 0 };
+
+    $("#dvEdit").show();
+    $("#dvList").hide();
+    $(".breadcrumb-item.active").wrapInner($('<a>').attr("href", "javascript:ResetNav()"));
+}
+function ResetNav() {
+    itemToEdit = { ID: 0 };
+    $(".breadcrumb-item.active").find("a").contents().unwrap();
+    ListItems();
 }

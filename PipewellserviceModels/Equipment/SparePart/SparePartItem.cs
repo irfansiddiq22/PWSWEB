@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PipewellserviceModels.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,11 @@ namespace PipewellserviceModels.Equipment.SparePart
         public int RecordCreatdBy { get; set; }
 
     }
-    public class SparePartItemParam
+    public class SparePartItemList: SparePartItem
+    {
+        public int Total { get; set; }
+    }
+    public class SparePartItemParam: PagingDTO
     {
         public string PartNumber { get; set; }
         public string Application { get; set; }

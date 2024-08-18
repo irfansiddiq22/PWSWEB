@@ -1,7 +1,7 @@
 ﻿
 
 <div class="border p-2">
-    <div id="dvsparepartslist">
+    <div id="dvList">
         <div class="p-3 border my-2">
 
             <div class="row">
@@ -30,7 +30,7 @@
 
                 <div class="form-group col-md-2">
                     <button class="btn btn-sm btn-primary" onclick="ListItems()">Search </button>
-                    <button class="btn btn-sm btn-success" onclick="NewPurchaseRequest()">Add Request </button>
+                    <button class="btn btn-sm btn-success" onclick="NewItem()">Add Request </button>
                 </div>
                 <div class="col-md">
 
@@ -41,28 +41,25 @@
 
 
         </div>
-        <div class="table-responsive" id="tblIPR">
+        <div class="table-responsive" >
             <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
                 <thead class="blue">
                     <tr>
                         <th>ID</th>
-                        <th>Date Requested </th>
-                        <th>Quotation</th>
-                        <th>Supplier</th>
-                        <th>Maint.Request Number</th>
-                        <th>Requested By</th>
-                        <th>Prepared By</th>
+                        <th>Part Number </th>
+                        <th>Name</th>
+                        <th>Application</th>
+                        <th>Alternatives</th>
+                        <th>Part Group  </th>
+                        <th>Location</th>
 
-                        <th>Approved By</th>
-                        <th>Approved</th>
-                        <th>Remarks</th>
-                        <th>Attachments</th>
+                        
                         <th></th>
                     </tr>
                 </thead>
-                <tbody id="tblPurchaseRequestList"></tbody>
+                <tbody id="tblList"></tbody>
             </table>
-            <div id="dvSparepartItemPaging"></div>
+            <div id="dvPaging"></div>
         </div>
         
     </div>
@@ -156,4 +153,3 @@
     @Styles.Render("~/bundles/paginationcss")
 }
 
-s
