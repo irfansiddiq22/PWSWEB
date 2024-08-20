@@ -349,7 +349,7 @@ function ResetNav() {
 function BindSparePartRequestSearch() {
     $('#txtItemCode').typeahead({
         minLength: 3,
-        limit: 500, 
+        items: 500, 
 
         source: function (query, result) {
             $.ajax({

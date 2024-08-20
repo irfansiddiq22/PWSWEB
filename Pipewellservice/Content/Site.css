@@ -498,6 +498,8 @@ input:checked + .slider:before {
     padding: 8px;
     min-width: 422px;
     list-style:none;
+    max-height:150px;
+    overflow:scroll;
 }
 
 .tt-suggestion {
