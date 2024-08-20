@@ -170,7 +170,7 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col">
+                    <div class="col position-relative">
                         <label for="txtItemCode" class="form-label">Item Code/Name</label>
                         <input type="text" class="form-control form-control-sm" id="txtItemCode">
                     </div></div>
@@ -240,7 +240,12 @@
         </div>
     </div>
 </div>
-
+<style>
+    .tt-menu {
+        min-width: 90% !important;
+        max-height: 250px;
+    }
+</style>
 @section Scripts{
     @Scripts.Render("~/bundles/pagination")
     @Scripts.Render("~/bundles/typeahead")
