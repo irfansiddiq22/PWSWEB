@@ -500,6 +500,7 @@ input:checked + .slider:before {
     list-style:none;
     max-height:150px;
     overflow:scroll;
+    position:absolute;
 }
 
 .tt-suggestion {
