@@ -18,7 +18,7 @@ namespace Pipewellservice.Areas.EquipmentsAPI.Controllers
         [Authorization(PipewellserviceModels.Common.Pages.SpareParts,1, CanDelete.Ignore)]
         public async Task<JsonResult> SaveItem(SparePartItem item)
         {
-            item.RecordCreatdBy = SessionHelper.UserID;
+            item.RecordCreatedBy = SessionHelper.UserID;
             return new JsonResult()
                 { Data= new {
                     ID = await json.SaveItem(item) },JsonRequestBehavior=JsonRequestBehavior.DenyGet };
@@ -32,5 +32,16 @@ namespace Pipewellservice.Areas.EquipmentsAPI.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.DenyGet
             };
         }
+        public async Task<JsonResult> FindByName(string Name)
+        {
+
+            return new JsonResult()
+            {
+                Data = await json.FindByName(Name),
+                JsonRequestBehavior = JsonRequestBehavior.DenyGet
+            };
+        }
+
+        
     }
 }

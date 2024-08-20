@@ -41,6 +41,10 @@
     RequestforQuote: 40,
     StoreReceivingReturn: 41,
     StoreDeliveryReturn: 42,
+    EquipmentQuotation: 43,
+    EquipmentCollection: 44,
+    EquipmentOrderForm: 45,
+    EquipmentCustomerPO:46
 
 }
 var REPORTS = {

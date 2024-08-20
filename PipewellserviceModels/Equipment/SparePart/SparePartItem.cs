@@ -24,7 +24,7 @@ namespace PipewellserviceModels.Equipment.SparePart
         public string Location { get; set; }
         public DateTime RecordDateCreated { get; set; }
 
-        public int RecordCreatdBy { get; set; }
+        public int RecordCreatedBy { get; set; }
 
     }
     public class SparePartItemList: SparePartItem

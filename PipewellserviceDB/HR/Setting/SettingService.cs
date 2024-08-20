@@ -327,6 +327,21 @@ namespace PipewellserviceDB.HR.Setting
             }
         }
 
+        public async Task<DataTable> RefreshUserPermission(int EmployeeID)
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcReloadUserPermissions", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@EmployeeID", Value = EmployeeID });
+                DataTable model = new DataTable();
+                model.Load(result);
+                result.Close();
+                return model;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
 
         public async Task<DataTable> WorkTimeList()
         {

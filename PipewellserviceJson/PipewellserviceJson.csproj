@@ -48,6 +48,7 @@
     <Compile Include="Auth\AuthUserJson.cs" />
     <Compile Include="Common\DataListJson.cs" />
     <Compile Include="Customer\CustomerJson.cs" />
+    <Compile Include="Equipment\EquipmentQuoteJson.cs" />
     <Compile Include="Equipment\SparePart\SparePartItemJson.cs" />
     <Compile Include="Home\homejson.cs" />
     <Compile Include="HR\Employee\AccommodationJson.cs" />

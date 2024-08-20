@@ -224,6 +224,8 @@ namespace Pipewellservice
 
             bundles.Add(new Bundle("~/lib/equipments/spareparts/spartpart").Include(
                                               "~/Scripts/ProjectScripts/Equipments/SpareParts/SpareParts.js"));
+            bundles.Add(new Bundle("~/lib/equipments/quotation").Include(
+                                              "~/Scripts/ProjectScripts/Equipments/Quote.js"));
 
 
         }

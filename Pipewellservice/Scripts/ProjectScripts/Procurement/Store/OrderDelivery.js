@@ -37,9 +37,6 @@ function _Init() {
 function ShowPendingMaterialRequest() {
 
 
-
-
-
     $('#dvMaterialRequestPaging').pagination({
         dataSource: "/ProcurementAPI/PendingDeliveyMatrialRequest",
         pageSize: pageSize,

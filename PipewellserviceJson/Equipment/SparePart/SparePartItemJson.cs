@@ -21,5 +21,10 @@ namespace PipewellserviceJson.Equipment.SparePart
             var Data= await service.List(item);
             return await JsonHelper.Convert<List<SparePartItemList>, DataTable>(Data);
         }
+        public async Task<List<SparePartItem>> FindByName(string Name)
+        {
+            var Data = await service.FindByName(Name);
+            return await JsonHelper.Convert<List<SparePartItem>, DataTable>(Data);
+        }
     }
 }

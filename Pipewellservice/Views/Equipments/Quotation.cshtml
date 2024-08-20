@@ -1,0 +1,250 @@
+﻿<div class="border p-2">
+    <div id="dvList">
+
+        <div class="p-3 border my-2">
+
+            <div class="row">
+
+                <div class="form-group col-md-3 row">
+                    <label class="col-md-auto col-form-label p-0"> Customer :</label>
+                    <div class="col">
+                        <select class="form-select form-select-sm" id="ddSupplierFilter" ></select>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-2 row">
+                    <label class="col-md-auto col-form-label p-0">Quote ID:</label>
+                    <div class="col">
+                        <input type="text" class="form-control form-control-sm" id="txtQuoteIDFilter" />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-2 row">
+                    <label class="col-md-2 col-form-label p-0">RFQ #:</label>
+                    <div class="col">
+                        <input type="text" class="form-control form-control-sm" id="txtRfQNumberFilter" />
+                    </div>
+                </div>
+                <div class="form-group col-md-3 row">
+                    <label class="col-md-2 col-form-label p-0">Date:</label>
+                    <div class="col">
+                        <input type="text" class="form-control form-control-sm datarangepicker" id="txtQuoteDateFilter" />
+                    </div>
+                </div>
+
+
+                <div class="form-group col-md-2">
+                    <button class="btn btn-sm btn-primary" onclick="ListItems()">Search </button>
+                    <button class="btn btn-sm btn-success" onclick="NewItem()">Add Request </button>
+                </div>
+                <div class="col-md">
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+                <thead class="blue">
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer </th>
+                        <th>Quote ID</th>
+                        <th>Quote Date</th>
+                        <th>RFQ #</th>
+                        <th>Accepted</th>
+                        <th>Delivered</th>
+                        <th>Customer Notes</th>
+                        <th> Notes</th>
+                        <th> Created By</th>
+
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tblList"></tbody>
+            </table>
+            <div id="dvPaging"></div>
+        </div>
+
+    </div>
+</div>
+<div id="dvEdit">
+    <div class="container mt-5">
+        <div class="border p-2">
+
+
+            <form id="quotationForm">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="customer" class="form-label">Customer</label>
+                            <select class="form-select" id="ddSuppliers" required></select>
+                            <div class="invalid-feedback">Please select a customer.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="paymentTerms" class="form-label">Payment Terms</label>
+                            <select class="form-select" id="ddPaymentTypes"></select>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="createdBy" class="form-label">Created By</label>
+                            <input type="text" class="form-control form-control-sm" id="txtRecordCreatedBy" value="" readonly required>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="txtcustomerDiscount" class="form-label">Customer Discount</label>
+                            <input type="number" min="0" class="form-control form-control-sm" id="txtcustomerDiscount" value="0">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="outDate" class="form-label">Qut Date</label>
+                            <input type="text" class="form-control form-control-sm datepicker" id="txtQuotationDate" value="2024-07-10" required>
+                            <div class="invalid-feedback">Please select an out date.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="quoteId" class="form-label">Quote ID</label>
+                            <input type="text" class="form-control form-control-sm" id="txtQuotationID">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="rfqNo" class="form-label">RFQ No.</label>
+                            <input type="text" class="form-control form-control-sm" id="txtRfQNumber" required>
+                            <div class="invalid-feedback">Please enter an RFQ number.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 m-auto">
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="chkaccepted">
+                            <label class="form-check-label" for="accepted">Accepted</label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="chkdelivered">
+                            <label class="form-check-label" for="delivered">Delivered</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label for="customerNotes" class="form-label">Customer Notes</label>
+                            <input type="text" class="form-control form-control-sm" id="txtcustomerNotes">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label for="creditAllowed" class="form-label">Credit Allowed</label>
+                            <select class="form-select" id="ddcreditAllowed" required>
+                                <option value="true" selected>True</option>
+                                <option value="false">False</option>
+                            </select>
+                            <div class="invalid-feedback">Please select if credit is allowed.</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label for="txtRemarks" class="form-label">Notes</label>
+                            <textarea class="form-control form-control-sm" id="txtRemarks" rows="2"></textarea>
+                            <div class="invalid-feedback">Please enter notes.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-2">
+                        <label for="txtItemCode" class="form-label">Item Code/Name</label>
+                        <input type="text" class="form-control form-control-sm" id="txtItemCode">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="txtItemDescription" class="form-label">Description</label>
+                        <input type="text" class="form-control form-control-sm" id="txtItemDescription">
+                    </div>
+                    <div class="col-md-1">
+                        <label for="txtItemQuantity" class="form-label">Qty</label>
+                        <input type="number" class="form-control form-control-sm" id="txtItemQuantity">
+                    </div>
+                    <div class="col-md-1">
+                        <label for="txtItemUnitPrice" class="form-label">Unit Price</label>
+                        <input type="number" class="form-control form-control-sm" id="txtItemUnitPrice">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="txtItemPartAvailability" class="form-label">Availability</label>
+                        <input type="text" class="form-control form-control-sm" id="txtItemPartAvailability">
+                    </div>
+
+                    <div class="col-md-2">
+                        <label for="txtRequestItemNotes" class="form-label">Note</label>
+                        <input type="text" class="form-control form-control-sm" id="txtRequestItemNotes">
+                    </div>
+
+                    <div class="col-md-1 m-auto">
+                        <button type="button" class="btn btn-m btn-secondary ms-4" onclick="AddItem()">Add</button>
+                    </div>
+                </div>
+
+                <!-- Items Table -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table tablebordered table-striped border">
+                            <thead class="blue">
+                                <tr>
+                                    <th>Item No</th>
+                                    <th>Item Name</th>
+                                    <th>Description</th>
+                                    <th>Quantity</th>
+                                    <th>Unit Price</th>
+                                    <th>Total SR</th>
+                                    <th>Availability</th>
+                                    <th>Notes</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tblItems"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-12 text-end">
+                        <button type="button" class="btn btn-secondary" onclick="SaveQuote();">Create Quote</button>
+
+                        <button type="submit" class="btn btn-primary">Create Customer PO</button>
+
+                        <button type="button" class="btn btn-info">Quotation Report</button>
+                        <button type="button" class="btn btn-success">Collect Order</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/pagination")
+    @Scripts.Render("~/bundles/typeahead")
+
+    @Scripts.Render("~/lib/equipments/quotation")
+    @Styles.Render("~/bundles/paginationcss")
+}
+

@@ -30,7 +30,7 @@ namespace PipewellserviceDB.Equipment.SparePart
                 collSP[9] = new SqlParameter { ParameterName = "@InventoryPart", Value = item.InventoryPart };
                 collSP[10] = new SqlParameter { ParameterName = "@PartGroup", Value = item.PartGroup };
                 collSP[11] = new SqlParameter { ParameterName = "@Location", Value = item.Location     };
-                collSP[12] = new SqlParameter { ParameterName = "@RecordCreatdBy", Value = item.RecordCreatdBy };
+                collSP[12] = new SqlParameter { ParameterName = "@RecordCreatedBy", Value = item.RecordCreatedBy };
 
 
 
@@ -57,6 +57,21 @@ namespace PipewellserviceDB.Equipment.SparePart
 
 
                 var result =await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetSparePartItems", CommandType.StoredProcedure, collSP);
+                DataTable Data = new DataTable();
+                Data.Load(result);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public async Task<DataTable> FindByName(string Name)
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcFindSparePartItems", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@Name", Value = Name });
                 DataTable Data = new DataTable();
                 Data.Load(result);
                 result.Close();

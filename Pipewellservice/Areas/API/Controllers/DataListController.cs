@@ -110,6 +110,15 @@ namespace Pipewellservice.Areas.API.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        public async Task<JsonResult> EquipmentPaymentTypes()
+        {
+            return new JsonResult
+            {
+                Data = AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.Equipment_Payment).OrderBy(x => x.DisplayOrder).ToList(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
         public async Task<JsonResult> SupplierList()
         {
 

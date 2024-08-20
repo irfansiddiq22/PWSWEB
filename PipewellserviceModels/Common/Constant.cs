@@ -29,7 +29,8 @@ namespace PipewellserviceModels.Common
         USERGRPOUPS = 13,
         JOB_STATUS = 14,
         EMAIL_TEMPLATE_TYPES = 15,
-        MATERIAL_REQUEST_TYPES = 16
+        MATERIAL_REQUEST_TYPES = 16,
+        Equipment_Payment=17
     }
     public enum UserGroups
     {
@@ -193,6 +194,10 @@ namespace PipewellserviceModels.Common
         RequestforQuote = 40,
         StoreReceivingReturn = 41,
         StoreDeliveryReturn = 42,
+        SparePartEquipmentQuotation=43,
+        SparePartEquipmentCollection=44,
+        SparePartEquipmentOrderForm=45,
+        SparePartEquipmentCustomerPO=46 
 
 
     }

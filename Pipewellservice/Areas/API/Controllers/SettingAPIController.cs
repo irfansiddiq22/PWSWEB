@@ -158,9 +158,14 @@ namespace Pipewellservice.Areas.API.Controllers
         }
         public async Task<JsonResult> UpdateGroupPermissions(PermissionGroup group)
         {
+            var result = await json.UpdateGroupPermissions(group);
+            if (SessionHelper.UserGroup== group.ID)
+            {
+                SessionHelper.UserSession().Permissions= await json.RefreshUserPermission(SessionHelper.EmployeeID);
+            }
             return new JsonResult
             {
-                Data = await json.UpdateGroupPermissions(group),
+                Data = result,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }

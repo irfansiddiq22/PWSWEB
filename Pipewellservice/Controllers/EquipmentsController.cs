@@ -28,5 +28,13 @@ namespace Pipewellservice.Controllers
             ViewBag.Parent = Parent;
             return  View("_PartialSpareParts");
         }
+
+        [Authorization(Pages.SparePartEquipmentQuotation)]
+        public ActionResult Quotation()
+        {
+            ViewBag.Title = "Quotation";
+            ViewBag.Parent = Parent;
+            return View("quotation");
+        }
     }
 }

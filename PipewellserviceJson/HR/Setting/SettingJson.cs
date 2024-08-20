@@ -108,6 +108,12 @@ namespace PipewellserviceJson.HR.Setting
             return await service.UpdateGroupPermissions(group);
         }
 
+        public async Task<List<PagePermisson>> RefreshUserPermission(int EmployeeID)
+        {
+            DataTable data= await service.RefreshUserPermission(EmployeeID);
+            return await JsonHelper.Convert<List<PagePermisson>, DataTable>(data);
+        }
+
 
         public async Task<List<WorkInOutTime>> WorkTimeList()
         {
