@@ -169,73 +169,73 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row mb-3">
                     <div class="col-md-2">
                         <label for="txtItemCode" class="form-label">Item Code/Name</label>
                         <input type="text" class="form-control form-control-sm" id="txtItemCode">
+                    </div></div>
+                    <div class="row mb-3">
+                        
+                        <div class="col-md-3">
+                            <label for="txtItemDescription" class="form-label">Description</label>
+                            <input type="text" class="form-control form-control-sm" id="txtItemDescription">
+                        </div>
+                        <div class="col-md-1">
+                            <label for="txtItemQuantity" class="form-label">Qty</label>
+                            <input type="number" class="form-control form-control-sm" id="txtItemQuantity">
+                        </div>
+                        <div class="col-md-1">
+                            <label for="txtItemUnitPrice" class="form-label">Unit Price</label>
+                            <input type="number" class="form-control form-control-sm" id="txtItemUnitPrice">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="txtItemPartAvailability" class="form-label">Availability</label>
+                            <input type="text" class="form-control form-control-sm" id="txtItemPartAvailability">
+                        </div>
+
+                        <div class="col-md-2">
+                            <label for="txtRequestItemNotes" class="form-label">Note</label>
+                            <input type="text" class="form-control form-control-sm" id="txtRequestItemNotes">
+                        </div>
+
+                        <div class="col-md-1 m-auto">
+                            <button type="button" class="btn btn-sm btn-secondary ms-4" onclick="AddItem()">Add</button>
+                        </div>
                     </div>
 
-                    <div class="col-md-3">
-                        <label for="txtItemDescription" class="form-label">Description</label>
-                        <input type="text" class="form-control form-control-sm" id="txtItemDescription">
-                    </div>
-                    <div class="col-md-1">
-                        <label for="txtItemQuantity" class="form-label">Qty</label>
-                        <input type="number" class="form-control form-control-sm" id="txtItemQuantity">
-                    </div>
-                    <div class="col-md-1">
-                        <label for="txtItemUnitPrice" class="form-label">Unit Price</label>
-                        <input type="number" class="form-control form-control-sm" id="txtItemUnitPrice">
-                    </div>
-                    <div class="col-md-2">
-                        <label for="txtItemPartAvailability" class="form-label">Availability</label>
-                        <input type="text" class="form-control form-control-sm" id="txtItemPartAvailability">
+                    <!-- Items Table -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table tablebordered table-striped border">
+                                <thead class="blue">
+                                    <tr>
+                                        <th>Item No</th>
+                                        <th>Item Name</th>
+                                        <th>Description</th>
+                                        <th>Quantity</th>
+                                        <th>Unit Price</th>
+                                        <th>Total SR</th>
+                                        <th>Availability</th>
+                                        <th>Notes</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tblItems"></tbody>
+                            </table>
+                        </div>
                     </div>
 
-                    <div class="col-md-2">
-                        <label for="txtRequestItemNotes" class="form-label">Note</label>
-                        <input type="text" class="form-control form-control-sm" id="txtRequestItemNotes">
+                    <div class="row mb-3">
+                        <div class="col-md-12 text-end">
+                            <button type="button" class="btn btn-primary btn-sm" onclick="SaveQuote();">Create Quote</button>
+                            <button type="button" class="btn btn-danger btn-sm" onclick="ResetNav();">Cancel Quote</button>
+
+                            <button type="submit" class="btn btn-primary d-none">Create Customer PO</button>
+
+                            <button type="button" class="btn btn-info d-none">Quotation Report</button>
+                            <button type="button" class="btn btn-success d-none">Collect Order</button>
+                        </div>
                     </div>
-
-                    <div class="col-md-1 m-auto">
-                        <button type="button" class="btn btn-sm btn-secondary ms-4" onclick="AddItem()">Add</button>
-                    </div>
-                </div>
-
-                <!-- Items Table -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <table class="table tablebordered table-striped border">
-                            <thead class="blue">
-                                <tr>
-                                    <th>Item No</th>
-                                    <th>Item Name</th>
-                                    <th>Description</th>
-                                    <th>Quantity</th>
-                                    <th>Unit Price</th>
-                                    <th>Total SR</th>
-                                    <th>Availability</th>
-                                    <th>Notes</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody id="tblItems"></tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-12 text-end">
-                        <button type="button" class="btn btn-primary btn-sm" onclick="SaveQuote();">Create Quote</button>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="ResetNav();">Cancel Quote</button>
-
-                        <button type="submit" class="btn btn-primary d-none">Create Customer PO</button>
-
-                        <button type="button" class="btn btn-info d-none">Quotation Report</button>
-                        <button type="button" class="btn btn-success d-none">Collect Order</button>
-                    </div>
-                </div>
             </form>
         </div>
     </div>
