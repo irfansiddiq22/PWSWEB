@@ -349,6 +349,8 @@ function ResetNav() {
 function BindSparePartRequestSearch() {
     $('#txtItemCode').typeahead({
         minLength: 3,
+        limit: 500, 
+
         source: function (query, result) {
             $.ajax({
                 url: "/EquipmentsAPI/SpacePartItem/FindByName",
@@ -358,7 +360,7 @@ function BindSparePartRequestSearch() {
                 success: function (data) {
                     Items = data;
                     result($.map(data, function (item) {
-                        return `${item.PartNumber} - ${item.PartName}`;
+                        return `${item.PartNumber} - ${item.PartName} - ${item.Application}`;
                     }));
                 }
             });
