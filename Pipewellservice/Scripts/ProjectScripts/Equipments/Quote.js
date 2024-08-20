@@ -360,7 +360,7 @@ function BindSparePartRequestSearch() {
                 success: function (data) {
                     Items = data;
                     result($.map(data, function (item) {
-                        return `${item.PartNumber} - ${item.PartName} - ${item.Application}`;
+                        return `${item.PartNumber} - ${item.PartName} - ${item.Application} - ${item.Alternatives}`;
                     }));
                 }
             });
