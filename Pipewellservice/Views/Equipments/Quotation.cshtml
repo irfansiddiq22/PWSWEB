@@ -199,7 +199,7 @@
                     </div>
 
                     <div class="col-md-1 m-auto">
-                        <button type="button" class="btn btn-m btn-secondary ms-4" onclick="AddItem()">Add</button>
+                        <button type="button" class="btn btn-sm btn-secondary ms-4" onclick="AddItem()">Add</button>
                     </div>
                 </div>
 
@@ -227,12 +227,13 @@
 
                 <div class="row mb-3">
                     <div class="col-md-12 text-end">
-                        <button type="button" class="btn btn-secondary" onclick="SaveQuote();">Create Quote</button>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="SaveQuote();">Create Quote</button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="ResetNav();">Cancel Quote</button>
 
-                        <button type="submit" class="btn btn-primary">Create Customer PO</button>
+                        <button type="submit" class="btn btn-primary d-none">Create Customer PO</button>
 
-                        <button type="button" class="btn btn-info">Quotation Report</button>
-                        <button type="button" class="btn btn-success">Collect Order</button>
+                        <button type="button" class="btn btn-info d-none">Quotation Report</button>
+                        <button type="button" class="btn btn-success d-none">Collect Order</button>
                     </div>
                 </div>
             </form>
