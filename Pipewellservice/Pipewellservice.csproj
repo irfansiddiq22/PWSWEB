@@ -206,6 +206,7 @@
     <Compile Include="Areas\API\Controllers\PurchaseOrderAPIController.cs" />
     <Compile Include="Areas\API\Controllers\InternalPurchaseAPIController.cs" />
     <Compile Include="Areas\API\Controllers\SettingAPIController.cs" />
+    <Compile Include="Areas\EquipmentsAPI\Controllers\EquipmentPurchaseOrderController.cs" />
     <Compile Include="Areas\EquipmentsAPI\Controllers\EquipmentQuoteController.cs" />
     <Compile Include="Areas\EquipmentsAPI\Controllers\SpacePartItemController.cs" />
     <Compile Include="Areas\EquipmentsAPI\EquipmentsAPIAreaRegistration.cs" />
@@ -732,6 +733,8 @@
     <Content Include="Views\Procurement\ReceivingReturn.cshtml" />
     <Content Include="Views\Procurement\DeliveryReturn.cshtml" />
     <Content Include="Views\Equipments\Quotation.cshtml" />
+    <Content Include="Views\Equipments\PurchaseOrderForm.cshtml" />
+    <Content Include="Scripts\ProjectScripts\Equipments\PurchaseOrder.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -745,6 +748,7 @@
     <Folder Include="Areas\API\Views\SettingAPI\" />
     <Folder Include="Areas\API\Views\Shared\" />
     <Folder Include="Areas\EquipmentsAPI\Models\" />
+    <Folder Include="Areas\EquipmentsAPI\Views\EquipmentPurchaseOrder\" />
     <Folder Include="Areas\EquipmentsAPI\Views\Quote\" />
     <Folder Include="Areas\EquipmentsAPI\Views\Shared\" />
     <Folder Include="Areas\EquipmentsAPI\Views\SpacePartItemAPI\" />

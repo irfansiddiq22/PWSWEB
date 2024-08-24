@@ -119,6 +119,15 @@ namespace Pipewellservice.Areas.API.Controllers
             };
         }
 
+        public async Task<JsonResult> EquipmentPurchaseOrderStatus()
+        {
+            return new JsonResult
+            {
+                Data = AppData.Constants.FindAll(x => x.ParentID == (int)ParentEnums.Equipment_PurchaseOrder).OrderBy(x => x.DisplayOrder).ToList(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
         public async Task<JsonResult> SupplierList()
         {
 

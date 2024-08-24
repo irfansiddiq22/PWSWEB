@@ -36,5 +36,13 @@ namespace Pipewellservice.Controllers
             ViewBag.Parent = Parent;
             return View("quotation");
         }
+
+        [Authorization(Pages.SparePartEquipmentOrderForm)]
+        public ActionResult PurchaseOrderForm()
+        {
+            ViewBag.Title = "Purchase Order Form";
+            ViewBag.Parent = Parent;
+            return View("PurchaseOrderForm");
+        }
     }
 }

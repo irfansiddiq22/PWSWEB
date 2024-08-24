@@ -370,7 +370,7 @@ function BindSparePartRequestSearch() {
 }
 
 function AddItem() {
-    var itm = Items.find(x => `${x.PartNumber} - ${x.PartName}` == valOf("txtItemCode"));
+    var itm = Items.find(x => `${x.PartNumber} - ${x.PartName} - ${x.Application} - ${x.Alternatives}` == valOf("txtItemCode"));
 
     var newItem = {
         PartNumber: itm.PartNumber,

@@ -17,6 +17,7 @@ namespace PipewellserviceModels.HR.Employee
         public string EmployeeWorkedTime { get; set; }
         public string DayWorkingTime { get; set; }
         public int? DeductMin { get; set; }
+
         public string LeaveType { get; set; }
 
         public string Remarks { get; set; }
@@ -40,6 +41,24 @@ namespace PipewellserviceModels.HR.Employee
             }
         }
         public string OnRig { get; set; }
+        public string BackColor
+        {
+
+            get
+            {
+                if (DayWorkingTime == "00:00" && LeaveType == null)
+                    return "Off";
+                else if (OnRig != "")
+                    return OnRig;
+                else if (CheckInTime != null && CheckInTime == CheckOutTime)
+                    return "";
+                else if (EmployeeWorkedTime == "00:00")
+                    return LeaveType == null ? "Absent" : LeaveType;
+                else
+                    return "";
+
+            }
+        }
         public string Description
         {
             get

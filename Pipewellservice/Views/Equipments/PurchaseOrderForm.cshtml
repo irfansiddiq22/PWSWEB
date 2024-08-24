@@ -1,0 +1,255 @@
+﻿<div class="border p-2">
+    <div id="dvList">
+
+        <div class="p-3 border my-2">
+
+            <div class="row">
+
+                <div class="form-group col-md-3 row">
+                    <label class="col-md-auto col-form-label p-0"> Customer :</label>
+                    <div class="col">
+                        <select class="form-select form-select-sm" id="ddSupplierFilter"></select>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-2 row">
+                    <label class="col-md-auto col-form-label p-0">Order ID:</label>
+                    <div class="col">
+                        <input type="text" class="form-control form-control-sm" id="txtOrderIDFilter" />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-2 row">
+                    <label class="col-md-auto col-form-label p-0">PONO #:</label>
+                    <div class="col">
+                        <input type="text" class="form-control form-control-sm" id="txtPONONumberFilter" />
+                    </div>
+                </div>
+                <div class="form-group col-md-3 row">
+                    <label class="col-md-2 col-form-label p-0">Date:</label>
+                    <div class="col">
+                        <input type="text" class="form-control form-control-sm daterangepicker" id="txtOrderDateFilter" />
+                    </div>
+                </div>
+
+
+                <div class="form-group col-md-2">
+                    <button class="btn btn-sm btn-primary" onclick="ListOrders()">Search </button>
+                    <button class="btn btn-sm btn-success" onclick="NewOrder()">Add Quote </button>
+                </div>
+                <div class="col-md">
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover-warning table-bordered table-responsive">
+                <thead class="blue">
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer </th>
+                        <th>Order ID</th>
+                        <th>Order Date</th>
+                        <th>PONO #</th>
+                        <th>Shipment menthod</th>
+                        <th>Back Order To</th>
+                        <th>Instructions</th>
+                        <th> Payment Terms</th>
+                        <th> Created By</th>
+
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tblList"></tbody>
+            </table>
+            <div id="dvPaging"></div>
+        </div>
+
+    </div>
+</div>
+<div id="dvEdit">
+    <div class="container mt-4">
+        <div class="border p-2">
+            <form id="frmPurchaseOrderForm">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="supplier" class="form-label">Supplier</label>
+                        <select class="form-select" id="ddSuppliers"></select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="status" class="form-label">Status</label>
+                        <select class="form-select form-select-sm" id="ddStatus">
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="orderDate" class="form-label">Order Date</label>
+                        <input type="text" class="form-control form-control-sm datepicker" id="txtorderDate">
+                    </div>
+                    <div class="col-md-2">
+
+                        <label for="orderId" class="form-label">Order ID</label>
+                        <input type="text" class="form-control form-control-sm" id="txtorderId" value="">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+
+                    <div class="col-md-4">
+                        <label for="pono" class="form-label">PONO</label>
+                        <input type="text" class="form-control form-control-sm" id="txtpono" value="AHP090724L">
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <label for="backOrderTo" class="form-label">Back Order To</label>
+                        <input type="text" class="form-control form-control-sm" id="txtbackOrderTo" value="GMMS, PO#: 23424-2, July">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="paymentTerms" class="form-label">Payment Terms</label>
+                        <input type="text" class="form-control form-control-sm" id="txtPaymentTerms" value="Advance Payment">
+
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+
+                    <div class="col-md-12">
+                        <label for="shipmentMethod" class="form-label">Shipment Method</label>
+                        <input type="text" class="form-control form-control-sm" list="shippingmenthodlistOptions" id="txtShipmentMethod">
+                        <datalist id="shippingmenthodlistOptions"></datalist>
+                    </div>
+
+
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="shipmentMethod" class="form-label">Shipment Instructions</label>
+                        <input type="text" class="form-control form-control-sm" list="shippingInstructionslistOptions" id="txtShippingInstructions">
+
+                        <datalist id="shippingInstructionslistOptions"></datalist>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="documentsRequired" class="form-label">Documents Required</label>
+                        <select class="form-select" id="ddDocumentRequired">
+                            <option selected value="1">Tracking No</option>
+                            <!-- Additional document requirements can be added here -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+
+                    <div class="col-md-9">
+                        <label for="notifyInstructions" class="form-label">Notify Instructions</label>
+                        <input type="text" class="form-control form-control-sm" list="NotifyInstructionsList" id="txtNotifyInstructions">
+                        <datalist id="NotifyInstructionsListOptions"></datalist>
+
+                    </div>
+
+                    <div class="col-md-2">
+                        <label for="txtRecordCreatedBy" class="form-label">Created By</label>
+                        <input type="text" class="form-control form-control-sm" id="txtRecordCreatedBy">
+                    </div>
+
+                </div>
+                <div class="row mb-3">
+                    <div class="col position-relative">
+                        <label for="txtItemCode" class="form-label">Item Code/Name</label>
+                        <input type="text" class="form-control form-control-sm" id="txtItemCode">
+                    </div>
+                </div>
+                <div class="row mb-3">
+
+                    <div class="col-md-3">
+                        <label for="txtItemDescription" class="form-label">Description</label>
+                        <input type="text" class="form-control form-control-sm" id="txtItemDescription">
+                    </div>
+                    <div class="col-md-1">
+                        <label for="txtItemQuantity" class="form-label">Qty</label>
+                        <input type="number" class="form-control form-control-sm" id="txtItemQuantity">
+                    </div>
+                    <div class="col-md-1">
+                        <label for="txtItemUnitPrice" class="form-label">Unit Price</label>
+                        <input type="number" class="form-control form-control-sm" id="txtItemUnitPrice">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="txtItemPartAvailability" class="form-label">Shipping Method</label>
+                        <input type="text" class="form-control form-control-sm" id="txtItemShippingMethod" list="ItemShippingMethodListOptions">
+
+                        <datalist id="ItemShippingMethodListOptions"></datalist>
+
+                    </div>
+
+                    <div class="col-md-2">
+                        <label for="txtRequestItemNotes" class="form-label">Currency</label>
+                        <input type="text" class="form-control form-control-sm" id="txtItemCurrency" list="ItemCurrencyListOptions">
+                        <datalist id="ItemCurrencyListOptions"></datalist>
+                    </div>
+
+                    <div class="col-md-2 m-auto"    >
+                        <label for="chkItemReceived" class="form-label">Received</label>
+                        <input type="checkbox"  id="chkItemReceived">
+                    </div>
+
+                    <div class="col-md-1 m-auto">
+                        <button type="button" class="btn btn-sm btn-secondary ms-4" onclick="AddItem()">Add</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table tablebordered table-striped border">
+                                <thead class="blue">
+                                    <tr>
+                                        <th>Part No</th>
+                                        <th>Part Name</th>
+                                        <th>Description</th>
+                                        <th>Quantity</th>
+                                        <th>Unit Price</th>
+                                        <th>Total</th>
+                                        <th>Application</th>
+                                        <th>Shipping Method</th>
+                                        <th>Currency</th>
+
+                                        <th>Received</th>
+
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tblItems"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <button type="button" onclick="SaveOrder()" class="btn btn-sm btn-primary">Submit</button>
+                        <button type="button" class="btn btn-sm btn-danger" onclick="ResetNav()">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<style>
+    .tt-menu {
+        min-width: 90% !important;
+        max-height: 250px;
+    }
+</style>
+@section Scripts{
+    @Scripts.Render("~/bundles/pagination")
+    @Scripts.Render("~/bundles/typeahead")
+
+    @Scripts.Render("~/lib/equipments/PurchaseOrder")
+    @Styles.Render("~/bundles/paginationcss")
+}
+

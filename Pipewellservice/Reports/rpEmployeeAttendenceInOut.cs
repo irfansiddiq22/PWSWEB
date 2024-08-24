@@ -714,9 +714,9 @@ namespace Pipewellservice.Reports
             // 
             this.TextBox7.DataField = "DeductMin";
             this.TextBox7.Height = 0.2F;
-            this.TextBox7.Left = 3F;
+            this.TextBox7.Left = 3.04F;
             this.TextBox7.Name = "TextBox7";
-            this.TextBox7.Style = "color: Black";
+            this.TextBox7.Style = "color: Black; font-size: 8pt";
             this.TextBox7.SummaryGroup = "GroupHeader1";
             this.TextBox7.SummaryRunning = GrapeCity.ActiveReports.SectionReportModel.SummaryRunning.Group;
             this.TextBox7.SummaryType = GrapeCity.ActiveReports.SectionReportModel.SummaryType.GrandTotal;
@@ -732,7 +732,7 @@ namespace Pipewellservice.Reports
             this.Label11.Border.TopStyle = GrapeCity.ActiveReports.BorderLineStyle.Solid;
             this.Label11.Height = 0.2F;
             this.Label11.HyperLink = null;
-            this.Label11.Left = 0F;
+            this.Label11.Left = 0.015F;
             this.Label11.Name = "Label11";
             this.Label11.Style = "color: Black; font-family: Book Antiqua; font-size: 9pt; font-weight: bold; text-" +
     "align: center; ddo-font-vertical: none";

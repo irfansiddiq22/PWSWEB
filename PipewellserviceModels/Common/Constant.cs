@@ -30,7 +30,8 @@ namespace PipewellserviceModels.Common
         JOB_STATUS = 14,
         EMAIL_TEMPLATE_TYPES = 15,
         MATERIAL_REQUEST_TYPES = 16,
-        Equipment_Payment=17
+        Equipment_Payment=17,
+        Equipment_PurchaseOrder=18
     }
     public enum UserGroups
     {
