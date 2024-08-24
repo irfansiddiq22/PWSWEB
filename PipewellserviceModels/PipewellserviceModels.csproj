@@ -53,6 +53,7 @@
     <Compile Include="Common\Constant.cs" />
     <Compile Include="Common\DataChangeLog.cs" />
     <Compile Include="Common\DataUpdateResult.cs" />
+    <Compile Include="Common\DataWithID.cs" />
     <Compile Include="Common\DateParam.cs" />
     <Compile Include="Common\DeleteDTO.cs" />
     <Compile Include="Common\EmailDTO.cs" />

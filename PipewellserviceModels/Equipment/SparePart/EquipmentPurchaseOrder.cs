@@ -16,16 +16,7 @@ namespace PipewellserviceModels.Equipment.SparePart
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }
-    public class EquipmentPurchaseOrderListSql
-    {
-        public DataTable List { get; set; }
-        public int ID { get; set; }
-        public EquipmentPurchaseOrderListSql()
-        {
-            List = new DataTable();
-            ID = 0; 
-        }
-    }
+   
     public class EquipmentPurchaseOrder
     {
         public int ID { get; set; }

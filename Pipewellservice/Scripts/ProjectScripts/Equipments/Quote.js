@@ -1,5 +1,6 @@
 ﻿var Items = []
 var QuoteToEdit = {};
+var MaxID = 0;
 function _Init() {
     HideSpinner();
     $("#txtRecordCreatedBy").val(User.Name);
@@ -11,55 +12,7 @@ function _Init() {
         $("#txtQuoteDateFilter").val(moment().subtract(3, 'month').startOf('month').format("DD/MM/YYYY") + ' - ' + moment().endOf('month').format("DD/MM/YYYY"))
         $("#frmSpartPartItems").validate()
 
-        $.each($("select[data-msg]"), function (i, c) {
-            $(this).attr("name", $(this).attr("id"));
-
-            if ($(this).attr("data-min")) {
-                $(this).rules("add", {
-                    required: true,
-                    min: 1,
-                    messages: {
-                        required: $(this).attr("msg"),
-                        min: $(this).attr("msg")
-                    }
-
-                });
-            }
-            else {
-                $(this).rules("add", {
-                    required: true,
-                    messages: {
-                        required: $(this).attr("msg"),
-                    }
-
-                });
-            }
-
-        });
-        $.each($(":text[data-msg]"), function (i, c) {
-            $(this).attr("name", $(this).attr("id"));
-            if ($(this).attr("data-min")) {
-                $(this).rules("add", {
-                    required: true,
-                    min: 1,
-                    messages: {
-                        required: $(this).attr("msg"),
-                        min: $(this).attr("msg")
-                    }
-
-                });
-            } else {
-                $(this).rules("add", {
-                    required: true,
-                    messages: {
-                        required: $(this).attr("msg"),
-                    }
-
-                });
-            }
-
-
-        });
+        
         ListQuotes();
 
     });
@@ -122,10 +75,13 @@ function ListQuotes() {
         showGoInput: true,
         showGoButton: true,
         locator: function (response) {
-            return 'Data';
+            
+            return 'List';
         },
         totalNumberLocator: function (response) {
-            return response.length == 0 ? 0 : response[0].Total;
+            MaxID = response.ID;
+            $("#txtQuotationID").val(MaxID);
+            return response.List.length == 0 ? 0 : response.List[0].Total;
         },
 
         ajax: {
@@ -336,6 +292,7 @@ function EditQuote(ID) {
 }
 function NewQuote() {
     QuoteToEdit = { ID: 0 };
+    $("#txtQuotationID").val(MaxID);
     SetvalOf("txtRecordCreatedBy", User.Name);
     $("#dvEdit").show();
     $("#dvList").hide();

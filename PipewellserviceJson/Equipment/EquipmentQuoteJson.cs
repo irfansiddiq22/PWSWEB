@@ -16,10 +16,13 @@ namespace PipewellserviceJson.Equipment
         {
             return await service.SaveQuote(quote);
         }
-        public async Task<List<EquipmentQuoteList>> List(EquipmentQuoteParam item)
+        public async Task<EquipmentQuoteListView> List(EquipmentQuoteParam item)
         {
             var Data = await service.List(item);
-            return await JsonHelper.Convert<List<EquipmentQuoteList>, DataTable>(Data);
+            EquipmentQuoteListView model = new EquipmentQuoteListView();
+            model.List=await JsonHelper.Convert<List<EquipmentQuoteList>, DataTable>(Data.List);
+            model.ID = Data.ID;
+            return model;
         }
         public async Task<EquipmentQuoteList> QuoteDetail(int ID)
         {

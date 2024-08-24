@@ -1,4 +1,5 @@
 ﻿using PipewellserviceDB.Common;
+using PipewellserviceModels.Common;
 using PipewellserviceModels.Equipment.SparePart;
 using SQLHelper;
 using System;
@@ -54,7 +55,7 @@ namespace PipewellserviceDB.Equipment
                 return 0;
             }
         }
-        public async Task<EquipmentPurchaseOrderListSql> List(EquipmentPurchaseOrderParam param)
+        public async Task<DataListWithID> List(EquipmentPurchaseOrderParam param)
         {
             try
             {
@@ -70,7 +71,7 @@ namespace PipewellserviceDB.Equipment
                 collSP[6] = new SqlParameter { ParameterName = "@EndDate", Value = param.EndDate };
                 collSP[7] = new SqlParameter { ParameterName = "@NextID", Direction=ParameterDirection.Output, Value = 0 };
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetEquipmentPurchaseOrderList", CommandType.StoredProcedure, collSP);
-                EquipmentPurchaseOrderListSql Data = new EquipmentPurchaseOrderListSql();
+                DataListWithID Data = new DataListWithID();
                 Data.List.Load(result);
                 Data.ID = Convert.ToInt32(collSP[7].Value);
                 result.Close();

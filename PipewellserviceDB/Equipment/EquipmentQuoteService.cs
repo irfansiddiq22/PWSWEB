@@ -1,4 +1,5 @@
 ﻿using PipewellserviceDB.Common;
+using PipewellserviceModels.Common;
 using PipewellserviceModels.Equipment;
 using SQLHelper;
 using System;
@@ -54,11 +55,11 @@ namespace PipewellserviceDB.Equipment
                 return 0;
             }
         }
-        public async Task<DataTable> List(EquipmentQuoteParam item)
+        public async Task<DataListWithID> List(EquipmentQuoteParam item)
         {
             try
             {
-                SqlParameter[] collSP = new SqlParameter[7];
+                SqlParameter[] collSP = new SqlParameter[8];
                 collSP[0] = new SqlParameter { ParameterName = "@QuoteID", Value = item.QuoteID };
 
                 collSP[1] = new SqlParameter { ParameterName = "@RFQNumber", Value = item.RFQNumber };
@@ -68,9 +69,11 @@ namespace PipewellserviceDB.Equipment
 
                 collSP[5] = new SqlParameter { ParameterName = "@StartDate", Value = item.StartDate };
                 collSP[6] = new SqlParameter { ParameterName = "@EndDate", Value = item.EndDate };
+                collSP[7] = new SqlParameter { ParameterName = "@NextID", Value = 0,Direction=ParameterDirection.Output };
                 var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetEquipmentQuoteList", CommandType.StoredProcedure, collSP);
-                DataTable Data = new DataTable();
-                Data.Load(result);
+                DataListWithID Data = new DataListWithID();
+                Data.List.Load(result);
+                Data.ID = Convert.ToInt32(collSP[7].Value);
                 result.Close();
                 return Data;
             }

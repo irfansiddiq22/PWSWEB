@@ -36,6 +36,11 @@ namespace PipewellserviceModels.Equipment
         public string RecordCreatedByName { get; set; }
         public int Total { get; set; }
     }
+    public class EquipmentQuoteListView
+    {
+        public List<EquipmentQuoteList> List { get; set; }
+        public int ID { get; set; }
+    }
     public class EquipmentQuoteParam :PagingDTO{
         public int SupplierID { get; set; }
         public string QuoteID { get; set; }
