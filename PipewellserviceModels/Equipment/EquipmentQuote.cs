@@ -14,7 +14,7 @@ namespace PipewellserviceModels.Equipment
         
             public int ID { get; set; }
             public int SupplierID { get; set; }
-            public int PaymentTerm { get; set; }
+            public string PaymentTerm { get; set; }
             public float Discount { get; set; }
             public DateTime QuoteDate { get; set; }
             public string QuoteID { get; set; }
@@ -72,5 +72,10 @@ namespace PipewellserviceModels.Equipment
             Detail = new DataTable();
             Items = new DataTable();
         }
+    }
+
+    public class QuoteIDList
+    {
+        public string QuoteID { get; set; }
     }
 }

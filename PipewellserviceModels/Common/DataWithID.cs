@@ -16,5 +16,12 @@ namespace PipewellserviceModels.Common
             List = new DataTable();
             ID = 0;
         }
+
+        
     }
+    public class IDList
+    {
+        public int ID { get; set; }
+    }
+    
 }

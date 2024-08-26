@@ -31,7 +31,7 @@ namespace PipewellserviceDB.Equipment
                 {
                     new SqlParameter("@ID", SqlDbType.Int) { Value = quote.ID },
                     new SqlParameter("@SupplierID", SqlDbType.Int) { Value = quote.SupplierID },
-                    new SqlParameter("@PaymentTerm", SqlDbType.Int) { Value = quote.PaymentTerm },
+                    new SqlParameter("@PaymentTerm", SqlDbType.VarChar) { Value = quote.PaymentTerm },
                     new SqlParameter("@Discount", SqlDbType.Float) { Value = quote.Discount },
                     new SqlParameter("@QuoteDate", SqlDbType.DateTime) { Value = quote.QuoteDate },
                     new SqlParameter("@QuoteID", SqlDbType.VarChar, 50) { Value = quote.QuoteID ?? (object)DBNull.Value },
@@ -98,6 +98,120 @@ namespace PipewellserviceDB.Equipment
                 return null;
             }
         }
+        public async Task<EquipmentQuoteSQL> QuoteDetailByID(int ID)
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetEquipmentQuoteDetailByID", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                EquipmentQuoteSQL Data = new EquipmentQuoteSQL();
+                Data.Detail.Load(result);
+                Data.Items.Load(result);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public async Task<DataTable> QuoteIDList(string ID)
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetEquipmentQuoteIDList", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@QuoteID", Value = ID });
+                DataTable Data = new DataTable();
+                Data.Load(result);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public async Task<int> SaveCollectQuote(EquipmentQuoteCollection dto)
+        {
+            try
+            {
+                StringBuilder xml = new StringBuilder();
+                xml.Append("<NewDataSet>");
+                foreach (EquipQuoteCollectionItems item in dto.Items)
+                {
+                    xml.Append($"<Table1><SparePartItemID>{item.SparePartItemID}</SparePartItemID><Description>{ StringHelper.ReplaceXmlChar(item.Description)}</Description><Quantity>{item.Quantity}</Quantity><UnitPrice>{item.UnitPrice}</UnitPrice><Notes>{StringHelper.ReplaceXmlChar(item.Notes)}</Notes></Table1>");
+                }
+                xml.Append("</NewDataSet>");
+
+                var parameters = new SqlParameter[]
+                {
+                    new SqlParameter { ParameterName = "@ID", SqlDbType = SqlDbType.Int, Value = dto.ID },
+                    new SqlParameter { ParameterName = "@QuoteID", SqlDbType = SqlDbType.Int, Value = dto.QuoteID },
+                    new SqlParameter { ParameterName = "@DocumentCode", SqlDbType = SqlDbType.VarChar, Size = 100, Value = dto.DocumentCode ?? (object)DBNull.Value },
+                    new SqlParameter { ParameterName = "@RecordDate", SqlDbType = SqlDbType.SmallDateTime, Value = dto.RecordDate },
+                    new SqlParameter { ParameterName = "@ReceivedBy", SqlDbType = SqlDbType.Int, Value = dto.ReceivedBy },
+                    new SqlParameter { ParameterName = "@Freight", SqlDbType = SqlDbType.Float, Value = dto.Freight },
+                    new SqlParameter { ParameterName = "@VAT", SqlDbType = SqlDbType.Float, Value = dto.VAT },
+                    new SqlParameter { ParameterName = "@Discount", SqlDbType = SqlDbType.Float, Value = dto.Discount },
+                    new SqlParameter { ParameterName = "@Total", SqlDbType = SqlDbType.Float, Value = dto.Total },
+                    new SqlParameter { ParameterName = "@Remarks", SqlDbType = SqlDbType.VarChar, Size = 500, Value = dto.Remarks ?? (object)DBNull.Value },
+                    new SqlParameter { ParameterName = "@RecordCreatedBy", SqlDbType = SqlDbType.Int, Value = dto.RecordCreatedBy },
+                    new SqlParameter("@Items", SqlDbType.VarChar) { Value = xml.ToString() },
+                };
+
+                var result = SqlHelper.ExecuteScalar(this.ConnectionString, "ProcAddOrUpdateEquipmentQuoteCollect", CommandType.StoredProcedure, parameters);
+                return Convert.ToInt32(result);
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+        public async Task<DataTable> QuoteCollectionList(EquipmentQuoteParam item)
+        {
+            try
+            {
+                SqlParameter[] collSP = new SqlParameter[7];
+                collSP[0] = new SqlParameter { ParameterName = "@QuoteID", Value = item.QuoteID };
+
+                collSP[1] = new SqlParameter { ParameterName = "@RFQNumber", Value = item.RFQNumber };
+                collSP[2] = new SqlParameter { ParameterName = "@SupplierID", Value = item.SupplierID };
+                collSP[3] = new SqlParameter { ParameterName = "@PageNo", Value = item.pageNumber };
+                collSP[4] = new SqlParameter { ParameterName = "@PageSize", Value = item.pageSize };
+
+                collSP[5] = new SqlParameter { ParameterName = "@StartDate", Value = item.StartDate };
+                collSP[6] = new SqlParameter { ParameterName = "@EndDate", Value = item.EndDate };
+                
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetEquipmentQuoteCollectionList", CommandType.StoredProcedure, collSP);
+                DataListWithID Data = new DataListWithID();
+                Data.List.Load(result);
+                
+                result.Close();
+                return Data.List;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public async Task<EquipmentQuoteSQL> QuoteCollectionDetail(int ID)
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetEquipmentQuoteCollectionDetail", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                EquipmentQuoteSQL Data = new EquipmentQuoteSQL();
+                Data.Detail.Load(result);
+                Data.Items.Load(result);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
 
     }
 }

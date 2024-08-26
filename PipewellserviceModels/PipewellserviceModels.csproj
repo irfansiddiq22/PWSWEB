@@ -65,6 +65,7 @@
     <Compile Include="Common\ResultDTO.cs" />
     <Compile Include="Customer\CustomerRegistrationDTO.cs" />
     <Compile Include="Equipment\EquipmentQuote.cs" />
+    <Compile Include="Equipment\EquipmentQuoteCollection.cs" />
     <Compile Include="Equipment\SparePart\EquipmentPurchaseOrder.cs" />
     <Compile Include="Equipment\SparePart\SparePartItem.cs" />
     <Compile Include="Home\PersonalDetail.cs" />

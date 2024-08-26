@@ -692,7 +692,7 @@ function CalculateTotal() {
     var Vat = parseFloat(TotalAmount * 15 / 100).toFixed(2);// (isNaN(valOf("txtVat")) || valOf("txtVat") == "" ? 0 : parseFloat(valOf("txtVat")))
     SetvalOf("txtVat",Vat)
     var Discount = (isNaN(valOf("txtDiscount")) || valOf("txtDiscount") == "" ? 0 : parseFloat(valOf("txtDiscount")))
-    TotalAmount += Freight + Vat - Discount;
+    TotalAmount += Freight +  parseFloat(Vat) - Discount;
     SetvalOf("txtTotal", parseFloat(TotalAmount).toFixed(2))    
 }
 function FindPastSupplierRate() {

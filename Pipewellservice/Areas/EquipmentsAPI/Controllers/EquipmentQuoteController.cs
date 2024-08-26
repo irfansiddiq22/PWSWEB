@@ -48,5 +48,63 @@ namespace Pipewellservice.Areas.EquipmentsAPI.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.DenyGet
             };
         }
+        [Authorization(Pages.SparePartEquipmentQuotation, 1, CanDelete.Ignore)]
+        public async Task<JsonResult> DetailByID(int QuoteID)
+        {
+
+            return new JsonResult()
+            {
+                Data = await json.QuoteDetailByID(QuoteID),
+                JsonRequestBehavior = JsonRequestBehavior.DenyGet
+            };
+        }
+        [Authorization(Pages.SparePartEquipmentQuotation, 1, CanDelete.Ignore)]
+        public async Task<JsonResult> QuoteIDList(string QuoteID)
+        {
+
+            return new JsonResult()
+            {
+                Data = await json.QuoteIDList(QuoteID),
+                JsonRequestBehavior = JsonRequestBehavior.DenyGet
+            };
+        }
+
+
+
+        [Authorization(Pages.SparePartEquipmentCollection, 1, CanDelete.Ignore)]
+        public async Task<JsonResult> SaveCollectQuote(EquipmentQuoteCollection quote)
+        {
+            quote.RecordCreatedBy = SessionHelper.UserID;
+            return new JsonResult()
+            {
+                Data = new
+                {
+                    ID = await json.SaveCollectQuote(quote)
+                },
+                JsonRequestBehavior = JsonRequestBehavior.DenyGet
+            };
+        }
+
+        [Authorization(Pages.SparePartEquipmentCollection, 1, CanDelete.Ignore)]
+        public async Task<JsonResult> QuoteCollectionList(EquipmentQuoteParam param)
+        {
+
+            return new JsonResult()
+            {
+                Data = await json.QuoteCollectionList(param),
+                JsonRequestBehavior = JsonRequestBehavior.DenyGet
+            };
+        }
+        [Authorization(Pages.SparePartEquipmentQuotation, 1, CanDelete.Ignore)]
+        public async Task<JsonResult> QuoteCollectionDetail(int ID)
+        {
+
+            return new JsonResult()
+            {
+                Data = await json.QuoteCollectionDetail(ID),
+                JsonRequestBehavior = JsonRequestBehavior.DenyGet
+            };
+        }
+
     }
 }

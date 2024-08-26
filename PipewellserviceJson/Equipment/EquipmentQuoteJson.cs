@@ -32,5 +32,40 @@ namespace PipewellserviceJson.Equipment
             equipmentQuote.Items = await JsonHelper.Convert<List<EquipmentQuoteItem>, DataTable>(Data.Items);
             return equipmentQuote;
         }
+        public async Task<EquipmentQuoteList> QuoteDetailByID(int QuoteID)
+        {
+            var Data = await service.QuoteDetailByID(QuoteID);
+            EquipmentQuoteList equipmentQuote = new EquipmentQuoteList();
+            equipmentQuote = (await JsonHelper.Convert<List<EquipmentQuoteList>, DataTable>(Data.Detail)).FirstOrDefault();
+            equipmentQuote.Items = await JsonHelper.Convert<List<EquipmentQuoteItem>, DataTable>(Data.Items);
+            return equipmentQuote;
+        }
+        public async Task<List<string>> QuoteIDList(string QuoteID)
+        {
+            var Data = await service.QuoteIDList(QuoteID);
+            var ID= await JsonHelper.Convert<List<QuoteIDList>, DataTable>(Data);
+        return    ID.Select(x => x.QuoteID).ToList();
+        }
+
+        public async Task<int> SaveCollectQuote(EquipmentQuoteCollection quote)
+        {
+            return await service.SaveCollectQuote(quote);
+        }
+
+        public async Task<List<EquipmentQuoteCollectionList>> QuoteCollectionList(EquipmentQuoteParam param)
+        {
+           var data= await service.QuoteCollectionList(param);
+           return await JsonHelper.Convert<List<EquipmentQuoteCollectionList>, DataTable>(data);
+        }
+
+        public async Task<EquipmentQuoteCollectionList> QuoteCollectionDetail(int ID)
+        {
+            var Data = await service.QuoteCollectionDetail(ID);
+            EquipmentQuoteCollectionList equipmentQuote = new EquipmentQuoteCollectionList();
+            equipmentQuote = (await JsonHelper.Convert<List<EquipmentQuoteCollectionList>, DataTable>(Data.Detail)).FirstOrDefault();
+            equipmentQuote.Items = await JsonHelper.Convert<List<EquipQuoteCollectionItems>, DataTable>(Data.Items);
+            return equipmentQuote;
+        }
+
     }
 }
