@@ -98,6 +98,22 @@ namespace PipewellserviceDB.Equipment
                 return null;
             }
         }
+        public async Task<EquipmentQuoteSQL> QuotePrintDetail(int ID)
+        {
+            try
+            {
+                var result = await SqlHelper.ExecuteReader(this.ConnectionString, "ProcGetEquipmentQuotePrintDetail", CommandType.StoredProcedure, new SqlParameter { ParameterName = "@ID", Value = ID });
+                EquipmentQuoteSQL Data = new EquipmentQuoteSQL();
+                Data.Detail.Load(result);
+                Data.Items.Load(result);
+                result.Close();
+                return Data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
         public async Task<EquipmentQuoteSQL> QuoteDetailByID(int ID)
         {
             try

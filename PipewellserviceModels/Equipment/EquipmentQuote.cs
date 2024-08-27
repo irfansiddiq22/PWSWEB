@@ -10,29 +10,34 @@ namespace PipewellserviceModels.Equipment
 {
     public class EquipmentQuote
     {
-        
-        
-            public int ID { get; set; }
-            public int SupplierID { get; set; }
-            public string PaymentTerm { get; set; }
-            public float Discount { get; set; }
-            public DateTime QuoteDate { get; set; }
-            public string QuoteID { get; set; }
-            public string RFQNumber { get; set; }
-            public bool Accepted { get; set; }
-            public bool Delivered { get; set; }
-            public string CustomerNotes { get; set; }
-            public bool CreditAllowed { get; set; }
-            public string Remarks { get; set; }
-            public int RecordCreatedBy { get; set; }
-            public DateTime RecordDateCreated { get; set; }
+
+
+        public int ID { get; set; }
+        public int SupplierID { get; set; }
+        public string PaymentTerm { get; set; }
+        public float Discount { get; set; }
+        public DateTime QuoteDate { get; set; }
+        public string QuoteID { get; set; }
+        public string RFQNumber { get; set; }
+        public bool Accepted { get; set; }
+        public bool Delivered { get; set; }
+        public string CustomerNotes { get; set; }
+        public bool CreditAllowed { get; set; }
+        public string Remarks { get; set; }
+        public int RecordCreatedBy { get; set; }
+        public DateTime RecordDateCreated { get; set; }
         public List<EquipmentQuoteItem> Items { get; set; }
-        
+
 
     }
-    public class EquipmentQuoteList: EquipmentQuote
+    public class EquipmentQuoteList : EquipmentQuote
     {
         public string SupplierName { get; set; }
+        public string SupplierAddress { get; set; }
+        public string Supplier { get
+            {
+                return $"{SupplierName}\n\r\n {SupplierAddress}";
+            } }
         public string RecordCreatedByName { get; set; }
         public int Total { get; set; }
     }
@@ -41,7 +46,8 @@ namespace PipewellserviceModels.Equipment
         public List<EquipmentQuoteList> List { get; set; }
         public int ID { get; set; }
     }
-    public class EquipmentQuoteParam :PagingDTO{
+    public class EquipmentQuoteParam : PagingDTO
+    {
         public int SupplierID { get; set; }
         public string QuoteID { get; set; }
         public string RFQNumber { get; set; }

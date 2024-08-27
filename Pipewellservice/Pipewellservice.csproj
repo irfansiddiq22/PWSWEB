@@ -248,6 +248,9 @@
     <Compile Include="Reports\rpApprovals.Designer.cs">
       <DependentUpon>rpApprovals.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rptEquipmentQuote.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\rpEmployeeAttendenceSummary.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -814,6 +817,9 @@
     <EmbeddedResource Include="licenses.licx" />
     <EmbeddedResource Include="Reports\rpApprovals.resx">
       <DependentUpon>rpApprovals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptEquipmentQuote.resx">
+      <DependentUpon>rptEquipmentQuote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rpEmployeeAttendenceSummary.resx">
       <DependentUpon>rpEmployeeAttendenceSummary.cs</DependentUpon>

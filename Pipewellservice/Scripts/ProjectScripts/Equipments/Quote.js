@@ -121,6 +121,7 @@ function ListQuotes() {
 
                 var Icons = $('<div class="icons">');
                 $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-primary writeble me-2" onclick="EditQuote(' + r.ID + ')"><i class="fa fa-edit"></i></a>'));
+                $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger me-2 deleteble" onclick="PrintQuote(' + r.ID + ')"><i class="fa fa-print"></i></a>'));
                 $(Icons).append($('<a href="javascript:void(0)" class="btn btn-sm btn-danger deleteble" onclick="DeleteItem(' + i + ')"><i class="fa fa-trash"></i></a>'));
                 tr.append($('<td>').append($(Icons)));
 
@@ -287,6 +288,11 @@ function EditQuote(ID) {
         });
 
     });
+}
+function PrintQuote(ID) {
+    
+    window.open("/Equipments/PrintReport?ID=" + ID, "ReportPreview", "toolbar=no,status=yes,scrollbars=yes;width:850;height:950");
+
 }
 function NewQuote() {
     QuoteToEdit = { ID: 0 };

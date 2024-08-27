@@ -32,6 +32,14 @@ namespace PipewellserviceJson.Equipment
             equipmentQuote.Items = await JsonHelper.Convert<List<EquipmentQuoteItem>, DataTable>(Data.Items);
             return equipmentQuote;
         }
+        public async Task<EquipmentQuoteList> QuotePrintDetail(int ID)
+        {
+            var Data = await service.QuotePrintDetail(ID);
+            EquipmentQuoteList equipmentQuote = new EquipmentQuoteList();
+            equipmentQuote = (await JsonHelper.Convert<List<EquipmentQuoteList>, DataTable>(Data.Detail)).FirstOrDefault();
+            equipmentQuote.Items = await JsonHelper.Convert<List<EquipmentQuoteItem>, DataTable>(Data.Items);
+            return equipmentQuote;
+        }
         public async Task<EquipmentQuoteList> QuoteDetailByID(int QuoteID)
         {
             var Data = await service.QuoteDetailByID(QuoteID);

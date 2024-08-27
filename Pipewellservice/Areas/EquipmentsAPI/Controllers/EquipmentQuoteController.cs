@@ -1,4 +1,5 @@
 ﻿using Pipewellservice.Helper;
+using Pipewellservice.Reports;
 using PipewellserviceJson.Equipment;
 using PipewellserviceModels.Common;
 using PipewellserviceModels.Equipment;
@@ -106,5 +107,6 @@ namespace Pipewellservice.Areas.EquipmentsAPI.Controllers
             };
         }
 
+      
     }
 }
