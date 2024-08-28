@@ -220,7 +220,10 @@ function SaveOrder() {
 
 		}));
 
-
+        if (Order.Items.length == 0) {
+            swal("please enter items to order", { icon: "error" });
+            return false;
+        }
 		if (Order.ID == 0) {
 			DataChangeLog.DataUpdated.push({ Field: "SupplierID", Data: { OLD: "", New: textOf("SupplierID") } });
 			DataChangeLog.DataUpdated.push({ Field: "PONO", Data: { OLD: "", New: textOf("txtpono") } });

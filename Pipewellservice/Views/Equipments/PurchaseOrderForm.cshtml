@@ -67,7 +67,7 @@
                 <div class="row mb-3">
                     <div class="col-md-4">
                         <label for="supplier" class="form-label">Supplier</label>
-                        <select class="form-select" id="ddSuppliers"></select>
+                        <select class="form-select" id="ddSuppliers"  required data-msg="Please select supplier" data-min="1"></select>
                     </div>
                     <div class="col-md-4">
                         <label for="status" class="form-label">Status</label>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="col-md-2">
                         <label for="orderDate" class="form-label">Order Date</label>
-                        <input type="text" class="form-control form-control-sm datepicker" id="txtorderDate">
+                        <input type="text" class="form-control form-control-sm datepicker" id="txtorderDate"  required data-msg="Please enter date">
                     </div>
                     <div class="col-md-2">
                         <label for="orderId" class="form-label">Order ID</label>
@@ -85,7 +85,7 @@
                 <div class="row mb-3">
                     <div class="col-md-4">
                         <label for="pono" class="form-label">PONO</label>
-                        <input type="text" class="form-control form-control-sm" id="txtpono" value="AHP090724L">
+                        <input type="text" class="form-control form-control-sm" id="txtpono" value="AHP090724L" required data-msg="Please enter PONO">
                     </div>
                     <div class="col-md-4">
                         <label for="backOrderTo" class="form-label">Back Order To</label>
@@ -93,20 +93,20 @@
                     </div>
                     <div class="col-md-4">
                         <label for="paymentTerms" class="form-label">Payment Terms</label>
-                        <input type="text" class="form-control form-control-sm" id="txtPaymentTerms" value="Advance Payment">
+                        <input type="text" class="form-control form-control-sm" id="txtPaymentTerms" value="Advance Payment"  required data-msg="Please enter payment terms">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-12">
                         <label for="shipmentMethod" class="form-label">Shipment Method</label>
-                        <input type="text" class="form-control form-control-sm" list="shippingmenthodlistOptions" id="txtShipmentMethod">
+                        <input type="text" class="form-control form-control-sm" list="shippingmenthodlistOptions" id="txtShipmentMethod"  required data-msg="Please enter Shipment method">
                         <datalist id="shippingmenthodlistOptions"></datalist>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="shipmentMethod" class="form-label">Shipment Instructions</label>
-                        <input type="text" class="form-control form-control-sm" list="shippingInstructionslistOptions" id="txtShippingInstructions">
+                        <input type="text" class="form-control form-control-sm" list="shippingInstructionslistOptions" id="txtShippingInstructions"  required data-msg="Please enter Shipment Instructions">
 
                         <datalist id="shippingInstructionslistOptions"></datalist>
                     </div>
@@ -121,7 +121,7 @@
                 <div class="row mb-3">
                     <div class="col-md-9">
                         <label for="notifyInstructions" class="form-label">Notify Instructions</label>
-                        <input type="text" class="form-control form-control-sm" list="NotifyInstructionsList" id="txtNotifyInstructions">
+                        <input type="text" class="form-control form-control-sm" list="NotifyInstructionsList" id="txtNotifyInstructions" required data-msg="Please enter notify instructions">
                         <datalist id="NotifyInstructionsListOptions"></datalist>
                     </div>
                     <div class="col-md-2">
