@@ -10,8 +10,58 @@ function _Init() {
         BindLists();
         
         $("#txtQuoteDateFilter").val(moment().subtract(3, 'month').startOf('month').format("DD/MM/YYYY") + ' - ' + moment().endOf('month').format("DD/MM/YYYY"))
-        $("#frmSpartPartItems").validate()
+        $("#quotationForm").validate()
+        
 
+        $.each($("select[data-msg]"), function (i, c) {
+            $(this).attr("name", $(this).attr("id"));
+
+            if ($(this).attr("data-min")) {
+                $(this).rules("add", {
+                    required: true,
+                    min: 1,
+                    messages: {
+                        required: $(this).attr("msg"),
+                        min: $(this).attr("msg")
+                    }
+
+                });
+            }
+            else {
+                $(this).rules("add", {
+                    required: true,
+                    messages: {
+                        required: $(this).attr("msg"),
+                    }
+
+                });
+            }
+
+        });
+        $.each($(":text[data-msg]"), function (i, c) {
+            $(this).attr("name", $(this).attr("id"));
+            if ($(this).attr("data-min")) {
+                $(this).rules("add", {
+                    required: true,
+                    min: 1,
+                    messages: {
+                        required: $(this).attr("msg"),
+                        min: $(this).attr("msg")
+                    }
+
+                });
+            } else {
+                $(this).rules("add", {
+                    required: true,
+                    messages: {
+                        required: $(this).attr("msg"),
+                    }
+
+                });
+            }
+
+
+        });
         
         ListQuotes();
 
@@ -22,7 +72,7 @@ function BindLists() {
     $.post("/DataList/SupplierList", {}, function (Response) {
         $("#ddSuppliers,#ddSupplierFilter").empty();
         var data = []
-        if (Response.length > 1) data.push({ id: 0, text: 'Select Supplier' });
+        if (Response.length > 1) data.push({ id: 0, text: 'Select Customer' });
         $.each(Response, function (i, s) {
             data.push({ id: s.Code, text: s.Code + " - " + s.Name });
         })
@@ -156,6 +206,10 @@ function SaveQuote() {
             CustomerNotes: valOf("txtcustomerNotes"),
             CreditAllowed: valOf("ddcreditAllowed")
         };
+        if (Quote.SupplierID == "0") {
+            swal("please select customer", { icon: "error" });
+            return false;
+        }
         var QuoteItems = [];
         var valid = true;
         Quote.Items = Array.from(document.getElementById('tblItems').rows).map(row => ({
@@ -167,7 +221,10 @@ function SaveQuote() {
             Notes: $(row.cells[7]).find("textarea").val(),
 
         }));
-
+        if (Quote.Items.length == 0) {
+            swal("please enter items to order", { icon: "error" });
+            return false;
+        }
 
         if (Quote.ID == 0) {
             DataChangeLog.DataUpdated.push({ Field: "SupplierID", Data: { OLD: "", New: textOf("SupplierID") } });
@@ -297,6 +354,7 @@ function PrintQuote(ID) {
 function NewQuote() {
     QuoteToEdit = { ID: 0 };
     $("#txtQuotationID").val(MaxID);
+    $('.datepicker').val(moment().format("DD/MM/YYYY"));
     SetvalOf("txtRecordCreatedBy", User.Name);
     $("#dvEdit").show();
     $("#dvList").hide();

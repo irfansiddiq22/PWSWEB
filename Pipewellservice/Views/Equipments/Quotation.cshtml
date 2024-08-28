@@ -82,14 +82,14 @@
                     <div class="col-md-3">
                         <div class="mb-3">
                             <label for="customer" class="form-label">Customer</label>
-                            <select class="form-select" id="ddSuppliers" required></select>
+                            <select class="form-select" id="ddSuppliers" required data-msg="please select customer" data-min="1"></select>
                             <div class="invalid-feedback">Please select a customer.</div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="mb-3">
                             <label for="paymentTerms" class="form-label">Payment Terms</label>
-                            <input type="text" class="form-control form-control-sm" id="txtPaymentTerms"/>
+                            <input type="text" class="form-control form-control-sm" id="txtPaymentTerms" required data-msg="Please enter Payment terms"/>
 
                         </div>
                     </div>
@@ -111,20 +111,20 @@
                     <div class="col-md-3">
                         <div class="mb-3">
                             <label for="outDate" class="form-label">Qut Date</label>
-                            <input type="text" class="form-control form-control-sm datepicker" id="txtQuotationDate" value="2024-07-10" required>
+                            <input type="text" class="form-control form-control-sm datepicker" id="txtQuotationDate" required data-msg="Please enter Quote date">
                             <div class="invalid-feedback">Please select an out date.</div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="mb-3">
                             <label for="quoteId" class="form-label">Quote ID</label>
-                            <input type="number" class="form-control form-control-sm" id="txtQuotationID">
+                            <input type="number" class="form-control form-control-sm" id="txtQuotationID" required data-msg="Please enter quote number">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="mb-3">
                             <label for="rfqNo" class="form-label">RFQ No.</label>
-                            <input type="text" class="form-control form-control-sm" id="txtRfQNumber" required>
+                            <input type="text" class="form-control form-control-sm" id="txtRfQNumber" required data-msg="Please enter RFQ number"> 
                             <div class="invalid-feedback">Please enter an RFQ number.</div>
                         </div>
                     </div>
